@@ -1,0 +1,12 @@
+{
+  "name": "lodash-amd",
+  "homepage": "https://github.com/lodash/lodash-amd",
+  "_release": "1166014e11",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1166014e1146a506dfe827bac3fd17ca3ddb8c3b"
+  },
+  "_source": "git://github.com/lodash/lodash-amd.git",
+  "_target": "*"
+}

@@ -21,7 +21,10 @@ module.exports = function(grunt) {
                 livereload: true
             },
             spec: {
-                files: ['app/**/*']
+                files: [
+                    'app/**/*',
+                    '!app/vendor/**/*'
+                ]
             }
         },
 
