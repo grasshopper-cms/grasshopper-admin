@@ -2,6 +2,8 @@
 
 ## Dev Install
 
+* PHPStorm
+    * Start from command line to run commands through phpstorm
 * [Bower](http://bower.io/)
 
 ## Versioning
