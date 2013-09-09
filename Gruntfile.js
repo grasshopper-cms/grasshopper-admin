@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         build_gh_pages: {
             ghPages: {
                 options: {
-                    build_branch: "gh-pages",
+                    build_branch: "builds",
                     dist: "build"
                 }
             }
