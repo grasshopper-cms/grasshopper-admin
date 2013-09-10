@@ -10,23 +10,54 @@
     * Base view life cycle:
 * Each base view will render itself first and then all children
 * Parent and child view are both Base views
-* The `$nodeEl`
-    * Each base view will have a `$('<div/>')`, the `this.$nodeEl`
+* The `$node`
+    * Each base view will have a `$('<div/>')`, the `this.$node`
     * This views will be structured as an off document DOM tree to aid in communication and organization
     * This allows us to leverage the DOM as an organizational helper and event bus
 * Channels
     * If needed channels can be created out of empty objects using `_` and `Backbone`
         * A global `channels` object would be created with `channels.visible`, etc.
-    * `$nodeEl` can also be used as a channel and can support event bubbling
+    * `$node` can also be used as a channel and can support event bubbling
 * Templates will be `requirejs` `text` dependencies
 
 ### Rough Base View Pattern
 
+```
+define(['backbone'], function(Backbone) {
+    var BaseView = Backbone.view.extend({
+        initialize: initialize,
+        attachChild: attachChild,
+        getNode: getNode
+    });
+
+    function initialize() {
+        this.$node = $('<div/>');
+
+        if (this.children) {
+            _.forEach(this.children, this.attachChild);
+        }
+    }
+
+    function attachChild(view) {
+        this.$node.append(view.getNode());
+    }
+
+    function getNode() {
+        return this.$node;
+    }
+
+
+    return BaseView;
+});
+```
+
 * Setting as many things up with fields as possible
 
-define(['baseView', 'text!newViewTemplate', 'xyz'], function(BaseView, template, XYZ) {
+```
+define(['baseView', 'oneView', 'otherView', 'text!newViewTemplate', 'xyz'], function(BaseView, OneView, OtherView, template, XYZ) {
     var NewView = BaseView.extend({
         template: template,
+        children: [OneView, OtherView],
         actions: [
             [XYZ, 'change:blah', this.aMethod]
         ]
@@ -34,6 +65,7 @@ define(['baseView', 'text!newViewTemplate', 'xyz'], function(BaseView, template,
 
     return NewView;
 });
+```
 
 ### General AMD pattern
 ```
@@ -65,4 +97,20 @@ define(['underscore', 'jquery', 'backbone'], function(_, $, Backbone) {
 
     return NewView;
 });
+```
+
+### All children
+```
+function setupListeners() {
+    this.$node.on('trigger', )
+}
+```
+
+```
+function render() {
+    // render self
+    ...
+    // render children
+    this.$node.children().trigger('render');
+}
 ```
