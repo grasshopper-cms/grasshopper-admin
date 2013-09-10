@@ -20,11 +20,39 @@ module.exports = function(grunt) {
                 // Start a live reload server on the default port: 35729
                 livereload: true
             },
-            spec: {
+            dev: {
                 files: [
+                    '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
                     'app/**/*',
-                    '!app/vendor/**/*'
+                    '!app/vendor/**/*',
                 ]
+            },
+            sass: {
+                options: {
+                    livereload: false // Set to false to prevent infinite loop.
+                },
+                files: [ //watch sass files for changes.
+                    'app/**/*.scss'
+                ],
+                tasks: [ // array of grunt tasks to run.
+                    'sass'
+                ]
+            }
+        },
+
+        sass: {
+            dist: {
+                options: {
+                    style: 'compressed'
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'app/views',
+                    src: ['**/*.scss'],
+                    dest: 'build',
+                    flatten: true,
+                    ext: '.css'
+                }]
             }
         },
 
@@ -67,6 +95,7 @@ module.exports = function(grunt) {
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("server", "Build and watch task", ["connect", "open", "watch"]);
+    grunt.registerTask("server", "Build and watch task", ["connect","sass","open","watch"]);
     grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
+    grunt.loadNpmTasks('grunt-contrib-sass');
 };
