@@ -23,8 +23,10 @@ module.exports = function(grunt) {
             dev: {
                 files: [
                     '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
-                    'app/**/*',
+                    '!app/*.scss',
+                    '!app/build',
                     '!app/vendor/**/*',
+                    'app/**/*'
                 ]
             },
             sass: {
@@ -32,7 +34,8 @@ module.exports = function(grunt) {
                     livereload: false // Set to false to prevent infinite loop.
                 },
                 files: [ //watch sass files for changes.
-                    'app/**/*.scss'
+                    'app/**/*.scss',
+                    'app/*.scss'
                 ],
                 tasks: [ // array of grunt tasks to run.
                     'sass'
@@ -41,7 +44,7 @@ module.exports = function(grunt) {
         },
 
         sass: {
-            dist: {
+            dist: { // Get and compile all view scss files
                 options: {
                     style: 'compressed'
                 },
@@ -49,10 +52,18 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'app/views',
                     src: ['**/*.scss'],
-                    dest: 'build',
+                    dest: 'app/build',
                     flatten: true,
                     ext: '.css'
                 }]
+            },
+            application: { // Get and compile application.scss
+                options: {
+                    style: 'compressed'
+                },
+                files: {
+                    'app/build/application.css': 'app/application.scss'
+                }
             }
         },
 
