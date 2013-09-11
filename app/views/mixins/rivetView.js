@@ -1,30 +1,32 @@
-define(['rivets'], function (Rivets) {
+define(['rivets', 'mixin'], function(Rivets, mixin) {
 
-    function rivetView() {
+    return mixin({
+            rivetScope : undefined,
+            rivetPrefix : undefined
+        }
 
-        Rivets.configure({
-            adapter: {
-                subscribe: function(obj, keypath, callback) {
-                    callback.wrapped = function(m, v) { callback(v) };
-                    obj.on('change:' + keypath, callback.wrapped);
+        , function(config) {
+            Rivets.configure({
+                adapter: {
+                    subscribe: function(obj, keypath, callback) {
+                        callback.wrapped = function(m, v) { callback(v) };
+                        obj.on('change:' + keypath, callback.wrapped);
+                    },
+                    unsubscribe: function(obj, keypath, callback) {
+                        obj.off('change:' + keypath, callback.wrapped);
+                    },
+                    read: function(obj, keypath) {
+                        return obj.get(keypath);
+                    },
+                    publish: function(obj, keypath, value) {
+                        obj.set(keypath, value);
+                    }
                 },
-                unsubscribe: function(obj, keypath, callback) {
-                    obj.off('change:' + keypath, callback.wrapped);
-                },
-                read: function(obj, keypath) {
-                    return obj.get(keypath);
-                },
-                publish: function(obj, keypath, value) {
-                    obj.set(keypath, value);
-                }
-            },
-            prefix: this.rivetPrefix
-            // preloadData: false
+                prefix: config.rivetPrefix
+                // preloadData: false
+            });
+
+            // bind data to rivets values.
+            Rivets.bind($(config.rivetScope), {data: this.model});
         });
-
-        // bind data to rivets values.
-        Rivets.bind($(this.rivetScope), {data: this.model});
-    }
-
-    return rivetView;
 });

@@ -19,7 +19,8 @@ require.config({
         baseView : 'views/base/baseView',
         loginView : 'views/login/loginView',
         // Mixins
-        rivetView : 'views/mixins/rivetView'
+        rivetView : 'views/mixins/rivetView',
+        mixin : 'views/mixins/mixin'
     }
 });
 
