@@ -8,7 +8,9 @@ define(['underscore'], function(_) {
             _.extend(config, defaultOptions, options);
 
             return function() {
-                mixinFunction.call(this, config, arguments);
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift(config);
+                mixinFunction.apply(this, args);
             }
         }
     }
