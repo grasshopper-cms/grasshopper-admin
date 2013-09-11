@@ -4,8 +4,3 @@
 @import "vendor/foundation/scss/foundation";
 // Using Sass globbing to support importing directories.
 @import "views/**/*";
-
-// FIXME: Sass is currently being imported into this manifest file explicitly.
-//        A ruby gem sass-globbing was included in the gemfile and required in the compass config.ru
-//        Though, it currently does not work.
-//        Also, the Gruntfile Live-reload will compile all the scss files into css as well.
