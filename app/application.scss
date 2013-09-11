@@ -2,11 +2,8 @@
 
 // Import Foundation
 @import "vendor/foundation/scss/foundation";
-
-@import "views/login/login";
-
 // Using Sass globbing to support importing directories.
-// @import "views/**/*";
+@import "views/**/*";
 
 // FIXME: Sass is currently being imported into this manifest file explicitly.
 //        A ruby gem sass-globbing was included in the gemfile and required in the compass config.ru

@@ -1,11 +1,11 @@
 /*global module:false, require:false*/
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     "use strict";
 
     var path = require('path'),
         lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
-        folderMount = function folderMount(connect, point) {
+        folderMount = function folderMount (connect, point) {
             return connect.static(path.resolve(point));
         };
 
@@ -15,64 +15,70 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
 
-        watch: {
-            options: {
+        watch : {
+            options : {
                 // Start a live reload server on the default port: 35729
-                livereload: true
+                livereload : false
             },
-            dev: {
-                files: [
-                    '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
-                    '!app/*.scss',
-                    '!app/build',
-                    '!app/vendor/**/*',
-                    'app/**/*'
+            build : {
+                options : {
+                    // Start a live reload server on the default port: 35729
+                    livereload : true
+                },
+                files : [
+                    'build/**/*',
+                    '!build/vendor/**/*'
                 ]
             },
-            sass: {
-                options: {
-                    livereload: false // Set to false to prevent infinite loop.
-                },
-                files: [ //watch sass files for changes.
+            dev : {
+                files : [
+                    'app/**/*',
+                    '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
+                    '!app/vendor/**/*'
+                ],
+                tasks : [
+                    'copy'
+                ]
+            },
+            sass : {
+                files : [ //watch sass files for changes.
                     'app/**/*.scss',
                     'app/*.scss'
                 ],
-                tasks: [ // array of grunt tasks to run.
+                tasks : [ // array of grunt tasks to run.
                     'sass'
                 ]
             }
         },
 
-        sass: {
-            dist: { // Get and compile all view scss files
-                options: {
-                    style: 'compressed'
+        sass : {
+            application : { // Get and compile application.scss
+                options : {
+                    style : 'compressed',
+                    require : 'sass-globbing'
                 },
-                files: [{
-                    expand: true,
-                    cwd: 'app/views',
-                    src: ['**/*.scss'],
-                    dest: 'app/build',
-                    flatten: true,
-                    ext: '.css'
-                }]
-            },
-            application: { // Get and compile application.scss
-                options: {
-                    style: 'compressed'
-                },
-                files: {
-                    'app/build/application.css': 'app/application.scss'
+                files : {
+                    'build/application.css' : 'app/application.scss'
                 }
             }
         },
 
-        connect: {
-            livereload : {
+        connect : {
+            site : {
                 options : {
-                    port       : 9001,
-                    hostname: 'localhost',
-                    base       : './app/',
+                    port : 9001,
+                    hostname : 'localhost',
+                    base : './build/',
+                    middleware : function (connect, options) {
+                        return [lrSnippet, folderMount(connect, options.base)]
+                    }
+                }
+            },
+            tests : {
+                options : {
+                    port : 9001,
+                    hostname : 'localhost',
+                    base : './',
                     middleware : function (connect, options) {
                         return [lrSnippet, folderMount(connect, options.base)]
                     }
@@ -83,22 +89,25 @@ module.exports = function(grunt) {
         open : {
             reload : {
                 path : 'http://localhost:9001/'
+            },
+            tests : {
+                path : 'http://localhost:9001/tests/'
             }
         },
 
-        copy: {
-            build: {
-                files: [
-                    {expand: true, cwd: 'app/', src: ['**'], dest: 'build'}
+        copy : {
+            build : {
+                files : [
+                    {expand : true, cwd : 'app/', src : ['**'], dest : 'build'}
                 ]
             }
         },
 
-        build_gh_pages: {
-            ghPages: {
-                options: {
-                    build_branch: "builds",
-                    dist: "build"
+        build_gh_pages : {
+            ghPages : {
+                options : {
+                    build_branch : "builds",
+                    dist : "build"
                 }
             }
         }
@@ -106,7 +115,7 @@ module.exports = function(grunt) {
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("server", "Build and watch task", ["connect","sass","open","watch"]);
+    grunt.registerTask("server", "Build and watch task", ["copy", "connect:site", "sass", "open:reload", "watch"]);
+    grunt.registerTask("testServer", "Build and watch task", ["copy", "connect:tests", "sass", "open:tests", "watch"]);
     grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
-    grunt.loadNpmTasks('grunt-contrib-sass');
 };
