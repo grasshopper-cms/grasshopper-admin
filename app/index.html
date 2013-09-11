@@ -9,13 +9,18 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width"/>
     <link rel="stylesheet" type="text/css" href="application.css">
+    <!-- FIXME: This Rivets file needs to be deleted and included into the project the correct way. -->
+    <script src="rivets.js"></script>
     <title>Grasshopper</title>
 </head>
 
 <body>
 
-<div id="navbar">
-    <div class="large-12 columns greenBox">
+    <div id="navbar">
+        <div class="large-12 columns greenBox">
+            <div data-login-text="user.name"></div>
+            <input data-login-value="user.name"></input>
+        </div>
     </div>
 
     <div id="sidebar">
@@ -33,7 +38,6 @@
 
     <div id="footer">
     </div>
-</div>
 <script data-main="main" src="vendor/requirejs/require.js"></script>
 </body>
 
