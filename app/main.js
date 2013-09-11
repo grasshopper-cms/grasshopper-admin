@@ -9,24 +9,27 @@ require.config({
         }
     },
     paths : {
+        // Libraries
         underscore : 'vendor/lodash/dist/lodash.underscore',
         jquery : 'vendor/jquery/jquery',
         backbone : 'vendor/backbone-amd/backbone',
         text : 'vendor/requirejs-text/text',
-
-        baseView : 'views/base/baseView'
+        rivets : 'vendor/rivets/dist/rivets',
+        // Views
+        baseView : 'views/base/baseView',
+        loginView : 'views/login/loginView',
+        // Mixins
+        rivetView : 'views/mixins/rivetView'
     }
 });
 
 require([
-    'underscore',
-    'jquery',
-    'backbone',
-    'baseView'
-], function (_, $, Backbone, BaseView) {
-    // console.log("....");
-    // $("h1").text("_." + _.VERSION);
-    // console.log("..a..");
-    // console.log(BaseView);
-    // console.log("..x..");
+    'loginView'
+], function (LoginView) {
+
+    var loginView = new LoginView();
+
+    loginView.rivetView();
+    // locals
+    // render login view
 });
