@@ -2,5 +2,5 @@
 
 // Import Foundation
 @import "vendor/foundation/scss/foundation";
-// Using Sass globbing to support importing directories.
+// Using Sass globbing to import app view scss files.
 @import "views/**/*";

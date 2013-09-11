@@ -24,9 +24,9 @@ require([
     'backbone',
     'baseView'
 ], function (_, $, Backbone, BaseView) {
-    console.log("....");
-    $("h1").text("_." + _.VERSION);
-    console.log("..a..");
-    console.log(BaseView);
-    console.log("..x..");
+    // console.log("....");
+    // $("h1").text("_." + _.VERSION);
+    // console.log("..a..");
+    // console.log(BaseView);
+    // console.log("..x..");
 });

@@ -15,21 +15,20 @@ rivets.configure({
             obj.set(keypath, value);
         }
     },
-    // To prevent data attribute collision, you can set the prefix option to something like rv so that your data binding attributes are accessed as data-rv-text instead of just data-text.
     prefix: 'login'
-    // preloadData: false // Set the preloadData option to false if you don’t want your bindings to be bootstrapped with the current model values on bind. This option is set to true by default.
+    // preloadData: false
 });
 
 define(['backbone'], function (Backbone) {
-    console.log('before');
+
     var BaseView = Backbone.View.extend({
 
     });
-    console.log('after');
 
+    // This should not be in this file. Put it here for demonstration.
     var user = new Backbone.Model({name: 'Joe'});
     var el = document.getElementById('navbar');
-
+    // bind data to rivets values.
     rivets.bind(el, {user: user});
 
     return BaseView;
