@@ -4,8 +4,7 @@ define(['baseView', 'rivetView', 'text!views/login/loginView.html']
         var LoginView = BaseView.extend({
             model : new Backbone.Model({name : 'Joe'}),
             el : "#stage",
-            templateData : undefined,
-            template : _.template(templateHtml),
+            templateHtml : templateHtml,
             rivetView : rivetView({rivetScope : '#login', rivetPrefix : 'login'})
         });
 

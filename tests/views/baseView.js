@@ -13,7 +13,6 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
         beforeEach(function (done) {
             injector.require(['baseView'], function (BaseViewIn) {
                     BaseView = BaseViewIn;
-                    console.log("done!");
                     done();
                 },
                 function () {
@@ -23,8 +22,12 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
         });
 
         it("BaseView exisits", function () {
-            console.log("test");
             should.exist(BaseView);
+        });
+
+        it("BaseView has render method", function () {
+            // BaseView.should.have.property('render');
+            // should.exist(BaseView.render);
         });
     });
 });
