@@ -6,10 +6,6 @@ define(['backbone'], function (Backbone) {
         }
     });
 
-    // function renderToStage() {
-    //     $('#stage').html(_.template(this.template, data));
-    // };
-
     return BaseView;
 
 });

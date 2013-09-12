@@ -32,6 +32,4 @@ require([
 
     loginView.render();
     loginView.rivetView();
-    // locals
-    // render login view
 });
