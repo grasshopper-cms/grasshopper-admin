@@ -30,6 +30,7 @@ require([
 
     var loginView = new LoginView();
 
+    loginView.render();
     loginView.rivetView();
     // locals
     // render login view

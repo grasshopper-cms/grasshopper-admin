@@ -1,7 +1,9 @@
 define(['backbone'], function (Backbone) {
 
     var BaseView = Backbone.View.extend({
-        // renderToStage : renderToStage
+        render : function () {
+            this.$el.html(this.template(this.templateData))
+        }
     });
 
     // function renderToStage() {
