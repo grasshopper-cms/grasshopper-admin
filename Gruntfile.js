@@ -40,6 +40,15 @@ module.exports = function (grunt) {
                     'copy'
                 ]
             },
+            tests : {
+                options : {
+                    // Start a live reload server on the default port: 35729
+                    livereload : true
+                },
+                files : [
+                    'tests/**/*.js'
+                ]
+            },
             sass : {
                 files : [ //watch sass files for changes.
                     'app/**/*.scss',
@@ -115,7 +124,7 @@ module.exports = function (grunt) {
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("server", "Build and watch task", ["copy", "connect:site", "sass", "open:reload", "watch"]);
-    grunt.registerTask("testServer", "Build and watch task", ["copy", "connect:tests", "sass", "open:tests", "watch"]);
+    grunt.registerTask("server", "Build and watch task", ["copy", "connect:site", "sass", "open:reload", "watch:build", "watch:sass", "watch:dev"]);
+    grunt.registerTask("testServer", "Build and watch task", ["copy", "connect:tests", "sass", "open:tests", "watch:tests", "watch:dev"]);
     grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
 };
