@@ -1,20 +1,23 @@
 /*global describe:false, it:false, beforeEach:false*/
 define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
 
-    var injector = new Squire(),
+    'use strict';
+    var VIEW1_NAME = "testView1",
+        injector = new Squire(),
         should = chai.should();
 
     mocha.setup('bdd');
 
     describe("The BaseView", function () {
 
-        var BaseView, viewInstace;
+        var BaseView,
+            viewInstance;
 
         beforeEach(function (done) {
             injector.require(['baseView'], function (BaseViewIn) {
                     BaseView = BaseViewIn;
                     viewInstance = new BaseView({
-
+                        name : VIEW1_NAME
                     });
                     done();
                 },
@@ -39,12 +42,9 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 promise.should.have.property('done');
                 promise.should.not.have.property('resolve');
             });
-            it('the promise should be resolved after start runs', function () {
-                var listener = function () {
-
-                };
-                viewInstance.start().done(listener);
-                //TODO: use sinon to spy on listener and make sure it was called
+            // Using done as a spy. If it is not called, the test will fail.
+            it('the promise should be resolved after start runs', function (done) {
+                viewInstance.start().done(done);
             });
             it('the promise should be rejected if beforeRender fails', function () {
 
@@ -54,9 +54,7 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
             });
             describe("beforeRender method", function () {
                 it("should trigger the onBeforeRender event on the view's channel", function (done) {
-                    viewInstance.channels.views.on("BaseView:onBeforeRender", function () {
-                        //TODO: use a sinon spy to check whether this anon function was called (use sinon-chai)
-                        true.should.be.true;
+                    viewInstance.channels.views.on(VIEW1_NAME + ":onBeforeRender", function () {
                         done();
                     });
                     viewInstance.start();

@@ -32,7 +32,9 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
     }
 
     function render () {
-        this.$el.html(this.template(this.dataToJSON()));
+        if (this.$el && this.template) {
+            this.$el.html(this.template(this.dataToJSON()));
+        }
     }
 
     function dataToJSON () {

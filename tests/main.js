@@ -19,6 +19,8 @@ require.config({
         mocha : '../app/vendor/mocha/mocha',
         chai : '../app/vendor/chai/chai',
         squire : '../app/vendor/squire/src/Squire',
+        sinon : '../app/vendor/sinon/lib/sinon',
+        sinonSpy : '../app/vendor/sinon/lib/sinon/spy',
 
         baseView : '../app/views/base/baseView',
 
