@@ -24,9 +24,10 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
 
         $
             .when(_beforeRender.call(this))
-            .done(_render.call(this))
+            .then(_render.call(this), _rejectStart.call(this, $deferred))
             //TODO: implement _afterRender
-            .done(_resolveStart.call(this, $deferred));
+            .then(_resolveStart.call(this, $deferred), _rejectStart.call(this, $deferred))
+            .fail(_rejectStart.call(this, $deferred));
         //TODO: implement fail method that is called if before or after render is rejected
         return $deferred.promise();
     }
@@ -56,12 +57,16 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
 
     function _render () {
         var event = this.options.name + ':render';
-        this.channels.views.trigger(event)
+        this.channels.views.trigger(event);
         this.render();
     }
 
     function _resolveStart ($deferred) {
         $deferred.resolve();
+    }
+
+    function _rejectStart ($deferred) {
+        $deferred.reject();
     }
 
     return BaseView;

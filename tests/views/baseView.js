@@ -31,6 +31,20 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
         });
 
         describe("start method", function () {
+            var TestView,
+                testView,
+                deferred;
+
+            beforeEach(function() {
+               TestView = BaseView.extend({
+                   beforeRender : function() {
+                       deferred = new $.Deferred();
+                       return deferred.promise();
+                   }
+               });
+               testView = new TestView();
+            });
+
             it("should exist", function () {
                 should.exist(viewInstance.start);
             });
@@ -44,10 +58,12 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
             });
             // Using done as a spy. If it is not called, the test will fail.
             it('the promise should be resolved after start runs', function (done) {
-                viewInstance.start().done(done);
+                testView.start().done(done);
+//                deferred.promise.status().should.be('completed');
             });
-            it('the promise should be rejected if beforeRender fails', function () {
-
+            it('the promise should be rejected if beforeRender fails', function (done) {
+                testView.start().fail(done);
+                deferred.reject();
             });
             it('the promise should be rejected if afterRender fails', function () {
 
@@ -92,7 +108,7 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
         });
 
         describe("stop method", function () {
-            // TODO: implement before aftter etc methods in the same was as for render
+            // TODO: implement before after etc methods in the same was as for render
             // method should wrap View.remove
         });
 
