@@ -20,7 +20,9 @@ require.config({
         loginView : 'views/login/loginView',
         // Mixins
         rivetView : 'views/mixins/rivetView',
-        mixin : 'views/mixins/mixin'
+        mixin : 'views/mixins/mixin',
+        // Channels
+        channels : 'channels'
     }
 });
 
@@ -30,6 +32,6 @@ require([
 
     var loginView = new LoginView();
 
-    loginView.render();
+    loginView.start();
     loginView.rivetView();
 });

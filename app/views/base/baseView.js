@@ -1,49 +1,30 @@
-define(['backbone', 'underscore'], function (Backbone, _) {
+define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) {
 
     var BaseView = Backbone.View.extend({
+        options: {
+            name:"BaseView"
+        },
+        start : function() {
+            var $deferred = new $.Deferred();
+            $.when(function() {
+                // TODO: Refactor this.
+                var event = this.options.name + ":beforeRender",
+                    promise;
+                this.channels.views.trigger(event);
+                if (this.beforeRender) {
+                    promise = this.beforeRender();
+                }
+                return promise;
+                }.bind(this)())
+                .done(function() {
+                    var event = this.options.name + ":render";
+                    this.channels.views.trigger(event)
+                    this.render();
+                }.bind(this));
+            return $deferred.promise();
+        },
         render : function() {
-            this.beforeRender()
-            .then(
-                this.actuallyRender(), // success from beforeRender
-                console.log('error'), // error from beforeRender
-                console.log('notification')) // notification
-            .then(
-                this.afterRender(), // success from actuallyRender
-                console.log('error'), // error from actuallyRender
-                console.log('notification')) // notification
-            .then(
-                this.afterRender(), // success from afterRender
-                console.log('error'), // success from
-                console.log('notification')) // Notification
-            .done(
-                console.log('done'))
-            .fail( function() {
-                console.log('failure')
-            })
-        },
-        beforeRender : function() {
-            var $deferred = new $.Deferred();
-            _.defer(function() {
-                // Do Stuff Before Render
-                console.log('beforeRender');
-            })
-            return $deferred.promise();
-        },
-        actuallyRender : function() {
-            var $deferred = new $.Deferred();
-            _.defer(function() {
-                console.log('actually render');
-                this.$el.html(this.template(this.dataToJSON()))
-            });
-            return $deferred.promise();
-        },
-        afterRender : function() {
-            var $deferred = new $.Deferred();
-            _.defer(function() {
-                console.log('AfterRender');
-                // Do Stuff After Render
-            })
-            return $deferred.promise();
+            this.$el.html(this.template(this.dataToJSON()));
         },
         dataToJSON : function() {
             return this.model ? this.model.toJSON() : {};
@@ -52,5 +33,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.template = _.template(this.templateHtml);
         }
     });
+    BaseView.prototype.channels = channels;
     return BaseView;
 });

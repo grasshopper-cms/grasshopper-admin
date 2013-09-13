@@ -20,7 +20,9 @@ require.config({
         chai : '../app/vendor/chai/chai',
         squire : '../app/vendor/squire/src/Squire',
 
-        baseView : '../app/views/base/baseView'
+        baseView : '../app/views/base/baseView',
+
+        channels : '../app/channels'
     }
 });
 

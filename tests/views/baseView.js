@@ -14,7 +14,7 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
             injector.require(['baseView'], function (BaseViewIn) {
                     BaseView = BaseViewIn;
                     viewInstance = new BaseView({
-                        name: 'testName'
+
                     });
                     done();
                 },
@@ -27,17 +27,34 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
             should.exist(BaseView);
         });
 
-        describe("Render Method", function() {
+        describe("start method", function() {
+            it("should exist", function() {
+                should.exist(viewInstance.start);
+            });
+            it('should be a function', function() {
+                viewInstance.start.should.be.a('function');
+            });
+            it('should return a promise', function() {
+                var promise = viewInstance.start();
+                promise.should.have.property('done');
+                promise.should.not.have.property('resolve');
+            });
+        });
+        describe("render method", function() {
             it("should exist", function() {
                 should.exist(viewInstance.render);
             });
             it('should be a function', function() {
                 viewInstance.render.should.be.a('function');
             });
-            it('should return a promise', function() {
-                var promise = viewInstance.render();
-                promise.should.have.property('done');
-                promise.should.not.have.propert('resolve');
+        });
+        describe("beforeRender method", function() {
+            it("should trigger the beforeRender event on the view's channel", function(done) {
+                viewInstance.channels.views.on("BaseView:beforeRender", function() {
+                    true.should.be.true;
+                    done();
+                });
+                viewInstance.start();
             });
         });
     });
@@ -47,7 +64,6 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
 // Each life cycle method
 //    calls some methods
 //    returns a promise that is resolved when the method completes
-
 //    triggers events on channels.views using its name as
 //      the namespace and the promise as an argument
 //
