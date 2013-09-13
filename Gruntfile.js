@@ -108,10 +108,14 @@ module.exports = function (grunt) {
             }
         },
 
+        // TODO: add some clean up tasks after copy, or copy more selectively
         copy : {
             build : {
                 files : [
-                    {expand : true, cwd : 'app/', src : ['**'], dest : 'build'}
+                    {expand : true, cwd : 'app/', src : [
+                        '**',
+                        '!**/*.scss'
+                    ], dest : 'build'}
                 ]
             }
         },
