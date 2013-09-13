@@ -25,14 +25,14 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
         $
             .when(_beforeRender.call(this))
             .then(_render.call(this), _rejectStart.call(this, $deferred))
-            //TODO: implement _afterRender
-            .then(_resolveStart.call(this, $deferred), _rejectStart.call(this, $deferred))
-            .fail(_rejectStart.call(this, $deferred));
+            .then(_afterRender.call(this), _rejectStart.call(this, $deferred))
+            .then(_resolveStart.call(this, $deferred), _rejectStart.call(this, $deferred));
         //TODO: implement fail method that is called if before or after render is rejected
         return $deferred.promise();
     }
 
     function render () {
+        console.log("Actual Render Was Called");
         if (this.$el && this.template) {
             this.$el.html(this.template(this.dataToJSON()));
         }
@@ -48,25 +48,44 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
     // --------------------------
     // Private Methods
 
-    function _beforeRender () {
+    function _beforeRender() {
         // TODO: create a method to generate the event name from the views name + the event name
         var event = this.options.name + ':onBeforeRender';
         this.channels.views.trigger(event);
+        console.log("Before Render Was Called");
         return this.beforeRender ? this.beforeRender() : undefined;
     }
 
-    function _render () {
-        var event = this.options.name + ':render';
-        this.channels.views.trigger(event);
-        this.render();
+    function _render() {
+        return function() {
+            var event = this.options.name + ':render';
+            this.channels.views.trigger(event);
+            console.log("Private Render Was Called");
+            this.render();
+        }.bind(this);
+    }
+
+    function _afterRender() {
+        return function() {
+            var event = this.options.name + ':onAfterRender';
+            this.channels.views.trigger(event);
+            console.log("After Render was Called");
+            return this.afterRender ? this.afterRender() : undefined;
+        }.bind(this);
     }
 
     function _resolveStart ($deferred) {
-        $deferred.resolve();
+        return function() {
+            console.log("Resolve Was Called");
+            $deferred.resolve();
+        }.bind(this);
     }
 
     function _rejectStart ($deferred) {
-        $deferred.reject();
+        return function() {
+            console.log("Reject Was Called");
+            $deferred.reject();
+        }.bind(this);
     }
 
     return BaseView;

@@ -36,7 +36,7 @@ require([
 ], function (LoginView, loginViewConfig) {
 
     var loginView = new LoginView(loginViewConfig);
-
     loginView.start();
     loginView.rivetView();
+
 });
