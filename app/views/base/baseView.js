@@ -2,7 +2,7 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
 
     var BaseView = Backbone.View.extend({
         options : {
-            name : "BaseView"
+            name : 'BaseView'
         },
         initialize : initialize,
         start : start,
@@ -10,9 +10,18 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
         dataToJSON : dataToJSON
     });
 
+    function initialize () {
+        if (this.options.templateHtml) {
+            this.template = _.template(this.options.templateHtml);
+        }
+        if (this.options.modelData) {
+            this.model = new Backbone.Model(this.options.modelData);
+        }
+    }
+
     function start () {
-        var $deferred = new $.Deferred(),
-            self = this;
+        var $deferred = new $.Deferred();
+
         $
             .when(_beforeRender.call(this))
             .done(_render.call(this))
@@ -30,10 +39,6 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
         return this.model ? this.model.toJSON() : {};
     }
 
-    function initialize () {
-        this.template = _.template(this.templateHtml);
-    }
-
     // Share channels among all Views
     BaseView.prototype.channels = channels;
 
@@ -42,13 +47,13 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
 
     function _beforeRender () {
         // TODO: create a method to generate the event name from the views name + the event name
-        var event = this.options.name + ":onBeforeRender";
+        var event = this.options.name + ':onBeforeRender';
         this.channels.views.trigger(event);
         return this.beforeRender ? this.beforeRender() : undefined;
     }
 
     function _render () {
-        var event = this.options.name + ":render";
+        var event = this.options.name + ':render';
         this.channels.views.trigger(event)
         this.render();
     }

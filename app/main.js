@@ -18,6 +18,7 @@ require.config({
         // Views
         baseView : 'views/base/baseView',
         loginView : 'views/login/loginView',
+        loginViewConfig : 'views/login/loginViewConfig',
         // Mixins
         rivetView : 'views/mixins/rivetView',
         mixin : 'views/mixins/mixin',
@@ -27,10 +28,11 @@ require.config({
 });
 
 require([
-    'loginView'
-], function (LoginView) {
+    'loginView',
+    'loginViewConfig'
+], function (LoginView, loginViewConfig) {
 
-    var loginView = new LoginView();
+    var loginView = new LoginView(loginViewConfig);
 
     loginView.start();
     loginView.rivetView();
