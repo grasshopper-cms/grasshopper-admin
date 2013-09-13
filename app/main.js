@@ -15,13 +15,16 @@ require.config({
         backbone : 'vendor/backbone-amd/backbone',
         text : 'vendor/requirejs-text/text',
         rivets : 'vendor/rivets/dist/rivets',
+
         // Views
         baseView : 'views/base/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
+
         // Mixins
-        rivetView : 'views/mixins/rivetView',
-        mixin : 'views/mixins/mixin',
+        mixin : 'mixins/mixin',
+        rivetView : 'mixins/rivetView',
+
         // Channels
         channels : 'channels'
     }
