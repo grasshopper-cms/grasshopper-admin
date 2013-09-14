@@ -32,7 +32,6 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
     }
 
     function render () {
-        console.log("Actual Render Was Called");
         if (this.$el && this.template) {
             this.$el.html(this.template(this.dataToJSON()));
         }
@@ -52,7 +51,6 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
         // TODO: create a method to generate the event name from the views name + the event name
         var event = this.options.name + ':onBeforeRender';
         this.channels.views.trigger(event);
-        console.log("Before Render Was Called");
         return this.beforeRender ? this.beforeRender() : undefined;
     }
 
@@ -60,7 +58,6 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
         return function() {
             var event = this.options.name + ':render';
             this.channels.views.trigger(event);
-            console.log("Private Render Was Called");
             this.render();
         }.bind(this);
     }
@@ -69,21 +66,18 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
         return function() {
             var event = this.options.name + ':onAfterRender';
             this.channels.views.trigger(event);
-            console.log("After Render was Called");
             return this.afterRender ? this.afterRender() : undefined;
         }.bind(this);
     }
 
     function _resolveStart ($deferred) {
         return function() {
-            console.log("Resolve Was Called");
             $deferred.resolve();
         }.bind(this);
     }
 
     function _rejectStart ($deferred) {
         return function() {
-            console.log("Reject Was Called");
             $deferred.reject();
         }.bind(this);
     }

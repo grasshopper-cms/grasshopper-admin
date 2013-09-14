@@ -26,55 +26,51 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 });
         });
 
-//        it("should exist", function () {
-//            should.exist(BaseView);
-//        });
+        it("should exist", function () {
+            should.exist(BaseView);
+        });
 
         describe("start method", function () {
-            var BOView, // Before Render Only view
-                bOViewInstance, // Before Render Only view instance
-                BAView, // Before and After Render View
-                bAViewInstance, //Before and After Render view instance
-                $deferredBeforeOnly,
-                $deferredBefore,
-                $deferredAfter;
-
-            beforeEach(function() {
-                BOView = BaseView.extend({
-                   beforeRender : function() {
-                       $deferredBeforeOnly = new $.Deferred();
-                       console.log("Actual Before Render Was Called");
-                       return $deferredBeforeOnly.promise();
-                   }
-               });
-                BAView = BaseView.extend({
-                    beforeRender : function() {
-                        $deferredBefore = new $.Deferred();
-                        console.log("Actual Before Render Was Called");
-                        return $deferredBefore.promise();
-                    },
-                    afterRender : function() {
-                        $deferredAfter = new $.Deferred();
-                        console.log("Actual After Render Was Called");
-                        return $deferredAfter.promise();
-                    }
-               });
-               bOViewInstance = new BOView();
-               bAViewInstance = new BAView();
+            it("should exist", function () {
+                should.exist(viewInstance.start);
             });
-
-//            it("should exist", function () {
-//                should.exist(viewInstance.start);
-//            });
-//            it('should be a function', function () {
-//                viewInstance.start.should.be.a('function');
-//            });
-//            it('should return a promise', function () {
-//                var promise = viewInstance.start();
-//                promise.should.have.property('done');
-//                promise.should.not.have.property('resolve');
-//            });
+            it('should be a function', function () {
+                viewInstance.start.should.be.a('function');
+            });
+            it('should return a promise', function () {
+                var promise = viewInstance.start();
+                promise.should.have.property('done');
+                promise.should.not.have.property('resolve');
+            });
             describe("promise", function() {
+                var BOView,// Before Render Only view.
+                    bOViewInstance,// Before Render Only view instance.
+                    BAView,// Before and After Render View.
+                    bAViewInstance,// Before and After Render view instance.
+                    $deferredBeforeOnly,
+                    $deferredBefore,
+                    $deferredAfter;
+
+                beforeEach(function() {
+                    BOView = BaseView.extend({
+                        beforeRender : function() {
+                            $deferredBeforeOnly = new $.Deferred();
+                            return $deferredBeforeOnly.promise();
+                        }
+                    });
+                    BAView = BaseView.extend({
+                        beforeRender : function() {
+                            $deferredBefore = new $.Deferred();
+                            return $deferredBefore.promise();
+                        },
+                        afterRender : function() {
+                            $deferredAfter = new $.Deferred();
+                            return $deferredAfter.promise();
+                        }
+                    });
+                    bOViewInstance = new BOView();
+                    bAViewInstance = new BAView();
+                });
                 // Using done as a spy. If it is not called, the test will fail.
                 describe('should be resolved after start runs', function () {
                     it('if beforeRender is not implemented', function(done) {
@@ -87,18 +83,18 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                         $deferredAfter.resolve();
                     });
                 });
-//                it('should be rejected if beforeRender fails', function (done) {
-//                    testView.start().done(done);
-////                    deferred.reject();
-//                });
+                it('should be rejected if beforeRender fails', function (done) {
+                    bAViewInstance.start().fail(done);
+                    $deferredBefore.reject();
+                });
 //                it('should be rejected if render fails', function (done) {
-//                    testView.start().done(done);
-//                    deferred.reject();
+//
 //                });
-//                it('should be rejected if afterRender fails', function (done) {
-//                    testView.start().fail(done);
-//                    deferred.reject();
-//                });
+                it('should be rejected if afterRender fails', function (done) {
+                    bAViewInstance.start().fail(done);
+                    $deferredBefore.resolve();
+                    $deferredAfter.reject();
+                });
             });
             describe("beforeRender method", function () {
 //                it("should trigger the onBeforeRender event on the view's channel", function (done) {
@@ -109,19 +105,19 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
 //                });
             });
             describe("render method", function () {
-//                it("should exist", function () {
-//                    should.exist(viewInstance.render);
-//                });
-//                it('should be a function', function () {
-//                    viewInstance.render.should.be.a('function');
-//                });
+                it("should exist", function () {
+                    should.exist(viewInstance.render);
+                });
+                it('should be a function', function () {
+                    viewInstance.render.should.be.a('function');
+                });
 //                it("should trigger the onRender event on the view's channel", function () {
 //
 //                });
                 describe("- if the beforeRender method returns a promise -", function () {
-//                    beforeEach(function () {
-//                        //TODO:create a base view that return a promise for beforeRender
-//                    });
+                    beforeEach(function () {
+                        //TODO:create a base view that returns a promise for beforeRender
+                    });
 //                    it("the render method will only fire after the promise is resolved", function () {
 //
 //                    });
