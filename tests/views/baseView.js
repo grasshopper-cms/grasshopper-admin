@@ -100,6 +100,9 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 it("should exist", function () {
                     should.exist(bOViewInstance.beforeRender);
                 });
+                it('should be a function', function () {
+                    bOViewInstance.beforeRender.should.be.a('function');
+                });
                 it("should trigger the onBeforeRender event on the view's channel", function (done) {
                     viewInstance.channels.views.on(VIEW1_NAME + ":onBeforeRender", function () {
                         done();
@@ -114,9 +117,13 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 it('should be a function', function () {
                     viewInstance.render.should.be.a('function');
                 });
-//                it("should trigger the onRender event on the view's channel", function () {
-//
-//                });
+                // TODO: There is some weirdness here, If I inject done into this test, similar to line 106 and line 142, it does not work. I do not understand.
+                it("should trigger the onRender event on the view's channel", function () {
+                    viewInstance.channels.views.on(VIEW1_NAME + ":onRender", function () {
+                        done();
+                    });
+                    viewInstance.start();
+                });
                 describe("- if the beforeRender method returns a promise -", function () {
                     beforeEach(function () {
                         //TODO:create a base view that returns a promise for beforeRender
@@ -132,9 +139,12 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 });
             });
             describe("afterRender method", function () {
-//                it("should trigger the onAfterRender event on the view's channel", function () {
-//
-//                });
+                it("should trigger the onAfterRender event on the view's channel", function (done) {
+                    viewInstance.channels.views.on(VIEW1_NAME + ":onAfterRender", function () {
+                        done();
+                    });
+                    viewInstance.start();
+                });
             });
         });
 
