@@ -109,6 +109,19 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                     });
                     viewInstance.start();
                 });
+                describe("promise is returned", function () {
+                    beforeEach(function () {
+                        //TODO:create a base view that returns a promise for beforeRender
+                    });
+                    it("the render method will only fire after the promise is resolved", function () {
+
+                    });
+                });
+                describe("promise is not returned", function () {
+                    it("the render method should fire immediately", function () {
+
+                    });
+                });
             });
             describe("render method", function () {
                 it("should exist", function () {
@@ -124,21 +137,15 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                     });
                     viewInstance.start();
                 });
-                describe("- if the beforeRender method returns a promise -", function () {
-                    beforeEach(function () {
-                        //TODO:create a base view that returns a promise for beforeRender
-                    });
-//                    it("the render method will only fire after the promise is resolved", function () {
-//
-//                    });
-                });
-                describe("- if the beforeRender method doesn't return a promise-", function () {
-//                    it("the render method should fire immediately", function () {
-//
-//                    });
-                });
+
             });
             describe("afterRender method", function () {
+                it("should exist", function () {
+                    should.exist(bAViewInstance.afterRender);
+                });
+                it('should be a function', function () {
+                    bAViewInstance.afterRender.should.be.a('function');
+                });
                 it("should trigger the onAfterRender event on the view's channel", function (done) {
                     viewInstance.channels.views.on(VIEW1_NAME + ":onAfterRender", function () {
                         done();
