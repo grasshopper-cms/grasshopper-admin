@@ -165,8 +165,11 @@ define(['chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function (chai, Squire
                     asyncInstance.start().fail(done);
                     $beforeRenderDeferred.reject();
                 });
-                xit("will not call the afterRender method if its deferred is rejected", function () {
-                    // TODO: implement using a spy
+                it("will not call the afterRender method if its deferred is rejected", function (done) {
+                    var AfterRender = sinon.spy(asyncInstance, "afterRender");
+                    asyncInstance.start().fail(done);
+                    $beforeRenderDeferred.reject();
+                    AfterRender.should.not.have.been.called;
                 });
             });
         });
@@ -179,7 +182,23 @@ define(['chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function (chai, Squire
                 syncInstance.start();
             });
             describe("with zero arguments", function () {
-                xit("will do something if something else does not happen", function () {
+                it("will trigger the beforeRender event, then the render event, then afterRender event in that order", function () {
+                    var BeforeRender = sinon.spy(syncInstance, "beforeRender"),
+                        Render = sinon.spy(syncInstance, "render"),
+                        AfterRender = sinon.spy(syncInstance, "afterRender");
+
+                    syncInstance.start();
+
+                    BeforeRender.should.have.been.calledOnce;
+                    Render.should.have.been.calledOnce;
+                    AfterRender.should.have.been.calledOnce;
+
+                    BeforeRender.should.have.been.calledBefore(Render);
+                    BeforeRender.should.have.been.calledBefore(AfterRender);
+                    Render.should.have.been.calledAfter(BeforeRender);
+                    Render.should.have.been.calledBefore(AfterRender);
+                    AfterRender.should.have.been.calledAfter(BeforeRender);
+                    AfterRender.should.have.been.calledAfter(Render);
                 });
             });
             describe("with one argument", function () {
@@ -188,8 +207,12 @@ define(['chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function (chai, Squire
                     $beforeRenderDeferred.resolve();
                     $afterRenderDeferred.reject();
                 });
-                xit("will not call the afterRender method if its deferred is rejected", function () {
-                    // TODO: implement using a spy
+                it("will not call the afterRender method if its deferred is rejected", function (done) {
+                    var AfterRender = sinon.spy(asyncInstance, "afterRender");
+                    asyncInstance.start().fail(done);
+                    $beforeRenderDeferred.resolve();
+                    $afterRenderDeferred.reject();
+                    AfterRender.should.not.have.been.called;
                 });
             });
         });
