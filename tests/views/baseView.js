@@ -132,7 +132,7 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 });
                 syncInstance.start();
             });
-            // NOTE: xing out a describe or it will disable it and higligh it blue
+            // NOTE: xing out a describe or it will disable it and highlight it blue
             xdescribe("with zero arguments", function () {
                 // sync tests
             });
