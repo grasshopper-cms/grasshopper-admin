@@ -119,12 +119,69 @@ module.exports = function (grunt) {
                     dist : "build"
                 }
             }
+        },
+        shell : { //install node modules, vagrant plugins, and get the vagrant box for the api
+            install_api_node_modules : {
+                command : 'npm install',
+                options : {
+                    failOnError : true,
+                    stderr : true,
+                    stdout: true,
+                    execOptions : {
+                        cwd : 'api'
+                    }
+                }
+            },
+            install_api_vagrant_plugins : {
+                command : [
+                    'vagrant plugin install vagrant-exec',
+                    'vagrant plugin install vagrant-vbguest'
+                ].join('&&'),
+                options : {
+                    failOnError : true,
+                    stderr : true,
+                    stdout: true,
+                    execOptions : {
+                        cwd : 'api'
+                    }
+                }
+            },
+            download_vagrant_box : {
+                command : 'vagrant box add grasshopper https://s3.amazonaws.com/SolidInteractive/vagrant/grasshopper-ubuntu64-v1.box',
+                options : {
+                    failOnError : true,
+                    stderr : true,
+                    stdout: true,
+                    execOptions : {
+                        cwd : 'api'
+                    }
+                }
+            },
+            start_vagrant_box : {
+                command : 'vagrant up',
+                options : {
+                    failOnError : true,
+                    stderr : true,
+                    stdout: true,
+                    execOptions : {
+                        cwd : 'api'
+                    }
+                }
+            },
+            test_vagrant_box : {
+                command : 'curl http://localhost:8080/token -H "Accept: application/json" -H "Acceen_US" -u "apitestuser:TestPassword"',
+                options : {
+                    stdout: true
+                }
+            }
         }
-
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
     grunt.registerTask("server", "Build and watch task", ["copy", "connect:site", "sass", "open:reload", "watch:build", "watch:sass", "watch:dev"]);
     grunt.registerTask("testServer", "Build and watch task", ["copy", "connect:tests", "sass", "open:tests", "watch:tests", "watch:dev"]);
     grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
+    grunt.registerTask("vagrantInstall", "Install and set up vagrant box ", ['shell']);
+    grunt.registerTask("vagrant", "Starts vagrant", ['shell:start_vagrant_box']);
+    grunt.registerTask("testVagrant", "grabs an auth token to ensure box is running", ['shell:test_vagrant_box']);
 };
