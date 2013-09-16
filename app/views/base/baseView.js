@@ -55,7 +55,7 @@ define(['backbone', 'underscore', 'channels', 'mixin'], function (Backbone, _, c
     // Private Methods
 
     /**
-     * Life cycle methods have an event tiggerred before the run.
+     * Life cycle methods have an event triggered before the run.
      * If a life cycle method has one or more arguments, then the first argument passed in is its deferred.
      * The life cycle method will automatically return this deferred, otherwise it will pass through whatever
      * the method itself returns.
