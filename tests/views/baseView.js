@@ -1,12 +1,17 @@
 /*global describe:false, it:false, beforeEach:false*/
-define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
+define(['chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function (chai, Squire, mocha, sinon, sinonChai) {
 
     'use strict';
     var VIEW1_NAME = "testView1",
         injector = new Squire(),
         should = chai.should();
 
+
+    require(['underscore', 'sinonCall', 'sinonSpy']);
+    // Using Sinon-Chai assertions for spies etc. https://github.com/domenic/sinon-chai
+    chai.use(sinonChai);
     mocha.setup('bdd');
+
 
     describe("An instance of the BaseView", function () {
 
@@ -133,8 +138,27 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 syncInstance.start();
             });
             // NOTE: xing out a describe or it will disable it and highlight it blue
-            xdescribe("with zero arguments", function () {
-                // sync tests
+            describe("with zero arguments", function () {
+                it("will trigger the beforeRender event, then the render event, then afterRender event in that order", function () {
+
+                    var BeforeRender = sinon.spy(syncInstance, "beforeRender"),
+                        Render = sinon.spy(syncInstance, "render"),
+                        AfterRender = sinon.spy(syncInstance, "afterRender");
+
+                    syncInstance.start();
+
+                    BeforeRender.should.have.been.calledOnce;
+                    Render.should.have.been.calledOnce;
+                    AfterRender.should.have.been.calledOnce;
+
+                    BeforeRender.should.have.been.calledBefore(Render);
+                    BeforeRender.should.have.been.calledBefore(AfterRender);
+                    Render.should.have.been.calledAfter(BeforeRender);
+                    Render.should.have.been.calledBefore(AfterRender);
+                    AfterRender.should.have.been.calledAfter(BeforeRender);
+                    AfterRender.should.have.been.calledAfter(Render);
+
+                });
             });
             describe("with one argument", function () {
                 it("will fail the start method if its deferred is rejected", function (done) {
@@ -154,8 +178,9 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 });
                 syncInstance.start();
             });
-            xdescribe("with zero arguments", function () {
-                // sync tests
+            describe("with zero arguments", function () {
+                xit("will do something if something else does not happen", function () {
+                });
             });
             describe("with one argument", function () {
                 it("will fail the start method if its deferred is rejected", function (done) {

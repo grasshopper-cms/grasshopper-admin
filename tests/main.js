@@ -9,6 +9,9 @@ require.config({
         },
         mocha : {
             exports : 'mocha'
+        },
+        sinon : {
+            exports : 'sinon'
         }
     },
     paths : {
@@ -21,6 +24,8 @@ require.config({
         squire : '../app/vendor/squire/src/Squire',
         sinon : '../app/vendor/sinon/lib/sinon',
         sinonSpy : '../app/vendor/sinon/lib/sinon/spy',
+        sinonChai  : '../app/vendor/sinon-chai/lib/sinon-chai',
+        sinonCall : '../app/vendor/sinon/lib/sinon/call',
 
         baseView : '../app/views/base/baseView',
 
@@ -34,6 +39,5 @@ require([
     'mocha',
     './views/baseView'
 ], function (mocha) {
-    mocha.setup('bdd');
     mocha.run();
 });
