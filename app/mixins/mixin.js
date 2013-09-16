@@ -58,7 +58,7 @@ define(['underscore', 'jquery', 'backbone'], function (_, $, Backbone) {
                     config.postEvent.channel.trigger(config.postEvent.name, $deferred);
                 }
 
-                return config.async ? $deferred.promise : returned;
+                return config.async ? $deferred.promise() : returned;
             }
         }
     }

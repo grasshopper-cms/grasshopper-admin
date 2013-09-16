@@ -8,19 +8,12 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
 
     mocha.setup('bdd');
 
-    describe("The BaseView", function () {
+    describe("An instance of the BaseView", function () {
 
 
         //-----------Setup-----------
         var BaseView,
-            viewInstance,
-            BOView,// Before Render Only view.
-            bOViewInstance,// Before Render Only view instance.
-            BAView,// Before and After Render View.
-            bAViewInstance,// Before and After Render view instance.
-            $deferredBeforeOnly,
-            $deferredBefore,
-            $deferredAfter;
+            viewInstance;
 
         beforeEach(function (done) {
             injector.require(['baseView'], function (BaseViewIn) {
@@ -29,24 +22,6 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                         name : VIEW1_NAME
                     });
                     done();
-                    BOView = BaseView.extend({
-                        beforeRender : function() {
-                            $deferredBeforeOnly = new $.Deferred();
-                            return $deferredBeforeOnly.promise();
-                        }
-                    });
-                    BAView = BaseView.extend({
-                        beforeRender : function() {
-                            $deferredBefore = new $.Deferred();
-                            return $deferredBefore.promise();
-                        },
-                        afterRender : function() {
-                            $deferredAfter = new $.Deferred();
-                            return $deferredAfter.promise();
-                        }
-                    });
-                    bOViewInstance = new BOView();
-                    bAViewInstance = new BAView();
                 },
                 function () {
                     console.log('BaseView error.')
@@ -70,57 +45,10 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 promise.should.have.property('done');
                 promise.should.not.have.property('resolve');
             });
-            describe("promise", function() {
+            describe("promise", function () {
                 // Using done as a spy. If it is not called, the test will fail.
-                describe('should be resolved after start runs', function () {
-                    it('if beforeRender is not implemented', function(done) {
-                        bOViewInstance.start().done(done);
-                        $deferredBeforeOnly.resolve();
-                    });
-                    it('if beforeRender is implemented and its promise is resolved', function(done) {
-                        bAViewInstance.start().done(done);
-                        $deferredBefore.resolve();
-                        $deferredAfter.resolve();
-                    });
-                });
-                it('should be rejected if beforeRender fails', function (done) {
-                    bAViewInstance.start().fail(done);
-                    $deferredBefore.reject();
-                });
-//                it('should be rejected if render fails', function (done) {
-//
-//                });
-                it('should be rejected if afterRender fails', function (done) {
-                    bAViewInstance.start().fail(done);
-                    $deferredBefore.resolve();
-                    $deferredAfter.reject();
-                });
-            });
-            describe("beforeRender method", function () {
-                it("should exist", function () {
-                    should.exist(bOViewInstance.beforeRender);
-                });
-                it('should be a function', function () {
-                    bOViewInstance.beforeRender.should.be.a('function');
-                });
-                it("should trigger the onBeforeRender event on the view's channel", function (done) {
-                    viewInstance.channels.views.on(VIEW1_NAME + ":onBeforeRender", function () {
-                        done();
-                    });
-                    viewInstance.start();
-                });
-                describe("promise is returned", function () {
-                    beforeEach(function () {
-                        //TODO:create a base view that returns a promise for beforeRender
-                    });
-                    it("the render method will only fire after the promise is resolved", function () {
-
-                    });
-                });
-                describe("promise is not returned", function () {
-                    it("the render method should fire immediately", function () {
-
-                    });
+                it('should be resolved after start runs', function (done) {
+                    viewInstance.start().done(done);
                 });
             });
             describe("render method", function () {
@@ -130,28 +58,13 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
                 it('should be a function', function () {
                     viewInstance.render.should.be.a('function');
                 });
-                // TODO: There is some weirdness here, If I inject done into this test, similar to line 106 and line 142, it does not work. I do not understand.
-                it("should trigger the onRender event on the view's channel", function () {
+                it("should trigger the onRender event on the view's channel", function (done) {
                     viewInstance.channels.views.on(VIEW1_NAME + ":onRender", function () {
                         done();
                     });
                     viewInstance.start();
                 });
 
-            });
-            describe("afterRender method", function () {
-                it("should exist", function () {
-                    should.exist(bAViewInstance.afterRender);
-                });
-                it('should be a function', function () {
-                    bAViewInstance.afterRender.should.be.a('function');
-                });
-                it("should trigger the onAfterRender event on the view's channel", function (done) {
-                    viewInstance.channels.views.on(VIEW1_NAME + ":onAfterRender", function () {
-                        done();
-                    });
-                    viewInstance.start();
-                });
             });
         });
 
@@ -164,6 +77,96 @@ define(['chai', 'squire', 'mocha'], function (chai, Squire, mocha) {
 //            it("can be triggered by one view and heard by another", function () {
 //                //TODO: create a second view instance
 //            });
+        });
+    });
+
+    describe("An instance of extending the BaseView", function () {
+
+        //-----------Setup-----------
+        var BaseView,
+            AsyncExtendedBaseView,
+            SyncExtendedBaseView,
+            asyncInstance,
+            syncInstance,
+            $beforeRenderDeferred,
+            $afterRenderDeferred;
+
+
+        beforeEach(function (done) {
+            injector.require(['baseView'], function (BaseViewIn) {
+
+                    BaseView = BaseViewIn;
+                    AsyncExtendedBaseView = BaseView.extend({
+                        beforeRender : function (deferred) {
+                            $beforeRenderDeferred = deferred;
+                        },
+                        afterRender : function (deferred) {
+                            $afterRenderDeferred = deferred;
+                        }
+                    });
+                    SyncExtendedBaseView = BaseView.extend({
+                        beforeRender : function () {
+                        },
+                        afterRender : function () {
+                        }
+                    });
+
+                    asyncInstance = new AsyncExtendedBaseView({
+                        name : VIEW1_NAME
+                    });
+                    syncInstance = new SyncExtendedBaseView({
+                        name : VIEW1_NAME
+                    });
+
+                    done();
+                },
+                function () {
+                    console.log('BaseView error.')
+                });
+        });
+
+        describe("beforeRender method, if implemented", function () {
+            it("should trigger the onBeforeRender event on the view's channel during start()", function (done) {
+                syncInstance.channels.views.on(VIEW1_NAME + ":onBeforeRender", function () {
+                    done();
+                });
+                syncInstance.start();
+            });
+            // NOTE: xing out a describe or it will disable it and higligh it blue
+            xdescribe("with zero arguments", function () {
+                // sync tests
+            });
+            describe("with one argument", function () {
+                it("will fail the start method if its deferred is rejected", function (done) {
+                    asyncInstance.start().fail(done);
+                    $beforeRenderDeferred.reject();
+                });
+                xit("will not call the afterRender method if its deferred is rejected", function () {
+                    // TODO: implement using a spy
+                });
+            });
+        });
+
+        describe("afterRender method, if implemented", function () {
+            it("should trigger the onAfterRender event on the view's channel during start()", function (done) {
+                syncInstance.channels.views.on(VIEW1_NAME + ":onAfterRender", function () {
+                    done();
+                });
+                syncInstance.start();
+            });
+            xdescribe("with zero arguments", function () {
+                // sync tests
+            });
+            describe("with one argument", function () {
+                it("will fail the start method if its deferred is rejected", function (done) {
+                    asyncInstance.start().fail(done);
+                    $beforeRenderDeferred.resolve();
+                    $afterRenderDeferred.reject();
+                });
+                xit("will not call the afterRender method if its deferred is rejected", function () {
+                    // TODO: implement using a spy
+                });
+            });
         });
     });
 

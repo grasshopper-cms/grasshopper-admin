@@ -1,4 +1,4 @@
-define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) {
+define(['backbone', 'underscore', 'channels', 'mixin'], function (Backbone, _, channels, mixin) {
 
     var BaseView = Backbone.View.extend({
         options : {
@@ -22,12 +22,19 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
     function start () {
         var $deferred = new $.Deferred();
 
+
         $
-            .when(_beforeRender.call(this))
-            .then(_render.call(this), _rejectStart.call(this, $deferred))
-            .then(_afterRender.call(this), _rejectStart.call(this, $deferred))
-            .then(_resolveStart.call(this, $deferred), _rejectStart.call(this, $deferred));
-        //TODO: implement fail method that is called if before or after render is rejected
+            .when(_runLifeCycleMethod.call(this, this.beforeRender, 'BeforeRender'))
+            .then(
+                _lifeCycleMethodReference.call(this, this.render, 'Render'),
+                _rejectStart.call(this, $deferred))
+            .then(
+                _lifeCycleMethodReference.call(this, this.afterRender, 'AfterRender'),
+                _rejectStart.call(this, $deferred))
+            .then(
+                _resolveStart.call(this, $deferred),
+                _rejectStart.call(this, $deferred));
+
         return $deferred.promise();
     }
 
@@ -47,37 +54,52 @@ define(['backbone', 'underscore', 'channels'], function (Backbone, _, channels) 
     // --------------------------
     // Private Methods
 
-    function _beforeRender() {
-        // TODO: create a method to generate the event name from the views name + the event name
-        var event = this.options.name + ':onBeforeRender';
-        this.channels.views.trigger(event);
-        return this.beforeRender ? this.beforeRender() : undefined;
+    /**
+     * Life cycle methods have an event tiggerred before the run.
+     * If a life cycle method has one or more arguments, then the first argument passed in is its deferred.
+     * The life cycle method will automatically return this deferred, otherwise it will pass through whatever
+     * the method itself returns.
+     *
+     * @param lifeCycleMethod
+     * @param lifeCycleMethodName
+     * @returns {*}
+     * @private
+     */
+    function _runLifeCycleMethod (lifeCycleMethod, lifeCycleMethodName) {
+        if (!lifeCycleMethod) {
+            return undefined;
+        }
+
+        return mixin({}, lifeCycleMethod)({
+            async : lifeCycleMethod.length,
+            preEvent : {
+                name : this.options.name + ':on' + lifeCycleMethodName,
+                channel : this.channels.views
+            }
+        })();
     }
 
-    function _render() {
-        return function() {
-            var event = this.options.name + ':render';
-            this.channels.views.trigger(event);
-            this.render();
-        }.bind(this);
-    }
-
-    function _afterRender() {
-        return function() {
-            var event = this.options.name + ':onAfterRender';
-            this.channels.views.trigger(event);
-            return this.afterRender ? this.afterRender() : undefined;
+    /**
+     * A convenience wrapper for creating life cycle method references.
+     * @param lifeCycleMethod
+     * @param lifeCycleMethodName
+     * @returns {*}
+     * @private
+     */
+    function _lifeCycleMethodReference (lifeCycleMethod, lifeCycleMethodName) {
+        return function () {
+            return _runLifeCycleMethod.call(this, lifeCycleMethod, lifeCycleMethodName);
         }.bind(this);
     }
 
     function _resolveStart ($deferred) {
-        return function() {
+        return function () {
             $deferred.resolve();
         }.bind(this);
     }
 
     function _rejectStart ($deferred) {
-        return function() {
+        return function () {
             $deferred.reject();
         }.bind(this);
     }

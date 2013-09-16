@@ -24,7 +24,9 @@ require.config({
 
         baseView : '../app/views/base/baseView',
 
-        channels : '../app/channels'
+        channels : '../app/channels',
+
+        mixin : '../app/mixins/mixin'
     }
 });
 
