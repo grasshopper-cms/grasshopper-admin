@@ -1,8 +1,8 @@
-/*global app:true, Backbone:false, jQuery:false, _:false */
-(function (app, Backbone, $, _) {
+define(['underscore', 'backbone'], function(_, Backbone) {
+
     "use strict";
     var user = Backbone.Model.extend({
-        //default properties
+        //known properties
         login : null,
         role : null,
         password : null,
@@ -11,4 +11,4 @@
         email : null
     });
 
-}(app, Backbone, jQuery, _));
+});

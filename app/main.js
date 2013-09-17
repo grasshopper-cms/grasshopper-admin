@@ -26,7 +26,10 @@ require.config({
         rivetView : 'mixins/rivetView',
 
         // Channels
-        channels : 'vendor/masseuse/views/channels'
+        channels : 'vendor/masseuse/views/channels',
+
+        // Models
+        userModel : 'models/user'
     }
 });
 
