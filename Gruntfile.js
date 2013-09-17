@@ -68,7 +68,8 @@ module.exports = function (grunt) {
             application : { // Get and compile application.scss
                 options : {
                     style : 'compressed',
-                    require : 'sass-globbing'
+                    require : 'sass-globbing',
+                    sourcemap : true
                 },
                 files : {
                     'build/application.css' : 'app/application.scss'
