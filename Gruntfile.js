@@ -146,17 +146,6 @@ module.exports = function (grunt) {
                     }
                 }
             },
-            download_vagrant_box : {
-                command : 'vagrant box add grasshopper https://s3.amazonaws.com/SolidInteractive/vagrant/grasshopper-ubuntu64-v1.box',
-                options : {
-                    failOnError : true,
-                    stderr : true,
-                    stdout: true,
-                    execOptions : {
-                        cwd : 'api'
-                    }
-                }
-            },
             start_vagrant_box : {
                 command : 'vagrant up',
                 options : {
