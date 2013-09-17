@@ -76,7 +76,7 @@ define(['backbone', 'underscore', 'channels', 'mixin'], function (Backbone, _, c
                 name : this.options.name + ':on' + lifeCycleMethodName,
                 channel : this.channels.views
             }
-        })();
+        }).call(this);
     }
 
     /**
