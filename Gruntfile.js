@@ -31,6 +31,10 @@ module.exports = function (grunt) {
                 ]
             },
             dev : {
+                options : {
+                    // Start a live reload server on the default port: 35729
+                    livereload : true
+                },
                 files : [
                     'app/**/*',
                     '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
@@ -104,10 +108,14 @@ module.exports = function (grunt) {
             }
         },
 
+        // TODO: add some clean up tasks after copy, or copy more selectively
         copy : {
             build : {
                 files : [
-                    {expand : true, cwd : 'app/', src : ['**'], dest : 'build'}
+                    {expand : true, cwd : 'app/', src : [
+                        '**',
+                        '!**/*.scss'
+                    ], dest : 'build'}
                 ]
             }
         },
@@ -124,7 +132,7 @@ module.exports = function (grunt) {
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("server", "Build and watch task", ["copy", "connect:site", "sass", "open:reload", "watch:build", "watch:sass", "watch:dev"]);
-    grunt.registerTask("testServer", "Build and watch task", ["copy", "connect:tests", "sass", "open:tests", "watch:tests", "watch:dev"]);
+    grunt.registerTask("server", "Build and watch task", ["copy", "connect:site", "sass", "open:reload", "watch"]);
+    grunt.registerTask("testServer", "Build and watch task", ["copy", "connect:tests", "sass", "open:tests", "watch"]);
     grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
 };
