@@ -1,4 +1,4 @@
-define(['rivets', './mixin'], function (Rivets, mixin) {
+define(['rivets', '../vendor/masseuse/app/mixin'], function (Rivets, mixin) {
 
     return mixin({
             rivetScope : undefined,
