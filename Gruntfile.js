@@ -31,6 +31,10 @@ module.exports = function (grunt) {
                 ]
             },
             dev : {
+                options : {
+                    // Start a live reload server on the default port: 35729
+                    livereload : true
+                },
                 files : [
                     'app/**/*',
                     '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
@@ -64,7 +68,8 @@ module.exports = function (grunt) {
             application : { // Get and compile application.scss
                 options : {
                     style : 'compressed',
-                    require : 'sass-globbing'
+                    require : 'sass-globbing',
+                    sourcemap : true
                 },
                 files : {
                     'build/application.css' : 'app/application.scss'
@@ -104,10 +109,14 @@ module.exports = function (grunt) {
             }
         },
 
+        // TODO: add some clean up tasks after copy, or copy more selectively
         copy : {
             build : {
                 files : [
-                    {expand : true, cwd : 'app/', src : ['**'], dest : 'build'}
+                    {expand : true, cwd : 'app/', src : [
+                        '**',
+                        '!**/*.scss'
+                    ], dest : 'build'}
                 ]
             }
         },
@@ -167,8 +176,8 @@ module.exports = function (grunt) {
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("server", "Build and watch task", ["copy", "connect:site", "sass", "open:reload", "watch:build", "watch:sass", "watch:dev"]);
-    grunt.registerTask("testServer", "Build and watch task", ["copy", "connect:tests", "sass", "open:tests", "watch:tests", "watch:dev"]);
+    grunt.registerTask("server", "Build and watch task", ["copy", "connect:site", "sass", "open:reload", "watch"]);
+    grunt.registerTask("testServer", "Build and watch task", ["copy", "connect:tests", "sass", "open:tests", "watch"]);
     grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
     grunt.registerTask("vagrantInstall", "Install and set up vagrant box ", ['shell']);
     grunt.registerTask("vagrant", "Starts vagrant", ['shell:start_vagrant_box']);
