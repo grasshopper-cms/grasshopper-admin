@@ -20,6 +20,7 @@ require.config({
         baseView : 'vendor/masseuse/views/base/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
+        loginViewModel : 'views/login/loginViewModel',
 
         // Mixins
         mixin : 'vendor/masseuse/mixins/mixin',

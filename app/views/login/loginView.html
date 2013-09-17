@@ -1,6 +1,51 @@
  <div id="login">
-    <div class="large-12 columns greenBox">
-        <div data-login-text="data.name"></div>
-        <input data-login-value="data.name"></input>
+    <div class="row">
+        <div class="large-8 small-centered columns">
+            <form>
+                <fieldset>
+                    <legend>
+                        <h1>
+                            Login
+                        </h1>
+                    </legend>
+                    <div class="row">
+                        <div class="small-11 small-centered columns">
+                            <div class="row">
+                                <input type="text" id="right-label" class="" placeholder="User Name" data-login-value="data.userName"></input>
+                                <small class=""></small>
+                            </div>
+                            <div class="row">
+                                <input type="password" id="right-label" class="" placeholder="Password" data-login-value="data.password"></input>
+                                <small class=""></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-4 small-offset-8 columns">
+                            <a href="#" class="login-button">
+                                Log In
+                            </a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
+
+     .................................DELETE ALL THIS STUFFFFF AFTER HERE BEFORE COMMIT. .....................
+     <form>
+         <fieldset>
+             <legend>
+                 ... And here is what that model looks like
+             </legend>
+             <div class="row">
+                 <div class="small-11 small-centered columns">
+                     <div class="row" data-login-text="data.userName">
+                     </div>
+                     <div class="row" data-login-text="data.password">
+                     </div>
+                 </div>
+             </div>
+         </fieldset>
+     </form>
 </div>

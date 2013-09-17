@@ -1,4 +1,16 @@
-.greenBox {
-  border: 1px solid lime;
-  height: 200px;
+#login {
+  .greenBox {
+    border: 1px solid lime;
+  }
+  .login-button {
+    @include button;
+    @include button-style;
+    @include radius;
+    @include single-transition;
+    @include inset-shadow(true);
+    margin-bottom: 1px;
+    color: black;
+  }
 }
+
+
