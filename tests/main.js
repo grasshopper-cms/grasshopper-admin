@@ -36,8 +36,7 @@ require.config({
 });
 
 require([
-    'mocha',
-    '././baseView'
+    'mocha'
 ], function (mocha) {
     mocha.run();
 });

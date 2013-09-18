@@ -20,18 +20,19 @@ require.config({
         baseView : 'vendor/masseuse/app/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
-        loginViewModel : 'views/login/loginViewModel',
-
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
-        rivetView : 'mixins/rivetView',
 
+        rivetView : 'mixins/rivetView',
         // Channels
         channels : 'vendor/masseuse/app/channels',
 
         // Models
         selfValidatingModel : 'models/selfValidatingModel',
-        userModel : 'models/userModel'
+        userModel : 'models/userModel',
+
+        // View Models
+        loginViewModel : 'models/viewModels/loginViewModel'
     }
 });
 
