@@ -32,7 +32,10 @@ require.config({
         userModel : 'models/userModel',
 
         // View Models
-        loginViewModel : 'models/viewModels/loginViewModel'
+        loginViewModel : 'models/viewModels/loginViewModel',
+
+        // Workers
+        loginWorker : 'workers/loginWorker'
     }
 });
 
