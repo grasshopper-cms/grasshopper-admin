@@ -30,7 +30,8 @@ require.config({
         channels : 'vendor/masseuse/app/channels',
 
         // Models
-        userModel : 'models/user'
+        selfValidatingModel : 'models/selfValidatingModel',
+        userModel : 'models/userModel'
     }
 });
 
