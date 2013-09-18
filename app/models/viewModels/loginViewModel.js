@@ -39,6 +39,7 @@ define(['selfValidatingModel', 'jquery'], function (Model, $) {
             this.set('hasError', false, {validate:false});
         }
     }
+
 // alternative approach :
 //    return Model.extend({
 //        validate: validate,
