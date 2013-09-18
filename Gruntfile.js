@@ -41,7 +41,7 @@ module.exports = function (grunt) {
                     '!app/vendor/**/*'
                 ],
                 tasks : [
-                    'copy:reload'
+                    'copy:redo'
                 ]
             },
             tests : {
@@ -119,7 +119,7 @@ module.exports = function (grunt) {
                     ], dest : 'build'}
                 ]
             },
-            reload : {
+            redo : {
                 files : [
                     {expand : true, cwd : 'app/', src : [
                         '!**/*.scss',

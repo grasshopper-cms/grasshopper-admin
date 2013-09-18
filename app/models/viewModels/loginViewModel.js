@@ -1,19 +1,24 @@
-define(['selfValidatingModel'], function (Model) {
+define(['selfValidatingModel', 'jquery'], function (Model, $) {
     return Model.extend({
-        validate: validate
+        validate: validate,
+        userNameValidate: userNameValidate,
+        passwordValidate : passwordValidate
     });
 
     function validate(attributes, options) {
-        console.log('VALIDATION NATION!!');
-        console.log(attributes);
-        console.log(this.attributes);
-        // TODO: do validation here on the potential new settings
-        // http://backbonejs.org/#Model-validate
-        // return something if the validation fails
-        // and update the set('error', ... if it fails
-        //   update using the overrid
-        // .set('error', 'blah', {validate: false})
-        // fail: return "whoops";
-        // pass: return undefined
+       console.log(attributes);
+       console.log(this);
+       console.log(this.attributes);
+
+    }
+
+    function userNameValidate(attributes) {
+    }
+
+    function passwordValidate(attributes) {
+    }
+
+    function generalError() {
+        this.set('hasError', true, {validate:false});
     }
 });

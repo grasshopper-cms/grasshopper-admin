@@ -11,20 +11,24 @@
                     <div class="row">
                         <div class="small-11 small-centered columns">
                             <div class="row">
-                                <input type="text" id="right-label" class="" placeholder="User Name" data-login-value="data.userName"></input>
-                                <small class=""></small>
+                                <input type="text" id="loginUsername" class="" placeholder="User Name" data-login-value="data.userName">
+                                <small class="error" data-login-show="data.userNameError">
+                                    <div data-login-text="data.userNameError"></div>
+                                </small>
                             </div>
                             <div class="row">
-                                <input type="password" id="right-label" class="" placeholder="Password" data-login-value="data.password"></input>
-                                <small class=""></small>
+                                <input type="password" id="loginPassword" class="" placeholder="Password" data-login-value="data.password">
+                                <small class="error" data-login-show="data.passwordError">
+                                    <div data-login-text="data.passwordError"></div>
+                                </small>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="small-4 small-offset-8 columns">
-                            <a href="#" class="login-button">
+                            <button class="login-button" data-login-disabled="data.hasError">
                                 Log In
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </fieldset>
