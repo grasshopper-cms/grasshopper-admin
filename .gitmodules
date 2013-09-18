@@ -6,4 +6,4 @@
     url = git@git.thinksolid.com:opensource/grasshopper-admin.wiki.git
 [submodule "app/vendor/masseuse"]
 	path = app/vendor/masseuse
-	url = https://github.com/Solid-Interactive/masseuse.git
+	url = git@git.thinksolid.com:opensource/masseuse.git

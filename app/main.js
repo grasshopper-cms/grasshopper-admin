@@ -17,17 +17,17 @@ require.config({
         rivets : 'vendor/rivets/dist/rivets',
 
         // Views
-        baseView : 'vendor/masseuse/views/base/baseView',
+        baseView : 'vendor/masseuse/app/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
         loginViewModel : 'views/login/loginViewModel',
 
         // Mixins
-        mixin : 'vendor/masseuse/mixins/mixin',
+        mixin : 'vendor/masseuse/app/mixin',
         rivetView : 'mixins/rivetView',
 
         // Channels
-        channels : 'vendor/masseuse/views/channels',
+        channels : 'vendor/masseuse/app/channels',
 
         // Models
         userModel : 'models/user'
