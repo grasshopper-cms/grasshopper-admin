@@ -41,7 +41,7 @@ module.exports = function (grunt) {
                     '!app/vendor/**/*'
                 ],
                 tasks : [
-                    'copy'
+                    'copy:reload'
                 ]
             },
             tests : {
@@ -118,6 +118,17 @@ module.exports = function (grunt) {
                         '!**/*.scss'
                     ], dest : 'build'}
                 ]
+            },
+            reload : {
+                files : [
+                    {expand : true, cwd : 'app/', src : [
+                        '!**/*.scss',
+                        'mixins/**/*',
+                        'models/**/*',
+                        'pages/**/*',
+                        'views/**/*'
+                    ], dest : 'build'}
+                ]
             }
         },
 
@@ -176,7 +187,7 @@ module.exports = function (grunt) {
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("server", "Build and watch task", ["copy", "connect:site", "sass", "open:reload", "watch"]);
+    grunt.registerTask("server", "Build and watch task", ["copy:build", "connect:site", "sass", "open:reload", "watch"]);
     grunt.registerTask("testServer", "Build and watch task", ["copy", "connect:tests", "sass", "open:tests", "watch"]);
     grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
     grunt.registerTask("vagrantInstall", "Install and set up vagrant box ", ["shell:install_api_node_modules","shell:install_api_vagrant_plugins", "shell:start_vagrant_box", "shell:test_vagrant_box" ]);
