@@ -1,5 +1,6 @@
-define(['login'], function(login) {
+define(['loginMixin'], function(login) {
     return {
         login: login()
     }
 });
+

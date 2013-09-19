@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'loginWorker']
-    , function (BaseView, rivetView, loginWorker,templateHtml) {
+define(['baseView', 'rivetView', 'loginWorker', 'userModel']
+    , function (BaseView, rivetView, loginWorker, userModel,templateHtml) {
         "use strict";
 
         var LoginView = BaseView.extend({
@@ -9,25 +9,9 @@ define(['baseView', 'rivetView', 'loginWorker']
         });
 
         function login() {
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("------------------");
-            console.log("> " + this.model.isValid());
             if (this.model.isValid()) {
-                loginWorker.something();
-            } else {
+                loginWorker.doLogin(this.model.get('username'), this.model.get('password'), userModel);
             }
-
         }
 
         return LoginView;

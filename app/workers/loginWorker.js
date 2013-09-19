@@ -1,11 +1,13 @@
-define(function () {
+define(['api'],function (api) {
     'use strict';
 
     return {
-        something : something
+        doLogin : doLogin
     };
 
-    function something() {
-        console.log('test');
+    function doLogin(u,p,userModel) {
+        api.login(u,p)
+            .done(console.log('yay'))
+            .fail(console.log('no!'));
     }
 });

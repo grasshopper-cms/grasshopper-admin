@@ -126,7 +126,9 @@ module.exports = function (grunt) {
                         'mixins/**/*',
                         'models/**/*',
                         'pages/**/*',
-                        'views/**/*'
+                        'views/**/*',
+                        'workers/**/*',
+                        'api/**/*'
                     ], dest : 'build'}
                 ]
             }

@@ -36,49 +36,4 @@ define(['selfValidatingModel', 'jquery'], function (Model, $) {
         }
         return valid;
     }
-
-// alternative approach :
-//    return Model.extend({
-//        validate: validate,
-//        userNameValidate: userNameValidate,
-//        passwordValidate : passwordValidate,
-//        setErrors : setErrors
-//    });
-//
-//    function validate(attributes, options) {
-//        // check if the userName has changed
-//        if(this.changedAttributes(attributes).userName) {
-//            return this.userNameValidate.call(this, attributes);
-//        }
-//
-//        // check if the password has changed
-//        if(this.changedAttributes(attributes).password) {
-//            return this.passwordValidate.call(this, attributes);
-//        }
-//    }
-//
-//    function userNameValidate(attributes) {
-//        if (attributes.userName.length < 10) {
-//            // Set Classes and errors
-//            this.setErrors.call(this, 'userNameError', 'User Name Is Too Short!', '#loginUsername');
-//            return 'error';
-//        } else {
-//            this.setErrors.call(this, 'userNameError', '', '#loginUsername');
-//        }
-//    }
-//
-//    function passwordValidate(attributes) {
-//        if (attributes.password.length < 10) {
-//            // Set Classes and errors
-//            this.setErrors.call(this, 'passwordError', 'Password Is Too Short', '#loginPassword');
-//            return 'error';
-//        } else {
-//            this.setErrors.call(this, 'passwordError', '', '#loginPassword');
-//        }
-//    }
-//
-//    function setErrors(attributeName, message, errorElement) {
-//        this.set(attributeName, message, {validate: false});
-//        $(errorElement).toggleClass('error');
-//    }
 });

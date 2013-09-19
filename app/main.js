@@ -20,10 +20,12 @@ require.config({
         baseView : 'vendor/masseuse/app/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
+
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
-
         rivetView : 'mixins/rivetView',
+        loginMixin : 'mixins/loginMixin',
+
         // Channels
         channels : 'vendor/masseuse/app/channels',
 
@@ -35,7 +37,10 @@ require.config({
         loginViewModel : 'models/viewModels/loginViewModel',
 
         // Workers
-        loginWorker : 'workers/loginWorker'
+        loginWorker : 'workers/loginWorker',
+
+        // Api proxy
+        api : 'api/api'
     }
 });
 
