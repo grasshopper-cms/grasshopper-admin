@@ -8,7 +8,23 @@ define(['api', 'jquery'],function (api, $) {
     function doLogin(loginModel,userModel) {
 
       api.login(loginModel.get('username'), loginModel.get('password'), userModel)
-          .done(function(){console.log('done')})
-          .fail(function(){});
+          .done(function(){
+              // redirect to empty view
+              require([
+                  'emptyView',
+                  'emptyViewConfig',
+
+              ], function (emptyView, emptyViewConfig) {
+
+                  var emptyView = new emptyView(emptyViewConfig);
+                  emptyView.start();
+                  emptyView.rivetView();
+
+              });
+              console.log('done');
+          })
+          .fail(function(error){
+              console.log(error);
+          });
     }
 });

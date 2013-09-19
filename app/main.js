@@ -22,6 +22,8 @@ require.config({
         loginViewConfig : 'views/login/loginViewConfig',
         navbarView : 'views/navbar/navbarView',
         navbarViewConfig : 'views/navbar/navbarViewConfig',
+        emptyView : 'views/empty/emptyView',
+        emptyViewConfig : 'views/empty/emptyViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
