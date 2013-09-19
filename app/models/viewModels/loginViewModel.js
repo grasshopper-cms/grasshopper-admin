@@ -28,11 +28,7 @@ define(['selfValidatingModel', 'jquery'], function (Model, $) {
     }
 
     function hasLength(str) {
-        if (str.length) {
-            return true;
-        } else {
-            return false;
-        }
+        return str.length ? true : false;
     }
 
     function setErrors(attribute, message, validateFlag) {
