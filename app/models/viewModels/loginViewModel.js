@@ -1,39 +1,41 @@
 define(['selfValidatingModel', 'jquery'], function (Model, $) {
     return Model.extend({
         validate: validate,
-        usernameValidate: usernameValidate,
-        passwordValidate : passwordValidate
+        hasLength : hasLength,
+        setErrors : setErrors,
+        attributeValidate : attributeValidate
     });
 
     function validate(attributes, options) {
-        var valid = this.usernameValidate(attributes);
+        var valid = this.attributeValidate(attributes.username, 'usernameError');
         console.log("v" + valid);
-        valid = this.passwordValidate(attributes) && valid;
+        valid = this.attributeValidate(attributes.password, 'passwordError') && valid;
         console.log("model is valid: " + valid);
         this.set('hasError', !valid, {validate: false});
         return !valid;
     }
 
-    function usernameValidate(attributes) {
+    function attributeValidate(attribute, errorAttribute) {
         var valid = true;
-        if (attributes.username.length && attributes.username.length < 10) {
-            console.log('>>> username error');
+        if (!this.hasLength(attribute)) {
+            console.log('>>> ' + attribute +' error');
             valid = false;
-            this.set('usernameError', 'Too Short.', {validate:false});
+            this.setErrors.call(this, errorAttribute, 'Too Short.', false);
         } else {
-            this.set('usernameError', '', {validate:false});
+            this.setErrors.call(this, errorAttribute, '', false);
         }
         return valid;
     }
 
-    function passwordValidate(attributes) {
-        var valid = true;
-        if (attributes.password.length && attributes.password.length < 10) {
-            valid = false;
-            this.set('passwordError', 'Too Short.', {validate:false});
+    function hasLength(str) {
+        if (str.length) {
+            return true;
         } else {
-            this.set('passwordError', '', {validate:false});
+            return false;
         }
-        return valid;
+    }
+
+    function setErrors(attribute, message, validateFlag) {
+        this.set(attribute, message, {validate : validateFlag})
     }
 });
