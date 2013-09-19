@@ -1,7 +1,5 @@
 #login {
-  .greenBox {
-    border: 1px solid lime;
-  }
+
   .login-button {
     @include button;
     @include button-style;
@@ -11,6 +9,15 @@
     margin-bottom: 1px;
     color: black;
   }
+
+  .loginError {
+    @include alert-base;
+    @include alert-style(red);
+    .close {
+      @include alert-close;
+    }
+  }
+
 }
 
 
