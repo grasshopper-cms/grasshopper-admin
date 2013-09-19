@@ -13,7 +13,6 @@ define(['api', 'jquery'],function (api, $) {
               require([
                   'emptyView',
                   'emptyViewConfig',
-
               ], function (emptyView, emptyViewConfig) {
 
                   var emptyView = new emptyView(emptyViewConfig);
@@ -24,7 +23,7 @@ define(['api', 'jquery'],function (api, $) {
               console.log('done');
           })
           .fail(function(error){
-              console.log(error);
+              loginModel.set('loginError', error);
           });
     }
 });
