@@ -20,6 +20,8 @@ require.config({
         baseView : 'vendor/masseuse/app/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
+        navbarView : 'views/navbar/navbarView',
+        navbarViewConfig : 'views/navbar/navbarViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -35,6 +37,7 @@ require.config({
 
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',
+        navbarViewModel : 'models/viewModels/navbarViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',
@@ -46,11 +49,17 @@ require.config({
 
 require([
     'loginView',
-    'loginViewConfig'
-], function (LoginView, loginViewConfig) {
+    'loginViewConfig',
+    'navbarView',
+    'navbarViewConfig'
+], function (LoginView, loginViewConfig, NavbarView, navbarViewConfig) {
 
     var loginView = new LoginView(loginViewConfig);
     loginView.start();
     loginView.rivetView();
+
+    var navbarView = new NavbarView(navbarViewConfig);
+    navbarView.start();
+    navbarView.rivetView();
 
 });

@@ -5,62 +5,37 @@
 <html class="no-js" lang="en">
 <!--<![endif]-->
 
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="stylesheet" type="text/css" href="application.css">
-    <title>Grasshopper</title>
-</head>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="stylesheet" type="text/css" href="application.css">
+        <title>Grasshopper</title>
+    </head>
 
-<body>
-    <!--FIXME: This navbar should be moved into a navbar view then injected into this page-->
-    <!--FIXME: The navbar needs a special JS file to be loaded when the browser is small to make the menu work.-->
-    <!--http://foundation.zurb.com/docs/components/top-bar.html-->
-    <div id="navbar">
-        <div class="contain-to-grid sticky">
-            <nav class="top-bar">
-                <ul class="title-area">
-                    <li class="name">
-                        <h1><a href="#">Grasshopper</a></h1>
-                    </li>
-                    <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-                </ul>
-                <section class="top-bar-section">
-                    <ul class="right">
-                        <li class="divider hide-for-small"></li>
-                        <li class="has-dropdown"><a href="#">Menu</a>
-                            <ul class="dropdown">
-                                <li><a href="#" class="">About</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Something Else</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Some Other Thing</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-            </nav>
-        </div>
-    </div>
+    <body>
+        <!--FIXME: This navbar should be moved into a navbar view then injected into this page-->
+        <!--FIXME: The navbar needs a special JS file to be loaded when the browser is small to make the menu work.-->
+        <!--http://foundation.zurb.com/docs/components/top-bar.html-->
+        <div id="navbar"></div>
 
-    <div id="sidebar"></div>
+        <div id="sidebar"></div>
 
-    <div id="stage"></div>
+        <div id="stage"></div>
 
-    <div id="footer"></div>
+        <div id="footer"></div>
 
-<script data-main="main" src="vendor/requirejs/require.js"></script>
-<!-- THIS IS ALL THE JS NEEDED FOR FOUNDATION. I COULD NOT GET IT TO WORK... -->
-<!-- <script src="vendor/foundation/js/foundation/foundation.js"></script>
-<script>
-  document.write('<script src=vendor/foundation/js/vendor/'
-    + ('__proto__' in {} ? 'zepto' : 'jquery')
-    + '.js><\/script>');
-</script>
-<script>
-  $(document).foundation();
-</script>
- -->
-</body>
+    <script data-main="main" src="vendor/requirejs/require.js"></script>
+    <!-- THIS IS ALL THE JS NEEDED FOR FOUNDATION. I COULD NOT GET IT TO WORK... -->
+    <!-- <script src="vendor/foundation/js/foundation/foundation.js"></script>
+    <script>
+      document.write('<script src=vendor/foundation/js/vendor/'
+        + ('__proto__' in {} ? 'zepto' : 'jquery')
+        + '.js><\/script>');
+    </script>
+    <script>
+      $(document).foundation();
+    </script>
+     -->
+    </body>
 
 </html>
