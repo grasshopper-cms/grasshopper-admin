@@ -7,6 +7,9 @@ define(['text!views/login/loginView.html', 'loginViewModel'], function (template
         modelData : {username : '', password : '', usernameError : '', passwordError : '', hasError : ''},
         ModelType : loginViewModel,
         el : '#stage',
-        templateHtml : templateHtml
+        templateHtml : templateHtml,
+        events : {
+            'click #loginButton' : 'login'
+        }
     };
 });

@@ -5,16 +5,16 @@ define(['baseView', 'rivetView', 'loginWorker']
 
         var LoginView = BaseView.extend({
             rivetView : rivetView({rivetScope : '#login', rivetPrefix : 'login'}),
-            events : {
-                'click #loginButton' : 'login'
-            },
             login : login
         });
 
         function login() {
-            console.log(this);
-            console.log('hi');
-            console.log(loginWorker);
+            console.log("> " + this.model.isValid());
+            if (this.model.isValid()) {
+                loginWorker.something();
+            } else {
+            }
+
         }
 
         return LoginView;

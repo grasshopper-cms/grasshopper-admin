@@ -2,42 +2,39 @@ define(['selfValidatingModel', 'jquery'], function (Model, $) {
     return Model.extend({
         validate: validate,
         usernameValidate: usernameValidate,
-        passwordValidate : passwordValidate,
-        checkForErrors : checkForErrors
+        passwordValidate : passwordValidate
     });
 
     function validate(attributes, options) {
-        this.usernameValidate(attributes);
-        this.passwordValidate(attributes);
-        this.checkForErrors();
+        valid = true;
+        valid = this.usernameValidate(attributes);
+        console.log("v" + valid);
+        valid = this.passwordValidate(attributes) && valid;
+        console.log("model is valid: " + valid);
+        return !valid;
     }
 
     function usernameValidate(attributes) {
-        if (attributes.username.length < 10 && attributes.username.length !== 0) {
+        var valid = true;
+        if (attributes.username.length && attributes.username.length < 10) {
+            console.log('>>> username error');
+            valid = false;
             this.set('usernameError', 'Too Short.', {validate:false});
-            $('#loginUsername').addClass('error');
         } else {
             this.set('usernameError', '', {validate:false});
-            $('#loginUsername').removeClass('error');
         }
+        return valid;
     }
 
     function passwordValidate(attributes) {
-        if (attributes.password.length < 10 && attributes.password.length !== 0) {
+        var valid = true;
+        if (attributes.password.length && attributes.password.length < 10) {
+            valid = false;
             this.set('passwordError', 'Too Short.', {validate:false});
-            $('#loginPassword').addClass('error');
         } else {
             this.set('passwordError', '', {validate:false});
-            $('#loginPassword').removeClass('error');
         }
-    }
-
-    function checkForErrors() {
-        if (this.get('usernameError') || this.get('passwordError')) {
-            this.set('hasError', true, {validate:false});
-        } else {
-            this.set('hasError', false, {validate:false});
-        }
+        return valid;
     }
 
 // alternative approach :

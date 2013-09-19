@@ -21,7 +21,10 @@ define(['rivets', 'mixin'], function (Rivets, mixin) {
                         return obj.get(keypath);
                     },
                     publish : function (obj, keypath, value) {
-                        obj.set(keypath, value);
+                        // Not setting the model breaks Rivets
+                        obj.set(keypath, value, {validate: false});
+                        // We have to validate the model to get errors to show correctly
+                        obj.validate(obj.attributes);
                     }
                 },
                 prefix : config.rivetPrefix
