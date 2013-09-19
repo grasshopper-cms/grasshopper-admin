@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['baseView', 'rivetView', 'loginWorker', 'userModel']
-    , function (BaseView, rivetView, loginWorker, userModel,templateHtml) {
+    , function (BaseView, rivetView, loginWorker, userModel) {
         "use strict";
 
         var LoginView = BaseView.extend({
