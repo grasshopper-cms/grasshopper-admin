@@ -8,9 +8,7 @@ define(['selfValidatingModel', 'jquery'], function (Model, $) {
 
     function validate(attributes, options) {
         var valid = this.attributeValidate(attributes.username, 'usernameError');
-        console.log("v" + valid);
         valid = this.attributeValidate(attributes.password, 'passwordError') && valid;
-        console.log("model is valid: " + valid);
         this.set('hasError', !valid, {validate: false});
         return !valid;
     }
@@ -18,7 +16,6 @@ define(['selfValidatingModel', 'jquery'], function (Model, $) {
     function attributeValidate(attribute, errorAttribute) {
         var valid = true;
         if (!this.hasLength(attribute)) {
-            console.log('>>> ' + attribute +' error');
             valid = false;
             this.setErrors.call(this, errorAttribute, 'Too Short.', false);
         } else {

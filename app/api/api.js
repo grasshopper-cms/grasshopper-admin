@@ -1,6 +1,12 @@
 define(['loginMixin'], function(login) {
-    return {
-        login: login()
-    }
+
+    function Api() {}
+
+    Api.prototype = {
+        login: login.call(this)
+    };
+
+    return new Api();
+
 });
 

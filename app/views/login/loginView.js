@@ -10,7 +10,7 @@ define(['baseView', 'rivetView', 'loginWorker', 'userModel']
 
         function login() {
             if (this.model.isValid()) {
-                loginWorker.doLogin(this.model.get('username'), this.model.get('password'), userModel);
+                loginWorker.doLogin(this.model, userModel);
             }
         }
 
