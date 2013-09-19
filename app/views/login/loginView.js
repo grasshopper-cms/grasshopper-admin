@@ -9,6 +9,19 @@ define(['baseView', 'rivetView', 'loginWorker']
         });
 
         function login() {
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
+            console.log("------------------");
             console.log("> " + this.model.isValid());
             if (this.model.isValid()) {
                 loginWorker.something();

@@ -18,6 +18,7 @@ define(['rivets', 'mixin'], function (Rivets, mixin) {
                         obj.off('change:' + keypath, callback.wrapped);
                     },
                     read : function (obj, keypath) {
+                        console.log(keypath);
                         return obj.get(keypath);
                     },
                     publish : function (obj, keypath, value) {

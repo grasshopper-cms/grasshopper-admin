@@ -6,11 +6,11 @@ define(['selfValidatingModel', 'jquery'], function (Model, $) {
     });
 
     function validate(attributes, options) {
-        valid = true;
-        valid = this.usernameValidate(attributes);
+        var valid = this.usernameValidate(attributes);
         console.log("v" + valid);
         valid = this.passwordValidate(attributes) && valid;
         console.log("model is valid: " + valid);
+        this.set('hasError', !valid, {validate: false});
         return !valid;
     }
 
