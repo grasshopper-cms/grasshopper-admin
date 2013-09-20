@@ -4,6 +4,7 @@ define(['text!views/login/loginView.html', 'loginViewModel'], function (template
 
     return {
         name : 'loginView',
+        // for model attribute errors on self validating models, follow the convention of attribute+"Error". See the rivetView "publish" method
         modelData : {username : '', password : '', usernameError : '', passwordError : '', hasError : ''},
         ModelType : loginViewModel,
         el : '#stage',

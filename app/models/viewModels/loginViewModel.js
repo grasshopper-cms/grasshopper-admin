@@ -20,6 +20,7 @@ define(['selfValidatingModel', 'validation'], function (Model, validation) {
             valid = false;
             this.setErrors.call(this, errorAttribute, 'Too Short.', false);
         }
+        this.set('hasError', !valid, {validate: false});
         return valid;
     }
 
