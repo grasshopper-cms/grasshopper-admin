@@ -15,3 +15,11 @@ $font : 'Open Sans', arial, sans-serif;
 // Using Sass globbing to import app view scss files.
 @import "views/**/*";
 
+body, html {
+  font-family : $font;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family : $font;
+  }
+}
+
