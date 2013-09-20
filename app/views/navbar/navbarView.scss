@@ -10,6 +10,7 @@
     -moz-box-shadow: 0 1px 0 #28496b;
     box-shadow:  0 1px 0 #28496b;
     .top-bar {
+      margin-bottom:0px;
       background-color : $darkBlue;
       .name h1 a {
         color : $lightBlueText;
@@ -24,10 +25,10 @@
   }
 
   #header {
-    height : emCalc(40);
+    height : emCalc(70);
     h3 {
       color : #FFF;
-      line-height : 0px;
+      margin-top: 14px;
     }
 
   }
