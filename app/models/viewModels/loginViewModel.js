@@ -1,7 +1,6 @@
-define(['selfValidatingModel', 'jquery'], function (Model, $) {
+define(['selfValidatingModel', 'validation'], function (Model, validation) {
     return Model.extend({
         validate: validate,
-        hasLength : hasLength,
         setErrors : setErrors,
         attributeValidate : attributeValidate
     });
@@ -15,17 +14,13 @@ define(['selfValidatingModel', 'jquery'], function (Model, $) {
 
     function attributeValidate(attribute, errorAttribute) {
         var valid = true;
-        if (!this.hasLength(attribute)) {
+        if (validation.stringHasLength(attribute)) {
+            this.setErrors.call(this, errorAttribute, '', false);
+        } else {
             valid = false;
             this.setErrors.call(this, errorAttribute, 'Too Short.', false);
-        } else {
-            this.setErrors.call(this, errorAttribute, '', false);
         }
         return valid;
-    }
-
-    function hasLength(str) {
-        return str.length ? true : false;
     }
 
     function setErrors(attribute, message, validateFlag) {

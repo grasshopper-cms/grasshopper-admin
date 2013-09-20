@@ -45,7 +45,10 @@ require.config({
         loginWorker : 'workers/loginWorker',
 
         // Api proxy
-        api : 'api/api'
+        api : 'api/api',
+
+        // Validation
+        validation : 'validation/validation'
     }
 });
 
