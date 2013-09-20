@@ -2,9 +2,11 @@
 
   .loginError {
     @include alert-base;
-    @include alert-style(red);
+    @include alert-style(#A00000);
     .close {
       @include alert-close;
+      color: $offWhite;
+      opacity: 90;
     }
   }
 
