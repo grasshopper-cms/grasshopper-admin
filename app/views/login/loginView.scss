@@ -2,20 +2,12 @@
 
   .login-button {
     @include button;
-    @include button-style;
+    @include button-style($green);
     @include radius;
     @include single-transition;
     @include inset-shadow(true);
     margin-bottom: 1px;
     color: black;
-  }
-
-  .loginError {
-    @include alert-base;
-    @include alert-style(red);
-    .close {
-      @include alert-close;
-    }
   }
 
 }

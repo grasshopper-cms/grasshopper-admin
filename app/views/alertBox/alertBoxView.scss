@@ -1,0 +1,12 @@
+#alertBoxPartial {
+
+  .loginError {
+    @include alert-base;
+    @include alert-style(red);
+    .close {
+      @include alert-close;
+    }
+  }
+
+}
+
