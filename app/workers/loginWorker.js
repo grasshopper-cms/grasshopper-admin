@@ -1,5 +1,5 @@
-define(['api', 'jquery','emptyView','emptyViewConfig'],
-    function (api, $, EmptyView, emptyViewConfig) {
+define(['api', 'jquery','emptyView','emptyViewConfig', 'resources'],
+    function (api, $, EmptyView, emptyViewConfig, resources) {
     'use strict';
 
     return {
@@ -20,13 +20,10 @@ define(['api', 'jquery','emptyView','emptyViewConfig'],
                   emptyView = new EmptyView(emptyViewConfig);
                   emptyView.start();
                   emptyView.rivetView();
-                  console.log('done');
-
-
               }
           })
-          .fail(function(error){
-              loginModel.set('loginError', error);
+          .fail(function(xhr){
+              loginModel.set('loginError', resources.api.login.errors[xhr.status] );
           });
     }
 });

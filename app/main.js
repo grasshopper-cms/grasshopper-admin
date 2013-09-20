@@ -26,7 +26,6 @@ require.config({
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
         rivetView : 'mixins/rivetView',
-        loginMixin : 'mixins/loginMixin',
 
         // Channels
         channels : 'vendor/masseuse/app/channels',
@@ -46,7 +45,10 @@ require.config({
         api : 'api/api',
 
         // Validation
-        validation : 'validation/validation'
+        validation : 'validation/validation',
+
+        // Resources File
+        resources : 'resources'
     }
 });
 
