@@ -1,12 +1,12 @@
-define(['api', 'jquery','emptyView','emptyViewConfig', 'resources'],
-    function (api, $, EmptyView, emptyViewConfig, resources) {
+define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
+    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig) {
     'use strict';
 
     return {
         doLogin : doLogin
     };
 
-    function doLogin(loginModel,userModel) {
+    function doLogin(loginModel) {
 
       api.getToken(loginModel.get('username'), loginModel.get('password'))
           .done(function(data){
@@ -23,7 +23,11 @@ define(['api', 'jquery','emptyView','emptyViewConfig', 'resources'],
               }
           })
           .fail(function(xhr){
-              loginModel.set('loginError', resources.api.login.errors[xhr.status] );
+
+              var alertBoxView = new AlertBoxView(alertBoxViewConfig);
+              alertBoxView.model.set('loginError', resources.api.login.errors[xhr.status] );
+              alertBoxView.start();
+              alertBoxView.rivetView();
           });
     }
 });

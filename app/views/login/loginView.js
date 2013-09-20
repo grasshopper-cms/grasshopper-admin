@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'loginWorker', 'userModel'], function (BaseView, rivetView, loginWorker, userModel) {
+define(['baseView', 'rivetView', 'loginWorker'], function (BaseView, rivetView, loginWorker) {
 
         var LoginView = BaseView.extend({
             rivetView : rivetView({rivetScope : '#login', rivetPrefix : 'login'}),
@@ -8,7 +8,7 @@ define(['baseView', 'rivetView', 'loginWorker', 'userModel'], function (BaseView
 
         function login() {
             if (this.model.isValid()) {
-                loginWorker.doLogin(this.model, userModel);
+                loginWorker.doLogin(this.model);
             }
         }
 

@@ -38,6 +38,8 @@ require.config({
         navbarViewConfig : 'views/navbar/navbarViewConfig',
         emptyView : 'views/empty/emptyView',
         emptyViewConfig : 'views/empty/emptyViewConfig',
+        alertBoxView : 'views/alertBox/alertBoxView',
+        alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -53,6 +55,7 @@ require.config({
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',
         navbarViewModel : 'models/viewModels/navbarViewModel',
+        alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',

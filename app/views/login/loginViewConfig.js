@@ -4,7 +4,7 @@ define(['text!views/login/loginView.html', 'loginViewModel'], function (template
 
     return {
         name : 'loginView',
-        modelData : {username : '', password : '', usernameError : '', passwordError : '', hasError : '', loginError : ''},
+        modelData : {username : '', password : '', usernameError : '', passwordError : '', hasError : ''},
         ModelType : loginViewModel,
         el : '#stage',
         templateHtml : templateHtml,
