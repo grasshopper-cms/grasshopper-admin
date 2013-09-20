@@ -17,6 +17,6 @@
     "commit": "faaf39a26a709614ce233cc78436ac45484ee14c"
   },
   "_source": "git://github.com/dankogai/js-base64.git",
-  "_target": "*",
+  "_target": "~2.1.2",
   "_originalSource": "js-base64"
 }

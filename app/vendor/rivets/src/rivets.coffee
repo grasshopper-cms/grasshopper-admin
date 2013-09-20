@@ -1,7 +1,7 @@
 # Rivets.js
 # =========
 
-# > version: 0.5.12
+# > version: 0.5.13
 # > author: Michael Richards
 # > license: MIT
 # >
@@ -11,6 +11,9 @@
 
 # The Rivets namespace.
 Rivets = {}
+
+# jQuery || Zepto
+jQuery = window.jQuery or window.Zepto
 
 # Polyfill For `String::trim`.
 unless String::trim then String::trim = -> @replace /^\s+|\s+$/g, ''
@@ -236,7 +239,7 @@ class Rivets.View
   # constructor along with any local options that should be used throughout the
   # context of the view and it's bindings.
   constructor: (@els, @models, @options = {}) ->
-    @els = [@els] unless (@els.jquery || @els instanceof Array)
+    @els = [@els] if typeof @els.length is 'undefined'
 
     for option in ['config', 'binders', 'formatters']
       @[option] = {}

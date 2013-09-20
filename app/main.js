@@ -8,6 +8,9 @@ require.config({
         base64 : {
             exports : 'Base64'
         },
+        alerts : {
+            deps : ['foundation']
+        },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
@@ -23,6 +26,9 @@ require.config({
         rivets : 'vendor/rivets/dist/rivets',
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
+
+        // Foundation Dependencies
+        alerts : 'vendor/foundation/js/foundation/foundation.alerts',
 
         // Views
         baseView : 'vendor/masseuse/app/baseView',
@@ -67,9 +73,9 @@ require([
     'loginViewConfig',
     'navbarView',
     'navbarViewConfig',
-    'foundation',
+    'alerts',
     'jquery'
-], function (LoginView, loginViewConfig, NavbarView, navbarViewConfig, foundation, $) {
+], function (LoginView, loginViewConfig, NavbarView, navbarViewConfig, alerts, $) {
     "use strict";
     $(document).foundation();
     var loginView = new LoginView(loginViewConfig);

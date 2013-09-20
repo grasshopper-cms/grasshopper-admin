@@ -9,5 +9,6 @@
     "commit": "df9a95275594eee98cd3d372464ee1467fdb7b1f"
   },
   "_source": "git://github.com/amdjs/backbone.git",
-  "_target": "~1.0.0"
+  "_target": "~1.0.0",
+  "_originalSource": "backbone-amd"
 }

@@ -9,5 +9,6 @@
     "commit": "1e553235f245115d7a816f9e3abc836ad85b929b"
   },
   "_source": "git://github.com/cjohansen/Sinon.JS.git",
-  "_target": "~1.7.3"
+  "_target": "~1.7.3",
+  "_originalSource": "sinon"
 }

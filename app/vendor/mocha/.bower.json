@@ -25,5 +25,6 @@
     "commit": "40bf1f30d14792ddaedd478471409ac8dc15209f"
   },
   "_source": "git://github.com/visionmedia/mocha.git",
-  "_target": "~1.12.1"
+  "_target": "~1.12.1",
+  "_originalSource": "mocha"
 }

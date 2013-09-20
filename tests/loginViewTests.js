@@ -77,6 +77,16 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
             });
         });
 
+        describe("should inherit properly from the validation mixin as evidenced by", function() {
+            xit("should have a method called stringHasLength", function() {
+
+            });
+            xit("stringHasLength should return true if passed a string with no length", function() {
+
+            });
+            xit("stringHasLength should return false if passed a string with length", function() {})
+
+        })
         describe("should inherit properly from the loginViewConfig, as evidenced by", function() {
             xit("has a name property", function() {
 
@@ -138,18 +148,6 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
 
                     });
                     xit("will clear the hasError attribute if the username and password are long enough", function() {
-
-                    });
-                });
-
-                describe("its hasLength method", function() {
-                    xit("exists", function() {
-
-                    });
-                    xit("will return true if the string passed to if it has length", function() {
-
-                    });
-                    xit("will return false if the string passed to if it has no length", function() {
 
                     });
                 });
