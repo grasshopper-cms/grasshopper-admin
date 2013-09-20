@@ -27,16 +27,20 @@ require.config({
         sinonChai  : '../app/vendor/sinon-chai/lib/sinon-chai',
         sinonCall : '../app/vendor/sinon/lib/sinon/call',
 
-        baseView : '../app/views/base/baseView',
+        // Views
+        loginView : '../app/views/login/loginView',
 
+        // Channels
         channels : '../app/channels',
 
+        // Mixins
         mixin : '../app/mixins/mixin'
     }
 });
 
 require([
-    'mocha'
+    'mocha',
+    './loginViewTests'
 ], function (mocha) {
     mocha.run();
 });
