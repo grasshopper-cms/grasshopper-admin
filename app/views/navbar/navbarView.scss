@@ -1,0 +1,34 @@
+#navbar {
+  border-bottom: 1px solid $gray;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  background-color:$blue;
+  #navbar-partial {
+    background-color : $darkBlue;
+    -webkit-box-shadow: 0 1px 0 #28496b;
+    -moz-box-shadow: 0 1px 0 #28496b;
+    box-shadow:  0 1px 0 #28496b;
+    .top-bar {
+      background-color : $darkBlue;
+      .name h1 a {
+        color : $lightBlueText;
+      }
+      .top-bar-section li a:not(.button) {
+        background-color : $darkBlue;
+      }
+      .top-bar-section ul li>a {
+        color : $lightBlueText;
+      }
+    }
+  }
+
+  #header {
+    height : emCalc(40);
+    h3 {
+      color : #FFF;
+      line-height : 0px;
+    }
+
+  }
+}
