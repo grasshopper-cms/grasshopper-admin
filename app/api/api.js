@@ -1,4 +1,4 @@
-define(['resources'], function(resources) {
+define(['resources', 'base64'], function(resources, base64) {
     'use strict';
 
     return {
@@ -7,7 +7,7 @@ define(['resources'], function(resources) {
                 dataType : "json",
                 url : resources.api.login.url,
                 type : 'GET',
-                headers : {"Authorization" : "Basic " + window.btoa(username + ":" + password)}
+                headers : {"Authorization" : "Basic " + base64.encode(username + ":" + password)}
             });
         },
         getUser: function(userModel) {

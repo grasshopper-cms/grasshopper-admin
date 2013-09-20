@@ -4,7 +4,11 @@ require.config({
     shim : {
         underscore : {
             exports : '_'
+        },
+        base64 : {
+            exports : 'Base64'
         }
+
     },
     paths : {
         // Libraries
@@ -13,6 +17,7 @@ require.config({
         backbone : 'vendor/backbone-amd/backbone',
         text : 'vendor/requirejs-text/text',
         rivets : 'vendor/rivets/dist/rivets',
+        base64 : 'vendor/js-base64/base64',
 
         // Views
         baseView : 'vendor/masseuse/app/baseView',
