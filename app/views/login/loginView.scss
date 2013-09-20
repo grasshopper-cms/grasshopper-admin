@@ -1,13 +1,21 @@
 #login {
 
+  margin-top: 6%;
+
   .login-button {
     @include button;
     @include button-style($green);
     @include radius;
     @include single-transition;
     @include inset-shadow(true);
-    margin-bottom: 1px;
-    color: black;
+    color: $offWhite;
+  }
+
+  .loginContainer {
+    @include radius;
+    border: 1px solid lightgray;
+    padding: 16px 28px 23px;
+    background-color: $offWhite;
   }
 
 }
