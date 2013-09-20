@@ -128,7 +128,10 @@ module.exports = function (grunt) {
                         'pages/**/*',
                         'views/**/*',
                         'workers/**/*',
-                        'api/**/*'
+                        'api/**/*',
+                        'main.js',
+                        'resources.js',
+                        'index.html'
                     ], dest : 'build'}
                 ]
             }
