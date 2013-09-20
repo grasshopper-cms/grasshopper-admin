@@ -3,5 +3,5 @@ define(function() {
         stringHasLength : function(string) {
             return !!(string && string.constructor === String);
         }
-    }
+    };
 });

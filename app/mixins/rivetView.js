@@ -3,14 +3,12 @@ define(['rivets', 'mixin'], function (Rivets, mixin) {
     return mixin({
             rivetScope : undefined,
             rivetPrefix : undefined
-        }
-
-        , function (config) {
+        }, function (config) {
             Rivets.configure({
                 adapter : {
                     subscribe : function (obj, keypath, callback) {
                         callback.wrapped = function (m, v) {
-                            callback(v)
+                            callback(v);
                         };
                         obj.on('change:' + keypath, callback.wrapped);
                     },

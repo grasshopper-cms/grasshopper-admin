@@ -1,6 +1,5 @@
 /*global define:false*/
-define(['baseView', 'rivetView']
-    , function (BaseView, rivetView) {
+define(['baseView', 'rivetView'], function (BaseView, rivetView) {
         "use strict";
 
         var NavbarView = BaseView.extend({

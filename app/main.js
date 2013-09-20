@@ -1,6 +1,4 @@
 /*global require*/
-'use strict';
-
 // Require.js allows us to configure shortcut alias
 require.config({
     shim : {
@@ -58,7 +56,7 @@ require([
     'navbarView',
     'navbarViewConfig'
 ], function (LoginView, loginViewConfig, NavbarView, navbarViewConfig) {
-
+    "use strict";
     var loginView = new LoginView(loginViewConfig);
     loginView.start();
     loginView.rivetView();

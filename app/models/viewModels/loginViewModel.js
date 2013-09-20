@@ -24,6 +24,6 @@ define(['selfValidatingModel', 'validation'], function (Model, validation) {
     }
 
     function setErrors(attribute, message, validateFlag) {
-        this.set(attribute, message, {validate : validateFlag})
+        this.set(attribute, message, {validate : validateFlag});
     }
 });

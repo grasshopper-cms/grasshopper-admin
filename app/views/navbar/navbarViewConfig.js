@@ -7,6 +7,6 @@ define(['text!views/navbar/navbarView.html', 'navbarViewModel'], function (templ
         modelData : {},
         ModelType : navbarViewModel,
         el : '#navbar',
-        templateHtml : templateHtml,
+        templateHtml : templateHtml
     };
 });

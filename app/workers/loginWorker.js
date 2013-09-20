@@ -1,4 +1,5 @@
-define(['api', 'jquery'],function (api, $) {
+define(['api', 'jquery','emptyView','emptyViewConfig'],
+    function (api, $, EmptyView, emptyViewConfig) {
     'use strict';
 
     return {
@@ -10,16 +11,11 @@ define(['api', 'jquery'],function (api, $) {
       api.login(loginModel.get('username'), loginModel.get('password'), userModel)
           .done(function(){
               // redirect to empty view
-              require([
-                  'emptyView',
-                  'emptyViewConfig',
-              ], function (emptyView, emptyViewConfig) {
-
-                  var emptyView = new emptyView(emptyViewConfig);
-                  emptyView.start();
-                  emptyView.rivetView();
-
-              });
+              // Can always load empty up front
+              // Final file will be min concated anyway
+              var emptyView = new EmptyView(emptyViewConfig);
+              emptyView.start();
+              emptyView.rivetView();
               console.log('done');
           })
           .fail(function(error){
