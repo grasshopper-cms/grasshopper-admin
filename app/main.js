@@ -49,6 +49,8 @@ require.config({
         channels : 'vendor/masseuse/app/channels',
 
         // Models
+        ComputedProperty : 'vendor/masseuse/app/ComputedProperty',
+        masseuseModel : 'vendor/masseuse/app/MasseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
         userModel : 'models/userModel',
 

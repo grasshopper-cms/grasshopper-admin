@@ -1,14 +1,17 @@
-define(['selfValidatingModel', 'validation'], function (Model, validation) {
+define(['selfValidatingModel', 'validation', 'ComputedProperty'], function (Model, validation, ComputedProperty) {
     return Model.extend({
+
         validate: validate,
         setErrors : setErrors,
-        attributeValidate : attributeValidate
+        attributeValidate : attributeValidate,
+        hasError: ComputedProperty(["usernameError", "passwordError"], function (usernameError, passwordError) {
+            return !!(usernameError || passwordError);
+        })
     });
 
     function validate(attributes, options) {
         var valid = this.attributeValidate(attributes.username, 'usernameError');
         valid = this.attributeValidate(attributes.password, 'passwordError') && valid;
-        this.set('hasError', !valid, {validate: false});
         return !valid;
     }
 
@@ -20,7 +23,6 @@ define(['selfValidatingModel', 'validation'], function (Model, validation) {
             valid = false;
             this.setErrors.call(this, errorAttribute, 'Too Short.', false);
         }
-        this.set('hasError', !valid, {validate: false});
         return valid;
     }
 
