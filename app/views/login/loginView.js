@@ -2,7 +2,7 @@
 define(['baseView', 'rivetView', 'loginWorker'], function (BaseView, rivetView, loginWorker) {
 
         var LoginView = BaseView.extend({
-            rivetView : rivetView({rivetScope : '#login', rivetPrefix : 'login'}),
+            rivetView : rivetView({rivetScope : '#login', rivetPrefix : 'login', instaUpdateRivets : true}),
             login : login
         });
 

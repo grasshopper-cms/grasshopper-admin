@@ -16,7 +16,8 @@ define(['text!views/login/loginView.html', 'loginViewModel', 'ComputedProperty',
         templateHtml : templateHtml,
         events : {
             'click #loginButton' : 'login'
-        }
+        },
+        selectorsForCache: ['input', '#login input']
     };
 
     function validateUserLoginAttribute(attribute) {

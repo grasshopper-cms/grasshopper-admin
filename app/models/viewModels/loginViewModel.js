@@ -19,7 +19,6 @@ define(['masseuseModel', 'validation'], function (Model, validation) {
             // Validate the individual attribute
             if (!validation.stringHasLength(value)) {
                 invalid = true;
-                return invalid;
             }
         });
         return invalid;
