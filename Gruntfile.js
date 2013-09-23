@@ -131,7 +131,9 @@ module.exports = function (grunt) {
                         'api/**/*',
                         'main.js',
                         'resources.js',
-                        'index.html'
+                        'index.html',
+                        'app.js',
+                        'routes.js'
                     ], dest : 'build'}
                 ]
             }

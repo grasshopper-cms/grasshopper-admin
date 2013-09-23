@@ -55,7 +55,7 @@ require.config({
         ComputedProperty : 'vendor/masseuse/app/ComputedProperty',
         masseuseModel : 'vendor/masseuse/app/MasseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
-        userModel : 'models/userModel',
+        UserModel : 'models/UserModel',
 
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',
@@ -73,7 +73,10 @@ require.config({
         validation : 'validation/validation',
 
         // Resources File
-        resources : 'resources'
+        resources : 'resources',
+
+        // Global storage
+        app : 'app'
     }
 });
 
@@ -83,10 +86,10 @@ require([
     'alerts',
     'jquery',
     'router',
-    'backbone'
-], function (NavbarView, navbarViewConfig, alerts, $, Router, Backbone) {
+    'backbone',
+    'app'
+], function (NavbarView, navbarViewConfig, alerts, $, Router, Backbone, app) {
     "use strict";
-
     $(document).foundation();
 
     var navbarView = new NavbarView(navbarViewConfig);

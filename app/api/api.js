@@ -11,7 +11,7 @@ define(['resources', 'base64'], function(resources, base64) {
             });
         },
         authenticateToken : function(token) {
-            this.request(resources.api.user.url, token);
+           return this.request(resources.api.user.url, token);
         },
         getUser: function(userModel) {
             return userModel.fetch();
