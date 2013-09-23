@@ -1,25 +1,20 @@
-define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
-    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig) {
+define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'userWorker'],
+    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig, userWorker) {
     'use strict';
 
     return {
-        doLogin : doLogin
+        doLogin : doLogin,
+        authenticateWithToken : authenticateWithToken
     };
 
     function doLogin(loginModel) {
 
       api.getToken(loginModel.get('username'), loginModel.get('password'))
           .done(function(data){
-              var emptyView;
-              // redirect to empty view
-              // Can always load empty up front
-              // Final file will be min concated anyway
               if ("Token" === data.token_type) {
                   //store the token in localstorage
                   localStorage.setItem('authToken', data.access_token);
-                  emptyView = new EmptyView(emptyViewConfig);
-                  emptyView.start();
-                  emptyView.rivetView();
+                  authenticateWithToken();
               }
           })
           .fail(function(xhr){
@@ -29,5 +24,21 @@ define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxVie
               alertBoxView.start();
               alertBoxView.rivetView();
           });
+    }
+
+    function authenticateWithToken() {
+        var token = localStorage.getItem('authToken');
+        if (token) {
+            api.authenticateToken()
+                .done(function(){
+                    var emptyView;
+                    emptyView = new EmptyView(emptyViewConfig);
+                    emptyView.start();
+                    emptyView.rivetView();
+                })
+                .fail(function(){
+
+                });
+        }
     }
 });

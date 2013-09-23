@@ -27,6 +27,12 @@ define([],
                         500 : 'Server Error',
                         503 : 'Service Unavailable'
                     }
+                },
+                user : {
+                    url : 'http://localhost:8080/user'
+                },
+                users : {
+                    url : 'http://localhost:8080/users'
                 }
             }
 

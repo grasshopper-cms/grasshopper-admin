@@ -61,6 +61,7 @@ require.config({
 
         // Workers
         loginWorker : 'workers/loginWorker',
+        userWorker : 'workers/userWorker',
 
         // Api proxy
         api : 'api/api',

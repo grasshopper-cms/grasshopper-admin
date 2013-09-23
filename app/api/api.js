@@ -10,6 +10,14 @@ define(['resources', 'base64'], function(resources, base64) {
                 headers : {"Authorization" : "Basic " + base64.encode(username + ":" + password)}
             });
         },
+        authenticateToken : function(token) {
+            return $.ajax({
+                dataType : "json",
+                url : resources.api.user.url,
+                type : 'GET',
+                headers : {"Authorization" : "Token " + base64.encode(token)}
+            });
+        },
         getUser: function(userModel) {
             return userModel.fetch();
         },
