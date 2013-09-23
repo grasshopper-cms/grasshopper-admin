@@ -1,9 +1,16 @@
-define(['backbone'], function (Backbone) {
+define(['backbone', 'loginView', 'loginViewConfig'], function (Backbone, LoginView, loginViewConfig) {
 
     var Router = Backbone.Router.extend({
         routes: {
-            "*actions": "defaultRoute" // matches http://example.com/#anything-here
+            "": "login"
+        },
+
+        login:  function() {
+            var loginView = new LoginView(loginViewConfig);
+            loginView.start();
+            loginView.rivetView();
         }
+
     });
 
     return Router;

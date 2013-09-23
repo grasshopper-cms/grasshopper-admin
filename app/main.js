@@ -78,33 +78,23 @@ require.config({
 });
 
 require([
-    'loginView',
-    'loginViewConfig',
     'navbarView',
     'navbarViewConfig',
     'alerts',
     'jquery',
-    'router'
-], function (LoginView, loginViewConfig, NavbarView, navbarViewConfig, alerts, $, Router) {
+    'router',
+    'backbone'
+], function (NavbarView, navbarViewConfig, alerts, $, Router, Backbone) {
     "use strict";
 
     $(document).foundation();
-
-    var loginView = new LoginView(loginViewConfig);
-    loginView.start();
-    loginView.rivetView();
 
     var navbarView = new NavbarView(navbarViewConfig);
     navbarView.start();
     navbarView.rivetView();
 
-    var router = new Router;
+    var router = new Router();
 
-    router.on('route:defaultRoute', function(actions) {
-        console.log("HEY!!");
-        console.log(actions);
-    });
-
-//    Backbone.history.start();
+    Backbone.history.start();
 
 });
