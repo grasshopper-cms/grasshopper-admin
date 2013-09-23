@@ -27,6 +27,9 @@ require.config({
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
 
+        // Routers
+        router : 'routes',
+
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alerts',
 
@@ -80,10 +83,13 @@ require([
     'navbarView',
     'navbarViewConfig',
     'alerts',
-    'jquery'
-], function (LoginView, loginViewConfig, NavbarView, navbarViewConfig, alerts, $) {
+    'jquery',
+    'router'
+], function (LoginView, loginViewConfig, NavbarView, navbarViewConfig, alerts, $, Router) {
     "use strict";
+
     $(document).foundation();
+
     var loginView = new LoginView(loginViewConfig);
     loginView.start();
     loginView.rivetView();
@@ -91,5 +97,14 @@ require([
     var navbarView = new NavbarView(navbarViewConfig);
     navbarView.start();
     navbarView.rivetView();
+
+    var router = new Router;
+
+    router.on('route:defaultRoute', function(actions) {
+        console.log("HEY!!");
+        console.log(actions);
+    });
+
+//    Backbone.history.start();
 
 });
