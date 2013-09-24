@@ -37,8 +37,8 @@ require.config({
         baseView : 'vendor/masseuse/app/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
-        headerView : 'views/header/headerView',
-        headerViewConfig : 'views/header/headerViewConfig',
+        navbarView : 'views/navbar/navbarView',
+        navbarViewConfig : 'views/navbar/navbarViewConfig',
         emptyView : 'views/empty/emptyView',
         emptyViewConfig : 'views/empty/emptyViewConfig',
         alertBoxView : 'views/alertBox/alertBoxView',
@@ -59,7 +59,7 @@ require.config({
 
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',
-        headerViewModel : 'models/viewModels/headerViewModel',
+        navbarViewModel : 'models/viewModels/navbarViewModel',
         alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
 
         // Workers
@@ -87,8 +87,10 @@ require([
     'jquery',
     'router',
     'backbone',
-    'app'
-], function (HeaderView, headerViewConfig, alerts, $, Router, Backbone, app) {
+    'app',
+    'api'
+], function (NavbarView, navbarViewConfig, alerts, $, Router, Backbone, app, Api) {
+
     "use strict";
     $(document).foundation();
 
@@ -97,6 +99,15 @@ require([
     headerView.rivetView();
 
     var router = new Router();
+
+    var self = this;
+    Api.authenticateToken(localStorage.authToken)
+        .done(function() {
+            router.navigate('', {trigger: true});
+        })
+        .fail(function() {
+            router.navigate('login', {trigger: true});
+        });
 
     Backbone.history.start();
 

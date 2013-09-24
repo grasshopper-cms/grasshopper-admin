@@ -1,24 +1,21 @@
-define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig'], function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig) {
+define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig'],
+    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig) {
 
     var Router = Backbone.Router.extend({
-        isLoggedIn : isLoggedIn,
         displayLogin : displayLogin,
         displayApp : displayApp,
 
         routes: {
             "": "root",
-            "login" : "login"
+            "login" : "login",
+            "*default" : "displayApp"
         },
 
+        // TODO: why is isLoggedIn here instead of in initialize
+        // The page load always starts on main.js, so you can do the
+        // logged in checks on initialize.
         root: function() {
-            var self = this;
-            this.isLoggedIn()
-                .done(function(){
-                   self.displayApp();
-                })
-                .fail(function() {
-                    self.navigate('login',{trigger: true});
-                });
+            this.displayApp();
         },
 
         login: function() {
@@ -26,11 +23,6 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
         }
 
     });
-
-    function isLoggedIn() {
-       return Api.authenticateToken(localStorage.authToken);
-
-    }
 
     function displayLogin() {
         var loginView = new LoginView(loginViewConfig);
@@ -49,3 +41,14 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
     return Router;
 });
+
+
+//
+//listenToobject.listenTo(other, event, callback)
+//Tell an object to listen to a particular event on an other object.
+//    The advantage of using this form, instead of other.on(event, callback, object),
+//    is that listenTo allows the object to keep track of the events,
+//    and they can be removed all at once later on.
+//    The callback will always be called with object as context.
+//
+//    view.listenTo(model, 'change', view.render);

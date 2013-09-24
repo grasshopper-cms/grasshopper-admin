@@ -1,5 +1,5 @@
-define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig','UserModel', 'app'],
-    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig, UserModel, app) {
+define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'router'],
+    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig, Router) {
     'use strict';
 
     return {
@@ -10,9 +10,8 @@ define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxVie
       api.getToken(loginModel.get('username'), loginModel.get('password'))
           .done(function(data){
               if ("Token" === data.token_type) {
-                  //store the token in localstorage
                   localStorage.authToken = data.access_token;
-                  Backbone.navigate("", {trigger: true});
+                  // TODO: THIS DOES NOT REDIRECT, A DECISION NEEDS TO BE MADE REGARDING PROGRAM FLOW, IE. Is it the login workers responsibility to redirect the user? Or should that be the responsibility of the router?
               }
           })
           .fail(function(xhr){
