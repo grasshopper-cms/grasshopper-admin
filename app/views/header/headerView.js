@@ -1,10 +1,11 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'app'], function (BaseView, rivetView, app) {
+define(['baseView', 'rivetView', 'app', 'loginWorker'], function (BaseView, rivetView, app, loginWorker) {
 
     var NavbarView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#navbar-partial', rivetPrefix : 'navbar'}),
         beforeRender:BeforeRender,
-        updateNavbarModel : updateNavbarModel
+        updateNavbarModel : updateNavbarModel,
+        logout : logout
     });
 
     function BeforeRender() {
@@ -13,6 +14,10 @@ define(['baseView', 'rivetView', 'app'], function (BaseView, rivetView, app) {
 
     function updateNavbarModel() {
         this.model.set('user', app.user.id);
+    }
+
+    function logout() {
+        loginWorker.doLogout();
     }
 
     return NavbarView;

@@ -7,6 +7,10 @@ define(['text!views/header/headerView.html', 'headerViewModel', 'app'], function
         modelData : {},
         ModelType : headerViewModel,
         el : '#header',
-        templateHtml : templateHtml
+        templateHtml : templateHtml,
+        events : {
+            'click #logOutButton' : 'logout',
+            'click #logInButton' : 'login'
+        }
     };
 });
