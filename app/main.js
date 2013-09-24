@@ -43,6 +43,8 @@ require.config({
         emptyViewConfig : 'views/empty/emptyViewConfig',
         alertBoxView : 'views/alertBox/alertBoxView',
         alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
+        userDetailView : 'views/userDetail/userDetailView',
+        userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -61,6 +63,7 @@ require.config({
         loginViewModel : 'models/viewModels/loginViewModel',
         headerViewModel : 'models/viewModels/headerViewModel',
         alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
+        userDetailViewModel : 'models/viewModels/userDetailViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',
@@ -99,9 +102,6 @@ require([
     headerView.rivetView();
 
     var router = new Router();
-
-
-
 
     Api.authenticateToken(localStorage.authToken)
         .done(function() {
