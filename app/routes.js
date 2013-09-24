@@ -12,6 +12,9 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
             "*default" : "displayApp"
         },
 
+        // TODO: why is isLoggedIn here instead of in initialize
+        // The page load always starts on main.js, so you can do the
+        // logged in checks on initialize.
         root: function() {
             var self = this;
             this.isLoggedIn()
