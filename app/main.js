@@ -87,8 +87,9 @@ require([
     'jquery',
     'router',
     'backbone',
-    'app'
-], function (NavbarView, navbarViewConfig, alerts, $, Router, Backbone, app) {
+    'app',
+    'api'
+], function (NavbarView, navbarViewConfig, alerts, $, Router, Backbone, app, Api) {
 
     "use strict";
     $(document).foundation();
@@ -98,6 +99,15 @@ require([
     navbarView.rivetView();
 
     var router = new Router();
+
+    var self = this;
+    Api.authenticateToken(localStorage.authToken)
+        .done(function() {
+            router.navigate('', {trigger: true});
+        })
+        .fail(function() {
+            router.navigate('login', {trigger: true});
+        });
 
     Backbone.history.start();
 
