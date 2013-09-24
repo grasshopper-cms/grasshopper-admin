@@ -100,17 +100,23 @@ require([
 
     var router = new Router();
 
-    router.listenTo(app, 'change:loggedIn', function() {
-        router.navigate('', {trigger: true});
-    });
 
     Api.authenticateToken(localStorage.authToken)
         .done(function() {
-            router.navigate('', {trigger: true});
+            router.displayApp();
         })
         .fail(function() {
-            router.navigate('login', {trigger: true});
+            router.displayLogin();
         });
+
+    router.listenTo(app, 'change:loggedIn', function() {
+        router.displayApp();
+    });
+
+    router.listenTo(app, 'change:loggedOut', function() {
+        router.displayLogin();
+    });
+
 
     Backbone.history.start();
 

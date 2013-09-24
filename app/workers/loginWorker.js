@@ -3,7 +3,8 @@ define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxVie
     'use strict';
 
     return {
-        doLogin : doLogin
+        doLogin : doLogin,
+        doLogout : doLogout
     };
 
     function doLogin(loginModel) {
@@ -24,5 +25,10 @@ define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxVie
         alertBoxView.model.set('loginError', resources.api.login.errors[xhr.status] );
         alertBoxView.start();
         alertBoxView.rivetView();
+    }
+
+    function doLogout() {
+        localStorage.authToken = '';
+        App.trigger('change:loggedOut');
     }
 });

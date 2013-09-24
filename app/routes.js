@@ -7,8 +7,7 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
         routes: {
             "": "root",
-            "login" : "login",
-            "*default" : "root"
+            "login" : "login"
         },
 
         root: function() {

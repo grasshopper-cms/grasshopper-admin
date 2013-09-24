@@ -1,10 +1,11 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'app'], function (BaseView, rivetView, app) {
+define(['baseView', 'rivetView', 'app', 'loginWorker'], function (BaseView, rivetView, app, loginWorker) {
 
     var HeaderView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#header-partial', rivetPrefix : 'header'}),
         beforeRender:BeforeRender,
-        updateHeaderModel : updateHeaderModel
+        updateHeaderModel : updateHeaderModel,
+        logout : logout
     });
 
     function BeforeRender() {
@@ -13,6 +14,10 @@ define(['baseView', 'rivetView', 'app'], function (BaseView, rivetView, app) {
 
     function updateHeaderModel() {
         this.model.set('user', app.user.id);
+    }
+
+    function logout() {
+        loginWorker.doLogout();
     }
 
     return HeaderView;
