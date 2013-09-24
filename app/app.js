@@ -1,16 +1,20 @@
-define(['UserModel', 'underscore', 'backbone'],
-    function(Usermodel, _, Backbone) {
-        // TODO: app is not a global, it will return a new Usermodel with each dependency inclusion
-        // For things that are shared among just a few views, inject the dependency on initialize
-        // For things that are shared among all view, add the dependency to the prototype during an initial
-        // customization method (see CustomizeBackbone in Focus@Will for examples)
+(function  () {
+    var app;
+    
+    define(['UserModel', 'underscore', 'backbone'],
+        function(UserModel, _, Backbone) {
 
+            if (!app) {
+                app = _.extend({
+                    user: new UserModel()
+                }, Backbone.Events);
 
-        var app = {
-            user: new Usermodel()
-        };
+                window.app = app;
+            }
 
-        _.extend(app, Backbone.Events);
+            return app;
 
-        return app;
-});
+        });
+
+}());
+

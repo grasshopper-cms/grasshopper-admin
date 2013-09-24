@@ -20,6 +20,7 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig','User
                             password : data.password,
                             role : data.role
                         });
+                        app.trigger('change:userInfoRetrieved');
                     })
                     .fail(function(xhr){
                         // TODO: Error handling for this. Getting of the current users details.

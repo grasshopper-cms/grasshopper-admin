@@ -101,6 +101,8 @@ require([
     var router = new Router();
 
 
+
+
     Api.authenticateToken(localStorage.authToken)
         .done(function() {
             router.displayApp();

@@ -9,7 +9,7 @@ define(['baseView', 'rivetView', 'app', 'loginWorker'], function (BaseView, rive
     });
 
     function BeforeRender() {
-        this.listenTo(app.user, 'change', updateHeaderModel);
+        this.listenTo(app, 'change:userInfoRetrieved', updateHeaderModel);
     }
 
     function updateHeaderModel() {
