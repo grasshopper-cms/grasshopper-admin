@@ -1,10 +1,11 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'app', 'loginWorker'], function (BaseView, rivetView, app, loginWorker) {
+define(['baseView', 'rivetView', 'app', 'loginWorker', 'userDetailView'], function (BaseView, rivetView, app, loginWorker, userDetailView) {
 
     var HeaderView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#header-partial', rivetPrefix : 'header'}),
         beforeRender:BeforeRender,
-        logout : logout
+        logout : logout,
+        showMyProfile : showMyProfile
     });
 
     function BeforeRender() {
@@ -18,6 +19,10 @@ define(['baseView', 'rivetView', 'app', 'loginWorker'], function (BaseView, rive
 
     function logout() {
         loginWorker.doLogout();
+    }
+
+    function showMyProfile() {
+        userDetailView.displayProfile();
     }
 
     return HeaderView;
