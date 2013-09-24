@@ -100,7 +100,10 @@ require([
 
     var router = new Router();
 
-    var self = this;
+    router.listenTo(app, 'change:loggedIn', function() {
+        router.navigate('', {trigger: true});
+    });
+
     Api.authenticateToken(localStorage.authToken)
         .done(function() {
             router.navigate('', {trigger: true});

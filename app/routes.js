@@ -1,5 +1,5 @@
-define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig'],
-    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig) {
+define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'app', 'underscore'],
+    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, App, _) {
 
     var Router = Backbone.Router.extend({
         displayLogin : displayLogin,
@@ -8,12 +8,9 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
         routes: {
             "": "root",
             "login" : "login",
-            "*default" : "displayApp"
+            "*default" : "root"
         },
 
-        // TODO: why is isLoggedIn here instead of in initialize
-        // The page load always starts on main.js, so you can do the
-        // logged in checks on initialize.
         root: function() {
             this.displayApp();
         },
@@ -39,16 +36,7 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
         emptyView.rivetView();
     }
 
+    _.extend(Router, Backbone.Events);
+
     return Router;
 });
-
-
-//
-//listenToobject.listenTo(other, event, callback)
-//Tell an object to listen to a particular event on an other object.
-//    The advantage of using this form, instead of other.on(event, callback, object),
-//    is that listenTo allows the object to keep track of the events,
-//    and they can be removed all at once later on.
-//    The callback will always be called with object as context.
-//
-//    view.listenTo(model, 'change', view.render);

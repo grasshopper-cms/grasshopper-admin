@@ -1,5 +1,5 @@
-define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'router'],
-    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig, Router) {
+define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'app'],
+    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig, App) {
     'use strict';
 
     return {
@@ -7,16 +7,16 @@ define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxVie
     };
 
     function doLogin(loginModel) {
-      api.getToken(loginModel.get('username'), loginModel.get('password'))
-          .done(function(data){
-              if ("Token" === data.token_type) {
-                  localStorage.authToken = data.access_token;
-                  // TODO: THIS DOES NOT REDIRECT, A DECISION NEEDS TO BE MADE REGARDING PROGRAM FLOW, IE. Is it the login workers responsibility to redirect the user? Or should that be the responsibility of the router?
-              }
-          })
-          .fail(function(xhr){
-              throwLoginError(xhr);
-          });
+        api.getToken(loginModel.get('username'), loginModel.get('password'))
+            .done(function(data){
+                if ("Token" === data.token_type) {
+                    localStorage.authToken = data.access_token;
+                    App.trigger('change:loggedIn');
+                }
+            })
+            .fail(function(xhr){
+                throwLoginError(xhr);
+            });
     }
 
     function throwLoginError(xhr) {
