@@ -89,6 +89,7 @@ require([
     'backbone',
     'app'
 ], function (NavbarView, navbarViewConfig, alerts, $, Router, Backbone, app) {
+
     "use strict";
     $(document).foundation();
 

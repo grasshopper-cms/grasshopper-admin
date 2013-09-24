@@ -1,4 +1,5 @@
-define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig'], function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig) {
+define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig'],
+    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig) {
 
     var Router = Backbone.Router.extend({
         isLoggedIn : isLoggedIn,
@@ -7,14 +8,15 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
         routes: {
             "": "root",
-            "login" : "login"
+            "login" : "login",
+            "*default" : "displayApp"
         },
 
         root: function() {
             var self = this;
             this.isLoggedIn()
                 .done(function(){
-                   self.displayApp();
+                    self.navigate('', {trigger: true});
                 })
                 .fail(function() {
                     self.navigate('login',{trigger: true});
@@ -29,7 +31,6 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
     function isLoggedIn() {
        return Api.authenticateToken(localStorage.authToken);
-
     }
 
     function displayLogin() {
