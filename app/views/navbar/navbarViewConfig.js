@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/navbar/navbarView.html', 'navbarViewModel'], function (templateHtml, navbarViewModel) {
+define(['text!views/navbar/navbarView.html', 'navbarViewModel', 'app'], function (templateHtml, navbarViewModel, app) {
     'use strict';
 
     return {

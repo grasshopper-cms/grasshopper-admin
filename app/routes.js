@@ -11,7 +11,14 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
         },
 
         root: function() {
-            this.isLoggedIn() ? this.displayApp() : this.navigate("login", {trigger: true});
+            var self = this;
+            this.isLoggedIn()
+                .done(function(){
+                   self.displayApp();
+                })
+                .fail(function() {
+                    self.navigate('login',{trigger: true});
+                });
         },
 
         login: function() {
@@ -21,7 +28,8 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
     });
 
     function isLoggedIn() {
-        return Api.authenticateToken(localStorage.authToken) ? true : false;
+       return Api.authenticateToken(localStorage.authToken);
+
     }
 
     function displayLogin() {
