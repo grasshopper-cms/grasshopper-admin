@@ -37,8 +37,8 @@ require.config({
         baseView : 'vendor/masseuse/app/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
-        navbarView : 'views/navbar/navbarView',
-        navbarViewConfig : 'views/navbar/navbarViewConfig',
+        headerView : 'views/header/headerView',
+        headerViewConfig : 'views/header/headerViewConfig',
         emptyView : 'views/empty/emptyView',
         emptyViewConfig : 'views/empty/emptyViewConfig',
         alertBoxView : 'views/alertBox/alertBoxView',
@@ -59,7 +59,7 @@ require.config({
 
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',
-        navbarViewModel : 'models/viewModels/navbarViewModel',
+        headerViewModel : 'models/viewModels/headerViewModel',
         alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
 
         // Workers
@@ -89,7 +89,7 @@ require([
     'backbone',
     'app',
     'api'
-], function (NavbarView, navbarViewConfig, alerts, $, Router, Backbone, app, Api) {
+], function (HeaderView, headerViewConfig, alerts, $, Router, Backbone, app, Api) {
 
     "use strict";
     $(document).foundation();
