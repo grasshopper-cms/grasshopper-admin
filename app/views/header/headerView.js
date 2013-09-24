@@ -1,19 +1,19 @@
 /*global define:false*/
 define(['baseView', 'rivetView', 'app'], function (BaseView, rivetView, app) {
 
-    var NavbarView = BaseView.extend({
-        rivetView : rivetView({rivetScope : '#navbar-partial', rivetPrefix : 'navbar'}),
+    var HeaderView = BaseView.extend({
+        rivetView : rivetView({rivetScope : '#header-partial', rivetPrefix : 'header'}),
         beforeRender:BeforeRender,
-        updateNavbarModel : updateNavbarModel
+        updateHeaderModel : updateHeaderModel
     });
 
     function BeforeRender() {
-        this.listenTo(app.user, 'change', updateNavbarModel);
+        this.listenTo(app.user, 'change', updateHeaderModel);
     }
 
-    function updateNavbarModel() {
+    function updateHeaderModel() {
         this.model.set('user', app.user.id);
     }
 
-    return NavbarView;
+    return HeaderView;
 });
