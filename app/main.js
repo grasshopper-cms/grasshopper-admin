@@ -73,10 +73,7 @@ require.config({
         validation : 'validation/validation',
 
         // Resources File
-        resources : 'resources',
-
-        // Global storage
-        app : 'app'
+        resources : 'resources'
     }
 });
 
@@ -87,9 +84,9 @@ require([
     'jquery',
     'router',
     'backbone',
-    'app',
-    'api'
-], function (HeaderView, headerViewConfig, alerts, $, Router, Backbone, app, Api) {
+    'api',
+    'baseView'
+], function (HeaderView, headerViewConfig, alerts, $, Router, Backbone, Api, BaseView) {
 
     "use strict";
     $(document).foundation();
@@ -109,11 +106,11 @@ require([
             router.displayLogin();
         });
 
-    router.listenTo(app, 'change:loggedIn', function () {
+    router.listenTo(BaseView.prototype.app.user, 'change:loggedIn', function () {
         router.displayApp();
     });
 
-    router.listenTo(app, 'change:loggedOut', function () {
+    router.listenTo(BaseView.prototype.app.user, 'change:loggedOut', function () {
         router.displayLogin();
     });
 

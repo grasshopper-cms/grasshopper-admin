@@ -1,6 +1,7 @@
-define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'app', 'underscore', 'baseView', 'UserModel'],
-    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, App, _, BaseView, UserModel) {
+define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'underscore', 'baseView', 'UserModel'],
+    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel) {
 
+        var userModel = new UserModel();
 
         var Router = Backbone.Router.extend({
             displayLogin : displayLogin,
@@ -17,7 +18,9 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
             login : function () {
                 this.displayLogin();
-            }
+            },
+
+            user : userModel
 
         });
 
@@ -38,10 +41,8 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
         _.extend(Router, Backbone.Events);
 
-        var userModel = new UserModel();
-
         BaseView.prototype.app = {
-            router : this,
+            router : Router,
             user : userModel
         };
 
