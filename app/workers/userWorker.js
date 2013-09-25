@@ -30,7 +30,6 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
             }
         }
 
-<<<<<<< HEAD
         function displayProfile(id) {
             // Check if the user trying to access the profile is either
             //   a administrator
@@ -47,6 +46,4 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
             //   bind the RivetsView
             //   Start the view.
         }
-=======
->>>>>>> origin/bismuth
     });

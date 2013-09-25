@@ -2,16 +2,10 @@
 define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (BaseView, rivetView, app, loginWorker, resources) {
 
     var HeaderView = BaseView.extend({
-<<<<<<< HEAD
         rivetView : rivetView({rivetScope : '#header-partial', rivetPrefix : 'header'}),
-        beforeRender:BeforeRender,
-        logout : logout,
-        showMyProfile : showMyProfile
-=======
-        rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),
+        showMyProfile : showMyProfile,
         beforeRender : BeforeRender,
         logout : logout
->>>>>>> origin/bismuth
     });
 
     function BeforeRender () {

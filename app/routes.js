@@ -1,7 +1,6 @@
 define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'app', 'underscore', 'baseView', 'UserModel'],
     function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, App, _, BaseView, UserModel) {
 
-<<<<<<< HEAD
     var Router = Backbone.Router.extend({
         displayLogin : displayLogin,
         displayApp : displayApp,
@@ -12,41 +11,23 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
             'login' : 'login',
             'user/:id' : 'userDetail'
         },
-=======
 
-        var Router = Backbone.Router.extend({
-            displayLogin : displayLogin,
-            displayApp : displayApp,
->>>>>>> origin/bismuth
+        root : function () {
+            this.displayApp();
+        },
 
-            routes : {
-                "" : "root",
-                "login" : "login"
-            },
-
-<<<<<<< HEAD
-        login: function() {
+        login : function () {
             this.displayLogin();
         },
 
         userDetail: function() {
             this.displayUserDetail();
-=======
-            root : function () {
-                this.displayApp();
-            },
-
-            login : function () {
-                this.displayLogin();
-            }
-
         });
 
         function displayLogin () {
             var loginView = new LoginView(loginViewConfig);
             loginView.start();
             loginView.rivetView();
->>>>>>> origin/bismuth
         }
 
         function displayApp () {
@@ -58,24 +39,19 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
             emptyView.rivetView();
         }
 
+        function displayUserDetail(id) {
+            userWorker.displayProfile(id);
+            console.log('the id you passed: ' + id);
+        }
+
         _.extend(Router, Backbone.Events);
 
         var userModel = new UserModel();
 
-<<<<<<< HEAD
-     function displayUserDetail(id) {
-         userWorker.displayProfile(id);
-
-         console.log('the id you passed: ' + id);
-     }
-
-    _.extend(Router, Backbone.Events);
-=======
         BaseView.prototype.app = {
             router : this,
             user : userModel
         };
->>>>>>> origin/bismuth
 
         return Router;
     });

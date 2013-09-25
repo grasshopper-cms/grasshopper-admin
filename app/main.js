@@ -103,10 +103,6 @@ require([
 
     var router = new Router();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/bismuth
     Api.authenticateToken(localStorage.authToken)
         .done(function () {
             router.displayApp();
