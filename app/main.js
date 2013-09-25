@@ -96,9 +96,10 @@ require([
     $(document).foundation();
 
     var userModel = new UserModel();
+    var router = new Router();
 
     BaseView.prototype.app = {
-        router : new Router(),
+        router : router,
         user : userModel
     };
 
@@ -108,10 +109,10 @@ require([
 
     Api.authenticateToken(localStorage.authToken)
         .done(function () {
-            BaseView.prototype.app.router.displayApp();
+            router.displayApp();
         })
         .fail(function () {
-            BaseView.prototype.app.router.displayLogin();
+            router.displayLogin();
         });
 
     BaseView.prototype.app.router.listenTo(BaseView.prototype.app.user, 'change:loggedIn', function () {

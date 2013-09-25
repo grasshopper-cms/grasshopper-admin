@@ -30,13 +30,14 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
             }
         }
 
-        function displayProfile(id) {
+        function displayProfile(userModel) {
             // Check if the user trying to access the profile is either
             //   a administrator
             //   the current user
 //            if (app.user.role === 'administrator' || app.user.id === id) {
 //                console.log("YOU SHALL NOT PASS!!");
 //            }
+            console.log(userModel);
 
             // get the users details.
             // instantiate the userDetail view
