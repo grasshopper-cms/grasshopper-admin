@@ -1,6 +1,13 @@
-define(['masseuseModel', 'validation'], function (Model, validation) {
+define(['masseuseModel', 'validation', 'ComputedProperty'], function (Model, validation, ComputedProperty) {
     return Model.extend({
-        validate : validate
+        validate : validate,
+        defaults: {
+            username : '', password : '',
+            usernameError : new ComputedProperty(['username'], validateUserLoginAttribute, true),
+            passwordError : new ComputedProperty(['password'], validateUserLoginAttribute, true),
+            // hasError is used to great out the submit box
+            hasError : new ComputedProperty(['usernameError', 'passwordError'], checkForErrors)
+        }
     });
 
     function validate (attributes, options) {
@@ -22,5 +29,13 @@ define(['masseuseModel', 'validation'], function (Model, validation) {
             }
         });
         return invalid;
+    }
+
+    function validateUserLoginAttribute (attribute) {
+        return validation.stringHasLength(attribute) ? undefined : 'Too Short.';
+    }
+
+    function checkForErrors (usernameError, passwordError) {
+        return !!(usernameError || passwordError);
     }
 });

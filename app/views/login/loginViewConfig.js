@@ -4,13 +4,8 @@ define(['text!views/login/loginView.html', 'loginViewModel', 'ComputedProperty',
 
     return {
         name : 'loginView',
+        modelData:{},
         // for model attribute errors on self validating models, follow the convention of attribute+"Error". See the rivetView "publish" method
-        modelData : {username : '', password : '',
-            // Do not compute uE and pE initially be setting 3r parameter to true
-            usernameError : new ComputedProperty(['username'], validateUserLoginAttribute, true),
-            passwordError : new ComputedProperty(['password'], validateUserLoginAttribute, true),
-            // hasError is used to great out the submit box
-            hasError : new ComputedProperty(['usernameError', 'passwordError'], checkForErrors)},
         ModelType : loginViewModel,
         el : '#stage',
         templateHtml : templateHtml,
@@ -18,12 +13,4 @@ define(['text!views/login/loginView.html', 'loginViewModel', 'ComputedProperty',
             'click #loginButton' : 'login'
         }
     };
-
-    function validateUserLoginAttribute (attribute) {
-        return validation.stringHasLength(attribute) ? undefined : 'Too Short.';
-    }
-
-    function checkForErrors (usernameError, passwordError) {
-        return !!(usernameError || passwordError);
-    }
 });
