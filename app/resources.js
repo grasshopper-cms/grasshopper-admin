@@ -41,6 +41,9 @@ define([],
                 roles : {
                     admin : 'admin',
                     reader : 'reader'
+                },
+                errors : {
+                    insufficientPrivileges : 'You do not have adequate permissions to view/edit this profile.'
                 }
             }
 
