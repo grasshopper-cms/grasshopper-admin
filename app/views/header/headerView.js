@@ -2,7 +2,7 @@
 define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (BaseView, rivetView, app, loginWorker, resources) {
 
     var HeaderView = BaseView.extend({
-        rivetView : rivetView({rivetScope : '#header-partial', rivetPrefix : 'header'}),
+        rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),
         showMyProfile : showMyProfile,
         beforeRender : BeforeRender,
         logout : logout
@@ -29,7 +29,7 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
     }
 
     function logout () {
-        loginWorker.doLogout(this.app.user);
+        loginWorker.doLogout(this.app.user, this.app.router);
     }
 
     function showMyProfile() {

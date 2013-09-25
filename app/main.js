@@ -113,19 +113,6 @@ require([
     headerView.start();
     headerView.rivetView();
 
-    router.listenTo(router.user, 'change:loggedIn', function () {
-       router.displayApp();
-    });
-
-    router.listenTo(router.user, 'change:loggedOut', function () {
-        router.displayLogin();
-    });
-
-    router.listenTo(router.user, 'change:requestUserDetail', function() {
-        router.displayUserDetail();
-    });
-
-
     Backbone.history.start();
 
 });

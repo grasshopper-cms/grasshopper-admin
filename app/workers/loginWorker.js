@@ -7,12 +7,13 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
             doLogout : doLogout
         };
 
-        function doLogin (loginView, thisUser) {
+        function doLogin (loginView) {
             api.getToken(loginView.model.get('username'), loginView.model.get('password'))
                 .done(function (data) {
                     if ("Token" === data.token_type) {
                         localStorage.authToken = data.access_token;
-                        thisUser.trigger('change:loggedIn');
+                        loginView.app.user.trigger('change:loggedIn');
+                        loginView.app.router.displayApp();
                     }
                 })
                 .fail(function (xhr) {
@@ -22,6 +23,7 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
 
         function doLogout (thisUser) {
             localStorage.authToken = '';
+            router.displayLogin();
             thisUser.trigger('change:loggedOut');
             thisUser = new UserModel();
 
