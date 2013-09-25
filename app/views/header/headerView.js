@@ -33,7 +33,7 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
     }
 
     function showMyProfile() {
-        this.app.router.navigate('user/' + this.app.user.get('id'), {trigger: true});
+        this.app.router.navigate('user/' + this.app.router.user.get('id'), {trigger: true});
     }
 
     return HeaderView;

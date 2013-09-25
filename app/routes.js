@@ -1,6 +1,8 @@
 define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'underscore', 'baseView', 'UserModel'],
     function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel) {
+
         var userModel = new UserModel();
+
         var Router = Backbone.Router.extend({
             displayLogin : displayLogin,
             displayApp : displayApp,
@@ -20,8 +22,8 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
                 this.displayLogin();
             },
 
-            userDetail : function() {
-                this.displayUserDetail();
+            userDetail : function(id) {
+                this.displayUserDetail(id);
             },
             user : userModel
         });
@@ -42,8 +44,18 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
         }
 
         function displayUserDetail(id) {
-            userWorker.displayProfile(id);
-            console.log('the id you passed: ' + id);
+            if(userWorker.isValidProfileEditor(userModel, id)) {
+
+            } else {
+
+            }
+            // get the users details.
+            // instantiate the userDetail view
+            // populate the userDetailModel
+
+            // Route to the userDetail page
+            //   bind the RivetsView
+            //   Start the view.
         }
 
         _.extend(Router, Backbone.Events);

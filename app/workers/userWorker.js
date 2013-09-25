@@ -1,10 +1,10 @@
-define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
-    function (api, $, resources, AlertBoxView, alertBoxViewConfig) {
+define(['api'],
+    function (api) {
         'use strict';
 
         return {
             getCurrentUserDetails : getCurrentUserDetails,
-            displayProfile : displayProfile
+            isValidProfileEditor : isValidProfileEditor
         };
 
         function getCurrentUserDetails (UserModel) {
@@ -30,21 +30,10 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
             }
         }
 
-        function displayProfile(userModel) {
+        function isValidProfileEditor(UserModel, id) {
             // Check if the user trying to access the profile is either
-            //   a administrator
+            //   an administrator
             //   the current user
-//            if (app.user.role === 'administrator' || app.user.id === id) {
-//                console.log("YOU SHALL NOT PASS!!");
-//            }
-            console.log(userModel);
-
-            // get the users details.
-            // instantiate the userDetail view
-            // populate the userDetailModel
-
-            // Route to the userDetail page
-            //   bind the RivetsView
-            //   Start the view.
+            return !!(UserModel.get('role') === 'administrator' || UserModel.id === id);
         }
     });
