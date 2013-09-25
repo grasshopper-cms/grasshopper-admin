@@ -1,5 +1,5 @@
-define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'UserModel'],
-    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig,  UserModel) {
+define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel'],
+    function (api, $, EmptyView, emptyViewConfig, resources,  UserModel) {
         'use strict';
 
         return {
@@ -7,8 +7,8 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxV
             doLogout : doLogout
         };
 
-        function doLogin (loginModel, thisUser) {
-            api.getToken(loginModel.get('username'), loginModel.get('password'))
+        function doLogin (loginView, thisUser) {
+            api.getToken(loginView.model.get('username'), loginView.model.get('password'))
                 .done(function (data) {
                     if ("Token" === data.token_type) {
                         localStorage.authToken = data.access_token;
@@ -16,15 +16,8 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxV
                     }
                 })
                 .fail(function (xhr) {
-                    throwLoginError(xhr);
+                    loginView.throwLoginError(xhr);
                 });
-        }
-
-        function throwLoginError (xhr) {
-            var alertBoxView = new AlertBoxView(alertBoxViewConfig);
-            alertBoxView.model.set('loginError', resources.api.login.errors[xhr.status]);
-            alertBoxView.start();
-            alertBoxView.rivetView();
         }
 
         function doLogout (thisUser) {

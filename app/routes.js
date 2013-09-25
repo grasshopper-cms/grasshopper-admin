@@ -1,5 +1,5 @@
-define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'underscore', 'baseView', 'UserModel'],
-    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel) {
+define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'underscore', 'baseView', 'UserModel', 'alertBoxView', 'alertBoxViewConfig', 'resources'],
+    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources) {
 
         var userModel = new UserModel();
 
@@ -7,6 +7,7 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
             displayLogin : displayLogin,
             displayApp : displayApp,
             displayUserDetail : displayUserDetail,
+            displayAlertBox : displayAlertBox,
 
             routes : {
                 "" : "root",
@@ -56,6 +57,13 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
             // Route to the userDetail page
             //   bind the RivetsView
             //   Start the view.
+        }
+
+        function displayAlertBox(xhr) {
+            var alertBoxView = new AlertBoxView(alertBoxViewConfig);
+            alertBoxView.model.set('loginError', resources.api.login.errors[xhr.status]);
+            alertBoxView.start();
+            alertBoxView.rivetView();
         }
 
         _.extend(Router, Backbone.Events);
