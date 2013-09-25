@@ -61,7 +61,7 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
         function displayAlertBox(xhr) {
             var alertBoxView = new AlertBoxView(alertBoxViewConfig);
-            alertBoxView.model.set('loginError', resources.api.login.errors[xhr.status]);
+            alertBoxView.model.set('error', resources.api.login.errors[xhr.status]);
             alertBoxView.start();
             alertBoxView.rivetView();
         }

@@ -1,6 +1,6 @@
 #alertBoxPartial {
 
-  .loginError {
+  .error {
     @include alert-base;
     @include alert-style(#A00000);
     .close {
