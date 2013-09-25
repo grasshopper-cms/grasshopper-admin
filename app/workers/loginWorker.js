@@ -23,9 +23,9 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
 
         function doLogout (thisUser) {
             localStorage.authToken = '';
-            router.displayLogin();
-            thisUser.trigger('change:loggedOut');
-            thisUser = new UserModel();
+            thisUser.app.router.displayLogin();
+            thisUser.app.user.trigger('change:loggedOut');
+            thisUser.app.user = new UserModel();
 
         }
     });

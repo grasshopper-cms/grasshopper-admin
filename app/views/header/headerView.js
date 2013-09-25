@@ -29,7 +29,7 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
     }
 
     function logout () {
-        loginWorker.doLogout(this.app.user, this.app.router);
+        loginWorker.doLogout(this);
     }
 
     function showMyProfile() {
