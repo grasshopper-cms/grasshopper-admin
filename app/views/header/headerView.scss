@@ -3,17 +3,17 @@
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
-  background-color:$blue;
+  background-color: $blue;
   #header-partial {
-    background-color : $darkBlue;
+    background-color: $darkBlue;
     -webkit-box-shadow: 0 1px 0 #28496b;
     -moz-box-shadow: 0 1px 0 #28496b;
-    box-shadow:  0 1px 0 #28496b;
+    box-shadow: 0 1px 0 #28496b;
 
     #logo-text {
-      color : #FFF;
+      color: #FFF;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      display:inline-block;
+      display: inline-block;
       line-height: 5px;
       margin-left: 10px;
       font-size: 1.6875em;
@@ -24,22 +24,22 @@
     }
 
     .top-bar {
-      margin-bottom:0px;
-      background-color : $darkBlue;
+      margin-bottom: 0px;
+      background-color: $darkBlue;
       .name h1 a {
-        color : $lightBlueText;
+        color: $lightBlueText;
       }
       .top-bar-section li a:not(.button) {
-        background-color : $darkBlue;
+        background-color: $darkBlue;
       }
       .top-bar-section ul li>a {
-        color : $lightBlueText;
+        color: $lightBlueText;
       }
     }
   }
 
   #sub-header {
-    height : emCalc(70);
+    height: emCalc(70);
 
   }
 }

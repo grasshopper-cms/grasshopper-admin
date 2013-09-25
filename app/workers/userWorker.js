@@ -1,5 +1,5 @@
-define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig','UserModel', 'app'],
-    function (api, $, resources, AlertBoxView, alertBoxViewConfig, UserModel, app) {
+define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
+    function (api, $, resources, AlertBoxView, alertBoxViewConfig) {
         'use strict';
 
         return {
@@ -7,12 +7,12 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig','User
             displayProfile : displayProfile
         };
 
-        function getCurrentUserDetails() {
+        function getCurrentUserDetails (UserModel) {
             var token = localStorage.authToken;
             if (token) {
                 api.authenticateToken(token)
-                    .done(function(data){
-                        app.user = new UserModel({
+                    .done(function (data) {
+                        UserModel.set({
                             id : data._id,
                             email : data.email,
                             enabled : data.enabled,
@@ -21,14 +21,16 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig','User
                             password : data.password,
                             role : data.role
                         });
-                        app.trigger('change:userInfoRetrieved');
+
+                        UserModel.trigger('change:userInfoRetrieved');
                     })
-                    .fail(function(xhr){
+                    .fail(function (xhr) {
                         // TODO: Error handling for this. Getting of the current users details.
                     });
             }
         }
 
+<<<<<<< HEAD
         function displayProfile(id) {
             // Check if the user trying to access the profile is either
             //   a administrator
@@ -45,4 +47,6 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig','User
             //   bind the RivetsView
             //   Start the view.
         }
+=======
+>>>>>>> origin/bismuth
     });

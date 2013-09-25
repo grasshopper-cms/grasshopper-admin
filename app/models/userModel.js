@@ -1,8 +1,8 @@
-define(['underscore', 'backbone', 'resources'], function(_, Backbone, resources) {
+define(['underscore', 'backbone', 'resources'], function (_, Backbone, resources) {
 
     "use strict";
     return Backbone.Model.extend({
-        urlRoot: resources.api.user.url,
+        urlRoot : resources.api.user.url,
         login : null,
         role : null,
         // Why is this needed?
