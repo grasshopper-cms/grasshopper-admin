@@ -45,9 +45,9 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
         function displayUserDetail(id) {
             if(userWorker.isValidProfileEditor(userModel, id)) {
-
+                // Kick off view display
             } else {
-
+                // throw error and redirect to login screen.
             }
             // get the users details.
             // instantiate the userDetail view

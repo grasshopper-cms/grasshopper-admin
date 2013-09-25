@@ -31,9 +31,9 @@ define(['api'],
         }
 
         function isValidProfileEditor(UserModel, id) {
-            // Check if the user trying to access the profile is either
-            //   an administrator
-            //   the current user
-            return !!(UserModel.get('role') === 'administrator' || UserModel.id === id);
+            // Check if the user trying to access the profile is either an administrator or the current user
+            return (UserModel.get('role') === 'administrator' || UserModel.id === id);
         }
+
+
     });
