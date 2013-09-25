@@ -119,6 +119,10 @@ require([
         router.displayLogin();
     });
 
+    router.listenTo(app, 'change:requestUserDetail', function() {
+        router.displayUserDetail();
+    });
+
 
     Backbone.history.start();
 

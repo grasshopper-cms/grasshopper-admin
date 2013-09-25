@@ -1,5 +1,5 @@
-define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'app', 'underscore', 'userDetailView', 'userDetailViewConfig'],
-    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, App, _, UserDetailView, userDetailViewConfig) {
+define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'app', 'underscore'],
+    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, App, _) {
 
     var Router = Backbone.Router.extend({
         displayLogin : displayLogin,
@@ -18,6 +18,10 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
         login: function() {
             this.displayLogin();
+        },
+
+        userDetail: function() {
+            this.displayUserDetail();
         }
 
     });
@@ -38,9 +42,8 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
     }
 
      function displayUserDetail(id) {
-         var userDetailView = new UserDetailView(userDetailViewConfig);
-         userDetailView.start();
-         userDetailView.rivetView();
+         userWorker.displayProfile(id);
+
          console.log('the id you passed: ' + id);
      }
 

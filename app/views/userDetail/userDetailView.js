@@ -2,13 +2,8 @@
 define(['baseView', 'rivetView'], function (BaseView, rivetView) {
 
         var userDetailView = BaseView.extend({
-            rivetView : rivetView({rivetScope : '#userDetail', rivetPrefix : 'userDetail', instaUpdateRivets : true}),
-            displayProfile : displayProfile
+            rivetView : rivetView({rivetScope : '#userDetail', rivetPrefix : 'userDetail', instaUpdateRivets : true})
         });
-
-        function displayProfile() {
-            console.log('ShowMyProfile was called');
-        }
 
         return userDetailView;
     });

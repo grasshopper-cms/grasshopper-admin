@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'app', 'loginWorker', 'userDetailView'], function (BaseView, rivetView, app, loginWorker, userDetailView) {
+define(['baseView', 'rivetView', 'app', 'loginWorker'], function (BaseView, rivetView, app, loginWorker) {
 
     var HeaderView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#header-partial', rivetPrefix : 'header'}),
@@ -22,7 +22,7 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'userDetailView'], functi
     }
 
     function showMyProfile() {
-        userDetailView.displayProfile();
+        app.trigger('change:requestUserDetail');
     }
 
     return HeaderView;
