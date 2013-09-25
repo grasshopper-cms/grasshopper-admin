@@ -1,6 +1,5 @@
-define(['selfValidatingModel'], function (Model) {
+define(['masseuseModel'], function (Model) {
     return Model.extend({
 
     });
-
 });
