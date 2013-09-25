@@ -88,9 +88,8 @@ require([
     'router',
     'backbone',
     'api',
-    'baseView',
-    'UserModel'
-], function (HeaderView, headerViewConfig, alerts, $, Router, Backbone, Api, BaseView, UserModel) {
+    'baseView'
+], function (HeaderView, headerViewConfig, alerts, $, Router, Backbone, Api, BaseView) {
 
     "use strict";
     $(document).foundation();
@@ -102,10 +101,6 @@ require([
         user : router.user
     };
 
-    var headerView = new HeaderView(headerViewConfig);
-    headerView.start();
-    headerView.rivetView();
-
     Api.authenticateToken(localStorage.authToken)
         .done(function () {
             router.displayApp();
@@ -114,16 +109,20 @@ require([
             router.displayLogin();
         });
 
-    BaseView.prototype.app.router.listenTo(BaseView.prototype.app.user, 'change:loggedIn', function () {
-        BaseView.prototype.app.router.displayApp();
+    var headerView = new HeaderView(headerViewConfig);
+    headerView.start();
+    headerView.rivetView();
+
+    router.listenTo(router.user, 'change:loggedIn', function () {
+       router.displayApp();
     });
 
-    BaseView.prototype.app.router.listenTo(BaseView.prototype.app.user, 'change:loggedOut', function () {
-        BaseView.prototype.app.router.displayLogin();
+    router.listenTo(router.user, 'change:loggedOut', function () {
+        router.displayLogin();
     });
 
-    BaseView.prototype.app.router.listenTo(app, 'change:requestUserDetail', function() {
-        BaseView.prototype.app.router.displayUserDetail();
+    router.listenTo(router.user, 'change:requestUserDetail', function() {
+        router.displayUserDetail();
     });
 
 
