@@ -43,6 +43,8 @@ require.config({
         emptyViewConfig : 'views/empty/emptyViewConfig',
         alertBoxView : 'views/alertBox/alertBoxView',
         alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
+        userDetailView : 'views/userDetail/userDetailView',
+        userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -61,6 +63,7 @@ require.config({
         loginViewModel : 'models/viewModels/loginViewModel',
         headerViewModel : 'models/viewModels/headerViewModel',
         alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
+        userDetailViewModel : 'models/viewModels/userDetailViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',
@@ -85,33 +88,42 @@ require([
     'router',
     'backbone',
     'api',
-    'baseView'
-], function (HeaderView, headerViewConfig, alerts, $, Router, Backbone, Api, BaseView) {
+    'baseView',
+    'UserModel'
+], function (HeaderView, headerViewConfig, alerts, $, Router, Backbone, Api, BaseView, UserModel) {
 
     "use strict";
     $(document).foundation();
+
+    var userModel = new UserModel();
+
+    BaseView.prototype.app = {
+        router : new Router(),
+        user : userModel
+    };
 
     var headerView = new HeaderView(headerViewConfig);
     headerView.start();
     headerView.rivetView();
 
-    var router = new Router();
-
-
     Api.authenticateToken(localStorage.authToken)
         .done(function () {
-            router.displayApp();
+            BaseView.prototype.app.router.displayApp();
         })
         .fail(function () {
-            router.displayLogin();
+            BaseView.prototype.app.router.displayLogin();
         });
 
-    router.listenTo(BaseView.prototype.app.user, 'change:loggedIn', function () {
-        router.displayApp();
+    BaseView.prototype.app.router.listenTo(BaseView.prototype.app.user, 'change:loggedIn', function () {
+        BaseView.prototype.app.router.displayApp();
     });
 
-    router.listenTo(BaseView.prototype.app.user, 'change:loggedOut', function () {
-        router.displayLogin();
+    BaseView.prototype.app.router.listenTo(BaseView.prototype.app.user, 'change:loggedOut', function () {
+        BaseView.prototype.app.router.displayLogin();
+    });
+
+    BaseView.prototype.app.router.listenTo(app, 'change:requestUserDetail', function() {
+        BaseView.prototype.app.router.displayUserDetail();
     });
 
 

@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/header/headerView.html', 'headerViewModel', 'app'], function (templateHtml, HeaderViewModel, app) {
+define(['text!views/header/headerView.html', 'headerViewModel'], function (templateHtml, HeaderViewModel) {
     'use strict';
 
     return {
@@ -10,7 +10,8 @@ define(['text!views/header/headerView.html', 'headerViewModel', 'app'], function
         templateHtml : templateHtml,
         events : {
             'click #logOutButton' : 'logout',
-            'click #logInButton' : 'login'
+            'click #logInButton' : 'login',
+            'click #myProfileButton' : 'showMyProfile'
         }
     };
 });

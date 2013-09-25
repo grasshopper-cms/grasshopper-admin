@@ -31,6 +31,6 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxV
             localStorage.authToken = '';
             thisUser.trigger('change:loggedOut');
             thisUser = new UserModel();
-           
+
         }
     });

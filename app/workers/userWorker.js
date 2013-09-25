@@ -3,7 +3,8 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
         'use strict';
 
         return {
-            getCurrentUserDetails : getCurrentUserDetails
+            getCurrentUserDetails : getCurrentUserDetails,
+            displayProfile : displayProfile
         };
 
         function getCurrentUserDetails (UserModel) {
@@ -29,4 +30,20 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
             }
         }
 
+        function displayProfile(id) {
+            // Check if the user trying to access the profile is either
+            //   a administrator
+            //   the current user
+//            if (app.user.role === 'administrator' || app.user.id === id) {
+//                console.log("YOU SHALL NOT PASS!!");
+//            }
+
+            // get the users details.
+            // instantiate the userDetail view
+            // populate the userDetailModel
+
+            // Route to the userDetail page
+            //   bind the RivetsView
+            //   Start the view.
+        }
     });

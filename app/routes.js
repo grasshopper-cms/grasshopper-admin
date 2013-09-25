@@ -1,15 +1,15 @@
-define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'underscore', 'baseView', 'UserModel'],
-    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel) {
-
-        var userModel = new UserModel();
+define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'underscore', 'baseView'],
+    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView) {
 
         var Router = Backbone.Router.extend({
             displayLogin : displayLogin,
             displayApp : displayApp,
+            displayUserDetail : displayUserDetail,
 
             routes : {
                 "" : "root",
-                "login" : "login"
+                "login" : "login",
+                "user/:id" : "userDetail"
             },
 
             root : function () {
@@ -20,8 +20,9 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
                 this.displayLogin();
             },
 
-            user : userModel
-
+            userDetail : function() {
+                this.displayUserDetail();
+            }
         });
 
         function displayLogin () {
@@ -32,19 +33,19 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
         function displayApp () {
             // Get the current Logged In users Details.
-            userWorker.getCurrentUserDetails(userModel);
+            userWorker.getCurrentUserDetails(BaseView.prototype.app.user);
             // Display the app.
             var emptyView = new EmptyView(emptyViewConfig);
             emptyView.start();
             emptyView.rivetView();
         }
 
-        _.extend(Router, Backbone.Events);
+        function displayUserDetail(id) {
+            userWorker.displayProfile(id);
+            console.log('the id you passed: ' + id);
+        }
 
-        BaseView.prototype.app = {
-            router : Router,
-            user : userModel
-        };
+        _.extend(Router, Backbone.Events);
 
         return Router;
     });
