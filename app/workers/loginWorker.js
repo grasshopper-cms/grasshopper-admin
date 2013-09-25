@@ -1,5 +1,5 @@
-define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'app'],
-    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig, App) {
+define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'app', 'UserModel'],
+    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig, App, UserModel) {
     'use strict';
 
     return {
@@ -29,6 +29,7 @@ define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxVie
 
     function doLogout() {
         localStorage.authToken = '';
+        App.user = new UserModel();
         App.trigger('change:loggedOut');
     }
 });

@@ -20,6 +20,7 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig','User
                             password : data.password,
                             role : data.role
                         });
+
                         app.trigger('change:userInfoRetrieved');
                     })
                     .fail(function(xhr){
@@ -27,4 +28,5 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig','User
                     });
             }
         }
+
     });

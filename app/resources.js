@@ -1,6 +1,7 @@
 define([],
     function () {
         return {
+
             api : {
                 base : {
                     url : 'http://localhost:8080',
@@ -34,7 +35,15 @@ define([],
                 users : {
                     url : 'http://localhost:8080/users'
                 }
+            },
+
+            user : {
+                roles : {
+                    admin : 'admin',
+                    reader : 'reader'
+                }
             }
+
 
         };
 });
