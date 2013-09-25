@@ -8,7 +8,7 @@ define(['baseView', 'rivetView', 'loginWorker'], function (BaseView, rivetView, 
 
     function login () {
         if (this.model.isValid()) {
-            loginWorker.doLogin(this.model);
+            loginWorker.doLogin(this.model, this.app.user);
         }
     }
 

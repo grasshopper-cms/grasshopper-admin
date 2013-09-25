@@ -1,5 +1,5 @@
-define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'app', 'UserModel'],
-    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig, App, UserModel) {
+define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'UserModel'],
+    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig,  UserModel) {
         'use strict';
 
         return {
@@ -7,12 +7,12 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxV
             doLogout : doLogout
         };
 
-        function doLogin (loginModel) {
+        function doLogin (loginModel, thisUser) {
             api.getToken(loginModel.get('username'), loginModel.get('password'))
                 .done(function (data) {
                     if ("Token" === data.token_type) {
                         localStorage.authToken = data.access_token;
-                        App.trigger('change:loggedIn');
+                        thisUser.trigger('change:loggedIn');
                     }
                 })
                 .fail(function (xhr) {
@@ -27,9 +27,10 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxV
             alertBoxView.rivetView();
         }
 
-        function doLogout () {
+        function doLogout (thisUser) {
             localStorage.authToken = '';
-            App.user = new UserModel();
-            App.trigger('change:loggedOut');
+            thisUser.trigger('change:loggedOut');
+            thisUser = new UserModel();
+
         }
     });

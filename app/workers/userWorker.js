@@ -34,9 +34,9 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
             // Check if the user trying to access the profile is either
             //   a administrator
             //   the current user
-            if (app.user.role === 'administrator' || app.user.id === id) {
-                console.log("YOU SHALL NOT PASS!!");
-            }
+//            if (app.user.role === 'administrator' || app.user.id === id) {
+//                console.log("YOU SHALL NOT PASS!!");
+//            }
 
             // get the users details.
             // instantiate the userDetail view

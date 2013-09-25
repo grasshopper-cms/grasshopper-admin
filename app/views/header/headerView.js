@@ -10,7 +10,6 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
 
     function BeforeRender () {
 
-        // Put into a config and config should listen to changes on a user model computed property
         this.listenTo(this.app.user, 'change:userInfoRetrieved', function () {
             this.model.set({
                 admin : (resources.user.roles.admin == this.app.user.get('role')),
@@ -30,11 +29,11 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
     }
 
     function logout () {
-        loginWorker.doLogout();
+        loginWorker.doLogout(this.app.user);
     }
 
     function showMyProfile() {
-        app.trigger('change:requestUserDetail');
+        this.app.router.navigate('user/' + this.app.user.get('id'), {trigger: true});
     }
 
     return HeaderView;
