@@ -1,16 +1,16 @@
 define(['masseuseModel', 'validation'], function (Model, validation) {
     return Model.extend({
-        validate: validate
+        validate : validate
     });
 
-    function validate(attributes, options) {
+    function validate (attributes, options) {
         var self = this,
             invalid;
 
         _.forEach([
             'username',
             'password'
-        ], function(attribute) {
+        ], function (attribute) {
             var value = attributes[attribute];
 
             // Part of validation the model is to make sure all computed values are set

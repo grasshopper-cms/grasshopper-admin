@@ -1,12 +1,12 @@
-(function  () {
+(function () {
     var app;
-    
+
     define(['UserModel', 'underscore', 'backbone'],
-        function(UserModel, _, Backbone) {
+        function (UserModel, _, Backbone) {
 
             if (!app) {
                 app = _.extend({
-                    user: new UserModel()
+                    user : new UserModel()
                 }, Backbone.Events);
 
                 window.app = app;

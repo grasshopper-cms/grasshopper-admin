@@ -19,11 +19,11 @@ define(['text!views/login/loginView.html', 'loginViewModel', 'ComputedProperty',
         }
     };
 
-    function validateUserLoginAttribute(attribute) {
+    function validateUserLoginAttribute (attribute) {
         return validation.stringHasLength(attribute) ? undefined : 'Too Short.';
     }
 
-    function checkForErrors(usernameError, passwordError) {
+    function checkForErrors (usernameError, passwordError) {
         return !!(usernameError || passwordError);
     }
 });

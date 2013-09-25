@@ -3,13 +3,13 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
 
     var HeaderView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),
-        beforeRender:BeforeRender,
+        beforeRender : BeforeRender,
         logout : logout
     });
 
-    function BeforeRender() {
+    function BeforeRender () {
 
-        this.listenTo(app, 'change:userInfoRetrieved', function(){
+        this.listenTo(app, 'change:userInfoRetrieved', function () {
             this.model.set({
                 admin : (resources.user.roles.admin == app.user.get('role')),
                 user : app.user.get('id'),
@@ -18,7 +18,7 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
             });
         });
 
-        this.listenTo(app,'change:loggedOut', function(){
+        this.listenTo(app, 'change:loggedOut', function () {
             this.model.set({
                 user : false,
                 admin : false
@@ -27,7 +27,7 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
 
     }
 
-    function logout() {
+    function logout () {
         loginWorker.doLogout();
     }
 

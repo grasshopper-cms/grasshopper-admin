@@ -101,21 +101,19 @@ require([
     var router = new Router();
 
 
-
-
     Api.authenticateToken(localStorage.authToken)
-        .done(function() {
+        .done(function () {
             router.displayApp();
         })
-        .fail(function() {
+        .fail(function () {
             router.displayLogin();
         });
 
-    router.listenTo(app, 'change:loggedIn', function() {
+    router.listenTo(app, 'change:loggedIn', function () {
         router.displayApp();
     });
 
-    router.listenTo(app, 'change:loggedOut', function() {
+    router.listenTo(app, 'change:loggedOut', function () {
         router.displayLogin();
     });
 
