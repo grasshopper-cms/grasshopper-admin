@@ -7,12 +7,13 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxV
             doLogout : doLogout
         };
 
-        function doLogin (loginModel, thisUser) {
+        function doLogin (loginModel, thisUser, router) {
             api.getToken(loginModel.get('username'), loginModel.get('password'))
                 .done(function (data) {
                     if ("Token" === data.token_type) {
                         localStorage.authToken = data.access_token;
                         thisUser.trigger('change:loggedIn');
+                        router.displayApp();
                     }
                 })
                 .fail(function (xhr) {
@@ -27,8 +28,9 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'alertBoxV
             alertBoxView.rivetView();
         }
 
-        function doLogout (thisUser) {
+        function doLogout (thisUser, router) {
             localStorage.authToken = '';
+            router.displayLogin();
             thisUser.trigger('change:loggedOut');
             thisUser = new UserModel();
 

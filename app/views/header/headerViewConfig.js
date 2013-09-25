@@ -4,7 +4,7 @@ define(['text!views/header/headerView.html', 'headerViewModel'], function (templ
 
     return {
         name : 'headerView',
-        modelData : {},
+        modelData : {admin:false},
         ModelType : HeaderViewModel,
         el : '#header',
         templateHtml : templateHtml,
