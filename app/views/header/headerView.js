@@ -10,16 +10,16 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
     function BeforeRender () {
 
         // Put into a config and config should listen to changes on a user model computed property
-        this.listenTo(app, 'change:userInfoRetrieved', function () {
+        this.listenTo(this.app.user, 'change:userInfoRetrieved', function () {
             this.model.set({
-                admin : (resources.user.roles.admin == app.user.get('role')),
-                user : app.user.get('id'),
-                role : app.user.get('role')
+                admin : (resources.user.roles.admin == this.app.user.get('role')),
+                user : this.app.user.get('id'),
+                role : this.app.user.get('role')
 
             });
         });
 
-        this.listenTo(app, 'change:loggedOut', function () {
+        this.listenTo(this.app.user, 'change:loggedOut', function () {
             this.model.set({
                 user : false,
                 admin : false

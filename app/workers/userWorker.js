@@ -1,17 +1,17 @@
-define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'UserModel', 'app'],
-    function (api, $, resources, AlertBoxView, alertBoxViewConfig, UserModel, app) {
+define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
+    function (api, $, resources, AlertBoxView, alertBoxViewConfig) {
         'use strict';
 
         return {
             getCurrentUserDetails : getCurrentUserDetails
         };
 
-        function getCurrentUserDetails () {
+        function getCurrentUserDetails (UserModel) {
             var token = localStorage.authToken;
             if (token) {
                 api.authenticateToken(token)
                     .done(function (data) {
-                        app.user = new UserModel({
+                        UserModel.set({
                             id : data._id,
                             email : data.email,
                             enabled : data.enabled,
@@ -21,7 +21,7 @@ define(['api', 'jquery', 'resources', 'alertBoxView', 'alertBoxViewConfig', 'Use
                             role : data.role
                         });
 
-                        app.trigger('change:userInfoRetrieved');
+                        UserModel.trigger('change:userInfoRetrieved');
                     })
                     .fail(function (xhr) {
                         // TODO: Error handling for this. Getting of the current users details.
