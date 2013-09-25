@@ -48,7 +48,7 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
             if(userWorker.isValidProfileEditor(userModel, id)) {
                 // Kick off view display
             } else {
-                // throw error and redirect to login screen.
+//                displayAlertBox(msg);
             }
             // get the users details.
             // instantiate the userDetail view
@@ -59,9 +59,9 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
             //   Start the view.
         }
 
-        function displayAlertBox(xhr) {
+        function displayAlertBox(msg) {
             var alertBoxView = new AlertBoxView(alertBoxViewConfig);
-            alertBoxView.model.set('error', resources.api.login.errors[xhr.status]);
+            alertBoxView.model.set('error', msg);
             alertBoxView.start();
             alertBoxView.rivetView();
         }

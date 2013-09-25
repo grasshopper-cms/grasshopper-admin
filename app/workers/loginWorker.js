@@ -17,7 +17,7 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
                     }
                 })
                 .fail(function (xhr) {
-                    loginView.throwLoginError(xhr);
+                    loginView.throwLoginError(resources.api.login.errors[xhr.status]);
                 });
         }
 
