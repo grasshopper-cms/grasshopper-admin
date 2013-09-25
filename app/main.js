@@ -95,12 +95,11 @@ require([
     "use strict";
     $(document).foundation();
 
-    var userModel = new UserModel();
     var router = new Router();
 
     BaseView.prototype.app = {
         router : router,
-        user : userModel
+        user : router.user
     };
 
     var headerView = new HeaderView(headerViewConfig);
