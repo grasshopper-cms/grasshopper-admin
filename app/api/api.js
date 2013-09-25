@@ -10,8 +10,8 @@ define(['resources', 'base64'], function (resources, base64) {
                 headers : {"Authorization" : "Basic " + base64.encode(username + ":" + password)}
             });
         },
-        authenticateToken : function (token) {
-            return this.request(resources.api.user.url, token);
+        authenticateToken : function () {
+            return this.request(resources.api.user.url);
         },
         getUser : function (userModel) {
             return userModel.fetch();
@@ -19,13 +19,17 @@ define(['resources', 'base64'], function (resources, base64) {
         saveUser : function (userModel) {
             return userModel.save();
         },
-        request : function (url, token) {
+        request : function (url) {
+            var token = localStorage.authToken;
             return $.ajax({
                 dataType : "json",
                 url : url,
                 type : 'GET',
                 headers : {"Authorization" : "Token " + token}
             });
+        },
+        getRequestedUserDetail : function(id) {
+            return this.request(resources.api.users.url + '/' + id);
         }
     };
 

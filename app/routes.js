@@ -46,9 +46,11 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
         function displayUserDetail(id) {
             if(userWorker.isValidProfileEditor(userModel, id)) {
-                // Kick off view display
+//                this.displayAlertBox(resources.user.errors.insufficientPrivileges + "  THIS IS JUST A PLACEHOLDER UNTIL I BUILD THE VIEW");
+                userWorker.getRequestedUserDetails(id);
+
             } else {
-//                displayAlertBox(msg);
+                this.displayAlertBox(resources.user.errors.insufficientPrivileges);
             }
             // get the users details.
             // instantiate the userDetail view

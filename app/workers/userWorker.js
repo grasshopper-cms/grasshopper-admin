@@ -4,13 +4,13 @@ define(['api', 'resources'],
 
         return {
             getCurrentUserDetails : getCurrentUserDetails,
-            isValidProfileEditor : isValidProfileEditor
+            isValidProfileEditor : isValidProfileEditor,
+            getRequestedUserDetails : getRequestedUserDetails
         };
 
         function getCurrentUserDetails (UserModel) {
-            var token = localStorage.authToken;
-            if (token) {
-                api.authenticateToken(token)
+            if (localStorage.authToken) {
+                api.authenticateToken()
                     .done(function (data) {
                         UserModel.set({
                             id : data._id,
@@ -35,5 +35,8 @@ define(['api', 'resources'],
             return (UserModel.get('role') === resources.user.roles.admin || UserModel.id === id);
         }
 
+        function getRequestedUserDetails (id) {
+            api.getRequestedUserDetail(id);
+        }
 
     });
