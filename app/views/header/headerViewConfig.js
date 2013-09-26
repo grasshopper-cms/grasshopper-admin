@@ -11,7 +11,8 @@ define(['text!views/header/headerView.html', 'headerViewModel'], function (templ
         events : {
             'click #logOutButton' : 'logout',
             'click #logInButton' : 'login',
-            'click #myProfileButton' : 'showMyProfile'
+            'click #myProfileButton' : 'showMyProfile',
+            'click #displayUsersButton' : 'displayUsers'
         },
         bindings : [
             ['app.user', 'change', 'setUser']

@@ -5,7 +5,8 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
         rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),
         showMyProfile : showMyProfile,
         logout : logout,
-        setUser : setUser
+        setUser : setUser,
+        displayUsers : displayUsers
     });
 
     function setUser () {
@@ -33,6 +34,12 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
 
     function showMyProfile() {
         this.app.router.navigate('user/' + this.app.router.user.get('id'), {trigger: true});
+        return false;
+    }
+
+    function displayUsers() {
+        this.app.router.navigate('users', {trigger: true});
+        return false;
     }
 
     return HeaderView;

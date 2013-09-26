@@ -45,6 +45,8 @@ require.config({
         alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
         userDetailView : 'views/userDetail/userDetailView',
         userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
+        usersIndexView : 'views/usersIndex/usersIndexView',
+        usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -64,6 +66,7 @@ require.config({
         headerViewModel : 'models/viewModels/headerViewModel',
         alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
+        usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',

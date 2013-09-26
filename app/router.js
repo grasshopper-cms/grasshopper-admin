@@ -17,27 +17,11 @@ define([
     'userDetailView',
     'userDetailViewConfig',
     'headerView',
-    'headerViewConfig'
+    'headerViewConfig',
+    'usersIndexView',
+    'usersIndexViewConfig'
 ],
-    function (
-        Backbone,
-        LoginView,
-        loginViewConfig,
-        Api,
-        loginWorker,
-        userWorker,
-        EmptyView,
-        emptyViewConfig,
-        _,
-        BaseView,
-        UserModel,
-        AlertBoxView,
-        alertBoxViewConfig,
-        resources,
-        UserDetailView,
-        userDetailViewConfig,
-        HeaderView,
-        headerViewConfig) {
+    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig) {
 
         var userModel = new UserModel(),
             currentView;
@@ -47,34 +31,36 @@ define([
          * @extends Backbone.Router
          */
         var Router = Backbone.Router.extend({
-            initialize: initialize,
-            start: start,
+            initialize : initialize,
+            start : start,
 
             routes : {
                 "login" : "displayLogin",
                 "user/:id" : "displayUserDetail",
-                "home" : "displayApp"
+                "home" : "displayApp",
+                "users" : "displayUsersIndex"
             },
 
-            displayApp: displayApp,
-            displayLogin: displayLogin,
-            displayUserDetail: displayUserDetail,
+            displayApp : displayApp,
+            displayLogin : displayLogin,
+            displayUserDetail : displayUserDetail,
             user : userModel,
-            navigate: function () {
+            navigate : function () {
                 if (currentView && currentView.destroy) {
                     currentView.destroy();
                 }
 
                 Backbone.Router.prototype.navigate.apply(this, arguments);
-            }
+            },
+            displayUsersIndex : displayUsersIndex
         });
 
-        function initialize() {
+        function initialize () {
             BaseView.prototype.app = {
                 router : this,
                 user : this.user
             };
-            BaseView.prototype.displayAlertBox = function displayAlertBox(msg) {
+            BaseView.prototype.displayAlertBox = function displayAlertBox (msg) {
                 var alertBoxView = new AlertBoxView(alertBoxViewConfig);
                 alertBoxView.model.set('error', msg);
                 alertBoxView.start();
@@ -82,16 +68,16 @@ define([
             };
         }
 
-        function start() {
+        function start () {
             var headerView,
                 self = this;
 
             Api.authenticateToken(localStorage.authToken)
                 .done(function () {
-                    self.navigate("home", {trigger: true});
+                    self.navigate("home", {trigger : true});
                 })
                 .fail(function () {
-                    self.navigate("login", {trigger: true});
+                    self.navigate("login", {trigger : true});
                 });
 
             headerView = new HeaderView(headerViewConfig);
@@ -120,17 +106,26 @@ define([
             currentView = emptyView;
         }
 
-        function displayUserDetail(id) {
+        function displayUserDetail (id) {
             userWorker.getProfileData(userModel, id)
-                .done(function(data) {
+                .done(function (data) {
                     var userDetailView = new UserDetailView(userDetailViewConfig);
                     userDetailView.start();
                     userDetailView.rivetView();
                     userDetailView.model.set(data);
+                    currentView = userDetailView;
                 })
-                .fail(function(xhr) {
+                .fail(function (xhr) {
                     BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
                 });
+        }
+
+        function displayUsersIndex () {
+            var usersIndexView = new UsersIndexView(usersIndexViewConfig);
+            usersIndexView.start();
+            usersIndexView.rivetView();
+
+            currentView = usersIndexView;
         }
 
         return Router;
