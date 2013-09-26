@@ -1,11 +1,49 @@
-define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'underscore', 'baseView', 'UserModel', 'alertBoxView', 'alertBoxViewConfig', 'resources', 'userDetailView', 'userDetailViewConfig'],
-    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig) {
+/*global define*/
+define([
+    'backbone',
+    'loginView',
+    'loginViewConfig',
+    'api',
+    'loginWorker',
+    'userWorker',
+    'emptyView',
+    'emptyViewConfig',
+    'underscore',
+    'baseView',
+    'UserModel',
+    'alertBoxView',
+    'alertBoxViewConfig',
+    'resources',
+    'userDetailView',
+    'userDetailViewConfig',
+    'headerView',
+    'headerViewConfig'
+],
+    function (
+        Backbone,
+        LoginView,
+        loginViewConfig,
+        Api,
+        loginWorker,
+        userWorker,
+        EmptyView,
+        emptyViewConfig,
+        _,
+        BaseView,
+        UserModel,
+        AlertBoxView,
+        alertBoxViewConfig,
+        resources,
+        UserDetailView,
+        userDetailViewConfig,
+        HeaderView,
+        headerViewConfig) {
 
         var userModel = new UserModel();
 
         var Router = Backbone.Router.extend({
-            displayLogin : displayLogin,
-            displayApp : displayApp,
+            initialize: initialize,
+            start: start,
             displayUserDetail : displayUserDetail,
             displayAlertBox : displayAlertBox,
 
@@ -16,26 +54,56 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
             },
 
             root : function () {
-                this.displayApp();
+                console.log("root!");
+                _displayApp.call(this);
             },
 
             login : function () {
-                this.displayLogin();
+                console.log("login!");
+                _displayLogin.call(this);
             },
 
             userDetail : function(id) {
-                this.displayUserDetail(id);
+                _displayUserDetail.call(this, id);
             },
             user : userModel
         });
 
-        function displayLogin () {
+        function initialize() {
+            BaseView.prototype.app = {
+                router : this,
+                user : this.user
+            };
+        }
+
+        function start() {
+            var headerView,
+                self = this;
+
+            Api.authenticateToken(localStorage.authToken)
+                .done(function () {
+                    console.log("done");
+                    self.navigate("", {trigger: true});
+                })
+                .fail(function () {
+                    console.log("fail");
+                    self.navigate("login", {trigger: true});
+                });
+
+            headerView = new HeaderView(headerViewConfig);
+            headerView.start();
+            headerView.rivetView();
+
+            return this;
+        }
+
+        function _displayLogin () {
             var loginView = new LoginView(loginViewConfig);
             loginView.start();
             loginView.rivetView();
         }
 
-        function displayApp () {
+        function _displayApp () {
             // Get the current Logged In users Details.
             userWorker.getCurrentUserDetails(userModel);
             // Display the app.
@@ -44,7 +112,7 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
             emptyView.rivetView();
         }
 
-        function displayUserDetail(id) {
+        function _displayUserDetail(id) {
             if(userWorker.isValidProfileEditor(userModel, id)) {
                 userWorker.getRequestedUserDetails(id)
                     .done(function(data) {

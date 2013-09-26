@@ -12,8 +12,9 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
                 .done(function (data) {
                     if ("Token" === data.token_type) {
                         localStorage.authToken = data.access_token;
+                        // TODO: this should be a property set not a trigger
                         loginView.app.user.trigger('change:loggedIn');
-                        loginView.app.router.displayApp();
+                        loginView.app.router.navigate('', {trigger: true});
                     }
                 })
                 .fail(function (xhr) {
@@ -23,7 +24,8 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
 
         function doLogout (thisUser) {
             localStorage.authToken = '';
-            thisUser.app.router.displayLogin();
+            thisUser.app.router.navigate('login', {trigger: true});
+            // TODO: this should be a property set not a trigger
             thisUser.app.user.trigger('change:loggedOut');
             thisUser.app.user = new UserModel();
 

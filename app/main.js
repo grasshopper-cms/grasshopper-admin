@@ -81,38 +81,14 @@ require.config({
 });
 
 require([
-    'headerView',
-    'headerViewConfig',
-    'alerts',
     'jquery',
     'router',
-    'backbone',
-    'api',
-    'baseView'
-], function (HeaderView, headerViewConfig, alerts, $, Router, Backbone, Api, BaseView) {
+    'alerts'
+], function ($, Router) {
 
     "use strict";
     $(document).foundation();
 
-    var router = new Router();
-
-    BaseView.prototype.app = {
-        router : router,
-        user : router.user
-    };
-
-    Api.authenticateToken(localStorage.authToken)
-        .done(function () {
-            router.displayApp();
-        })
-        .fail(function () {
-            router.displayLogin();
-        });
-
-    var headerView = new HeaderView(headerViewConfig);
-    headerView.start();
-    headerView.rivetView();
-
+    new Router().start();
     Backbone.history.start();
-
 });
