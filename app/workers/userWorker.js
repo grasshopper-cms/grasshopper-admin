@@ -30,6 +30,7 @@ define(['api', 'resources'],
             }
         }
 
+        // TODO: make this computed property too
         function isValidProfileEditor(UserModel, id) {
             // Check if the user trying to access the profile is either an administrator or the current user
             return (UserModel.get('role') === resources.user.roles.admin || UserModel.id === id);

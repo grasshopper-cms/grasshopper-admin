@@ -91,4 +91,6 @@ require([
 
     new Router().start();
     Backbone.history.start();
+    // TODO: setup push state on nginx
+    //Backbone.history.start({pushState: true});
 });
