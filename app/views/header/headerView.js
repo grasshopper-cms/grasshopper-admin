@@ -4,29 +4,27 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
     var HeaderView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),
         showMyProfile : showMyProfile,
-        beforeRender : BeforeRender,
         logout : logout,
         setUser : setUser
     });
 
-    function BeforeRender () {
-
-        this.listenTo(this.app.user, 'change:loggedOut', function () {
-            this.model.set({
-                user : false,
-                admin : false
-            });
-        });
-
-    }
-
     function setUser () {
-        this.model.set({
-            admin : (resources.user.roles.admin == this.app.user.get('role')),
-            user : this.app.user.get('id'),
-            role : this.app.user.get('role')
+        if(this.app.user.get('loggedIn')) {
+            this.model.set({
+                admin : this.app.user.get('isAdmin'),
+                user : this.app.user.get('id'),
+                role : this.app.user.get('role')
 
-        });
+            });
+        } else {
+            this.model.set({
+                admin : (resources.user.roles.admin == this.app.user.get('role')),
+                user : this.app.user.get('id'),
+                role : this.app.user.get('role')
+
+            });
+        }
+
     }
 
     function logout () {

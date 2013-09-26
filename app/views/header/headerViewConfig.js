@@ -14,7 +14,7 @@ define(['text!views/header/headerView.html', 'headerViewModel'], function (templ
             'click #myProfileButton' : 'showMyProfile'
         },
         bindings : [
-            ['app.user', 'change:userInfoRetrieved', 'setUser']
+            ['app.user', 'change:loggedIn', 'setUser']
         ]
     };
 });

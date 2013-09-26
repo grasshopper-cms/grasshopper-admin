@@ -115,8 +115,9 @@ define([
                     .done(function(data) {
                         var userDetailView = new UserDetailView(userDetailViewConfig);
                         userDetailView.start();
-                        userDetailView.model.set(data);
                         userDetailView.rivetView();
+                        userDetailView.model.set(data);
+
                     })
                     .fail(function(xhr) {
                         // TODO: Better error handling here.

@@ -1,13 +1,13 @@
 define(['masseuseModel'], function (Model) {
     return Model.extend({
         defaults: {
-            name : '',
-            role : '',
-            enabled : '',
-            email : '',
-            _id : '',
-            login : '',
-            password : ''
+            name : null,
+            role : null,
+            enabled : null,
+            email : null,
+            id : null,
+            login : null,
+            password : null
         }
     });
 
