@@ -28,7 +28,7 @@ require.config({
         foundation : 'vendor/foundation/js/foundation/foundation',
 
         // Routers
-        router : 'routes',
+        router : 'router',
 
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alerts',
@@ -84,7 +84,12 @@ require([
     'jquery',
     'router',
     'alerts'
-], function ($, Router) {
+],
+    /**
+     * @param $
+     * @param {Router} Router
+     */
+    function ($, Router) {
 
     "use strict";
     $(document).foundation();

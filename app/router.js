@@ -41,6 +41,10 @@ define([
 
         var userModel = new UserModel();
 
+        /**
+         * @class Router
+         * @extends Backbone.Router
+         */
         var Router = Backbone.Router.extend({
             initialize: initialize,
             start: start,
