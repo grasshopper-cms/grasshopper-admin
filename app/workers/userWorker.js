@@ -25,7 +25,6 @@ define(['api', 'resources'],
                             role : data.role
                         });
 
-                        UserModel.trigger('change:userInfoRetrieved');
                     })
                     .fail(function (xhr) {
                         // TODO: Error handling for this. Getting of the current users details.

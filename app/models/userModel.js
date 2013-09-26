@@ -2,15 +2,25 @@ define(['masseuseModel', 'validation', 'ComputedProperty', 'resources'], functio
 
     "use strict";
     return Model.extend({
-        urlRoot : resources.api.user.url,
-        login : null,
-        role : null,
-        name : null,
-        enabled : null,
-        email : null,
-        loggedIn :  false,
-        isAdmin : new ComputedProperty(['role'], function(attribute){ return resources.user.roles.admin == attribute; }, true),
-        isReader : new ComputedProperty(['role'], function(attribute){ return resources.user.roles.reader == attribute; }, true)
+        defaults : {
+            urlRoot : resources.api.user.url,
+            login : false,
+            role : false,
+            name : false,
+            enabled : false,
+            email : false,
+            password : false,
+            loggedIn : new ComputedProperty(['enabled'], function (attribute) {
+                return attribute;
+            }),
+            isAdmin : new ComputedProperty(['role'], function (attribute) {
+                return resources.user.roles.admin == attribute;
+            }),
+            isReader : new ComputedProperty(['role'], function (attribute) {
+                return resources.user.roles.reader == attribute;
+            })
+        }
+
     });
 
 });
