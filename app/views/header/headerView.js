@@ -22,8 +22,8 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
             this.model.set({
                 admin : false,
                 loggedIn : false,
-                role : false
-
+                role : false,
+                name : 'Menu'
             });
         }
     }
