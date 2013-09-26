@@ -12,6 +12,9 @@ define(['text!views/header/headerView.html', 'headerViewModel'], function (templ
             'click #logOutButton' : 'logout',
             'click #logInButton' : 'login',
             'click #myProfileButton' : 'showMyProfile'
-        }
+        },
+        bindings : [
+            ['app.user', 'change:userInfoRetrieved', 'setUser']
+        ]
     };
 });
