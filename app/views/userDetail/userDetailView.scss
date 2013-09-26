@@ -1,22 +1,19 @@
 #userDetail {
     .listItem {
-        margin-bottom: 2px;
         .editable {
-            background-color: dimgrey;
-            border: 1px solid lime;
 
             .editLink {
                 visibility: hidden;
-                border: 1px solid dimgrey;
+            }
+            .saving {
+                visibility: hidden;
             }
 
             .attribute {
-                border: 1px solid dimgrey;
             }
 
             &:hover {
                 .attribute {
-                  border: 1px solid black;
                 }
                 .editLink {
                   visibility: visible;

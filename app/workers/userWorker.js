@@ -8,7 +8,8 @@ define(['api', 'resources'],
             getRequestedUserDetails : getRequestedUserDetails,
             getMyUserDetails : getMyUserDetails,
             isThisMyProfile : isThisMyProfile,
-            getProfileData : getProfileData
+            getProfileData : getProfileData,
+            saveUser : saveUser
         };
 
         function getCurrentUserDetails (UserModel) {
@@ -32,6 +33,10 @@ define(['api', 'resources'],
             }
         }
 
+        //THIS IS NOT YET IMPLEMENTED NEEDS TO BE FINISHED WHEN THERE ARE METHODS PRESENT TO SAVE A USER
+        function saveUser() {
+            console.log("saving User");
+        }
         /**
          *  Runner method for getting user details.
          *  Decides if you are a user accessing your own account, or if you are an admin accessing someone else's.

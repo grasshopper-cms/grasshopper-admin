@@ -1,74 +1,122 @@
 <div id="userDetail">
     <div class="row">
         <div class="large-7 small-centered columns">
+            <div class="row">
+                <h2>Edit Profile for : <span data-userdetail-text="data.name"></span></h2>
+            </div>
+
             <div class="row listItem">
-                <div class="large-5 columns">
-                    USER NAME:
+                <div class="large-3 columns">
+                    <label for="name" class="right inline">USER NAME:</label>
                 </div>
-                <div class="large-7 columns editable">
+                <div class="large-9 columns editable">
                     <div class="row">
-                        <div class="large-9 columns attribute">
-                            <div data-userdetail-text="data.name"></div>
+                        <div class="large-10 columns attribute">
+                            <input id="name" type="text" value="data.name" data-userdetail-value="data.name" data-userdetail-on-change="data:syncModel"/>
                         </div>
-                        <div class="large-3 columns">
-                            <div class="editLink">Edit</div>
+                        <div class="large-2 columns">
+                            <label for="name" class="editLink left inline">Icon</label>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="row listItem">
+                <div class="large-3 columns">
+                    <label for="name" class="right inline">USER ROLE:</label>
+                </div>
+                <div class="large-9 columns editable">
+                    <div class="row">
+                        <div class="large-10 columns attribute">
+                            <input id="name" type="text" value="data.role" data-userdetail-value="data.role" data-userdetail-on-change="data:syncModel"/>
+                        </div>
+                        <div class="large-2 columns">
+                            <label for="name" class="editLink left inline">Icon</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row listItem">
+                <div class="large-3 columns">
+                    <label for="name" class="right inline">ENABLED?:</label>
+                </div>
+                <div class="large-9 columns editable">
+                    <div class="row">
+                        <div class="large-10 columns attribute">
+                            <input id="name" type="text" value="data.enabled" data-userdetail-value="data.enabled" data-userdetail-on-change="data:syncModel"/>
+                        </div>
+                        <div class="large-2 columns">
+                            <label for="name" class="editLink left inline">Icon</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row listItem">
+                <div class="large-3 columns">
+                    <label for="name" class="right inline">EMAIL:</label>
+                </div>
+                <div class="large-9 columns editable">
+                    <div class="row">
+                        <div class="large-10 columns attribute">
+                            <input id="name" type="text" value="data.email" data-userdetail-value="data.email" data-userdetail-on-change="data:syncModel"/>
+                        </div>
+                        <div class="large-2 columns">
+                            <label for="name" class="editLink left inline">Icon</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row listItem">
+                <div class="large-3 columns">
+                    <label for="name" class="right inline">ID:</label>
+                </div>
+                <div class="large-9 columns editable">
+                    <div class="row">
+                        <div class="large-10 columns attribute">
+                            <input id="name" type="text" value="data._id" data-userdetail-value="data._id" data-userdetail-on-change="data:syncModel"/>
+                        </div>
+                        <div class="large-2 columns">
+                            <label for="name" class="editLink left inline">Icon</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <div class="row">
-                <div class="large-5 columns">
-                    USER ROLE:
+            <div class="row listItem">
+                <div class="large-3 columns">
+                    <label for="name" class="right inline">LOGIN:</label>
                 </div>
-                <div class="large-7 columns">
-                    <div class="editable" data-userdetail-text="data.role"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-5 columns">
-                    ENABLED?:
-                </div>
-                <div class="large-7 columns">
-                    <div class="editable" data-userdetail-text="data.enabled"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-5 columns">
-                    EMAIL:
-                </div>
-                <div class="large-7 columns">
-                    <div class="editable" data-userdetail-text="data.email"></div>
+                <div class="large-9 columns editable">
+                    <div class="row">
+                        <div class="large-10 columns attribute">
+                            <input id="name" type="text" value="data.login" data-userdetail-value="data.login" data-userdetail-on-change="data:syncModel"/>
+                        </div>
+                        <div class="large-2 columns">
+                            <label for="name" class="editLink left inline">Icon</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="large-5 columns">
-                    ID:
+
+            <div class="row listItem">
+                <div class="large-3 columns">
+                    <label for="name" class="right inline">PASSWORD:</label>
                 </div>
-                <div class="large-7 columns">
-                    <div class="editable" data-userdetail-text="data._id"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-5 columns">
-                    LOGIN:
-                </div>
-                <div class="large-7 columns">
-                    <div class="editable" data-userdetail-text="data.login"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-5 columns">
-                    PASSWORD:
-                </div>
-                <div class="large-7 columns">
-                    <div class="editable" data-userdetail-text="data.password"></div>
+                <div class="large-9 columns editable">
+                    <div class="row">
+                        <div class="large-10 columns attribute">
+                            <input id="name" type="text" value="data.password" data-userdetail-value="data.password" data-userdetail-on-change="data:syncModel"/>
+                        </div>
+                        <div class="large-2 columns">
+                            <label for="name" class="editLink left inline">Icon</label>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

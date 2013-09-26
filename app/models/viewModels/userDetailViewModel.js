@@ -1,4 +1,4 @@
-define(['masseuseModel'], function (Model) {
+define(['masseuseModel', 'userWorker'], function (Model, userWorker) {
     return Model.extend({
         defaults: {
             name : null,
@@ -8,6 +8,9 @@ define(['masseuseModel'], function (Model) {
             id : null,
             login : null,
             password : null
+        },
+        syncModel : function() {
+            userWorker.saveUser();
         }
     });
 
