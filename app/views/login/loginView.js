@@ -14,7 +14,7 @@ define(['baseView', 'rivetView', 'loginWorker'], function (BaseView, rivetView, 
     }
 
     function throwLoginError(xhr) {
-        this.app.router.displayAlertBox(xhr);
+        this.displayAlertBox(xhr);
     }
 
     return LoginView;

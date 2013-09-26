@@ -1,6 +1,5 @@
-define([],
-    function () {
-        return {
+/*global define*/
+define({
 
             api : {
                 base : {
@@ -46,7 +45,4 @@ define([],
                     insufficientPrivileges : 'You do not have adequate permissions to view/edit this profile.'
                 }
             }
-
-
-        };
-    });
+});

@@ -44,7 +44,6 @@ define([
         var Router = Backbone.Router.extend({
             initialize: initialize,
             start: start,
-            displayAlertBox : displayAlertBox,
 
             routes : {
                 "" : "displayApp",
@@ -62,6 +61,12 @@ define([
             BaseView.prototype.app = {
                 router : this,
                 user : this.user
+            };
+            BaseView.prototype.displayAlertBox = function displayAlertBox(msg) {
+                var alertBoxView = new AlertBoxView(alertBoxViewConfig);
+                alertBoxView.model.set('error', msg);
+                alertBoxView.start();
+                alertBoxView.rivetView();
             };
         }
 
@@ -117,15 +122,6 @@ define([
                 this.displayAlertBox(resources.user.errors.insufficientPrivileges);
             }
         }
-
-        function displayAlertBox(msg) {
-            var alertBoxView = new AlertBoxView(alertBoxViewConfig);
-            alertBoxView.model.set('error', msg);
-            alertBoxView.start();
-            alertBoxView.rivetView();
-        }
-
-        _.extend(Router, Backbone.Events);
 
         return Router;
     });

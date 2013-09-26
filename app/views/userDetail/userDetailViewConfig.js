@@ -5,7 +5,6 @@ define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel'], fun
     return {
         name : 'userDetailView',
         // for model attribute errors on self validating models, follow the convention of attribute+"Error". See the rivetView "publish" method
-        modelData : {},
         ModelType : userDetailViewModel,
         el : '#stage',
         templateHtml : templateHtml,
