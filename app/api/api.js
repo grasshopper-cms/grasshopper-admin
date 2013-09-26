@@ -28,8 +28,11 @@ define(['resources', 'base64'], function (resources, base64) {
                 headers : {"Authorization" : "Token " + token}
             });
         },
-        getRequestedUserDetail : function(id) {
+        getRequestedUserDetails : function(id) {
             return this.request(resources.api.users.url + '/' + id);
+        },
+        getMyUserDetails : function() {
+            return this.request(resources.api.user.url);
         }
     };
 

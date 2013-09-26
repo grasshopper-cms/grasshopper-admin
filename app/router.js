@@ -110,22 +110,16 @@ define([
         }
 
         function displayUserDetail(id) {
-            if(userWorker.isValidProfileEditor(userModel, id)) {
-                userWorker.getRequestedUserDetails(id)
-                    .done(function(data) {
-                        var userDetailView = new UserDetailView(userDetailViewConfig);
-                        userDetailView.start();
-                        userDetailView.rivetView();
-                        userDetailView.model.set(data);
-
-                    })
-                    .fail(function(xhr) {
-                        // TODO: Better error handling here.
-                        console.log(xhr);
-                    });
-            } else {
-                this.displayAlertBox(resources.user.errors.insufficientPrivileges);
-            }
+            userWorker.getProfileData(userModel, id)
+                .done(function(data) {
+                    var userDetailView = new UserDetailView(userDetailViewConfig);
+                    userDetailView.start();
+                    userDetailView.rivetView();
+                    userDetailView.model.set(data);
+                })
+                .fail(function(xhr) {
+                    BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
+                });
         }
 
         return Router;
