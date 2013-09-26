@@ -1,5 +1,5 @@
-define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'underscore', 'baseView', 'UserModel', 'alertBoxView', 'alertBoxViewConfig', 'resources'],
-    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources) {
+define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userWorker', 'emptyView', 'emptyViewConfig', 'underscore', 'baseView', 'UserModel', 'alertBoxView', 'alertBoxViewConfig', 'resources', 'userDetailView', 'userDetailViewConfig'],
+    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig) {
 
         var userModel = new UserModel();
 
@@ -46,19 +46,20 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
 
         function displayUserDetail(id) {
             if(userWorker.isValidProfileEditor(userModel, id)) {
-//                this.displayAlertBox(resources.user.errors.insufficientPrivileges + "  THIS IS JUST A PLACEHOLDER UNTIL I BUILD THE VIEW");
-                userWorker.getRequestedUserDetails(id);
-
+                userWorker.getRequestedUserDetails(id)
+                    .done(function(data) {
+                        var userDetailView = new UserDetailView(userDetailViewConfig);
+                        userDetailView.start();
+                        userDetailView.model.set(data);
+                        userDetailView.rivetView();
+                    })
+                    .fail(function(xhr) {
+                        // TODO: Better error handling here.
+                        console.log(xhr);
+                    });
             } else {
                 this.displayAlertBox(resources.user.errors.insufficientPrivileges);
             }
-            // get the users details.
-            // instantiate the userDetail view
-            // populate the userDetailModel
-
-            // Route to the userDetail page
-            //   bind the RivetsView
-            //   Start the view.
         }
 
         function displayAlertBox(msg) {

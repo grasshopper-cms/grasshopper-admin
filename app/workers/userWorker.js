@@ -36,7 +36,7 @@ define(['api', 'resources'],
         }
 
         function getRequestedUserDetails (id) {
-            api.getRequestedUserDetail(id);
+            return api.getRequestedUserDetail(id);
         }
 
     });
