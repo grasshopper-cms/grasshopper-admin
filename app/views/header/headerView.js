@@ -14,7 +14,8 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
             this.model.set({
                 admin : this.app.user.get('isAdmin'),
                 loggedIn : this.app.user.get('loggedIn'),
-                role : this.app.user.get('role')
+                role : this.app.user.get('role'),
+                name : this.app.user.get('name')
 
             });
         } else {
