@@ -44,28 +44,17 @@ define([
         var Router = Backbone.Router.extend({
             initialize: initialize,
             start: start,
-            displayUserDetail : displayUserDetail,
             displayAlertBox : displayAlertBox,
 
             routes : {
-                "" : "root",
-                "login" : "login",
-                "user/:id" : "userDetail"
+                "" : "displayApp",
+                "login" : "displayLogin",
+                "user/:id" : "displayUserDetail"
             },
 
-            root : function () {
-                console.log("root!");
-                _displayApp.call(this);
-            },
-
-            login : function () {
-                console.log("login!");
-                _displayLogin.call(this);
-            },
-
-            userDetail : function(id) {
-                _displayUserDetail.call(this, id);
-            },
+            displayApp: displayApp,
+            displayLogin: displayLogin,
+            displayUserDetail: displayUserDetail,
             user : userModel
         });
 
@@ -86,7 +75,6 @@ define([
                     self.navigate("", {trigger: true});
                 })
                 .fail(function () {
-                    console.log("fail");
                     self.navigate("login", {trigger: true});
                 });
 
@@ -97,13 +85,13 @@ define([
             return this;
         }
 
-        function _displayLogin () {
+        function displayLogin () {
             var loginView = new LoginView(loginViewConfig);
             loginView.start();
             loginView.rivetView();
         }
 
-        function _displayApp () {
+        function displayApp () {
             // Get the current Logged In users Details.
             userWorker.getCurrentUserDetails(userModel);
             // Display the app.
@@ -112,7 +100,7 @@ define([
             emptyView.rivetView();
         }
 
-        function _displayUserDetail(id) {
+        function displayUserDetail(id) {
             if(userWorker.isValidProfileEditor(userModel, id)) {
                 userWorker.getRequestedUserDetails(id)
                     .done(function(data) {
