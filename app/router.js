@@ -39,7 +39,8 @@ define([
         HeaderView,
         headerViewConfig) {
 
-        var userModel = new UserModel();
+        var userModel = new UserModel(),
+            currentView;
 
         /**
          * @class Router
@@ -50,15 +51,22 @@ define([
             start: start,
 
             routes : {
-                "" : "displayApp",
                 "login" : "displayLogin",
-                "user/:id" : "displayUserDetail"
+                "user/:id" : "displayUserDetail",
+                "home" : "displayApp"
             },
 
             displayApp: displayApp,
             displayLogin: displayLogin,
             displayUserDetail: displayUserDetail,
-            user : userModel
+            user : userModel,
+            navigate: function () {
+                if (currentView && currentView.destroy) {
+                    currentView.destroy();
+                }
+
+                Backbone.Router.prototype.navigate.apply(this, arguments);
+            }
         });
 
         function initialize() {
@@ -80,8 +88,7 @@ define([
 
             Api.authenticateToken(localStorage.authToken)
                 .done(function () {
-                    console.log("done");
-                    self.navigate("", {trigger: true});
+                    self.navigate("home", {trigger: true});
                 })
                 .fail(function () {
                     self.navigate("login", {trigger: true});
@@ -90,6 +97,7 @@ define([
             headerView = new HeaderView(headerViewConfig);
             headerView.start();
             headerView.rivetView();
+            currentView = headerView;
 
             return this;
         }
@@ -98,6 +106,7 @@ define([
             var loginView = new LoginView(loginViewConfig);
             loginView.start();
             loginView.rivetView();
+            currentView = loginView;
         }
 
         function displayApp () {
@@ -107,6 +116,8 @@ define([
             var emptyView = new EmptyView(emptyViewConfig);
             emptyView.start();
             emptyView.rivetView();
+
+            currentView = emptyView;
         }
 
         function displayUserDetail(id) {

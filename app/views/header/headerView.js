@@ -12,23 +12,23 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (B
         if(this.app.user.get('loggedIn')) {
             this.model.set({
                 admin : this.app.user.get('isAdmin'),
-                user : this.app.user.get('id'),
+                loggedIn : this.app.user.get('loggedIn'),
                 role : this.app.user.get('role')
 
             });
         } else {
             this.model.set({
-                admin : (resources.user.roles.admin == this.app.user.get('role')),
-                user : this.app.user.get('id'),
-                role : this.app.user.get('role')
+                admin : false,
+                loggedIn : false,
+                role : false
 
             });
         }
-
     }
 
     function logout () {
         loginWorker.doLogout(this);
+        return false;
     }
 
     function showMyProfile() {
