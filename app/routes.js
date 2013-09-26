@@ -49,10 +49,9 @@ define(['backbone', 'loginView', 'loginViewConfig', 'api', 'loginWorker', 'userW
                 userWorker.getRequestedUserDetails(id)
                     .done(function(data) {
                         var userDetailView = new UserDetailView(userDetailViewConfig);
-                        userDetailView.model.set(data);
                         userDetailView.start();
+                        userDetailView.model.set(data);
                         userDetailView.rivetView();
-                        console.log(userDetailView.model);
                     })
                     .fail(function(xhr) {
                         // TODO: Better error handling here.
