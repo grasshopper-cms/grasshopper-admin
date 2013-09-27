@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'app', 'loginWorker', 'resources'], function (BaseView, rivetView, app, loginWorker, resources) {
+define(['baseView', 'rivetView', 'app', 'loginWorker', 'userWorker'], function (BaseView, rivetView, app, loginWorker, userWorker) {
 
     var HeaderView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),

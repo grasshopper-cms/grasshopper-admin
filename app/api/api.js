@@ -33,6 +33,9 @@ define(['resources', 'base64'], function (resources, base64) {
         },
         getMyUserDetails : function() {
             return this.request(resources.api.user.url);
+        },
+        getUsers : function() {
+            return this.request(resources.api.users.url);
         }
     };
 

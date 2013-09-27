@@ -1,7 +1,26 @@
 <div id="usersIndex">
     <div class="row">
-        <div class="large-7 small-centered columns">
-            Yo!
+        <div class="large-11 small-centered columns">
+            <table>
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Login</th>
+                        <th>Enabled</th>
+                        <th>Role</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody data-each-user="usersindex.users">
+                    <tr>
+                        <td data-text="usersindex.name"></td>
+                        <td data-text="usersindex.login"></td>
+                        <td data-text="usersindex.enabled"></td>
+                        <td data-text="usersindex.role"></td>
+                        <td data-text="usersindex.email"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
