@@ -71,11 +71,8 @@ define(['api', 'resources', 'UserModel', 'backbone'],
         function getUsers (view) {
             api.getUsers()
                 .done(function(data){
-                    var UserCollection = new Backbone.Collection([],{
-                        model: UserModel
-                    });
-                    UserCollection.add(data);
-                    view.model.set('users', UserCollection);
+                    //TODO: in order to even remotely make this work, each item in the array should be a userModel
+                    view.model.set('users', data.results);
                 })
                 .fail(function(xhr){
                     view.displayAlertBox(xhr);
