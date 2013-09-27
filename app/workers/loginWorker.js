@@ -30,7 +30,8 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
                 enabled : false,
                 email : false,
                 password : false,
-                loggedIn : false
+                loggedIn : false,
+                _id : false
             });
 
            thisUser.app.router.navigate('login', {trigger: true});

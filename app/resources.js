@@ -29,10 +29,12 @@ define({
                     }
                 },
                 user : {
-                    url : 'http://localhost:8080/user'
+                    url : 'http://localhost:8080/user',
+                    shortUrl : 'user/'
                 },
                 users : {
-                    url : 'http://localhost:8080/users'
+                    url : 'http://localhost:8080/users',
+                    shortUrl : 'users/'
                 }
             },
 

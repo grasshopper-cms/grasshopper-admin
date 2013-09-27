@@ -18,6 +18,9 @@ define(['masseuseModel', 'validation', 'ComputedProperty', 'resources'], functio
             }),
             isReader : new ComputedProperty(['role'], function (attribute) {
                 return resources.user.roles.reader == attribute;
+            }),
+            urlLink : new ComputedProperty(['_id'], function (attribute) {
+                return '#' + resources.api.user.shortUrl + attribute;
             })
         }
 

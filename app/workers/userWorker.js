@@ -18,7 +18,7 @@ define(['api', 'resources', 'UserModel', 'backbone'],
                 api.authenticateToken()
                     .done(function (data) {
                         UserModel.set({
-                            id : data._id,
+                            _id : data._id,
                             email : data.email,
                             enabled : data.enabled,
                             login : data.login,

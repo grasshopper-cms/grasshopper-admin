@@ -65,13 +65,33 @@ define([
             this.navigate(fragment, options);
         }
 
-        function navigate (fragment, options) {
+        function navigateDeferred(fragment, options) {
+            options = options || {};
+            options.deferred = true;
+            this.navigate(fragment, options);
+        }
 
-            // TODO: this might make page flash blank
-            if (currentView && currentView.destroy) {
-                currentView.destroy();
+        function navigate (fragment, options) {
+            var self = this,
+                args = arguments,
+                $deferred;
+
+            //TODO: this doesn't work
+            if (options && options.async) {
+                delete options.async;
+                $deferred = new $.Deferred();
+                $deferred.done(function() {
+                    if (currentView && currentView.destroy) {
+                        currentView.destroy();
+                    }
+                    Backbone.Router.prototype.navigate.apply(self, args);
+                });
+            } else {
+                if (currentView && currentView.destroy) {
+                    currentView.destroy();
+                }
+                Backbone.Router.prototype.navigate.apply(this, arguments);
             }
-            Backbone.Router.prototype.navigate.apply(this, arguments);
 
             return $deferred;
         }
