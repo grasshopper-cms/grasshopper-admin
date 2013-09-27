@@ -4,5 +4,6 @@
         "require": false
     },
     "curly": true,
-    "quotmark": "single"
+    "quotmark": "single",
+    "debug" : true
 }
