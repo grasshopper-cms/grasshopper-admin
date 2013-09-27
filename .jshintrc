@@ -1,0 +1,8 @@
+{
+    "globals": {
+        "define": false,
+        "require": false
+    },
+    "curly": true,
+    "quotmark": "single"
+}

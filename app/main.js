@@ -94,7 +94,7 @@ require([
      */
     function ($, Router) {
 
-    "use strict";
+    'use strict';
     $(document).foundation();
 
     new Router().start();

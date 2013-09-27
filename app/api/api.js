@@ -4,10 +4,10 @@ define(['resources', 'base64'], function (resources, base64) {
     return {
         getToken : function (username, password) {
             return $.ajax({
-                dataType : "json",
+                dataType : 'json',
                 url : resources.api.login.url,
                 type : 'GET',
-                headers : {"Authorization" : "Basic " + base64.encode(username + ":" + password)}
+                headers : {'Authorization' : 'Basic ' + base64.encode(username + ':' + password)}
             });
         },
         authenticateToken : function () {
@@ -22,10 +22,10 @@ define(['resources', 'base64'], function (resources, base64) {
         request : function (url) {
             var token = localStorage.authToken;
             return $.ajax({
-                dataType : "json",
+                dataType : 'json',
                 url : url,
                 type : 'GET',
-                headers : {"Authorization" : "Token " + token}
+                headers : {'Authorization' : 'Token ' + token}
             });
         },
         getRequestedUserDetails : function(id) {

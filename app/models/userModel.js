@@ -1,6 +1,6 @@
 define(['masseuseModel', 'validation', 'ComputedProperty', 'resources'], function (Model, validation, ComputedProperty, resources) {
 
-    "use strict";
+    'use strict';
     return Model.extend({
         defaults : {
             urlRoot : resources.api.user.url,

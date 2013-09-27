@@ -35,10 +35,10 @@ define([
             start : start,
 
             routes : {
-                "login" : "displayLogin",
-                "user/:id" : "displayUserDetail",
-                "home" : "displayApp",
-                "users" : "displayUsersIndex"
+                'login' : 'displayLogin',
+                'user/:id' : 'displayUserDetail',
+                'home' : 'displayApp',
+                'users' : 'displayUsersIndex'
             },
 
             navigateTrigger: navigateTrigger,
@@ -116,10 +116,10 @@ define([
 
             Api.authenticateToken(localStorage.authToken)
                 .done(function () {
-                    self.navigate("home", {trigger : true});
+                    self.navigate('home', {trigger : true});
                 })
                 .fail(function () {
-                    self.navigate("login", {trigger : true});
+                    self.navigate('login', {trigger : true});
                 });
 
             headerView = newView(HeaderView, headerViewConfig);

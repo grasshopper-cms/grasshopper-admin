@@ -36,7 +36,7 @@ define(['api', 'resources', 'UserModel', 'backbone'],
 
         //THIS IS NOT YET IMPLEMENTED NEEDS TO BE FINISHED WHEN THERE ARE METHODS PRESENT TO SAVE A USER
         function saveUser() {
-            console.log("saving User");
+            console.log('saving User');
         }
         /**
          *  Runner method for getting user details.

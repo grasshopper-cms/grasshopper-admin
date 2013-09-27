@@ -10,7 +10,7 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
         function doLogin (loginView) {
             api.getToken(loginView.model.get('username'), loginView.model.get('password'))
                 .done(function (data) {
-                    if ("Token" === data.token_type) {
+                    if ('Token' === data.token_type) {
                         localStorage.authToken = data.access_token;
                         loginView.model.clear();
                         loginView.app.router.navigate('home', {trigger: true});

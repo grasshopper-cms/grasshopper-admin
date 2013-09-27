@@ -195,7 +195,10 @@ module.exports = function (grunt) {
             files : [
                 'app/**/*.js',
                 '!app/vendor/**/*.js'
-            ]
+            ],
+            options: {
+                jshintrc: '.jshintrc'
+            }
         }
     });
 
