@@ -41,21 +41,63 @@ define([
                 "users" : "displayUsersIndex"
             },
 
+            navigateTrigger: navigateTrigger,
+            navigateNinja: navigateNinja,
+            navigateDeferred: navigateDeferred,
+
             displayApp : displayApp,
             displayLogin : displayLogin,
             displayUserDetail : displayUserDetail,
             user : userModel,
-            navigate : function () {
-                if (currentView && currentView.destroy) {
-                    currentView.destroy();
-                }
-
-                Backbone.Router.prototype.navigate.apply(this, arguments);
-            },
+            navigate : navigate,
             displayUsersIndex : displayUsersIndex
         });
 
+        function navigateTrigger(fragment, options) {
+            options = options || {};
+            options.trigger = true;
+            this.navigate(fragment, options);
+        }
+
+        function navigateNinja(fragment, options) {
+            options = options || {};
+            options.replace = true;
+            this.navigate(fragment, options);
+        }
+
+        function navigateDeferred(fragment, options) {
+            options = options || {};
+            options.deferred = true;
+            this.navigate(fragment, options);
+        }
+
+        function navigate (fragment, options) {
+            var self = this,
+                args = arguments,
+                $deferred;
+
+            //TODO: this doesn't work
+            if (options && options.async) {
+                delete options.async;
+                $deferred = new $.Deferred();
+                $deferred.done(function() {
+                    if (currentView && currentView.destroy) {
+                        currentView.destroy();
+                    }
+                    Backbone.Router.prototype.navigate.apply(self, args);
+                });
+            } else {
+                if (currentView && currentView.destroy) {
+                    currentView.destroy();
+                }
+                Backbone.Router.prototype.navigate.apply(this, arguments);
+            }
+
+            return $deferred;
+        }
+
         function initialize () {
+            window.router = this;
             BaseView.prototype.app = {
                 router : this,
                 user : this.user
@@ -80,40 +122,36 @@ define([
                     self.navigate("login", {trigger : true});
                 });
 
-            headerView = new HeaderView(headerViewConfig);
+            headerView = newView(HeaderView, headerViewConfig);
             headerView.start();
             headerView.rivetView();
-            currentView = headerView;
 
             return this;
         }
 
         function displayLogin () {
-            var loginView = new LoginView(loginViewConfig);
+            var loginView = newView(LoginView, loginViewConfig);
             loginView.start();
             loginView.rivetView();
-            currentView = loginView;
         }
 
         function displayApp () {
             // Get the current Logged In users Details.
             userWorker.getCurrentUserDetails(userModel);
             // Display the app.
-            var emptyView = new EmptyView(emptyViewConfig);
+            var emptyView = newView(EmptyView, emptyViewConfig);
             emptyView.start();
-            emptyView.rivetView();
 
-            currentView = emptyView;
+            emptyView.rivetView();
         }
 
         function displayUserDetail (id) {
             userWorker.getProfileData(userModel, id)
                 .done(function (data) {
-                    var userDetailView = new UserDetailView(userDetailViewConfig);
+                    var userDetailView = newView(UserDetailView, userDetailViewConfig);
                     userDetailView.start();
                     userDetailView.rivetView();
                     userDetailView.model.set(data);
-                    currentView = userDetailView;
                 })
                 .fail(function (xhr) {
                     BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
@@ -121,11 +159,14 @@ define([
         }
 
         function displayUsersIndex () {
-            var usersIndexView = new UsersIndexView(usersIndexViewConfig);
+            var usersIndexView = newView(UsersIndexView, usersIndexViewConfig);
             usersIndexView.start();
             usersIndexView.rivetView();
+        }
 
-            currentView = usersIndexView;
+        function newView(ViewType, config) {
+            currentView = new ViewType(config);
+            return currentView;
         }
 
         return Router;

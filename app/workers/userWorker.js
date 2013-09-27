@@ -72,6 +72,7 @@ define(['api', 'resources', 'UserModel', 'backbone'],
             api.getUsers()
                 .done(function(data){
                     //TODO: in order to even remotely make this work, each item in the array should be a userModel
+                    //TODO: seems liks users should be a Backbone Collection of User Models
                     view.model.set('users', data.results);
                 })
                 .fail(function(xhr){
