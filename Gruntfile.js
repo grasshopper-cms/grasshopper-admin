@@ -133,7 +133,8 @@ module.exports = function (grunt) {
                         'resources.js',
                         'index.html',
                         'app.js',
-                        'router.js'
+                        'router.js',
+                        'collections/**/*'
                     ], dest : 'build'}
                 ]
             }

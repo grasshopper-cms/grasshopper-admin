@@ -72,6 +72,9 @@ require.config({
         loginWorker : 'workers/loginWorker',
         userWorker : 'workers/userWorker',
 
+        // Collections
+        userCollection : 'collections/userCollection',
+
         // Api proxy
         api : 'api/api',
 
