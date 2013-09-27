@@ -69,6 +69,16 @@ define(['api', 'resources', 'UserModel', 'backbone'],
         }
 
         function getUsers (view) {
+            // TODO: implement this and override fetch using adapter:
+//            new UserCollection().fetch().done(function() {
+//                console.log('----- done');
+//                view.model.set({
+//                    users : UserCollection.models,
+//                    usersCollection : UserCollection
+//                });
+//            }).fail(function() {
+//                    console.log('------ fail');
+//                });
             api.getUsers()
                 .done(function(data){
 
