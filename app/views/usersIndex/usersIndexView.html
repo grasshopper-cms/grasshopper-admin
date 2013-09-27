@@ -11,9 +11,13 @@
                         <th>Email</th>
                     </tr>
                 </thead>
-                <tbody data-usersindex-each-user="data.users">
+                <tbody data-each-user="usersindex.users">
                     <tr>
-                        <td data-user-text="data.name"></td>
+                        <td data-text="usersindex.name"></td>
+                        <td data-text="usersindex.login"></td>
+                        <td data-text="usersindex.enabled"></td>
+                        <td data-text="usersindex.role"></td>
+                        <td data-text="usersindex.email"></td>
                     </tr>
                 </tbody>
             </table>
