@@ -71,11 +71,15 @@ define(['api', 'resources', 'UserModel', 'backbone'],
         function getUsers (view) {
             api.getUsers()
                 .done(function(data){
+
                     var UserCollection = new Backbone.Collection([],{
                         model: UserModel
                     });
-                    UserCollection.add(data);
-                    view.model.set('users', UserCollection);
+                    UserCollection.add(data.results);
+                    view.model.set({
+                        users : UserCollection.models,
+                        usersCollection : UserCollection
+                    });
                 })
                 .fail(function(xhr){
                     view.displayAlertBox(xhr);
