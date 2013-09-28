@@ -69,11 +69,9 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
         }
 
         function getUsers (view, options) {
-
-            var collectione = new UserCollection();
-            view.model.set('users', collectione);
-            collectione.fetch();
-            window.collectione = collectione;
+            var userCollection = new UserCollection();
+            view.model.set('users', userCollection);
+            userCollection.fetch(options);
         }
 
     });

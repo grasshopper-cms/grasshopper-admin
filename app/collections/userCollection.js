@@ -26,7 +26,4 @@ define(['UserModel', 'resources'], function (UserModel, resources) {
         return Backbone.Collection.prototype.fetch.apply(this, args);
     }
 
-
-
-
 });
