@@ -1,3 +1,4 @@
+/* jshint loopfunc: true */
 define(['rivets', 'mixin', 'backbone'], function (Rivets, mixin, Backbone) {
 
     return mixin({
@@ -10,12 +11,16 @@ define(['rivets', 'mixin', 'backbone'], function (Rivets, mixin, Backbone) {
                 subscribe: function (obj, keypath, callback) {
                     var parts = [keypath];
                     var index = keypath.indexOf('.');
-                    if (index > -1) parts = keypath.split('.');
+                    if (index > -1) {
+                        parts = keypath.split('.');
+                    }
                     this.subscribe_nested(parts, obj, callback);
                 },
 
                 subscribe_nested: function rivets_backbone_adapter_subscribe_nested(parts, obj, callback) {
-                    if (!obj) return;
+                    if (!obj) {
+                        return;
+                    }
                     while (parts.length > 0) {
                         var keypath = parts.shift();
 
@@ -32,32 +37,52 @@ define(['rivets', 'mixin', 'backbone'], function (Rivets, mixin, Backbone) {
                             if (obj.on) {
                                 obj.on('change:' + keypath, function (tail_parts, key, m, v) {
                                     callback(v);
-                                    if (tail_parts.length > 0) this.subscribe_nested(_.clone(tail_parts), this.getValue(m, key), callback);
+                                    if (tail_parts.length > 0) {
+                                        this.subscribe_nested(_.clone(tail_parts), this.getValue(m, key), callback);
+                                    }
                                 }.bind(this, _.clone(parts), keypath));
                             }
                         }
                         obj = this.getValue(obj, keypath);
 
-                        if (!obj) break;
-                        else this.subscribe_nested(_.clone(parts), obj, callback);
+                        if (!obj) {
+                            break;
+                        }
+                        else {
+                            this.subscribe_nested(_.clone(parts), obj, callback);
+                        }
                     }
                 },
 
                 getValue: function rivets_backbone_adapter_getValue(model, key, not_expand_collection_to_model) {
 
-                    if (model instanceof Backbone.Collection) return key ? model[key] : model.models;
-                    if (!key) return model;
+                    if (model instanceof Backbone.Collection) {
+                        return key ? model[key] : model.models;
+                    }
+                    if (!key) {
+                        return model;
+                    }
                     if (model instanceof Backbone.Model) {
                         var res = model.get(key);
-                        if (typeof (res) == "undefined") res = model[key];
-                        if (res instanceof Backbone.Collection) return not_expand_collection_to_model ? res : res.models;
-                        else return res;
-                    } else return model[key];
+                        if (typeof (res) == 'undefined') {
+                            res = model[key];
+                        }
+                        if (res instanceof Backbone.Collection) {
+                            return not_expand_collection_to_model ? res : res.models;
+                        }
+                        else {
+                            return res;
+                        }
+                    } else {
+                        return model[key];
+                    }
 
                 },
 
                 unsubscribe: function (obj, keypath, callback) {
-                    if (typeof (obj) == "undefined") return;
+                    if (typeof (obj) == 'undefined') {
+                        return;
+                    }
                     if (obj instanceof Backbone.Collection) {
                         obj.off('add remove reset refresh');
                     } else if (obj.off) {
@@ -66,34 +91,48 @@ define(['rivets', 'mixin', 'backbone'], function (Rivets, mixin, Backbone) {
                 },
                 read: function (obj, keypath) {
                     var args = keypath.split(' ');
-                    if (args.length > 1) return _.map(args, function (x) {
-                        return this.read(obj, x);
-                    }, this);
+                    if (args.length > 1) {
+                        return _.map(args, function (x) {
+                            return this.read(obj, x);
+                        }, this);
+                    }
 
                     var parts = [keypath];
                     var index = keypath.indexOf('.');
-                    if (index > -1) parts = keypath.split('.');
+                    if (index > -1) {
+                        parts = keypath.split('.');
+                    }
                     var result = obj;
                     while (parts.length > 0) {
                         keypath = parts.shift();
                         result = this.getValue(result, keypath);
-                        if (typeof (result) == "undefined" || result == null) return result;
+                        if (typeof (result) == 'undefined' || result === null) {
+                            return result;
+                        }
                     }
                     return result;
                 },
                 publish: function (obj, keypath, value) {
                     var parts = [keypath];
                     var index = keypath.indexOf('.');
-                    if (index > -1) parts = keypath.split('.');
+                    if (index > -1) {
+                        parts = keypath.split('.');
+                    }
                     var result = obj;
                     while (parts.length > 1) {
                         keypath = parts.shift();
                         result = this.getValue(result, keypath);
-                        if (!result) return;
+                        if (!result) {
+                            return;
+                        }
                     }
                     keypath = parts.shift();
-                    if (result instanceof Backbone.Collection) result[keypath] = value;
-                    else if (result instanceof Backbone.Model) result.set(keypath, value);
+                    if (result instanceof Backbone.Collection) {
+                        result[keypath] = value;
+                    }
+                    else if (result instanceof Backbone.Model) {
+                        result.set(keypath, value);
+                    }
                     result[keypath] = value;
 
                 }
