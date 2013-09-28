@@ -34,7 +34,7 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'userWorker'], function (
     }
 
     function showMyProfile() {
-        this.app.router.navigate('user/' + this.app.router.user.get('id'), {trigger: true});
+        this.app.router.navigate('user/' + this.app.router.user.get('_id'), {trigger: true});
         return false;
     }
 
