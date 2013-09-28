@@ -1,5 +1,5 @@
-define(['api', 'resources', 'UserModel', 'backbone'],
-    function (api, resources, UserModel, Backbone) {
+define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
+    function (api, resources, UserModel, Backbone, UserCollection) {
         'use strict';
 
         return {
@@ -68,33 +68,12 @@ define(['api', 'resources', 'UserModel', 'backbone'],
             return api.getMyUserDetails();
         }
 
-        function getUsers (view) {
-            // TODO: implement this and override fetch using adapter:
-//            new UserCollection().fetch().done(function() {
-//                console.log('----- done');
-//                view.model.set({
-//                    users : UserCollection.models,
-//                    usersCollection : UserCollection
-//                });
-//            }).fail(function() {
-//                    console.log('------ fail');
-//                });
-            api.getUsers()
-                .done(function(data){
+        function getUsers (view, options) {
 
-                    var UserCollection = new Backbone.Collection([],{
-                        model: UserModel
-                    });
-                    UserCollection.add(data.results);
-                    view.model.set({
-                        users : UserCollection.models,
-                        usersCollection : UserCollection
-                    });
-                })
-                .fail(function(xhr){
-                    view.displayAlertBox(xhr);
-                });
-
+            var collectione = new UserCollection();
+            view.model.set('users', collectione);
+            collectione.fetch();
+            window.collectione = collectione;
         }
 
     });

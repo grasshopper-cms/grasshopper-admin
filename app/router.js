@@ -98,6 +98,8 @@ define([
 
         function initialize () {
             window.router = this;
+            var oldSet = Backbone.Collection.prototype.set;
+
             BaseView.prototype.app = {
                 router : this,
                 user : this.user
@@ -108,6 +110,14 @@ define([
                 alertBoxView.start();
                 alertBoxView.rivetView();
             };
+
+            Backbone.Collection.prototype.set = function(data, options) {
+                if (data && data.results) {
+                    data = data.results;
+                }
+                oldSet.call(this, data, options);
+            };
+
         }
 
         function start () {

@@ -2,8 +2,9 @@ define(['masseuseModel', 'validation', 'ComputedProperty', 'resources'], functio
 
     'use strict';
     return Model.extend({
+        urlRoot : resources.api.user.url,
+        url : resources.api.user.url,
         defaults : {
-            urlRoot : resources.api.user.url,
             login : false,
             role : false,
             name : false,
@@ -23,7 +24,6 @@ define(['masseuseModel', 'validation', 'ComputedProperty', 'resources'], functio
                 return '#' + resources.api.user.shortUrl + attribute;
             })
         }
-
     });
 
 });
