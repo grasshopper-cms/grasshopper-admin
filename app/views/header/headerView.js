@@ -34,12 +34,12 @@ define(['baseView', 'rivetView', 'loginWorker', 'userWorker'], function (BaseVie
     }
 
     function showMyProfile() {
-        this.router.navigate('user/' + this.app.router.user.get('_id'), {trigger: true});
+        this.app.router.navigate('user/' + this.app.router.user.get('_id'), {trigger: true});
         return false;
     }
 
     function displayUsers() {
-        this.router.navigate('users', {trigger: true});
+        this.app.router.navigate('users', {trigger: true});
         return false;
     }
 
