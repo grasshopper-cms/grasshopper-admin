@@ -1,5 +1,9 @@
 define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, resources) {
 
+    var defaults = {
+
+    };
+
     return Backbone.Collection.extend({
         model : UserModel,
         fetch : fetch,
