@@ -57,7 +57,7 @@ require.config({
 
         // Models
         computedProperty : 'vendor/masseuse/app/computedProperty',
-        masseuseModel : 'vendor/masseuse/app/MasseuseModel',
+        masseuseModel : 'vendor/masseuse/app/masseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
 
