@@ -21,7 +21,7 @@ define(['masseuseModel', 'validation', 'computedProperty', 'resources'], functio
                 return resources.user.roles.reader == attribute;
             }),
             urlLink : new ComputedProperty(['_id'], function (attribute) {
-                return '#' + resources.api.user.shortUrl + attribute;
+                  return '#' + resources.api.user.shortUrl + attribute;
             })
         }
     });

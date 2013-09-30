@@ -4,14 +4,13 @@ define(['text!views/header/headerView.html', 'headerViewModel'], function (templ
 
     return {
         name : 'headerView',
-        modelData : {name: 'Menu'},
+        modelData : {name: 'Menu', url: 'home'},
         ModelType : HeaderViewModel,
         el : '#header',
         templateHtml : templateHtml,
         events : {
             'click #logOutButton' : 'logout',
             'click #logInButton' : 'login',
-            'click #myProfileButton' : 'showMyProfile',
             'click #displayUsersButton' : 'displayUsers'
         },
         bindings : [

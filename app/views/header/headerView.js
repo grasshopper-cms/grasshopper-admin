@@ -1,9 +1,8 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'loginWorker', 'userWorker'], function (BaseView, rivetView, loginWorker, userWorker) {
+define(['baseView', 'rivetView', 'loginWorker'], function (BaseView, rivetView, loginWorker) {
 
     var HeaderView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),
-        showMyProfile : showMyProfile,
         logout : logout,
         setUser : setUser,
         displayUsers : displayUsers
@@ -16,26 +15,21 @@ define(['baseView', 'rivetView', 'loginWorker', 'userWorker'], function (BaseVie
                 loggedIn : this.app.user.get('loggedIn'),
                 role : this.app.user.get('role'),
                 name : this.app.user.get('name'),
-                id : this.app.user.get('_id')
-
+                url : this.app.user.get('urlLink')
             });
         } else {
             this.model.set({
                 admin : false,
                 loggedIn : false,
                 role : false,
-                name : 'Menu'
+                name : 'Menu',
+                url : 'home'
             });
         }
     }
 
     function logout () {
         loginWorker.doLogout(this);
-        return false;
-    }
-
-    function showMyProfile() {
-        this.app.router.navigate('user/' + this.app.router.user.get('_id'), {trigger: true});
         return false;
     }
 
