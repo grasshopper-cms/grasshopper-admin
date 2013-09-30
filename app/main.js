@@ -26,6 +26,7 @@ require.config({
         rivets : 'vendor/rivets/dist/rivets',
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
+        paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
 
         // Routers
         router : 'router',
@@ -56,8 +57,8 @@ require.config({
         channels : 'vendor/masseuse/app/channels',
 
         // Models
-        computedProperty : 'vendor/masseuse/app/computedProperty',
-        masseuseModel : 'vendor/masseuse/app/masseuseModel',
+        ComputedProperty : 'vendor/masseuse/app/ComputedProperty',
+        masseuseModel : 'vendor/masseuse/app/MasseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
 
