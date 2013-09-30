@@ -72,6 +72,7 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
             var userCollection = new UserCollection();
             view.model.set('users', userCollection);
             userCollection.fetch(options);
+
         }
 
     });

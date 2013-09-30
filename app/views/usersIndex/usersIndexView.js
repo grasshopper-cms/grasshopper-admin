@@ -4,10 +4,11 @@ define(['baseView', 'rivetView', 'userWorker'], function (BaseView, rivetView, u
     var usersIndexView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#usersIndex', rivetPrefix : 'usersindex', instaUpdateRivets : true}),
         beforeRender : beforeRender
+
     });
 
     function beforeRender () {
-       userWorker.getUsers(this);
+        userWorker.getUsers(this);
     }
 
     return usersIndexView;

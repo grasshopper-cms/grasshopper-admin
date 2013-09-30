@@ -46,14 +46,6 @@ define({
                 errors : {
                     403 : 'You do not have adequate permissions to view/edit this profile.'
                 }
-            },
-
-            collections : {
-                user : {
-                    defaults : {
-                        limit: 5,
-                        skip : 0
-                    }
-                }
             }
+
 });
