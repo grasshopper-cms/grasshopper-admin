@@ -140,6 +140,7 @@ define(['rivets', 'mixin', 'backbone'], function (Rivets, mixin, Backbone) {
             prefix : config.rivetPrefix
             // preloadData: false
         });
+        Rivets.config.templateDelimiters = ['{{', '}}'];
 
         // bind data to rivets values.
         Rivets.bind($(config.rivetScope), {data : this.model});

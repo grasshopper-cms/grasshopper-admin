@@ -15,7 +15,8 @@ define(['baseView', 'rivetView', 'loginWorker', 'userWorker'], function (BaseVie
                 admin : this.app.user.get('isAdmin'),
                 loggedIn : this.app.user.get('loggedIn'),
                 role : this.app.user.get('role'),
-                name : this.app.user.get('name')
+                name : this.app.user.get('name'),
+                id : this.app.user.get('_id')
 
             });
         } else {
