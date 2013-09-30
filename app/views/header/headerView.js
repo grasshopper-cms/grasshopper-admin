@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'app', 'loginWorker', 'userWorker'], function (BaseView, rivetView, app, loginWorker, userWorker) {
+define(['baseView', 'rivetView', 'loginWorker', 'userWorker'], function (BaseView, rivetView, loginWorker, userWorker) {
 
     var HeaderView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),
@@ -34,12 +34,12 @@ define(['baseView', 'rivetView', 'app', 'loginWorker', 'userWorker'], function (
     }
 
     function showMyProfile() {
-        this.app.router.navigate('user/' + this.app.router.user.get('_id'), {trigger: true});
+        this.router.navigate('user/' + this.app.router.user.get('_id'), {trigger: true});
         return false;
     }
 
     function displayUsers() {
-        this.app.router.navigate('users', {trigger: true});
+        this.router.navigate('users', {trigger: true});
         return false;
     }
 
