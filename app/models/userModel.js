@@ -1,4 +1,4 @@
-define(['masseuseModel', 'validation', 'ComputedProperty', 'resources'], function (Model, validation, ComputedProperty, resources) {
+define(['masseuseModel', 'validation', 'computedProperty', 'resources'], function (Model, validation, ComputedProperty, resources) {
 
     'use strict';
     return Model.extend({

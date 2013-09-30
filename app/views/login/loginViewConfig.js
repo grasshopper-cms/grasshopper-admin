@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/login/loginView.html', 'loginViewModel', 'ComputedProperty', 'validation'], function (templateHtml, loginViewModel, ComputedProperty, validation) {
+define(['text!views/login/loginView.html', 'loginViewModel', 'computedProperty', 'validation'], function (templateHtml, loginViewModel, ComputedProperty, validation) {
     'use strict';
 
     return {
