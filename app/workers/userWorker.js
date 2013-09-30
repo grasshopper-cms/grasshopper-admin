@@ -50,14 +50,13 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
             }
         }
 
-        // TODO: make this computed property too
         function isValidProfileEditor(UserModel) {
             // Check if the user trying to access the profile is either an administrator or the current user
-            return (UserModel.get('role') === resources.user.roles.admin);
+            return UserModel.get('isAdmin');
         }
 
         function isThisMyProfile(UserModel, id) {
-            return (UserModel.get('id') === id);
+            return (UserModel.get('_id') === id);
         }
 
         function getRequestedUserDetails (id) {
