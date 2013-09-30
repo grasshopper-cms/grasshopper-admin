@@ -174,6 +174,17 @@ module.exports = function (grunt) {
                     }
                 }
             },
+            reload_vagrant_box : {
+                command : 'vagrant reload',
+                options : {
+                    failOnError : true,
+                    stderr : true,
+                    stdout: true,
+                    execOptions : {
+                        cwd : 'api'
+                    }
+                }
+            },
             start_vagrant_box : {
                 command : 'vagrant up',
                 options : {
@@ -210,4 +221,5 @@ module.exports = function (grunt) {
     grunt.registerTask("vagrantInstall", "Install and set up vagrant box ", ["shell:install_api_node_modules","shell:install_api_vagrant_plugins", "shell:start_vagrant_box", "shell:test_vagrant_box" ]);
     grunt.registerTask("vagrant", "Starts vagrant", ['shell:start_vagrant_box']);
     grunt.registerTask("testVagrant", "grabs an auth token to ensure box is running", ['shell:test_vagrant_box']);
+    grunt.registerTask("vagrantReload", "reload the vagrant box", ["shell:reload_vagrant_box"]);
 };
