@@ -39,7 +39,7 @@ define([
                 'logout' : 'goLogout',
                 'user/:id' : 'displayUserDetail',
                 'home' : 'displayApp',
-                'users(/page:number)' : 'displayUsersIndex'
+                'users(/page/:number)' : 'displayUsersIndex'
             },
 
             navigateTrigger : navigateTrigger,
@@ -108,20 +108,27 @@ define([
         }
 
         function start () {
-            var headerView,
-                self = this;
+            var self = this,
+                headerView = newView(HeaderView, headerViewConfig);
+
+            headerView.start();
+            headerView.rivetView();
 
             Api.authenticateToken(localStorage.authToken)
-                .done(function () {
-                    self.navigate('home', {trigger : true});
+                .done(function (data) {
+                    headerView.app.user.set({
+                        _id : data._id,
+                        email : data.email,
+                        enabled : data.enabled,
+                        login : data.login,
+                        name : data.name,
+                        password : data.password,
+                        role : data.role
+                    });
                 })
                 .fail(function () {
                     self.navigate('login', {trigger : true});
                 });
-
-            headerView = newView(HeaderView, headerViewConfig);
-            headerView.start();
-            headerView.rivetView();
 
             return this;
         }
@@ -139,8 +146,6 @@ define([
         }
 
         function displayApp () {
-            // Get the current Logged In users Details.
-            userWorker.getCurrentUserDetails(userModel);
             // Display the app.
             var emptyView = newView(EmptyView, emptyViewConfig);
             emptyView.start();

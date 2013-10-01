@@ -49,7 +49,7 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
                 return {
                     page : page,
                     current : (page == (options.data.skip / 5) + 1),
-                    link : '#users/page' + page
+                    link : '#users/page/' + page
                 };
             });
 

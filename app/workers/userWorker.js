@@ -15,11 +15,11 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection', 'baseView
 
         };
 
-        function getCurrentUserDetails (UserModel) {
+        function getCurrentUserDetails (view) {
             if (localStorage.authToken) {
                 api.authenticateToken()
                     .done(function (data) {
-                        UserModel.set({
+                        view.app.user.set({
                             _id : data._id,
                             email : data.email,
                             enabled : data.enabled,
@@ -28,10 +28,9 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection', 'baseView
                             password : data.password,
                             role : data.role
                         });
-
                     })
                     .fail(function (xhr) {
-                        // TODO: Error handling for this. Getting of the current users details.
+                        view.app.router.navigate('login');
                     });
             }
         }
