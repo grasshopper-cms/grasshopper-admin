@@ -1,4 +1,4 @@
-define(['masseuseModel', 'userWorker', 'jquery', 'baseView', 'resources', 'userDetailView'], function (Model, userWorker, $, BaseView, resources, userDetailView) {
+define(['masseuseModel'], function (Model) {
     return Model.extend({
         defaults: {
             name : null,
@@ -9,11 +9,7 @@ define(['masseuseModel', 'userWorker', 'jquery', 'baseView', 'resources', 'userD
             login : null,
             password : null
         },
-        initialize : function() {
-            this.on('change', function(model) {
-                userWorker.updateModel(model);
-            });
-        }
+        initialize : function() {}
     });
 
 });

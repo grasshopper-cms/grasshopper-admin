@@ -1,5 +1,5 @@
-define(['api', 'resources', 'UserModel', 'backbone', 'userCollection', 'baseView',  'userDetailView'],
-    function (api, resources, UserModel, Backbone, UserCollection, BaseView, userDetailView) {
+define(['api', 'resources', 'UserModel', 'userCollection'],
+    function (api, resources, UserModel, UserCollection) {
         'use strict';
 
         return {
@@ -36,16 +36,9 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection', 'baseView
             }
         }
 
-        function updateModel(model) {
-            var  currentUserId =  BaseView.prototype.app.user.attributes._id;
-            if (isValidProfileEditor(model) || isThisMyProfile(model, currentUserId)) {
-                updateUserDetails(model)
-                    .done(function(data) {
-                        userDetailView.displaySuccessfulSave(data);
-                    }).fail( function(xhr) {
-                        userDetailView.displaySaveError(xhr);
-                    }).always( function() {
-                    });
+        function updateModel(changedModel, currentLoggedInUser) {
+            if (isValidProfileEditor(currentLoggedInUser) || isThisMyProfile(currentLoggedInUser, changedModel.get('id'))) {
+                return updateUserDetails(changedModel);
             }
         }
 
