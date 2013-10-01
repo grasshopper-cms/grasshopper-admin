@@ -3,12 +3,11 @@ define(['baseView', 'rivetView', 'loginWorker'], function (BaseView, rivetView, 
 
     var HeaderView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),
-        logout : logout,
-        setUser : setUser,
-        displayUsers : displayUsers
+        setUser : setUser
     });
 
     function setUser () {
+        // TODO: remove and replace with direct reference or clone if needed
         if(this.app.user.get('loggedIn')) {
             this.model.set({
                 admin : this.app.user.get('isAdmin'),
@@ -22,20 +21,11 @@ define(['baseView', 'rivetView', 'loginWorker'], function (BaseView, rivetView, 
                 admin : false,
                 loggedIn : false,
                 role : false,
+                // TODO: ?
                 name : 'Menu',
                 url : 'home'
             });
         }
-    }
-
-    function logout () {
-        loginWorker.doLogout(this);
-        return false;
-    }
-
-    function displayUsers() {
-        this.app.router.navigate('users', {trigger: true});
-        return false;
     }
 
     return HeaderView;

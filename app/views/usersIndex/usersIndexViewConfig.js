@@ -8,6 +8,7 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel'], fun
         el : '#stage',
         templateHtml : templateHtml,
         events : {
+            // TODO: is it possible to hardcode this?
             'click a.pagination_pages' : 'goToPage'
         }
     };

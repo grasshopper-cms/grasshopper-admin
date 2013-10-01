@@ -3,8 +3,7 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
         'use strict';
 
         return {
-            doLogin : doLogin,
-            doLogout : doLogout
+            doLogin : doLogin
         };
 
         function doLogin (loginView) {
@@ -19,21 +18,5 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
                 .fail(function (xhr) {
                     loginView.throwLoginError(resources.api.login.errors[xhr.status]);
                 });
-        }
-
-        function doLogout (thisUser) {
-            localStorage.authToken = '';
-            thisUser.app.user.set({
-                login : false,
-                role : false,
-                name : false,
-                enabled : false,
-                email : false,
-                password : false,
-                loggedIn : false,
-                _id : false
-            });
-
-           thisUser.app.router.navigate('login', {trigger: true});
         }
     });

@@ -8,11 +8,6 @@ define(['text!views/header/headerView.html', 'headerViewModel'], function (templ
         ModelType : HeaderViewModel,
         el : '#header',
         templateHtml : templateHtml,
-        events : {
-            'click #logOutButton' : 'logout',
-            'click #logInButton' : 'login',
-            'click #displayUsersButton' : 'displayUsers'
-        },
         bindings : [
             ['app.user', 'change', 'setUser']
         ]

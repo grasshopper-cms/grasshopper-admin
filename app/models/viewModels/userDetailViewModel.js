@@ -11,6 +11,8 @@ define(['masseuseModel', 'userWorker', 'jquery', 'baseView', 'resources'], funct
         },
         initialize : function() {
             this.on('change', function(model) {
+                // TODO: ComputedProperty?
+                // TODO: window. ?
                 var  currentUserId =  window.router.user.attributes._id;
                 if (userWorker.isAdminLoggedIn() || userWorker.isThisMyProfile(model, currentUserId)) {
 //                    $('.progress-bar').addClass('active');

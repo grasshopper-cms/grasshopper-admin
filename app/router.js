@@ -36,6 +36,7 @@ define([
 
             routes : {
                 'login' : 'displayLogin',
+                'logout': 'goLogout',
                 'user/:id' : 'displayUserDetail',
                 'home' : 'displayApp',
                 'users' : 'displayUsersIndex'
@@ -47,6 +48,7 @@ define([
 
             displayApp : displayApp,
             displayLogin : displayLogin,
+            goLogout: goLogout,
             displayUserDetail : displayUserDetail,
             user : userModel,
             navigate : navigate,
@@ -97,6 +99,7 @@ define([
         }
 
         function initialize () {
+            // TODO: remove after getting userDetailViewModel sorted out
             window.router = this;
             var oldSet = Backbone.Collection.prototype.set;
 
@@ -137,6 +140,12 @@ define([
             headerView.rivetView();
 
             return this;
+        }
+
+        function goLogout () {
+            localStorage.authToken = '';
+            this.user.clear();
+            this.navigate('login', {trigger: true});
         }
 
         function displayLogin () {
