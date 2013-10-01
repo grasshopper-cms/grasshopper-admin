@@ -2,6 +2,9 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
     function (api, $, EmptyView, emptyViewConfig, resources,  UserModel) {
         'use strict';
 
+        /**
+         * @class loginWorker
+         */
         return {
             doLogin : doLogin
         };

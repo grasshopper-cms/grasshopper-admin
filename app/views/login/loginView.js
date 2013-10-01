@@ -1,6 +1,15 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'loginWorker'], function (BaseView, rivetView, loginWorker) {
+define(['baseView', 'rivetView', 'loginWorker'],
+    /**
+     * @param BaseView
+     * @param rivetView
+     * @param {loginWorker} loginWorker
+     */
+    function (BaseView, rivetView, loginWorker) {
 
+        /**
+         * @class LoginView extends @BaseView
+         */
     var LoginView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#login', rivetPrefix : 'login', instaUpdateRivets : true}),
         login : login,
