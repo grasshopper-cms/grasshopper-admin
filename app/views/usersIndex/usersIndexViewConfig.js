@@ -7,7 +7,9 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel'], fun
         ModelType : UsersIndexViewModel,
         el : '#stage',
         templateHtml : templateHtml,
-        events : {}
+        events : {
+            'click a.pagination_pages' : 'goToPage'
+        }
     };
 
 });

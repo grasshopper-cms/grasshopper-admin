@@ -75,9 +75,17 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
 
         function getUsers (view, options) {
             var userCollection = new UserCollection();
-            view.model.set('users', userCollection);
-            userCollection.fetch(options);
 
+            userCollection.fetch(options)
+                .done(function(){
+                    view.model.set({
+                        users : userCollection,
+                        currentPage : userCollection.get('currentPage'),
+                        totalResults : userCollection.get('totalResults'),
+                        totalPages : userCollection.get('totalPages'),
+                        pages : userCollection.get('pages')
+                    });
+                });
         }
 
     });
