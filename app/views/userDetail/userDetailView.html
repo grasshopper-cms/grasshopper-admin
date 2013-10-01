@@ -35,7 +35,15 @@
                         <div class="large-9 columns editable">
                             <div class="row">
                                 <div class="large-10 columns attribute">
-                                    <input id="role" type="text" value="data.role" data-userdetail-value="data.role"/>
+                                    <form class="custom">
+                                        <select id="role" class="custom dropdown" data-userdetail-value="data.role">
+                                            <option>editor</option>
+                                            <option>author</option>
+                                            <option>reader</option>
+                                            <option>admin</option>
+                                            <option>none</option>
+                                        </select>
+                                    </form>
                                     <div class="progress-container"><div class="role progress-bar"></div></div>
                                 </div>
                                 <div class="large-2 columns">
