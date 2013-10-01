@@ -1,4 +1,4 @@
-define(['masseuseModel', 'userWorker'], function (Model, userWorker) {
+define(['masseuseModel', 'userWorker', 'jquery', 'baseView', 'resources'], function (Model, userWorker, $, BaseView, resources) {
     return Model.extend({
         defaults: {
             name : null,
@@ -9,8 +9,21 @@ define(['masseuseModel', 'userWorker'], function (Model, userWorker) {
             login : null,
             password : null
         },
-        syncModel : function() {
-            userWorker.saveUser();
+        initialize : function() {
+            this.on('change', function(model) {
+                var  currentUserId =  window.router.user.attributes._id;
+                if (userWorker.isAdminLoggedIn() || userWorker.isThisMyProfile(model, currentUserId)) {
+//                    $('.progress-bar').addClass('active');
+                    userWorker.updateUserDetails(model)
+                        .done(function(data) {
+//                            console.log('Something Worked');
+                        }).fail( function(xhr) {
+                            BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
+                        }).always( function() {
+//                            $('.progress-bar').removeClass('active');
+                        });
+                }
+            });
         }
     });
 

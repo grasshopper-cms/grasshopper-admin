@@ -24,8 +24,20 @@
                 }
             }
         }
+        .progress-container {
+            position: relative;
+            top: -14px;
+            height: 4px;
+            .progress-bar {
+                background-color: $green;
+                width: 0;
+                height: 100%;
+            }
+            .active {
+                -webkit-transition: width 3s;
+                -webkit-transition-timing-function: linear;
+                width: 100%;
+            }
+        }
     }
-
 }
-
-

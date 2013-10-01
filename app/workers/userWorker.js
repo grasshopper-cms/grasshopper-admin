@@ -10,7 +10,9 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
             isThisMyProfile : isThisMyProfile,
             getProfileData : getProfileData,
             getUsers : getUsers,
-            saveUser : saveUser
+            isAdminLoggedIn : isAdminLoggedIn,
+            updateUserDetails : updateUserDetails
+
         };
 
         function getCurrentUserDetails (UserModel) {
@@ -34,10 +36,14 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
             }
         }
 
-        //THIS IS NOT YET IMPLEMENTED NEEDS TO BE FINISHED WHEN THERE ARE METHODS PRESENT TO SAVE A USER
-        function saveUser() {
-            console.log('saving User');
+        function isAdminLoggedIn() {
+            return window.router.user.attributes.isAdmin;
         }
+
+        function updateUserDetails(model) {
+            return api.saveUser(model);
+        }
+
         /**
          *  Runner method for getting user details.
          *  Decides if you are a user accessing your own account, or if you are an admin accessing someone else's.

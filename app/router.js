@@ -151,7 +151,6 @@ define([
             // Display the app.
             var emptyView = newView(EmptyView, emptyViewConfig);
             emptyView.start();
-
             emptyView.rivetView();
         }
 
@@ -162,6 +161,8 @@ define([
                     userDetailView.start();
                     userDetailView.rivetView();
                     userDetailView.model.set(data);
+//                    userDetailView.model.set(data, {silent: true});
+
                 })
                 .fail(function (xhr) {
                     BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);

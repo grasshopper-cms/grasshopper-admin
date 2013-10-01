@@ -17,7 +17,7 @@ define(['resources', 'base64'], function (resources, base64) {
             return userModel.fetch();
         },
         saveUser : function (userModel) {
-            return userModel.save();
+            return this.post(resources.api.users.url, userModel.attributes);
         },
         request : function (url) {
             var token = localStorage.authToken;
@@ -36,6 +36,16 @@ define(['resources', 'base64'], function (resources, base64) {
         },
         getUsers : function() {
             return this.request(resources.api.users.url);
+        },
+        post : function(url, payload) {
+            var token = localStorage.authToken;
+            return $.ajax({
+                dataType : 'json',
+                url : url,
+                type : 'PUT',
+                headers : {'Authorization' : 'Token ' + token},
+                data : payload
+            });
         }
     };
 
