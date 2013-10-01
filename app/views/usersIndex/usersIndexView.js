@@ -13,5 +13,6 @@ define(['baseView', 'rivetView', 'userWorker'], function (BaseView, rivetView, u
            }
        });
     }
+    
     return usersIndexView;
 });

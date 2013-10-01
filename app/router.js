@@ -176,7 +176,7 @@ define([
 
         function newView (ViewType, config, bypass) {
             if (currentView) {
-                if (currentView.options.name !== config.name && ! bypass) {
+                if (currentView.options.name !== config.name || bypass) {
                     currentView = new ViewType(config);
                 }
             } else {
