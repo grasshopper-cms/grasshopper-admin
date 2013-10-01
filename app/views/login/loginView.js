@@ -5,26 +5,26 @@ define(['baseView', 'rivetView', 'loginWorker'],
      * @param rivetView
      * @param {loginWorker} loginWorker
      */
-    function (BaseView, rivetView, loginWorker) {
+        function (BaseView, rivetView, loginWorker) {
 
         /**
          * @class LoginView extends @BaseView
          */
-    var LoginView = BaseView.extend({
-        rivetView : rivetView({rivetScope : '#login', rivetPrefix : 'login', instaUpdateRivets : true}),
-        login : login,
-        throwLoginError : throwLoginError
-    });
+        var LoginView = BaseView.extend({
+            rivetView : rivetView({rivetScope : '#login', rivetPrefix : 'login', instaUpdateRivets : true}),
+            login : login,
+            throwLoginError : throwLoginError
+        });
 
-    function login () {
-        if (this.model.isValid()) {
-            loginWorker.doLogin(this);
+        function login () {
+            if (this.model.isValid()) {
+                loginWorker.doLogin(this);
+            }
         }
-    }
 
-    function throwLoginError(xhr) {
-        this.displayAlertBox(xhr);
-    }
+        function throwLoginError(xhr) {
+            this.displayAlertBox(xhr);
+        }
 
-    return LoginView;
-});
+        return LoginView;
+    });
