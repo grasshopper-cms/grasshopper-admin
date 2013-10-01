@@ -1,5 +1,5 @@
-define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
-    function (api, resources, UserModel, Backbone, UserCollection) {
+define(['api', 'resources', 'UserModel', 'backbone', 'userCollection', 'baseView',  'userDetailView'],
+    function (api, resources, UserModel, Backbone, UserCollection, BaseView, userDetailView) {
         'use strict';
 
         return {
@@ -10,8 +10,8 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
             isThisMyProfile : isThisMyProfile,
             getProfileData : getProfileData,
             getUsers : getUsers,
-            isAdminLoggedIn : isAdminLoggedIn,
-            updateUserDetails : updateUserDetails
+            updateUserDetails : updateUserDetails,
+            updateModel : updateModel
 
         };
 
@@ -36,8 +36,17 @@ define(['api', 'resources', 'UserModel', 'backbone', 'userCollection'],
             }
         }
 
-        function isAdminLoggedIn() {
-            return window.router.user.attributes.isAdmin;
+        function updateModel(model) {
+            var  currentUserId =  BaseView.prototype.app.user.attributes._id;
+            if (isValidProfileEditor(model) || isThisMyProfile(model, currentUserId)) {
+                updateUserDetails(model)
+                    .done(function(data) {
+                        userDetailView.displaySuccessfulSave(data);
+                    }).fail( function(xhr) {
+                        userDetailView.displaySaveError(xhr);
+                    }).always( function() {
+                    });
+            }
         }
 
         function updateUserDetails(model) {

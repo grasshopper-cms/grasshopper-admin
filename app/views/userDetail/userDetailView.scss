@@ -6,9 +6,6 @@
     .listItem {
         .editable {
 
-            .editLink {
-                visibility: hidden;
-            }
             .saving {
                 visibility: hidden;
             }
@@ -18,9 +15,6 @@
 
             &:hover {
                 .attribute {
-                }
-                .editLink {
-                  visibility: visible;
                 }
             }
         }
