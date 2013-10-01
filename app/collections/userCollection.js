@@ -28,10 +28,10 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
         var args = Array.prototype.slice.call(arguments, 0);
         var fetchOptions = {};
 
-        fetchOptions.data = (fetchOptions.data || {
+        fetchOptions.data =  {
             limit : defaults.limit,
             skip : defaults.skip
-        });
+        };
 
         fetchOptions.headers = {
             'Authorization' : 'Token ' + localStorage.authToken
@@ -41,21 +41,25 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
 
             collection.put('totalResults', response.total);
             collection.put('totalPages', Math.ceil(response.total / defaults.limit));
-            collection.put('currentPage', options.data.skip + 1);
+            collection.put('currentPage', (options.data.skip / 5) + 1);
 
             var pages = _.range(1, collection.get('totalPages') + 1);
 
             pages = _.map(pages, function(page){
                 return {
                     page : page,
-                    current : (page == options.data.skip + 1)
+                    current : (page == (options.data.skip / 5) + 1)
                 };
             });
 
             collection.put('pages',pages);
         };
 
-        _.extend(fetchOptions, options);
+        if (options) {
+            _.extend(fetchOptions.data, options.data);
+            _.extend(fetchOptions.headers, options.headers);
+            _.extend(fetchOptions.success, options.success);
+        }
         args[0] = fetchOptions;
         return Backbone.Collection.prototype.fetch.apply(this, args);
     }
