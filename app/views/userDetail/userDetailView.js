@@ -2,7 +2,7 @@
 define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], function (BaseView, rivetView, resources, userWorker, _) {
 
         var userDetailView = BaseView.extend({
-            rivetView : rivetView({rivetScope : '#userDetail', rivetPrefix : 'userdetail', instaUpdateRivets : true}),
+            rivetView : rivetView({rivetScope : '#userDetail', rivetPrefix : 'userdetail', instaUpdateRivets : false}),
             displaySuccessfulSave : displaySuccessfulSave,
             displaySaveError : displaySaveError,
             updateModel : updateModel,
