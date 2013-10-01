@@ -36,66 +36,50 @@ define([
 
             routes : {
                 'login' : 'displayLogin',
-                'logout': 'goLogout',
+                'logout' : 'goLogout',
                 'user/:id' : 'displayUserDetail',
                 'home' : 'displayApp',
-                'users' : 'displayUsersIndex'
+                'users(/page:number)' : 'displayUsersIndex'
             },
 
-            navigateTrigger: navigateTrigger,
-            navigateNinja: navigateNinja,
-            navigateDeferred: navigateDeferred,
+            navigateTrigger : navigateTrigger,
+            navigateNinja : navigateNinja,
+            navigateDeferred : navigateDeferred,
 
             displayApp : displayApp,
             displayLogin : displayLogin,
-            goLogout: goLogout,
+            goLogout : goLogout,
             displayUserDetail : displayUserDetail,
             user : userModel,
             navigate : navigate,
             displayUsersIndex : displayUsersIndex
         });
 
-        function navigateTrigger(fragment, options) {
+        function navigateTrigger (fragment, options) {
             options = options || {};
             options.trigger = true;
             this.navigate(fragment, options);
         }
 
-        function navigateNinja(fragment, options) {
+        function navigateNinja (fragment, options) {
             options = options || {};
             options.replace = true;
             this.navigate(fragment, options);
         }
 
-        function navigateDeferred(fragment, options) {
+        function navigateDeferred (fragment, options) {
             options = options || {};
             options.deferred = true;
             this.navigate(fragment, options);
         }
 
         function navigate (fragment, options) {
-            var self = this,
-                args = arguments,
-                $deferred;
 
-            //TODO: this doesn't work
-            if (options && options.async) {
-                delete options.async;
-                $deferred = new $.Deferred();
-                $deferred.done(function() {
-                    if (currentView && currentView.destroy) {
-                        currentView.destroy();
-                    }
-                    Backbone.Router.prototype.navigate.apply(self, args);
-                });
-            } else {
-                if (currentView && currentView.destroy) {
-                    currentView.destroy();
-                }
-                Backbone.Router.prototype.navigate.apply(this, arguments);
+            if (currentView && currentView.destroy) {
+                currentView.destroy();
             }
+            Backbone.Router.prototype.navigate.apply(this, arguments);
 
-            return $deferred;
         }
 
         function initialize () {
@@ -114,7 +98,7 @@ define([
                 alertBoxView.rivetView();
             };
 
-            Backbone.Collection.prototype.set = function(data, options) {
+            Backbone.Collection.prototype.set = function (data, options) {
                 if (data && data.results) {
                     data = data.results;
                 }
@@ -145,7 +129,7 @@ define([
         function goLogout () {
             localStorage.authToken = '';
             this.user.clear();
-            this.navigate('login', {trigger: true});
+            this.navigate('login', {trigger : true});
         }
 
         function displayLogin () {
@@ -178,14 +162,27 @@ define([
                 });
         }
 
-        function displayUsersIndex () {
+        function displayUsersIndex (pageNumber) {
             var usersIndexView = newView(UsersIndexView, usersIndexViewConfig);
             usersIndexView.start();
             usersIndexView.rivetView();
+
+            if (pageNumber) {
+                usersIndexView.goToPage(pageNumber);
+            } else {
+                usersIndexView.goToPage(1);
+            }
         }
 
-        function newView(ViewType, config) {
-            currentView = new ViewType(config);
+        function newView (ViewType, config, bypass) {
+            if (currentView) {
+                if (currentView.options.name !== config.name && ! bypass) {
+                    currentView = new ViewType(config);
+                }
+            } else {
+                currentView = new ViewType(config);
+            }
+
             return currentView;
         }
 

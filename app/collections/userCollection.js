@@ -48,7 +48,8 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
             pages = _.map(pages, function(page){
                 return {
                     page : page,
-                    current : (page == (options.data.skip / 5) + 1)
+                    current : (page == (options.data.skip / 5) + 1),
+                    link : '#users/page' + page
                 };
             });
 
