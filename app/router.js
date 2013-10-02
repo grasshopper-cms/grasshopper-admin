@@ -44,7 +44,7 @@ define([
                 '*path': 'goHome'
             },
 
-            beforeRoutingFailure: beforeRoutingFailure,
+            onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
             excludeFromBeforeRouting : ['login'],
 
@@ -62,7 +62,7 @@ define([
             displayUsersIndex : displayUsersIndex
         });
 
-        function beforeRoutingFailure () {
+        function onRouteFail () {
             this.navigateTrigger('login');
         }
 
@@ -120,7 +120,9 @@ define([
 
         function navigate (fragment, options) {
 
+            // Move in to masseuse
             if (currentView && currentView.destroy) {
+                // (and override destroy in GH to remove alerts)
                 currentView.destroy();
             }
             Backbone.Router.prototype.navigate.apply(this, arguments);

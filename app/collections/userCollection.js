@@ -18,6 +18,7 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
         put : function (prop, value) {
             this._paginator[prop] = value;
         },
+        // TODO: rename to something that is not taken already
         get : function (prop) {
             return this._paginator[prop];
         }
