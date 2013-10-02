@@ -12,6 +12,7 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
         });
 
         function beforeRender() {
+            this.model.set('isAdmin', this.app.user.get('isAdmin'));
             this.listenTo(this.model, 'change', this.updateModel);
             this.listenTo(this.model, 'change:name', this.updateNameInHeader);
             this.listenTo(this.model, 'change:enabledText', this.updateEnabled);
