@@ -17,7 +17,7 @@ define(['resources', 'base64', 'underscore'], function (resources, base64, _) {
             return userModel.fetch();
         },
         saveUser : function (userModel) {
-            return this.post(resources.api.users.url, _.omit(userModel.attributes, ['roles', 'isAdmin', 'enabledText']));
+            return this.post(resources.api.users.url, _.omit(userModel.attributes, userModel.attributesToIgnore));
         },
         request : function (url) {
             var token = localStorage.authToken;
