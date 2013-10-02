@@ -44,6 +44,7 @@ define([
                 '*path': 'goHome'
             },
 
+            beforeRoutingFailure: beforeRoutingFailure,
             beforeRouting : beforeRouting,
             excludeFromBeforeRouting : ['login'],
 
@@ -61,8 +62,9 @@ define([
             displayUsersIndex : displayUsersIndex
         });
 
-        var oldBind = Router.prototype._bindRoutes;
-        Router.prototype._bindRoutes = function() {};
+        function beforeRoutingFailure () {
+            this.navigateTrigger('login');
+        }
 
         function beforeRouting () {
             var $deferred = new $.Deferred(),
@@ -129,25 +131,7 @@ define([
             var self = this,
                 oldSet = Backbone.Collection.prototype.set;
 
-            if (this.beforeRouting) {
-                _(this.routes).chain()
-                    .omit(this.excludeFromBeforeRouting)
-                    .each(function (methodName) {
-                        var oldMethod = self[methodName];
-
-                        self[methodName] = function () {
-                            var args = arguments;
-
-                            this.beforeRouting()
-                                .done(function () {
-                                    oldMethod.apply(self, args);
-                                })
-                                .fail(function () {
-                                    self.navigateTrigger('login');
-                                });
-                        };
-                    });
-            }
+            MasseuseRouter.prototype.initialize.apply(this, arguments);
 
             // TODO: remove after getting userDetailViewModel sorted out
             window.router = this;
@@ -169,8 +153,6 @@ define([
                 }
                 oldSet.call(this, data, options);
             };
-            Router.prototype._bindRoutes = oldBind;
-            this._bindRoutes();
         }
 
         function start () {
