@@ -7,12 +7,14 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
             displaySaveError : displaySaveError,
             updateModel : updateModel,
             beforeRender : beforeRender,
-            updateNameInHeader : updateNameInHeader
+            updateNameInHeader : updateNameInHeader,
+            updateEnabled : updateEnabled
         });
 
         function beforeRender() {
             this.listenTo(this.model, 'change', this.updateModel);
             this.listenTo(this.model, 'change:name', this.updateNameInHeader);
+            this.listenTo(this.model, 'change:enabledText', this.updateEnabled);
         }
 
         function updateModel(model) {
@@ -32,6 +34,14 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
         function updateNameInHeader(model) {
             if(userWorker.isThisMyProfile(model, this.app.user.get('_id'))) {
                 this.app.user.set('name', model.get('name'));
+            }
+        }
+
+        function updateEnabled(model) {
+            if(model.get('enabledText') === 'enabled') {
+                model.set('enabled', 'true');
+            } else {
+                model.set('enabled', 'false');
             }
         }
 

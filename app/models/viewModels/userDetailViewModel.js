@@ -1,15 +1,21 @@
-define(['masseuseModel'], function (Model) {
+define(['masseuseModel', 'computedProperty'], function (Model, ComputedProperty) {
     return Model.extend({
         defaults: {
-            name : null,
-            role : null,
-            enabled : null,
-            email : null,
-            id : null,
-            login : null,
-            password : null
+            name : '',
+            role : '',
+            enabled : '',
+            email : '',
+            id : '',
+            login : '',
+            password : '',
+            enabledText : new ComputedProperty(['enabled'], setEnabledText)
         },
         initialize : function() {}
     });
+
+    function setEnabledText(attribute) {
+        // Returns the text Enabled or Disabled to set the enabledText for use in the drop downs in the view.
+        return attribute === 'true' ? 'enabled' : 'disabled';
+    }
 
 });

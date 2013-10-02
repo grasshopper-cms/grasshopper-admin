@@ -6,6 +6,9 @@
     .listItem {
         .editable {
 
+            .editing {
+            }
+
             .saving {
                 opacity: 0;
                 -webkit-transition: opacity 1s;
