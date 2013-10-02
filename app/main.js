@@ -29,6 +29,7 @@ require.config({
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
 
         // Routers
+        masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
         router : 'router',
 
         // Foundation Dependencies

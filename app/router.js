@@ -1,6 +1,7 @@
 /*global define*/
 define([
     'backbone',
+    'masseuseRouter',
     'loginView',
     'loginViewConfig',
     'api',
@@ -21,16 +22,16 @@ define([
     'usersIndexView',
     'usersIndexViewConfig'
 ],
-    function (Backbone, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig) {
+    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig) {
 
         var userModel = new UserModel(),
             currentView;
 
         /**
          * @class Router
-         * @extends Backbone.Router
+         * @extends MasseuseRouter
          */
-        var Router = Backbone.Router.extend({
+        var Router = MasseuseRouter.extend({
             initialize : initialize,
             start : start,
 
@@ -39,7 +40,8 @@ define([
                 'logout' : 'goLogout',
                 'user/:id' : 'displayUserDetail',
                 'home' : 'displayApp',
-                'users(/page/:number)' : 'displayUsersIndex'
+                'users(/page/:number)' : 'displayUsersIndex',
+                '*path': 'goHome'
             },
 
             beforeRouting : beforeRouting,
@@ -49,6 +51,7 @@ define([
             navigateNinja : navigateNinja,
             navigateDeferred : navigateDeferred,
 
+            goHome : goHome,
             displayApp : displayApp,
             displayLogin : displayLogin,
             goLogout : goLogout,
@@ -58,26 +61,8 @@ define([
             displayUsersIndex : displayUsersIndex
         });
 
-        if (Router.prototype.beforeRouting) {
-            _(Router.prototype.routes).chain()
-                .omit(Router.prototype.excludeFromBeforeRouting)
-                .each(function (methodName) {
-                    var oldMethod = Router.prototype[methodName];
-
-                    Router.prototype[methodName] = function () {
-                        var self = this,
-                            args = arguments;
-
-                        this.beforeRouting()
-                            .done(function () {
-                                oldMethod.apply(self, args);
-                            })
-                            .fail(function () {
-                                self.navigateTrigger('login');
-                            });
-                    };
-                });
-        }
+        var oldBind = Router.prototype._bindRoutes;
+        Router.prototype._bindRoutes = function() {};
 
         function beforeRouting () {
             var $deferred = new $.Deferred(),
@@ -141,9 +126,31 @@ define([
         }
 
         function initialize () {
+            var self = this,
+                oldSet = Backbone.Collection.prototype.set;
+
+            if (this.beforeRouting) {
+                _(this.routes).chain()
+                    .omit(this.excludeFromBeforeRouting)
+                    .each(function (methodName) {
+                        var oldMethod = self[methodName];
+
+                        self[methodName] = function () {
+                            var args = arguments;
+
+                            this.beforeRouting()
+                                .done(function () {
+                                    oldMethod.apply(self, args);
+                                })
+                                .fail(function () {
+                                    self.navigateTrigger('login');
+                                });
+                        };
+                    });
+            }
+
             // TODO: remove after getting userDetailViewModel sorted out
             window.router = this;
-            var oldSet = Backbone.Collection.prototype.set;
 
             BaseView.prototype.app = {
                 router : this,
@@ -162,7 +169,8 @@ define([
                 }
                 oldSet.call(this, data, options);
             };
-
+            Router.prototype._bindRoutes = oldBind;
+            this._bindRoutes();
         }
 
         function start () {
@@ -185,6 +193,10 @@ define([
             var loginView = newView(LoginView, loginViewConfig);
             loginView.start();
             loginView.rivetView();
+        }
+
+        function goHome () {
+            this.navigateTrigger('home');
         }
 
         function displayApp () {
