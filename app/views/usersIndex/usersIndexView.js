@@ -9,7 +9,7 @@ define(['baseView', 'rivetView', 'userWorker'], function (BaseView, rivetView, u
     function goToPage (page) {
        userWorker.getUsers(this, {
            data : {
-               skip : (page -1) * 5
+               page : page
            }
        });
     }

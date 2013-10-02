@@ -1,8 +1,8 @@
 define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, resources) {
 
     var defaults = {
-        limit : 5,
-        skip : 0,
+        pageSize : 5,
+        skipPages : 0,
         url : resources.api.users.url
     };
 
@@ -29,8 +29,8 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
         var fetchOptions = {};
 
         fetchOptions.data =  {
-            limit : defaults.limit,
-            skip : defaults.skip
+            limit : defaults.pageSize,
+            skip : defaults.skipPages
         };
 
         fetchOptions.headers = {
@@ -40,15 +40,15 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
         fetchOptions.success = function (collection, response, options) {
 
             collection.put('totalResults', response.total);
-            collection.put('totalPages', Math.ceil(response.total / defaults.limit));
-            collection.put('currentPage', (options.data.skip / 5) + 1);
+            collection.put('totalPages', Math.ceil(response.total / defaults.pageSize));
+            collection.put('currentPage', options.data.skip);
 
             var pages = _.range(1, collection.get('totalPages') + 1);
 
             pages = _.map(pages, function(page){
                 return {
                     page : page,
-                    current : (page == (options.data.skip / 5) + 1),
+                    current : (page == (options.data.skip / options.data.limit) + 1),
                     link : '#users/page/' + page
                 };
             });
@@ -57,7 +57,7 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
         };
 
         if (options) {
-            _.extend(fetchOptions.data, options.data);
+            _.extend(fetchOptions.data, options.data, {skip: (options.data.page - 1)*defaults.pageSize});
             _.extend(fetchOptions.headers, options.headers);
             _.extend(fetchOptions.success, options.success);
         }
