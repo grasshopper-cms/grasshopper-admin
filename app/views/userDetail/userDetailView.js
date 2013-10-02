@@ -6,11 +6,13 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
             displaySuccessfulSave : displaySuccessfulSave,
             displaySaveError : displaySaveError,
             updateModel : updateModel,
-            beforeRender : beforeRender
+            beforeRender : beforeRender,
+            updateNameInHeader : updateNameInHeader
         });
 
         function beforeRender() {
             this.listenTo(this.model, 'change', this.updateModel);
+            this.listenTo(this.model, 'change:name', this.updateNameInHeader);
         }
 
         function updateModel(model) {
@@ -22,8 +24,13 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
                 .done(function(data) {
                     displaySuccessfulSave(changedElement, changedElementIcon);
                 }).fail(function(xhr) {
+                    console.log(xhr);
                     displaySaveError.call(self, xhr);
                 });
+        }
+
+        function updateNameInHeader(model) {
+            this.app.user.set('name', model.get('name'));
         }
 
         function displaySuccessfulSave(changedElement, changedElementIcon) {
