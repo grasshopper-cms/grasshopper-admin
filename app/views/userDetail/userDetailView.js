@@ -13,11 +13,12 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
             this.listenTo(this.model, 'change', this.updateModel);
         }
 
-        function updateModel() {
-            var changedElement = $('.' + _.keys(this.model.changed)[0] + '.progress-bar'),
-                changedElementIcon = $('.' + _.keys(this.model.changed)[0] + '.saving'),
+        function updateModel(model) {
+            var key = _.keys(model.changed)[0],
+                changedElement = $('.' + key + '.progress-bar'),
+                changedElementIcon = $('.' + key + '.saving'),
                 self = this;
-            userWorker.updateModel(this.model, this.app.user)
+            userWorker.updateModel(model, this.app.user)
                 .done(function(data) {
                     displaySuccessfulSave(changedElement, changedElementIcon);
                 }).fail(function(xhr) {
