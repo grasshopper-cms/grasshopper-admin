@@ -37,11 +37,11 @@
                                 <div class="large-10 columns attribute">
                                     <form class="custom">
                                         <select id="role" class="custom dropdown" data-userdetail-enabled="data.isAdmin" data-userdetail-value="data.role">
-                                            <option>editor</option>
-                                            <option>author</option>
-                                            <option>reader</option>
-                                            <option>admin</option>
-                                            <option>none</option>
+                                            <option>{{data.roles.editor}}</option>
+                                            <option>{{data.roles.author}}</option>
+                                            <option>{{data.roles.reader}}</option>
+                                            <option>{{data.roles.admin}}</option>
+                                            <option>{{data.roles.none}}</option>
                                         </select>
                                     </form>
                                     <div class="progress-container"><div class="role progress-bar"></div></div>

@@ -5,7 +5,6 @@ define(['masseuseModel', 'computedProperty'], function (Model, ComputedProperty)
             role : '',
             enabled : '',
             email : '',
-            id : '',
             login : '',
             password : '',
             enabledText : new ComputedProperty(['enabled'], setEnabledText)
