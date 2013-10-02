@@ -30,7 +30,9 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
         }
 
         function updateNameInHeader(model) {
-            this.app.user.set('name', model.get('name'));
+            if(userWorker.isThisMyProfile(model, this.app.user.get('_id'))) {
+                this.app.user.set('name', model.get('name'));
+            }
         }
 
         function displaySuccessfulSave(changedElement, changedElementIcon) {
