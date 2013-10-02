@@ -1,4 +1,4 @@
-define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, resources) {
+define(['backbone', 'UserModel', 'resources', 'underscore'], function (Backbone, UserModel, resources, _) {
 
     return Backbone.Collection.extend({
         // make sure you override this empty config with necessary information
@@ -17,6 +17,9 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
         },
         grab : function (prop) {
             return this._paginator[prop];
+        },
+        comparator : function (model) {
+            return model.get(_.keys(model.attributes)[0]); // default comparator sorts by first attribute in model
         }
 
     });
