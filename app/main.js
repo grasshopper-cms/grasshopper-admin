@@ -75,6 +75,7 @@ require.config({
         userWorker : 'workers/userWorker',
 
         // Collections
+        paginatedCollection : 'collections/paginatedCollection',
         userCollection : 'collections/userCollection',
 
         // Api proxy
