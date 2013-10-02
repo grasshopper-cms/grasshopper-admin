@@ -12,14 +12,16 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
         url : defaults.url,
         totalResults : null,
         currentPage : null,
+        comparator : function (model) {
+            return model.get('name');
+        },
         initialize : function () {
             this._paginator = {};
         },
         put : function (prop, value) {
             this._paginator[prop] = value;
         },
-        // TODO: rename to something that is not taken already
-        get : function (prop) {
+        grab : function (prop) {
             return this._paginator[prop];
         }
 
@@ -29,7 +31,7 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
         var args = Array.prototype.slice.call(arguments, 0);
         var fetchOptions = {};
 
-        fetchOptions.data =  {
+        fetchOptions.data = {
             limit : defaults.pageSize,
             skip : defaults.skipPages
         };
@@ -42,11 +44,11 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
 
             collection.put('totalResults', response.total);
             collection.put('totalPages', Math.ceil(response.total / defaults.pageSize));
-            collection.put('currentPage', options.data.skip);
+            collection.put('currentPage', (options.data.skip / options.data.limit) + 1);
 
-            var pages = _.range(1, collection.get('totalPages') + 1);
+            var pages = _.range(1, collection.grab('totalPages') + 1);
 
-            pages = _.map(pages, function(page){
+            pages = _.map(pages, function (page) {
                 return {
                     page : page,
                     current : (page == (options.data.skip / options.data.limit) + 1),
@@ -54,11 +56,11 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
                 };
             });
 
-            collection.put('pages',pages);
+            collection.put('pages', pages);
         };
 
         if (options) {
-            _.extend(fetchOptions.data, options.data, {skip: (options.data.page - 1)*defaults.pageSize});
+            _.extend(fetchOptions.data, options.data, {skip : (options.data.page - 1) * defaults.pageSize});
             _.extend(fetchOptions.headers, options.headers);
             _.extend(fetchOptions.success, options.success);
         }

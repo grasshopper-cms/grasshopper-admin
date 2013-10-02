@@ -20,6 +20,7 @@ define(['baseView', 'rivetView', 'loginWorker'],
             if (this.model.isValid()) {
                 loginWorker.doLogin(this);
             }
+            return false;
         }
 
         function throwLoginError(xhr) {
