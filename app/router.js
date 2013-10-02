@@ -42,6 +42,9 @@ define([
                 'users(/page/:number)' : 'displayUsersIndex'
             },
 
+            beforeRouting : beforeRouting,
+            excludeFromBeforeRouting : ['login'],
+
             navigateTrigger : navigateTrigger,
             navigateNinja : navigateNinja,
             navigateDeferred : navigateDeferred,
@@ -54,6 +57,61 @@ define([
             navigate : navigate,
             displayUsersIndex : displayUsersIndex
         });
+
+        if (Router.prototype.beforeRouting) {
+            _(Router.prototype.routes).chain()
+                .omit(Router.prototype.excludeFromBeforeRouting)
+                .each(function (methodName) {
+                    var oldMethod = Router.prototype[methodName];
+
+                    Router.prototype[methodName] = function () {
+                        var self = this,
+                            args = arguments;
+
+                        this.beforeRouting()
+                            .done(function () {
+                                oldMethod.apply(self, args);
+                            })
+                            .fail(function () {
+                                self.navigateTrigger('login');
+                            });
+                    };
+                });
+        }
+
+        function beforeRouting () {
+            var $deferred = new $.Deferred(),
+                self = this;
+
+            if (localStorage.authToken) {
+
+                if (!this.user.get('_id')) {
+                    Api.authenticateToken(localStorage.authToken)
+                        .done(function (data) {
+                            self.user.set({
+                                _id : data._id,
+                                email : data.email,
+                                enabled : data.enabled,
+                                login : data.login,
+                                name : data.name,
+                                password : data.password,
+                                role : data.role
+                            });
+                            $deferred.resolve();
+                        })
+                        .fail(function () {
+                            $deferred.reject();
+                        });
+                } else {
+                    $deferred.resolve();
+                }
+
+            } else {
+                $deferred.reject();
+            }
+
+            return $deferred.promise();
+        }
 
         function navigateTrigger (fragment, options) {
             options = options || {};
@@ -113,26 +171,6 @@ define([
 
             headerView.start();
             headerView.rivetView();
-
-            if (localStorage.authToken) {
-                Api.authenticateToken(localStorage.authToken)
-                    .done(function (data) {
-                        headerView.app.user.set({
-                            _id : data._id,
-                            email : data.email,
-                            enabled : data.enabled,
-                            login : data.login,
-                            name : data.name,
-                            password : data.password,
-                            role : data.role
-                        });
-                    })
-                    .fail(function () {
-                        self.navigateTrigger('login');
-                    });
-            } else {
-                this.navigateTrigger('login');
-            }
 
             return this;
         }
