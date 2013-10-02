@@ -41,7 +41,10 @@ define({
             user : {
                 roles : {
                     admin : 'admin',
-                    reader : 'reader'
+                    reader : 'reader',
+                    editor : 'editor',
+                    author : 'author',
+                    none : 'none'
                 },
                 errors : {
                     403 : 'You do not have adequate permissions to view/edit this profile.'
