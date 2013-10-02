@@ -164,6 +164,7 @@ define([
             headerView.start();
             headerView.rivetView();
 
+
             return this;
         }
 

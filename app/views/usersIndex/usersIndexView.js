@@ -7,12 +7,13 @@ define(['baseView', 'rivetView', 'userWorker'], function (BaseView, rivetView, u
     });
 
     function goToPage (page) {
+
        userWorker.getUsers(this, {
            data : {
                page : page
            }
        });
     }
-    
+
     return usersIndexView;
 });

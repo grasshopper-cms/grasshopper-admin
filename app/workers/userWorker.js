@@ -80,11 +80,7 @@ define(['api', 'resources', 'UserModel', 'userCollection'],
             userCollection.fetch(options)
                 .done(function(){
                     view.model.set({
-                        users : userCollection,
-                        currentPage : userCollection.get('currentPage'),
-                        totalResults : userCollection.get('totalResults'),
-                        totalPages : userCollection.get('totalPages'),
-                        pages : userCollection.get('pages')
+                        users : userCollection
                     });
                 });
         }

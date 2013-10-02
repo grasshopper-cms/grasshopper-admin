@@ -18,8 +18,7 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
         put : function (prop, value) {
             this._paginator[prop] = value;
         },
-        // TODO: rename to something that is not taken already
-        get : function (prop) {
+        grab : function (prop) {
             return this._paginator[prop];
         }
 
@@ -42,9 +41,9 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
 
             collection.put('totalResults', response.total);
             collection.put('totalPages', Math.ceil(response.total / defaults.pageSize));
-            collection.put('currentPage', options.data.skip);
+            collection.put('currentPage', (options.data.skip / options.data.limit) + 1);
 
-            var pages = _.range(1, collection.get('totalPages') + 1);
+            var pages = _.range(1, collection.grab('totalPages') + 1);
 
             pages = _.map(pages, function(page){
                 return {
