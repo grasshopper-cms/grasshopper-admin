@@ -1,4 +1,4 @@
-define(['resources', 'base64'], function (resources, base64) {
+define(['resources', 'base64', 'underscore'], function (resources, base64, _) {
     'use strict';
 
     return {
@@ -17,7 +17,7 @@ define(['resources', 'base64'], function (resources, base64) {
             return userModel.fetch();
         },
         saveUser : function (userModel) {
-            return this.post(resources.api.users.url, userModel.attributes);
+            return this.post(resources.api.users.url, _.omit(userModel.attributes, ['roles', 'isAdmin', 'enabledText']));
         },
         request : function (url) {
             var token = localStorage.authToken;
