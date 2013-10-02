@@ -39,6 +39,15 @@ define({
             },
 
             user : {
+                userDetailHeaderText : 'Profile for: ',
+                attributeTitles : {
+                    name : 'USER NAME:',
+                    role : 'USER ROLE:',
+                    enabled : 'ENABLED?:',
+                    email : 'EMAIL:',
+                    login : 'LOGIN:',
+                    password : 'PASSWORD:'
+                },
                 roles : {
                     admin : 'admin',
                     reader : 'reader',

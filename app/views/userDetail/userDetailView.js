@@ -13,8 +13,8 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
 
         function beforeRender() {
             this.model.set('isAdmin', this.app.user.get('isAdmin'));
-            this.model.set('roles', resources.user.roles);
-            this.model.attributesToIgnore = ['roles', 'isAdmin', 'enabledText'];
+            this.model.set('resources', resources.user);
+            this.model.attributesToIgnore = ['isAdmin', 'enabledText', 'resources'];
 
             // Listeners
             this.listenTo(this.model, 'change', this.updateModel);
