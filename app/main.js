@@ -84,7 +84,8 @@ require.config({
         validation : 'validation/validation',
 
         // Resources File
-        resources : 'resources'
+        resources : 'resources',
+        constants : 'constants'
     }
 });
 
