@@ -32,8 +32,6 @@ define(['baseView', 'rivetView', 'resources', 'userWorker'], function (BaseView,
                     displaySaveError.call(self, xhr);
                 });
 
-//            userWorker.updateModel(this.model, this.app.user)
-
             return false;
         }
 

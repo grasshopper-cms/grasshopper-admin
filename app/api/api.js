@@ -16,9 +16,6 @@ define(['constants', 'base64', 'underscore'], function (constants, base64, _) {
         getUser : function (userModel) {
             return userModel.fetch();
         },
-        saveUser : function (userModel) {
-            return this.post(constants.api.users.url, _.omit(userModel.attributes, userModel.attributesToIgnore));
-        },
         request : function (url) {
             var token = localStorage.authToken;
             return $.ajax({
@@ -36,17 +33,8 @@ define(['constants', 'base64', 'underscore'], function (constants, base64, _) {
         },
         getUsers : function() {
             return this.request(constants.api.users.url);
-        },
-        post : function(url, payload) {
-            var token = localStorage.authToken;
-            return $.ajax({
-                dataType : 'json',
-                url : url,
-                type : 'PUT',
-                headers : {'Authorization' : 'Token ' + token},
-                data : payload
-            });
         }
+
     };
 
 });

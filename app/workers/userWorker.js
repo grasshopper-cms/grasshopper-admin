@@ -9,10 +9,7 @@ define(['api', 'resources', 'UserModel', 'userCollection'],
             getMyUserDetails : getMyUserDetails,
             isThisMyProfile : isThisMyProfile,
             getProfileData : getProfileData,
-            getUsers : getUsers,
-            updateUserDetails : updateUserDetails,
-            updateModel : updateModel
-
+            getUsers : getUsers
         };
 
         function getCurrentUserDetails (view) {
@@ -33,16 +30,6 @@ define(['api', 'resources', 'UserModel', 'userCollection'],
                         view.app.router.navigate('login');
                     });
             }
-        }
-
-        function updateModel(changedModel, currentLoggedInUser) {
-            if (isValidProfileEditor(currentLoggedInUser) || isThisMyProfile(currentLoggedInUser, changedModel.get('id'))) {
-                return updateUserDetails(changedModel);
-            }
-        }
-
-        function updateUserDetails(model) {
-            return api.saveUser(model);
         }
 
         /**
