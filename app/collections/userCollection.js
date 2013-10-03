@@ -8,10 +8,7 @@ define(['backbone', 'UserModel', 'constants', 'paginatedCollection'], function (
             pageLink : '#users/page/'
         },
         model : UserModel,
-        url : constants.api.users.url,
-        comparator : function (model) {
-            return model.get('name');
-        }
+        url : constants.api.users.url
     });
 
 });

@@ -17,21 +17,17 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
             this.model.attributesToIgnore = ['isAdmin', 'enabledText', 'resources'];
 
             // Listeners
-            this.listenTo(this.model, 'change', this.updateModel);
+//            this.listenTo(this.model, 'change', this.updateModel);
             this.listenTo(this.model, 'change:name', this.updateNameInHeader);
             this.listenTo(this.model, 'change:enabledText', this.updateEnabled);
         }
 
         function updateModel(model) {
-            var key = _.keys(model.changed)[0],
-                changedElement = $('.' + key + '.progress-bar'),
-                changedElementIcon = $('.' + key + '.saving'),
-                self = this;
-            userWorker.updateModel(model, this.app.user)
+            var self = this;
+            userWorker.updateModel(this.model, this.app.user)
                 .done(function(data) {
-                    displaySuccessfulSave(changedElement, changedElementIcon);
+                    displaySuccessfulSave();
                 }).fail(function(xhr) {
-                    console.log(xhr);
                     displaySaveError.call(self, xhr);
                 });
         }
@@ -50,17 +46,14 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
             }
         }
 
-        function displaySuccessfulSave(changedElement, changedElementIcon) {
-            var progressBar = changedElement,
-                savingIcon = changedElementIcon;
+        function displaySuccessfulSave() {
+            var progressBar = $('.progress-bar');
 
             progressBar.addClass('active');
-            savingIcon.addClass('visible');
             progressBar.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e){
                 progressBar.addClass('disappear');
                 progressBar.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e){
                     progressBar.removeClass('active').removeClass('disappear');
-                    savingIcon.removeClass('visible');
                 });
             });
         }

@@ -8,7 +8,10 @@ define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel'], fun
         ModelType : userDetailViewModel,
         modelData: {},
         el : '#stage',
-        templateHtml : templateHtml
+        templateHtml : templateHtml,
+        events : {
+            'click #saveUser' : 'updateModel'
+        }
     };
 
 });

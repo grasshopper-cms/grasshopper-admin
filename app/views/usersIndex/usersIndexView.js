@@ -3,8 +3,13 @@ define(['baseView', 'rivetView', 'userWorker'], function (BaseView, rivetView, u
 
     var usersIndexView = BaseView.extend({
         rivetView : rivetView({rivetScope : '#usersIndex', rivetPrefix : 'usersindex', instaUpdateRivets : true}),
-        goToPage : goToPage
+        goToPage : goToPage,
+        afterRender : afterRender
     });
+
+    function afterRender() {
+        $(document).foundation('forms');
+    }
 
     function goToPage (page) {
 

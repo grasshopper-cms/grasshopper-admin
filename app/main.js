@@ -11,6 +11,10 @@ require.config({
         alerts : {
             deps : ['foundation']
         },
+        forms : {
+            exports : 'Forms',
+            deps : ['foundation']
+        },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
@@ -34,6 +38,7 @@ require.config({
 
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alerts',
+        forms : 'vendor/foundation/js/foundation/foundation.forms',
 
         // Views
         baseView : 'vendor/masseuse/app/baseView',
@@ -93,7 +98,8 @@ require.config({
 require([
     'jquery',
     'router',
-    'alerts'
+    'alerts',
+    'forms'
 ],
     /**
      * @param $
