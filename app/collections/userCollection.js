@@ -1,14 +1,14 @@
-define(['backbone', 'UserModel', 'resources', 'paginatedCollection'], function (Backbone, UserModel, resources, PaginatedCollection) {
+define(['backbone', 'UserModel', 'constants', 'paginatedCollection'], function (Backbone, UserModel, constants, PaginatedCollection) {
 
     return PaginatedCollection.extend({
         paginationConfig : {
             pageSize : 5,
             skipPages : 0,
-            url : resources.api.users.url,
+            url : constants.api.users.url,
             pageLink : '#users/page/'
         },
         model : UserModel,
-        url : resources.api.users.url,
+        url : constants.api.users.url,
         comparator : function (model) {
             return model.get('name');
         }
