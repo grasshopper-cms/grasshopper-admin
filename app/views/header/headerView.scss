@@ -1,17 +1,17 @@
 #header {
-  border-bottom: 1px solid $gray;
+  border-bottom: 1px solid $headerBackground;
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   background-color: $blue;
   #header-partial {
-    background-color: $darkBlue;
-    -webkit-box-shadow: 0 1px 0 #28496b;
-    -moz-box-shadow: 0 1px 0 #28496b;
-    box-shadow: 0 1px 0 #28496b;
+    background-color: $headerPartialBackground;
+    -webkit-box-shadow: 0 1px 0 $headerBoxShadow;
+    -moz-box-shadow: 0 1px 0 $headerBoxShadow;
+    box-shadow: 0 1px 0 $headerBoxShadow;
 
     #logo-text {
-      color: #FFF;
+      color: $headerTextLogo;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
       display: inline-block;
       line-height: 5px;
@@ -30,15 +30,15 @@
 
     .top-bar {
       margin-bottom: 0px;
-      background-color: $darkBlue;
+      background-color: $headerTopBarBackground;
       .name h1 a {
-        color: $lightBlueText;
+        color: $linkImportant;
       }
       .top-bar-section li a:not(.button) {
-        background-color: $darkBlue;
+        background-color: $linkRegular;
       }
       .top-bar-section ul li>a {
-        color: $lightBlueText;
+        color: $linkImportant;
       }
     }
   }

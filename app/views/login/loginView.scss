@@ -4,18 +4,18 @@
 
   .login-button {
     @include button;
-    @include button-style($green);
+    @include button-style($buttonOkay);
     @include radius;
     @include single-transition;
     @include inset-shadow(true);
-    color: $offWhite;
+    color: $buttonText;
   }
 
   .loginContainer {
     @include radius;
-    border: 1px solid lightgray;
+    border: 1px solid $loginBorder;
     padding: 16px 28px 23px;
-    background-color: $offWhite;
+    background-color: $loginBackground;
   }
 
 }

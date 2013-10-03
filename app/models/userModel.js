@@ -1,9 +1,15 @@
-define(['masseuseModel', 'validation', 'computedProperty', 'resources'], function (Model, validation, ComputedProperty, resources) {
+define([
+    'masseuseModel',
+    'validation',
+    'computedProperty',
+    'resources',
+    'constants'
+], function (Model, validation, ComputedProperty, resources, constants) {
 
     'use strict';
     return Model.extend({
-        urlRoot : resources.api.user.url,
-        url : resources.api.user.url,
+        urlRoot : constants.api.user.url,
+        url : constants.api.user.url,
         defaults : {
             login : false,
             role : false,
@@ -21,7 +27,7 @@ define(['masseuseModel', 'validation', 'computedProperty', 'resources'], functio
                 return resources.user.roles.reader == attribute;
             }),
             urlLink : new ComputedProperty(['_id'], function (attribute) {
-                  return '#' + resources.api.user.shortUrl + attribute;
+                return '#' + constants.api.user.shortUrl + attribute;
             })
         }
     });

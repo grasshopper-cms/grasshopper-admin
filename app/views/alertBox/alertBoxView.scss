@@ -2,10 +2,10 @@
 
   .error {
     @include alert-base;
-    @include alert-style(#A00000);
+    @include alert-style($alertColor);
     .close {
       @include alert-close;
-      color: $offWhite;
+      color: $alertCloseColor;
       opacity: 90;
     }
   }

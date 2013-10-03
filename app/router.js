@@ -119,11 +119,12 @@ define([
         }
 
         function navigate (fragment, options) {
-
-            // Move in to masseuse
-            if (currentView && currentView.destroy) {
+            // TODO: Move in to masseuse parts that we can
+            if (currentView instanceof Backbone.View) {
                 // (and override destroy in GH to remove alerts)
-                currentView.destroy();
+                currentView.hideAlertBox();
+                // TODO: this breaks the ui
+                //currentView.remove();
             }
             Backbone.Router.prototype.navigate.apply(this, arguments);
 
@@ -142,19 +143,9 @@ define([
                 router : this,
                 user : this.user
             };
-            BaseView.prototype.displayAlertBox = function displayAlertBox (msg) {
-                var alertBoxView = new AlertBoxView(alertBoxViewConfig);
-                alertBoxView.model.set('error', msg);
-                alertBoxView.start();
-                alertBoxView.rivetView();
-            };
-
-            Backbone.Collection.prototype.set = function (data, options) {
-                if (data && data.results) {
-                    data = data.results;
-                }
-                oldSet.call(this, data, options);
-            };
+            BaseView.prototype.displayAlertBox = displayAlertBox;
+            BaseView.prototype.hideAlertBox = hideAlertBox;
+            Backbone.Collection.prototype.set = set;
         }
 
         function start () {
@@ -178,6 +169,29 @@ define([
             var loginView = newView(LoginView, loginViewConfig);
             loginView.start();
             loginView.rivetView();
+        }
+
+        function displayAlertBox (msg) {
+            var alertBoxView;
+            this.hideAlertBox();
+            alertBoxView = new AlertBoxView(alertBoxViewConfig);
+            alertBoxView.model.set('error', msg);
+            alertBoxView.start();
+            alertBoxView.rivetView();
+            BaseView.prototype.alertBoxView = alertBoxView;
+        }
+
+        function hideAlertBox() {
+            if (BaseView.prototype.alertBoxView && BaseView.prototype.alertBoxView.remove) {
+                BaseView.prototype.alertBoxView.remove();
+            }
+        }
+
+        function set(data, options) {
+            if (data && data.results) {
+                data = data.results;
+            }
+            oldSet.call(this, data, options);
         }
 
         function goHome () {
