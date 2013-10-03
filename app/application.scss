@@ -13,6 +13,10 @@ $font: 'Open Sans', arial, sans-serif;
 
 // Import Foundation
 @import "vendor/foundation/scss/foundation";
+
+//Import Foundation Icon Fonts
+@import "vendor/foundation-icons/foundation_icons_general/sass/general_foundicons";
+
 // Using Sass globbing to import app view scss files.
 @import "views/**/*";
 
