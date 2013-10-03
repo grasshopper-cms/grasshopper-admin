@@ -8,9 +8,7 @@ define(['baseView', 'rivetView', 'userWorker'], function (BaseView, rivetView, u
     });
 
     function afterRender() {
-        // TODO: Should only affect newly rendered view - or should be done once up front
-        // $this.$el.foundation('forms');?
-        $(document).foundation('forms');
+        this.$el.foundation('forms');
     }
 
     function goToPage (page) {

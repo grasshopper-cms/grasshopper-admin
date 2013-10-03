@@ -30,6 +30,7 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
                 }).fail(function(xhr) {
                     displaySaveError.call(self, xhr);
                 });
+            return false;
         }
 
         function updateNameInHeader(model) {
