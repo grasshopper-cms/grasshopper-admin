@@ -17,9 +17,6 @@ define(['backbone', 'UserModel', 'resources', 'underscore'], function (Backbone,
         },
         grab : function (prop) {
             return this._paginator[prop];
-        },
-        comparator : function (model) {
-            return model.get(_.keys(model.attributes)[0]); // default comparator sorts by first attribute in model
         }
 
     });
@@ -43,7 +40,7 @@ define(['backbone', 'UserModel', 'resources', 'underscore'], function (Backbone,
             collection.put('totalPages', Math.ceil(response.total / collection.paginationConfig.pageSize));
             collection.put('currentPage', (options.data.skip / options.data.limit) + 1);
 
-            var pages = _.range(1, collection.grab('totalPages') + 1);
+            var pages = _.range(1, collection.grab('totalPages') +  1);
 
             pages = _.map(pages, function (page) {
                 return {
