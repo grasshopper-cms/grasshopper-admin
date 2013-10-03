@@ -132,6 +132,7 @@ define([
 
         function initialize () {
             var self = this,
+                oldSave = Backbone.Model.prototype.save,
                 oldSet = Backbone.Collection.prototype.set;
 
             MasseuseRouter.prototype.initialize.apply(this, arguments);
@@ -145,7 +146,18 @@ define([
             };
             BaseView.prototype.displayAlertBox = displayAlertBox;
             BaseView.prototype.hideAlertBox = hideAlertBox;
-            Backbone.Collection.prototype.set = set;
+            Backbone.Collection.prototype.set = function(data, options) {
+                if (data && data.results) {
+                    data = data.results;
+                }
+                oldSet.call(this, data, options);
+            };
+            Backbone.Model.prototype.save = function() {
+                var saveOptions = {headers : {
+                    'Authorization' : 'Token ' + localStorage.authToken
+                }};
+                return oldSave.call(this, null, saveOptions);
+            };
         }
 
         function start () {
@@ -185,13 +197,6 @@ define([
             if (BaseView.prototype.alertBoxView && BaseView.prototype.alertBoxView.remove) {
                 BaseView.prototype.alertBoxView.remove();
             }
-        }
-
-        function set(data, options) {
-            if (data && data.results) {
-                data = data.results;
-            }
-            oldSet.call(this, data, options);
         }
 
         function goHome () {

@@ -1,4 +1,4 @@
-define(['masseuseModel', 'computedProperty'], function (Model, ComputedProperty) {
+define(['masseuseModel', 'computedProperty', 'constants'], function (Model, ComputedProperty, constants) {
     return Model.extend({
         defaults: {
             name : '',
@@ -7,9 +7,11 @@ define(['masseuseModel', 'computedProperty'], function (Model, ComputedProperty)
             email : '',
             login : '',
             password : '',
-            enabledText : new ComputedProperty(['enabled'], setEnabledText)
+            enabledText : new ComputedProperty(['enabled'], setEnabledText),
+            id : ''
         },
-        initialize : function() {}
+        urlRoot : constants.api.users.url,
+        url : url
     });
 
     function setEnabledText(attribute) {
@@ -18,4 +20,10 @@ define(['masseuseModel', 'computedProperty'], function (Model, ComputedProperty)
         return attribute === 'true' ? 'enabled' : 'disabled';
     }
 
+    function url() {
+        return this.urlRoot;
+    }
 });
+
+
+

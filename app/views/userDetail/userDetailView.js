@@ -14,7 +14,7 @@ define(['baseView', 'rivetView', 'resources', 'userWorker'], function (BaseView,
         function beforeRender() {
             this.model.set('isAdmin', this.app.user.get('isAdmin'));
             this.model.set('resources', resources.user);
-            this.model.attributesToIgnore = ['isAdmin', 'enabledText', 'resources'];
+            this.model.attributesToIgnore = ['isAdmin', 'enabledText', 'resources', 'id'];
 
             // Listeners
             this.listenTo(this.model, 'change:enabledText', this.updateEnabled);
@@ -22,13 +22,18 @@ define(['baseView', 'rivetView', 'resources', 'userWorker'], function (BaseView,
 
         function updateModel(model) {
             var self = this;
-            userWorker.updateModel(this.model, this.app.user)
-                .done(function(data) {
+
+            this.model.attributes = _.omit(this.model.attributes, this.model.attributesToIgnore);
+            this.model.save()
+                .done(function(model, response, options) {
                     displaySuccessfulSave();
                     updateNameInHeader.call(self, self.model);
-                }).fail(function(xhr) {
+                }).fail(function(odel, xhr, options) {
                     displaySaveError.call(self, xhr);
                 });
+
+//            userWorker.updateModel(this.model, this.app.user)
+
             return false;
         }
 
