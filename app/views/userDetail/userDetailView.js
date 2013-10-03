@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], function (BaseView, rivetView, resources, userWorker, _) {
+define(['baseView', 'rivetView', 'resources', 'userWorker'], function (BaseView, rivetView, resources, userWorker) {
 
         var userDetailView = BaseView.extend({
             rivetView : rivetView({rivetScope : '#userDetail', rivetPrefix : 'userdetail', instaUpdateRivets : false}),
@@ -17,7 +17,6 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
             this.model.attributesToIgnore = ['isAdmin', 'enabledText', 'resources'];
 
             // Listeners
-//            this.listenTo(this.model, 'change:name', this.updateNameInHeader);
             this.listenTo(this.model, 'change:enabledText', this.updateEnabled);
         }
 
@@ -25,8 +24,8 @@ define(['baseView', 'rivetView', 'resources', 'userWorker', 'underscore'], funct
             var self = this;
             userWorker.updateModel(this.model, this.app.user)
                 .done(function(data) {
-                    updateNameInHeader.call(self, self.model);
                     displaySuccessfulSave();
+                    updateNameInHeader.call(self, self.model);
                 }).fail(function(xhr) {
                     displaySaveError.call(self, xhr);
                 });
