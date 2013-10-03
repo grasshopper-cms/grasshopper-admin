@@ -14,6 +14,7 @@ define(['masseuseModel', 'computedProperty'], function (Model, ComputedProperty)
 
     function setEnabledText(attribute) {
         // Returns the text Enabled or Disabled to set the enabledText for use in the drop downs in the view.
+        // TODO This is firing too late. It is triggering a change on the model. An thus an animation.
         return attribute === 'true' ? 'enabled' : 'disabled';
     }
 
