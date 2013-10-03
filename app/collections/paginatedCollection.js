@@ -1,4 +1,4 @@
-define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, resources) {
+define(['backbone', 'UserModel', 'resources', 'underscore'], function (Backbone, UserModel, resources, _) {
 
     return Backbone.Collection.extend({
         // make sure you override this empty config with necessary information
@@ -40,7 +40,7 @@ define(['backbone', 'UserModel', 'resources'], function (Backbone, UserModel, re
             collection.put('totalPages', Math.ceil(response.total / collection.paginationConfig.pageSize));
             collection.put('currentPage', (options.data.skip / options.data.limit) + 1);
 
-            var pages = _.range(1, collection.grab('totalPages') + 1);
+            var pages = _.range(1, collection.grab('totalPages') +  1);
 
             pages = _.map(pages, function (page) {
                 return {

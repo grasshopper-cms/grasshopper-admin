@@ -83,6 +83,8 @@ define(['api', 'resources', 'UserModel', 'userCollection'],
                         users : userCollection
                     });
                 });
+
+            window.collection = userCollection;
         }
 
     });
