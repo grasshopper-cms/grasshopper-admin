@@ -3,52 +3,27 @@
         border-radius: 5px;
         border: 1px solid black;
     }
-    .listItem {
-        .editable {
 
-            .editing {
-            }
-
-            .saving {
-                opacity: 0;
-                -webkit-transition: opacity 1s;
-                -webkit-transition-timing-function: linear;
-            }
-            .visible {
-                opacity: 100;
-                -webkit-transition: opacity .5s;
-                -webkit-transition-timing-function: linear;
-            }
-
-            .attribute {
-            }
-
-            &:hover {
-                .attribute {
-                }
-            }
+    .progress-container {
+        position: relative;
+        top: -18px;
+        height: 4px;
+        .progress-bar {
+            background-color: $green;
+            width: 0%;
+            height: 0%;
         }
-        .progress-container {
-            position: relative;
-            top: -14px;
-            height: 4px;
-            .progress-bar {
-                background-color: $green;
-                width: 0%;
-                height: 0%;
-            }
-            .active {
-                height: 100%;
-                -webkit-transition: width 2s;
-                -webkit-transition-timing-function: linear;
-                width: 100%;
-            }
-            .disappear {
-                width: 100%;
-                height: 0%;
-                -webkit-transition: height .5s;
-                -webkit-transition-timing-function: linear;
-            }
+        .active {
+            height: 100%;
+            -webkit-transition: width 2s;
+            -webkit-transition-timing-function: linear;
+            width: 100%;
+        }
+        .disappear {
+            width: 100%;
+            height: 0%;
+            -webkit-transition: height .5s;
+            -webkit-transition-timing-function: linear;
         }
     }
 }
