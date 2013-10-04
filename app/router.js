@@ -133,14 +133,10 @@ define([
         }
 
         function initialize () {
-            var self = this,
-                oldSave = Backbone.Model.prototype.save,
+            var oldSave = Backbone.Model.prototype.save,
                 oldSet = Backbone.Collection.prototype.set;
 
             MasseuseRouter.prototype.initialize.apply(this, arguments);
-
-            // TODO: remove after getting userDetailViewModel sorted out
-            window.router = this;
 
             BaseView.prototype.app = {
                 router : this,
@@ -163,12 +159,10 @@ define([
         }
 
         function start () {
-            var self = this,
-                headerView = newView(HeaderView, headerViewConfig);
+            var headerView = newView(HeaderView, headerViewConfig);
 
             headerView.start();
             headerView.rivetView();
-
 
             return this;
         }
