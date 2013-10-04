@@ -6,7 +6,10 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel'], fun
         name : 'usersIndexView',
         ModelType : UsersIndexViewModel,
         el : '#stage',
-        templateHtml : templateHtml
+        templateHtml : templateHtml,
+        events : {
+            'change #limitDropdown' : 'changeLimit'
+        }
     };
 
 });

@@ -2,10 +2,12 @@ define(['backbone', 'UserModel', 'constants', 'paginatedCollection'], function (
 
     return PaginatedCollection.extend({
         paginationConfig : {
-            pageSize : 5,
-            skipPages : 0,
+            pageSize : constants.userCollection.pageSize,
+            skipPages :  constants.userCollection.skipPages,
             url : constants.api.users.url,
-            pageLink : '#users/page/'
+            pageLink : constants.userCollection.pageLink,
+            showLink : constants.userCollection.showLink,
+            pageLimits : constants.userCollection.pageLimits
         },
         model : UserModel,
         url : constants.api.users.url

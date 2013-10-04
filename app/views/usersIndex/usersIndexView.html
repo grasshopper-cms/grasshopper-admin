@@ -4,18 +4,25 @@
             <div class="row">
                 <div class="large-2 columns">
                     <form class="custom">
-                        <select id="customDropdown">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>20</option>
+                        <select id="limitDropdown">
+                            <option data-usersindex-each-option="data.dropDownOptions"
+                                    data-usersindex-selected="option.selected"
+                                    data-usersindex-text="option.option"></option>
                         </select>
                     </form>
                 </div>
                 <div class="large-4 columns">
                     <ul class="pagination" id="pagination-top">
-                        <li data-usersindex-class-unavailable="data.prevPage.disabled" class="arrow"><a data-usersindex-disabled="data.prevPage.disabled" data-usersindex-onClick="data.prevPage.onClick" data-usersindex-href="data.prevPage.link">&laquo;</a></li>
-                        <li data-usersindex-each-page="data.pages" data-usersindex-class-current="page.current"><a data-usersindex-text="page.page" data-usersindex-href="page.link"></a></li>
-                        <li data-usersindex-class-unavailable="data.nextPage.disabled" class="arrow"><a data-usersindex-disabled="data.nextPage.disabled" data-usersindex-onClick="data.nextPage.onClick" data-usersindex-href="data.nextPage.link">&raquo;</a></li>
+                        <li data-usersindex-class-unavailable="data.prevPage.disabled" class="arrow"><a
+                                data-usersindex-disabled="data.prevPage.disabled"
+                                data-usersindex-onClick="data.prevPage.onClick"
+                                data-usersindex-href="data.prevPage.link">&laquo;</a></li>
+                        <li data-usersindex-each-page="data.pages" data-usersindex-class-current="page.current"><a
+                                data-usersindex-text="page.page" data-usersindex-href="page.link"></a></li>
+                        <li data-usersindex-class-unavailable="data.nextPage.disabled" class="arrow"><a
+                                data-usersindex-disabled="data.nextPage.disabled"
+                                data-usersindex-onClick="data.nextPage.onClick"
+                                data-usersindex-href="data.nextPage.link">&raquo;</a></li>
                     </ul>
                 </div>
             </div>
@@ -25,26 +32,26 @@
         <div class="large-8 small-centered columns">
             <table>
                 <thead>
-                    <tr>
-                        <th width='200'>User Name</th>
-                        <th>Login</th>
-                        <th>Enabled</th>
-                        <th>Role</th>
-                        <th width='200'>Email</th>
-                        <th>Actions</th>
-                    </tr>
+                <tr>
+                    <th width='200'>User Name</th>
+                    <th>Login</th>
+                    <th>Enabled</th>
+                    <th>Role</th>
+                    <th width='200'>Email</th>
+                    <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr data-usersindex-each-user="data.users">
-                        <td data-usersindex-text="user.name"></td>
-                        <td data-usersindex-text="user.login"></td>
-                        <td data-usersindex-text="user.enabled"></td>
-                        <td data-usersindex-text="user.role"></td>
-                        <td data-usersindex-text="user.email"></td>
-                        <td>
-                            <a data-usersindex-href="user.urlLink" class="small button radius">Edit</a>
-                        </td>
-                    </tr>
+                <tr data-usersindex-each-user="data.users">
+                    <td data-usersindex-text="user.name"></td>
+                    <td data-usersindex-text="user.login"></td>
+                    <td data-usersindex-text="user.enabled"></td>
+                    <td data-usersindex-text="user.role"></td>
+                    <td data-usersindex-text="user.email"></td>
+                    <td>
+                        <a data-usersindex-href="user.urlLink" class="small button radius">Edit</a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -54,9 +61,16 @@
             <div class="row">
                 <div class="large-4 large-offset-8 columns">
                     <ul class="pagination">
-                        <li data-usersindex-class-unavailable="data.prevPage.disabled" class="arrow"><a data-usersindex-disabled="data.prevPage.disabled" data-usersindex-onClick="data.prevPage.onClick" data-usersindex-href="data.prevPage.link">&laquo;</a></li>
-                        <li data-usersindex-each-page="data.pages" data-usersindex-class-current="page.current"><a data-usersindex-text="page.page" data-usersindex-href="page.link"></a></li>
-                        <li data-usersindex-class-unavailable="data.nextPage.disabled" class="arrow"><a data-usersindex-disabled="data.nextPage.disabled" data-usersindex-onClick="data.nextPage.onClick" data-usersindex-href="data.nextPage.link">&raquo;</a></li>
+                        <li data-usersindex-class-unavailable="data.prevPage.disabled" class="arrow"><a
+                                data-usersindex-disabled="data.prevPage.disabled"
+                                data-usersindex-onClick="data.prevPage.onClick"
+                                data-usersindex-href="data.prevPage.link">&laquo;</a></li>
+                        <li data-usersindex-each-page="data.pages" data-usersindex-class-current="page.current"><a
+                                data-usersindex-text="page.page" data-usersindex-href="page.link"></a></li>
+                        <li data-usersindex-class-unavailable="data.nextPage.disabled" class="arrow"><a
+                                data-usersindex-disabled="data.nextPage.disabled"
+                                data-usersindex-onClick="data.nextPage.onClick"
+                                data-usersindex-href="data.nextPage.link">&raquo;</a></li>
                     </ul>
                 </div>
             </div>

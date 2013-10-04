@@ -21,9 +21,10 @@ define([
     'headerViewConfig',
     'usersIndexView',
     'usersIndexViewConfig',
+    'constants',
     'LocalStorage'
 ],
-    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig, LocalStorage) {
+    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig, constants, LocalStorage) {
 
         var userModel = new UserModel(),
             currentView;
@@ -41,8 +42,8 @@ define([
                 'logout' : 'goLogout',
                 'user/:id' : 'displayUserDetail',
                 'home' : 'displayApp',
-                'users(/page/:number)' : 'displayUsersIndex',
-                '*path': 'goHome'
+                'users(/page/:number)(/show/:limit)' : 'displayUsersIndex',
+                '*path' : 'goHome'
             },
 
             onRouteFail : onRouteFail,
@@ -224,10 +225,13 @@ define([
                 });
         }
 
-        function displayUsersIndex (pageNumber) {
-            var usersIndexView = newView(UsersIndexView, usersIndexViewConfig);
+        function displayUsersIndex (pageNumber, pageLimit) {
+            var usersIndexView = newView(UsersIndexView, usersIndexViewConfig),
+                defaultLimit = constants.userCollection.pageSize,
+                defaultPage = constants.userCollection.page;
+
             usersIndexView.start();
-            usersIndexView.rivetView();
+            usersIndexView.goToPage(pageNumber || defaultPage, pageLimit || defaultLimit);
 
             if (pageNumber) {
                 usersIndexView.goToPage(pageNumber);

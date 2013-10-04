@@ -17,5 +17,18 @@ define({
         }
     },
     defaults : {
+
+    },
+    userCollection : {
+        pageSize : 5,
+        page : 1,
+        skipPages : 0,
+        pageLink : '#users/page/',
+        showLink : '/show/',
+        pageLimits : {
+            start : 5,
+            stop : 50,
+            step : 10
+        }
     }
 });

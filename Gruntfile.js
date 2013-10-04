@@ -134,7 +134,8 @@ module.exports = function (grunt) {
                         'index.html',
                         'router.js',
                         'collections/**/*',
-                        'localStorage'
+                        'localStorage',
+                        'constants.js'
                     ], dest : 'build'}
                 ]
             }

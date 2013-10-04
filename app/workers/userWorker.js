@@ -63,15 +63,13 @@ define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
 
         function getUsers (view, options) {
             var userCollection = new UserCollection();
-
+            userCollection.paginationConfig.pageSize = options.data.limit;
             userCollection.fetch(options)
                 .done(function(){
                     view.model.set({
                         users : userCollection
                     });
                 });
-
-            window.collection = userCollection;
         }
 
     });
