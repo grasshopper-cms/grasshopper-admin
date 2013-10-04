@@ -5,9 +5,6 @@ define(['text!views/empty/emptyView.html'], function (templateHtml) {
     return {
         name : 'emptyView',
         el : '#stage',
-        templateHtml : templateHtml,
-        modelData:{
-            name: 'bob'
-        }
+        templateHtml : templateHtml
     };
 });

@@ -48,5 +48,26 @@ define({
         errors : {
             403 : 'You do not have adequate permissions to view/edit this profile.'
         }
-    }
+    },
+    site : {
+        about : 'About Grasshopper'
+    },
+
+    // General Text (reusable) - try to keep it alphabetized
+    actions : 'Actions',
+    add : 'Add',
+    edit : 'Edit',
+    email : 'Email',
+    enabled : 'Enabled',
+    login : 'Login',
+    log_in : 'Log In',
+    log_out : 'Log Out',
+    name : 'Name',
+    menu : 'Menu',
+    profile : 'Profile',
+    role : 'Role',
+    save : 'Save',
+    siteName : 'Grasshopper',
+    user_name : 'User Name',
+    users : 'Users'
 });
