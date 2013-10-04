@@ -233,11 +233,6 @@ define([
             usersIndexView.start();
             usersIndexView.goToPage(pageNumber || defaultPage, pageLimit || defaultLimit);
 
-            if (pageNumber) {
-                usersIndexView.goToPage(pageNumber);
-            } else {
-                usersIndexView.goToPage(1);
-            }
         }
 
         function newView (ViewType, config, bypass) {
