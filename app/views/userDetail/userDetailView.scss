@@ -1,7 +1,7 @@
 #userDetail {
     .gravatar {
         border-radius: 5px;
-        border: 1px solid black;
+        border: 1px solid $gravatarBorder;
     }
 
     .progress-container {

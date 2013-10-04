@@ -8,27 +8,31 @@
                         <img class="grasshopperLogo"
                              src="http://content.screencast.com/users/GregSolid/folders/Jing/media/c4f1e4d6-b74f-467c-be23-2ed1c4bdfea1/00000028.png"/>
 
-                        <div id="logo-text">Grasshopper</div>
+                        <div id="logo-text">{{data.resources.siteName}}</div>
                     </a>
                 </h1>
             </li>
             <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>{{data.resources.menu}}</span></a></li>
         </ul>
         <section class="top-bar-section">
             <ul class="right">
-                <li><a id="logOutButton" href="#logout" data-header-show="data.loggedIn">Log Out</a></li>
-                <li><a id="logInButton" href="#login" data-header-hide="data.loggedIn">Log In</a></li>
+                <li><a id="logOutButton" href="#logout" data-header-show="data.loggedIn">{{data.resources.log_out}}</a>
+                </li>
+                <li><a id="logInButton" href="#login" data-header-hide="data.loggedIn">{{data.resources.log_in}}</a>
+                </li>
                 <li class="divider hide-for-small"></li>
                 <li class="has-dropdown">
                     <a href="#">
-                        <img class="gravatar" data-header-show="data.loggedIn" src="http://content.screencast.com/users/GregSolid/folders/Jing/media/79416a51-e20b-4b29-8e56-5d6352ed3bb7/00000031.png"/>
+                        <img class="gravatar" data-header-show="data.loggedIn"
+                             src="http://content.screencast.com/users/GregSolid/folders/Jing/media/79416a51-e20b-4b29-8e56-5d6352ed3bb7/00000031.png"/>
                         <span data-header-text="data.name"></span>
                     </a>
                     <ul class="dropdown">
-                        <li><a id="myProfileButton" data-header-show="data.loggedIn" data-header-href="data.url">Edit Profile</a></li>
+                        <li><a id="myProfileButton" data-header-show="data.loggedIn" data-header-href="data.url">{{data.resources.edit}}
+                            {{data.resources.profile}}</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">About Grasshopper</a></li>
+                        <li><a href="#">{{data.resources.site.about}}</a></li>
                     </ul>
                 </li>
             </ul>
@@ -39,6 +43,7 @@
     <div class="large-8 columns">
     </div>
     <div class="large-4 columns">
-        <a id="displayUsersButton" data-header-show="data.admin" class="button" href="#users">Users</a>
+        <a id="displayUsersButton" data-header-show="data.admin" class="button"
+           href="#users">{{data.resources.users}}</a>
     </div>
 </div>

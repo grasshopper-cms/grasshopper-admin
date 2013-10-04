@@ -33,12 +33,12 @@
             <table>
                 <thead>
                 <tr>
-                    <th width='200'>User Name</th>
-                    <th>Login</th>
-                    <th>Enabled</th>
-                    <th>Role</th>
-                    <th width='200'>Email</th>
-                    <th>Actions</th>
+                    <th width='200'>{{data.resources.user_name}}</th>
+                    <th>{{data.resources.login}}</th>
+                    <th>{{data.resources.enabled}}</th>
+                    <th>{{data.resources.role}}</th>
+                    <th width='200'>{{data.resources.email}}</th>
+                    <th>{{data.resources.actions}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,7 +49,7 @@
                     <td data-usersindex-text="user.role"></td>
                     <td data-usersindex-text="user.email"></td>
                     <td>
-                        <a data-usersindex-href="user.urlLink" class="small button radius">Edit</a>
+                        <a data-usersindex-href="user.urlLink" class="small button radius">{{data.resources.edit}}</a>
                     </td>
                 </tr>
                 </tbody>

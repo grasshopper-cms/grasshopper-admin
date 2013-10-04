@@ -112,6 +112,7 @@ module.exports = function (grunt) {
 
         // TODO: add some clean up tasks after copy, or copy more selectively
         copy : {
+            // TODO: target build copy tasks
             build : {
                 files : [
                     {expand : true, cwd : 'app/', src : [
@@ -120,6 +121,8 @@ module.exports = function (grunt) {
                     ], dest : 'build'}
                 ]
             },
+            // TODO: remove redo and only copy the file that was changed:
+            // TODO: https://github.com/gruntjs/grunt-contrib-watch#using-the-watch-event
             redo : {
                 files : [
                     {expand : true, cwd : 'app/', src : [
