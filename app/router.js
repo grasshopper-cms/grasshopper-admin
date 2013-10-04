@@ -218,7 +218,6 @@ define([
                     var userDetailView = newView(UserDetailView, userDetailViewConfig);
                     userDetailView.start();
                     userDetailView.model.set(data);
-//                    userDetailView.rivetView();
                 })
                 .fail(function (xhr) {
                     BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
