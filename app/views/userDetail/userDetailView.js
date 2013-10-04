@@ -7,16 +7,13 @@ define(['baseView', 'rivetView', 'resources', 'userWorker'], function (BaseView,
             displaySaveError : displaySaveError,
             updateModel : updateModel,
             beforeRender : beforeRender,
-            updateNameInHeader : updateNameInHeader,
-            updateEnabled : updateEnabled
+            updateNameInHeader : updateNameInHeader
         });
 
         function beforeRender() {
             this.model.set('isAdmin', this.app.user.get('isAdmin'));
-            this.model.attributesToIgnore = ['isAdmin', 'statusText', 'resources', 'id', 'roles', 'possibleStatus'];
+            this.model.attributesToIgnore = ['isAdmin', 'resources', 'id', 'roles', 'possibleStatus'];
 
-            // Listeners
-            this.listenTo(this.model, 'change:statusText', this.updateEnabled);
         }
 
         function updateModel(model) {
@@ -37,15 +34,6 @@ define(['baseView', 'rivetView', 'resources', 'userWorker'], function (BaseView,
         function updateNameInHeader(model) {
             if(userWorker.isThisMyProfile(model, this.app.user.get('_id'))) {
                 this.app.user.set('name', model.get('name'));
-            }
-        }
-
-        function updateEnabled(model) {
-            console.log('this was called');
-            if(model.get('statusText') === 'enabled') {
-                model.set('enabled', 'true');
-            } else {
-                model.set('enabled', 'false');
             }
         }
 

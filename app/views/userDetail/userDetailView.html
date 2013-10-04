@@ -50,12 +50,10 @@
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
-                                            <select id="statusText" class="custom dropdown" data-userdetail-enabled="data.isAdmin" data-userdetail-value="data.statusText">
-                                                <option data-userdetail-each-status="data.possibleStatus"
-                                                        data-userdetail-text="status.text"></option>
+                                            <select id="statusText" class="custom dropdown" data-userdetail-enabled="data.isAdmin" data-userdetail-value="data.enabled">
+                                                <option>true</option>
+                                                <option>false</option>
                                             </select>
-                                            {{data.statusText}}
-                                            {{data.enabled}}
                                         </div>
                                     </div>
                                 </div>
