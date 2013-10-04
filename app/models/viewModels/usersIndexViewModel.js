@@ -23,6 +23,9 @@ define(['masseuseModel', 'computedProperty', 'resources'], function (Model, Comp
             dropDownOptions : new ComputedProperty(['users'], function (collection) {
                 return collection.grab('dropDownOptions');
             }, true),
+            selected : new ComputedProperty(['users'], function (collection) {
+                return collection.paginationConfig.pageSize;
+            }, true),
             resources : resources
         }
 

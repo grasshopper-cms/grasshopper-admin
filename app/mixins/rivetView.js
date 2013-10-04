@@ -140,11 +140,6 @@ define(['rivets', 'mixin', 'backbone'], function (Rivets, mixin, Backbone) {
             prefix : config.rivetPrefix
             // preloadData: false
         });
-        Rivets.config.templateDelimiters = ['{{', '}}'];
-
-        // bind data to rivets values.
-        Rivets.bind($(config.rivetScope), {data : this.model});
-
         // Rivets works off of listening to the change event, which doesn't happen on inputs until loss of focus
         // Work around that if desired
         if (config.instaUpdateRivets) {
@@ -152,5 +147,11 @@ define(['rivets', 'mixin', 'backbone'], function (Rivets, mixin, Backbone) {
                 $(this).trigger('change');
             });
         }
+
+        Rivets.config.templateDelimiters = ['{{', '}}'];
+
+        // bind data to rivets values.
+        return Rivets.bind($(config.rivetScope), {data : this.model});
+
     });
 });

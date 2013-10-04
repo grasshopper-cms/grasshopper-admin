@@ -61,7 +61,7 @@ define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
             return api.getMyUserDetails();
         }
 
-        function getUsers (view, options) {
+        function getUsers (view, options, deferred) {
             var userCollection = new UserCollection();
             userCollection.paginationConfig.pageSize = options.data.limit;
             userCollection.fetch(options)
@@ -69,7 +69,11 @@ define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
                     view.model.set({
                         users : userCollection
                     });
+                    deferred.resolve();
+
                 });
+
+            return deferred.promise();
         }
 
     });

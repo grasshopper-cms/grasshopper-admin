@@ -223,8 +223,12 @@ define([
                 defaultLimit = constants.userCollection.pageSize,
                 defaultPage = constants.userCollection.page;
 
-            usersIndexView.start();
-            usersIndexView.goToPage(pageNumber || defaultPage, pageLimit || defaultLimit);
+            usersIndexView.goToPage(pageNumber || defaultPage, pageLimit || defaultLimit)
+            .done(function(){
+                usersIndexView.start();
+                usersIndexView.rivetView();
+                usersIndexView.renderPlugins();
+            });
 
         }
 

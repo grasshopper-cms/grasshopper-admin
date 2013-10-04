@@ -1,48 +1,32 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'userWorker', 'constants'],
+define(['baseView', 'rivetView', 'userWorker', 'constants', 'rivets'],
 
-    function (BaseView, rivetView, userWorker, constants) {
+    function (BaseView, rivetView, userWorker, constants, Rivets) {
 
         var usersIndexView = BaseView.extend({
             rivetView : rivetView({rivetScope : '#usersIndex', rivetPrefix : 'usersindex', instaUpdateRivets : true}),
             goToPage : goToPage,
-            afterRender : afterRender,
+            renderPlugins : renderPlugins,
             checkAndSetLimit : checkAndSetLimit,
             changeLimit : changeLimit
         });
 
-        var doRivetsRender = false;
         //TODO: Turn this into a mixin
-        function afterRender () {
-
-            this.rivetView();
-            if (!doRivetsRender) {
-                var $limitDropdown = this.$el.find('#limitDropdown'),
-                    oldHtml = $limitDropdown.html();
-
-                var interval = setInterval(function () {
-                    var newHtml = $limitDropdown.html();
-                    if (oldHtml !== newHtml) {
-                        clearInterval(interval);
-                        this.$el.foundation('forms');
-                        doRivetsRender = true;
-                    }
-                }.bind(this), 1);
-            } else {
-                this.$el.foundation('forms');
-            }
+        function renderPlugins () {
+            this.$el.foundation('forms');
         }
 
         function goToPage (page, limit) {
 
-            var pageLimit = this.checkAndSetLimit(limit);
+            var pageLimit = this.checkAndSetLimit(limit),
+                deferred = new $.Deferred();
 
-            userWorker.getUsers(this, {
+            return userWorker.getUsers(this, {
                 data : {
                     page : page,
                     limit : pageLimit
                 }
-            });
+            }, deferred);
         }
 
         function checkAndSetLimit (limit) {
