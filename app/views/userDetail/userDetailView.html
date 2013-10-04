@@ -35,11 +35,8 @@
                                     <div class="row">
                                         <div class="large-12 columns attribute">
                                             <select id="role" class="custom dropdown" data-userdetail-enabled="data.isAdmin" data-userdetail-value="data.role">
-                                                <option>{{data.resources.roles.editor}}</option>
-                                                <option>{{data.resources.roles.author}}</option>
-                                                <option>{{data.resources.roles.reader}}</option>
-                                                <option>{{data.resources.roles.admin}}</option>
-                                                <option>{{data.resources.roles.none}}</option>
+                                                <option data-userdetail-each-role="data.roles"
+                                                        data-userdetail-text="role.text"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -48,15 +45,17 @@
 
                             <div class="row listItem">
                                 <div class="large-3 columns">
-                                    <label for="enabledText" class="right inline">{{data.resources.attributeTitles.enabled}}</label>
+                                    <label for="statusText" class="right inline">{{data.resources.attributeTitles.enabled}}</label>
                                 </div>
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
-                                            <select id="enabledText" class="custom dropdown" data-userdetail-enabled="data.isAdmin" data-userdetail-value="data.enabledText">
-                                                <option>enabled</option>
-                                                <option>disabled</option>
+                                            <select id="statusText" class="custom dropdown" data-userdetail-enabled="data.isAdmin" data-userdetail-value="data.statusText">
+                                                <option data-userdetail-each-status="data.possibleStatus"
+                                                        data-userdetail-text="status.text"></option>
                                             </select>
+                                            {{data.statusText}}
+                                            {{data.enabled}}
                                         </div>
                                     </div>
                                 </div>

@@ -38,6 +38,10 @@ define({
             login : 'LOGIN:',
             password : 'PASSWORD:'
         },
+        statusTitles : {
+            enabled : 'enabled',
+            disabled : 'disabled'
+        },
         roles : {
             admin : 'admin',
             reader : 'reader',
