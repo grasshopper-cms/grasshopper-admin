@@ -19,20 +19,3 @@ define([], function() {
     }
 
 });
-
-//define (require) ->
-//class LocalStorage
-//constructor: (@_name) ->
-//if MFRAppConfig.env
-//    @_name = MFRAppConfig.env + '_' + @_name
-//
-//get: ->
-//    @_value ||= window.localStorage.getItem(@_name)
-//@_value
-//
-//set: (@_value) ->
-//window.localStorage.setItem(@_name, @_value)
-//
-//remove: ->
-//    @_value = null
-//window.localStorage.removeItem(@_name)

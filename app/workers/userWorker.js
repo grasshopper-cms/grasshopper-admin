@@ -50,7 +50,7 @@ define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
         }
 
         function isThisMyProfile(UserModel, id) {
-            return (UserModel.get('_id') === id);
+            return id === UserModel.get('_id');
         }
 
         function getRequestedUserDetails (id) {
