@@ -1,4 +1,4 @@
-define(['backbone', 'UserModel', 'resources', 'underscore'], function (Backbone, UserModel, resources, _) {
+define(['backbone', 'UserModel', 'resources', 'underscore', 'LocalStorage'], function (Backbone, UserModel, resources, _, LocalStorage) {
 
     return Backbone.Collection.extend({
         // make sure you override this empty config with necessary information
@@ -31,7 +31,7 @@ define(['backbone', 'UserModel', 'resources', 'underscore'], function (Backbone,
         };
 
         fetchOptions.headers = {
-            'Authorization' : 'Token ' + localStorage.authToken
+            'Authorization' : 'Token ' + LocalStorage.get('authToken')
         };
 
         fetchOptions.success = function (collection, response, options) {

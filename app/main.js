@@ -31,6 +31,7 @@ require.config({
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
+        LocalStorage : 'localStorage',
 
         // Routers
         masseuseRouter : 'vendor/masseuse/app/masseuseRouter',

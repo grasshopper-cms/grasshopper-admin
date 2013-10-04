@@ -1,5 +1,5 @@
-define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel'],
-    function (api, $, EmptyView, emptyViewConfig, resources,  UserModel) {
+define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'LocalStorage'],
+    function (api, $, EmptyView, emptyViewConfig, resources, LocalStorage) {
         'use strict';
 
         /**
@@ -13,9 +13,9 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'UserModel
             api.getToken(loginView.model.get('username'), loginView.model.get('password'))
                 .done(function (data) {
                     if ('Token' === data.token_type) {
-                        localStorage.authToken = data.access_token;
+                        LocalStorage.set('authToken', data.access_token);
                     }
-                    api.authenticateToken(localStorage.authToken)
+                    api.authenticateToken(LocalStorage.get('authToken'))
                         .done(function (data) {
                             loginView.model.clear();
                             loginView.app.user.set({

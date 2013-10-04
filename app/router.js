@@ -20,9 +20,10 @@ define([
     'headerView',
     'headerViewConfig',
     'usersIndexView',
-    'usersIndexViewConfig'
+    'usersIndexViewConfig',
+    'LocalStorage'
 ],
-    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig) {
+    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig, LocalStorage) {
 
         var userModel = new UserModel(),
             currentView;
@@ -70,10 +71,10 @@ define([
             var $deferred = new $.Deferred(),
                 self = this;
 
-            if (localStorage.authToken) {
+            if (LocalStorage.get('authToken')) {
 
                 if (!this.user.get('_id')) {
-                    Api.authenticateToken(localStorage.authToken)
+                    Api.authenticateToken(LocalStorage.get('authToken'))
                         .done(function (data) {
                             self.user.set({
                                 _id : data._id,
@@ -154,7 +155,7 @@ define([
             };
             Backbone.Model.prototype.save = function() {
                 var saveOptions = {headers : {
-                    'Authorization' : 'Token ' + localStorage.authToken
+                    'Authorization' : 'Token ' + LocalStorage.get('authToken')
                 }};
                 return oldSave.call(this, null, saveOptions);
             };
@@ -172,7 +173,7 @@ define([
         }
 
         function goLogout () {
-            localStorage.authToken = '';
+            LocalStorage.remove('authToken');
             this.user.clear();
             this.navigate('login', {trigger : true});
         }

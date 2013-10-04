@@ -1,5 +1,5 @@
-define(['api', 'resources', 'UserModel', 'userCollection'],
-    function (api, resources, UserModel, UserCollection) {
+define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
+    function (api, resources, UserModel, UserCollection, LocalStorage) {
         'use strict';
 
         return {
@@ -13,7 +13,7 @@ define(['api', 'resources', 'UserModel', 'userCollection'],
         };
 
         function getCurrentUserDetails (view) {
-            if (localStorage.authToken) {
+            if (LocalStorage.get('authToken')) {
                 api.authenticateToken()
                     .done(function (data) {
                         view.app.user.set({

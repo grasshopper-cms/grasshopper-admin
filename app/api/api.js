@@ -1,4 +1,4 @@
-define(['constants', 'base64', 'underscore'], function (constants, base64, _) {
+define(['constants', 'base64', 'LocalStorage'], function (constants, base64, LocalStorage) {
     'use strict';
 
     return {
@@ -17,7 +17,7 @@ define(['constants', 'base64', 'underscore'], function (constants, base64, _) {
             return userModel.fetch();
         },
         request : function (url) {
-            var token = localStorage.authToken;
+            var token = LocalStorage.get('authToken');
             return $.ajax({
                 dataType : 'json',
                 url : url,
