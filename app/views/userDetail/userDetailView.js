@@ -3,17 +3,44 @@ define(['baseView', 'rivetView', 'resources', 'userWorker'], function (BaseView,
 
         var userDetailView = BaseView.extend({
             rivetView : rivetView({rivetScope : '#userDetail', rivetPrefix : 'userdetail', instaUpdateRivets : false}),
+            beforeRender : beforeRender,
+            afterRender : afterRender,
             displaySuccessfulSave : displaySuccessfulSave,
             displaySaveError : displaySaveError,
             updateModel : updateModel,
-            beforeRender : beforeRender,
             updateNameInHeader : updateNameInHeader
         });
 
         function beforeRender() {
             this.model.set('isAdmin', this.app.user.get('isAdmin'));
-            this.model.attributesToIgnore = ['isAdmin', 'resources', 'id', 'roles', 'possibleStatus'];
-
+            this.model.attributesToIgnore = ['isAdmin', 'resources', 'id', 'roles', 'possibleStatus', 'statusOptions'];
+            console.log(this.model.statusOptions);
+        }
+//
+        var doRivetsRender = false;
+////        TODO: Turn this into a mixin
+        function afterRender () {
+////            debugger;
+//
+            this.rivetView();
+            setTimeout(function()  {
+                this.$el.foundation('forms');
+            }.bind(this), 50);
+//            if (!doRivetsRender) {
+//                var $limitDropdown = this.$el.find('#statusText'),
+//                    oldHtml = $limitDropdown.html();
+//
+//                var interval = setInterval(function () {
+//                    var newHtml = $limitDropdown.html();
+//                    if (oldHtml !== newHtml) {
+//                        clearInterval(interval);
+//                        this.$el.foundation('forms');
+//                        doRivetsRender = true;
+//                    }
+//                }.bind(this), 1);
+//            } else {
+//                this.$el.foundation('forms');
+//            }
         }
 
         function updateModel(model) {

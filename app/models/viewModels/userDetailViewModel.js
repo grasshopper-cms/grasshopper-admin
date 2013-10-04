@@ -3,6 +3,7 @@ define(['masseuseModel', 'computedProperty', 'constants', 'resources'], function
         defaults: {
             resources : resources.user,
             roles : new ComputedProperty(['role'], setPossibleRoles),
+            statusOptions : new ComputedProperty(['attribute'], setStatusOptions),
             id : ''
         },
         urlRoot : constants.api.users.url,
@@ -14,6 +15,14 @@ define(['masseuseModel', 'computedProperty', 'constants', 'resources'], function
             var thisRole = {};
             thisRole.text = value;
             return thisRole;
+        });
+    }
+
+    function setStatusOptions(attribute) {
+        return _.map(resources.user.statusOptions, function(value, key) {
+           var thisOption = {};
+            thisOption.text = value;
+            return thisOption;
         });
     }
 

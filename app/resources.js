@@ -42,6 +42,10 @@ define({
             enabled : 'enabled',
             disabled : 'disabled'
         },
+        statusOptions : {
+          enabled : true,
+          disabled : false
+        },
         roles : {
             admin : 'admin',
             reader : 'reader',
