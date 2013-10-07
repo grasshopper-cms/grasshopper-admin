@@ -39,6 +39,9 @@
     "notes": "0.0.4",
     "rivets": "~0.5.12",
     "grunt-contrib-jshint": "0.2.0",
-    "grunt-usemin": "~0.1.12"
+    "grunt-usemin": "~0.1.12",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-uglify": "0.2.0",
+    "grunt-contrib-concat": "~0.1.2"
   }
 }

@@ -110,6 +110,10 @@ module.exports = function (grunt) {
             }
         },
 
+        clean: {
+            build : ['build']
+        },
+
         // TODO: add some clean up tasks after copy, or copy more selectively
         copy : {
             // TODO: target build copy tasks
@@ -118,6 +122,16 @@ module.exports = function (grunt) {
                     {expand : true, cwd : 'app/', src : [
                         '**',
                         '!**/*.scss'
+                    ], dest : 'build'}
+                ]
+            },
+            deploy : {
+                files : [
+                    {expand : true, cwd : 'app/', src : [
+                        '**',
+                        '!**/*.scss',
+                        '!**/*.js',
+                        '!**/vendor/**/*',
                     ], dest : 'build'}
                 ]
             },
@@ -205,13 +219,80 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: '.jshintrc'
             }
-        }
+        },
+
+        requirejs: {
+            dist: {
+                // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
+                options: {
+                    // `name` and `out` is set by grunt-usemin
+                    baseUrl: 'app',
+                    optimize: 'none',
+                    // TODO: Figure out how to make sourcemaps work with grunt-usemin
+                    // https://github.com/yeoman/grunt-usemin/issues/30
+                    //generateSourceMaps: true,
+                    // required to support SourceMaps
+                    // http://requirejs.org/docs/errors.html#sourcemapcomments
+                    preserveLicenseComments: false,
+                    useStrict: true,
+                    wrap: true
+                    //uglify2: {} // https://github.com/mishoo/UglifyJS2
+                }
+            }
+        },
+        useminPrepare: {
+            html: ['app/index.html'],
+            options: {
+                dest: 'build'
+            }
+        },
+        usemin: {
+            html: [],
+            css: ['build/{,*/}*.css'],
+            options: {
+                dirs: ['build']
+            }
+        },
+        imagemin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: 'app/images',
+                    src: '{,*/}*.{png,jpg,jpeg}',
+                    dest: 'build/images'
+                }]
+            }
+        },
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        'build/**/*.js',
+                        'build/{,*/}*.css',
+                        'build/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
+                    ]
+                }
+            }
+        },
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
     grunt.registerTask("server", "Build and watch task", ["jshint", "copy:build", "connect:site", "sass", "open:reload", "watch"]);
-    grunt.registerTask("testServer", "Build and watch task", ["jshint", "copy", "connect:tests", "sass", "open:tests", "watch"]);
-    grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
+    grunt.registerTask("testServer", "Build and watch task", ["jshint", "copy:build", "connect:tests", "sass", "open:tests", "watch"]);
+    grunt.registerTask("deploy", "Deploy to gh-pages", [
+        "clean",
+        'useminPrepare',
+        'requirejs',
+        //'imagemin',
+        'concat',
+        //'cssmin',
+        'uglify',
+        //'rev',
+        'usemin',
+        'copy:deploy',
+        'sass'
+        //"build_gh_pages"
+    ]);
     grunt.registerTask("vagrant", "Starts vagrant", ['shell:start_vagrant_box']);
     grunt.registerTask("testVagrant", "grabs an auth token to ensure box is running", ['shell:test_vagrant_box']);
     grunt.registerTask('vagrant', "use vagrant:help", function vagrant(target, extra) {
