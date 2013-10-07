@@ -31,6 +31,9 @@ module.exports = function (grunt) {
                     '!build/vendor/**/*'
                 ]
             },
+            nothing : {
+                files : []
+            },
             dev : {
                 options : {
                     // Start a live reload server on the default port: 35729
@@ -277,8 +280,8 @@ module.exports = function (grunt) {
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("server", "Build and watch task", ["jshint", "copy:build", "connect:site", "sass", "open:reload", "watch"]);
-    grunt.registerTask("testServer", "Build and watch task", ["jshint", "copy:build", "connect:tests", "sass", "open:tests", "watch"]);
+    grunt.registerTask("server", "Build and watch task", ["jshint", "copy:build", "connect:site", "sass", "open:reload", "watch:build"]);
+    grunt.registerTask("testServer", "Build and watch task", ["jshint", "copy:build", "connect:tests", "sass", "open:tests", "watch:build"]);
     grunt.registerTask("deploy", "Deploy to gh-pages", [
         "clean",
         'useminPrepare',
@@ -293,7 +296,7 @@ module.exports = function (grunt) {
         'sass',
         'connect:site',
         'open:reload',
-        'watch'
+        'watch:nothing'
         //"build_gh_pages"
     ]);
     grunt.registerTask("vagrant", "Starts vagrant", ['shell:start_vagrant_box']);
