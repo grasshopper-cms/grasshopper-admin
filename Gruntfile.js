@@ -273,7 +273,7 @@ module.exports = function (grunt) {
                     ]
                 }
             }
-        },
+        }
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
@@ -290,7 +290,10 @@ module.exports = function (grunt) {
         //'rev',
         'usemin',
         'copy:deploy',
-        'sass'
+        'sass',
+        'connect:site',
+        'open:reload',
+        'watch'
         //"build_gh_pages"
     ]);
     grunt.registerTask("vagrant", "Starts vagrant", ['shell:start_vagrant_box']);
