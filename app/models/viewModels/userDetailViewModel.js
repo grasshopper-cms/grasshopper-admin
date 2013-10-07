@@ -4,10 +4,9 @@ define(['masseuseModel', 'computedProperty', 'constants', 'resources'], function
             resources : resources.user,
             roles : new ComputedProperty(['role'], setPossibleRoles),
             statusOptions : new ComputedProperty(['attribute'], setStatusOptions),
-            id : ''
+            id : new ComputedProperty(['_id'], setBackboneId)
         },
-        urlRoot : constants.api.users.url,
-        url : url
+        urlRoot : constants.api.users.url
     });
 
     function setPossibleRoles(role) {
@@ -26,7 +25,7 @@ define(['masseuseModel', 'computedProperty', 'constants', 'resources'], function
         });
     }
 
-    function url() {
-        return this.urlRoot;
+    function setBackboneId(_id) {
+        return _id;
     }
 });
