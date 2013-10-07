@@ -1,11 +1,11 @@
 /*global define:false*/
 define(['baseView', 'rivetView'], function (BaseView, rivetView) {
-        "use strict";
+    'use strict';
 
-        var EmptyView = BaseView.extend({
-            rivetView : rivetView({rivetScope : '#empty', rivetPrefix : 'empty'})
-        });
-
-
-        return EmptyView;
+    var EmptyView = BaseView.extend({
+        rivetView : rivetView({rivetScope : '#empty', rivetPrefix : 'empty'})
     });
+
+
+    return EmptyView;
+});

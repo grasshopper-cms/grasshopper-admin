@@ -4,7 +4,6 @@ define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function 
 
     return {
         name : 'alertBoxView',
-        modelData : {loginError : ''},
         ModelType : alertBoxViewModel,
         el : '#alertBox',
         templateHtml : templateHtml

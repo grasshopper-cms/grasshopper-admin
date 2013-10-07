@@ -1,33 +1,40 @@
-define(['api', 'jquery','emptyView','emptyViewConfig', 'resources', 'alertBoxView', 'alertBoxViewConfig'],
-    function (api, $, EmptyView, emptyViewConfig, resources, AlertBoxView, alertBoxViewConfig) {
-    'use strict';
+define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'LocalStorage'],
+    function (api, $, EmptyView, emptyViewConfig, resources, LocalStorage) {
+        'use strict';
 
-    return {
-        doLogin : doLogin
-    };
+        /**
+         * @class loginWorker
+         */
+        return {
+            doLogin : doLogin
+        };
 
-    function doLogin(loginModel) {
-
-      api.getToken(loginModel.get('username'), loginModel.get('password'))
-          .done(function(data){
-              var emptyView;
-              // redirect to empty view
-              // Can always load empty up front
-              // Final file will be min concated anyway
-              if ("Token" === data.token_type) {
-                  //store the token in localstorage
-                  localStorage.setItem('authToken', data.access_token);
-                  emptyView = new EmptyView(emptyViewConfig);
-                  emptyView.start();
-                  emptyView.rivetView();
-              }
-          })
-          .fail(function(xhr){
-
-              var alertBoxView = new AlertBoxView(alertBoxViewConfig);
-              alertBoxView.model.set('loginError', resources.api.login.errors[xhr.status] );
-              alertBoxView.start();
-              alertBoxView.rivetView();
-          });
-    }
-});
+        function doLogin (loginView) {
+            api.getToken(loginView.model.get('username'), loginView.model.get('password'))
+                .done(function (data) {
+                    if ('Token' === data.token_type) {
+                        LocalStorage.set('authToken', data.access_token);
+                    }
+                    api.authenticateToken(LocalStorage.get('authToken'))
+                        .done(function (data) {
+                            loginView.model.clear();
+                            loginView.app.user.set({
+                                _id : data._id,
+                                email : data.email,
+                                enabled : data.enabled,
+                                login : data.login,
+                                name : data.name,
+                                password : data.password,
+                                role : data.role
+                            });
+                            loginView.app.router.navigateTrigger('home');
+                        })
+                        .fail(function () {
+                            self.navigateTrigger('login');
+                        });
+                })
+                .fail(function (xhr) {
+                    loginView.throwLoginError(resources.api.login.errors[xhr.status]);
+                });
+        }
+    });

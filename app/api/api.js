@@ -1,21 +1,40 @@
-define(['resources', 'base64'], function(resources, base64) {
+define(['constants', 'base64', 'LocalStorage'], function (constants, base64, LocalStorage) {
     'use strict';
 
     return {
-        getToken : function(username, password) {
+        getToken : function (username, password) {
             return $.ajax({
-                dataType : "json",
-                url : resources.api.login.url,
+                dataType : 'json',
+                url : constants.api.login.url,
                 type : 'GET',
-                headers : {"Authorization" : "Basic " + base64.encode(username + ":" + password)}
+                headers : {'Authorization' : 'Basic ' + base64.encode(username + ':' + password)}
             });
         },
-        getUser: function(userModel) {
+        authenticateToken : function () {
+            return this.request(constants.api.user.url);
+        },
+        getUser : function (userModel) {
             return userModel.fetch();
         },
-        saveUser: function(userModel) {
-            return userModel.save();
+        request : function (url) {
+            var token = LocalStorage.get('authToken');
+            return $.ajax({
+                dataType : 'json',
+                url : url,
+                type : 'GET',
+                headers : {'Authorization' : 'Token ' + token}
+            });
+        },
+        getRequestedUserDetails : function(id) {
+            return this.request(constants.api.users.url + '/' + id);
+        },
+        getMyUserDetails : function() {
+            return this.request(constants.api.user.url);
+        },
+        getUsers : function() {
+            return this.request(constants.api.users.url);
         }
+
     };
 
 });

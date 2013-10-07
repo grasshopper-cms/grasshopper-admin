@@ -1,6 +1,6 @@
-define(function() {
+define(function () {
     return {
-        stringHasLength : function(string) {
+        stringHasLength : function (string) {
             return !!(string && string.constructor === String);
         }
     };

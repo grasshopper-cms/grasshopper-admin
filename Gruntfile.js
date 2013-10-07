@@ -7,7 +7,8 @@ module.exports = function (grunt) {
         lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
         folderMount = function folderMount (connect, point) {
             return connect.static(path.resolve(point));
-        };
+        },
+        _ = grunt.util._;
 
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -111,6 +112,7 @@ module.exports = function (grunt) {
 
         // TODO: add some clean up tasks after copy, or copy more selectively
         copy : {
+            // TODO: target build copy tasks
             build : {
                 files : [
                     {expand : true, cwd : 'app/', src : [
@@ -119,6 +121,8 @@ module.exports = function (grunt) {
                     ], dest : 'build'}
                 ]
             },
+            // TODO: remove redo and only copy the file that was changed:
+            // TODO: https://github.com/gruntjs/grunt-contrib-watch#using-the-watch-event
             redo : {
                 files : [
                     {expand : true, cwd : 'app/', src : [
@@ -131,7 +135,11 @@ module.exports = function (grunt) {
                         'api/**/*',
                         'main.js',
                         'resources.js',
-                        'index.html'
+                        'index.html',
+                        'router.js',
+                        'collections/**/*',
+                        'localStorage',
+                        'constants.js'
                     ], dest : 'build'}
                 ]
             }
@@ -171,8 +179,8 @@ module.exports = function (grunt) {
                     }
                 }
             },
-            start_vagrant_box : {
-                command : 'vagrant up',
+            vagrant_go : {
+                command : 'set dynamically',
                 options : {
                     failOnError : true,
                     stderr : true,
@@ -193,7 +201,10 @@ module.exports = function (grunt) {
             files : [
                 'app/**/*.js',
                 '!app/vendor/**/*.js'
-            ]
+            ],
+            options: {
+                jshintrc: '.jshintrc'
+            }
         }
     });
 
@@ -201,7 +212,49 @@ module.exports = function (grunt) {
     grunt.registerTask("server", "Build and watch task", ["jshint", "copy:build", "connect:site", "sass", "open:reload", "watch"]);
     grunt.registerTask("testServer", "Build and watch task", ["jshint", "copy", "connect:tests", "sass", "open:tests", "watch"]);
     grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
-    grunt.registerTask("vagrantInstall", "Install and set up vagrant box ", ["shell:install_api_node_modules","shell:install_api_vagrant_plugins", "shell:start_vagrant_box", "shell:test_vagrant_box" ]);
     grunt.registerTask("vagrant", "Starts vagrant", ['shell:start_vagrant_box']);
     grunt.registerTask("testVagrant", "grabs an auth token to ensure box is running", ['shell:test_vagrant_box']);
+    grunt.registerTask('vagrant', "use vagrant:help", function vagrant(target, extra) {
+        var tasks = {
+            install : {
+                run : ["shell:install_api_node_modules","shell:install_api_vagrant_plugins", "vagrant:run:up", "shell:test_vagrant_box" ],
+                help : "Install and set up vagrant box "
+            },
+            test : {
+                run : ['shell:test_vagrant_box'],
+                help : "grabs an auth token to ensure box is running"
+            },
+            run : {
+                help : "runs arbitrary vagrant tasks - e.g. up, reload, destroy"
+            }
+            },
+            vagrantCommands = Array.prototype.splice.call(arguments, 1);
+
+        if (!extra) {
+            if (tasks[target]) {
+                grunt.task.run(tasks[target].run);
+            } else {
+                _.each(_.keys(tasks), function(key) {
+                    grunt.log.subhead(key).writeln(tasks[key].help);
+                });
+            }
+        } else {
+            if ('help' === target) {
+                grunt.log.subhead("Help:").subhead(tasks[extra] ? tasks[extra].help : 'use the form grunt vagrant:help:task');
+            } else if ('run' === target) {
+                vagrantCommands = vagrantCommands.join(' ');
+                grunt.log
+                    .subhead('Running...')
+                    .subhead('vagrant ' + vagrantCommands)
+                    .subhead(' ... go!');
+
+                grunt.config.set('shell.vagrant_go.command', 'vagrant ' + vagrantCommands);
+                grunt.task.run(['shell:vagrant_go']);
+            } else {
+                grunt.task.run(['vagrant:run:' + this.args.join(':')]);
+            }
+        }
+
+
+    });
 };

@@ -1,26 +1,21 @@
 // Manifest file for all scss
-
-// Global Sass Variables
-$gray : #f8f8f8;
-$darkBlue : #16283a;
-$blue : #1d354d;
-$lightBlue : #2790b0;
-$green : #94ba65;
-$offWhite : #f9f9f9;
-$lightBlueText : #80a7cf;
-
-$font : 'Open Sans', arial, sans-serif;
+$font: 'Open Sans', arial, sans-serif;
 
 // Import Foundation
 @import "vendor/foundation/scss/foundation";
+
+//Import Foundation Icon Fonts
+@import "vendor/foundation-icons/foundation_icons_general/sass/general_foundicons";
+
 // Using Sass globbing to import app view scss files.
+@import "colors";
 @import "views/**/*";
 
 body, html {
-  font-family : $font;
+  font-family: $font;
 
   h1, h2, h3, h4, h5, h6 {
-    font-family : $font;
+    font-family: $font;
   }
 }
 

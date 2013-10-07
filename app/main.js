@@ -11,6 +11,10 @@ require.config({
         alerts : {
             deps : ['foundation']
         },
+        forms : {
+            exports : 'Forms',
+            deps : ['foundation']
+        },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
@@ -26,20 +30,31 @@ require.config({
         rivets : 'vendor/rivets/dist/rivets',
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
+        paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
+        LocalStorage : 'localStorage',
+
+        // Routers
+        masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
+        router : 'router',
 
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alerts',
+        forms : 'vendor/foundation/js/foundation/foundation.forms',
 
         // Views
         baseView : 'vendor/masseuse/app/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
-        navbarView : 'views/navbar/navbarView',
-        navbarViewConfig : 'views/navbar/navbarViewConfig',
+        headerView : 'views/header/headerView',
+        headerViewConfig : 'views/header/headerViewConfig',
         emptyView : 'views/empty/emptyView',
         emptyViewConfig : 'views/empty/emptyViewConfig',
         alertBoxView : 'views/alertBox/alertBoxView',
         alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
+        userDetailView : 'views/userDetail/userDetailView',
+        userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
+        usersIndexView : 'views/usersIndex/usersIndexView',
+        usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -49,18 +64,25 @@ require.config({
         channels : 'vendor/masseuse/app/channels',
 
         // Models
-        ComputedProperty : 'vendor/masseuse/app/ComputedProperty',
+        computedProperty : 'vendor/masseuse/app/computedProperty',
         masseuseModel : 'vendor/masseuse/app/MasseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
-        userModel : 'models/userModel',
+        UserModel : 'models/UserModel',
 
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',
-        navbarViewModel : 'models/viewModels/navbarViewModel',
+        headerViewModel : 'models/viewModels/headerViewModel',
         alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
+        userDetailViewModel : 'models/viewModels/userDetailViewModel',
+        usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',
+        userWorker : 'workers/userWorker',
+
+        // Collections
+        paginatedCollection : 'collections/paginatedCollection',
+        userCollection : 'collections/userCollection',
 
         // Api proxy
         api : 'api/api',
@@ -69,26 +91,28 @@ require.config({
         validation : 'validation/validation',
 
         // Resources File
-        resources : 'resources'
+        resources : 'resources',
+        constants : 'constants'
     }
 });
 
 require([
-    'loginView',
-    'loginViewConfig',
-    'navbarView',
-    'navbarViewConfig',
+    'jquery',
+    'router',
     'alerts',
-    'jquery'
-], function (LoginView, loginViewConfig, NavbarView, navbarViewConfig, alerts, $) {
-    "use strict";
+    'forms'
+],
+    /**
+     * @param $
+     * @param {Router} Router
+     */
+    function ($, Router) {
+
+    'use strict';
     $(document).foundation();
-    var loginView = new LoginView(loginViewConfig);
-    loginView.start();
-    loginView.rivetView();
 
-    var navbarView = new NavbarView(navbarViewConfig);
-    navbarView.start();
-    navbarView.rivetView();
-
+    new Router().start();
+    Backbone.history.start();
+    // TODO: setup push state on nginx
+    //Backbone.history.start({pushState: true});
 });

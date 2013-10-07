@@ -1,0 +1,10 @@
+{
+    "globals": {
+        "define": false,
+        "require": false,
+        "console": false
+    },
+    "curly": true,
+    "quotmark": "single",
+    "debug" : true
+}
