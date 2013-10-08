@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'userWorker', 'constants', 'rivets'],
+define(['baseView', 'userWorker', 'constants'],
 
-    function (BaseView, rivetView, userWorker, constants, Rivets) {
+    function (BaseView, userWorker, constants) {
 
         var usersIndexView = BaseView.extend({
             goToPage : goToPage,
