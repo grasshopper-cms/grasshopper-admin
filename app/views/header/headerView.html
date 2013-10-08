@@ -1,42 +1,131 @@
-<div id="header-partial" class="contain-to-grid sticky">
-    <nav class="top-bar">
-        <ul class="title-area">
-            <!-- Title Area -->
-            <li class="name">
-                <h1>
-                    <a href="#">
-                        <img class="grasshopperLogo"
-                             src="http://content.screencast.com/users/GregSolid/folders/Jing/media/c4f1e4d6-b74f-467c-be23-2ed1c4bdfea1/00000028.png"/>
+<div id="topbar" class="contain-to-grid sticky">
+    <div id="top-nav">
 
-                        <div id="logo-text">Grasshopper</div>
-                    </a>
-                </h1>
+        <ul>
+            <li class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    View Your Site
+                    <b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:;">View Site #1</a></li>
+                    <li><a href="javascript:;">View Site #2</a></li>
+                    <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Dropdown menu</a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
-            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
         </ul>
-        <section class="top-bar-section">
-            <ul class="right">
-                <li><a id="logOutButton" href="#logout" data-header-show="data.loggedIn">Log Out</a></li>
-                <li><a id="logInButton" href="#login" data-header-hide="data.loggedIn">Log In</a></li>
-                <li class="divider hide-for-small"></li>
-                <li class="has-dropdown">
-                    <a href="#">
-                        <img class="gravatar" data-header-show="data.loggedIn" src="http://content.screencast.com/users/GregSolid/folders/Jing/media/79416a51-e20b-4b29-8e56-5d6352ed3bb7/00000031.png"/>
-                        <span data-header-text="data.name"></span>
+
+        <ul class="pull-right">
+            <li><a href="javascript:;"><i class="icon-user"></i> Logged in as John Doe</a></li>
+            <li><a href="javascript:;"><span class="badge badge-primary">1</span> New Message</a></li>
+            <li class="dropdown">
+                <a href="./pages/settings.html" class="dropdown-toggle" data-toggle="dropdown">
+                    Settings
+                    <b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:;">Settings #1</a></li>
+                    <li><a href="javascript:;">Settings #2</a></li>
+                    <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Dropdown menu</a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+
+    </div>
+</div>
+<div id="headerbar">
+    <div class="container">
+
+        <a href="./index.html" class="brand">Grasshopper</a>
+        <a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <i class="icon-reorder"></i>
+        </a>
+
+        <div class="nav-collapse">
+            <ul id="main-nav" class="nav pull-right">
+                <li class="nav-icon active">
+                    <a href="./index.html">
+                        <i class="icon-home"></i>
+                        <span>Home</span>
                     </a>
-                    <ul class="dropdown">
-                        <li><a id="myProfileButton" data-header-show="data.loggedIn" data-header-href="data.url">Edit Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">About Grasshopper</a></li>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-th"></i>
+                        <span>Components</span>
+                        <b class="caret"></b>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="./elements.html">Elements</a></li>
+                        <li><a href="./validation.html">Validation</a></li>
+                        <li><a href="./jqueryui.html">jQuery UI</a></li>
+                        <li><a href="./charts.html">Charts</a></li>
+                        <li><a href="./bonus.html">Bonus Elements</a></li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Dropdown menu</a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">Second level link</a></li>
+                                <li><a tabindex="-1" href="#">Second level link</a></li>
+                                <li><a tabindex="-1" href="#">Second level link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-copy"></i>
+                        <span>Sample Pages</span>
+                        <b class="caret"></b>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="./faq.html">FAQ</a></li>
+                        <li><a href="./gallery.html">Image Gallery</a></li>
+                        <li><a href="./pricing.html">Pricing Plans</a></li>
+                        <li><a href="./reports.html">Reports</a></li>
+                        <li><a href="./settings.html">Settings</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-external-link"></i>
+                        <span>Extras</span>
+                        <b class="caret"></b>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="./login.html">Login</a></li>
+                        <li><a href="./signup.html">Signup</a></li>
+                        <li><a href="./error.html">Error</a></li>
+                        <li><a href="./skins.html">Skins</a></li>
+                        <li><a href="./sticky.html">Sticky Footer</a></li>
                     </ul>
                 </li>
             </ul>
-        </section>
-    </nav>
-</div>
-<div id="sub-header" class="row">
-    <div class="large-8 columns">
+
+        </div> <!-- /.nav-collapse -->
+
     </div>
     <div class="large-4 columns">
         <a id="displayUsersButton" data-header-show="data.admin" class="button" href="#users">Users</a>

@@ -160,15 +160,16 @@ define([
                 }};
                 return oldSave.call(this, null, saveOptions);
             };
+
         }
 
         function start () {
-            var self = this,
-                headerView = newView(HeaderView, headerViewConfig);
+            var self = this;
+            var headerView = newView(HeaderView, headerViewConfig);
 
             headerView.start();
-            headerView.rivetView();
 
+            headerView.rivetView();
 
             return this;
         }
@@ -180,6 +181,7 @@ define([
         }
 
         function displayLogin () {
+
             var loginView = newView(LoginView, loginViewConfig);
             loginView.start();
             loginView.rivetView();
