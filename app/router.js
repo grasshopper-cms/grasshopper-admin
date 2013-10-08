@@ -4,6 +4,8 @@ define([
     'masseuseRouter',
     'loginView',
     'loginViewConfig',
+    'dashboardView',
+    'dashboardViewConfig',
     'api',
     'loginWorker',
     'userWorker',
@@ -19,12 +21,14 @@ define([
     'userDetailViewConfig',
     'headerView',
     'headerViewConfig',
+    'mastheadView',
+    'mastheadViewConfig',
     'usersIndexView',
     'usersIndexViewConfig',
     'constants',
     'LocalStorage'
 ],
-    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig, constants, LocalStorage) {
+    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, DashboardView, dashboardViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, MastheadView, mastheadViewConfig, UsersIndexView, usersIndexViewConfig, constants, LocalStorage) {
 
         var userModel = new UserModel(),
             currentView;
@@ -165,11 +169,14 @@ define([
 
         function start () {
             var self = this;
+
             var headerView = newView(HeaderView, headerViewConfig);
-
             headerView.start();
-
             headerView.rivetView();
+
+            var mastheadView = newView(MastheadView, mastheadViewConfig);
+            mastheadView.start();
+            mastheadView.rivetView();
 
             return this;
         }
@@ -209,9 +216,12 @@ define([
 
         function displayApp () {
             // Display the app.
-            var emptyView = newView(EmptyView, emptyViewConfig);
-            emptyView.start();
-            emptyView.rivetView();
+
+
+            var dashboardView = newView(DashboardView, dashboardViewConfig);
+            dashboardView.start();
+            dashboardView.rivetView();
+
         }
 
         function displayUserDetail (id) {

@@ -46,6 +46,8 @@ require.config({
         baseView : 'vendor/masseuse/app/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
+        dashboardView : 'views/dashboard/dashboardView',
+        dashboardViewConfig : 'views/dashboard/dashboardViewConfig',
         headerView : 'views/header/headerView',
         headerViewConfig : 'views/header/headerViewConfig',
         emptyView : 'views/empty/emptyView',
@@ -56,6 +58,9 @@ require.config({
         userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
         usersIndexView : 'views/usersIndex/usersIndexView',
         usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
+        mastheadView: 'views/masthead/mastheadView',
+        mastheadViewConfig: 'views/masthead/mastheadViewConfig',
+
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',

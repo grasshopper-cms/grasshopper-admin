@@ -1,14 +1,9 @@
 
 
-body {
-
-  background: url(#{$imgPath}/signin/login-bg.png);
-}
-
 #login-page {
 
 
-  margin-top: 6%;
+  background: url(#{$imgPath}/signin/login-bg.png);
 
   .login-button {
     @include button;
