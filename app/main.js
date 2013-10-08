@@ -58,7 +58,7 @@ require.config({
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
-        rivetView : 'mixins/rivetView',
+        rivetView : 'vendor/masseuse/app/rivetView',
 
         // Channels
         channels : 'vendor/masseuse/app/channels',
@@ -81,7 +81,7 @@ require.config({
         userWorker : 'workers/userWorker',
 
         // Collections
-        paginatedCollection : 'collections/paginatedCollection',
+        paginatedCollection : 'vendor/masseuse/app/paginatedCollection',
         userCollection : 'collections/userCollection',
 
         // Api proxy
