@@ -4,7 +4,6 @@ define(['baseView', 'rivetView', 'userWorker', 'constants', 'rivets'],
     function (BaseView, rivetView, userWorker, constants, Rivets) {
 
         var usersIndexView = BaseView.extend({
-            rivetView : rivetView({rivetScope : '#usersIndex', rivetPrefix : 'usersindex', instaUpdateRivets : true}),
             goToPage : goToPage,
             renderPlugins : renderPlugins,
             checkAndSetLimit : checkAndSetLimit,

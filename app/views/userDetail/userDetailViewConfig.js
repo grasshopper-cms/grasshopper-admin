@@ -11,6 +11,10 @@ define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel'], fun
         templateHtml : templateHtml,
         events : {
             'click #saveUser' : 'updateModel'
+        },
+        rivetConfig : {
+            scope : '#userDetail',
+            prefix : 'userdetail'
         }
     };
 

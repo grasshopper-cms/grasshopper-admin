@@ -1,14 +1,13 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'loginWorker'], function (BaseView, rivetView, loginWorker) {
+define(['baseView'], function (BaseView) {
 
     var HeaderView = BaseView.extend({
-        rivetView : rivetView({rivetScope : '#header', rivetPrefix : 'header'}),
         setUser : setUser
     });
 
     function setUser () {
         // TODO: remove and replace with direct reference or clone if needed
-        if(this.app.user.get('loggedIn')) {
+        if (this.app.user.get('loggedIn')) {
             this.model.set({
                 admin : this.app.user.get('isAdmin'),
                 loggedIn : this.app.user.get('loggedIn'),
