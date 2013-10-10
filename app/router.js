@@ -35,7 +35,7 @@ define([
          */
         var Router = MasseuseRouter.extend({
             initialize : initialize,
-            start : start,
+            startHeader : startHeader,
 
             routes : {
                 'login' : 'displayLogin',
@@ -86,12 +86,18 @@ define([
                                 password : data.password,
                                 role : data.role
                             });
+                            if ( ! self.headerView) {
+                                self.startHeader();
+                            }
                             $deferred.resolve();
                         })
                         .fail(function () {
                             $deferred.reject();
                         });
                 } else {
+                    if ( ! self.headerView) {
+                        self.startHeader();
+                    }
                     $deferred.resolve();
                 }
 
@@ -158,13 +164,12 @@ define([
             };
         }
 
-        function start () {
+        function startHeader () {
             var headerView = newView(HeaderView, headerViewConfig);
 
             headerView.start();
             headerView.rivetView();
-
-            return this;
+            this.headerView = headerView;
         }
 
         function goLogout () {
@@ -175,6 +180,12 @@ define([
 
         function displayLogin () {
             var loginView = newView(LoginView, loginViewConfig);
+
+            if (this.headerView) {
+                this.headerView.remove();
+                this.headerView = false;
+            }
+
             loginView.start();
             loginView.rivetView();
         }
