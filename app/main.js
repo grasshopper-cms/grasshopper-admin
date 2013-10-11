@@ -65,6 +65,7 @@ require.config({
 
         // Models
         computedProperty : 'vendor/masseuse/app/computedProperty',
+        proxyProperty : 'vendor/masseuse/app/proxyProperty',
         masseuseModel : 'vendor/masseuse/app/MasseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
