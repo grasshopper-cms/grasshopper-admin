@@ -2,8 +2,14 @@
 define(['baseView'], function (BaseView) {
 
     var HeaderView = BaseView.extend({
-        setUser : setUser
+        setUser : setUser,
+        afterRender : afterRender,
+        remove : remove
     });
+
+    function afterRender () {
+        this.setUser();
+    }
 
     function setUser () {
         // TODO: remove and replace with direct reference or clone if needed
@@ -25,6 +31,11 @@ define(['baseView'], function (BaseView) {
                 url : 'home'
             });
         }
+    }
+
+    function remove() {
+        this.$el.empty();
+        this.stopListening();
     }
 
     return HeaderView;
