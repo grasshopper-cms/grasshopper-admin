@@ -112,7 +112,7 @@ require([
     'use strict';
     $(document).foundation();
 
-    new Router().start();
+    new Router();
     Backbone.history.start();
     // TODO: setup push state on nginx
     //Backbone.history.start({pushState: true});
