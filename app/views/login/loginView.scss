@@ -2,9 +2,6 @@
 
 #login-page {
 
-
-  background: url(#{$imgPath}/signin/login-bg.png);
-
   .login-button {
     @include button;
     @include button-style($buttonOkay);

@@ -1,7 +1,7 @@
 // Manifest file for all scss
 $font: 'Open Sans', arial, sans-serif;
 
-$imgPath: '/vendor/theme/img';
+$imgPath: '/views/img';
 $include-html-top-bar-classes: false;
 
 $break-large: 1200px;
@@ -16,7 +16,7 @@ $break-tiny: 320px;
 @import "vendor/foundation-icons/foundation_icons_general/sass/general_foundicons";
 
 //Import font-awesome
-@import "vendor/font-awesome/css/font-awesome.css";
+@import "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css";
 
 // Using Sass globbing to import app view scss files.
 @import "colors";
