@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['baseView', 'rivetView', 'loginWorker', 'jquery'], function (BaseView, rivetView, loginWorker, $) {
 
     var HeaderView = BaseView.extend({
         setUser : setUser,

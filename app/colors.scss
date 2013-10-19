@@ -1,15 +1,36 @@
 $black: black;
-$blue: #1d354d;
-$darkBlue: #16283a;
-$gray: #f8f8f8;
-$green: #94ba65;
-$lightBlue: #2790b0;
-$lightBlueText: #80a7cf;
+$darkGray: #333333;
+$mediumGray: #838383;
+$alphaGray: rgba(0, 0, 0, 0.25);
+$lightAlphaGray: rgba(0, 0, 0, 0.1);
+$darkAlphaGray: rgba(0, 0, 0, 0.075);
 $lightGray: lightgray;
+$gray: #f8f8f8;
+
+$darkGreen: #567233;
+$mediumGreen: #7da64b;
+$green: #94ba65;
+$lightGreen: #a0c277;
+
+//$darkBlue: #16283a;
+$darkBlue: red;
+$blue: #1d354d;
 $mediumBlue: #28496b;
-$offWhite: #f9f9f9;
+$lightBlue: #2790b0;
+
+$menuBGBlue: #1f3852;
+$menuTopGradient: #24415f;
+$menuBottomGradient: #172b3e;
+$menuBorder: #080f15;
+$menuShadow: #325b85;
+
+
+$lightBlueText: #80a7cf;
+
 $red: #A00000;
 $white: #FFFFFF;
+$offWhite: #f9f9f9;
+
 
 $linkImportant: $lightBlueText;
 $linkRegular: $darkBlue;

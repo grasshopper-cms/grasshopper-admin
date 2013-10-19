@@ -4,6 +4,8 @@ define([
     'masseuseRouter',
     'loginView',
     'loginViewConfig',
+    'dashboardView',
+    'dashboardViewConfig',
     'api',
     'loginWorker',
     'userWorker',
@@ -19,12 +21,14 @@ define([
     'userDetailViewConfig',
     'headerView',
     'headerViewConfig',
+    'mastheadView',
+    'mastheadViewConfig',
     'usersIndexView',
     'usersIndexViewConfig',
     'constants',
     'LocalStorage'
 ],
-    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig, constants, LocalStorage) {
+    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, DashboardView, dashboardViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, MastheadView, mastheadViewConfig, UsersIndexView, usersIndexViewConfig, constants, LocalStorage) {
 
         var userModel = new UserModel(),
             currentView;
@@ -164,12 +168,19 @@ define([
             };
         }
 
-        function startHeader () {
-            var headerView = newView(HeaderView, headerViewConfig);
 
+        function startHeader () {
+
+            var headerView = newView(HeaderView, headerViewConfig);
             headerView.start();
             headerView.rivetView();
             this.headerView = headerView;
+
+            var mastheadView = newView(MastheadView, mastheadViewConfig);
+            mastheadView.start();
+            mastheadView.rivetView();
+            this.mastheadView = mastheadView;
+
         }
 
         function goLogout () {
@@ -179,12 +190,19 @@ define([
         }
 
         function displayLogin () {
+
             var loginView = newView(LoginView, loginViewConfig);
 
             if (this.headerView) {
                 this.headerView.remove();
                 this.headerView = false;
             }
+
+            if (this.mastheadView) {
+                this.mastheadView.remove();
+                this.mastheadView = false;
+            }
+
 
             loginView.start();
             loginView.rivetView();
@@ -212,9 +230,12 @@ define([
 
         function displayApp () {
             // Display the app.
-            var emptyView = newView(EmptyView, emptyViewConfig);
-            emptyView.start();
-            emptyView.rivetView();
+
+
+            var dashboardView = newView(DashboardView, dashboardViewConfig);
+            dashboardView.start();
+            dashboardView.rivetView();
+
         }
 
         function displayUserDetail (id) {

@@ -39,11 +39,140 @@
         </section>
     </nav>
 </div>
-<div id="sub-header" class="row">
-    <div class="large-8 columns">
+
+<div id="topbar" class="contain-to-grid sticky">
+    <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+        <i class="icon-cog"></i>
+    </a>
+    <div id="top-nav">
+
+        <ul>
+            <li class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    View Your Site
+                    <b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:;">View Site #1</a></li>
+                    <li><a href="javascript:;">View Site #2</a></li>
+                    <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Dropdown menu</a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="pull-right">
+            <li><a href="javascript:;"><i class="icon-user"></i> Logged in as John Doe</a></li>
+            <li><a href="javascript:;"><span class="badge badge-primary">1</span> New Message</a></li>
+            <li class="dropdown">
+                <a href="./pages/settings.html" class="dropdown-toggle" data-toggle="dropdown">
+                    Settings
+                    <b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:;">Settings #1</a></li>
+                    <li><a href="javascript:;">Settings #2</a></li>
+                    <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Dropdown menu</a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                            <li><a tabindex="-1" href="#">Second level link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+
     </div>
-    <div class="large-4 columns">
-        <a id="displayUsersButton" data-header-show="data.admin" class="button"
-           href="#users">{{data.resources.users}}</a>
+</div>
+<div id="headerbar">
+    <div class="container">
+
+        <div class="row">
+            <div class="large-12 columns">
+                <a href="./index.html" class="brand">Grasshopper</a>
+                <a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <i class="icon-reorder"></i>
+                </a>
+
+                <div class="nav-collapse">
+                    <ul id="main-nav" class="nav pull-right">
+                        <li class="nav-icon active">
+                            <a href="./index.html">
+                                <i class="icon-home"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-th"></i>
+                                <span>Components</span>
+                                <b class="caret"></b>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><<a id="displayUsersButton" data-header-show="data.admin" href="#users">Users</a></li>
+                                <li><a href="./validation.html">Validation</a></li>
+                                <li><a href="./jqueryui.html">jQuery UI</a></li>
+                                <li><a href="./charts.html">Charts</a></li>
+                                <li><a href="./bonus.html">Bonus Elements</a></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Dropdown menu</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a tabindex="-1" href="#">Second level link</a></li>
+                                        <li><a tabindex="-1" href="#">Second level link</a></li>
+                                        <li><a tabindex="-1" href="#">Second level link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-copy"></i>
+                                <span>Sample Pages</span>
+                                <b class="caret"></b>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="./faq.html">FAQ</a></li>
+                                <li><a href="./gallery.html">Image Gallery</a></li>
+                                <li><a href="./pricing.html">Pricing Plans</a></li>
+                                <li><a href="./reports.html">Reports</a></li>
+                                <li><a href="./settings.html">Settings</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-external-link"></i>
+                                <span>Extras</span>
+                                <b class="caret"></b>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="./login.html">Login</a></li>
+                                <li><a href="./signup.html">Signup</a></li>
+                                <li><a href="./error.html">Error</a></li>
+                                <li><a href="./skins.html">Skins</a></li>
+                                <li><a href="./sticky.html">Sticky Footer</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div> <!-- /.nav-collapse -->
+            </div>
+        </div>
     </div>
 </div>
