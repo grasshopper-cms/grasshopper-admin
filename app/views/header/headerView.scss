@@ -121,6 +121,13 @@
     margin-right: 0;
     margin-bottom: 0;
 
+
+
+    @media screen and (max-width: $break-medium - 1) {
+      display: none;
+    }
+
+
     > li {
       float: left;
       padding: 0;
