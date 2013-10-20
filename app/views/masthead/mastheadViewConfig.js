@@ -7,7 +7,9 @@ define(['text!views/masthead/mastheadView.html'], function (templateHtml) {
         el : '#masthead',
         templateHtml : templateHtml,
         data: {
-            title: 'Dashboard'
+            icon: 'icon-user',
+            title: 'Users',
+            description: 'Lorem ipsum...'
         }
     };
 });

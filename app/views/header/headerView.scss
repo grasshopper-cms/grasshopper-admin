@@ -6,6 +6,15 @@
   background-color: $blue;
 
 
+  img.profile-pic {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+  }
+
+
   #headerbar {
 
     @media screen and (max-width: $break-small - 1) {
@@ -55,10 +64,7 @@
       margin-left: 10px;
       font-size: 1.6875em;
     }
-    .gravatar {
-      width: 35px;
-      border-radius: 3px;
-    }
+
 
     .top-bar {
       margin-bottom: 0px;

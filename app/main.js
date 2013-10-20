@@ -33,6 +33,7 @@ require.config({
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
         LocalStorage : 'localStorage',
         backstrap: 'vendor/theme/backstrap',
+        cirque: 'vendor/cirque/jquery.cirque',
 
         // Routers
         masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
@@ -41,6 +42,7 @@ require.config({
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alerts',
         forms : 'vendor/foundation/js/foundation/foundation.forms',
+        dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
 
         // Views
         baseView : 'vendor/masseuse/app/baseView',

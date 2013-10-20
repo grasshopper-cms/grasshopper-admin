@@ -1,32 +1,19 @@
 <div id="topbar" class="contain-to-grid sticky">
     <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
-        <i class="icon-cog"></i>
+        <i class="icon-home"></i>
     </a>
     <div id="top-nav">
-
-        <ul>
-            <li class="dropdown">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    View Your Site
-                </a>
-            </li>
-        </ul>
-
         <ul class="pull-right">
-            <li><img class="gravatar" data-header-show="data.loggedIn"
-                     src="http://placehold.it/20x20"/></li>
-            <li><a href="javascript:;"><i class="icon-user"></i> Logged in as
-                <span data-header-text="data.name"></span></a></li>
+            <li><img class="profile-pic" data-header-show="data.loggedIn" src="http://placehold.it/20x20"/></li>
+            <li><a href="javascript:;"><i class="icon-user"></i> Logged in as <span data-header-text="data.name"></span></a></li>
             <li class="dropdown">
-                <a href="#settings" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
                     Settings
                     <b class="caret"></b>
                 </a>
 
-                <ul class="dropdown-menu pull-right">
-                    <li><a id="myProfileButton" data-header-show="data.loggedIn" data-header-href="data.url">{{data.resources.edit}}
-                        {{data.resources.profile}}</a></li>
-
+                <ul id="settings-dropdown" data-dropdown-content class="f-dropdown">
+                    <li><a id="myProfileButton" data-header-show="data.loggedIn" data-header-href="data.url">{{data.resources.edit}} {{data.resources.profile}}</a></li>
                     <li><a href="#about">{{data.resources.site.about}}</a></li>
                 </ul>
             </li>

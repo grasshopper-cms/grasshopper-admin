@@ -177,6 +177,7 @@ define([
             this.headerView = headerView;
 
             var mastheadView = newView(MastheadView, mastheadViewConfig);
+            mastheadView.model.set({title:'Users',icon: 'icon-user',description: 'There are 23 users.'});
             mastheadView.start();
             mastheadView.rivetView();
             this.mastheadView = mastheadView;

@@ -9,7 +9,28 @@ $break-medium: 980px;
 $break-small: 768px;
 $break-tiny: 320px;
 
+
+
+@mixin lightGradient {
+
+  background-color: #f8f8f8;
+  background-image: -moz-linear-gradient(top, #ffffff, #ededed);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ededed));
+  background-image: -webkit-linear-gradient(top, #ffffff, #ededed);
+  background-image: -o-linear-gradient(top, #ffffff, #ededed);
+  background-image: linear-gradient(to bottom, #ffffff, #ededed);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffededed', GradientType=0);
+  border-bottom: 1px solid #c9c9c9;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+
+}
+
+
 // Import Foundation
+@import "vendor/foundation/scss/normalize";
 @import "vendor/foundation/scss/foundation";
 
 //Import Foundation Icon Fonts
@@ -21,6 +42,7 @@ $break-tiny: 320px;
 // Using Sass globbing to import app view scss files.
 @import "colors";
 @import "views/**/*";
+
 
 body, html {
 
@@ -42,6 +64,16 @@ body, html {
 
   h3 {
     font-size:18px;
+  }
+
+  table {
+    border-radius: 4px;
+    border-collapse: inherit;
+
+    th
+    {
+      @include lightGradient;
+    }
   }
 
   label, input, button, select, textarea {
@@ -106,6 +138,7 @@ body, html {
   input[type='checkbox']:checked + label {
     background-position: 0 -15px;
   }
+
 
   .btn-primary {
     color: $white;
