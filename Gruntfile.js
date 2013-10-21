@@ -151,6 +151,13 @@ module.exports = function (grunt) {
 
                     ], dest : 'build'}
                 ]
+            },
+            vagrant : {
+                files : [
+                    {expand : true, cwd : 'api/lib/config/configuration.test.json', src : [
+
+                    ], dest : 'api/lib/config/configuration.json'}
+                ]
             }
         },
 
