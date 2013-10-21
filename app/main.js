@@ -108,6 +108,7 @@ require.config({
 require([
     'jquery',
     'router',
+    'constants',
     'alerts',
     'forms'
 ],
@@ -115,13 +116,15 @@ require([
      * @param $
      * @param {Router} Router
      */
-    function ($, Router) {
+    function ($, Router, constants) {
 
-    'use strict';
-    $(document).foundation();
+        'use strict';
+        $(document).foundation();
 
-    new Router();
-    Backbone.history.start();
-    // TODO: setup push state on nginx
-    //Backbone.history.start({pushState: true});
+        $('head').append('<link rel="stylesheet" type="text/css" href="themes/' + constants.defaults.theme + '/main.css" />');
+
+        new Router();
+        Backbone.history.start();
+        // TODO: setup push state on nginx
+        //Backbone.history.start({pushState: true});
 });
