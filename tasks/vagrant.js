@@ -8,7 +8,7 @@ module.exports = function (grunt) {
     grunt.registerTask('vagrant', "use vagrant:help", function vagrant (target, extra) {
         var tasks = {
                 install : {
-                    run : ["shell:install_api_node_modules", "shell:install_api_vagrant_plugins", "vagrant:run:up", "shell:test_vagrant_box" ],
+                    run : ["shell:install_api_node_modules", "shell:install_api_vagrant_plugins", "vagrant:run:up", "shell:test_vagrant_box", "copy:vagrant" ],
                     help : "Install and set up vagrant box "
                 },
                 test : {
