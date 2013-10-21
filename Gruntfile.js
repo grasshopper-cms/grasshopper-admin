@@ -74,9 +74,12 @@ module.exports = function (grunt) {
                     require : 'sass-globbing',
                     sourcemap : true
                 },
-                files : {
-                    'build/application.css' : 'app/application.scss'
-                }
+                files : grunt.file.expandMapping(['themes/**/main.scss'], 'css', {
+                    cwd: 'app/',
+                    rename: function (dest, matched) {
+                        return 'build/' + matched.replace(/\.scss$/, '.css');
+                    }
+                })
             }
         },
 
@@ -141,7 +144,7 @@ module.exports = function (grunt) {
                         '**',
                         '!**/*.scss',
                         '!**/*.js',
-                        '!vendor/**/*',
+                        '!vendor/**/*'
                     ], dest : 'build'}
                 ]
             },
