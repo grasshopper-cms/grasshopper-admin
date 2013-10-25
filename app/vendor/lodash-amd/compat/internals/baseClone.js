@@ -1,6 +1,6 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize exports="amd" -o ./compat/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -54,64 +54,62 @@ define(['../objects/assign', './baseEach', '../objects/forOwn', './getArray', '.
    *
    * @private
    * @param {*} value The value to clone.
-   * @param {boolean} [deep=false] A flag to indicate a deep clone.
+   * @param {boolean} [deep=false] Specify a deep clone.
    * @param {Function} [callback] The function to customize cloning values.
    * @param {Array} [stackA=[]] Tracks traversed source objects.
    * @param {Array} [stackB=[]] Associates clones with source counterparts.
-   * @returns {*} Returns the cloned `value`.
+   * @returns {*} Returns the cloned value.
    */
   function baseClone(value, deep, callback, stackA, stackB) {
-    var result = value;
-
     if (callback) {
-      result = callback(result);
+      var result = callback(value);
       if (typeof result != 'undefined') {
         return result;
       }
-      result = value;
     }
     // inspect [[Class]]
-    var isObj = isObject(result);
+    var isObj = isObject(value);
     if (isObj) {
-      var className = toString.call(result);
-      if (!cloneableClasses[className] || (!support.nodeClass && isNode(result))) {
-        return result;
+      var className = toString.call(value);
+      if (!cloneableClasses[className] || (!support.nodeClass && isNode(value))) {
+        return value;
       }
-      var isArr = isArray(result);
-    }
-    // shallow clone
-    if (!isObj || !deep) {
-      return isObj
-        ? (isArr ? slice(result) : assign({}, result))
-        : result;
-    }
-    var ctor = ctorByClass[className];
-    switch (className) {
-      case boolClass:
-      case dateClass:
-        return new ctor(+result);
+      var ctor = ctorByClass[className];
+      switch (className) {
+        case boolClass:
+        case dateClass:
+          return new ctor(+value);
 
-      case numberClass:
-      case stringClass:
-        return new ctor(result);
+        case numberClass:
+        case stringClass:
+          return new ctor(value);
 
-      case regexpClass:
-        return ctor(result.source, reFlags.exec(result));
-    }
-    // check for circular references and return corresponding clone
-    var initedStack = !stackA;
-    stackA || (stackA = getArray());
-    stackB || (stackB = getArray());
-
-    var length = stackA.length;
-    while (length--) {
-      if (stackA[length] == value) {
-        return stackB[length];
+        case regexpClass:
+          result = ctor(value.source, reFlags.exec(value));
+          result.lastIndex = value.lastIndex;
+          return result;
       }
+    } else {
+      return value;
     }
-    // init cloned object
-    result = isArr ? ctor(result.length) : {};
+    var isArr = isArray(value);
+    if (deep) {
+      // check for circular references and return corresponding clone
+      var initedStack = !stackA;
+      stackA || (stackA = getArray());
+      stackB || (stackB = getArray());
 
+      var length = stackA.length;
+      while (length--) {
+        if (stackA[length] == value) {
+          return stackB[length];
+        }
+      }
+      result = isArr ? ctor(value.length) : {};
+    }
+    else {
+      result = isArr ? slice(value) : assign({}, value);
+    }
     // add array properties assigned by `RegExp#exec`
     if (isArr) {
       if (hasOwnProperty.call(value, 'index')) {
@@ -120,6 +118,10 @@ define(['../objects/assign', './baseEach', '../objects/forOwn', './getArray', '.
       if (hasOwnProperty.call(value, 'input')) {
         result.input = value.input;
       }
+    }
+    // exit for shallow clone
+    if (!deep) {
+      return result;
     }
     // add the source value to the stack of traversed objects
     // and associate it with its clone

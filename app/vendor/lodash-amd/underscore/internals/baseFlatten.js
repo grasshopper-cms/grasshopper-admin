@@ -1,23 +1,12 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize underscore exports="amd" -o ./underscore/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <http://lodash.com/license>
  */
 define(['../objects/isArguments', '../objects/isArray'], function(isArguments, isArray) {
-
-  /**
-   * Used for `Array` method references.
-   *
-   * Normally `Array.prototype` would suffice, however, using an array literal
-   * avoids issues in Narwhal.
-   */
-  var arrayRef = [];
-
-  /** Native method shortcuts */
-  var push = arrayRef.push;
 
   /**
    * The base implementation of `_.flatten` without support for callback
@@ -37,9 +26,21 @@ define(['../objects/isArguments', '../objects/isArray'], function(isArguments, i
 
     while (++index < length) {
       var value = array[index];
-      // recursively flatten arrays (susceptible to call stack limits)
-      if (value && typeof value == 'object' && (isArray(value) || isArguments(value))) {
-        push.apply(result, isShallow ? value : baseFlatten(value, isShallow, isArgArrays));
+
+      if (value && typeof value == 'object' && typeof value.length == 'number'
+          && (isArray(value) || isArguments(value))) {
+        // recursively flatten arrays (susceptible to call stack limits)
+        if (!isShallow) {
+          value = baseFlatten(value, isShallow, isArgArrays);
+        }
+        var valIndex = -1,
+            valLength = value.length,
+            resIndex = result.length;
+
+        result.length += valLength;
+        while (++valIndex < valLength) {
+          result[resIndex++] = value[valIndex];
+        }
       } else if (!isArgArrays) {
         result.push(value);
       }

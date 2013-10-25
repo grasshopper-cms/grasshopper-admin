@@ -127,7 +127,9 @@ module.exports = function (grunt) {
                         '**',
                         '!**/*.scss',
                         '**/*.html',
-                        '!vendor/**'
+                        '!vendor/**',
+                        'vendor/tinymce/js/tinymce/**/*',
+                        '!vendor/tinymce/js/tinymce/**/*.less'
                     ], dest : 'build'}
                 ]
             },

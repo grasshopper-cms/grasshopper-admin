@@ -8,7 +8,7 @@ define(['text!views/masthead/mastheadView.html'], function (templateHtml) {
         templateHtml : templateHtml,
         data: {
             icon: 'icon-user',
-            title: 'Users',
+            title: 'Test',
             description: 'Lorem ipsum...'
         }
     };

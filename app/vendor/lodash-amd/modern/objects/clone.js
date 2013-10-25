@@ -1,6 +1,6 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="amd" -o ./modern/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -19,10 +19,10 @@ define(['../internals/baseClone', '../internals/baseCreateCallback'], function(b
    * @memberOf _
    * @category Objects
    * @param {*} value The value to clone.
-   * @param {boolean} [deep=false] A flag to indicate a deep clone.
+   * @param {boolean} [deep=false] Specify a deep clone.
    * @param {Function} [callback] The function to customize cloning values.
    * @param {*} [thisArg] The `this` binding of `callback`.
-   * @returns {*} Returns the cloned `value`.
+   * @returns {*} Returns the cloned value.
    * @example
    *
    * var stooges = [

@@ -15,9 +15,28 @@ require.config({
             exports : 'Forms',
             deps : ['foundation']
         },
+        dropdown : {
+            deps : ['foundation']
+        },
+        section : {
+            deps : ['foundation']
+        },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
+        },
+        tinymce: {
+            exports: 'tinyMCE',
+            init: function () {
+                return this.tinymce;
+            }
+        },
+        codemirror: {
+            exports: 'CodeMirror'
+        },
+        codemirrorjs: {
+            deps : ['codemirror']
+
         }
 
     },
@@ -34,6 +53,10 @@ require.config({
         LocalStorage : 'localStorage',
         backstrap: 'vendor/theme/backstrap',
         cirque: 'vendor/cirque/jquery.cirque',
+        modernizr: 'vendor/modernizr/modernizr',
+        tinymce: 'vendor/tinymce/js/tinymce/tinymce.min',
+        tinytheme: 'vendor/tinymce/js/tinymce/themes/modern/theme.min',
+        codemirror: 'vendor/codemirror/lib/codemirror',
 
         // Routers
         masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
@@ -43,6 +66,10 @@ require.config({
         alerts : 'vendor/foundation/js/foundation/foundation.alerts',
         forms : 'vendor/foundation/js/foundation/foundation.forms',
         dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
+        section: 'vendor/foundation/js/foundation/foundation.section',
+
+        // CodeMirror
+        codemirrorjs: 'vendor/codemirror/mode/javascript/javascript',
 
         // Views
         baseView : 'vendor/masseuse/app/baseView',
@@ -60,6 +87,10 @@ require.config({
         userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
         usersIndexView : 'views/usersIndex/usersIndexView',
         usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
+        contentIndexView : 'views/contentIndex/contentIndexView',
+        contentIndexViewConfig : 'views/contentIndex/contentIndexViewConfig',
+        contentEditView : 'views/contentEdit/contentEditView',
+        contentEditViewConfig : 'views/contentEdit/contentEditViewConfig',
         mastheadView: 'views/masthead/mastheadView',
         mastheadViewConfig: 'views/masthead/mastheadViewConfig',
 
@@ -110,7 +141,10 @@ require([
     'router',
     'constants',
     'alerts',
-    'forms'
+    'forms',
+    'dropdown',
+    'section',
+    'modernizr'
 ],
     /**
      * @param $

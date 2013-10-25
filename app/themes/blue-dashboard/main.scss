@@ -4,11 +4,12 @@
 
 //Import font-awesome
 @import "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css";
+@import "http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.16.0/codemirror.min.css";
+@import "http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.16.0/theme/3024-night.min.css";
 
 $font: 'Open Sans', arial, sans-serif;
 
 $imgPath: '/themes/blue-dashboard/img';
-$include-html-top-bar-classes: false;
 
 // Import Foundation
 @import "../../vendor/foundation/scss/normalize";
@@ -47,6 +48,7 @@ body, html {
   table {
     border-radius: 4px;
     border-collapse: inherit;
+    width: 100%;
 
     th
     {
@@ -60,23 +62,31 @@ body, html {
     line-height: 20px;
   }
 
+  ul.folder-tree li {
+    list-style-type:none;
+  }
+
   .content {
     padding: 16px 28px 23px;
   }
 
   #stage {
-    margin-top: 3em;
+    margin-top: 1em;
     margin-bottom: 8em;
   }
   .pull-right {
     float: right;
   }
 
+  .search {
+    display:inline;
+    width: 200px;
+  }
+
   textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
     background-color: $white;
     border: 1px solid $lightGray;
     display: inline-block;
-    height: 20px;
     padding: 4px 6px;
     margin-bottom: 9px;
     font-size: 14px;
@@ -117,6 +127,44 @@ body, html {
     background-position: 0 -15px;
   }
 
+
+  .btn-primary {
+    color: $white;
+    text-shadow: 0 -1px 0 $alphaGray;
+    background-color: $mediumGreen;
+    background-image: -moz-linear-gradient(top, $lightGreen, $mediumGreen);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($lightGreen), to($mediumGreen));
+    background-image: -webkit-linear-gradient(top, $lightGreen, $mediumGreen);
+    background-image: -o-linear-gradient(top, $lightGreen, $mediumGreen);
+    background-image: linear-gradient(to bottom, $lightGreen, $mediumGreen);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa0c277', endColorstr='#ff7da64b', GradientType=0);
+    border-color: $mediumGreen $mediumGreen $darkGreen;
+    border-color: $lightAlphaGray $lightAlphaGray $alphaGray;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  }
+
+  .btn-large {
+    padding: 9px 14px;
+    font-size: 16px;
+    line-height: normal;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    border-top: 4px solid $black;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    content: "";
+  }
+
+
   #alertBoxPartial {
 
     .error {
@@ -130,8 +178,6 @@ body, html {
     }
 
   }
-
-
 
   #login-page {
 
@@ -257,45 +303,31 @@ body, html {
     }
   }
 
-
-
-
-
-  .btn-primary {
-    color: $white;
-    text-shadow: 0 -1px 0 $alphaGray;
-    background-color: $mediumGreen;
-    background-image: -moz-linear-gradient(top, $lightGreen, $mediumGreen);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($lightGreen), to($mediumGreen));
-    background-image: -webkit-linear-gradient(top, $lightGreen, $mediumGreen);
-    background-image: -o-linear-gradient(top, $lightGreen, $mediumGreen);
-    background-image: linear-gradient(to bottom, $lightGreen, $mediumGreen);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa0c277', endColorstr='#ff7da64b', GradientType=0);
-    border-color: $mediumGreen $mediumGreen $darkGreen;
-    border-color: $lightAlphaGray $lightAlphaGray $alphaGray;
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  #usersIndex {
+    #UserSearch {
+      width:180px;
+    }
   }
 
-  .btn-large {
-    padding: 9px 14px;
-    font-size: 16px;
-    line-height: normal;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-  }
+  #contentEdit {
 
-  .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    vertical-align: top;
-    border-top: 4px solid $black;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
-    content: "";
+    .field-item {
+      @include lightGradient;
+      padding: 10px 10px;
+      margin-top:15px;
+      @include radius;
+
+      .custom.dropdown {
+        width: 80%;
+
+        @media #{$small} {
+          width: 40%;
+        }
+      }
+    }
+
   }
 
 }
+
 

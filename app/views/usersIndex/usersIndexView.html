@@ -2,30 +2,13 @@
     <div class="row">
         <div class="large-12  columns">
             <div class="row">
-                <div class="large-2 columns">
-                    <form class="custom">
-                        Results per page:
-                    </form>
+                <div class="large-3 columns">
+                    <h3 class="title">Users</h3>
                 </div>
-                <div class="large-1 columns">
-                    <select id="limitDropdown" data-usersindex-selected="data.selected">
-                        <option data-usersindex-each-option="data.dropDownOptions"
-                                data-usersindex-text="option.option"></option>
-                    </select></div>
-                <div class="large-2 large-offset-7 columns">
-                    <ul class="pagination" id="pagination-top">
-                        <li data-usersindex-class-unavailable="data.prevPage.disabled" class="arrow"><a
-                                data-usersindex-disabled="data.prevPage.disabled"
-                                data-usersindex-onClick="data.prevPage.onClick"
-                                data-usersindex-href="data.prevPage.link">&laquo;</a></li>
-                        <li data-usersindex-each-page="data.pages" data-usersindex-class-current="page.current"><a
-                                data-usersindex-text="page.page" data-usersindex-href="page.link"></a></li>
-                        <li data-usersindex-class-unavailable="data.nextPage.disabled" class="arrow"><a
-                                data-usersindex-disabled="data.nextPage.disabled"
-                                data-usersindex-onClick="data.nextPage.onClick"
-                                data-usersindex-href="data.nextPage.link">&raquo;</a></li>
-                    </ul>
+                <div class="large-3 large-offset-6 columns">
+                    <input type="text" id="ContentSearch" class="search" placeholder="Search" /> <a href="#"><i class="icon-search"></i></a>
                 </div>
+                <hr/>
             </div>
         </div>
     </div>
@@ -49,9 +32,7 @@
                     <td data-usersindex-text="user.enabled"></td>
                     <td data-usersindex-text="user.role"></td>
                     <td data-usersindex-text="user.email"></td>
-                    <td>
-                        <a data-usersindex-href="user.urlLink" class="small button radius">{{data.resources.edit}}</a>
-                    </td>
+                    <td align="center"><a data-usersindex-href="user.urlLink"><i class="icon-edit"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
                 </tr>
                 </tbody>
             </table>
@@ -60,18 +41,18 @@
     <div class="row">
         <div class="large-12 columns">
             <div class="row">
-                <div class="large-2 large-offset-10 columns">
+                <div class="large-12 columns">
                     <ul class="pagination">
                         <li data-usersindex-class-unavailable="data.prevPage.disabled" class="arrow"><a
                                 data-usersindex-disabled="data.prevPage.disabled"
                                 data-usersindex-onClick="data.prevPage.onClick"
-                                data-usersindex-href="data.prevPage.link">&laquo;</a></li>
+                                data-usersindex-href="data.prevPage.link">Previous</a></li>
                         <li data-usersindex-each-page="data.pages" data-usersindex-class-current="page.current"><a
                                 data-usersindex-text="page.page" data-usersindex-href="page.link"></a></li>
                         <li data-usersindex-class-unavailable="data.nextPage.disabled" class="arrow"><a
                                 data-usersindex-disabled="data.nextPage.disabled"
                                 data-usersindex-onClick="data.nextPage.onClick"
-                                data-usersindex-href="data.nextPage.link">&raquo;</a></li>
+                                data-usersindex-href="data.nextPage.link">Next</a></li>
                     </ul>
                 </div>
             </div>
