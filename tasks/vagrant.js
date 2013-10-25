@@ -8,7 +8,7 @@ module.exports = function (grunt) {
     grunt.registerTask('vagrant', "use vagrant:help", function vagrant (target, extra) {
         var tasks = {
                 install : {
-                    run : ["shell:install_api_node_modules", "shell:install_api_vagrant_plugins", "vagrant:run:up", "shell:test_vagrant_box", "copy:vagrant" ],
+                    run : ["shell:install_api_node_modules", "shell:install_api_vagrant_plugins", "vagrant:run:up:--provision", "shell:test_vagrant_box", "copy:vagrant" ],
                     help : "Install and set up vagrant box "
                 },
                 test : {
@@ -17,6 +17,10 @@ module.exports = function (grunt) {
                 },
                 run : {
                     help : "runs arbitrary vagrant tasks - e.g. up, reload, destroy"
+                },
+                reload : {
+                    run : ["vagrant:run:reload:--provision"],
+                    help : "will reload vagrant and run provisioning shell tasks"
                 }
             },
             vagrantCommands = Array.prototype.splice.call(arguments, 1);
