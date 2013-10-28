@@ -1,6 +1,6 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize exports="amd" -o ./compat/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -18,36 +18,57 @@ define([], function() {
   /**
    * Produces a random number between `min` and `max` (inclusive). If only one
    * argument is provided a number between `0` and the given number will be
-   * returned.
+   * returned. If `floating` is truey or either `min` or `max` are floats a
+   * floating-point number will be returned instead of an integer.
    *
    * @static
    * @memberOf _
    * @category Utilities
    * @param {number} [min=0] The minimum possible value.
    * @param {number} [max=1] The maximum possible value.
+   * @param {boolean} [floating=false] Specify returning a floating-point number.
    * @returns {number} Returns a random number.
    * @example
    *
    * _.random(0, 5);
-   * // => a number between 0 and 5
+   * // => an integer between 0 and 5
    *
    * _.random(5);
-   * // => also a number between 0 and 5
+   * // => also an integer between 0 and 5
+   *
+   * _.random(5, true);
+   * // => a floating-point number between 0 and 5
+   *
+   * _.random(1.2, 5.2);
+   * // => a floating-point number between 1.2 and 5.2
    */
-  function random(min, max) {
-    if (min == null && max == null) {
+  function random(min, max, floating) {
+    var noMin = min == null,
+        noMax = max == null;
+
+    if (floating == null) {
+      if (typeof min == 'boolean' && noMax) {
+        floating = min;
+        min = 1;
+      }
+      else if (!noMax && typeof max == 'boolean') {
+        floating = max;
+        noMax = true;
+      }
+    }
+    if (noMin && noMax) {
       max = 1;
     }
     min = +min || 0;
-    if (max == null) {
+    if (noMax) {
       max = min;
       min = 0;
     } else {
       max = +max || 0;
     }
     var rand = nativeRandom();
-    return (min % 1 || max % 1)
-      ? min + nativeMin(rand * (max - min + parseFloat('1e-' + ((rand +'').length - 1))), max)
+    return (floating || min % 1 || max % 1)
+      ? nativeMin(min + (rand * (max - min + parseFloat('1e-' + ((rand +'').length - 1)))), max)
       : min + floor(rand * (max - min + 1));
   }
 

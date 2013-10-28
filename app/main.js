@@ -15,9 +15,28 @@ require.config({
             exports : 'Forms',
             deps : ['foundation']
         },
+        dropdown : {
+            deps : ['foundation']
+        },
+        section : {
+            deps : ['foundation']
+        },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
+        },
+        tinymce: {
+            exports: 'tinyMCE',
+            init: function () {
+                return this.tinymce;
+            }
+        },
+        codemirror: {
+            exports: 'CodeMirror'
+        },
+        codemirrorjs: {
+            deps : ['codemirror']
+
         }
 
     },
@@ -32,6 +51,12 @@ require.config({
         foundation : 'vendor/foundation/js/foundation/foundation',
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
         LocalStorage : 'localStorage',
+        backstrap: 'vendor/theme/backstrap',
+        cirque: 'vendor/cirque/jquery.cirque',
+        modernizr: 'vendor/modernizr/modernizr',
+        tinymce: 'vendor/tinymce/js/tinymce/tinymce.min',
+        tinytheme: 'vendor/tinymce/js/tinymce/themes/modern/theme.min',
+        codemirror: 'vendor/codemirror/lib/codemirror',
 
         // Routers
         masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
@@ -40,11 +65,18 @@ require.config({
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alerts',
         forms : 'vendor/foundation/js/foundation/foundation.forms',
+        dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
+        section: 'vendor/foundation/js/foundation/foundation.section',
+
+        // CodeMirror
+        codemirrorjs: 'vendor/codemirror/mode/javascript/javascript',
 
         // Views
         baseView : 'vendor/masseuse/app/baseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
+        dashboardView : 'views/dashboard/dashboardView',
+        dashboardViewConfig : 'views/dashboard/dashboardViewConfig',
         headerView : 'views/header/headerView',
         headerViewConfig : 'views/header/headerViewConfig',
         emptyView : 'views/empty/emptyView',
@@ -55,16 +87,24 @@ require.config({
         userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
         usersIndexView : 'views/usersIndex/usersIndexView',
         usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
+        contentIndexView : 'views/contentIndex/contentIndexView',
+        contentIndexViewConfig : 'views/contentIndex/contentIndexViewConfig',
+        contentEditView : 'views/contentEdit/contentEditView',
+        contentEditViewConfig : 'views/contentEdit/contentEditViewConfig',
+        mastheadView: 'views/masthead/mastheadView',
+        mastheadViewConfig: 'views/masthead/mastheadViewConfig',
+
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
-        rivetView : 'mixins/rivetView',
+        rivetView : 'vendor/masseuse/app/rivetView',
 
         // Channels
         channels : 'vendor/masseuse/app/channels',
 
         // Models
         computedProperty : 'vendor/masseuse/app/computedProperty',
+        proxyProperty : 'vendor/masseuse/app/proxyProperty',
         masseuseModel : 'vendor/masseuse/app/MasseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
@@ -81,7 +121,7 @@ require.config({
         userWorker : 'workers/userWorker',
 
         // Collections
-        paginatedCollection : 'collections/paginatedCollection',
+        paginatedCollection : 'vendor/masseuse/app/paginatedCollection',
         userCollection : 'collections/userCollection',
 
         // Api proxy
@@ -99,20 +139,26 @@ require.config({
 require([
     'jquery',
     'router',
+    'constants',
     'alerts',
-    'forms'
+    'forms',
+    'dropdown',
+    'section',
+    'modernizr'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-    function ($, Router) {
+    function ($, Router, constants) {
 
-    'use strict';
-    $(document).foundation();
+        'use strict';
+        $(document).foundation();
 
-    new Router().start();
-    Backbone.history.start();
-    // TODO: setup push state on nginx
-    //Backbone.history.start({pushState: true});
+        $('head').append('<link rel="stylesheet" type="text/css" href="themes/' + constants.defaults.theme + '/main.css" />');
+
+        new Router();
+        Backbone.history.start();
+        // TODO: setup push state on nginx
+        //Backbone.history.start({pushState: true});
 });

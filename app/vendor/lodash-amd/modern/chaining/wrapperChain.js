@@ -1,6 +1,6 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="amd" -o ./modern/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -9,7 +9,7 @@
 define([], function() {
 
   /**
-   * Enables method chaining on the wrapper object.
+   * Enables explicit method chaining on the wrapper object.
    *
    * @name chain
    * @memberOf _
@@ -17,11 +17,21 @@ define([], function() {
    * @returns {*} Returns the wrapper object.
    * @example
    *
-   * var sum = _([1, 2, 3])
-   *     .chain()
-   *     .reduce(function(sum, num) { return sum + num; })
-   *     .value()
-   * // => 6`
+   * var stooges = [
+   *   { 'name': 'moe', 'age': 40 },
+   *   { 'name': 'larry', 'age': 50 }
+   * ];
+   *
+   * // without explicit chaining
+   * _(stooges).first();
+   * // => { 'name': 'moe', 'age': 40 }
+   *
+   * // with explicit chaining
+   * _(stooges).chain()
+   *   .first()
+   *   .pick('age')
+   *   .value()
+   * // => { 'age': 40 }
    */
   function wrapperChain() {
     this.__chain__ = true;

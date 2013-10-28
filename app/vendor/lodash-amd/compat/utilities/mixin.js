@@ -1,6 +1,6 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize exports="amd" -o ./compat/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -55,9 +55,12 @@ define(['../collections/forEach', '../objects/functions', '../objects/isFunction
 
           push.apply(args, arguments);
           var result = func.apply(object, args);
-          return (value && typeof value == 'object' && value === result)
-            ? this
-            : new ctor(result);
+          if (value && typeof value == 'object' && value === result) {
+            return this;
+          }
+          result = new ctor(result);
+          result.__chain__ = this.__chain__;
+          return result;
         };
       }
     });

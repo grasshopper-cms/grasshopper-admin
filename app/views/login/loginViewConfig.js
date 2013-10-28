@@ -4,13 +4,18 @@ define(['text!views/login/loginView.html', 'loginViewModel', 'computedProperty',
 
     return {
         name : 'loginView',
-        modelData:{},
+        modelData : {},
         // for model attribute errors on self validating models, follow the convention of attribute+"Error". See the rivetView "publish" method
         ModelType : loginViewModel,
         el : '#stage',
         templateHtml : templateHtml,
         events : {
             'click #loginButton' : 'login'
+        },
+        rivetConfig : {
+            scope : '#login-page',
+            prefix : 'login',
+            instaUpdateRivets : true
         }
     };
 });

@@ -1,6 +1,6 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="amd" -o ./modern/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -9,7 +9,8 @@
 define(['../internals/lodashWrapper'], function(lodashWrapper) {
 
   /**
-   * Creates a `lodash` object that wraps the given `value`.
+   * Creates a `lodash` object that wraps the given value with explicit
+   * method chaining enabled.
    *
    * @static
    * @memberOf _
@@ -25,9 +26,10 @@ define(['../internals/lodashWrapper'], function(lodashWrapper) {
    * ];
    *
    * var youngest = _.chain(stooges)
-   *     .sortBy(function(stooge) { return stooge.age; })
+   *     .sortBy('age')
    *     .map(function(stooge) { return stooge.name + ' is ' + stooge.age; })
-   *     .first();
+   *     .first()
+   *     .value();
    * // => 'moe is 40'
    */
   function chain(value) {

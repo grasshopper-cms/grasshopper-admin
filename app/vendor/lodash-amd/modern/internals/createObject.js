@@ -1,6 +1,6 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="amd" -o ./modern/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -23,6 +23,17 @@ define(['../objects/isObject', './noop', './reNative'], function(isObject, noop,
    */
   function createObject(prototype) {
     return isObject(prototype) ? nativeCreate(prototype) : {};
+  }
+  // fallback for browsers without `Object.create`
+  if (!nativeCreate) {
+    createObject = function(prototype) {
+      if (isObject(prototype)) {
+        noop.prototype = prototype;
+        var result = new noop;
+        noop.prototype = null;
+      }
+      return result || {};
+    };
   }
 
   return createObject;

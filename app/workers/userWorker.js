@@ -64,6 +64,11 @@ define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
         function getUsers (view, options, deferred) {
             var userCollection = new UserCollection();
             userCollection.paginationConfig.pageSize = options.data.limit;
+
+            options.headers = {
+                'Authorization' : 'Token ' + LocalStorage.get('authToken')
+            };
+
             userCollection.fetch(options)
                 .done(function(){
                     view.model.set({

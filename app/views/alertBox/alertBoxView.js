@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['baseView', 'rivetView'], function (BaseView, rivetView) {
+define(['baseView'], function (BaseView) {
     'use strict';
 
     var AlertBoxView = BaseView.extend({
-        rivetView : rivetView({rivetScope : '#alertBoxPartial', rivetPrefix : 'alertbox'})
+
     });
 
     return AlertBoxView;

@@ -8,8 +8,9 @@ define(['text!views/header/headerView.html', 'headerViewModel'], function (templ
         ModelType : HeaderViewModel,
         el : '#header',
         templateHtml : templateHtml,
-        bindings : [
-            ['app.user', 'change', 'setUser']
-        ]
+        rivetConfig : {
+            scope : '#header',
+            prefix : 'header'
+        }
     };
 });

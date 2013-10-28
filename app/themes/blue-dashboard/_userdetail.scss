@@ -1,0 +1,29 @@
+#userDetail {
+  .gravatar {
+    border-radius: 5px;
+    border: 1px solid $gravatarBorder;
+  }
+
+  .progress-container {
+    position: relative;
+    top: -18px;
+    height: 4px;
+    .progress-bar {
+      background-color: $progressBar;
+      width: 0%;
+      height: 0%;
+    }
+    .active {
+      height: 100%;
+      -webkit-transition: width 2s;
+      -webkit-transition-timing-function: linear;
+      width: 100%;
+    }
+    .disappear {
+      width: 100%;
+      height: 0%;
+      -webkit-transition: height .5s;
+      -webkit-transition-timing-function: linear;
+    }
+  }
+}

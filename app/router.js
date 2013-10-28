@@ -1,30 +1,50 @@
 /*global define*/
 define([
     'backbone',
+    'underscore',
     'masseuseRouter',
+    'api',
+    'constants',
+    'LocalStorage',
+    'baseView',
     'loginView',
     'loginViewConfig',
-    'api',
     'loginWorker',
-    'userWorker',
+    'dashboardView',
+    'dashboardViewConfig',
     'emptyView',
     'emptyViewConfig',
-    'underscore',
-    'baseView',
-    'UserModel',
     'alertBoxView',
     'alertBoxViewConfig',
     'resources',
     'userDetailView',
     'userDetailViewConfig',
+    'userWorker',
+    'UserModel',
     'headerView',
     'headerViewConfig',
+    'mastheadView',
+    'mastheadViewConfig',
     'usersIndexView',
     'usersIndexViewConfig',
-    'constants',
-    'LocalStorage'
+    'contentIndexView',
+    'contentIndexViewConfig',
+    'contentEditView',
+    'contentEditViewConfig'
 ],
-    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig, constants, LocalStorage) {
+    function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
+              BaseView,
+              LoginView, loginViewConfig, loginWorker,
+              DashboardView, dashboardViewConfig,
+              EmptyView, emptyViewConfig,
+              AlertBoxView, alertBoxViewConfig, resources,
+              UserDetailView, userDetailViewConfig,userWorker, UserModel,
+              HeaderView, headerViewConfig,
+              MastheadView, mastheadViewConfig,
+              UsersIndexView, usersIndexViewConfig,
+              ContentIndexView, contentIndexViewConfig,
+              ContentEditView, contentEditViewConfig
+              ) {
 
         var userModel = new UserModel(),
             currentView;
@@ -35,14 +55,16 @@ define([
          */
         var Router = MasseuseRouter.extend({
             initialize : initialize,
-            start : start,
+            startHeader : startHeader,
 
             routes : {
                 'login' : 'displayLogin',
                 'logout' : 'goLogout',
-                'user/:id' : 'displayUserDetail',
                 'home' : 'displayApp',
-                'users(/page/:number)(/show/:limit)' : 'displayUsersIndex',
+                'users' : 'displayUsersIndex',
+                'user/:id' : 'displayUserDetail',
+                'items(/nodeid/:number)': 'displayContentIndex',
+                'item/:id' : 'displayContentEdit',
                 '*path' : 'goHome'
             },
 
@@ -61,7 +83,9 @@ define([
             displayUserDetail : displayUserDetail,
             user : userModel,
             navigate : navigate,
-            displayUsersIndex : displayUsersIndex
+            displayUsersIndex : displayUsersIndex,
+            displayContentIndex : displayContentIndex,
+            displayContentEdit : displayContentEdit
         });
 
         function onRouteFail () {
@@ -86,12 +110,18 @@ define([
                                 password : data.password,
                                 role : data.role
                             });
+                            if ( ! self.headerView) {
+                                self.startHeader();
+                            }
                             $deferred.resolve();
                         })
                         .fail(function () {
                             $deferred.reject();
                         });
                 } else {
+                    if ( ! self.headerView) {
+                        self.startHeader();
+                    }
                     $deferred.resolve();
                 }
 
@@ -158,13 +188,20 @@ define([
             };
         }
 
-        function start () {
-            var headerView = newView(HeaderView, headerViewConfig);
 
+        function startHeader () {
+
+            var headerView = newView(HeaderView, headerViewConfig);
             headerView.start();
             headerView.rivetView();
+            this.headerView = headerView;
 
-            return this;
+            var mastheadView = newView(MastheadView, mastheadViewConfig);
+            mastheadView.model.set({title:'<small><a href="#">cms</a> / <a href="#">folder</a> /</small> Pages',icon: 'icon-file',description: '23 content items. 45 files.'});
+            mastheadView.start();
+            mastheadView.rivetView();
+            this.mastheadView = mastheadView;
+
         }
 
         function goLogout () {
@@ -174,7 +211,20 @@ define([
         }
 
         function displayLogin () {
+
             var loginView = newView(LoginView, loginViewConfig);
+
+            if (this.headerView) {
+                this.headerView.remove();
+                this.headerView = false;
+            }
+
+            if (this.mastheadView) {
+                this.mastheadView.remove();
+                this.mastheadView = false;
+            }
+
+
             loginView.start();
             loginView.rivetView();
         }
@@ -201,9 +251,12 @@ define([
 
         function displayApp () {
             // Display the app.
-            var emptyView = newView(EmptyView, emptyViewConfig);
-            emptyView.start();
-            emptyView.rivetView();
+
+
+            var dashboardView = newView(DashboardView, dashboardViewConfig);
+            dashboardView.start();
+            dashboardView.rivetView();
+
         }
 
         function displayUserDetail (id) {
@@ -231,6 +284,23 @@ define([
             });
 
         }
+
+        function displayContentIndex (nodeId, pageNumber, pageLimit) {
+
+            var contentIndexView = newView(ContentIndexView, contentIndexViewConfig);
+            contentIndexView.start();
+            contentIndexView.rivetView();
+
+        }
+
+        function displayContentEdit (id) {
+
+            var contentEditView = newView(ContentEditView, contentEditViewConfig);
+            contentEditView.start();
+            contentEditView.rivetView();
+
+        }
+
 
         function newView (ViewType, config, bypass) {
             if (currentView) {

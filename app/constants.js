@@ -17,7 +17,7 @@ define({
         }
     },
     defaults : {
-
+        theme: 'blue-dashboard'
     },
     userCollection : {
         pageSize : 5,
