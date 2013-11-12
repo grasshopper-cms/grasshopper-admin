@@ -4,8 +4,8 @@
     </a>
     <div id="top-nav">
         <ul class="pull-right">
-            <li><img class="profile-pic" data-header-show="data.loggedIn" src="http://placehold.it/20x20"/></li>
-            <li><a data-header-href="data.url"><i class="icon-user"></i> Logged in as <span data-header-text="data.name"></span></a></li>
+            <li><img class="profile-pic" data-rv-show="data.loggedIn" src="http://placehold.it/20x20"/></li>
+            <li><a data-rv-href="data.url"><i class="icon-user"></i> Logged in as <span data-rv-text="data.name"></span></a></li>
             <li class="dropdown">
                 <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
                     Settings
@@ -13,14 +13,14 @@
                 </a>
 
                 <ul id="settings-dropdown" data-dropdown-content class="dropdown-menu right">
-                    <li><a id="myProfileButton" data-header-show="data.loggedIn" data-header-href="data.url">{{data.resources.edit}} {{data.resources.profile}}</a></li>
+                    <li><a id="myProfileButton" data-rv-show="data.loggedIn" data-rv-href="data.url">{{data.resources.edit}} {{data.resources.profile}}</a></li>
                     <li><a href="#about">{{data.resources.site.about}}</a></li>
                 </ul>
             </li>
 
-            <li><a id="logOutButton" href="#logout" data-header-show="data.loggedIn">{{data.resources.log_out}}</a>
+            <li><a id="logOutButton" href="#logout" data-rv-show="data.loggedIn">{{data.resources.log_out}}</a>
             </li>
-            <li><a id="logInButton" href="#login" data-header-hide="data.loggedIn">{{data.resources.log_in}}</a>
+            <li><a id="logInButton" href="#login" data-rv-hide="data.loggedIn">{{data.resources.log_in}}</a>
             </li>
         </ul>
 

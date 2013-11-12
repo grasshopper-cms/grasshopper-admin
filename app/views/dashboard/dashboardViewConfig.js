@@ -1,13 +1,19 @@
 /*global define:false*/
-define(['text!views/dashboard/dashboardView.html'], function (templateHtml) {
+define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel'], function (templateHtml, dashboardViewModel) {
     'use strict';
 
     return {
         name : 'dashboardView',
+        modelData:{
+                    name: 'Bob'
+                  },
+        modelType : dashboardViewModel,
         el : '#stage',
         templateHtml : templateHtml,
-        modelData:{
-            name: 'Bob'
-        }
+        events : {},
+        appendView : true,
+        bindings : [],
+        rivetConfig : 'auto'
+
     };
 });

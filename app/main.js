@@ -116,8 +116,10 @@ require.config({
         alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
+        dashboardViewModel : 'models/viewModels/dashboardViewModel',
+        mastheadViewModel : 'models/viewModels/mastheadViewModel',
 
-        // Workers
+            // Workers
         loginWorker : 'workers/loginWorker',
         userWorker : 'workers/userWorker',
 

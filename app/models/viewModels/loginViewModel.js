@@ -12,8 +12,6 @@ define(['masseuseModel', 'validation', 'computedProperty'], function (Model, val
     });
 
     function validate (attributes, options) {
-        console.log(attributes);
-        console.log(options);
         var self = this,
             invalid;
 

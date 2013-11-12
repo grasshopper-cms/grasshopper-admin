@@ -180,7 +180,7 @@ define([
                 newView = new ViewType(config);
 
             if(currentView && ! _.contains(ignoreFromTimer, currentView.options.name)) {
-                spinnerTimer($deferred, newView);
+//                spinnerTimer($deferred, newView);
             }
 
             if (currentView && currentView.options.name === config.name && !bypass) {
@@ -192,7 +192,7 @@ define([
                 .progress(function (event) {
                     switch (event) {
                         case BaseView.beforeRenderDone:
-                            if (currentView) {
+                            if (currentView && !currentView.options.permanentView) {
                                 currentView.remove();
                             }
 
@@ -212,18 +212,8 @@ define([
 
 
         function startHeader () {
-
-            var headerView = newView(HeaderView, headerViewConfig);
-            headerView.start();
-            headerView.rivetView();
-            this.headerView = headerView;
-
-            var mastheadView = newView(MastheadView, mastheadViewConfig);
-            mastheadView.model.set({title:'<small><a href="#">cms</a> / <a href="#">folder</a> /</small> Pages',icon: 'icon-file',description: '23 content items. 45 files.'});
-            mastheadView.start();
-            mastheadView.rivetView();
-            this.mastheadView = mastheadView;
-
+            this.headerView = loadMainContent(HeaderView, headerViewConfig, true);
+            this.mastheadView = loadMainContent(MastheadView, mastheadViewConfig, true);
         }
 
         function goLogout () {
@@ -233,32 +223,11 @@ define([
         }
 
         function displayLogin () {
+            loadMainContent(LoginView, loginViewConfig, true);
+        }
 
-            loadMainContent(LoginView, loginViewConfig, true)
-                .done(function(view) {
-                    if(view.options.rivetConfig) {
-                        view.rivetView();
-                    }
-                })
-                .fail(function() {
-
-                });
-
-//            var loginView = newView(LoginView, loginViewConfig);
-//
-//            if (this.headerView) {
-//                this.headerView.remove();
-//                this.headerView = false;
-//            }
-//
-//            if (this.mastheadView) {
-//                this.mastheadView.remove();
-//                this.mastheadView = false;
-//            }
-
-//
-//            loginView.start();
-//            loginView.rivetView();
+        function displayApp () {
+            loadMainContent(DashboardView, dashboardViewConfig, true);
         }
 
         function displayAlertBox (msg) {
@@ -279,16 +248,6 @@ define([
 
         function goHome () {
             this.navigateTrigger('home');
-        }
-
-        function displayApp () {
-            // Display the app.
-
-
-            var dashboardView = newView(DashboardView, dashboardViewConfig);
-            dashboardView.start();
-            dashboardView.rivetView();
-
         }
 
         function displayUserDetail (id) {
@@ -331,19 +290,6 @@ define([
             contentEditView.start();
             contentEditView.rivetView();
 
-        }
-
-
-        function newView (ViewType, config, bypass) {
-            if (currentView) {
-                if (currentView.options.name !== config.name || bypass) {
-                    currentView = new ViewType(config);
-                }
-            } else {
-                currentView = new ViewType(config);
-            }
-
-            return currentView;
         }
 
         return Router;
