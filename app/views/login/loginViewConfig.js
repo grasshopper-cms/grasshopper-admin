@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/login/loginView.html', 'loginViewModel', 'computedProperty', 'validation'], function (templateHtml, loginViewModel, ComputedProperty, validation) {
+define(['text!views/login/loginView.html', 'loginViewModel'], function (templateHtml, loginViewModel) {
     'use strict';
 
     return {
@@ -12,10 +12,9 @@ define(['text!views/login/loginView.html', 'loginViewModel', 'computedProperty',
         events : {
             'click #loginButton' : 'login'
         },
-        rivetConfig : {
-            scope : '#login-page',
-            prefix : 'login',
-            instaUpdateRivets : true
-        }
+        appendView : false,
+        bindings : [
+        ],
+        rivetConfig : 'auto'
     };
 });

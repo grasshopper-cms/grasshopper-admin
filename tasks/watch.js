@@ -20,7 +20,7 @@ module.exports = function (grunt) {
 
     grunt.event.on('watch', function(action, filepath) {
 
-        if (/\.scss$|\.css$/.test(filepath)) {
+        if (/\.scss$|\.css$|\.jade$/.test(filepath)) {
             return;
         }
 
