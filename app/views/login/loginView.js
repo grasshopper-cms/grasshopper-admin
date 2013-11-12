@@ -17,6 +17,7 @@ define(['baseView', 'loginWorker'],
 
         function login () {
             if (this.model.isValid()) {
+                console.log('this fired'); /////WHEN I LEFT FOR THE DAY THIS IS WHAT I WAS TROUBLE SHOOITING. THIS IS VALID CHECK
                 loginWorker.doLogin(this);
             }
             return false;

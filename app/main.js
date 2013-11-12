@@ -153,6 +153,13 @@ require([
     function ($, Router, constants) {
 
         'use strict';
+
+        _.templateSettings = {
+            evaluate    : /\[\[(.+?)\]\]/g,
+            interpolate : /\[\[=(.+?)\]\]/g,
+            escape      : /\[\[-(.+?)\]\]/g
+        };
+
         $(document).foundation();
 
         $('head').append('<link rel="stylesheet" type="text/css" href="themes/' + constants.defaults.theme + '/main.css" />');

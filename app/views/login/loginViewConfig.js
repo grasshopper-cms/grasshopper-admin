@@ -12,7 +12,7 @@ define(['text!views/login/loginView.html', 'loginViewModel'], function (template
         events : {
             'click #loginButton' : 'login'
         },
-        appendView : false,
+        appendView : true,
         bindings : [
         ],
         rivetConfig : 'auto'
