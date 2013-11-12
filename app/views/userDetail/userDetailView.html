@@ -1,4 +1,4 @@
-<div id="userDetail">
+<div id="[[= viewId ]]">
     <div class="row">
         <div class="large-10 small-centered columns">
             <fieldset>
@@ -21,7 +21,7 @@
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
-                                            <input id="name" type="text" value="data.name" data-userdetail-value="data.name"/>
+                                            <input id="name" type="text" value="data.name" data-rv-value="data.name"/>
                                         </div>
                                     </div>
                                 </div>
@@ -34,9 +34,9 @@
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
-                                            <select id="role" data-userdetail-enabled="data.isAdmin" data-userdetail-value="data.role">
-                                                <option data-userdetail-each-role="data.roles"
-                                                        data-userdetail-text="role.text"></option>
+                                            <select id="role" data-rv-enabled="data.isAdmin" data-rv-value="data.role">
+                                                <option data-rv-each-role="data.roles"
+                                                        data-rv-text="role.text"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -50,9 +50,9 @@
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
-                                            <select id="statusText" data-userdetail-enabled="data.isAdmin" data-userdetail-value="data.enabled">
-                                                <option data-userdetail-each-status="data.statusOptions"
-                                                        data-userdetail-text="status.text"></option>
+                                            <select id="statusText" data-rv-enabled="data.isAdmin" data-rv-value="data.enabled">
+                                                <option data-rv-each-status="data.statusOptions"
+                                                        data-rv-text="status.text"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
-                                            <input id="email" type="text" value="data.email" data-userdetail-value="data.email"/>
+                                            <input id="email" type="text" value="data.email" data-rv-value="data.email"/>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
-                                            <input id="login" type="text" value="data.login" data-userdetail-value="data.login"/>
+                                            <input id="login" type="text" value="data.login" data-rv-value="data.login"/>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
-                                            <input id="password" type="text" value="data.password" data-userdetail-value="data.password"/>
+                                            <input id="password" type="text" value="data.password" data-rv-value="data.password"/>
                                         </div>
                                     </div>
                                 </div>

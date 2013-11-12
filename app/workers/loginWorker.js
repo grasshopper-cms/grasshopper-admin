@@ -23,8 +23,8 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'LocalStor
                                 email : data.email,
                                 enabled : data.enabled,
                                 login : data.login,
-                                name : data.name,
-                                password : data.password,
+                                firstName : data.firstname,
+                                lastName : data.lastname,
                                 role : data.role
                             });
                             loginView.app.router.navigateTrigger('home');

@@ -30,6 +30,7 @@ define({
 
     user : {
         userDetailHeaderText : 'Profile for: ',
+        loggedInAs : 'Logged in as',
         attributeTitles : {
             name : 'USER NAME:',
             role : 'USER ROLE:',

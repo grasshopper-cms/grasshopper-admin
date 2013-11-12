@@ -56,7 +56,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login'],
+            excludeFromBeforeRouting : ['login', 'logout'],
 
             navigateTrigger : navigateTrigger,
             navigateNinja : navigateNinja,
@@ -84,18 +84,19 @@ define([
             var $deferred = new $.Deferred(),
                 self = this;
 
-            if (LocalStorage.get('authToken')) {
 
+            if (LocalStorage.get('authToken')) {
                 if (!this.user.get('_id')) {
                     Api.authenticateToken(LocalStorage.get('authToken'))
                         .done(function (data) {
+                            // TODO: put this in the user Model. Get it out of the Router. (THIS IS DUPLICATED IN THE loginViewWorker)
                             self.user.set({
                                 _id : data._id,
                                 email : data.email,
                                 enabled : data.enabled,
                                 login : data.login,
-                                name : data.name,
-                                password : data.password,
+                                firstName : data.firstname,
+                                lastName : data.lastname,
                                 role : data.role
                             });
                             if ( ! self.headerView) {
@@ -114,8 +115,8 @@ define([
                 }
 
             } else {
-                $deferred.reject();
                 self.removeHeader();
+                $deferred.reject();
             }
 
             return $deferred.promise();
@@ -139,13 +140,14 @@ define([
             this.navigate(fragment, options);
         }
 
-        function navigate (fragment, options) {
+        function navigate (fragment, options, doBeforeRender) {
             // TODO: Move in to masseuse parts that we can
             if (currentView instanceof Backbone.View) {
                 // (and override destroy in GH to remove alerts)
                 currentView.hideAlertBox();
-                // TODO: this breaks the ui
-                //currentView.remove();
+            }
+            if(doBeforeRender) {
+                this.beforeRouting();
             }
             Backbone.Router.prototype.navigate.apply(this, arguments);
 
@@ -194,7 +196,7 @@ define([
                 .progress(function (event) {
                     switch (event) {
                         case BaseView.beforeRenderDone:
-                            if (currentView && !currentView.options.permanentView) {
+                            if (currentView) {
                                 currentView.remove();
                             }
 
@@ -212,23 +214,29 @@ define([
             return $deferred.promise();
         }
 
-
         function startHeader () {
-            this.headerView = loadMainContent(HeaderView, headerViewConfig, true);
-            this.mastheadView = loadMainContent(MastheadView, mastheadViewConfig, true);
+            this.headerView = new HeaderView(headerViewConfig);
+            this.headerView.start();
+            this.mastheadView = new MastheadView(mastheadViewConfig);
+            this.mastheadView.start();
         }
 
         function removeHeader () {
             if(this.headerView && this.mastheadView) {
                 this.headerView.remove();
                 this.mastheadView.remove();
+                this.headerView = null;
+                this.mastheadView = null;
             }
         }
 
         function goLogout () {
-            LocalStorage.remove('authToken');
-            this.user.clear();
-            this.navigate('login', {trigger : true});
+            var self = this;
+            LocalStorage.remove('authToken')
+                .done(function() {
+                    self.user.clear();
+                    self.navigate('login', {trigger : true}, true);
+                });
         }
 
         function displayLogin () {
@@ -260,15 +268,19 @@ define([
         }
 
         function displayUserDetail (id) {
-            userWorker.getProfileData(userModel, id)
-                .done(function (data) {
-                    var userDetailView = newView(UserDetailView, userDetailViewConfig);
-                    userDetailView.start();
-                    userDetailView.model.set(data);
-                })
-                .fail(function (xhr) {
-                    BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
-                });
+            loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
+                {
+                    modelData : {
+                        id : id
+                    }
+                }), true);
+//            userWorker.getProfileData(userModel, id)
+//                .done(function (data) {
+//                    userDetailView.model.set(data);
+//                })
+//                .fail(function (xhr) {
+//                    BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
+//                });
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
@@ -286,19 +298,11 @@ define([
         }
 
         function displayContentIndex (nodeId, pageNumber, pageLimit) {
-
-            var contentIndexView = newView(ContentIndexView, contentIndexViewConfig);
-            contentIndexView.start();
-            contentIndexView.rivetView();
-
+            loadMainContent(ContentIndexView, contentIndexViewConfig, true);
         }
 
         function displayContentEdit (id) {
-
-            var contentEditView = newView(ContentEditView, contentEditViewConfig);
-            contentEditView.start();
-            contentEditView.rivetView();
-
+            loadMainContent(ContentEditView, contentEditViewConfig, true);
         }
 
         return Router;

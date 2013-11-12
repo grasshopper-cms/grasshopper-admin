@@ -4,11 +4,7 @@ define(['text!views/header/headerView.html', 'headerViewModel'], function (templ
 
     return {
         name : 'headerView',
-        permanentView : true,
-        modelData : {
-                        name: 'Menu',
-                        url: 'home'
-                    },
+        modelData : {},
         ModelType : HeaderViewModel,
         el : '#header',
         templateHtml : templateHtml,
