@@ -72,7 +72,8 @@ require.config({
         codemirrorjs: 'vendor/codemirror/mode/javascript/javascript',
 
         // Views
-        baseView : 'vendor/masseuse/app/baseView',
+        masseuseBaseView : 'vendor/masseuse/app/baseView',
+        baseView : 'views/grasshopperBaseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
         dashboardView : 'views/dashboard/dashboardView',

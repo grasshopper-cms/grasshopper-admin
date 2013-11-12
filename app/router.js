@@ -1,36 +1,18 @@
 /*global define*/
 define([
-    'backbone',
-    'underscore',
-    'masseuseRouter',
-    'api',
-    'constants',
-    'LocalStorage',
+    'backbone', 'underscore', 'masseuseRouter', 'api', 'constants', 'LocalStorage',
     'baseView',
-    'loginView',
-    'loginViewConfig',
-    'loginWorker',
-    'dashboardView',
-    'dashboardViewConfig',
-    'emptyView',
-    'emptyViewConfig',
-    'alertBoxView',
-    'alertBoxViewConfig',
+    'loginView', 'loginViewConfig', 'loginWorker',
+    'dashboardView', 'dashboardViewConfig',
+    'emptyView', 'emptyViewConfig',
+    'alertBoxView', 'alertBoxViewConfig',
     'resources',
-    'userDetailView',
-    'userDetailViewConfig',
-    'userWorker',
-    'UserModel',
-    'headerView',
-    'headerViewConfig',
-    'mastheadView',
-    'mastheadViewConfig',
-    'usersIndexView',
-    'usersIndexViewConfig',
-    'contentIndexView',
-    'contentIndexViewConfig',
-    'contentEditView',
-    'contentEditViewConfig'
+    'userDetailView', 'userDetailViewConfig', 'userWorker', 'UserModel',
+    'headerView', 'headerViewConfig',
+    'mastheadView', 'mastheadViewConfig',
+    'usersIndexView', 'usersIndexViewConfig',
+    'contentIndexView', 'contentIndexViewConfig',
+    'contentEditView', 'contentEditViewConfig'
 ],
     function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
               BaseView,
@@ -47,7 +29,10 @@ define([
               ) {
 
         var userModel = new UserModel(),
-            currentView;
+            currentView,
+            ignoreFromTimer = [
+                'loginView'
+            ];
 
         /**
          * @class Router
@@ -75,6 +60,8 @@ define([
             navigateTrigger : navigateTrigger,
             navigateNinja : navigateNinja,
             navigateDeferred : navigateDeferred,
+
+            loadMainContent : loadMainContent,
 
             goHome : goHome,
             displayApp : displayApp,
@@ -188,6 +175,41 @@ define([
             };
         }
 
+        function loadMainContent (ViewType, config, bypass) {
+            var $deferred = new $.Deferred(),
+                newView = new ViewType(config);
+
+            if(currentView && ! _.contains(ignoreFromTimer, currentView.options.name)) {
+                spinnerTimer($deferred, newView);
+            }
+
+            if (currentView && currentView.options.name === config.name && !bypass) {
+                return $deferred.resolve(currentView)
+                    .promise();
+            }
+
+            newView.start()
+                .progress(function (event) {
+                    switch (event) {
+                        case BaseView.beforeRenderDone:
+                            if (currentView) {
+                                currentView.remove();
+                            }
+
+                            currentView = newView;
+                            break;
+                    }
+                })
+                .done(function () {
+                    $deferred.resolve(newView);
+                })
+                .fail(function () {
+                    $deferred.reject();
+                });
+
+            return $deferred.promise();
+        }
+
 
         function startHeader () {
 
@@ -212,21 +234,31 @@ define([
 
         function displayLogin () {
 
-            var loginView = newView(LoginView, loginViewConfig);
+            loadMainContent(LoginView, loginViewConfig, true)
+                .done(function(view) {
+                    if(view.options.rivetConfig) {
+                        view.rivetView();
+                    }
+                })
+                .fail(function() {
 
-            if (this.headerView) {
-                this.headerView.remove();
-                this.headerView = false;
-            }
+                });
 
-            if (this.mastheadView) {
-                this.mastheadView.remove();
-                this.mastheadView = false;
-            }
+//            var loginView = newView(LoginView, loginViewConfig);
+//
+//            if (this.headerView) {
+//                this.headerView.remove();
+//                this.headerView = false;
+//            }
+//
+//            if (this.mastheadView) {
+//                this.mastheadView.remove();
+//                this.mastheadView = false;
+//            }
 
-
-            loginView.start();
-            loginView.rivetView();
+//
+//            loginView.start();
+//            loginView.rivetView();
         }
 
         function displayAlertBox (msg) {

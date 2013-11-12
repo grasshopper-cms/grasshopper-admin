@@ -2,7 +2,8 @@ define(['masseuseModel', 'validation', 'computedProperty'], function (Model, val
     return Model.extend({
         validate : validate,
         defaults: {
-            username : '', password : '',
+            username : '',
+            password : '',
             usernameError : new ComputedProperty(['username'], validateUserLoginAttribute, true),
             passwordError : new ComputedProperty(['password'], validateUserLoginAttribute, true),
             // hasError is used to great out the submit box
@@ -11,6 +12,8 @@ define(['masseuseModel', 'validation', 'computedProperty'], function (Model, val
     });
 
     function validate (attributes, options) {
+        console.log(attributes);
+        console.log(options);
         var self = this,
             invalid;
 
