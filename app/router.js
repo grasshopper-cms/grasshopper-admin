@@ -39,9 +39,6 @@ define([
          * @extends MasseuseRouter
          */
         var Router = MasseuseRouter.extend({
-            initialize : initialize,
-            startHeader : startHeader,
-
             routes : {
                 'login' : 'displayLogin',
                 'logout' : 'goLogout',
@@ -52,6 +49,10 @@ define([
                 'item/:id' : 'displayContentEdit',
                 '*path' : 'goHome'
             },
+
+            initialize : initialize,
+            startHeader : startHeader,
+            removeHeader : removeHeader,
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
@@ -114,6 +115,7 @@ define([
 
             } else {
                 $deferred.reject();
+                self.removeHeader();
             }
 
             return $deferred.promise();
@@ -214,6 +216,13 @@ define([
         function startHeader () {
             this.headerView = loadMainContent(HeaderView, headerViewConfig, true);
             this.mastheadView = loadMainContent(MastheadView, mastheadViewConfig, true);
+        }
+
+        function removeHeader () {
+            if(this.headerView && this.mastheadView) {
+                this.headerView.remove();
+                this.mastheadView.remove();
+            }
         }
 
         function goLogout () {
