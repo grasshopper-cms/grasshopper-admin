@@ -6,10 +6,7 @@ define(['masseuseModel', 'computedProperty', 'constants', 'resources'], function
                 return first + ' ' + last;
             }),
             roles : new ComputedProperty(['role'], setPossibleRoles),
-            statusOptions : new ComputedProperty(['attribute'], setStatusOptions),
-            isAdmin : new ComputedProperty(['role'], function(role) {
-                return (role === 'admin');
-            })
+            statusOptions : new ComputedProperty(['attribute'], setStatusOptions)
         },
         urlRoot : constants.api.users.url
 

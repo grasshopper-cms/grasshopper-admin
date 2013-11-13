@@ -271,30 +271,20 @@ define([
             loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
                 {
                     modelData : {
-                        id : id
+                        id : id,
+                        isAdmin : (this.user.get('role') === 'admin')
                     }
                 }), true);
-//            userWorker.getProfileData(userModel, id)
-//                .done(function (data) {
-//                    userDetailView.model.set(data);
-//                })
-//                .fail(function (xhr) {
-//                    BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
-//                });
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
-            var usersIndexView = newView(UsersIndexView, usersIndexViewConfig),
-                defaultLimit = constants.userCollection.pageSize,
-                defaultPage = constants.userCollection.page;
-
-            usersIndexView.goToPage(pageNumber || defaultPage, pageLimit || defaultLimit)
-            .done(function(){
-                usersIndexView.start();
-                usersIndexView.rivetView();
-                usersIndexView.renderPlugins();
-            });
-
+            loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
+                {
+                    modelData : {
+                        pageNumber : pageNumber,
+                        pageLimit : pageLimit
+                    }
+                }), true);
         }
 
         function displayContentIndex (nodeId, pageNumber, pageLimit) {

@@ -1,4 +1,4 @@
-define(['masseuseModel', 'computedProperty', 'resources'], function (Model, ComputedProperty, resources) {
+define(['masseuseModel', 'computedProperty', 'resources', 'constants'], function (Model, ComputedProperty, resources, constants) {
     return Model.extend({
         defaults : {
             users : [],
@@ -26,6 +26,8 @@ define(['masseuseModel', 'computedProperty', 'resources'], function (Model, Comp
             selected : new ComputedProperty(['users'], function (collection) {
                 return collection.paginationConfig.pageSize;
             }, true),
+            defaultLimit : constants.userCollection.pageSize,
+            defaultPage : constants.userCollection.page,
             resources : resources
         }
 

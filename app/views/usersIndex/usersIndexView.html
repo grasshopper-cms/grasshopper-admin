@@ -1,4 +1,4 @@
-<div id="usersIndex">
+<div id="[[= viewId ]]">
     <div class="row">
         <div class="large-12  columns">
             <div class="row">
@@ -26,13 +26,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-usersindex-each-user="data.users">
-                    <td><img src="http://placehold.it/40x40" /> <span data-usersindex-text="user.name"></span></td>
-                    <td data-usersindex-text="user.login"></td>
-                    <td data-usersindex-text="user.enabled"></td>
-                    <td data-usersindex-text="user.role"></td>
-                    <td data-usersindex-text="user.email"></td>
-                    <td align="center"><a data-usersindex-href="user.urlLink"><i class="icon-edit"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
+                <tr data-rv-each-user="data.users">
+                    <td><img src="http://placehold.it/40x40" /> <span data-rv-text="user.name"></span></td>
+                    <td data-rv-text="user.login"></td>
+                    <td data-rv-text="user.enabled"></td>
+                    <td data-rv-text="user.role"></td>
+                    <td data-rv-text="user.email"></td>
+                    <td align="center"><a data-rv-href="user.urlLink"><i class="icon-edit"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
                 </tr>
                 </tbody>
             </table>
@@ -43,16 +43,16 @@
             <div class="row">
                 <div class="large-12 columns">
                     <ul class="pagination">
-                        <li data-usersindex-class-unavailable="data.prevPage.disabled" class="arrow"><a
-                                data-usersindex-disabled="data.prevPage.disabled"
-                                data-usersindex-onClick="data.prevPage.onClick"
-                                data-usersindex-href="data.prevPage.link">Previous</a></li>
-                        <li data-usersindex-each-page="data.pages" data-usersindex-class-current="page.current"><a
-                                data-usersindex-text="page.page" data-usersindex-href="page.link"></a></li>
-                        <li data-usersindex-class-unavailable="data.nextPage.disabled" class="arrow"><a
-                                data-usersindex-disabled="data.nextPage.disabled"
-                                data-usersindex-onClick="data.nextPage.onClick"
-                                data-usersindex-href="data.nextPage.link">Next</a></li>
+                        <li data-rv-class-unavailable="data.prevPage.disabled" class="arrow"><a
+                                data-rv-disabled="data.prevPage.disabled"
+                                data-rv-onClick="data.prevPage.onClick"
+                                data-rv-href="data.prevPage.link">Previous</a></li>
+                        <li data-rv-each-page="data.pages" data-rv-class-current="page.current"><a
+                                data-rv-text="page.page" data-rv-href="page.link"></a></li>
+                        <li data-rv-class-unavailable="data.nextPage.disabled" class="arrow"><a
+                                data-rv-disabled="data.nextPage.disabled"
+                                data-rv-onClick="data.nextPage.onClick"
+                                data-rv-href="data.nextPage.link">Next</a></li>
                     </ul>
                 </div>
             </div>
