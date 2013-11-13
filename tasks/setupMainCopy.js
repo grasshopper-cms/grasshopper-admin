@@ -12,12 +12,23 @@ module.exports = function (grunt) {
             linefeed = /\r\n/g.test(main) ? '\r\n' : '\n',
             lines = main.split(linefeed),
             inPathsBlock = false,
+            inPackagesBlock = true,
             file,
+            location,
+            directory,
             filesArray;
 
 
 
         _.each(lines, function(line) {
+            if (/\s*packages\s*:\s*\[\s*/.test(line)) {
+               inPackagesBlock = true;
+            }
+
+            if (/\s*\]\s*/.test(line)) {
+                inPackagesBlock = false;
+            }
+
             if (/\s*paths\s*:\s*\{\s*/.test(line)) {
                 inPathsBlock = true;
             }
@@ -32,6 +43,23 @@ module.exports = function (grunt) {
                     grunt.config.set('copy.vendor.files', filesArray);
                 }
             }
+
+            // TODO: This does not work.
+//            if (inPackagesBlock) {
+//                file = line.match(/[']([^']+)[']|["]([^"]+)["]/);
+//                if (file) {
+//                    location = file.input.match(/location/);
+//                    if (location) {
+//                        directory = location.input.match(/[']([^']+)[']|["]([^"]+)["]/);
+//                        if (directory) {
+//                            filesArray = grunt.config.get('copy.vendor.files');
+//                            filesArray[0].src.push(directory[1] + '.js');
+//                            grunt.config.set('copy.vendor.files', filesArray);
+//                        }
+//                    }
+//
+//                }
+//            }
         });
 
         filesArray = grunt.config.get('copy.vendor.files');

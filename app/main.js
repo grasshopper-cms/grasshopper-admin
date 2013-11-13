@@ -2,9 +2,6 @@
 // Require.js allows us to configure shortcut alias
 require.config({
     shim : {
-        underscore : {
-            exports : '_'
-        },
         base64 : {
             exports : 'Base64'
         },
@@ -38,11 +35,15 @@ require.config({
             deps : ['codemirror']
 
         }
-
     },
+    packages : [
+        {
+            name : 'underscore',
+            location : 'vendor/lodash-amd/compat'
+        }
+    ],
     paths : {
         // Libraries
-        underscore : 'vendor/lodash/dist/lodash.underscore',
         jquery : 'vendor/jquery/jquery',
         backbone : 'vendor/backbone-amd/backbone',
         text : 'vendor/requirejs-text/text',
@@ -165,6 +166,7 @@ require([
 
         $(document).foundation();
 
+        // TODO : This should come from a build task run in Grunt
         $('head').append('<link rel="stylesheet" type="text/css" href="themes/' + constants.defaults.theme + '/main.css" />');
 
         new Router();
