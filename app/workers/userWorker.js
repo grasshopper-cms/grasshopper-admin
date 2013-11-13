@@ -7,7 +7,7 @@ define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
             isValidProfileEditor : isValidProfileEditor,
             getRequestedUserDetails : getRequestedUserDetails,
             getMyUserDetails : getMyUserDetails,
-            isThisMyProfile : isThisMyProfile,
+//            isThisMyProfile : isThisMyProfile,
             getProfileData : getProfileData,
             getUsers : getUsers
         };
@@ -49,9 +49,9 @@ define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
             return UserModel.get('isAdmin');
         }
 
-        function isThisMyProfile(UserModel, id) {
-            return id === UserModel.get('_id');
-        }
+//        function isThisMyProfile(UserModel, id) {
+//            return id === UserModel.get('_id');
+//        }
 
         function getRequestedUserDetails (id) {
             return api.getRequestedUserDetails(id);

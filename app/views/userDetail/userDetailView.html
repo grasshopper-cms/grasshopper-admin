@@ -3,7 +3,7 @@
         <div class="large-10 small-centered columns">
             <fieldset>
                 <legend>
-                    <h2>{{data.resources.userDetailHeaderText}}{{data.name}}</h2>
+                    <h2>{{data.resources.userDetailHeaderText}}{{data.fullName}}</h2>
                 </legend>
 
                 <div class="row">
@@ -16,12 +16,12 @@
 
                             <div class="row listItem">
                                 <div class="large-3 columns">
-                                    <label for="name" class="right inline">{{data.resources.attributeTitles.name}}</label>
+                                    <label for="firstName" class="right inline">{{data.resources.attributeTitles.firstName | withColon}}</label>
                                 </div>
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
-                                            <input id="name" type="text" value="data.name" data-rv-value="data.name"/>
+                                            <input id="firstName" type="text" value="data.name" data-rv-value="data.firstname"/>
                                         </div>
                                     </div>
                                 </div>
@@ -29,7 +29,20 @@
 
                             <div class="row listItem">
                                 <div class="large-3 columns">
-                                    <label for="role" class="right inline">{{data.resources.attributeTitles.role}}</label>
+                                    <label for="lastName" class="right inline">{{data.resources.attributeTitles.lastName | withColon}}</label>
+                                </div>
+                                <div class="large-9 columns editable">
+                                    <div class="row">
+                                        <div class="large-12 columns attribute">
+                                            <input id="lastName" type="text" value="data.name" data-rv-value="data.lastname"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row listItem">
+                                <div class="large-3 columns">
+                                    <label for="role" class="right inline">{{data.resources.attributeTitles.role | withColon}}</label>
                                 </div>
                                 <div class="large-9 columns editable">
                                     <div class="row">
@@ -45,7 +58,7 @@
 
                             <div class="row listItem">
                                 <div class="large-3 columns">
-                                    <label for="statusText" class="right inline">{{data.resources.attributeTitles.enabled}}</label>
+                                    <label for="statusText" class="right inline">{{data.resources.attributeTitles.enabled | withColon}}</label>
                                 </div>
                                 <div class="large-9 columns editable">
                                     <div class="row">
@@ -61,7 +74,7 @@
 
                             <div class="row listItem">
                                 <div class="large-3 columns">
-                                    <label for="email" class="right inline">{{data.resources.attributeTitles.email}}</label>
+                                    <label for="email" class="right inline">{{data.resources.attributeTitles.email | withColon}}</label>
                                 </div>
                                 <div class="large-9 columns editable">
                                     <div class="row">
@@ -74,25 +87,12 @@
 
                             <div class="row listItem">
                                 <div class="large-3 columns">
-                                    <label for="login" class="right inline">{{data.resources.attributeTitles.login}}</label>
+                                    <label for="login" class="right inline">{{data.resources.attributeTitles.login | withColon}}</label>
                                 </div>
                                 <div class="large-9 columns editable">
                                     <div class="row">
                                         <div class="large-12 columns attribute">
                                             <input id="login" type="text" value="data.login" data-rv-value="data.login"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row listItem">
-                                <div class="large-3 columns">
-                                    <label for="password" class="right inline">{{data.resources.attributeTitles.password}}</label>
-                                </div>
-                                <div class="large-9 columns editable">
-                                    <div class="row">
-                                        <div class="large-12 columns attribute">
-                                            <input id="password" type="text" value="data.password" data-rv-value="data.password"/>
                                         </div>
                                     </div>
                                 </div>
