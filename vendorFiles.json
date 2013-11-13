@@ -1,0 +1,4 @@
+{
+    "backbone-amd" : "backbone-amd/bakbone.js",
+    "lodash-amd" : "lodash-amd/compat/**"
+}

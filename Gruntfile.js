@@ -280,6 +280,9 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        bowerCopy : {
+
         }
     });
 
