@@ -1,4 +1,22 @@
 {
-    "backbone-amd" : "backbone-amd/bakbone.js",
-    "lodash-amd" : "lodash-amd/compat/**"
+    "requirejs" : "vendor/requirejs/require.js",
+    "backbone-amd" : "vendor/backbone-amd/backbone.js",
+    "lodash-amd" : "vendor/lodash-amd/compat/**",
+    "jquery" : "vendor/jquery/jquery.js",
+    "text" : "vendor/requirejs-text/text.js",
+    "rivets" : "vendor/rivets/dist/rivets.js",
+    "base64" : "vendor/js-base64/base64.js",
+    "foundation" : "vendor/foundation/js/foundation/foundation.js",
+    "backstrap" : "vendor/theme/backstrap.js",
+    "cirque" : "vendor/cirque/jquery.cirque.js",
+    "modernizr" : "vendor/modernizr/modernizr.js",
+    "tinymce" : "vendor/tinymce/js/tinymce/tinymce.min.js",
+    "tinytheme" : "vendor/tinymce/js/tinymce/themes/modern/theme.js",
+    "codemirror" : "vendor/codemirror/lib/codemirror.js",
+    "masseuse" : "vendor/masseuse/app/*.js",
+    "alerts" : "vendor/foundation/js/foundation/foundation.alerts.js",
+    "forms" : "vendor/foundation/js/foundation/foundation.forms.js",
+    "dropdown" : "vendor/foundation/js/foundation/foundation.dropdown.js",
+    "section" : "vendor/foundation/js/foundation/foundation.section.js",
+    "codemirrorjs" : "vendor/codemirror/mode/javascript/javascript.js"
 }
