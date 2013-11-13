@@ -4,13 +4,13 @@ define(['text!views/header/headerView.html', 'headerViewModel'], function (templ
 
     return {
         name : 'headerView',
-        modelData : {name: 'Menu', url: 'home'},
+        modelData : {},
         ModelType : HeaderViewModel,
         el : '#header',
         templateHtml : templateHtml,
-        rivetConfig : {
-            scope : '#header',
-            prefix : 'header'
-        }
+        events : {},
+        appendView : true,
+        bindings : [],
+        rivetConfig : 'auto'
     };
 });

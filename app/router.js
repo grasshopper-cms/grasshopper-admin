@@ -1,36 +1,18 @@
 /*global define*/
 define([
-    'backbone',
-    'underscore',
-    'masseuseRouter',
-    'api',
-    'constants',
-    'LocalStorage',
+    'backbone', 'underscore', 'masseuseRouter', 'api', 'constants', 'LocalStorage',
     'baseView',
-    'loginView',
-    'loginViewConfig',
-    'loginWorker',
-    'dashboardView',
-    'dashboardViewConfig',
-    'emptyView',
-    'emptyViewConfig',
-    'alertBoxView',
-    'alertBoxViewConfig',
+    'loginView', 'loginViewConfig', 'loginWorker',
+    'dashboardView', 'dashboardViewConfig',
+    'emptyView', 'emptyViewConfig',
+    'alertBoxView', 'alertBoxViewConfig',
     'resources',
-    'userDetailView',
-    'userDetailViewConfig',
-    'userWorker',
-    'UserModel',
-    'headerView',
-    'headerViewConfig',
-    'mastheadView',
-    'mastheadViewConfig',
-    'usersIndexView',
-    'usersIndexViewConfig',
-    'contentIndexView',
-    'contentIndexViewConfig',
-    'contentEditView',
-    'contentEditViewConfig'
+    'userDetailView', 'userDetailViewConfig', 'userWorker', 'UserModel',
+    'headerView', 'headerViewConfig',
+    'mastheadView', 'mastheadViewConfig',
+    'usersIndexView', 'usersIndexViewConfig',
+    'contentIndexView', 'contentIndexViewConfig',
+    'contentEditView', 'contentEditViewConfig'
 ],
     function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
               BaseView,
@@ -47,16 +29,16 @@ define([
               ) {
 
         var userModel = new UserModel(),
-            currentView;
+            currentView,
+            ignoreFromTimer = [
+                'loginView'
+            ];
 
         /**
          * @class Router
          * @extends MasseuseRouter
          */
         var Router = MasseuseRouter.extend({
-            initialize : initialize,
-            startHeader : startHeader,
-
             routes : {
                 'login' : 'displayLogin',
                 'logout' : 'goLogout',
@@ -68,13 +50,19 @@ define([
                 '*path' : 'goHome'
             },
 
+            initialize : initialize,
+            startHeader : startHeader,
+            removeHeader : removeHeader,
+
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login'],
+            excludeFromBeforeRouting : ['login', 'logout'],
 
             navigateTrigger : navigateTrigger,
             navigateNinja : navigateNinja,
             navigateDeferred : navigateDeferred,
+
+            loadMainContent : loadMainContent,
 
             goHome : goHome,
             displayApp : displayApp,
@@ -96,18 +84,19 @@ define([
             var $deferred = new $.Deferred(),
                 self = this;
 
-            if (LocalStorage.get('authToken')) {
 
+            if (LocalStorage.get('authToken')) {
                 if (!this.user.get('_id')) {
                     Api.authenticateToken(LocalStorage.get('authToken'))
                         .done(function (data) {
+                            // TODO: put this in the user Model. Get it out of the Router. (THIS IS DUPLICATED IN THE loginViewWorker)
                             self.user.set({
                                 _id : data._id,
                                 email : data.email,
                                 enabled : data.enabled,
                                 login : data.login,
-                                name : data.name,
-                                password : data.password,
+                                firstName : data.firstname,
+                                lastName : data.lastname,
                                 role : data.role
                             });
                             if ( ! self.headerView) {
@@ -126,6 +115,7 @@ define([
                 }
 
             } else {
+                self.removeHeader();
                 $deferred.reject();
             }
 
@@ -150,13 +140,14 @@ define([
             this.navigate(fragment, options);
         }
 
-        function navigate (fragment, options) {
+        function navigate (fragment, options, doBeforeRender) {
             // TODO: Move in to masseuse parts that we can
             if (currentView instanceof Backbone.View) {
                 // (and override destroy in GH to remove alerts)
                 currentView.hideAlertBox();
-                // TODO: this breaks the ui
-                //currentView.remove();
+            }
+            if(doBeforeRender) {
+                this.beforeRouting();
             }
             Backbone.Router.prototype.navigate.apply(this, arguments);
 
@@ -188,45 +179,72 @@ define([
             };
         }
 
+        function loadMainContent (ViewType, config, bypass) {
+            var $deferred = new $.Deferred(),
+                newView = new ViewType(config);
+
+            if(currentView && ! _.contains(ignoreFromTimer, currentView.options.name)) {
+//                spinnerTimer($deferred, newView);
+            }
+
+            if (currentView && currentView.options.name === config.name && !bypass) {
+                return $deferred.resolve(currentView)
+                    .promise();
+            }
+
+            newView.start()
+                .progress(function (event) {
+                    switch (event) {
+                        case BaseView.beforeRenderDone:
+                            if (currentView) {
+                                currentView.remove();
+                            }
+
+                            currentView = newView;
+                            break;
+                    }
+                })
+                .done(function () {
+                    $deferred.resolve(newView);
+                })
+                .fail(function () {
+                    $deferred.reject();
+                });
+
+            return $deferred.promise();
+        }
 
         function startHeader () {
+            this.headerView = new HeaderView(headerViewConfig);
+            this.headerView.start();
+            this.mastheadView = new MastheadView(mastheadViewConfig);
+            this.mastheadView.start();
+        }
 
-            var headerView = newView(HeaderView, headerViewConfig);
-            headerView.start();
-            headerView.rivetView();
-            this.headerView = headerView;
-
-            var mastheadView = newView(MastheadView, mastheadViewConfig);
-            mastheadView.model.set({title:'<small><a href="#">cms</a> / <a href="#">folder</a> /</small> Pages',icon: 'icon-file',description: '23 content items. 45 files.'});
-            mastheadView.start();
-            mastheadView.rivetView();
-            this.mastheadView = mastheadView;
-
+        function removeHeader () {
+            if(this.headerView && this.mastheadView) {
+                this.headerView.remove();
+                this.mastheadView.remove();
+                this.headerView = null;
+                this.mastheadView = null;
+            }
         }
 
         function goLogout () {
-            LocalStorage.remove('authToken');
-            this.user.clear();
-            this.navigate('login', {trigger : true});
+            var self = this;
+            LocalStorage.remove('authToken')
+                .done(function() {
+                    self.user.clear();
+                    self.navigate('login', {trigger : true}, true);
+                });
         }
 
         function displayLogin () {
+            loadMainContent(LoginView, loginViewConfig, true);
+        }
 
-            var loginView = newView(LoginView, loginViewConfig);
-
-            if (this.headerView) {
-                this.headerView.remove();
-                this.headerView = false;
-            }
-
-            if (this.mastheadView) {
-                this.mastheadView.remove();
-                this.mastheadView = false;
-            }
-
-
-            loginView.start();
-            loginView.rivetView();
+        function displayApp () {
+            loadMainContent(DashboardView, dashboardViewConfig, true);
         }
 
         function displayAlertBox (msg) {
@@ -249,69 +267,36 @@ define([
             this.navigateTrigger('home');
         }
 
-        function displayApp () {
-            // Display the app.
-
-
-            var dashboardView = newView(DashboardView, dashboardViewConfig);
-            dashboardView.start();
-            dashboardView.rivetView();
-
-        }
-
         function displayUserDetail (id) {
-            userWorker.getProfileData(userModel, id)
-                .done(function (data) {
-                    var userDetailView = newView(UserDetailView, userDetailViewConfig);
-                    userDetailView.start();
-                    userDetailView.model.set(data);
-                })
-                .fail(function (xhr) {
-                    BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
-                });
+            loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
+                {
+                    modelData : {
+                        id : id,
+                        isAdmin : (this.user.get('role') === 'admin')
+                    }
+                }), true);
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
-            var usersIndexView = newView(UsersIndexView, usersIndexViewConfig),
-                defaultLimit = constants.userCollection.pageSize,
-                defaultPage = constants.userCollection.page;
-
-            usersIndexView.goToPage(pageNumber || defaultPage, pageLimit || defaultLimit)
-            .done(function(){
-                usersIndexView.start();
-                usersIndexView.rivetView();
-                usersIndexView.renderPlugins();
-            });
-
+            if (this.user.get('role') === 'admin') {
+                loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
+                    {
+                        modelData : {
+                            pageNumber : pageNumber,
+                            pageLimit : pageLimit
+                        }
+                    }), true);
+            } else {
+                this.navigate('home', {trigger : true}, true);
+            }
         }
 
         function displayContentIndex (nodeId, pageNumber, pageLimit) {
-
-            var contentIndexView = newView(ContentIndexView, contentIndexViewConfig);
-            contentIndexView.start();
-            contentIndexView.rivetView();
-
+            loadMainContent(ContentIndexView, contentIndexViewConfig, true);
         }
 
         function displayContentEdit (id) {
-
-            var contentEditView = newView(ContentEditView, contentEditViewConfig);
-            contentEditView.start();
-            contentEditView.rivetView();
-
-        }
-
-
-        function newView (ViewType, config, bypass) {
-            if (currentView) {
-                if (currentView.options.name !== config.name || bypass) {
-                    currentView = new ViewType(config);
-                }
-            } else {
-                currentView = new ViewType(config);
-            }
-
-            return currentView;
+            loadMainContent(ContentEditView, contentEditViewConfig, true);
         }
 
         return Router;

@@ -72,7 +72,8 @@ require.config({
         codemirrorjs: 'vendor/codemirror/mode/javascript/javascript',
 
         // Views
-        baseView : 'vendor/masseuse/app/baseView',
+        masseuseBaseView : 'vendor/masseuse/app/baseView',
+        baseView : 'views/grasshopperBaseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
         dashboardView : 'views/dashboard/dashboardView',
@@ -115,8 +116,10 @@ require.config({
         alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
+        dashboardViewModel : 'models/viewModels/dashboardViewModel',
+        mastheadViewModel : 'models/viewModels/mastheadViewModel',
 
-        // Workers
+            // Workers
         loginWorker : 'workers/loginWorker',
         userWorker : 'workers/userWorker',
 
@@ -153,6 +156,13 @@ require([
     function ($, Router, constants) {
 
         'use strict';
+
+        _.templateSettings = {
+            evaluate    : /\[\[(.+?)\]\]/g,
+            interpolate : /\[\[=(.+?)\]\]/g,
+            escape      : /\[\[-(.+?)\]\]/g
+        };
+
         $(document).foundation();
 
         $('head').append('<link rel="stylesheet" type="text/css" href="themes/' + constants.defaults.theme + '/main.css" />');

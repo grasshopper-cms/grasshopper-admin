@@ -30,13 +30,16 @@ define({
 
     user : {
         userDetailHeaderText : 'Profile for: ',
+        loggedInAs : 'Logged in as',
         attributeTitles : {
             name : 'USER NAME:',
-            role : 'USER ROLE:',
-            enabled : 'ENABLED?:',
-            email : 'EMAIL:',
-            login : 'LOGIN:',
-            password : 'PASSWORD:'
+            firstName : 'FIRST NAME',
+            lastName : 'LAST NAME',
+            role : 'USER ROLE',
+            enabled : 'ENABLED?',
+            email : 'EMAIL',
+            login : 'LOGIN',
+            password : 'PASSWORD'
         },
         statusTitles : {
             enabled : 'enabled',

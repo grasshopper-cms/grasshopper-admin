@@ -1,73 +1,75 @@
-<div id="topbar" class="contain-to-grid sticky">
-    <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
-        <i class="icon-home"></i>
-    </a>
-    <div id="top-nav">
-        <ul class="pull-right">
-            <li><img class="profile-pic" data-header-show="data.loggedIn" src="http://placehold.it/20x20"/></li>
-            <li><a data-header-href="data.url"><i class="icon-user"></i> Logged in as <span data-header-text="data.name"></span></a></li>
-            <li class="dropdown">
-                <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
-                    Settings
-                    <b class="caret"></b>
-                </a>
+<div id="[[= viewId ]]">
+    <div id="topbar" class="contain-to-grid sticky">
+        <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+            <i class="icon-home"></i>
+        </a>
+        <div id="top-nav">
+            <ul class="pull-right">
+                <li><img class="profile-pic" data-rv-show="data.loggedIn" src="http://placehold.it/20x20"/></li>
+                <li><a data-rv-href="data.url"><i class="icon-user"></i><span data-rv-text="data.resources.user.loggedInAs | spaceAfter"></span><span data-rv-text="data.fullName"></span></a></li>
+                <li class="dropdown">
+                    <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
+                        Settings
+                        <b class="caret"></b>
+                    </a>
 
-                <ul id="settings-dropdown" data-dropdown-content class="dropdown-menu right">
-                    <li><a id="myProfileButton" data-header-show="data.loggedIn" data-header-href="data.url">{{data.resources.edit}} {{data.resources.profile}}</a></li>
-                    <li><a href="#about">{{data.resources.site.about}}</a></li>
-                </ul>
-            </li>
-
-            <li><a id="logOutButton" href="#logout" data-header-show="data.loggedIn">{{data.resources.log_out}}</a>
-            </li>
-            <li><a id="logInButton" href="#login" data-header-hide="data.loggedIn">{{data.resources.log_in}}</a>
-            </li>
-        </ul>
-
-    </div>
-</div>
-<div id="headerbar">
-    <div class="container">
-
-        <div class="row">
-            <div class="large-12 columns">
-                <a href="#home" class="brand">{{data.resources.siteName}}</a>
-                <a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <i class="icon-reorder"></i>
-                </a>
-
-                <div class="nav-collapse">
-                    <ul id="main-nav" class="nav pull-right">
-                        <li class="nav-icon active">
-                            <a href="#home">
-                                <i class="icon-home"></i>
-                                <span>Home</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#items">
-                                <i class="icon-th"></i>
-                                <span>Content</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#types">
-                                <i class="icon-cogs"></i>
-                                <span>Types</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#users">
-                                <i class="icon-user"></i>
-                                <span>Users</span>
-                            </a>
-                        </li>
+                    <ul id="settings-dropdown" data-dropdown-content class="dropdown-menu right">
+                        <li><a id="myProfileButton" data-rv-show="data.loggedIn" data-rv-href="data.url">{{data.resources.edit}} {{data.resources.profile}}</a></li>
+                        <li><a href="#about">{{data.resources.site.about}}</a></li>
                     </ul>
+                </li>
 
-                </div> <!-- /.nav-collapse -->
+                <li><a id="logOutButton" href="#logout" data-rv-show="data.loggedIn">{{data.resources.log_out}}</a>
+                </li>
+                <li><a id="logInButton" href="#login" data-rv-hide="data.loggedIn">{{data.resources.log_in}}</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div id="headerbar">
+        <div class="container">
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <a href="#home" class="brand">{{data.resources.siteName}}</a>
+                    <a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <i class="icon-reorder"></i>
+                    </a>
+
+                    <div class="nav-collapse">
+                        <ul id="main-nav" class="nav pull-right">
+                            <li class="nav-icon active">
+                                <a href="#home">
+                                    <i class="icon-home"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#items">
+                                    <i class="icon-th"></i>
+                                    <span>Content</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#types">
+                                    <i class="icon-cogs"></i>
+                                    <span>Types</span>
+                                </a>
+                            </li>
+
+                            <li data-rv-show="data.role | equals admin">
+                                <a href="#users">
+                                    <i class="icon-user"></i>
+                                    <span>Users</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div> <!-- /.nav-collapse -->
+                </div>
             </div>
         </div>
     </div>

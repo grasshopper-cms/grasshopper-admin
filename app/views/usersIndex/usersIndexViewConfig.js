@@ -4,17 +4,16 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel'], fun
 
     return {
         name : 'usersIndexView',
+        modelData : {},
         ModelType : UsersIndexViewModel,
         el : '#stage',
         templateHtml : templateHtml,
         events : {
             'change #limitDropdown' : 'changeLimit'
         },
-        rivetConfig : {
-            scope : '#usersIndex',
-            prefix : 'usersindex',
-            instaUpdateRivets : true
-        }
+        appendView : true,
+        bindings : [],
+        rivetConfig : 'auto'
     };
 
 });

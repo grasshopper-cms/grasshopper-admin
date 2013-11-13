@@ -284,8 +284,25 @@ module.exports = function (grunt) {
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("server", "Build and watch task", ['clean', "jshint", "setupMainCopy", "copy:build", "copy:vendor", "connect:site", "sass", "open:reload", "watch"]);
-    grunt.registerTask("testServer", "Build and watch task", ["jshint", "copy:build", "connect:tests", "sass", "open:tests", "watch"]);
+    grunt.registerTask("server", "Build and watch task", [
+        'clean',
+        "jshint",
+        "setupMainCopy",
+        "copy:build",
+        "copy:vendor",
+        "connect:site",
+        "sass",
+        "open:reload",
+        "watch"
+    ]);
+    grunt.registerTask("testServer", "Build and watch task", [
+        "jshint",
+        "copy:build",
+        "connect:tests",
+        "sass",
+        "open:tests",
+        "watch"
+    ]);
     grunt.registerTask("deploy", "Deploy to gh-pages", [
         "clean",
         'copy:deploy',

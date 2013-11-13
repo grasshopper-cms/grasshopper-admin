@@ -4,15 +4,20 @@ define(['baseView', 'userWorker', 'constants'],
     function (BaseView, userWorker, constants) {
 
         var usersIndexView = BaseView.extend({
+            beforeRender : beforeRender,
             goToPage : goToPage,
-            renderPlugins : renderPlugins,
             checkAndSetLimit : checkAndSetLimit,
             changeLimit : changeLimit
         });
 
-        //TODO: Turn this into a mixin
-        function renderPlugins () {
-            this.$el.foundation('forms');
+        function beforeRender() {
+            var self = this,
+                model = this.model.toJSON();
+
+            this.goToPage(model.pageNumber || model.defaultPage, model.pageLimit || model.defaultLimit)
+                .done(function() {
+                    self.$el.foundation('forms');
+                });
         }
 
         function goToPage (page, limit) {
