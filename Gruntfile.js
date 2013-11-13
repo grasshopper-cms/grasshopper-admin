@@ -127,9 +127,7 @@ module.exports = function (grunt) {
                         '**',
                         '!**/*.scss',
                         '**/*.html',
-                        '!vendor/**',
-                        'vendor/tinymce/js/tinymce/**/*',
-                        '!vendor/tinymce/js/tinymce/**/*.less'
+                        '!vendor/**'
                     ], dest : 'build'}
                 ]
             },
@@ -280,9 +278,6 @@ module.exports = function (grunt) {
                     ]
                 }
             }
-        },
-        bowerCopy : {
-
         }
     });
 
@@ -290,7 +285,7 @@ module.exports = function (grunt) {
     grunt.registerTask("server", "Build and watch task", [
         'clean',
         "jshint",
-        "setupMainCopy",
+        "setupBowerCopy",
         "copy:build",
         "copy:vendor",
         "connect:site",
