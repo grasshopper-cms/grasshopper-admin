@@ -3,7 +3,6 @@ define(['baseView', 'resources', 'userWorker', 'constants', 'LocalStorage'], fun
 
     var userDetailView = BaseView.extend({
         beforeRender : beforeRender,
-        afterRender : afterRender,
 //        displaySuccessfulSave : displaySuccessfulSave,
 //        displaySaveError : displaySaveError,
         updateModel : updateModel,
@@ -11,18 +10,17 @@ define(['baseView', 'resources', 'userWorker', 'constants', 'LocalStorage'], fun
     });
 
     function beforeRender () {
+        var self = this;
         // TODO: make this a computed property.
         if (this.model.get('id') === this.app.user.get('_id')) {
             this.model.url = constants.api.user.url;
         }
 
         // TODO: Move this Authorization into somewhere more General. Override the Backbone Sync to always include it.
-        this.model.fetch({ headers: {authorization: 'Token ' + LocalStorage.get('authToken')} });
-    }
-
-    // TODO: Turn this into a mixin
-    function afterRender () {
-        this.$el.foundation('forms');
+        this.model.fetch({ headers: {authorization: 'Token ' + LocalStorage.get('authToken')} })
+            .done(function() {
+                self.$el.foundation('forms');
+            });
     }
 
     function updateModel () {
