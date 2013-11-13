@@ -278,13 +278,17 @@ define([
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
-            loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
-                {
-                    modelData : {
-                        pageNumber : pageNumber,
-                        pageLimit : pageLimit
-                    }
-                }), true);
+            if (this.user.get('role') === 'admin') {
+                loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
+                    {
+                        modelData : {
+                            pageNumber : pageNumber,
+                            pageLimit : pageLimit
+                        }
+                    }), true);
+            } else {
+                this.navigate('home', {trigger : true}, true);
+            }
         }
 
         function displayContentIndex (nodeId, pageNumber, pageLimit) {
