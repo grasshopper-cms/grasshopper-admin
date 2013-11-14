@@ -1,4 +1,4 @@
-define(['masseuseModel', 'computedProperty', 'constants', 'resources'], function (Model, ComputedProperty, constants, resources) {
+define(['masseuseModel', 'computedProperty', 'constants', 'resources', 'underscore'], function (Model, ComputedProperty, constants, resources, _) {
     return Model.extend({
         defaults: {
             resources : resources.user,

@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView', 'resources','tinymce','codemirror','codemirrorjs'], function (BaseView, resources, tinymce, codemirror, codemirrorjs) {
+define(['baseView', 'resources','tinymce','codemirror','codemirrorjs','underscore'], function (BaseView, resources, tinymce, codemirror, codemirrorjs, _) {
 
     var contentEditView = BaseView.extend({
         beforeRender : beforeRender,

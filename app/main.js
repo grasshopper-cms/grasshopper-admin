@@ -141,6 +141,7 @@ require.config({
 });
 
 require([
+    'underscore',
     'jquery',
     'router',
     'constants',
@@ -154,7 +155,7 @@ require([
      * @param $
      * @param {Router} Router
      */
-    function ($, Router, constants) {
+    function (_, $, Router, constants) {
 
         'use strict';
 
