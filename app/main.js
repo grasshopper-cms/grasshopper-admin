@@ -110,6 +110,7 @@ require.config({
         masseuseModel : 'vendor/masseuse/app/MasseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
+        grasshopperModel : 'models/grasshopperModel',
 
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',

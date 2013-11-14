@@ -21,16 +21,15 @@ define(['baseView', 'userWorker', 'constants'],
         }
 
         function goToPage (page, limit) {
-
             var pageLimit = this.checkAndSetLimit(limit),
-                deferred = new $.Deferred();
+                $deferred = new $.Deferred();
 
             return userWorker.getUsers(this, {
                 data : {
                     page : page,
                     limit : pageLimit
                 }
-            }, deferred);
+            }, $deferred);
         }
 
         function checkAndSetLimit (limit) {

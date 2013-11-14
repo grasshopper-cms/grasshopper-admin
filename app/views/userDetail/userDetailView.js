@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView', 'resources', 'userWorker', 'constants', 'LocalStorage'], function (BaseView, resources, userWorker, constants, LocalStorage) {
+define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView, resources, userWorker, constants) {
 
     var userDetailView = BaseView.extend({
         beforeRender : beforeRender,
@@ -16,8 +16,7 @@ define(['baseView', 'resources', 'userWorker', 'constants', 'LocalStorage'], fun
             this.model.url = constants.api.user.url;
         }
 
-        // TODO: Move this Authorization into somewhere more General. Override the Backbone Sync to always include it.
-        this.model.fetch({ headers: {authorization: 'Token ' + LocalStorage.get('authToken')} })
+        this.model.fetch()
             .done(function() {
                 self.$el.foundation('forms');
             });
@@ -30,7 +29,7 @@ define(['baseView', 'resources', 'userWorker', 'constants', 'LocalStorage'], fun
 //                displaySuccessfulSave();
                 updateNameInHeader.call(self, model);
             }).fail(function (odel, xhr) {
-                displaySaveError.call(self, xhr);
+//                displaySaveError.call(self, xhr);
             });
 
         return false;
@@ -58,15 +57,15 @@ define(['baseView', 'resources', 'userWorker', 'constants', 'LocalStorage'], fun
 //        });
 //    }
 //
-    function displaySaveError (xhr) {
-        var message = '';
-        if (xhr.status === 500) {
-            message = $.parseJSON(xhr.responseText).message;
-        } else {
-            message = resources.user.errors[xhr.status];
-        }
-        this.displayAlertBox(message);
-    }
+//    function displaySaveError (xhr) {
+//        var message = '';
+//        if (xhr.status === 500) {
+//            message = $.parseJSON(xhr.responseText).message;
+//        } else {
+//            message = resources.user.errors[xhr.status];
+//        }
+//        this.displayAlertBox(message);
+//    }
 
     return userDetailView;
 });

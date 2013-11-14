@@ -1,12 +1,12 @@
-define(['masseuseModel', 'computedProperty', 'constants', 'resources', 'underscore'], function (Model, ComputedProperty, constants, resources, _) {
+define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'underscore'], function (Model, ComputedProperty, constants, resources, _) {
     return Model.extend({
         defaults: {
             resources : resources.user,
+            roles : new ComputedProperty(['role'], setPossibleRoles),
+            statusOptions : new ComputedProperty(['attribute'], setStatusOptions),
             fullName : new ComputedProperty(['firstname', 'lastname'], function(first, last) {
                 return first + ' ' + last;
-            }),
-            roles : new ComputedProperty(['role'], setPossibleRoles),
-            statusOptions : new ComputedProperty(['attribute'], setStatusOptions)
+            })
         },
         urlRoot : constants.api.users.url
 

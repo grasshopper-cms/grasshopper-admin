@@ -287,7 +287,7 @@ define([
                         }
                     }), true);
             } else {
-                this.navigate('home', {trigger : true}, true);
+                this.navigateTrigger('home');
             }
         }
 
