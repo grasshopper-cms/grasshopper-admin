@@ -154,8 +154,7 @@ define([
         }
 
         function initialize () {
-            var oldSave = Backbone.Model.prototype.save,
-                oldSet = Backbone.Collection.prototype.set;
+            var oldSet = Backbone.Collection.prototype.set;
 
             MasseuseRouter.prototype.initialize.apply(this, arguments);
 
@@ -165,17 +164,13 @@ define([
             };
             BaseView.prototype.displayAlertBox = displayAlertBox;
             BaseView.prototype.hideAlertBox = hideAlertBox;
+
+            // TODO: Get rid of this. Move it to a grasshopperCollection or something like that. It does not belong here.
             Backbone.Collection.prototype.set = function(data, options) {
                 if (data && data.results) {
                     data = data.results;
                 }
                 oldSet.call(this, data, options);
-            };
-            Backbone.Model.prototype.save = function() {
-                var saveOptions = {headers : {
-                    'Authorization' : 'Token ' + LocalStorage.get('authToken')
-                }};
-                return oldSave.call(this, null, saveOptions);
             };
         }
 

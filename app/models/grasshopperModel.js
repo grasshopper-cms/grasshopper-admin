@@ -9,7 +9,8 @@ define([
 
     'use strict';
     return Model.extend({
-        fetch : fetch
+        fetch : fetch,
+        save : save
     });
 
     function fetch (options) {
@@ -32,7 +33,14 @@ define([
         }
 
         args[0] = fetchOptions;
-        return Backbone.Collection.prototype.fetch.apply(this, args);
+        return Backbone.Model.prototype.fetch.apply(this, args);
+    }
+
+    function save (options) {
+        var saveOptions = {headers : {
+                'Authorization' : 'Token ' + LocalStorage.get('authToken')
+            }};
+        return Backbone.Model.prototype.save.call(this, null, saveOptions);
     }
 
 });
