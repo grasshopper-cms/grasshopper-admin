@@ -27,7 +27,11 @@
                 </thead>
                 <tbody>
                 <tr data-rv-each-user="data.users">
-                    <td><img src="http://placehold.it/40x40" /> <span data-rv-text="user.name"></span></td>
+                    <td>
+                        <img src="http://placehold.it/40x40"/>
+                        {{user.firstname | spaceAfter}}
+                        {{user.lastname}}
+                    </td>
                     <td data-rv-text="user.login"></td>
                     <td data-rv-text="user.enabled"></td>
                     <td data-rv-text="user.role"></td>

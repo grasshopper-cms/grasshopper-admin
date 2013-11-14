@@ -39,7 +39,7 @@ require.config({
     packages : [
         {
             name : 'underscore',
-            location : 'vendor/lodash-amd/compat'
+            location : 'vendor/lodash-amd/underscore'
         }
     ],
     paths : {

@@ -1,7 +1,7 @@
 {
     "requirejs" : "vendor/requirejs/require.js",
     "backbone-amd" : "vendor/backbone-amd/backbone.js",
-    "lodash-amd" : "vendor/lodash-amd/compat/**",
+    "lodash-amd" : "vendor/lodash-amd/underscore/**",
     "jquery" : "vendor/jquery/jquery.js",
     "text" : "vendor/requirejs-text/text.js",
     "rivets" : "vendor/rivets/dist/rivets.js",
