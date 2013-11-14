@@ -43,7 +43,7 @@ define([
                 'login' : 'displayLogin',
                 'logout' : 'goLogout',
                 'home' : 'displayApp',
-                'users' : 'displayUsersIndex',
+                'users(/page/:pageNumber/show/:pageLimit)' : 'displayUsersIndex',
                 'user/:id' : 'displayUserDetail',
                 'items(/nodeid/:number)': 'displayContentIndex',
                 'item/:id' : 'displayContentEdit',
