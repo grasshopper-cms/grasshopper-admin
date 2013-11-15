@@ -10,7 +10,8 @@ define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel'], fun
         el : '#stage',
         templateHtml : templateHtml,
         events : {
-            'click #saveUser' : 'updateModel'
+            'click #saveUser' : 'updateModel',
+            'click .toggleEnabled' : 'toggleEnabled'
         },
         appendView : true,
         bindings : [],

@@ -16,28 +16,17 @@
         <div class="large-12 columns">
             <table width="100%">
                 <thead>
-                <tr>
-                    <th width='200'>{{data.resources.user_name}}</th>
-                    <th>{{data.resources.login}}</th>
-                    <th>{{data.resources.enabled}}</th>
-                    <th>{{data.resources.role}}</th>
-                    <th width='200'>{{data.resources.email}}</th>
-                    <th>{{data.resources.actions}}</th>
-                </tr>
+                    <tr>
+                        <th width='200'>{{data.resources.user_name}}</th>
+                        <th>{{data.resources.login}}</th>
+                        <th>{{data.resources.enabled}}</th>
+                        <th>{{data.resources.role}}</th>
+                        <th width='200'>{{data.resources.email}}</th>
+                        <th>{{data.resources.actions}}</th>
+                    </tr>
                 </thead>
-                <tbody>
-                <tr data-rv-each-user="data.users">
-                    <td>
-                        <img src="http://placehold.it/40x40"/>
-                        {{user.firstname | spaceAfter}}
-                        {{user.lastname}}
-                    </td>
-                    <td data-rv-text="user.login"></td>
-                    <td data-rv-text="user.enabled"></td>
-                    <td data-rv-text="user.role"></td>
-                    <td data-rv-text="user.email"></td>
-                    <td align="center"><a data-rv-href="user.urlLink"><i class="icon-edit"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
-                </tr>
+                <tbody id="usersIndexTable">
+                    <!--built dynamically-->
                 </tbody>
             </table>
         </div>

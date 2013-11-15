@@ -6,7 +6,8 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
 //        displaySuccessfulSave : displaySuccessfulSave,
 //        displaySaveError : displaySaveError,
         updateModel : updateModel,
-        updateNameInHeader : updateNameInHeader
+        updateNameInHeader : updateNameInHeader,
+        toggleEnabled : toggleEnabled
     });
 
     function beforeRender () {
@@ -43,6 +44,11 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
                     lastName : model.lastname
                 });
         }
+    }
+
+    function toggleEnabled() {
+        var enabled = this.model.get('enabled');
+        this.model.set('enabled', (enabled) ? false : true);
     }
 //
 //    function displaySuccessfulSave () {

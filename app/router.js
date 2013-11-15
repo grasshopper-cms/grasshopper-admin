@@ -56,6 +56,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
+            verifyAuthToken : verifyAuthToken,
             excludeFromBeforeRouting : ['login', 'logout'],
 
             navigateTrigger : navigateTrigger,
@@ -77,13 +78,13 @@ define([
         });
 
         function onRouteFail () {
-            this.navigateTrigger('login');
+            this.goLogout();
         }
 
+        // TODO: Rip this apart....figure out what it is doing.
         function beforeRouting () {
             var $deferred = new $.Deferred(),
                 self = this;
-
 
             if (LocalStorage.get('authToken')) {
                 if (!this.user.get('_id')) {
@@ -105,21 +106,29 @@ define([
                             $deferred.resolve();
                         })
                         .fail(function () {
+                            console.log('it got here');
+                            self.goLogout();
                             $deferred.reject();
                         });
                 } else {
+                    verifyAuthToken();
                     if ( ! self.headerView) {
                         self.startHeader();
                     }
                     $deferred.resolve();
                 }
-
             } else {
                 self.removeHeader();
                 $deferred.reject();
             }
-
             return $deferred.promise();
+        }
+
+        function verifyAuthToken() {
+            Api.authenticateToken(LocalStorage.get('authToken'))
+                .error(function() {
+                    goLogout();
+                });
         }
 
         function navigateTrigger (fragment, options) {
@@ -176,7 +185,8 @@ define([
 
         function loadMainContent (ViewType, config, bypass) {
             var $deferred = new $.Deferred(),
-                newView = new ViewType(config);
+                newView = new ViewType(config),
+                self = this;
 
             if(currentView && ! _.contains(ignoreFromTimer, currentView.options.name)) {
 //                spinnerTimer($deferred, newView);

@@ -3,7 +3,7 @@ define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'under
         defaults: {
             resources : resources.user,
             roles : new ComputedProperty(['role'], setPossibleRoles),
-            statusOptions : new ComputedProperty(['attribute'], setStatusOptions),
+            statusOptions : new ComputedProperty(['enabled'], setStatusOptions),
             fullName : new ComputedProperty(['firstname', 'lastname'], function(first, last) {
                 return first + ' ' + last;
             })
@@ -21,7 +21,8 @@ define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'under
         });
     }
 
-    function setStatusOptions(attribute) {
+    function setStatusOptions(enabled) {
+        console.log(enabled);
         return _.map(resources.user.statusOptions, function(value, key) {
            var thisOption = {};
             thisOption.text = value;

@@ -1,13 +1,14 @@
 /*global define:false*/
-define(['baseView', 'userWorker', 'constants'],
+define(['baseView', 'userWorker', 'constants', 'underscore', 'text!views/userDetail/_userDetailRow.html', 'userDetailView', 'userDetailViewConfig'],
 
-    function (BaseView, userWorker, constants) {
+    function (BaseView, userWorker, constants, _, userRowTemplate, UserDetailView, userDetailViewConfig) {
 
         var usersIndexView = BaseView.extend({
             beforeRender : beforeRender,
             goToPage : goToPage,
             checkAndSetLimit : checkAndSetLimit,
-            changeLimit : changeLimit
+            changeLimit : changeLimit,
+            appendUserRow : appendUserRow
         });
 
         function beforeRender() {
@@ -16,6 +17,9 @@ define(['baseView', 'userWorker', 'constants'],
 
             this.goToPage(model.pageNumber || model.defaultPage, model.pageLimit || model.defaultLimit)
                 .done(function() {
+                    _.each(self.model.get('users').models, function(model){
+                        self.appendUserRow(model);
+                    });
                     self.$el.foundation('forms');
                 });
         }
@@ -41,6 +45,17 @@ define(['baseView', 'userWorker', 'constants'],
 
         function changeLimit (event) {
             this.goToPage(constants.userCollection.page, event.target.value);
+        }
+
+        function appendUserRow(model) {
+            var userDetailView = new UserDetailView(_.extend(userDetailViewConfig,
+                {
+                    el : '#usersIndexTable',
+                    templateHtml : userRowTemplate,
+                    modelData : model.toJSON()
+                }
+            ));
+            userDetailView.start();
         }
 
         return usersIndexView;
