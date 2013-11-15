@@ -17,7 +17,7 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel'], fun
         mastheadButtons : [
                                 {
                                     text : 'Add new user',
-                                    href : '#'
+                                    href : '#addUser'
                                 }
                           ]
     };

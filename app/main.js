@@ -89,6 +89,8 @@ require.config({
         userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
         usersIndexView : 'views/usersIndex/usersIndexView',
         usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
+        addUserView : 'views/addUser/addUserView',
+        addUserViewConfig : 'views/addUser/addUserViewConfig',
         contentIndexView : 'views/contentIndex/contentIndexView',
         contentIndexViewConfig : 'views/contentIndex/contentIndexViewConfig',
         contentEditView : 'views/contentEdit/contentEditView',
@@ -118,6 +120,7 @@ require.config({
         alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
+        addUserViewModel : 'models/viewModels/addUserViewModel',
         dashboardViewModel : 'models/viewModels/dashboardViewModel',
         mastheadViewModel : 'models/viewModels/mastheadViewModel',
 

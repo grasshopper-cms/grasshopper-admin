@@ -29,6 +29,7 @@ define(['masseuseBaseView'], function (BaseView) {
                 case BaseView.afterRenderDone:
                     if (self.options.rivetConfig) {
                         self.rivetView();
+                        self.channels.views.trigger('rivetViewRendered');
                     }
                     self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons) ? self.options.mastheadButtons : null);
                     break;

@@ -11,6 +11,7 @@ define([
     'headerView', 'headerViewConfig',
     'mastheadView', 'mastheadViewConfig',
     'usersIndexView', 'usersIndexViewConfig',
+    'addUserView', 'addUserViewConfig',
     'contentIndexView', 'contentIndexViewConfig',
     'contentEditView', 'contentEditViewConfig'
 ],
@@ -20,10 +21,11 @@ define([
               DashboardView, dashboardViewConfig,
               EmptyView, emptyViewConfig,
               AlertBoxView, alertBoxViewConfig, resources,
-              UserDetailView, userDetailViewConfig,userWorker, UserModel,
+              UserDetailView, userDetailViewConfig, userWorker, UserModel,
               HeaderView, headerViewConfig,
               MastheadView, mastheadViewConfig,
               UsersIndexView, usersIndexViewConfig,
+              AddUserView, addUserViewConfig,
               ContentIndexView, contentIndexViewConfig,
               ContentEditView, contentEditViewConfig
               ) {
@@ -45,6 +47,7 @@ define([
                 'home' : 'displayApp',
                 'users(/page/:pageNumber/show/:pageLimit)' : 'displayUsersIndex',
                 'user/:id' : 'displayUserDetail',
+                'addUser' : 'displayAddUser',
                 'items(/nodeid/:number)': 'displayContentIndex',
                 'item/:id' : 'displayContentEdit',
                 '*path' : 'goHome'
@@ -69,10 +72,11 @@ define([
             displayApp : displayApp,
             displayLogin : displayLogin,
             goLogout : goLogout,
-            displayUserDetail : displayUserDetail,
             user : userModel,
             navigate : navigate,
             displayUsersIndex : displayUsersIndex,
+            displayUserDetail : displayUserDetail,
+            displayAddUser : displayAddUser,
             displayContentIndex : displayContentIndex,
             displayContentEdit : displayContentEdit
         });
@@ -124,7 +128,6 @@ define([
         }
 
         function verifyAuthToken($deferred) {
-            console.log('this fired');
             Api.authenticateToken(LocalStorage.get('authToken'))
                 .error(function() {
                     console.log('verifyAuthTokenFired');
@@ -295,6 +298,10 @@ define([
             } else {
                 this.navigateTrigger('home');
             }
+        }
+
+        function displayAddUser () {
+            loadMainContent(AddUserView, addUserViewConfig);
         }
 
         function displayContentIndex (nodeId, pageNumber, pageLimit) {

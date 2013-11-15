@@ -4,20 +4,17 @@ define(['text!views/<%= viewName %>/<%= viewName %>View.html', '<%= viewName %>V
 
     return {
         name : '<%= viewName %>View',
-        permanentView : false,
         ModelType : <%= viewName %>ViewModel,
         el : '#stage',
         templateHtml : templateHtml,
-        rivetConfig : {
-            scope : '#<%= viewName %>',
-            prefix : 'rv'
-        },
+        rivetConfig : 'auto',
         bindings : [
         ],
         appendView : false,
         events : {
 
-        }
+        },
+        mastheadButtons: []
     };
 });
 

@@ -18,7 +18,7 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
         mastheadButtons : [
                                 {
                                     text : 'Add new user',
-                                    href : '#'
+                                    href : '#addUser'
                                 }
                           ]
     };
