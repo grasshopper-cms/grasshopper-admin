@@ -17,7 +17,7 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'text!views/userDet
 
             this.goToPage(model.pageNumber || model.defaultPage, model.pageLimit || model.defaultLimit)
                 .done(function() {
-                    _.each(self.model.get('users').models, function(model){
+                    self.model.get('users').each(function(model){
                         self.appendUserRow(model);
                     });
                     self.$el.foundation('forms');
@@ -48,11 +48,13 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'text!views/userDet
         }
 
         function appendUserRow(model) {
-            var userDetailView = new UserDetailView(_.extend(userDetailViewConfig,
+            var userDetailView = new UserDetailView(_.extend({}, userDetailViewConfig,
                 {
+                    name : 'userDetailRow',
                     el : '#usersIndexTable',
                     templateHtml : userRowTemplate,
-                    modelData : model.toJSON()
+                    model : model
+//                    modelData : model.toJSON()
                 }
             ));
             userDetailView.start();

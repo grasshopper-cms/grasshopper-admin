@@ -17,10 +17,13 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
             this.model.url = constants.api.user.url;
         }
 
-        this.model.fetch()
-            .done(function() {
-                self.$el.foundation('forms');
-            });
+        console.log(this.model);
+//        if (this.model.runBeforeRender) {
+//            this.model.fetch()
+//                .done(function() {
+//                    self.$el.foundation('forms');
+//                });
+//        }
     }
 
     function updateModel () {
@@ -49,6 +52,7 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
     function toggleEnabled() {
         var enabled = this.model.get('enabled');
         this.model.set('enabled', (enabled) ? false : true);
+        this.updateModel();
     }
 //
 //    function displaySuccessfulSave () {

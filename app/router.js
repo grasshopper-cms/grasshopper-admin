@@ -111,7 +111,7 @@ define([
                             $deferred.reject();
                         });
                 } else {
-                    verifyAuthToken();
+                    verifyAuthToken($deferred);
                     if ( ! self.headerView) {
                         self.startHeader();
                     }
@@ -124,9 +124,12 @@ define([
             return $deferred.promise();
         }
 
-        function verifyAuthToken() {
+        function verifyAuthToken($deferred) {
+            console.log('this fired');
             Api.authenticateToken(LocalStorage.get('authToken'))
                 .error(function() {
+                    console.log('verifyAuthTokenFired');
+                    $deferred.reject();
                     goLogout();
                 });
         }
@@ -279,7 +282,7 @@ define([
                         id : id,
                         isAdmin : (this.user.get('role') === 'admin')
                     }
-                }), true);
+                }));
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {

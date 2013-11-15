@@ -8,15 +8,14 @@ define([
 
     'use strict';
     return Model.extend({
+        idAttribute : '_id',
         urlRoot : constants.api.user.url,
         url : constants.api.user.url,
         defaults : {
             login : false,
             role : false,
-            name : false,
             enabled : false,
             email : false,
-            password : false,
             loggedIn : new ComputedProperty(['enabled'], function (attribute) {
                 return attribute;
             }),

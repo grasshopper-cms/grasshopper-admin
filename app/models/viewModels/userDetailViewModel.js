@@ -22,7 +22,6 @@ define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'under
     }
 
     function setStatusOptions(enabled) {
-        console.log(enabled);
         return _.map(resources.user.statusOptions, function(value, key) {
            var thisOption = {};
             thisOption.text = value;
