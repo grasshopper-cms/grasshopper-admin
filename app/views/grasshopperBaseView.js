@@ -30,6 +30,7 @@ define(['masseuseBaseView'], function (BaseView) {
                     if (self.options.rivetConfig) {
                         self.rivetView();
                     }
+                    self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons) ? self.options.mastheadButtons : null);
                     break;
             }
         });

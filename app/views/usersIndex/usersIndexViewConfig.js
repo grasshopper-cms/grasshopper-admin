@@ -13,7 +13,13 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel'], fun
         },
         appendView : true,
         bindings : [],
-        rivetConfig : 'auto'
+        rivetConfig : 'auto',
+        mastheadButtons : [
+                                {
+                                    text : 'Add new user',
+                                    href : '#'
+                                }
+                          ]
     };
 
 });

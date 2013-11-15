@@ -4,7 +4,6 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
 
     return {
         name : 'userDetailView',
-        // for model attribute errors on self validating models, follow the convention of attribute+"Error". See the rivetView "publish" method
         ModelType : userDetailViewModel,
         modelData: {},
         el : '#stage',
@@ -15,6 +14,12 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
         },
         appendView : true,
         bindings : [],
-        rivetConfig : 'auto'
+        rivetConfig : 'auto',
+        mastheadButtons : [
+                                {
+                                    text : 'Add new user',
+                                    href : '#'
+                                }
+                          ]
     };
 });

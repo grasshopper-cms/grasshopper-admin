@@ -16,11 +16,10 @@
         </div>
         <div class="large-6 columns">
 
-            <ul class="button-group right radius">
-                <li><a href="javascript:;" class="button right small">Create Content</a></li>
-                <li><a href="javascript:;" class="button right small">Upload File</a></li>
-                <li><a href="javascript:;" class="button right small">Create Folder</a></li>
-                <li><a href="javascript:;" data-dropdown="drop1" class="button dropdown small">Actions</a></li>
+            <ul id="mastheadButtons" class="button-group right radius" data-rv-each-button="data.buttons">
+                <li>
+                    <a data-rv-href="button.href" class="button right small">{{button.text}}</a>
+                </li>
             </ul>
         </div>
     </div>

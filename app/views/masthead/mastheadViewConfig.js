@@ -14,7 +14,27 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel'], function 
         templateHtml : templateHtml,
         events : {},
         appendView : true,
-        bindings : [],
-        rivetConfig : 'auto'
+        bindings : [
+            ['channels.views', 'updateMastheadButtons', 'setButtons']
+        ],
+        rivetConfig : 'auto',
+        mastheadButtons : [
+                {
+                    text : 'Create Content',
+                    href : '#'
+                },
+                {
+                    text : 'Upload File',
+                    href : '#'
+                },
+                {
+                    text : 'create Folder',
+                    href : '#'
+                },
+                {
+                    text : 'Actions',
+                    href : '#'
+                }
+            ]
     };
 });

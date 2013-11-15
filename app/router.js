@@ -106,7 +106,6 @@ define([
                             $deferred.resolve();
                         })
                         .fail(function () {
-                            console.log('it got here');
                             self.goLogout();
                             $deferred.reject();
                         });
@@ -162,7 +161,6 @@ define([
                 this.beforeRouting();
             }
             Backbone.Router.prototype.navigate.apply(this, arguments);
-
         }
 
         function initialize () {
