@@ -11,16 +11,16 @@ define(['baseView', 'rivetView', 'loginWorker', 'jquery', 'proxyProperty', 'comp
         user = this.app.user;
         // TODO: This should be in the HeaderView Model. Does not belong in here.
         this.model.set({
-            admin :    ProxyProperty('isAdmin', user),
-            loggedIn : ProxyProperty('loggedIn', user),
-            role :     ProxyProperty('role', user),
+            admin :     ProxyProperty('isAdmin', user),
+            loggedIn :  ProxyProperty('loggedIn', user),
+            role :      ProxyProperty('role', user),
             firstName : ProxyProperty('firstName', user),
-            lastName : ProxyProperty('lastName', user),
-            fullName : ComputedProperty(['firstName', 'lastName'], function(firstName, lastName) {
+            lastName :  ProxyProperty('lastName', user),
+            fullName :  ComputedProperty(['firstName', 'lastName'], function(firstName, lastName) {
                return firstName + ' ' + lastName;
             }),
-            userUrl :  ProxyProperty('urlLink', user),
-            url :      ComputedProperty(['userUrl', 'loggedIn'], function(userUrl, loggedIn) {
+            userUrl :   ProxyProperty('urlLink', user),
+            url :       ComputedProperty(['userUrl', 'loggedIn'], function(userUrl, loggedIn) {
                   return loggedIn ? userUrl : 'home';
             })
         });

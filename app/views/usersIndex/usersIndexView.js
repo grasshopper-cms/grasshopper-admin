@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['baseView', 'userWorker', 'constants', 'underscore', 'text!views/userDetail/_userDetailRow.html', 'userDetailView', 'userDetailViewConfig'],
+define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', 'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
 
-    function (BaseView, userWorker, constants, _, userRowTemplate, UserDetailView, userDetailViewConfig) {
+    function (BaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
 
         var usersIndexView = BaseView.extend({
             beforeRender : beforeRender,
@@ -48,13 +48,14 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'text!views/userDet
         }
 
         function appendUserRow(model) {
+
             var userDetailView = new UserDetailView(_.extend({}, userDetailViewConfig,
                 {
                     name : 'userDetailRow',
                     el : '#usersIndexTable',
-                    templateHtml : userRowTemplate,
+                    // TODO: set this template some other way. Maybe in the Config?
+                    templateHtml : rowTemplate,
                     model : model
-//                    modelData : model.toJSON()
                 }
             ));
             userDetailView.start();

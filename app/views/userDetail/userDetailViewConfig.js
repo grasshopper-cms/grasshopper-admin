@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel'], function (templateHtml, userDetailViewModel) {
+define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_userDetailRow.html', 'userDetailViewModel'], function (formTemplate, rowTemplate, userDetailViewModel) {
     'use strict';
 
     return {
@@ -8,7 +8,7 @@ define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel'], fun
         ModelType : userDetailViewModel,
         modelData: {},
         el : '#stage',
-        templateHtml : templateHtml,
+        templateHtml : formTemplate,
         events : {
             'click #saveUser' : 'updateModel',
             'click .toggleEnabled' : 'toggleEnabled'

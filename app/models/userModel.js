@@ -1,5 +1,5 @@
 define([
-    'masseuseModel',
+    'grasshopperModel',
     'validation',
     'computedProperty',
     'resources',
@@ -8,25 +8,27 @@ define([
 
     'use strict';
     return Model.extend({
-        idAttribute : '_id',
-        urlRoot : constants.api.user.url,
-        url : constants.api.user.url,
+//        url : constants.api.user.url,
         defaults : {
             login : false,
             role : false,
             enabled : false,
             email : false,
-            loggedIn : new ComputedProperty(['enabled'], function (attribute) {
-                return attribute;
+            loggedIn : new ComputedProperty(['enabled'], function (enabled) {
+                return enabled;
             }),
-            isAdmin : new ComputedProperty(['role'], function (attribute) {
-                return resources.user.roles.admin == attribute;
+            isAdmin : new ComputedProperty(['role'], function (role) {
+                return resources.user.roles.admin == role;
             }),
-            isReader : new ComputedProperty(['role'], function (attribute) {
-                return resources.user.roles.reader == attribute;
+            isReader : new ComputedProperty(['role'], function (role) {
+                return resources.user.roles.reader == role;
             }),
-            urlLink : new ComputedProperty(['_id'], function (attribute) {
-                return '#' + constants.api.user.shortUrl + attribute;
+            urlLink : new ComputedProperty(['_id'], function (id) {
+                return '#' + constants.api.user.shortUrl + id;
+            }),
+            // TODO: Do these need to be computed properties? On the backbone docs there seems to be a way of transparent mapping:  id : '_id' should work
+            id : new ComputedProperty(['_id'], function(id) {
+                return id;
             })
         }
     });
