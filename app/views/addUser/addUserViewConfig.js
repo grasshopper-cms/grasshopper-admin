@@ -9,7 +9,7 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel'], function (fo
         el : '#stage',
         templateHtml : formTemplate,
         events : {
-
+            'click #saveUser' : 'saveUser'
         },
         appendView : true,
         bindings : [

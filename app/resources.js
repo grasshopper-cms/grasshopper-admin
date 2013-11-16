@@ -74,7 +74,7 @@ define({
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
     add : 'Add',
-
+    addNewUser : 'Add New User',
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',

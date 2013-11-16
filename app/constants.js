@@ -16,7 +16,7 @@ define({
             shortUrl : 'users/'
         },
         newUser : {
-            url : '',
+            url : 'http://localhost:8080/users',
             shortUrl : 'addUser'
         }
     },

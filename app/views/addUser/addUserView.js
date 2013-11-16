@@ -2,13 +2,24 @@
 define(['baseView'], function (BaseView) {
 
     var addUserView = BaseView.extend({
-//        afterRender : afterRender
-//        beforeRender : beforeRender
-        applyFoundationForms : applyFoundationForms
+        applyFoundationForms : applyFoundationForms,
+        saveUser : saveUser
     });
 
-    function applyFoundationForms () {
+    function applyFoundationForms() {
         this.$el.foundation('forms');
+    }
+
+    function saveUser() {
+        var self = this;
+
+        this.model.save()
+            .success(function() {
+                self.app.router.navigateTrigger('users');
+            })
+            .error(function(xhr) {
+                self.displayAlertBox(JSON.parse(xhr.responseText).message);
+            });
     }
 
     return addUserView;

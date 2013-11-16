@@ -3,7 +3,7 @@
         <div class="large-10 small-centered columns">
             <fieldset>
                 <legend>
-                    <h2>{{data.resources.user.userDetailHeaderText}}{{data.fullName}}</h2>
+                    <h2>{{data.resources.addNewUser}}</h2>
                 </legend>
                 <form class="custom">
 
@@ -74,9 +74,22 @@
                         </div>
                     </div>
 
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="password" class="right inline">{{data.resources.user.attributeTitles.password | withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="password" type="text" value="data.password" data-rv-value="data.password"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="large-5 small-offset-7 columns">
-                            <input id="saveUser" type="submit" class="button success radius" value="Save">
+                            <input id="saveUser" type="submit" class="button success radius" data-rv-value="data.resources.save">
                         </div>
                     </div>
                 </form>
