@@ -14,6 +14,10 @@ define({
         users : {
             url : 'http://localhost:8080/users',
             shortUrl : 'users/'
+        },
+        newUser : {
+            url : '',
+            shortUrl : 'addUser'
         }
     },
     defaults : {

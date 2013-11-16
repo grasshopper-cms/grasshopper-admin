@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_userDetailRow.html', 'userDetailViewModel'], function (formTemplate, rowTemplate, userDetailViewModel) {
+define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_userDetailRow.html', 'userDetailViewModel', 'resources', 'constants'], function (formTemplate, rowTemplate, userDetailViewModel, resources, constants) {
     'use strict';
 
     return {
@@ -17,8 +17,8 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
         rivetConfig : 'auto',
         mastheadButtons : [
                                 {
-                                    text : 'Add new user',
-                                    href : '#addUser'
+                                    text : resources.mastheadButtons.addNewUser,
+                                    href : '#' + constants.api.newUser.shortUrl
                                 }
                           ]
     };

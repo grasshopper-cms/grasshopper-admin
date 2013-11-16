@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel'], function (templateHtml, UsersIndexViewModel) {
+define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'resources', 'constants'], function (templateHtml, UsersIndexViewModel, resources, constants) {
     'use strict';
 
     return {
@@ -16,8 +16,8 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel'], fun
         rivetConfig : 'auto',
         mastheadButtons : [
                                 {
-                                    text : 'Add new user',
-                                    href : '#addUser'
+                                    text : resources.mastheadButtons.addNewUser,
+                                    href : '#' + constants.api.newUser.shortUrl
                                 }
                           ]
     };

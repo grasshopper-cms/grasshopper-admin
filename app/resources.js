@@ -63,10 +63,18 @@ define({
     site : {
         about : 'About Grasshopper'
     },
+    mastheadButtons : {
+        createContent : 'Create Content',
+        uploadFile : 'Upload File',
+        createFolder : 'Create Folder',
+        actions : 'Actions',
+        addNewUser : 'Add New User'
+    },
 
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
     add : 'Add',
+
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',

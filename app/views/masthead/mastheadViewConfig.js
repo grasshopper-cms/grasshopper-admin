@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/masthead/mastheadView.html', 'mastheadViewModel'], function (templateHtml, mastheadViewModel) {
+define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources'], function (templateHtml, mastheadViewModel, resources) {
     'use strict';
 
     return {
@@ -20,19 +20,19 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel'], function 
         rivetConfig : 'auto',
         mastheadButtons : [
                 {
-                    text : 'Create Content',
+                    text : resources.mastheadButtons.createContent,
                     href : '#'
                 },
                 {
-                    text : 'Upload File',
+                    text : resources.mastheadButtons.uploadFile,
                     href : '#'
                 },
                 {
-                    text : 'create Folder',
+                    text : resources.mastheadButtons.createFolder,
                     href : '#'
                 },
                 {
-                    text : 'Actions',
+                    text : resources.mastheadButtons.actions,
                     href : '#'
                 }
             ]
