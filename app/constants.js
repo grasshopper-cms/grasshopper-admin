@@ -20,7 +20,7 @@ define({
             url : 'http://localhost:8080/contenttypes'
         }
     },
-    routes: {
+    internalRoutes: {
         user : '#user',
         users : '#users',
         newUser : '#addUser',

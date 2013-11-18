@@ -17,7 +17,7 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
         mastheadButtons : [
             {
                 text : resources.mastheadButtons.addContentType,
-                href : constants.routes.newContentType
+                href : constants.internalRoutes.newContentType
             }
         ]
     };

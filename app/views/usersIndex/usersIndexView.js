@@ -55,7 +55,8 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', '
                     el : '#usersIndexTable',
                     // TODO: set this template some other way. Maybe in the Config?
                     templateHtml : rowTemplate,
-                    model : model
+                    model : model,
+                    mastheadButtons : this.options.mastheadButtons
                 }
             ));
             userDetailView.start();

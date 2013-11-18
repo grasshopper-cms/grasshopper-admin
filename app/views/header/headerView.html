@@ -15,13 +15,13 @@
 
                     <ul id="settings-dropdown" data-dropdown-content class="dropdown-menu right">
                         <li><a id="myProfileButton" data-rv-show="data.loggedIn" data-rv-href="data.url">{{data.resources.edit}} {{data.resources.profile}}</a></li>
-                        <li><a data-rv-href="data.constants.routes.about">{{data.resources.site.about}}</a></li>
+                        <li><a data-rv-href="data.constants.internalRoutes.about">{{data.resources.site.about}}</a></li>
                     </ul>
                 </li>
 
-                <li><a id="logOutButton" data-rv-href="data.constants.routes.logout" data-rv-show="data.loggedIn">{{data.resources.log_out}}</a>
+                <li><a id="logOutButton" data-rv-href="data.constants.internalRoutes.logout" data-rv-show="data.loggedIn">{{data.resources.log_out}}</a>
                 </li>
-                <li><a id="logInButton" data-rv-href="data.constants.routes.login" data-rv-hide="data.loggedIn">{{data.resources.log_in}}</a>
+                <li><a id="logInButton" data-rv-href="data.constants.internalRoutes.login" data-rv-hide="data.loggedIn">{{data.resources.log_in}}</a>
                 </li>
             </ul>
 
@@ -32,7 +32,7 @@
 
             <div class="row">
                 <div class="large-12 columns">
-                    <a data-rv-href="data.constants.routes.home" class="brand">{{data.resources.siteName}}</a>
+                    <a data-rv-href="data.constants.internalRoutes.home" class="brand">{{data.resources.siteName}}</a>
                     <a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <i class="icon-reorder"></i>
                     </a>
@@ -40,28 +40,28 @@
                     <div class="nav-collapse">
                         <ul id="main-nav" class="nav pull-right">
                             <li class="nav-icon active">
-                                <a data-rv-href="data.constants.routes.home">
+                                <a data-rv-href="data.constants.internalRoutes.home">
                                     <i class="icon-home"></i>
                                     <span>{{data.resources.home}}</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a data-rv-href="data.constants.routes.content">
+                                <a data-rv-href="data.constants.internalRoutes.content">
                                     <i class="icon-th"></i>
                                     <span>{{data.resources.content}}</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a data-rv-href="data.constants.routes.contentTypes">
+                                <a data-rv-href="data.constants.internalRoutes.contentTypes">
                                     <i class="icon-cogs"></i>
                                     <span>{{data.resources.types}}</span>
                                 </a>
                             </li>
 
                             <li data-rv-show="data.role | equals admin">
-                                <a data-rv-href="data.constants.routes.users">
+                                <a data-rv-href="data.constants.internalRoutes.users">
                                     <i class="icon-user"></i>
                                     <span>{{data.resources.users}}</span>
                                 </a>

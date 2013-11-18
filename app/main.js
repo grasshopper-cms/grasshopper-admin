@@ -97,6 +97,8 @@ require.config({
         contentEditViewConfig : 'views/contentEdit/contentEditViewConfig',
         contentTypeIndexView : 'views/contentTypeIndex/contentTypeIndexView',
         contentTypeIndexViewConfig : 'views/contentTypeIndex/contentTypeIndexViewConfig',
+        contentTypeDetailView : 'views/contentTypeDetail/contentTypeDetailView',
+        contentTypeDetailViewConfig : 'views/contentTypeDetail/contentTypeDetailViewConfig',
         mastheadView: 'views/masthead/mastheadView',
         mastheadViewConfig: 'views/masthead/mastheadViewConfig',
 
@@ -126,6 +128,7 @@ require.config({
         dashboardViewModel : 'models/viewModels/dashboardViewModel',
         mastheadViewModel : 'models/viewModels/mastheadViewModel',
         contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
+        contentTypeDetailViewModel : 'models/viewModels/contentTypeDetailViewModel',
 
             // Workers
         loginWorker : 'workers/loginWorker',
