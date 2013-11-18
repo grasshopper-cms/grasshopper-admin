@@ -13,21 +13,24 @@ define([
     'usersIndexView', 'usersIndexViewConfig',
     'addUserView', 'addUserViewConfig',
     'contentIndexView', 'contentIndexViewConfig',
-    'contentEditView', 'contentEditViewConfig'
+    'contentEditView', 'contentEditViewConfig',
+    'contentTypeIndexView', 'contentTypeIndexViewConfig'
 ],
     function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
               BaseView,
               LoginView, loginViewConfig, loginWorker,
               DashboardView, dashboardViewConfig,
               EmptyView, emptyViewConfig,
-              AlertBoxView, alertBoxViewConfig, resources,
+              AlertBoxView, alertBoxViewConfig,
+              resources,
               UserDetailView, userDetailViewConfig, userWorker, UserModel,
               HeaderView, headerViewConfig,
               MastheadView, mastheadViewConfig,
               UsersIndexView, usersIndexViewConfig,
               AddUserView, addUserViewConfig,
               ContentIndexView, contentIndexViewConfig,
-              ContentEditView, contentEditViewConfig
+              ContentEditView, contentEditViewConfig,
+              ContentTypeIndexView, contentTypeIndexViewConfig
               ) {
 
         var userModel = new UserModel(),
@@ -48,6 +51,7 @@ define([
                 'users(/page/:pageNumber/show/:pageLimit)' : 'displayUsersIndex',
                 'user/:id' : 'displayUserDetail',
                 'addUser' : 'displayAddUser',
+                'item/types' : 'displayContentTypeIndex',
                 'items(/nodeid/:number)': 'displayContentIndex',
                 'item/:id' : 'displayContentEdit',
                 '*path' : 'goHome'
@@ -78,7 +82,8 @@ define([
             displayUserDetail : displayUserDetail,
             displayAddUser : displayAddUser,
             displayContentIndex : displayContentIndex,
-            displayContentEdit : displayContentEdit
+            displayContentEdit : displayContentEdit,
+            displayContentTypeIndex : displayContentTypeIndex
         });
 
         function onRouteFail () {
@@ -304,12 +309,16 @@ define([
             loadMainContent(AddUserView, addUserViewConfig);
         }
 
-        function displayContentIndex (nodeId, pageNumber, pageLimit) {
+        function displayContentIndex(nodeId, pageNumber, pageLimit) {
             loadMainContent(ContentIndexView, contentIndexViewConfig, true);
         }
 
-        function displayContentEdit (id) {
+        function displayContentEdit(id) {
             loadMainContent(ContentEditView, contentEditViewConfig, true);
+        }
+
+        function displayContentTypeIndex() {
+            loadMainContent(ContentTypeIndexView, contentTypeIndexViewConfig);
         }
 
         return Router;
