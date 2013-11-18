@@ -7,7 +7,14 @@ define(['baseView'], function (BaseView) {
     });
 
     function beforeRender() {
-        console.log('brah');
+        var self = this;
+        this.model.fetch()
+            .done(function() {
+                console.log(self.model);
+            })
+            .fail(function() {
+                console.log('it did not work');
+            });
     }
 
 });

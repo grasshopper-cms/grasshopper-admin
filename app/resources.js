@@ -68,7 +68,8 @@ define({
         uploadFile : 'Upload File',
         createFolder : 'Create Folder',
         actions : 'Actions',
-        addNewUser : 'Add New User'
+        addNewUser : 'Add New User',
+        addContentType : 'New Content Type'
     },
 
     // General Text (reusable) - try to keep it alphabetized
@@ -76,6 +77,7 @@ define({
     add : 'Add',
     addNewUser : 'Add New User',
     content : 'Content',
+    contentTypes : 'Content Types',
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',
@@ -83,8 +85,10 @@ define({
     login : 'Login',
     log_in : 'Log In',
     log_out : 'Log Out',
-    name : 'Name',
     menu : 'Menu',
+    name : 'Name',
+    next : 'Next',
+    previous : 'Previous',
     profile : 'Profile',
     role : 'Role',
     save : 'Save',

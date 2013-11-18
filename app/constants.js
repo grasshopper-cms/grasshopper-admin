@@ -25,6 +25,7 @@ define({
         users : '#users',
         newUser : '#addUser',
         contentTypes : '#item/types',
+        newContentType : '#item/types/new',
         content : '#items',
         home : '#home',
         login : '#login',

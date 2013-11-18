@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeIndexViewModel'], function (templateHtml, contentTypeIndexViewModel) {
+define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeIndexViewModel', 'resources', 'constants'], function (templateHtml, contentTypeIndexViewModel, resources, constants) {
     'use strict';
 
     return {
@@ -10,10 +10,15 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
         rivetConfig : 'auto',
         bindings : [
         ],
-        appendView : false,
+        appendView : true,
         events : {
 
         },
-        mastheadButtons: []
+        mastheadButtons : [
+            {
+                text : resources.mastheadButtons.addContentType,
+                href : constants.routes.newContentType
+            }
+        ]
     };
 });

@@ -10,7 +10,7 @@ define(['text!views/<%= viewName %>/<%= viewName %>View.html', '<%= viewName %>V
         rivetConfig : 'auto',
         bindings : [
         ],
-        appendView : false,
+        appendView : true,
         events : {
 
         },
