@@ -24,7 +24,7 @@ define([
                 return resources.user.roles.reader == role;
             }),
             urlLink : new ComputedProperty(['_id'], function (id) {
-                return '#' + constants.api.user.shortUrl + id;
+                return constants.routes.user + '/' + id;
             }),
             // TODO: Do these need to be computed properties? On the backbone docs there seems to be a way of transparent mapping:  id : '_id' should work
             id : new ComputedProperty(['_id'], function(id) {

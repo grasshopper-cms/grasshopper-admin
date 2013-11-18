@@ -17,7 +17,7 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
         mastheadButtons : [
                                 {
                                     text : resources.mastheadButtons.addNewUser,
-                                    href : '#' + constants.api.newUser.shortUrl
+                                    href : constants.routes.newUser
                                 }
                           ]
     };

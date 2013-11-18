@@ -1,7 +1,8 @@
-define(['masseuseModel', 'resources'], function (Model, resources) {
+define(['masseuseModel', 'resources', 'constants'], function (Model, resources, constants) {
     return Model.extend({
         defaults : {
-            resources : resources
+            resources : resources,
+            constants : constants
         }
     });
 });

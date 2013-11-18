@@ -8,17 +8,28 @@ define({
             url : 'http://localhost:8080/token'
         },
         user : {
-            url : 'http://localhost:8080/user',
-            shortUrl : 'user/'
+            url : 'http://localhost:8080/user'
         },
         users : {
-            url : 'http://localhost:8080/users',
-            shortUrl : 'users/'
+            url : 'http://localhost:8080/users'
         },
         newUser : {
-            url : 'http://localhost:8080/users',
-            shortUrl : 'addUser'
+            url : 'http://localhost:8080/users'
+        },
+        contentTypes : {
+            url : 'http://localhost:8080/contenttypes'
         }
+    },
+    routes: {
+        user : '#user',
+        users : '#users',
+        newUser : '#addUser',
+        contentTypes : '#item/types',
+        content : '#items',
+        home : '#home',
+        login : '#login',
+        logout : '#logout',
+        about : '#about'
     },
     defaults : {
         theme: 'blue-dashboard'

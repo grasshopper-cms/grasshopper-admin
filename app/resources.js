@@ -75,9 +75,11 @@ define({
     actions : 'Actions',
     add : 'Add',
     addNewUser : 'Add New User',
+    content : 'Content',
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',
+    home : 'Home',
     login : 'Login',
     log_in : 'Log In',
     log_out : 'Log Out',
@@ -86,7 +88,9 @@ define({
     profile : 'Profile',
     role : 'Role',
     save : 'Save',
+    settings : 'Settings',
     siteName : 'Grasshopper',
+    types : 'Types',
     user_name : 'User Name',
     users : 'Users'
 });
