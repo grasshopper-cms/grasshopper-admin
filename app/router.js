@@ -297,13 +297,19 @@ define([
         }
 
         function displayUserDetail (id) {
-            loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
-                {
-                    modelData : {
-                        id : id,
-                        isAdmin : (this.user.get('role') === 'admin')
-                    }
-                }));
+            // I did the role check here instead of in the config with permissions, this is because there are Admin's getting their own, Admins getting others, and others getting their own.
+            if(this.user.get('role') === 'admin' || this.user.get('_id') === id) {
+                loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
+                    {
+                        modelData : {
+                            id : id,
+                            isAdmin : (this.user.get('role') === 'admin')
+                        }
+                    }));
+            } else {
+                this.navigateTrigger('home');
+            }
+
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
