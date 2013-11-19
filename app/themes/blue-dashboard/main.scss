@@ -166,16 +166,29 @@ body, html {
 
 
   #alertBoxPartial {
-
-    .error {
-      @include alert-base;
-      @include alert-style($alertColor);
-      .close {
-        @include alert-close;
-        color: $alertCloseColor;
-        opacity: 90;
+    .bad {
+      .error {
+        @include alert-base;
+        @include alert-style($alertColorBad);
+        .close {
+          @include alert-close;
+          color: $alertCloseColor;
+          opacity: 90;
+        }
       }
     }
+    .good {
+      .error {
+        @include alert-base;
+        @include alert-style($alertColorGood);
+        .close {
+          @include alert-close;
+          color: $alertCloseColor;
+          opacity: 90;
+        }
+      }
+    }
+
 
   }
 

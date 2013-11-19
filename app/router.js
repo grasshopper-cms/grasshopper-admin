@@ -265,13 +265,18 @@ define([
             loadMainContent(DashboardView, dashboardViewConfig, true);
         }
 
-        function displayAlertBox (msg) {
+        function displayAlertBox (msg, status) {
             var alertBoxView;
             this.hideAlertBox();
             alertBoxView = new AlertBoxView(alertBoxViewConfig);
-            alertBoxView.model.set('error', msg);
+            alertBoxView.model.set(
+                {
+                    msg: msg,
+                    status: (status)
+                }
+            );
             alertBoxView.start();
-            alertBoxView.rivetView();
+//            alertBoxView.rivetView();
             BaseView.prototype.alertBoxView = alertBoxView;
         }
 
