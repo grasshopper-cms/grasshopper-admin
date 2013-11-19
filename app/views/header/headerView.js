@@ -14,8 +14,8 @@ define(['baseView', 'rivetView', 'loginWorker', 'jquery', 'proxyProperty', 'comp
             admin :     ProxyProperty('isAdmin', user),
             loggedIn :  ProxyProperty('loggedIn', user),
             role :      ProxyProperty('role', user),
-            firstName : ProxyProperty('firstName', user),
-            lastName :  ProxyProperty('lastName', user),
+            firstName : ProxyProperty('firstname', user),
+            lastName :  ProxyProperty('lastname', user),
             fullName :  ComputedProperty(['firstName', 'lastName'], function(firstName, lastName) {
                return firstName + ' ' + lastName;
             }),

@@ -1,5 +1,5 @@
 define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
-    function (api, resources, UserModel, UserCollection, LocalStorage) {
+    function (Api, resources, UserModel, UserCollection, LocalStorage) {
         'use strict';
 
         return {
@@ -9,7 +9,6 @@ define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
         function getUsers (view, options, deferred) {
             var userCollection = new UserCollection();
             userCollection.paginationConfig.pageSize = options.data.limit;
-
 
             // TODO: I really want to delete this. Because the AuthToken should be set in the grasshopperModel.  However, because this UserCollection extends from the Masseuse PaginatedCollection. The PaginatedCollection already overrides the BackboneFetch method with stuff. So I cannot pass the fetch in by default for Grasshopper. This is duplicated Code.
             options.headers = {

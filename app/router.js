@@ -66,7 +66,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            verifyAuthToken : verifyAuthToken,
+//            verifyAuthToken : verifyAuthToken,
             excludeFromBeforeRouting : ['login', 'logout'],
 
             navigateTrigger : navigateTrigger,
@@ -94,55 +94,12 @@ define([
             this.goLogout();
         }
 
-        // TODO: Rip this apart....figure out what it is doing.
         function beforeRouting () {
-            var $deferred = new $.Deferred(),
-                self = this;
+            var $deferred = new $.Deferred();
 
-            if (LocalStorage.get('authToken')) {
-                if (!this.user.get('_id')) {
-                    Api.authenticateToken(LocalStorage.get('authToken'))
-                        .done(function (data) {
-                            // TODO: put this in the user Model. Get it out of the Router. (THIS IS DUPLICATED IN THE loginViewWorker)
-                            self.user.set({
-                                _id : data._id,
-                                email : data.email,
-                                enabled : data.enabled,
-                                login : data.login,
-                                firstName : data.firstname,
-                                lastName : data.lastname,
-                                role : data.role
-                            });
-                            if ( ! self.headerView) {
-                                self.startHeader();
-                            }
-                            $deferred.resolve();
-                        })
-                        .fail(function () {
-                            self.goLogout();
-                            $deferred.reject();
-                        });
-                } else {
-                    verifyAuthToken($deferred);
-                    if ( ! self.headerView) {
-                        self.startHeader();
-                    }
-                    $deferred.resolve();
-                }
-            } else {
-                self.removeHeader();
-                $deferred.reject();
-            }
+            loginWorker.userIsStillValidUser.call(this, $deferred);
+
             return $deferred.promise();
-        }
-
-        function verifyAuthToken($deferred) {
-            Api.authenticateToken(LocalStorage.get('authToken'))
-                .error(function() {
-                    console.log('verifyAuthTokenFired');
-                    $deferred.reject();
-                    goLogout();
-                });
         }
 
         function navigateTrigger (fragment, options) {
