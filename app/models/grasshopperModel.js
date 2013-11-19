@@ -10,7 +10,8 @@ define([
     'use strict';
     return Model.extend({
         fetch : fetch,
-        save : save
+        save : save,
+        destroy : destroy
     });
 
     function fetch (options) {
@@ -43,4 +44,10 @@ define([
         return Backbone.Model.prototype.save.call(this, null, saveOptions);
     }
 
+    function destroy (options) {
+        var destroyOptions = {headers : {
+            'Authorization' : 'Token ' + LocalStorage.get('authToken')
+        }};
+        return Backbone.Model.prototype.destroy.call(this, null, destroyOptions);
+    }
 });

@@ -2,7 +2,8 @@
 define(['baseView'], function (BaseView) {
 
     return BaseView.extend({
-        beforeRender : beforeRender
+        beforeRender : beforeRender,
+        deleteContentType : deleteContentType
     });
 
     function beforeRender () {
@@ -17,6 +18,25 @@ define(['baseView'], function (BaseView) {
                 });
         }
 
+    }
+
+    function deleteContentType() {
+
+        var self = this;
+        this.model.destroy(
+            {
+                success: function(model, response) {
+                    console.log('success');
+                    console.log(model);
+                    console.log(response);
+                    self.remove();
+                },
+                error: function(something, somethingElse) {
+                    console.log('error');
+                    console.log(something);
+                    console.log(somethingElse);
+                }
+            });
     }
 
 });
