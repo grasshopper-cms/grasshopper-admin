@@ -31,7 +31,7 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
         var self = this;
         this.model.save()
             .done(function (model) {
-                self.displayAlertBox(resources.user.successfullyUpdated, true);
+                self.displayTemporaryAlertBox(resources.user.successfullyUpdated, true);
                 updateNameInHeader.call(self, model);
             }).fail(function () {
                 self.displayAlertBox(resources.user.updateError);

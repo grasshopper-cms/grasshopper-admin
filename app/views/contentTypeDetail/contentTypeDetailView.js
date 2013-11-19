@@ -24,7 +24,7 @@ define(['baseView', 'resources'], function (BaseView, resources) {
         this.model.destroy(
             {
                 success: function(model) {
-                    self.displayAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
+                    self.displayTemporaryAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
                     self.remove();
                 },
                 error: function(model) {

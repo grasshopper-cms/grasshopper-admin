@@ -185,6 +185,7 @@ define([
                 user : this.user
             };
             BaseView.prototype.displayAlertBox = displayAlertBox;
+            BaseView.prototype.displayTemporaryAlertBox = displayTemporaryAlertBox;
             BaseView.prototype.hideAlertBox = hideAlertBox;
 
             // TODO: Get rid of this. Move it to a grasshopperCollection or something like that. It does not belong here.
@@ -275,6 +276,14 @@ define([
             this.hideAlertBox();
             alertBoxView.start();
             BaseView.prototype.alertBoxView = alertBoxView;
+        }
+
+        function displayTemporaryAlertBox(msg, status) {
+            var self = this;
+            self.displayAlertBox(msg, status);
+            setTimeout(function() {
+                self.hideAlertBox();
+            }, 5000);
         }
 
         function hideAlertBox() {
