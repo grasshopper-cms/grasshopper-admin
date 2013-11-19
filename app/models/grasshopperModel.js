@@ -38,6 +38,7 @@ define([
     }
 
     function save (options) {
+        // TODO: look at filmfreshModel for reference on how to support passing in objects
         var saveOptions = {headers : {
                 'Authorization' : 'Token ' + LocalStorage.get('authToken')
             }};
@@ -45,9 +46,10 @@ define([
     }
 
     function destroy (options) {
-        var destroyOptions = {headers : {
+        options = options || {};
+        options.headers = _.extend({}, options.headers, {
             'Authorization' : 'Token ' + LocalStorage.get('authToken')
-        }};
-        return Backbone.Model.prototype.destroy.call(this, null, destroyOptions);
+        });
+        return Backbone.Model.prototype.destroy.call(this, options);
     }
 });
