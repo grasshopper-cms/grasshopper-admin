@@ -6,6 +6,16 @@ define(['baseView'], function (BaseView) {
     });
 
     function beforeRender () {
+        var self = this;
+        if(!this.model.has('_id')) {
+            this.model.fetch()
+                .done(function() {
+                    self.$el.foundation('forms');
+                })
+                .fail(function() {
+                    // TODO: Error Handling
+                });
+        }
 
     }
 

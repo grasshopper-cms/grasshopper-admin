@@ -1,8 +1,12 @@
-define(['grasshopperModel', 'resources'], function (Model, resources) {
+define(['grasshopperModel', 'resources', 'constants', 'computedProperty'], function (Model, resources, constants, ComputedProperty) {
     return Model.extend({
         defaults: {
-            resources:resources
-        }
+            resources : resources,
+            urlLink : new ComputedProperty(['_id'], function(id) {
+                return constants.internalRoutes.contentTypes + '/' + id;
+            })
+        },
+        urlRoot : constants.api.contentTypes.url
     });
 
 });

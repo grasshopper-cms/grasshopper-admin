@@ -14,7 +14,8 @@ define([
     'addUserView', 'addUserViewConfig',
     'contentIndexView', 'contentIndexViewConfig',
     'contentEditView', 'contentEditViewConfig',
-    'contentTypeIndexView', 'contentTypeIndexViewConfig'
+    'contentTypeIndexView', 'contentTypeIndexViewConfig',
+    'contentTypeDetailView', 'contentTypeDetailViewConfig'
 ],
     function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
               BaseView,
@@ -30,7 +31,8 @@ define([
               AddUserView, addUserViewConfig,
               ContentIndexView, contentIndexViewConfig,
               ContentEditView, contentEditViewConfig,
-              ContentTypeIndexView, contentTypeIndexViewConfig
+              ContentTypeIndexView, contentTypeIndexViewConfig,
+              ContentTypeDetailView, contentTypeDetailViewConfig
               ) {
 
         var userModel = new UserModel(),
@@ -52,6 +54,7 @@ define([
                 'user/:id' : 'displayUserDetail',
                 'addUser' : 'displayAddUser',
                 'item/types' : 'displayContentTypeIndex',
+                'item/types(/:id)' : 'displayContentTypeDetail',
                 'items(/nodeid/:number)': 'displayContentIndex',
                 'item/:id' : 'displayContentEdit',
                 '*path' : 'goHome'
@@ -83,7 +86,8 @@ define([
             displayAddUser : displayAddUser,
             displayContentIndex : displayContentIndex,
             displayContentEdit : displayContentEdit,
-            displayContentTypeIndex : displayContentTypeIndex
+            displayContentTypeIndex : displayContentTypeIndex,
+            displayContentTypeDetail : displayContentTypeDetail
         });
 
         function onRouteFail () {
@@ -319,6 +323,15 @@ define([
 
         function displayContentTypeIndex() {
             loadMainContent(ContentTypeIndexView, contentTypeIndexViewConfig);
+        }
+
+        function displayContentTypeDetail(id) {
+            loadMainContent(ContentTypeDetailView, _.extend(contentTypeDetailViewConfig,
+                {
+                    modelData : {
+                        id : id
+                    }
+                }));
         }
 
         return Router;

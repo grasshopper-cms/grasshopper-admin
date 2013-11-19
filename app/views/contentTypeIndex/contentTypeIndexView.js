@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'text!views/contentTypeDetail/_contentTypeDetailRow.html'],
-    function (BaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate) {
+define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore'],
+    function (BaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate, _) {
     'use strict';
 
     return BaseView.extend({
@@ -12,7 +12,7 @@ define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'tex
         var self = this;
         this.model.fetch()
             .done(function() {
-                self.model.get('results').each(function(data){
+                _.each(self.model.get('results'), function(data){
                     self.insertContentTypeDetailRow(data);
                 });
             })
@@ -22,19 +22,17 @@ define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'tex
     }
 
     function insertContentTypeDetailRow(data) {
-        console.log(data);
 
-//      var contentTypeDetailView = new ContentTypeDetailView(_.extend({}, contentTypeDetailViewConfig,
-//            {
-//                name : 'contentDetailrow',
-//                el : '#contentTypeIndexTable',
-//                templateHtml : rowTemplate,
-//                modelData : {
-//
-//                },
-//                mastheadButtons : this.options.mastheadButtons
-//            });
-//        contentTypeDetailView.start();
+        var contentTypeDetailView = new ContentTypeDetailView(_.extend({}, contentTypeDetailViewConfig,
+            {
+                name : 'contentDetailrow',
+                el : '#contentTypeIndexTable',
+                templateHtml : rowTemplate,
+                modelData : data,
+                mastheadButtons : this.options.mastheadButtons
+            }));
+
+        contentTypeDetailView.start();
     }
 
 });
