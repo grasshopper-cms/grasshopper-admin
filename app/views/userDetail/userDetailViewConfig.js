@@ -20,6 +20,7 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
                                     text : resources.mastheadButtons.addNewUser,
                                     href : '#' + constants.api.newUser.shortUrl
                                 }
-                          ]
+                          ],
+        permissions: ['admin']
     };
 });

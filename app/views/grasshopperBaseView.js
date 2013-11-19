@@ -21,6 +21,12 @@ define(['masseuseBaseView'], function (BaseView) {
     }
 
     function start() {
+        // Checking user permissions
+        if(this.options.permissions && this.options.permissions.indexOf(this.app.user.get('role')) === -1) {
+            this.app.router.navigateTrigger('home');
+            return;
+        }
+
         var $promise = BaseView.prototype.start.apply(this, arguments),
             self = this;
 

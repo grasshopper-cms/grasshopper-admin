@@ -14,6 +14,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html', 'text!views/c
         appendView : true,
         bindings : [],
         rivetConfig : 'auto',
-        mastheadButtons : []
+        mastheadButtons : [],
+        permissions: ['admin', 'editor', 'reader']
     };
 });

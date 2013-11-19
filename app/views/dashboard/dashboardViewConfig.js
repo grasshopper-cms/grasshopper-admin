@@ -14,6 +14,5 @@ define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel'], functi
         appendView : true,
         bindings : [],
         rivetConfig : 'auto'
-
     };
 });

@@ -16,6 +16,7 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel'], function (fo
             ['channels.views', 'rivetViewRendered', 'applyFoundationForms']
         ],
         rivetConfig : 'auto',
-        mastheadButtons : []
+        mastheadButtons : [],
+        permissions: ['admin']
     };
 });

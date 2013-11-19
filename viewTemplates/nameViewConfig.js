@@ -14,7 +14,8 @@ define(['text!views/<%= viewName %>/<%= viewName %>View.html', '<%= viewName %>V
         events : {
 
         },
-        mastheadButtons: []
+        mastheadButtons: [],
+        permissions: ['admin']
     };
 });
 

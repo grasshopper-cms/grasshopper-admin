@@ -19,7 +19,8 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
                                     text : resources.mastheadButtons.addNewUser,
                                     href : constants.internalRoutes.newUser
                                 }
-                          ]
+                          ],
+        permissions: ['admin']
     };
 
 });

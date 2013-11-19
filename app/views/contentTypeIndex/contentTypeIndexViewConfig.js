@@ -19,6 +19,7 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
                 text : resources.mastheadButtons.addContentType,
                 href : constants.internalRoutes.newContentType
             }
-        ]
+        ],
+        permissions: ['admin', 'reader', 'editor']
     };
 });
