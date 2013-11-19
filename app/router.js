@@ -266,17 +266,14 @@ define([
         }
 
         function displayAlertBox (msg, status) {
-            var alertBoxView;
-            this.hideAlertBox();
-            alertBoxView = new AlertBoxView(alertBoxViewConfig);
-            alertBoxView.model.set(
-                {
+            var alertBoxView = new AlertBoxView(_.extend(alertBoxViewConfig, {
+                modelData: {
                     msg: msg,
                     status: (status)
                 }
-            );
+            }));
+            this.hideAlertBox();
             alertBoxView.start();
-//            alertBoxView.rivetView();
             BaseView.prototype.alertBoxView = alertBoxView;
         }
 

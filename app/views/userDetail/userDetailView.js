@@ -3,8 +3,6 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
 
     var userDetailView = BaseView.extend({
         beforeRender : beforeRender,
-//        displaySuccessfulSave : displaySuccessfulSave,
-//        displaySaveError : displaySaveError,
         updateModel : updateModel,
         updateNameInHeader : updateNameInHeader,
         toggleEnabled : toggleEnabled
@@ -57,29 +55,6 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
         this.model.set('enabled', (enabled) ? false : true);
         this.updateModel();
     }
-
-//
-//    function displaySuccessfulSave () {
-//        var progressBar = $('.progress-bar');
-//
-//        progressBar.addClass('active');
-//        progressBar.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function (e) {
-//            progressBar.addClass('disappear');
-//            progressBar.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function (e) {
-//                progressBar.removeClass('active').removeClass('disappear');
-//            });
-//        });
-//    }
-//
-//    function displaySaveError (xhr) {
-//        var message = '';
-//        if (xhr.status === 500) {
-//            message = $.parseJSON(xhr.responseText).message;
-//        } else {
-//            message = resources.user.errors[xhr.status];
-//        }
-//        this.displayAlertBox(message);
-//    }
 
     return userDetailView;
 });
