@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['baseView', 'resources'], function (BaseView, resources) {
 
     return BaseView.extend({
         beforeRender : beforeRender,
@@ -17,24 +17,18 @@ define(['baseView'], function (BaseView) {
                     // TODO: Error Handling
                 });
         }
-
     }
 
     function deleteContentType() {
-
         var self = this;
         this.model.destroy(
             {
-                success: function(model, response) {
-                    console.log('success');
-                    console.log(model);
-                    console.log(response);
+                success: function(model) {
+                    self.displayAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
                     self.remove();
                 },
-                error: function(something, somethingElse) {
-                    console.log('error');
-                    console.log(something);
-                    console.log(somethingElse);
+                error: function(model) {
+                    self.displayAlertBox(resources.contentType.errorDeleted + model.get('label'));
                 }
             });
     }

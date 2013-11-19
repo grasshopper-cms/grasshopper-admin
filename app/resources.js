@@ -56,6 +56,8 @@ define({
             author : 'author',
             none : 'none'
         },
+        successfullyUpdated : 'User was successfully updated',
+        updateError: 'User was successfully updated',
         errors : {
             403 : 'You do not have adequate permissions to view/edit this profile.'
         }
@@ -70,6 +72,11 @@ define({
         actions : 'Actions',
         addNewUser : 'Add New User',
         addContentType : 'New Content Type'
+    },
+    contentType : {
+        successfullyDeletedPre: 'Content Type ',
+        successfullyDeletedPost: ' was successfully deleted.',
+        errorDeleted : 'There was an issue deleting this content type: '
     },
 
     // General Text (reusable) - try to keep it alphabetized

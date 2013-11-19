@@ -31,10 +31,10 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
         var self = this;
         this.model.save()
             .done(function (model) {
-//                displaySuccessfulSave();
+                self.displayAlertBox(resources.user.successfullyUpdated, true);
                 updateNameInHeader.call(self, model);
-            }).fail(function (odel, xhr) {
-//                displaySaveError.call(self, xhr);
+            }).fail(function () {
+                self.displayAlertBox(resources.user.updateError);
             });
 
         return false;

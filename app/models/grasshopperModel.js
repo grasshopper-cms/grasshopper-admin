@@ -4,8 +4,9 @@ define([
     'computedProperty',
     'resources',
     'constants',
-    'LocalStorage'
-], function (Model, validation, ComputedProperty, resources, constants, LocalStorage) {
+    'LocalStorage',
+    'underscore'
+], function (Model, validation, ComputedProperty, resources, constants, LocalStorage, _) {
 
     'use strict';
     return Model.extend({

@@ -94,54 +94,46 @@ define([
             this.goLogout();
         }
 
+        // TODO: Rip this apart....figure out what it is doing.
         function beforeRouting () {
             var $deferred = new $.Deferred(),
                 self = this;
 
             if (LocalStorage.get('authToken')) {
-                checkExistingAuthToken.call(this, self, $deferred);
+                if (!this.user.get('_id')) {
+                    Api.authenticateToken(LocalStorage.get('authToken'))
+                        .done(function (data) {
+                            // TODO: put this in the user Model. Get it out of the Router. (THIS IS DUPLICATED IN THE loginViewWorker)
+                            self.user.set({
+                                _id : data._id,
+                                email : data.email,
+                                enabled : data.enabled,
+                                login : data.login,
+                                firstName : data.firstname,
+                                lastName : data.lastname,
+                                role : data.role
+                            });
+                            if ( ! self.headerView) {
+                                self.startHeader();
+                            }
+                            $deferred.resolve();
+                        })
+                        .fail(function () {
+                            self.goLogout();
+                            $deferred.reject();
+                        });
+                } else {
+                    verifyAuthToken($deferred);
+                    if ( ! self.headerView) {
+                        self.startHeader();
+                    }
+                    $deferred.resolve();
+                }
             } else {
                 self.removeHeader();
                 $deferred.reject();
             }
             return $deferred.promise();
-        }
-
-        function checkExistingAuthToken (self, $deferred) {
-            if (!this.user.get('_id')) {
-                authenticatesTokenWithApi(self, $deferred);
-            } else {
-                verifyAuthToken($deferred);
-                if (!self.headerView) {
-                    self.startHeader();
-                }
-                $deferred.resolve();
-            }
-        }
-
-        // TODO: Rip this apart....figure out what it is doing.
-        function authenticatesTokenWithApi (self, $deferred) {
-            Api.authenticateToken(LocalStorage.get('authToken'))
-                .done(function (data) {
-                    // TODO: put this in the user Model. Get it out of the Router. (THIS IS DUPLICATED IN THE loginViewWorker)
-                    self.user.set({
-                        _id : data._id,
-                        email : data.email,
-                        enabled : data.enabled,
-                        login : data.login,
-                        firstName : data.firstname,
-                        lastName : data.lastname,
-                        role : data.role
-                    });
-                    if (!self.headerView) {
-                        self.startHeader();
-                    }
-                    checkPermissionsForRoute(self, $deferred);
-                })
-                .fail(function () {
-                    self.goLogout();
-                    $deferred.reject();
-                });
         }
 
         function verifyAuthToken($deferred) {
@@ -206,16 +198,9 @@ define([
 
         function loadMainContent (ViewType, config, bypass) {
             var $deferred = new $.Deferred(),
-                newView,
+                newView = new ViewType(config),
                 self = this;
 
-            // TODO: validateViewForUser should validate config.permissions against the user
-            if (!this.validateViewForUser(config)) {
-                this.showAuthError();
-                return;
-            }
-
-            newView = new ViewType(config);
             if(currentView && ! _.contains(ignoreFromTimer, currentView.options.name)) {
 //                spinnerTimer($deferred, newView);
             }
