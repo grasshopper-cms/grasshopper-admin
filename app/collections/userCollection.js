@@ -1,4 +1,4 @@
-define(['backbone', 'UserModel', 'constants', 'paginatedCollection'], function (Backbone, UserModel, constants, PaginatedCollection) {
+define(['backbone', 'UserModel', 'constants', 'paginatedCollection', 'LocalStorage'], function (Backbone, UserModel, constants, PaginatedCollection, LocalStorage) {
 
     return PaginatedCollection.extend({
         paginationConfig : {
@@ -10,18 +10,7 @@ define(['backbone', 'UserModel', 'constants', 'paginatedCollection'], function (
             pageLimits : constants.userCollection.pageLimits
         },
         model : UserModel,
-        url : constants.api.users.url,
-        fetch : fetch
+        url : constants.api.users.url
     });
 
-    // This could be moved into a GH paginateCollection if it is need in one more place
-    function fetch(options) {
-        options = options || {};
-
-        options.headers = {
-            'Authorization' : 'Token ' + LocalStorage.get('authToken')
-        };
-
-        this.__super__.fetch.apply(this, options);
-    }
 });
