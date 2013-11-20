@@ -18,6 +18,7 @@ define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
 
     function setIcon() {
         if(this.model.get('icon')) {
+            // TODO: What is this and why is it here?
             $('#MastheadIcon').addClass(this.model.get('icon'));
         }
     }

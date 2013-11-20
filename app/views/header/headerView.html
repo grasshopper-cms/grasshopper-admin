@@ -6,7 +6,7 @@
         <div id="top-nav">
             <ul class="pull-right">
                 <li><img class="profile-pic" data-rv-show="data.loggedIn" src="http://placehold.it/20x20"/></li>
-                <li><a data-rv-href="data.url"><i class="icon-user"></i><span data-rv-text="data.resources.user.loggedInAs | spaceAfter"></span><span data-rv-text="data.fullName"></span></a></li>
+                <li><a data-rv-href="data.userModel.urlLink"><i class="icon-user"></i><span data-rv-text="data.resources.user.loggedInAs | spaceAfter"></span><span data-rv-text="data.userModel.fullname"></span></a></li>
                 <li class="dropdown">
                     <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
                         {{data.resources.settings}}
@@ -14,14 +14,14 @@
                     </a>
 
                     <ul id="settings-dropdown" data-dropdown-content class="dropdown-menu right">
-                        <li><a id="myProfileButton" data-rv-show="data.loggedIn" data-rv-href="data.url">{{data.resources.edit}} {{data.resources.profile}}</a></li>
+                        <li><a id="myProfileButton" data-rv-show="data.userModel.loggedIn" data-rv-href="data.userModel.urlLink">{{data.resources.edit}} {{data.resources.profile}}</a></li>
                         <li><a data-rv-href="data.constants.internalRoutes.about">{{data.resources.site.about}}</a></li>
                     </ul>
                 </li>
 
-                <li><a id="logOutButton" data-rv-href="data.constants.internalRoutes.logout" data-rv-show="data.loggedIn">{{data.resources.log_out}}</a>
+                <li><a id="logOutButton" data-rv-href="data.constants.internalRoutes.logout" data-rv-show="data.userModel.loggedIn">{{data.resources.log_out}}</a>
                 </li>
-                <li><a id="logInButton" data-rv-href="data.constants.internalRoutes.login" data-rv-hide="data.loggedIn">{{data.resources.log_in}}</a>
+                <li><a id="logInButton" data-rv-href="data.constants.internalRoutes.login" data-rv-hide="data.userModel.loggedIn">{{data.resources.log_in}}</a>
                 </li>
             </ul>
 
@@ -53,14 +53,14 @@
                                 </a>
                             </li>
 
-                            <li data-rv-show="data.role | includes admin reader">
+                            <li data-rv-show="data.userModel.role | includes admin reader">
                                 <a data-rv-href="data.constants.internalRoutes.contentTypes">
                                     <i class="icon-cogs"></i>
                                     <span>{{data.resources.types}}</span>
                                 </a>
                             </li>
 
-                            <li data-rv-show="data.role | equals admin">
+                            <li data-rv-show="data.userModel.role | equals admin">
                                 <a data-rv-href="data.constants.internalRoutes.users">
                                     <i class="icon-user"></i>
                                     <span>{{data.resources.users}}</span>

@@ -29,6 +29,9 @@ define([
             // TODO: Do these need to be computed properties? On the backbone docs there seems to be a way of transparent mapping:  id : '_id' should work
             id : new ComputedProperty(['_id'], function(id) {
                 return id;
+            }),
+            fullName : new  ComputedProperty(['firstname', 'lastname'], function(firstName, lastName) {
+                return firstName + ' ' + lastName;
             })
         }
     });
