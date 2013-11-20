@@ -1,7 +1,11 @@
 define(['jquery'], function($) {
 
-    var localStorage = window.localStorage;
+    var _localStorage = window.localStorage,
+        _existenceCheckInterval = 10;
 
+    /**
+     * A simple wrapper for local storage.
+     */
     return {
         get : get,
         set : set,
@@ -9,30 +13,36 @@ define(['jquery'], function($) {
         };
 
     function get(name) {
-        return localStorage.getItem(name);
+        return _localStorage.getItem(name);
     }
 
     function set(name, value) {
-        return localStorage.setItem(name, value);
+        return _localStorage.setItem(name, value);
     }
 
+    /**
+     * Will remove the item from local storage, and return a promise that is resolved when the item can no longer be
+     * seen in LocalStorage
+     * @param name
+     * @returns {promise}
+     */
     function remove(name) {
         var $deferred = new $.Deferred();
 
-        localStorage.removeItem(name);
+        _localStorage.removeItem(name);
 
-        checkForExistence(name, $deferred);
+        _checkForExistence(name, $deferred);
 
         return $deferred.promise();
     }
 
-    function checkForExistence(name, $deferred) {
-        if(null === localStorage.getItem(name)) {
+    function _checkForExistence(name, $deferred) {
+        if(null === _localStorage.getItem(name)) {
             $deferred.resolve();
         } else {
             setTimeout(function() {
-                checkForExistence(name, $deferred);
-            }, 200);
+                _checkForExistence(name, $deferred);
+            }, _existenceCheckInterval);
         }
     }
 

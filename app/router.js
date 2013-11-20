@@ -191,11 +191,7 @@ define([
         }
 
         function startHeader () {
-            this.headerView = new HeaderView(_.extend(headerViewConfig, {
-                modelData : {
-                    userModel : this.user
-                }
-            }));
+            this.headerView = new HeaderView(headerViewConfig);
             this.headerView.start();
             this.mastheadView = new MastheadView(mastheadViewConfig);
             this.mastheadView.start();
