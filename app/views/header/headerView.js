@@ -2,12 +2,13 @@
 define(['baseView'], function (BaseView) {
 
     var HeaderView = BaseView.extend({
-        initialize : initialize
+        beforeRender : beforeRender
     });
 
-    function initialize () {
-        BaseView.prototype.initialize.apply(this, arguments);
+    function beforeRender() {
+        console.log(this.app.user);
     }
+
 
     return HeaderView;
 });

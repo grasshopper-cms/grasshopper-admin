@@ -11,6 +11,7 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'LocalStor
         };
 
         function doLogin (loginView) {
+            var self = this;
             Api.getToken(loginView.model.get('username'), loginView.model.get('password'))
                 .done(function (data) {
                     if ('Token' === data.token_type) {
@@ -42,32 +43,33 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'LocalStor
             }
         }
 
-            function _checkAuthenticationOnApi (token, self, $deferred) {
-                if (!this.user.get('_id')) {
-                    Api.authenticateToken(token)
-                        .done(_tokenIsValid.bind(self))
-                        .fail(_tokenIsNotValid.bind(self));
-                } else {
-                    verifyAuthToken.call(self, $deferred);
-                    if (!self.headerView) {
-                        self.startHeader();
-                    }
-                    $deferred.resolve();
+        function _checkAuthenticationOnApi (token, self, $deferred) {
+            if (!this.user.get('_id')) {
+                this.$deferred = $deferred;
+                Api.authenticateToken(token)
+                    .done(_tokenIsValid.bind(self))
+                    .fail(_tokenIsNotValid.bind(self));
+            } else {
+                verifyAuthToken.call(self, $deferred);
+                if (!self.headerView) {
+                    self.startHeader();
                 }
+                $deferred.resolve();
             }
+        }
 
-                function _tokenIsValid(data) {
-                    this.user.set(data);
-                    if (!this.headerView) {
-                        this.startHeader();
-                    }
-                    $deferred.resolve();
-                }
+        function _tokenIsValid(data) {
+            this.user.set(data);
+            if (!this.headerView) {
+                this.startHeader();
+            }
+            this.$deferred.resolve();
+        }
 
-                function _tokenIsNotValid() {
-                    this.goLogout();
-                    $deferred.reject();
-                }
+        function _tokenIsNotValid() {
+            this.goLogout();
+            this.$deferred.reject();
+        }
 
         function verifyAuthToken($deferred) {
             var self = this;
