@@ -66,7 +66,6 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-//            verifyAuthToken : verifyAuthToken,
             excludeFromBeforeRouting : ['login', 'logout'],
 
             navigateTrigger : navigateTrigger,

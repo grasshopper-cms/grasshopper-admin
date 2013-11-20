@@ -8,7 +8,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('setupBowerCopy', 'reads main.js and grabs js deps', function() {
 
-        var filesToCopy = grunt.file.readJSON(path.normalize('vendorFiles.json')),
+        var filesToCopy = grunt.file.readJSON(path.normalize('app/vendorFiles.json')),
             copy = grunt.config.get('copy');
 
         _.each(filesToCopy, function(path) {
