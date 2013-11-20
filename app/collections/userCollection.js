@@ -10,7 +10,18 @@ define(['backbone', 'UserModel', 'constants', 'paginatedCollection'], function (
             pageLimits : constants.userCollection.pageLimits
         },
         model : UserModel,
-        url : constants.api.users.url
+        url : constants.api.users.url,
+        fetch : fetch
     });
 
+    // This could be moved into a GH paginateCollection if it is need in one more place
+    function fetch(options) {
+        options = options || {};
+
+        options.headers = {
+            'Authorization' : 'Token ' + LocalStorage.get('authToken')
+        };
+
+        PaginatedCollection.prototype.fetch.apply(this, options);
+    }
 });

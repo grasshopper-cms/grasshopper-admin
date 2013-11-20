@@ -35,19 +35,18 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'LocalStor
             var self = this,
                 token = LocalStorage.get('authToken');
             if (token) {
+                _checkAuthenticationOnApi.call(this, token, self, $deferred);
+            } else {
+                self.removeHeader();
+                $deferred.reject();
+            }
+        }
+
+            function _checkAuthenticationOnApi (token, self, $deferred) {
                 if (!this.user.get('_id')) {
                     Api.authenticateToken(token)
-                        .done(function (data) {
-                            self.user.set(data);
-                            if (!self.headerView) {
-                                self.startHeader();
-                            }
-                            $deferred.resolve();
-                        })
-                        .fail(function () {
-                            self.goLogout();
-                            $deferred.reject();
-                        });
+                        .done(_tokenIsValid.bind(self))
+                        .fail(_tokenIsNotValid.bind(self));
                 } else {
                     verifyAuthToken.call(self, $deferred);
                     if (!self.headerView) {
@@ -55,11 +54,20 @@ define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'LocalStor
                     }
                     $deferred.resolve();
                 }
-            } else {
-                self.removeHeader();
-                $deferred.reject();
             }
-        }
+
+                function _tokenIsValid(data) {
+                    this.user.set(data);
+                    if (!this.headerView) {
+                        this.startHeader();
+                    }
+                    $deferred.resolve();
+                }
+
+                function _tokenIsNotValid() {
+                    this.goLogout();
+                    $deferred.reject();
+                }
 
         function verifyAuthToken($deferred) {
             var self = this;
