@@ -1,10 +1,12 @@
 /*global define:false*/
-define(['text!views/header/headerView.html', 'headerViewModel'], function (templateHtml, HeaderViewModel) {
+define(['text!views/header/headerView.html', 'headerViewModel', 'viewContext'], function (templateHtml, HeaderViewModel, ViewContext) {
     'use strict';
 
     return {
         name : 'headerView',
-        modelData : {},
+        modelData : {
+            userModel : ViewContext('user')
+        },
         ModelType : HeaderViewModel,
         el : '#header',
         templateHtml : templateHtml,

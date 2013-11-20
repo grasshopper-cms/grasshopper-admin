@@ -22,6 +22,6 @@ define(['backbone', 'UserModel', 'constants', 'paginatedCollection'], function (
             'Authorization' : 'Token ' + LocalStorage.get('authToken')
         };
 
-        PaginatedCollection.prototype.fetch.apply(this, options);
+        this.__super__.fetch.apply(this, options);
     }
 });
