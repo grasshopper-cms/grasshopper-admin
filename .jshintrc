@@ -7,5 +7,7 @@
     "curly": true,
     "quotmark": "single",
     "debug" : true,
-    "validthis": true
+    "validthis": true,
+    "supernew" : true,
+    "newcap" : false
 }
