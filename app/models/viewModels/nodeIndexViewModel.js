@@ -3,7 +3,7 @@ define(['grasshopperModel', 'resources', 'constants'], function (Model, resource
         defaults: {
             resources:resources
         },
-        urlRoot: constants.api.nodes.url
+        url : constants.api.nodes.url
     });
 
 });

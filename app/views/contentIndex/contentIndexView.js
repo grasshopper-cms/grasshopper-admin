@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig'], function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig) {
+define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig', 'underscore'],
+    function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _) {
     'use strict';
 
     var ContentIndexView = BaseView.extend({
@@ -10,10 +11,18 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         //TODO: What is this and what is it doing? maybe it should be moved.
         $(document).foundation('section', 'reflow');
 
-        var nodeIndexView = new NodeIndexView(nodeIndexViewConfig);
+        var nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
+                {
+                    nodeId: this.model.get('nodeId')
+                }
+             ));
         nodeIndexView.start();
 
-        var assetIndexView = new AssetIndexView(assetIndexViewConfig);
+        var assetIndexView = new AssetIndexView(_.extend({}, assetIndexViewConfig,
+                {
+                    nodeId: this.model.get('nodeId')
+                }
+            ));
         assetIndexView.start();
     }
 

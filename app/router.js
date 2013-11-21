@@ -55,7 +55,7 @@ define([
                 'addUser' : 'displayAddUser',
                 'item/types' : 'displayContentTypeIndex',
                 'item/types(/:id)' : 'displayContentTypeDetail',
-                'items(/nodeid/:number)': 'displayContentIndex',
+                'items(/nodeid/:nodeId)': 'displayContentIndex',
                 'item/:id' : 'displayContentEdit',
                 '*path' : 'goHome'
             },
@@ -309,8 +309,14 @@ define([
             loadMainContent(AddUserView, addUserViewConfig);
         }
 
-        function displayContentIndex(nodeId, pageNumber, pageLimit) {
-            loadMainContent(ContentIndexView, contentIndexViewConfig, true);
+        function displayContentIndex(nodeId) {
+            loadMainContent(ContentIndexView, _.extend({}, contentIndexViewConfig,
+                {
+                    modelData: {
+                        nodeId: nodeId
+                    }
+                }
+            ), true);
         }
 
         function displayContentEdit(id) {

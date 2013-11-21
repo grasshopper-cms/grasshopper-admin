@@ -7,7 +7,19 @@ define(['baseView'], function (BaseView) {
     });
 
     function beforeRender() {
-        console.log('assetIndexView');
+        var self = this;
+
+        if(this.options.nodeId) {
+            this.model.url = this.model.url.replace(':id', this.options.nodeId);
+        } else {
+            this.model.url = this.model.url.replace(':id', 0);
+        }
+        console.log(this.model.url);
+
+        this.model.fetch()
+            .done(function() {
+                console.log(self.model);
+            });
     }
 
     return assetIndexView;
