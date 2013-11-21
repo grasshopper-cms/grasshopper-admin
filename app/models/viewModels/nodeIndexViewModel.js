@@ -5,5 +5,4 @@ define(['grasshopperModel', 'resources', 'constants'], function (Model, resource
         },
         url : constants.api.nodes.url
     });
-
 });

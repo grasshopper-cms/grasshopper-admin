@@ -14,8 +14,7 @@ define(['baseView'], function (BaseView) {
         } else {
             this.model.url = this.model.url.replace(':id', 0);
         }
-        console.log(this.model.url);
-        
+
         this.model.fetch()
             .done(function() {
                 console.log(self.model);
