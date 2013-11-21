@@ -1,8 +1,7 @@
-define(['grasshopperModel', 'resources', 'constants'], function (Model, resources, constants) {
+define(['grasshopperModel', 'resources'], function (Model, resources) {
     return Model.extend({
         defaults: {
             resources:resources
-        },
-        urlRoot: constants.api.nodes.url
+        }
     });
 });
