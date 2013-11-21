@@ -18,6 +18,9 @@ define({
         },
         contentTypes : {
             url : 'http://localhost:8080/contenttypes'
+        },
+        nodes : {
+            url : 'http://localhost:8080/nodes'
         }
     },
     internalRoutes: {
