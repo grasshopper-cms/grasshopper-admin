@@ -3,17 +3,17 @@
         <div class="large-12 columns">
             <div class="section-container auto" data-section>
                 <section class="active">
-                    <p class="title" data-section-title><a href="#"><i class="icon-list-alt"></i> Content</a></p>
+                    <p class="title" data-section-title><a href="#"><i class="icon-list-alt"></i>{{data.resources.content | spaceBefore}}</a></p>
                     <div class="content" data-section-content>
                         <input type="text" id="ContentSearch" class="search" placeholder="Search" /> <a href="#"><i class="icon-search"></i></a>
                         <table class="content-table">
                             <tr>
-                                <th>Name</th>
-                                <th class="hide-for-small">Author</th>
-                                <th>Type</th>
-                                <th class="hide-for-small">Status</th>
-                                <th>Modified</th>
-                                <th class="hide-for-small">Actions</th>
+                                <th>{{data.resources.name}}</th>
+                                <th class="hide-for-small">{{data.resources.contentIndex.author}}</th>
+                                <th>{{data.resources.tyep}}</th>
+                                <th class="hide-for-small">{{data.resources.status}}</th>
+                                <th>{{data.resources.contentIndex.modified}}</th>
+                                <th class="hide-for-small">{{data.resources.actions}}</th>
                             </tr>
                             <tr>
                                 <td><i class="icon-folder-close"></i> <a href="#">Folder Name</a></td>
@@ -22,54 +22,6 @@
                                 <td align="center" class="hide-for-small">--</td>
                                 <td align="center">10/13/2013</td>
                                 <td align="center" class="hide-for-small"><a href="#"><i class="icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><i class="icon-folder-close"></i> <a href="#">Folder Name</a></td>
-                                <td align="center" class="hide-for-small">--</td>
-                                <td align="center">--</td>
-                                <td align="center" class="hide-for-small">--</td>
-                                <td align="center">10/13/2013</td>
-                                <td align="center" class="hide-for-small"><a href="#"><i class="icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#item/1">Content Item Title</a></td>
-                                <td align="center" class="hide-for-small">Admin</td>
-                                <td align="center">View</td>
-                                <td align="center" class="hide-for-small">Published</td>
-                                <td align="center">10/13/2013</td>
-                                <td align="center" class="hide-for-small"><a href="#"><i class="icon-edit"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#item/1">Content Item Title</a></td>
-                                <td align="center" class="hide-for-small">Admin</td>
-                                <td align="center">View</td>
-                                <td align="center" class="hide-for-small">Published</td>
-                                <td align="center">10/13/2013</td>
-                                <td align="center" class="hide-for-small"><a href="#"><i class="icon-edit"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#item/1">Content Item Title</a></td>
-                                <td align="center" class="hide-for-small">Admin</td>
-                                <td align="center">View</td>
-                                <td align="center" class="hide-for-small">Published</td>
-                                <td align="center">10/13/2013</td>
-                                <td align="center" class="hide-for-small"><a href="#"><i class="icon-edit"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#item/1">Content Item Title</a></td>
-                                <td align="center" class="hide-for-small">Admin</td>
-                                <td align="center">View</td>
-                                <td align="center" class="hide-for-small">Published</td>
-                                <td align="center">10/13/2013</td>
-                                <td align="center" class="hide-for-small"><a href="#"><i class="icon-edit"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#item/1">Content Item Title</a></td>
-                                <td align="center" class="hide-for-small">Admin</td>
-                                <td align="center">View</td>
-                                <td align="center" class="hide-for-small">Published</td>
-                                <td align="center">10/13/2013</td>
-                                <td align="center" class="hide-for-small"><a href="#"><i class="icon-edit"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <td><a href="#item/1">Content Item Title</a></td>
@@ -83,33 +35,15 @@
                     </div>
                 </section>
                 <section>
-                    <p class="title" data-section-title><a href="#"><i class="icon-paper-clip"></i> Files</a></p>
+                    <p class="title" data-section-title><a href="#"><i class="icon-paper-clip"></i>{{data.resources.fileIndex.files | spaceBefore}}</a></p>
                     <div  class="content" data-section-content>
                         <input type="text" id="FileSearch" class="search" placeholder="Search" /> <a href="#"><i class="icon-search"></i></a>
                         <table class="content-table">
                             <tr>
-                                <th>Filename</th>
-                                <th>Size</th>
-                                <th>Modified</th>
-                                <th>Actions</th>
-                            </tr>
-                            <tr>
-                                <td><a href="#">file.jpg</a></td>
-                                <td align="center">128.5kb</td>
-                                <td align="center">10/13/2013</td>
-                                <td align="center"><a href="#"><i class="icon-download-alt"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">file.jpg</a></td>
-                                <td align="center">128.5kb</td>
-                                <td align="center">10/13/2013</td>
-                                <td align="center"><a href="#"><i class="icon-download-alt"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">file.jpg</a></td>
-                                <td align="center">128.5kb</td>
-                                <td align="center">10/13/2013</td>
-                                <td align="center"><a href="#"><i class="icon-download-alt"></i></a> <a href="#"><i class="icon-trash"></i></a></td>
+                                <th>{{data.resources.fileIndex.fileName}}</th>
+                                <th>{{data.resources.fileIndex.size}}</th>
+                                <th>{{data.resources.fileIndex.modified}}</th>
+                                <th>{{data.resources.actions}}</th>
                             </tr>
                             <tr>
                                 <td><a href="#">file.jpg</a></td>

@@ -79,7 +79,16 @@ define({
         successfullyDeletedPost: ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: '
     },
-
+    contentIndex : {
+        author: 'Author',
+        modified: 'Modified'
+    },
+    fileIndex : {
+        files: 'Files',
+        fileName: 'File Name',
+        size: 'Size',
+        modified: 'Modified'
+    },
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
     add : 'Add',
@@ -104,6 +113,8 @@ define({
     save : 'Save',
     settings : 'Settings',
     siteName : 'Grasshopper',
+    status : 'Status',
+    type: 'Type',
     types : 'Types',
     user_name : 'User Name',
     users : 'Users'
