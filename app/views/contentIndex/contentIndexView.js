@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig'], function (BaseView, $, NodeIndexView, nodeIndexViewConfig) {
+define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig'], function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig) {
     'use strict';
 
     var ContentIndexView = BaseView.extend({
@@ -12,6 +12,9 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig'], function 
 
         var nodeIndexView = new NodeIndexView(nodeIndexViewConfig);
         nodeIndexView.start();
+
+        var assetIndexView = new AssetIndexView(assetIndexViewConfig);
+        assetIndexView.start();
     }
 
     return ContentIndexView;
