@@ -101,7 +101,8 @@ require.config({
         contentTypeDetailViewConfig : 'views/contentTypeDetail/contentTypeDetailViewConfig',
         mastheadView: 'views/masthead/mastheadView',
         mastheadViewConfig: 'views/masthead/mastheadViewConfig',
-
+        contentDetailView: 'views/contentDetail/contentDetailView',
+        contentDetailViewConfig: 'views/contentDetail/contentDetailViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -132,6 +133,7 @@ require.config({
         contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
         contentTypeDetailViewModel : 'models/viewModels/contentTypeDetailViewModel',
         contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
+        contentDetailViewModel : 'models/viewModels/contentDetailViewModel',
 
             // Workers
         loginWorker : 'workers/loginWorker',
