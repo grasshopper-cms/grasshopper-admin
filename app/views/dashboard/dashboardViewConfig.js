@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel'], function (templateHtml, dashboardViewModel) {
+define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources'], function (templateHtml, dashboardViewModel, resources) {
     'use strict';
 
     return {
@@ -13,6 +13,7 @@ define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel'], functi
         events : {},
         appendView : true,
         bindings : [],
-        rivetConfig : 'auto'
+        rivetConfig : 'auto',
+        mastheadButtons : []
     };
 });

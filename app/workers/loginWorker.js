@@ -1,5 +1,5 @@
-define(['api', 'jquery', 'emptyView', 'emptyViewConfig', 'resources', 'LocalStorage'],
-    function (Api, $, EmptyView, emptyViewConfig, resources, LocalStorage) {
+define(['api', 'jquery', 'resources', 'LocalStorage'],
+    function (Api, $, resources, LocalStorage) {
         'use strict';
 
         /**

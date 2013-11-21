@@ -81,8 +81,6 @@ require.config({
         dashboardViewConfig : 'views/dashboard/dashboardViewConfig',
         headerView : 'views/header/headerView',
         headerViewConfig : 'views/header/headerViewConfig',
-        emptyView : 'views/empty/emptyView',
-        emptyViewConfig : 'views/empty/emptyViewConfig',
         alertBoxView : 'views/alertBox/alertBoxView',
         alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
         modalView : 'views/modal/modalView',
