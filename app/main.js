@@ -101,8 +101,10 @@ require.config({
         contentTypeDetailViewConfig : 'views/contentTypeDetail/contentTypeDetailViewConfig',
         mastheadView: 'views/masthead/mastheadView',
         mastheadViewConfig: 'views/masthead/mastheadViewConfig',
-        contentDetailView: 'views/contentDetail/contentDetailView',
-        contentDetailViewConfig: 'views/contentDetail/contentDetailViewConfig',
+        nodeDetailView: 'views/nodeDetail/contentDetailView',
+        nodeDetailViewConfig: 'views/nodeDetail/contentDetailViewConfig',
+        nodeIndexView: 'views/nodeIndex/nodeIndexView',
+        nodeIndexViewConfig: 'views/nodeIndex/nodeIndexViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -133,7 +135,8 @@ require.config({
         contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
         contentTypeDetailViewModel : 'models/viewModels/contentTypeDetailViewModel',
         contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
-        contentDetailViewModel : 'models/viewModels/contentDetailViewModel',
+        nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
+        nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
 
             // Workers
         loginWorker : 'workers/loginWorker',
