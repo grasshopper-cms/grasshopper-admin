@@ -51,7 +51,7 @@ require.config({
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
-        LocalStorage : 'localStorage',
+        LocalStorage : 'vendor/masseuse/app/localStorage',
         backstrap: 'vendor/theme/backstrap',
         cirque: 'vendor/cirque/jquery.cirque',
         modernizr: 'vendor/modernizr/modernizr',
