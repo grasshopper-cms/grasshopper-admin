@@ -1,15 +1,16 @@
 /*global define:false*/
-define(['text!views/contentIndex/contentIndexView.html', 'resources'], function (templateHtml, resources) {
+define(['text!views/contentIndex/contentIndexView.html', 'resources', 'contentIndexViewModel'], function (templateHtml, resources, contentIndexViewModel) {
     'use strict';
 
     return {
         name : 'contentIndexView',
+        ModelType : contentIndexViewModel,
         el : '#stage',
         templateHtml : templateHtml,
-        rivetConfig : {
-            scope : '#contentIndex',
-            prefix : 'contentIndex'
-        },
+        rivetConfig : 'auto',
+        bindings : [],
+        appendView: true,
+        events: {},
         mastheadButtons : [
             {
                 text : resources.mastheadButtons.createContent,
@@ -27,6 +28,7 @@ define(['text!views/contentIndex/contentIndexView.html', 'resources'], function 
                 text : resources.mastheadButtons.actions,
                 href : '#'
             }
-        ]
+        ],
+        permissions: ['admin']
     };
 });

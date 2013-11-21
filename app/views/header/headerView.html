@@ -46,14 +46,14 @@
                                 </a>
                             </li>
 
-                            <li>
+                            <li data-rv-show="data.userModel.role | includes admin reader editor">
                                 <a data-rv-href="data.constants.internalRoutes.content">
                                     <i class="icon-th"></i>
                                     <span>{{data.resources.content}}</span>
                                 </a>
                             </li>
 
-                            <li data-rv-show="data.userModel.role | includes admin reader">
+                            <li data-rv-show="data.userModel.role | includes admin reader editor">
                                 <a data-rv-href="data.constants.internalRoutes.contentTypes">
                                     <i class="icon-cogs"></i>
                                     <span>{{data.resources.types}}</span>

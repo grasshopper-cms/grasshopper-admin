@@ -131,6 +131,7 @@ require.config({
         mastheadViewModel : 'models/viewModels/mastheadViewModel',
         contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
         contentTypeDetailViewModel : 'models/viewModels/contentTypeDetailViewModel',
+        contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
 
             // Workers
         loginWorker : 'workers/loginWorker',
