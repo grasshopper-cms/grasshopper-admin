@@ -37,7 +37,9 @@ define(['masseuseBaseView'], function (BaseView) {
                         self.rivetView();
                         self.channels.views.trigger('rivetViewRendered');
                     }
-                    (self.options.mastheadButtons) ? self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons)) : null;
+                    if (self.options.mastheadButtons) {
+                        self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons));
+                    }
                     break;
             }
         });
