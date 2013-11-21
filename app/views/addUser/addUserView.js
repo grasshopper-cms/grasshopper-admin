@@ -21,6 +21,8 @@ define(['baseView'], function (BaseView) {
             .error(function(xhr) {
                 self.displayAlertBox(JSON.parse(xhr.responseText).message);
             });
+
+        return false;
     }
 
     return addUserView;
