@@ -164,6 +164,36 @@ body, html {
     content: "";
   }
 
+  #modal-container {
+    //TODO: remove these webkit references once a autoprefixer is in place.
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: $modal-background-color;
+    height: 100%;
+    width: 100%;
+    z-index: 9000;
+  }
+
+  #modal-contents {
+    z-index: 99;
+    height: auto;
+    width: 80%;
+    background-color: $modal-contents-background-color;
+    padding: 1.25em;
+    border: solid 1px $modal-contents-border-color;
+    box-shadow: 0 0 10px $modal-background-color;
+    #modal-text {
+      text-align: center;
+    }
+    #modal-buttons {
+
+    }
+  }
 
   #alertBoxPartial {
     position: relative;

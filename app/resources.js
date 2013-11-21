@@ -74,6 +74,7 @@ define({
         addContentType : 'New Content Type'
     },
     contentType : {
+        deletionWarning: 'Are you sure you want to delete this content type?',
         successfullyDeletedPre: 'Content Type ',
         successfullyDeletedPost: ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: '
@@ -83,6 +84,8 @@ define({
     actions : 'Actions',
     add : 'Add',
     addNewUser : 'Add New User',
+    cancel : 'Cancel',
+    confirm : 'Confirm',
     content : 'Content',
     contentTypes : 'Content Types',
     edit : 'Edit',

@@ -1,3 +1,4 @@
+//-------------  Definition  -------------
 $black: black;
 $darkGray: #333333;
 $mediumGray: #838383;
@@ -6,6 +7,7 @@ $lightAlphaGray: rgba(0, 0, 0, 0.1);
 $darkAlphaGray: rgba(0, 0, 0, 0.075);
 $lightGray: lightgray;
 $gray: #f8f8f8;
+$black45Percent: rgba(0,0,0,0.45);
 
 $darkGreen: #567233;
 $mediumGreen: #7da64b;
@@ -31,6 +33,7 @@ $red: #A00000;
 $white: #FFFFFF;
 $offWhite: #f9f9f9;
 
+//-------------  Implementation  -------------
 
 $linkImportant: $lightBlueText;
 $linkRegular: $darkBlue;
@@ -41,6 +44,10 @@ $buttonOkay: $green;
 $alertColorBad: $red;
 $alertColorGood: $mediumGreen;
 $alertCloseColor: $offWhite;
+
+$modal-background-color: $black45Percent;
+$modal-contents-background-color: $white;
+$modal-contents-border-color: $black;
 
 $progressBar: $green;
 

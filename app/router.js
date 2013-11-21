@@ -6,6 +6,7 @@ define([
     'dashboardView', 'dashboardViewConfig',
     'emptyView', 'emptyViewConfig',
     'alertBoxView', 'alertBoxViewConfig',
+    'modalView', 'modalViewConfig',
     'resources',
     'userDetailView', 'userDetailViewConfig', 'userWorker', 'UserModel',
     'headerView', 'headerViewConfig',
@@ -23,6 +24,7 @@ define([
               DashboardView, dashboardViewConfig,
               EmptyView, emptyViewConfig,
               AlertBoxView, alertBoxViewConfig,
+              ModalView, modalViewConfig,
               resources,
               UserDetailView, userDetailViewConfig, userWorker, UserModel,
               HeaderView, headerViewConfig,
@@ -144,6 +146,9 @@ define([
             BaseView.prototype.displayTemporaryAlertBox = displayTemporaryAlertBox;
             BaseView.prototype.hideAlertBox = hideAlertBox;
 
+            BaseView.prototype.displayModal = displayModal;
+            BaseView.prototype.hideModal = hideModal;
+
             // TODO: Get rid of this. Move it to a grasshopperCollection or something like that. It does not belong here.
             Backbone.Collection.prototype.set = function(data, options) {
                 if (data && data.results) {
@@ -245,6 +250,26 @@ define([
         function hideAlertBox() {
             if (BaseView.prototype.alertBoxView && BaseView.prototype.alertBoxView.remove) {
                 BaseView.prototype.alertBoxView.remove();
+            }
+        }
+
+        function displayModal (msg) {
+            var $deferred = new $.Deferred();
+            var modalView = new ModalView(_.extend(modalViewConfig, {
+                modelData: {
+                    msg: msg
+                },
+                $deferred : $deferred
+            }));
+            this.hideModal();
+            modalView.start();
+            BaseView.prototype.modalView = modalView;
+            return $deferred.promise();
+        }
+
+        function hideModal() {
+            if (BaseView.prototype.modalView && BaseView.prototype.modalView.remove) {
+                BaseView.prototype.modalView.remove();
             }
         }
 

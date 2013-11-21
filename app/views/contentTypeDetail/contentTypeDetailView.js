@@ -21,15 +21,19 @@ define(['baseView', 'resources'], function (BaseView, resources) {
 
     function deleteContentType() {
         var self = this;
-        this.model.destroy(
-            {
-                success: function(model) {
-                    self.displayTemporaryAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
-                    self.remove();
-                },
-                error: function(model) {
-                    self.displayAlertBox(resources.contentType.errorDeleted + model.get('label'));
-                }
+
+        this.displayModal(resources.contentType.deletionWarning)
+            .done(function() {
+                self.model.destroy(
+                    {
+                        success: function(model) {
+                            self.displayTemporaryAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
+                            self.remove();
+                        },
+                        error: function(model) {
+                            self.displayAlertBox(resources.contentType.errorDeleted + model.get('label'));
+                        }
+                    });
             });
     }
 
