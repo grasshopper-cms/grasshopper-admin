@@ -11,6 +11,6 @@ define(['text!views/nodeIndex/nodeIndexView.html', 'resources', 'nodeIndexViewMo
         bindings : [],
         appendView: true,
         events: {},
-        permissions: ['admin']
+        permissions: ['admin', 'reader', 'editor']
     };
 });

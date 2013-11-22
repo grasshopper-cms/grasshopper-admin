@@ -11,6 +11,6 @@ define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'], fun
         bindings : [],
         appendView: true,
         events: {},
-        permissions: ['admin']
+        permissions: ['admin', 'reader', 'editor']
     };
 });

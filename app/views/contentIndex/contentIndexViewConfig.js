@@ -29,6 +29,6 @@ define(['text!views/contentIndex/contentIndexView.html', 'resources', 'contentIn
                 href : '#'
             }
         ],
-        permissions: ['admin']
+        permissions: ['admin', 'reader', 'editor']
     };
 });

@@ -15,6 +15,6 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : [],
-        permissions: ['admin']
+        permissions: ['admin', 'reader', 'editor']
     };
 });
