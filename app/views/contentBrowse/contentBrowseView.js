@@ -3,19 +3,13 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
     function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _) {
     'use strict';
 
-    var ContentIndexView = BaseView.extend({
+    var ContentBrowseView = BaseView.extend({
         afterRender: afterRender
     });
 
     function afterRender() {
         //TODO: What is this and what is it doing? maybe it should be moved.
         $(document).foundation('section', 'reflow');
-
-        if(!this.model.get('nodeId')){
-            this.model.set('inRoot', true);
-        } else {
-            this.model.set('inRoot', false);
-        }
 
         var nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
                 {
@@ -32,7 +26,14 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
                 }
             ));
         assetIndexView.start();
+
+        if(!this.model.get('nodeId')){
+            this.model.set('inRoot', true);
+            console.log('this is where it should kick off the contentIndex view');
+        } else {
+            this.model.set('inRoot', false);
+        }
     }
 
-    return ContentIndexView;
+    return ContentBrowseView;
 });

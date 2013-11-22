@@ -12,7 +12,7 @@ define([
     'mastheadView', 'mastheadViewConfig',
     'usersIndexView', 'usersIndexViewConfig',
     'addUserView', 'addUserViewConfig',
-    'contentIndexView', 'contentIndexViewConfig',
+    'contentBrowseView', 'contentBrowseViewConfig',
     'contentEditView', 'contentEditViewConfig',
     'contentTypeIndexView', 'contentTypeIndexViewConfig',
     'contentTypeDetailView', 'contentTypeDetailViewConfig'
@@ -29,7 +29,7 @@ define([
               MastheadView, mastheadViewConfig,
               UsersIndexView, usersIndexViewConfig,
               AddUserView, addUserViewConfig,
-              ContentIndexView, contentIndexViewConfig,
+              ContentBrowseView, contentBrowseViewConfig,
               ContentEditView, contentEditViewConfig,
               ContentTypeIndexView, contentTypeIndexViewConfig,
               ContentTypeDetailView, contentTypeDetailViewConfig
@@ -55,7 +55,7 @@ define([
                 'addUser' : 'displayAddUser',
                 'item/types' : 'displayContentTypeIndex',
                 'item/types(/:id)' : 'displayContentTypeDetail',
-                'items(/nodeid/:nodeId)': 'displayContentIndex',
+                'items(/nodeid/:nodeId)': 'displayContentBrowse',
                 'item/:id' : 'displayContentEdit',
                 '*path' : 'goHome'
             },
@@ -83,7 +83,7 @@ define([
             displayUsersIndex : displayUsersIndex,
             displayUserDetail : displayUserDetail,
             displayAddUser : displayAddUser,
-            displayContentIndex : displayContentIndex,
+            displayContentBrowse : displayContentBrowse,
             displayContentEdit : displayContentEdit,
             displayContentTypeIndex : displayContentTypeIndex,
             displayContentTypeDetail : displayContentTypeDetail
@@ -309,8 +309,8 @@ define([
             loadMainContent(AddUserView, addUserViewConfig);
         }
 
-        function displayContentIndex(nodeId) {
-            loadMainContent(ContentIndexView, _.extend({}, contentIndexViewConfig,
+        function displayContentBrowse(nodeId) {
+            loadMainContent(ContentBrowseView, _.extend({}, contentBrowseViewConfig,
                 {
                     modelData: {
                         nodeId: nodeId

@@ -1,10 +1,10 @@
 /*global define:false*/
-define(['text!views/contentIndex/contentIndexView.html', 'resources', 'contentIndexViewModel'], function (templateHtml, resources, contentIndexViewModel) {
+define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'contentBrowseViewModel'], function (templateHtml, resources, contentBrowseViewModel) {
     'use strict';
 
     return {
-        name : 'contentIndexView',
-        ModelType : contentIndexViewModel,
+        name : 'contentBrowseView',
+        ModelType : contentBrowseViewModel,
         el : '#stage',
         templateHtml : templateHtml,
         rivetConfig : 'auto',
