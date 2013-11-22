@@ -24,6 +24,9 @@ define({
         },
         assets : {
             url : 'http://localhost:8080/node/:id/assets'
+        },
+        contentQuery: {
+            url : 'http://localhost:8080/content/query'
         }
     },
     internalRoutes: {
@@ -56,8 +59,6 @@ define({
     }
 });
 
-//child nodes in this node:   /node/:nodeid/children  root is /node/0/children
-
 ///search
 
 //var query = {
@@ -67,30 +68,10 @@ define({
 //    options: {}
 //};
 //request(url)
-//    .post('/search')
+//    .post('/content/query')
 //    .set('Accept', 'application/json')
 //    .set('Accept-Language', 'en_US')
 //    .set('authorization', 'Token ' + globalReaderToken)
 //    .send(query)
 //    .end(function(err, res) {
 //    });
-
-
-//assets: /node/:nodeid/assets
-//nodeID will be 0 for the root.
-
-
-//privileges.available = {
-//    ADMIN: 0,
-//    EDITOR: 1,
-//    AUTHOR: 2,
-//    READER: 3,
-//    EXTERNAL: 3,
-//    NONE: 4
-//};
-
-//permissions.allowed = function(userRole, minPermissionLevel) {
-//    var userPrivLevel = privileges.available[userRole.toUpperCase()];
-//
-//    return (userPrivLevel <= parseInt(minPermissionLevel, 10));
-//};

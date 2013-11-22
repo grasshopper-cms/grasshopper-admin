@@ -24,6 +24,19 @@ define(['constants', 'base64', 'LocalStorage'], function (constants, base64, Loc
         },
         getUsers : function() {
             return this.request(constants.api.users.url);
+        },
+        post : function (url, data) {
+            var token = LocalStorage.get('authToken');
+            return $.ajax({
+                dataType : 'json',
+                url : url,
+                type : 'POST',
+                data : data,
+                headers : {'Authorization' : 'Token ' + token}
+            });
+        },
+        makeQuery : function(url, data) {
+            return this.post(url, data);
         }
 
     };
