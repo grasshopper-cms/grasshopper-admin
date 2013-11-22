@@ -1,6 +1,5 @@
 /*global define*/
 define({
-
     api : {
         base : {
             errors : {
@@ -80,7 +79,7 @@ define({
         successfullyDeletedPost: ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: '
     },
-    contentIndex : {
+    contentBrowse : {
         author: 'Author',
         modified: 'Modified'
     },

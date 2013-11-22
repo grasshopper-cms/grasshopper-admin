@@ -91,8 +91,8 @@ require.config({
         usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
         addUserView : 'views/addUser/addUserView',
         addUserViewConfig : 'views/addUser/addUserViewConfig',
-        contentTableView : 'views/contentTable/contentTableView',
-        contentTableViewConfig : 'views/contentTable/contentTableViewConfig',
+        contentBrowseView : 'views/contentBrowse/contentBrowseView',
+        contentBrowseViewConfig : 'views/contentBrowse/contentBrowseViewConfig',
         contentEditView : 'views/contentEdit/contentEditView',
         contentEditViewConfig : 'views/contentEdit/contentEditViewConfig',
         contentTypeIndexView : 'views/contentTypeIndex/contentTypeIndexView',
@@ -109,6 +109,8 @@ require.config({
         assetIndexViewConfig : 'views/assetIndex/assetIndexViewConfig',
         contentDetailView : 'views/contentDetail/contentDetailView',
         contentDetailViewConfig : 'views/contentDetail/contentDetailViewConfig',
+        contentIndexView : 'views/contentIndex/contentIndexView',
+        contentIndexViewConfig : 'views/contentIndex/contentIndexViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -138,10 +140,11 @@ require.config({
         mastheadViewModel : 'models/viewModels/mastheadViewModel',
         contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
         contentTypeDetailViewModel : 'models/viewModels/contentTypeDetailViewModel',
-        contentTableViewModel : 'models/viewModels/contentTableViewModel',
+        contentBrowseViewModel : 'models/viewModels/contentBrowseViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
         assetIndexViewModel : 'models/viewModels/assetIndexViewModel',
+        contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
 
             // Workers
         loginWorker : 'workers/loginWorker',

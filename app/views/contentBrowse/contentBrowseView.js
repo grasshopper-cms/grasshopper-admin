@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig', 'underscore'],
-    function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _) {
+define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig'],
+    function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _, ContentIndexView, contentIndexViewConfig) {
     'use strict';
 
     var ContentBrowseView = BaseView.extend({
@@ -29,9 +29,14 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
 
         if(!this.model.get('nodeId')){
             this.model.set('inRoot', true);
-            console.log('this is where it should kick off the contentIndex view');
         } else {
             this.model.set('inRoot', false);
+            var contentIndexView = new ContentIndexView(_.extend({}, contentIndexViewConfig,
+                {
+                    nodeId: this.model.get('nodeId'),
+                    mastheadButtons: this.options.mastheadButtons
+                }));
+            contentIndexView.start();
         }
     }
 

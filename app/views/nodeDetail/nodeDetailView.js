@@ -1,9 +1,8 @@
 /*global define:false*/
-define(['baseView', 'api', 'constants'], function (BaseView, Api, constants) {
+define(['baseView'], function (BaseView) {
 
     return BaseView.extend({
-        deleteNode: deleteNode,
-        afterRender : afterRender
+        deleteNode: deleteNode
     });
 
     function deleteNode() {
@@ -14,20 +13,6 @@ define(['baseView', 'api', 'constants'], function (BaseView, Api, constants) {
                 //TODO: This does not actually delete from the server yet... need to look into those EndPoints.
                 self.displayTemporaryAlertBox('Node Successfully Deleted', true);
                 self.remove();
-            });
-    }
-
-    function afterRender() {
-        Api.makeQuery(constants.api.contentQuery.url,
-            {
-                nodes: '526d5179966a883540000006',
-                types: [],
-                filters: [],
-                options: {}
-            })
-            .done(function(data) {
-                console.log('yeahhhhh buddyyyy');
-                console.log(data);
             });
     }
 
