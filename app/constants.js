@@ -36,6 +36,7 @@ define({
         contentTypes : '#item/types',
         newContentType : '#item/types/new',
         content : '#items',
+        contentDetail : '#item/:id',
         nodeDetail : '#items/nodeid/:id',
         home : '#home',
         login : '#login',

@@ -1,11 +1,11 @@
 /*global define:false*/
-define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'], function (templateHtml, assetIndexViewModel) {
+define(['text!views/contentIndex/contentIndexView.html', 'contentIndexViewModel'], function (templateHtml, contentIndexViewModel) {
     'use strict';
 
     return {
-        name : 'assetIndexView',
-        ModelType : assetIndexViewModel,
-        el : '#assetIndex',
+        name : 'contentIndexView',
+        ModelType : contentIndexViewModel,
+        el : '#contentIndex',
         templateHtml : templateHtml,
         rivetConfig : 'auto',
         bindings : [],

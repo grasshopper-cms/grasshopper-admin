@@ -1,8 +1,5 @@
-define(['grasshopperModel', 'resources'], function (Model, resources) {
+define(['grasshopperModel'], function (Model) {
     return Model.extend({
-        defaults: {
-            resources: resources
-        }
+        defaults: {}
     });
-
 });

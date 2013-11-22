@@ -8,7 +8,9 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
         modelData: {},
         el : '#stage',
         templateHtml : formTemplate,
-        events : {},
+        events : {
+            'click #deleteContent' : 'deleteContent'
+        },
         appendView : true,
         bindings : [],
         rivetConfig : 'auto',

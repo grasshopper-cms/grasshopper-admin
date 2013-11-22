@@ -93,8 +93,6 @@ require.config({
         addUserViewConfig : 'views/addUser/addUserViewConfig',
         contentBrowseView : 'views/contentBrowse/contentBrowseView',
         contentBrowseViewConfig : 'views/contentBrowse/contentBrowseViewConfig',
-        contentEditView : 'views/contentEdit/contentEditView',
-        contentEditViewConfig : 'views/contentEdit/contentEditViewConfig',
         contentTypeIndexView : 'views/contentTypeIndex/contentTypeIndexView',
         contentTypeIndexViewConfig : 'views/contentTypeIndex/contentTypeIndexViewConfig',
         contentTypeDetailView : 'views/contentTypeDetail/contentTypeDetailView',
@@ -145,6 +143,7 @@ require.config({
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
         assetIndexViewModel : 'models/viewModels/assetIndexViewModel',
         contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
+        contentDetailViewModel : 'models/viewModels/contentDetailViewModel',
 
             // Workers
         loginWorker : 'workers/loginWorker',

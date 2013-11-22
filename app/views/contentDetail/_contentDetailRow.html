@@ -1,8 +1,8 @@
 <tr id="[[= viewId ]]">
-    <td><i class="icon-folder-close"></i> <a data-rv-href="data.href">Content Detail, This is not yet Built</a></td>
-    <td align="center">{{data.author | exists --}}</td>
+    <td><a data-rv-href="data.href">{{data.label}}</a></td>
+    <td align="center">{{data.author.name | exists --}}</td>
     <td></td>
     <td align="center">{{data.status | exists --}}</td>
     <td align="center">{{data.modified | exists --}}</td>
-    <td align="center"><a id="deleteNode"><i class="icon-trash"></i></a></td>
+    <td align="center"><a id="deleteContent"><i class="icon-trash"></i></a></td>
 </tr>

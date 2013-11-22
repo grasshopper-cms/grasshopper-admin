@@ -1,44 +1,44 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'contentDetailViewConfig', 'text!views/contentDetail/_contentDetailRow.html'],
+    function (BaseView, Api, constants, _, ContentDetailView, contentDetailViewConfig, contentDetailRowTemplate) {
     'use strict';
 
     var contentIndexView = BaseView.extend({
-        beforeRender: beforeRender
+        beforeRender: beforeRender,
+        appendContentDetailRow: appendContentDetailRow
     });
 
     function beforeRender() {
         var self = this;
 
-//        if(this.options.nodeId) {
-//            this.model.url = this.model.url.replace(':id', this.options.nodeId);
-//        } else {
-//            this.model.url = this.model.url.replace(':id', 0);
-//        }
+        Api.makeQuery(constants.api.contentQuery.url,
+            {
+                nodes: this.options.nodeId,
+                types: [],
+                filters: [],
+                options: {
+                    fake : true
+                }
+            })
+            .done(function(data) {
+                self.model.set('nodeContent', data);
+                _.each(data, function(content) {
+                    self.appendContentDetailRow(content);
+                });
+            });
+    }
 
-        console.log('YEAH BUDDY');
-
-//        this.model.fetch()
-//            .done(function() {
-//                console.log(self.model);
-//            });
+    function appendContentDetailRow(content) {
+        var contentDetailView = new ContentDetailView(_.extend({}, contentDetailViewConfig,
+            {
+                name: 'nodeDetailRow',
+                modelData: content,
+                el: '#nodeDetailRow',
+                templateHtml: contentDetailRowTemplate,
+                mastheadButtons: this.options.mastheadButtons
+            }));
+        contentDetailView.start();
     }
 
     return contentIndexView;
 });
-
-
-//function afterRender() {
-//    Api.makeQuery(constants.api.contentQuery.url,
-//        {
-//            nodes: '526d5179966a883540000006',
-//            types: [],
-//            filters: [],
-//            options: {
-//                fake : true
-//            }
-//        })
-//        .done(function(data) {
-//            console.log('yeahhhhh buddyyyy');
-//            console.log(data);
-//        });
-//}

@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['baseView', 'resources'], function (BaseView, resources) {
 
     return BaseView.extend({
         deleteNode: deleteNode
@@ -8,11 +8,18 @@ define(['baseView'], function (BaseView) {
     function deleteNode() {
         var self = this;
 
-        this.displayModal('Are you sure you want to delete this node?')
+        this.displayModal('Deleting Nodes has not been tested, confirm with Care!!!')
             .done(function() {
-                //TODO: This does not actually delete from the server yet... need to look into those EndPoints.
-                self.displayTemporaryAlertBox('Node Successfully Deleted', true);
-                self.remove();
+                self.model.destroy(
+                    {
+                        success: function(model) {
+                            self.displayTemporaryAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
+                            self.remove();
+                        },
+                        error: function(model) {
+                            self.displayAlertBox(resources.contentType.errorDeleted + model.get('label'));
+                        }
+                    });
             });
     }
 

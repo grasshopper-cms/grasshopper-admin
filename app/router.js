@@ -13,7 +13,7 @@ define([
     'usersIndexView', 'usersIndexViewConfig',
     'addUserView', 'addUserViewConfig',
     'contentBrowseView', 'contentBrowseViewConfig',
-    'contentEditView', 'contentEditViewConfig',
+    'contentDetailView', 'contentDetailViewConfig',
     'contentTypeIndexView', 'contentTypeIndexViewConfig',
     'contentTypeDetailView', 'contentTypeDetailViewConfig'
 ],
@@ -30,7 +30,7 @@ define([
               UsersIndexView, usersIndexViewConfig,
               AddUserView, addUserViewConfig,
               ContentBrowseView, contentBrowseViewConfig,
-              ContentEditView, contentEditViewConfig,
+              ContentDetailView, contentDetailViewConfig,
               ContentTypeIndexView, contentTypeIndexViewConfig,
               ContentTypeDetailView, contentTypeDetailViewConfig
               ) {
@@ -56,7 +56,7 @@ define([
                 'item/types' : 'displayContentTypeIndex',
                 'item/types(/:id)' : 'displayContentTypeDetail',
                 'items(/nodeid/:nodeId)': 'displayContentBrowse',
-                'item/:id' : 'displayContentEdit',
+                'item/:id' : 'displayContentDetail',
                 '*path' : 'goHome'
             },
 
@@ -84,7 +84,7 @@ define([
             displayUserDetail : displayUserDetail,
             displayAddUser : displayAddUser,
             displayContentBrowse : displayContentBrowse,
-            displayContentEdit : displayContentEdit,
+            displayContentDetail : displayContentDetail,
             displayContentTypeIndex : displayContentTypeIndex,
             displayContentTypeDetail : displayContentTypeDetail
         });
@@ -319,8 +319,14 @@ define([
             ), true);
         }
 
-        function displayContentEdit(id) {
-            loadMainContent(ContentEditView, contentEditViewConfig, true);
+        function displayContentDetail(id) {
+            loadMainContent(ContentDetailView, _.extend({}, contentDetailViewConfig,
+                {
+                    modelData : {
+                        id : id
+                    }
+                }
+            ), true);
         }
 
         function displayContentTypeIndex() {
