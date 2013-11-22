@@ -8,7 +8,9 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
         modelData: {},
         el : '#stage',
         templateHtml : formTemplate,
-        events : {},
+        events : {
+            'click #deleteNode' : 'deleteNode'
+        },
         appendView : true,
         bindings : [],
         rivetConfig : 'auto',

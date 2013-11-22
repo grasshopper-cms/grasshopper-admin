@@ -35,7 +35,8 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
                 name: 'nodeDetailRow',
                 modelData: node,
                 el: '#nodeDetailRow',
-                templateHtml: nodeDetailRowTemplate
+                templateHtml: nodeDetailRowTemplate,
+                mastheadButtons: this.options.mastheadButtons
             }));
         nodeDetailView.start();
     }

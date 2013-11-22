@@ -13,14 +13,16 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
 
         var nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
                 {
-                    nodeId: this.model.get('nodeId')
+                    nodeId: this.model.get('nodeId'),
+                    mastheadButtons: this.options.mastheadButtons
                 }
              ));
         nodeIndexView.start();
 
         var assetIndexView = new AssetIndexView(_.extend({}, assetIndexViewConfig,
                 {
-                    nodeId: this.model.get('nodeId')
+                    nodeId: this.model.get('nodeId'),
+                    mastheadButtons: this.options.mastheadButtons
                 }
             ));
         assetIndexView.start();
