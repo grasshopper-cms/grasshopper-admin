@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['baseView', 'resources'], function (BaseView, resources) {
 
     var addUserView = BaseView.extend({
         applyFoundationForms : applyFoundationForms,
@@ -16,7 +16,7 @@ define(['baseView'], function (BaseView) {
         this.model.save()
             .success(function() {
                 self.app.router.navigateTrigger('users');
-                self.displayTemporaryAlertBox('New User Added', true);
+                self.displayTemporaryAlertBox(resources.user.newUserAdded, true);
             })
             .error(function(xhr) {
                 self.displayAlertBox(JSON.parse(xhr.responseText).message);

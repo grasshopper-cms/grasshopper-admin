@@ -60,7 +60,8 @@ define({
         updateError: 'User was successfully updated',
         errors : {
             403 : 'You do not have adequate permissions to view/edit this profile.'
-        }
+        },
+        newUserAdded : 'New User Added'
     },
     site : {
         about : 'About Grasshopper'
