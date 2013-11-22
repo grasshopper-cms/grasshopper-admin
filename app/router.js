@@ -12,7 +12,7 @@ define([
     'mastheadView', 'mastheadViewConfig',
     'usersIndexView', 'usersIndexViewConfig',
     'addUserView', 'addUserViewConfig',
-    'contentBrowseView', 'contentBrowseViewConfig',
+    'contentTableView', 'contentTableViewConfig',
     'contentEditView', 'contentEditViewConfig',
     'contentTypeIndexView', 'contentTypeIndexViewConfig',
     'contentTypeDetailView', 'contentTypeDetailViewConfig'
@@ -29,7 +29,7 @@ define([
               MastheadView, mastheadViewConfig,
               UsersIndexView, usersIndexViewConfig,
               AddUserView, addUserViewConfig,
-              ContentBrowseView, contentBrowseViewConfig,
+              ContentBrowseView, contentTableViewConfig,
               ContentEditView, contentEditViewConfig,
               ContentTypeIndexView, contentTypeIndexViewConfig,
               ContentTypeDetailView, contentTypeDetailViewConfig
@@ -310,7 +310,7 @@ define([
         }
 
         function displayContentBrowse(nodeId) {
-            loadMainContent(ContentBrowseView, _.extend({}, contentBrowseViewConfig,
+            loadMainContent(ContentBrowseView, _.extend({}, contentTableViewConfig,
                 {
                     modelData: {
                         nodeId: nodeId
