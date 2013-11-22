@@ -16,7 +16,7 @@ define(['baseView'], function (BaseView) {
         this.model.save()
             .success(function() {
                 self.app.router.navigateTrigger('users');
-                self.displayAlertBox('New User Added', true);
+                self.displayTemporaryAlertBox('New User Added', true);
             })
             .error(function(xhr) {
                 self.displayAlertBox(JSON.parse(xhr.responseText).message);

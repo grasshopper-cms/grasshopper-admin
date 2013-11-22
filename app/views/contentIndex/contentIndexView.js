@@ -11,6 +11,12 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         //TODO: What is this and what is it doing? maybe it should be moved.
         $(document).foundation('section', 'reflow');
 
+        if(!this.model.get('nodeId')){
+            this.model.set('inRoot', true);
+        } else {
+            this.model.set('inRoot', false);
+        }
+
         var nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
                 {
                     nodeId: this.model.get('nodeId'),
