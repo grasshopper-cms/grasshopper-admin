@@ -1,12 +1,15 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize exports="amd" -o ./compat/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <http://lodash.com/license>
  */
 define(['./internals/reNative'], function(reNative) {
+
+  /** Used to detect functions containing a `this` reference */
+  var reThis = /\bthis\b/;
 
   /** `Object#toString` result shortcuts */
   var argsClass = '[object Arguments]',
@@ -54,20 +57,20 @@ define(['./internals/reNative'], function(reNative) {
     for (prop in arguments) { }
 
     /**
-     * Detect if `arguments` objects are `Object` objects (all but Narwhal and Opera < 10.5).
-     *
-     * @memberOf _.support
-     * @type boolean
-     */
-    support.argsObject = arguments.constructor == Object && !(arguments instanceof Array);
-
-    /**
      * Detect if an `arguments` object's [[Class]] is resolvable (all but Firefox < 4, IE < 9).
      *
      * @memberOf _.support
      * @type boolean
      */
     support.argsClass = toString.call(arguments) == argsClass;
+
+    /**
+     * Detect if `arguments` objects are `Object` objects (all but Narwhal and Opera < 10.5).
+     *
+     * @memberOf _.support
+     * @type boolean
+     */
+    support.argsObject = arguments.constructor == Object && !(arguments instanceof Array);
 
     /**
      * Detect if `name` or `message` properties of `Error.prototype` are
@@ -100,20 +103,21 @@ define(['./internals/reNative'], function(reNative) {
     support.fastBind = nativeBind && !isV8;
 
     /**
+     * Detect if functions can be decompiled by `Function#toString`
+     * (all but PS3 and older Opera mobile browsers & avoided in Windows 8 apps).
+     *
+     * @memberOf _.support
+     * @type boolean
+     */
+    support.funcDecomp = !reNative.test(window.WinRTError) && reThis.test(function() { return this; });
+
+    /**
      * Detect if `Function#name` is supported (all but IE).
      *
      * @memberOf _.support
      * @type boolean
      */
     support.funcNames = typeof Function.name == 'string';
-
-    /**
-     * Detect if own properties are iterated after inherited properties (all but IE < 9).
-     *
-     * @memberOf _.support
-     * @type boolean
-     */
-    support.ownLast = props[0] != 'x';
 
     /**
      * Detect if `arguments` object indexes are non-enumerable
@@ -134,6 +138,14 @@ define(['./internals/reNative'], function(reNative) {
      * @type boolean
      */
     support.nonEnumShadows = !/valueOf/.test(props);
+
+    /**
+     * Detect if own properties are iterated after inherited properties (all but IE < 9).
+     *
+     * @memberOf _.support
+     * @type boolean
+     */
+    support.ownLast = props[0] != 'x';
 
     /**
      * Detect if `Array#shift` and `Array#splice` augment array-like objects correctly.

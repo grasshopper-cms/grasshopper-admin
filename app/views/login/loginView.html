@@ -1,51 +1,63 @@
-<div id="login-page">
+<div id="[[= viewId ]]">
     <div class="row">
         <div class="large-5 small-centered columns">
             <form>
-                <div class="loginContainer">
-                    <div class="row">
-                        <div class="small-11 small-centered columns">
-                            <h2>
-                                Log In
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="small-11 small-centered columns">
-                            <div class="row">
-                                <input type="text" id="loginUsername" data-login-class-error="data.usernameError"
-                                       placeholder="User Name" data-login-value="data.username">
-                                <small class="error" data-login-show="data.usernameError">
-                                    <div data-login-text="data.usernameError"></div>
-                                </small>
-                            </div>
-                            <div class="row">
-                                <input type="password" id="loginPassword" data-login-class-error="data.passwordError"
-                                       placeholder="Password" data-login-value="data.password">
-                                <small class="error" data-login-show="data.passwordError">
-                                    <div data-login-text="data.passwordError"></div>
-                                </small>
+                <div class="account-container login stacked">
+                    <div class="content clearfix">
+                        <div class="row">
+                            <div class="small-centered columns">
+                                <h1>
+                                    Sign In
+                                </h1>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-5 small-offset-7 columns">
-                            <input id="loginButton" class="login-button" type="submit"
-                                    data-login-class-disabled="data.hasError" value="Log In">
-                            </input>
+                        <div class="row">
+                            <div class="small-centered columns">
+                                <div class="login-fields">
+
+                                    <p>Sign in using your registered account:</p>
+
+                                    <div class="field">
+                                        <label for="username">Username:</label>
+                                        <input type="text" id="loginUsername" data-rv-class-error="data.usernameError"
+                                               placeholder="User Name" data-rv-value="data.username" class="login username-field">
+                                        <div data-rv-text="data.usernameError"></div>
+                                    </div> <!-- /field -->
+
+                                    <div class="field">
+                                        <label for="password">Password:</label>
+                                        <input type="password" id="loginPassword" data-rv-class-error="data.passwordError"
+                                               placeholder="Password" data-rv-value="data.password" class="login password-field">
+                                        <div data-rv-text="data.passwordError"></div>
+                                    </div> <!-- /password -->
+
+                                </div> <!-- /login-fields -->
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="small-5 small-offset-1 columns">
-                            Password Reset
-                        </div>
-                        <div class="small-5 small-offset-1 columns">
-                            What is Grasshopper?
+                        <div class="row">
+                            <div class="large-8 small-12 columns">
+                                <span class="login-checkbox">
+                                    <input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4">
+                                    <label class="choice" for="Field">Keep me signed in</label>
+                                </span>
+                            </div>
+                            <div class="large-4 small-12 columns">
+                                <input id="loginButton" class="login-button button btn btn-primary btn-large" type="submit"
+                                        data-rv-class-disabled="data.hasError" value="Sign In">
+                                </input>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large5 small-centered columns">
+            <div class="login-extra">
+                Don't have an account? <a href="./signup.html">Sign Up</a><br>
+                Remind <a href="#">Password</a>
+            </div>
         </div>
     </div>
 </div>

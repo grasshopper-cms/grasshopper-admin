@@ -1,49 +1,76 @@
-<div id="header-partial" class="contain-to-grid sticky">
-    <nav class="top-bar">
-        <ul class="title-area">
-            <!-- Title Area -->
-            <li class="name">
-                <h1>
-                    <a href="#">
-                        <img class="grasshopperLogo"
-                             src="http://content.screencast.com/users/GregSolid/folders/Jing/media/c4f1e4d6-b74f-467c-be23-2ed1c4bdfea1/00000028.png"/>
+<div id="[[= viewId ]]">
+    <div id="topbar" class="contain-to-grid sticky">
+        <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+            <i class="icon-home"></i>
+        </a>
+        <div id="top-nav">
+            <ul class="pull-right">
+                <li><img class="profile-pic" data-rv-show="data.loggedIn" src="http://placehold.it/20x20"/></li>
+                <li><a data-rv-href="data.userModel.urlLink"><i class="icon-user"></i><span data-rv-text="data.resources.user.loggedInAs | spaceAfter"></span><span data-rv-text="data.userModel.fullName"></span></a></li>
+                <li class="dropdown">
+                    <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
+                        {{data.resources.settings}}
+                        <b class="caret"></b>
+                    </a>
 
-                        <div id="logo-text">{{data.resources.siteName}}</div>
-                    </a>
-                </h1>
-            </li>
-            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-            <li class="toggle-topbar menu-icon"><a href="#"><span>{{data.resources.menu}}</span></a></li>
-        </ul>
-        <section class="top-bar-section">
-            <ul class="right">
-                <li><a id="logOutButton" href="#logout" data-header-show="data.loggedIn">{{data.resources.log_out}}</a>
-                </li>
-                <li><a id="logInButton" href="#login" data-header-hide="data.loggedIn">{{data.resources.log_in}}</a>
-                </li>
-                <li class="divider hide-for-small"></li>
-                <li class="has-dropdown">
-                    <a href="#">
-                        <img class="gravatar" data-header-show="data.loggedIn"
-                             src="http://content.screencast.com/users/GregSolid/folders/Jing/media/79416a51-e20b-4b29-8e56-5d6352ed3bb7/00000031.png"/>
-                        <span data-header-text="data.name"></span>
-                    </a>
-                    <ul class="dropdown">
-                        <li><a id="myProfileButton" data-header-show="data.loggedIn" data-header-href="data.url">{{data.resources.edit}}
-                            {{data.resources.profile}}</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">{{data.resources.site.about}}</a></li>
+                    <ul id="settings-dropdown" data-dropdown-content class="dropdown-menu right">
+                        <li><a id="myProfileButton" data-rv-show="data.userModel.loggedIn" data-rv-href="data.userModel.urlLink">{{data.resources.edit}} {{data.resources.profile}}</a></li>
+                        <li><a data-rv-href="data.constants.internalRoutes.about">{{data.resources.site.about}}</a></li>
                     </ul>
                 </li>
+
+                <li><a id="logOutButton" data-rv-href="data.constants.internalRoutes.logout" data-rv-show="data.userModel.loggedIn">{{data.resources.log_out}}</a>
+                </li>
+                <li><a id="logInButton" data-rv-href="data.constants.internalRoutes.login" data-rv-hide="data.userModel.loggedIn">{{data.resources.log_in}}</a>
+                </li>
             </ul>
-        </section>
-    </nav>
-</div>
-<div id="sub-header" class="row">
-    <div class="large-8 columns">
+
+        </div>
     </div>
-    <div class="large-4 columns">
-        <a id="displayUsersButton" data-header-show="data.admin" class="button"
-           href="#users">{{data.resources.users}}</a>
+    <div id="headerbar">
+        <div class="container">
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <a data-rv-href="data.constants.internalRoutes.home" class="brand">{{data.resources.siteName}}</a>
+                    <a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <i class="icon-reorder"></i>
+                    </a>
+
+                    <div class="nav-collapse">
+                        <ul id="main-nav" class="nav pull-right">
+                            <li class="nav-icon active">
+                                <a data-rv-href="data.constants.internalRoutes.home">
+                                    <i class="icon-home"></i>
+                                    <span>{{data.resources.home}}</span>
+                                </a>
+                            </li>
+
+                            <li data-rv-show="data.userModel.role | includes admin reader editor">
+                                <a data-rv-href="data.constants.internalRoutes.content">
+                                    <i class="icon-th"></i>
+                                    <span>{{data.resources.content}}</span>
+                                </a>
+                            </li>
+
+                            <li data-rv-show="data.userModel.role | includes admin reader editor">
+                                <a data-rv-href="data.constants.internalRoutes.contentTypes">
+                                    <i class="icon-cogs"></i>
+                                    <span>{{data.resources.types}}</span>
+                                </a>
+                            </li>
+
+                            <li data-rv-show="data.userModel.role | equals admin">
+                                <a data-rv-href="data.constants.internalRoutes.users">
+                                    <i class="icon-user"></i>
+                                    <span>{{data.resources.users}}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div> <!-- /.nav-collapse -->
+                </div>
+            </div>
+        </div>
     </div>
 </div>

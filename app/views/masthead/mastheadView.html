@@ -1,0 +1,26 @@
+<div id="[[=viewId ]]" class="container">
+    <div class="row">
+        <div class="large-6 columns">
+
+            <div class="masthead-pad">
+
+                <div class="masthead-text">
+                    <h2>
+                        <i id="MastheadIcon"></i>
+                        <span data-rv-text="data.title"></span>
+
+                    </h2>
+                    <p data-rv-text="data.description"></p>
+                </div>
+            </div>
+        </div>
+        <div class="large-6 columns">
+
+            <ul id="mastheadButtons" class="button-group right radius" data-rv-each-button="data.buttons">
+                <li>
+                    <a data-rv-href="button.href" class="button right small">{{button.text}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

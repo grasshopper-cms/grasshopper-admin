@@ -6,6 +6,10 @@ define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function 
         name : 'alertBoxView',
         ModelType : alertBoxViewModel,
         el : '#alertBox',
-        templateHtml : templateHtml
+        templateHtml : templateHtml,
+        rivetConfig : {
+            scope : '#alertBoxPartial',
+            prefix : 'alertbox'
+        }
     };
 });

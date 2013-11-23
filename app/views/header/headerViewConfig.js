@@ -1,15 +1,18 @@
 /*global define:false*/
-define(['text!views/header/headerView.html', 'headerViewModel'], function (templateHtml, HeaderViewModel) {
+define(['text!views/header/headerView.html', 'headerViewModel', 'viewContext'], function (templateHtml, HeaderViewModel, ViewContext) {
     'use strict';
 
     return {
         name : 'headerView',
-        modelData : {name: 'Menu', url: 'home'},
+        modelData : {
+            userModel : ViewContext('app.user')
+        },
         ModelType : HeaderViewModel,
         el : '#header',
         templateHtml : templateHtml,
-        bindings : [
-            ['app.user', 'change', 'setUser']
-        ]
+        events : {},
+        appendView : true,
+        bindings : [],
+        rivetConfig : 'auto'
     };
 });

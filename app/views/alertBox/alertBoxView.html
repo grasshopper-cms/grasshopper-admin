@@ -1,6 +1,14 @@
 <div id="alertBoxPartial" class="large-9 small-centered columns">
-    <div data-alert class="error">
-        <div data-alertbox-text="data.error"></div>
-        <a href="#" class="close">&times;</a>
+    <div data-alertbox-hide="data.status" class="bad">
+        <div data-alert class="error">
+            <div data-alertbox-text="data.msg"></div>
+            <a href="#" class="close">&times;</a>
+        </div>
+    </div>
+    <div data-alertbox-show="data.status" class="good">
+        <div data-alert class="error">
+            <div data-alertbox-text="data.msg"></div>
+            <a href="#" class="close">&times;</a>
+        </div>
     </div>
 </div>

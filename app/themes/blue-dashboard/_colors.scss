@@ -1,0 +1,63 @@
+//-------------  Definition  -------------
+$black: black;
+$darkGray: #333333;
+$mediumGray: #838383;
+$alphaGray: rgba(0, 0, 0, 0.25);
+$lightAlphaGray: rgba(0, 0, 0, 0.1);
+$darkAlphaGray: rgba(0, 0, 0, 0.075);
+$lightGray: lightgray;
+$gray: #f8f8f8;
+$black45Percent: rgba(0,0,0,0.45);
+
+$darkGreen: #567233;
+$mediumGreen: #7da64b;
+$green: #94ba65;
+$lightGreen: #a0c277;
+
+//$darkBlue: #16283a;
+$darkBlue: red;
+$blue: #1d354d;
+$mediumBlue: #28496b;
+$lightBlue: #2790b0;
+
+$menuBGBlue: #1f3852;
+$menuTopGradient: #24415f;
+$menuBottomGradient: #172b3e;
+$menuBorder: #080f15;
+$menuShadow: #325b85;
+
+
+$lightBlueText: #80a7cf;
+
+$red: #A00000;
+$white: #FFFFFF;
+$offWhite: #f9f9f9;
+
+//-------------  Implementation  -------------
+
+$linkImportant: $lightBlueText;
+$linkRegular: $darkBlue;
+
+$buttonText: $offWhite;
+$buttonOkay: $green;
+
+$alertColorBad: $red;
+$alertColorGood: $mediumGreen;
+$alertCloseColor: $offWhite;
+
+$modal-background-color: $black45Percent;
+$modal-contents-background-color: $white;
+$modal-contents-border-color: $black;
+
+$progressBar: $green;
+
+$headerBackground: $gray;
+$headerBoxShadow: $mediumBlue;
+$headerPartialBackground: $darkBlue;
+$headerTextLogo: $white;
+$headerTopBarBackground: $darkBlue;
+
+$loginBackground: $offWhite;
+$loginBorder: $lightGray;
+
+$gravatarBorder: $black;

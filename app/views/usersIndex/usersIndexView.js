@@ -1,32 +1,39 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'userWorker', 'constants', 'rivets'],
+define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', 'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
 
-    function (BaseView, rivetView, userWorker, constants, Rivets) {
+    function (BaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
 
         var usersIndexView = BaseView.extend({
-            rivetView : rivetView({rivetScope : '#usersIndex', rivetPrefix : 'usersindex', instaUpdateRivets : true}),
+            beforeRender : beforeRender,
             goToPage : goToPage,
-            renderPlugins : renderPlugins,
             checkAndSetLimit : checkAndSetLimit,
-            changeLimit : changeLimit
+            changeLimit : changeLimit,
+            appendUserRow : appendUserRow
         });
 
-        //TODO: Turn this into a mixin
-        function renderPlugins () {
-            this.$el.foundation('forms');
+        function beforeRender() {
+            var self = this,
+                model = this.model.toJSON();
+
+            this.goToPage(model.pageNumber || model.defaultPage, model.pageLimit || model.defaultLimit)
+                .done(function() {
+                    self.model.get('users').each(function(model){
+                        self.appendUserRow(model);
+                    });
+                    self.$el.foundation('forms');
+                });
         }
 
         function goToPage (page, limit) {
-
             var pageLimit = this.checkAndSetLimit(limit),
-                deferred = new $.Deferred();
+                $deferred = new $.Deferred();
 
             return userWorker.getUsers(this, {
                 data : {
                     page : page,
                     limit : pageLimit
                 }
-            }, deferred);
+            }, $deferred);
         }
 
         function checkAndSetLimit (limit) {
@@ -38,6 +45,21 @@ define(['baseView', 'rivetView', 'userWorker', 'constants', 'rivets'],
 
         function changeLimit (event) {
             this.goToPage(constants.userCollection.page, event.target.value);
+        }
+
+        function appendUserRow(model) {
+
+            var userDetailView = new UserDetailView(_.extend({}, userDetailViewConfig,
+                {
+                    name : 'userDetailRow',
+                    el : '#usersIndexTable',
+                    // TODO: set this template some other way. Maybe in the Config?
+                    templateHtml : rowTemplate,
+                    model : model,
+                    mastheadButtons : this.options.mastheadButtons
+                }
+            ));
+            userDetailView.start();
         }
 
         return usersIndexView;

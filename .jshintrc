@@ -6,5 +6,8 @@
     },
     "curly": true,
     "quotmark": "single",
-    "debug" : true
+    "debug" : true,
+    "validthis": true,
+    "supernew" : true,
+    "newcap" : false
 }

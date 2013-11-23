@@ -32,13 +32,16 @@
     "matchdep": "~0.1.2",
     "grunt-contrib-connect": "~0.3.0",
     "grunt-shell": "~0.2.2",
-    "grunt-build-gh-pages": "0.0.4",
+    "grunt-build-gh-pages": "0.1.1",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-requirejs": "~0.4.0",
     "grunt-contrib-sass": "~0.5.0",
     "notes": "0.0.4",
     "rivets": "~0.5.12",
     "grunt-contrib-jshint": "0.2.0",
-    "grunt-usemin": "~0.1.12"
+    "grunt-usemin": "~0.1.12",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-uglify": "0.2.0",
+    "grunt-contrib-concat": "~0.1.2"
   }
 }

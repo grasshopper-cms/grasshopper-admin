@@ -8,16 +8,46 @@ define({
             url : 'http://localhost:8080/token'
         },
         user : {
-            url : 'http://localhost:8080/user',
-            shortUrl : 'user/'
+            url : 'http://localhost:8080/user'
         },
         users : {
-            url : 'http://localhost:8080/users',
-            shortUrl : 'users/'
+            url : 'http://localhost:8080/users'
+        },
+        newUser : {
+            url : 'http://localhost:8080/users'
+        },
+        contentTypes : {
+            url : 'http://localhost:8080/contenttypes'
+        },
+        node : {
+            url : 'http://localhost:8080/node'
+        },
+        nodes : {
+            url : 'http://localhost:8080/node/:id/children'
+        },
+        assets : {
+            url : 'http://localhost:8080/node/:id/assets'
+        },
+        contentQuery: {
+            url : 'http://localhost:8080/content/query'
         }
     },
+    internalRoutes: {
+        user : '#user',
+        users : '#users',
+        newUser : '#addUser',
+        contentTypes : '#item/types',
+        newContentType : '#item/types/new',
+        content : '#items',
+        contentDetail : '#item/:id',
+        nodeDetail : '#items/nodeid/:id',
+        home : '#home',
+        login : '#login',
+        logout : '#logout',
+        about : '#about'
+    },
     defaults : {
-
+        theme: 'blue-dashboard'
     },
     userCollection : {
         pageSize : 5,
@@ -32,3 +62,20 @@ define({
         }
     }
 });
+
+///search
+
+//var query = {
+//    nodes: "526d5179966a883540000006",  will accept a string or array of ID's,
+//    types: [],
+//    filters: [],
+//    options: {}
+//};
+//request(url)
+//    .post('/content/query')
+//    .set('Accept', 'application/json')
+//    .set('Accept-Language', 'en_US')
+//    .set('authorization', 'Token ' + globalReaderToken)
+//    .send(query)
+//    .end(function(err, res) {
+//    });

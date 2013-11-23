@@ -1,0 +1,26 @@
+<div id="[[= viewId ]]">
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="section-container auto" data-section>
+                <section class="active">
+                    <p class="title" data-section-title><a href="#"><i class="icon-list-alt"></i>{{data.resources.content | spaceBefore}}</a></p>
+                    <div class="content" data-section-content>
+                        <input type="text" id="ContentSearch" class="search" placeholder="Search" /> <a href="#"><i class="icon-search"></i></a>
+                        <div id="nodeIndex">
+                            <!--Built from nodeIndexView-->
+                        </div>
+                    </div>
+                </section>
+                <section data-rv-hide="data.inRoot">
+                    <p class="title" data-section-title><a href="#"><i class="icon-paper-clip"></i>{{data.resources.fileIndex.files | spaceBefore}}</a></p>
+                    <div  class="content" data-section-content>
+                        <input type="text" id="FileSearch" class="search" placeholder="Search" /> <a href="#"><i class="icon-search"></i></a>
+                        <div id="assetIndex">
+                            <!--Built from assetIndex-->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

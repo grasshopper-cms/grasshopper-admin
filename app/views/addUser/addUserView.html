@@ -1,0 +1,99 @@
+<div id="[[= viewId ]]">
+    <div class="row">
+        <div class="large-10 small-centered columns">
+            <fieldset>
+                <legend>
+                    <h2>{{data.resources.addNewUser}}</h2>
+                </legend>
+                <form class="custom">
+
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="firstName" class="right inline">{{data.resources.user.attributeTitles.firstName | withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="firstName" type="text" value="data.name" data-rv-value="data.firstname"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="lastName" class="right inline">{{data.resources.user.attributeTitles.lastName | withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="lastName" type="text" value="data.name" data-rv-value="data.lastname"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="role" class="right inline">{{data.resources.user.attributeTitles.role | withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <select id="role">
+                                        <option data-rv-each-role="data.roles" data-rv-text="role | humanize"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="email" class="right inline">{{data.resources.user.attributeTitles.email | withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="email" type="text" value="data.email" data-rv-value="data.email"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="login" class="right inline">{{data.resources.user.attributeTitles.login | withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="login" type="text" value="data.login" data-rv-value="data.login"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="password" class="right inline">{{data.resources.user.attributeTitles.password | withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="password" type="text" value="data.password" data-rv-value="data.password"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="large-5 small-offset-7 columns">
+                            <input id="saveUser" type="submit" class="button success radius" data-rv-value="data.resources.save">
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>

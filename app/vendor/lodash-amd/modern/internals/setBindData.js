@@ -1,12 +1,20 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="amd" -o ./modern/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <http://lodash.com/license>
  */
-define(['./getObject', './reNative', './releaseObject'], function(getObject, reNative, releaseObject) {
+define(['./noop', './reNative'], function(noop, reNative) {
+
+  /** Used as the property descriptor for `__bindData__` */
+  var descriptor = {
+    'configurable': false,
+    'enumerable': false,
+    'value': null,
+    'writable': false
+  };
 
   /** Used for native method references */
   var objectProto = Object.prototype;
@@ -27,11 +35,9 @@ define(['./getObject', './reNative', './releaseObject'], function(getObject, reN
    * @param {Function} func The function to set data on.
    * @param {*} value The value to set.
    */
-  var setBindData = function(func, value) {
-    var descriptor = getObject();
+  var setBindData = !defineProperty ? noop : function(func, value) {
     descriptor.value = value;
     defineProperty(func, '__bindData__', descriptor);
-    releaseObject(descriptor);
   };
 
   return setBindData;

@@ -1,4 +1,4 @@
-define(['backbone', 'UserModel', 'constants', 'paginatedCollection'], function (Backbone, UserModel, constants, PaginatedCollection) {
+define(['backbone', 'UserModel', 'constants', 'paginatedCollection', 'LocalStorage'], function (Backbone, UserModel, constants, PaginatedCollection, LocalStorage) {
 
     return PaginatedCollection.extend({
         paginationConfig : {

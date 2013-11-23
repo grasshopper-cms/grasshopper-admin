@@ -1,19 +1,34 @@
 language: node_js
 node_js:
   - "0.6"
+  - "0.8"
   - "0.10"
 env:
-  - TEST_COMMAND="phantomjs ./node_modules/lodash/test/test.js node_modules/lodash/test/index.html?modularize&build=../../../compat/lodash.js&loader=curl"
-  - TEST_COMMAND="phantomjs ./node_modules/lodash/test/test.js node_modules/lodash/test/index.html?modularize&build=../../../compat/lodash.js&loader=dojo"
-  - TEST_COMMAND="phantomjs ./node_modules/lodash/test/test.js node_modules/lodash/test/index.html?modularize&build=../../../compat/lodash.js&loader=requirejs"
-  - TEST_COMMAND="phantomjs ./node_modules/lodash/test/test.js node_modules/lodash/test/index.html?modularize&build=../../../modern/lodash.js&loader=curl"
-  - TEST_COMMAND="phantomjs ./node_modules/lodash/test/test.js node_modules/lodash/test/index.html?modularize&build=../../../modern/lodash.js&loader=dojo"
-  - TEST_COMMAND="phantomjs ./node_modules/lodash/test/test.js node_modules/lodash/test/index.html?modularize&build=../../../modern/lodash.js&loader=requirejs"
+  global:
+    - BUILD="compat" MAKE=false
+  matrix:
+    - LOADER="curl"
+    - LOADER="dojo"
+    - LOADER="requirejs"
+    - BUILD="modern" LOADER="curl"
+    - BUILD="modern" LOADER="dojo"
+    - BUILD="modern" LOADER="requirejs"
+    - BUILD="legacy" LOADER="curl"
+    - BUILD="legacy" LOADER="dojo"
+    - BUILD="legacy" LOADER="requirejs"
+    - BUILD="mobile" LOADER="curl"
+    - BUILD="mobile" LOADER="dojo"
+    - BUILD="mobile" LOADER="requirejs"
 git:
   depth: 1
 branches:
   only:
     - master
+before_script:
+  - "git clone --depth=1 --branch=master git://github.com/lodash/lodash.git ./node_modules/lodash"
 script:
-  - "git clone --depth=1 --branch=master git://github.com/lodash/lodash.git ./node_modules/lodash/"
-  - $TEST_COMMAND
+  - "[ $BUILD != 'compat' ] && [ $BUILD != 'modern' ] && MAKE=true || true"
+  - "[ $MAKE != false ] && git clone --depth=1 --branch=master git://github.com/lodash/lodash-cli.git ./node_modules/lodash-cli || true"
+  - "[ $MAKE != false ] && mkdir ./node_modules/lodash-cli/node_modules && cd ./node_modules/lodash-cli/node_modules/ && ln -s ../../lodash ./lodash && cd ../../../ || true"
+  - "[ $MAKE != false ] && node ./node_modules/lodash-cli/bin/lodash modularize exports=amd -o ./$BUILD || true"
+  - "phantomjs ./node_modules/lodash/test/test.js \"node_modules/lodash/test/index.html?modularize&build=../../../$BUILD/main.js&loader=$LOADER\""

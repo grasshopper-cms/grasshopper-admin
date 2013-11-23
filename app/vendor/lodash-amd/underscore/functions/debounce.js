@@ -1,6 +1,6 @@
 /**
- * @license
- * Lo-Dash 2.0.0 <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize underscore exports="amd" -o ./underscore/`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -10,6 +10,12 @@ define(['../objects/isFunction', '../objects/isObject', '../internals/reNative']
 
   /** Used as a safe reference for `undefined` in pre ES5 environments */
   var undefined;
+
+  /** Used for native method references */
+  var objectProto = Object.prototype;
+
+  /** Native method shortcuts */
+  var now = reNative.test(now = Date.now) && now || function() { return +new Date; };
 
   /* Native method shortcuts for methods with the same name as other `lodash` methods */
   var nativeMax = Math.max;
@@ -78,7 +84,7 @@ define(['../objects/isFunction', '../objects/isObject', '../internals/reNative']
       trailing = 'trailing' in options ? options.trailing : trailing;
     }
     var delayed = function() {
-      var remaining = wait - (new Date - stamp);
+      var remaining = wait - (now() - stamp);
       if (remaining <= 0) {
         if (maxTimeoutId) {
           clearTimeout(maxTimeoutId);
@@ -86,7 +92,7 @@ define(['../objects/isFunction', '../objects/isObject', '../internals/reNative']
         var isCalled = trailingCall;
         maxTimeoutId = timeoutId = trailingCall = undefined;
         if (isCalled) {
-          lastCalled = +new Date;
+          lastCalled = now();
           result = func.apply(thisArg, args);
         }
       } else {
@@ -100,14 +106,14 @@ define(['../objects/isFunction', '../objects/isObject', '../internals/reNative']
       }
       maxTimeoutId = timeoutId = trailingCall = undefined;
       if (trailing || (maxWait !== wait)) {
-        lastCalled = +new Date;
+        lastCalled = now();
         result = func.apply(thisArg, args);
       }
     };
 
     return function() {
       args = arguments;
-      stamp = +new Date;
+      stamp = now();
       thisArg = this;
       trailingCall = trailing && (timeoutId || !leading);
 

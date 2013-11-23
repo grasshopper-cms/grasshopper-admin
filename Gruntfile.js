@@ -13,13 +13,16 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+    grunt.loadTasks('tasks');
+
     // Project configuration.
     grunt.initConfig({
 
         watch : {
             options : {
                 // Start a live reload server on the default port: 35729
-                livereload : false
+                livereload : false,
+                nospawn: true
             },
             build : {
                 options : {
@@ -27,8 +30,7 @@ module.exports = function (grunt) {
                     livereload : true
                 },
                 files : [
-                    'build/**/*',
-                    '!build/vendor/**/*'
+                    'build/**/*'
                 ]
             },
             dev : {
@@ -72,9 +74,12 @@ module.exports = function (grunt) {
                     require : 'sass-globbing',
                     sourcemap : true
                 },
-                files : {
-                    'build/application.css' : 'app/application.scss'
-                }
+                files : grunt.file.expandMapping(['themes/**/main.scss'], 'css', {
+                    cwd: 'app/',
+                    rename: function (dest, matched) {
+                        return 'build/' + matched.replace(/\.scss$/, '.css');
+                    }
+                })
             }
         },
 
@@ -110,37 +115,51 @@ module.exports = function (grunt) {
             }
         },
 
-        // TODO: add some clean up tasks after copy, or copy more selectively
+        clean: {
+            build : ['build']
+        },
+
         copy : {
             // TODO: target build copy tasks
             build : {
                 files : [
                     {expand : true, cwd : 'app/', src : [
                         '**',
-                        '!**/*.scss'
+                        '!**/*.scss',
+                        '**/*.html',
+                        '!vendor/**'
                     ], dest : 'build'}
                 ]
             },
-            // TODO: remove redo and only copy the file that was changed:
-            // TODO: https://github.com/gruntjs/grunt-contrib-watch#using-the-watch-event
+            vendor : {
+                files : [
+                    {expand : true, cwd : 'app/', src : [
+                        // created dynamically
+                    ], dest : 'build'}
+                ]
+            },
+            deploy : {
+                files : [
+                    {expand : true, cwd : 'app/', src : [
+                        '**',
+                        '!**/*.scss',
+                        '!**/*.js',
+                        '!vendor/**/*'
+                    ], dest : 'build'}
+                ]
+            },
             redo : {
                 files : [
                     {expand : true, cwd : 'app/', src : [
-                        '!**/*.scss',
-                        'mixins/**/*',
-                        'models/**/*',
-                        'pages/**/*',
-                        'views/**/*',
-                        'workers/**/*',
-                        'api/**/*',
-                        'main.js',
-                        'resources.js',
-                        'index.html',
-                        'router.js',
-                        'collections/**/*',
-                        'localStorage',
-                        'constants.js'
+
                     ], dest : 'build'}
+                ]
+            },
+            vagrant : {
+                files : [
+                    {expand : true, cwd : 'api/lib/config/configuration.test.json', src : [
+
+                    ], dest : 'api/lib/config/configuration.json'}
                 ]
             }
         },
@@ -205,56 +224,94 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: '.jshintrc'
             }
+        },
+
+        requirejs: {
+            dist: {
+                // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
+                options: {
+                    // `name` and `out` is set by grunt-usemin
+                    baseUrl: 'app',
+                    optimize: 'none',
+                    // TODO: Figure out how to make sourcemaps work with grunt-usemin
+                    // https://github.com/yeoman/grunt-usemin/issues/30
+                    //generateSourceMaps: true,
+                    // required to support SourceMaps
+                    // http://requirejs.org/docs/errors.html#sourcemapcomments
+                    preserveLicenseComments: false,
+                    useStrict: true,
+                    wrap: true
+                    //uglify2: {} // https://github.com/mishoo/UglifyJS2
+                }
+            }
+        },
+        useminPrepare: {
+            html: ['app/index.html'],
+            options: {
+                dest: 'build'
+            }
+        },
+        usemin: {
+            html: ['build/index.html'],
+            css: ['build/{,*/}*.css'],
+            options: {
+                dirs: ['build']
+            }
+        },
+        imagemin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: 'app/images',
+                    src: '{,*/}*.{png,jpg,jpeg}',
+                    dest: 'build/images'
+                }]
+            }
+        },
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        'build/**/*.js',
+                        'build/{,*/}*.css',
+                        'build/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
+                    ]
+                }
+            }
         }
     });
 
     // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("server", "Build and watch task", ["jshint", "copy:build", "connect:site", "sass", "open:reload", "watch"]);
-    grunt.registerTask("testServer", "Build and watch task", ["jshint", "copy", "connect:tests", "sass", "open:tests", "watch"]);
-    grunt.registerTask("deploy", "Deploy to gh-pages", ["copy", "build_gh_pages"]);
-    grunt.registerTask("vagrant", "Starts vagrant", ['shell:start_vagrant_box']);
-    grunt.registerTask("testVagrant", "grabs an auth token to ensure box is running", ['shell:test_vagrant_box']);
-    grunt.registerTask('vagrant', "use vagrant:help", function vagrant(target, extra) {
-        var tasks = {
-            install : {
-                run : ["shell:install_api_node_modules","shell:install_api_vagrant_plugins", "vagrant:run:up", "shell:test_vagrant_box" ],
-                help : "Install and set up vagrant box "
-            },
-            test : {
-                run : ['shell:test_vagrant_box'],
-                help : "grabs an auth token to ensure box is running"
-            },
-            run : {
-                help : "runs arbitrary vagrant tasks - e.g. up, reload, destroy"
-            }
-            },
-            vagrantCommands = Array.prototype.splice.call(arguments, 1);
-
-        if (!extra) {
-            if (tasks[target]) {
-                grunt.task.run(tasks[target].run);
-            } else {
-                _.each(_.keys(tasks), function(key) {
-                    grunt.log.subhead(key).writeln(tasks[key].help);
-                });
-            }
-        } else {
-            if ('help' === target) {
-                grunt.log.subhead("Help:").subhead(tasks[extra] ? tasks[extra].help : 'use the form grunt vagrant:help:task');
-            } else if ('run' === target) {
-                vagrantCommands = vagrantCommands.join(' ');
-                grunt.log
-                    .subhead('Running...')
-                    .subhead('vagrant ' + vagrantCommands)
-                    .subhead(' ... go!');
-
-                grunt.config.set('shell.vagrant_go.command', 'vagrant ' + vagrantCommands);
-                grunt.task.run(['shell:vagrant_go']);
-            } else {
-                grunt.task.run(['vagrant:run:' + this.args.join(':')]);
-            }
-        }
-
-
-    });
+    grunt.registerTask("server", "Build and watch task", [
+        'clean',
+        "jshint",
+        "setupBowerCopy",
+        "copy:build",
+        "copy:vendor",
+        "connect:site",
+        "sass",
+        "open:reload",
+        "watch"
+    ]);
+    grunt.registerTask("testServer", "Build and watch task", [
+        "jshint",
+        "copy:build",
+        "connect:tests",
+        "sass",
+        "open:tests",
+        "watch"
+    ]);
+    grunt.registerTask("deploy", "Deploy to gh-pages", [
+        "clean",
+        'copy:deploy',
+        'useminPrepare',
+        'requirejs',
+        'imagemin',
+        'concat',
+        'uglify',
+        'rev',
+        'sass',
+        'usemin',
+        "build_gh_pages"
+    ]);
 };

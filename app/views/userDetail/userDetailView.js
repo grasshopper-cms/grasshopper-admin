@@ -1,70 +1,60 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'resources', 'userWorker'], function (BaseView, rivetView, resources, userWorker) {
+define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView, resources, userWorker, constants) {
 
-        var userDetailView = BaseView.extend({
-            rivetView : rivetView({rivetScope : '#userDetail', rivetPrefix : 'userdetail', instaUpdateRivets : false}),
-            beforeRender : beforeRender,
-            afterRender : afterRender,
-            displaySuccessfulSave : displaySuccessfulSave,
-            displaySaveError : displaySaveError,
-            updateModel : updateModel,
-            updateNameInHeader : updateNameInHeader
-        });
+    var userDetailView = BaseView.extend({
+        beforeRender : beforeRender,
+        updateModel : updateModel,
+        updateNameInHeader : updateNameInHeader,
+        toggleEnabled : toggleEnabled
+    });
 
-        function beforeRender() {
-            this.model.set('isAdmin', this.app.user.get('isAdmin'));
-            this.model.attributesToIgnore = ['isAdmin', 'resources', 'id', 'roles', 'possibleStatus', 'statusOptions'];
-            console.log(this.model.statusOptions);
+    function beforeRender () {
+        var self = this;
+
+        // TODO: make this a computed property. It is checking to see if the current model's ID is the same as Logged in user, the API endpoints are different for Admin editing their own (/user) and admin editing someone else (/users/id)
+        if (this.model.get('id') === this.app.user.get('_id')) {
+            this.model.url = constants.api.user.url;
+        } else {
+            this.model.urlRoot = constants.api.users.url;
         }
 
-//      TODO: Turn this into a mixin
-        function afterRender () {
-            this.rivetView();
-            this.$el.foundation('forms');
-        }
-
-        function updateModel(model) {
-            var self = this;
-
-            this.model.attributes = _.omit(this.model.attributes, this.model.attributesToIgnore);
-            this.model.save()
-                .done(function(model, response, options) {
-                    displaySuccessfulSave();
-                    updateNameInHeader.call(self, self.model);
-                }).fail(function(odel, xhr, options) {
-                    displaySaveError.call(self, xhr);
+        // TODO: Here I am checking to see if the model that is passed to it already has an _id (the id coming from Backbone) if it does, then it does not need to fetch because it already exists.
+        if (!this.model.has('_id')) {
+            this.model.fetch()
+                .done(function() {
+                    self.$el.foundation('forms');
                 });
-
-            return false;
         }
+    }
 
-        function updateNameInHeader(model) {
-            if(userWorker.isThisMyProfile(model, this.app.user.get('_id'))) {
-                this.app.user.set('name', model.get('name'));
-            }
-        }
-
-        function displaySuccessfulSave() {
-            var progressBar = $('.progress-bar');
-
-            progressBar.addClass('active');
-            progressBar.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e){
-                progressBar.addClass('disappear');
-                progressBar.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e){
-                    progressBar.removeClass('active').removeClass('disappear');
-                });
+    function updateModel () {
+        var self = this;
+        this.model.save()
+            .done(function (model) {
+                self.displayTemporaryAlertBox(resources.user.successfullyUpdated, true);
+                updateNameInHeader.call(self, model);
+            }).fail(function () {
+                self.displayAlertBox(resources.user.updateError);
             });
-        }
 
-        function displaySaveError(xhr) {
-            var message = '';
-            if(xhr.status === 500) {
-                message = $.parseJSON(xhr.responseText).message;
-            } else {
-                message = resources.user.errors[xhr.status];
-            }
-            this.displayAlertBox(message);
+        return false;
+    }
+
+    function updateNameInHeader(model) {
+        if (this.app.user.get('_id') === model._id) {
+            this.app.user.set(
+                {
+                    firstName : model.firstname,
+                    lastName : model.lastname
+                });
         }
+    }
+
+    function toggleEnabled() {
+        var enabled = this.model.get('enabled');
+        this.model.set('enabled', (enabled) ? false : true);
+        this.updateModel();
+    }
 
     return userDetailView;
 });
