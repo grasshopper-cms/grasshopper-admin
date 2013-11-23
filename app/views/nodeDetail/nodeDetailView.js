@@ -8,19 +8,18 @@ define(['baseView', 'resources'], function (BaseView, resources) {
     function deleteNode() {
         var self = this;
 
-        this.displayModal('Deleting Nodes has not been tested, confirm with Care!!!')
+        this.displayModal(resources.node.deletionWarning)
             .done(function() {
                 self.model.destroy(
                     {
                         success: function(model) {
-                            self.displayTemporaryAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
                             self.remove();
+                            self.displayTemporaryAlertBox(resources.node.successfullyDeletedPre + model.get('label') + resources.node.successfullyDeletedPost, true);
                         },
                         error: function(model) {
-                            self.displayAlertBox(resources.contentType.errorDeleted + model.get('label'));
+                            self.displayAlertBox(resources.node.errorDeleted + model.get('label'));
                         }
                     });
             });
     }
-
 });

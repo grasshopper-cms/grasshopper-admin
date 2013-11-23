@@ -73,6 +73,12 @@ define({
         addNewUser : 'Add New User',
         addContentType : 'New Content Type'
     },
+    node : {
+        deletionWarning: 'Are you sure you want to delete this folder?',
+        successfullyDeletedPre: 'Node ',
+        successfullyDeletedPost: ' was successfully deleted.',
+        errorDeleted : 'There was an issue deleting this node: '
+    },
     contentType : {
         deletionWarning: 'Are you sure you want to delete this content type?',
         successfullyDeletedPre: 'Content Type ',

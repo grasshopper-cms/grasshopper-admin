@@ -19,6 +19,9 @@ define({
         contentTypes : {
             url : 'http://localhost:8080/contenttypes'
         },
+        node : {
+            url : 'http://localhost:8080/node'
+        },
         nodes : {
             url : 'http://localhost:8080/node/:id/children'
         },
