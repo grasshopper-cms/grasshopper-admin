@@ -103,6 +103,7 @@ define({
     confirm : 'Confirm',
     content : 'Content',
     contentTypes : 'Content Types',
+    dashboard : 'Dashboard',
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',

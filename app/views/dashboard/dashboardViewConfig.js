@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources'], function (templateHtml, dashboardViewModel, resources) {
+define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources', 'constants'],
+    function (templateHtml, dashboardViewModel, resources, constants) {
     'use strict';
 
     return {
@@ -13,6 +14,11 @@ define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resour
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : [],
-        breadcrumbs : []
+        breadcrumbs : [
+            {
+                text : resources.dashboard,
+                href : constants.internalRoutes.home
+            }
+        ]
     };
 });
