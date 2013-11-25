@@ -1,9 +1,11 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['baseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore', 'text!views/assetDetail/_assetDetailRow.html'],
+    function (BaseView, AssetDetailView, assetDetailViewConfig, _, assetDetailRowTemplate) {
     'use strict';
 
     var assetIndexView = BaseView.extend({
-        beforeRender: beforeRender
+        beforeRender: beforeRender,
+        appendAssetDetailRow : appendAssetDetailRow
     });
 
     function beforeRender() {
@@ -17,8 +19,25 @@ define(['baseView'], function (BaseView) {
 
         this.model.fetch()
             .done(function() {
-                console.log(self.model);
+                _.each(self.model.attributes, function(asset) {
+                    if(_.has(asset, 'url')) {
+                        self.appendAssetDetailRow(asset);
+                    }
+                });
             });
+    }
+
+    function appendAssetDetailRow(asset) {
+        var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,
+            {
+                name : 'assetDetailRow',
+                modelData : asset,
+                el : '#assetDetailRow',
+                templateHtml : assetDetailRowTemplate,
+                mastheadButtons : this.options.mastheadButtons
+            }
+        ));
+        assetDetailView.start();
     }
 
     return assetIndexView;
