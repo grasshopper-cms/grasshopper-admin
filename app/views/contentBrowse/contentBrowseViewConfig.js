@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'contentBrowseViewModel'], function (templateHtml, resources, contentBrowseViewModel) {
+define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'contentBrowseViewModel', 'constants'],
+    function (templateHtml, resources, contentBrowseViewModel, constants) {
     'use strict';
 
     return {
@@ -27,6 +28,12 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             {
                 text : resources.mastheadButtons.actions,
                 href : '#'
+            }
+        ],
+        breadcrumbs : [
+            {
+                text : resources.content,
+                href : constants.internalRoutes.content
             }
         ],
         permissions: ['admin', 'reader', 'editor']

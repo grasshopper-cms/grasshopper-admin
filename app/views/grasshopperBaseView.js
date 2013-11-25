@@ -40,6 +40,9 @@ define(['masseuseBaseView'], function (BaseView) {
                     if (self.options.mastheadButtons) {
                         self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons));
                     }
+                    if (self.options.breadcrumbs) {
+                        self.channels.views.trigger('updateMastheadBreadcrumbs', (self.options.breadcrumbs));
+                    }
                     break;
             }
         });

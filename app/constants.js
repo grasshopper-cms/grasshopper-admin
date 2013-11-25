@@ -62,20 +62,3 @@ define({
         }
     }
 });
-
-///search
-
-//var query = {
-//    nodes: "526d5179966a883540000006",  will accept a string or array of ID's,
-//    types: [],
-//    filters: [],
-//    options: {}
-//};
-//request(url)
-//    .post('/content/query')
-//    .set('Accept', 'application/json')
-//    .set('Accept-Language', 'en_US')
-//    .set('authorization', 'Token ' + globalReaderToken)
-//    .send(query)
-//    .end(function(err, res) {
-//    });

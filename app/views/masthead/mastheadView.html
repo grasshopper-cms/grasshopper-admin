@@ -1,13 +1,11 @@
 <div id="[[=viewId ]]" class="container">
     <div class="row">
         <div class="large-6 columns">
-
             <div class="masthead-pad">
-
                 <div class="masthead-text">
                     <h2>
                         <i id="MastheadIcon"></i>
-                        <span data-rv-text="data.title"></span>
+                        <span data-rv-each-breadcrumb="data.breadcrumbs"><a data-rv-href="breadcrumb.href">{{breadcrumb.text}}</a></span>
 
                     </h2>
                     <p data-rv-text="data.description"></p>

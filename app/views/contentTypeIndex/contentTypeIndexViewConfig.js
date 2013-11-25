@@ -20,6 +20,12 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
                 href : constants.internalRoutes.newContentType
             }
         ],
+        breadcrumbs : [
+            {
+                text : resources.contentTypes,
+                href : constants.internalRoutes.contentTypes
+            }
+        ],
         permissions: ['admin', 'reader', 'editor']
     };
 });

@@ -4,9 +4,7 @@ define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resour
 
     return {
         name : 'dashboardView',
-        modelData:{
-                    name: 'Bob'
-                  },
+        modelData:{},
         modelType : dashboardViewModel,
         el : '#stage',
         templateHtml : templateHtml,
@@ -14,6 +12,7 @@ define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resour
         appendView : true,
         bindings : [],
         rivetConfig : 'auto',
-        mastheadButtons : []
+        mastheadButtons : [],
+        breadcrumbs : []
     };
 });

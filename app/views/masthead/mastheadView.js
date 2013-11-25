@@ -5,11 +5,13 @@ define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
         beforeRender : beforeRender,
         afterRender: afterRender,
         setIcon: setIcon,
-        setButtons : setButtons
+        setButtons : setButtons,
+        setBreadcrumbs : setBreadcrumbs
     });
 
     function beforeRender() {
         this.setButtons();
+        this.setBreadcrumbs();
     }
 
     function afterRender () {
@@ -25,11 +27,19 @@ define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
 
     function setButtons(buttonArray) {
         if(!buttonArray) {
-            this.model.set('buttons', this.options.mastheadButtons);
+            this.model.set('buttons', this.options.defaultMastheadButtons);
         } else {
             this.model.set('buttons', buttonArray);
         }
 
+    }
+
+    function setBreadcrumbs(breadcrumbs) {
+        if(!breadcrumbs) {
+            this.model.set('breadcrumbs', this.options.defaultBreadcrumbs);
+        } else {
+            this.model.set('breadcrumbs', breadcrumbs);
+        }
     }
 
     return MastheadView;

@@ -5,7 +5,6 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
     return {
         name : 'mastheadView',
         modelData : {
-                        title: 'cms/folder/Pages',
                         icon: 'icon-file',
                         description: '23 content items. 45 files.'
                     },
@@ -15,10 +14,17 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
         events : {},
         appendView : true,
         bindings : [
-            ['channels.views', 'updateMastheadButtons', 'setButtons']
+            ['channels.views', 'updateMastheadButtons', 'setButtons'],
+            ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']
         ],
         rivetConfig : 'auto',
-        mastheadButtons : [
+        defaultBreadcrumbs : [
+            {
+                text: resources.home,
+                href: '#'
+            }
+        ],
+        defaultMastheadButtons : [
                 {
                     text : resources.mastheadButtons.createContent,
                     href : '#'
