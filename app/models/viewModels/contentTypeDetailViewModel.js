@@ -3,7 +3,7 @@ define(['grasshopperModel', 'resources', 'constants', 'computedProperty'], funct
         idAttribute : '_id',
         defaults: {
             resources : resources,
-            urlLink : new ComputedProperty(['_id'], function(id) {
+            href : new ComputedProperty(['_id'], function(id) {
                 return constants.internalRoutes.contentTypes + '/' + id;
             })
         },

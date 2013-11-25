@@ -1,14 +1,14 @@
 <tr id="[[= viewId ]]">
-    <td>
+    <td class="clickableCell">
         <img src="http://placehold.it/40x40"/>
                             {{data.firstname | spaceAfter}}
                             {{data.lastname}}
     </td>
-    <td data-rv-text="data.login"></td>
-    <td data-rv-text="data.role"></td>
-    <td data-rv-text="data.email"></td>
+    <td class="clickableCell">{{data.login}}</td>
+    <td class="clickableCell">{{data.role}}</td>
+    <td class="clickableCell">{{data.email}}</td>
     <td align="center">
-        <a data-rv-href="data.urlLink">
+        <a data-rv-href="data.href">
             <i class="icon-edit"></i>
         </a>
         <a data-rv-show="data.enabled" class="toggleEnabled" data-rv-href="#">

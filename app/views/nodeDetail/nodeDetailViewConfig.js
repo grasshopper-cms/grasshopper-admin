@@ -9,7 +9,8 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
         el : '#stage',
         templateHtml : formTemplate,
         events : {
-            'click #deleteNode' : 'deleteNode'
+            'click #deleteNode' : 'deleteNode',
+            'click .clickableCell' : 'handleRowClick'
         },
         appendView : true,
         bindings : [],

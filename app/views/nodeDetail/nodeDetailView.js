@@ -2,7 +2,8 @@
 define(['baseView', 'resources'], function (BaseView, resources) {
 
     return BaseView.extend({
-        deleteNode: deleteNode
+        deleteNode : deleteNode,
+        handleRowClick : handleRowClick
     });
 
     function deleteNode() {
@@ -22,4 +23,9 @@ define(['baseView', 'resources'], function (BaseView, resources) {
                     });
             });
     }
+
+    function handleRowClick() {
+        this.app.router.navigateTrigger(this.model.get('href'));
+    }
+
 });

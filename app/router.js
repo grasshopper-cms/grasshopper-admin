@@ -101,10 +101,10 @@ define([
             return $deferred.promise();
         }
 
-        function navigateTrigger (fragment, options) {
+        function navigateTrigger (fragment, options, doBeforeRender) {
             options = options || {};
             options.trigger = true;
-            this.navigate(fragment, options);
+            this.navigate(fragment, options, doBeforeRender);
         }
 
         function navigateNinja (fragment, options) {

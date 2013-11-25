@@ -5,7 +5,8 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
         beforeRender : beforeRender,
         updateModel : updateModel,
         updateNameInHeader : updateNameInHeader,
-        toggleEnabled : toggleEnabled
+        toggleEnabled : toggleEnabled,
+        handleRowClick : handleRowClick
     });
 
     function beforeRender () {
@@ -54,6 +55,11 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
         var enabled = this.model.get('enabled');
         this.model.set('enabled', (enabled) ? false : true);
         this.updateModel();
+    }
+
+    function handleRowClick(e) {
+        e.stopPropagation();
+        this.app.router.navigateTrigger(this.model.get('href'), {}, true);
     }
 
     return userDetailView;

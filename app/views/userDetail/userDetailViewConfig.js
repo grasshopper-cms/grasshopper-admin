@@ -10,7 +10,8 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
         templateHtml : formTemplate,
         events : {
             'click #saveUser' : 'updateModel',
-            'click .toggleEnabled' : 'toggleEnabled'
+            'click .toggleEnabled' : 'toggleEnabled',
+            'click .clickableCell' : 'handleRowClick'
         },
         appendView : true,
         bindings : [],
