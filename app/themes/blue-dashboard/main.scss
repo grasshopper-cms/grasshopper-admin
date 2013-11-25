@@ -54,6 +54,10 @@ body, html {
     {
       @include lightGradient;
     }
+    td{
+      -webkit-user-select: none;
+      user-select: none;
+    }
   }
 
   label, input, button, select, textarea {
