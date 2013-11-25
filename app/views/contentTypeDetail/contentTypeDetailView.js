@@ -3,7 +3,8 @@ define(['baseView', 'resources'], function (BaseView, resources) {
 
     return BaseView.extend({
         beforeRender : beforeRender,
-        deleteContentType : deleteContentType
+        deleteContentType : deleteContentType,
+        handleRowClick : handleRowClick
     });
 
     function beforeRender () {
@@ -35,6 +36,11 @@ define(['baseView', 'resources'], function (BaseView, resources) {
                         }
                     });
             });
+    }
+
+    function handleRowClick(e) {
+        e.stopPropagation();
+        this.app.router.navigateTrigger(this.model.get('href'), {}, true);
     }
 
 });
