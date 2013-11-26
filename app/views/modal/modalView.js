@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView', 'text!views/modal/_imageModalView.html'], function (BaseView, imageModalViewTemplate) {
+define(['baseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html'], function (BaseView, imageModalViewTemplate, inputModalViewTemplate) {
     'use strict';
 
     var ModalView = BaseView.extend({
@@ -12,6 +12,9 @@ define(['baseView', 'text!views/modal/_imageModalView.html'], function (BaseView
         switch (options.type) {
             case 'image':
                 options.templateHtml = imageModalViewTemplate;
+                break;
+            case 'input':
+                options.templateHtml = inputModalViewTemplate;
                 break;
         }
         BaseView.prototype.initialize.apply(this, arguments);

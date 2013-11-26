@@ -15,7 +15,8 @@ define([
     'contentBrowseView', 'contentBrowseViewConfig',
     'contentDetailView', 'contentDetailViewConfig',
     'contentTypeIndexView', 'contentTypeIndexViewConfig',
-    'contentTypeDetailView', 'contentTypeDetailViewConfig'
+    'contentTypeDetailView', 'contentTypeDetailViewConfig',
+    'createFolderView', 'createFolderViewConfig'
 ],
     function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
               BaseView,
@@ -32,7 +33,8 @@ define([
               ContentBrowseView, contentBrowseViewConfig,
               ContentDetailView, contentDetailViewConfig,
               ContentTypeIndexView, contentTypeIndexViewConfig,
-              ContentTypeDetailView, contentTypeDetailViewConfig
+              ContentTypeDetailView, contentTypeDetailViewConfig,
+              CreateFolderView, createFolderViewConfig
               ) {
 
         var userModel = new UserModel(),
@@ -57,6 +59,7 @@ define([
                 'item/types(/:id)' : 'displayContentTypeDetail',
                 'items(/nodeid/:nodeId)': 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
+                'createFolder' : 'displayCreateFolder',
                 '*path' : 'goHome'
             },
 
@@ -86,7 +89,8 @@ define([
             displayContentBrowse : displayContentBrowse,
             displayContentDetail : displayContentDetail,
             displayContentTypeIndex : displayContentTypeIndex,
-            displayContentTypeDetail : displayContentTypeDetail
+            displayContentTypeDetail : displayContentTypeDetail,
+            displayCreateFolder : displayCreateFolder
         });
 
         function onRouteFail () {
@@ -342,6 +346,11 @@ define([
                         id : id
                     }
                 }));
+        }
+
+        function displayCreateFolder() {
+            var createFolderView = new CreateFolderView(createFolderViewConfig);
+            createFolderView.start();
         }
 
         return Router;
