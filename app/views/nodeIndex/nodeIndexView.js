@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'text!views/nodeDetail/_nodeDetailRow.html'], function (BaseView, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
+define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'text!views/nodeDetail/_nodeDetailRow.html'],
+    function (BaseView, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
     'use strict';
 
     var nodeIndexView = BaseView.extend({
