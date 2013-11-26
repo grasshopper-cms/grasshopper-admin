@@ -26,6 +26,6 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
                 href : constants.internalRoutes.contentTypes
             }
         ],
-        permissions: ['admin', 'reader', 'editor']
+        permissions: ['admin', 'editor']
     };
 });
