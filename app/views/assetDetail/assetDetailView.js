@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['baseView', 'resources'], function (BaseView, resources) {
 
     return BaseView.extend({
         handleRowClick : handleRowClick,
@@ -12,7 +12,19 @@ define(['baseView'], function (BaseView) {
     }
 
     function deleteAsset() {
-        this.displayModal('deleting assets has not been enabled.');
+        var self = this;
+
+        this.displayModal(resources.asset.deletionWarning)
+            .done(function() {
+                self.model.destroy()
+                    .done(function() {
+                        self.displayTemporaryAlertBox(resources.asset.successfullyDeletedPre + self.model.get('fileName') + resources.asset.successfullyDeletedPost, true);
+                        self.remove();
+                    })
+                    .fail(function() {
+                        self.displayAlertBox(resources.asset.errorDeleted + self.model.get('fileName'));
+                    });
+            });
     }
 
 });

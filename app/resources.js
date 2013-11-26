@@ -85,6 +85,12 @@ define({
         successfullyDeletedPost: ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: '
     },
+    asset : {
+        deletionWarning : 'Are you sure you want to delete this asset?',
+        successfullyDeletedPre: 'Asset Name: ',
+        successfullyDeletedPost: ' was successfully deleted.',
+        errorDeleted : 'There was an issue deleting this asset: '
+    },
     contentBrowse : {
         author: 'Author',
         modified: 'Modified'

@@ -31,7 +31,11 @@ define(['baseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore', 't
         var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,
             {
                 name : 'assetDetailRow',
-                modelData : asset,
+                modelData : _.extend(asset,
+                    {
+                        nodeId : this.options.nodeId
+                    }
+                ),
                 el : '#assetDetailRow',
                 templateHtml : assetDetailRowTemplate,
                 mastheadButtons : this.options.mastheadButtons
