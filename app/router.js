@@ -251,11 +251,12 @@ define([
             }
         }
 
-        function displayModal (msg) {
+        function displayModal (msg, img) {
             var $deferred = new $.Deferred();
             var modalView = new ModalView(_.extend(modalViewConfig, {
                 modelData: {
-                    msg: msg
+                    msg: msg,
+                    image: (img) ? img : null
                 },
                 $deferred : $deferred
             }));

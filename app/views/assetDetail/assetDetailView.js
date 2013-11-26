@@ -8,7 +8,8 @@ define(['baseView', 'resources'], function (BaseView, resources) {
 
     function handleRowClick(e) {
         e.stopPropagation();
-        this.displayModal('downloading / viewing of assets in Grasshopper has not been implemented.');
+        console.log(this.model.get('url'));
+        this.displayModal('downloading / viewing of assets in Grasshopper has not been implemented.', this.model.get('url'));
     }
 
     function deleteAsset() {
