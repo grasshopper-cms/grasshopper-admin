@@ -9,9 +9,9 @@ define(['baseView', 'resources'], function (BaseView, resources) {
     function handleRowClick(e) {
         e.stopPropagation();
         console.log(this.model.get('url'));
-        this.displayModal('downloading / viewing of assets in Grasshopper has not been implemented.', 'image', 'http:/localhost:8080/5261781556c02c072a000007/Doom.jpg');
-
-//        this.displayModal('downloading / viewing of assets in Grasshopper has not been implemented.', 'image', this.model.get('url'));
+        this.displayModal(this.model.get('fileName'), 'image', 'http://localhost:8080/5261781556c02c072a000007/Doom.jpg');
+        // TODO: This line above needs to be deleted and the line below needs to be uncommented when the bug with the asset URL is fixed from the API side.
+//        this.displayModal(this.model.get('fileName'), 'image',  this.model.get('url'));
     }
 
     function deleteAsset() {

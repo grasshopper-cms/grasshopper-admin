@@ -186,7 +186,6 @@ body, html {
   #modal-contents {
     z-index: 99;
     height: auto;
-    width: 80%;
     background-color: $modal-contents-background-color;
     padding: 1.25em;
     border: solid 1px $modal-contents-border-color;
@@ -197,6 +196,13 @@ body, html {
     #button-container {
       text-align: center;
       margin-top: 10px;
+    }
+    #image-container {
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
   }
 
