@@ -1,10 +1,10 @@
 /*global define:false*/
-define(['createFolderViewModel'], function (createFolderViewModel) {
+define(['addFolderViewModel'], function (addFolderViewModel) {
     'use strict';
 
     return {
-        name : 'createFolderView',
-        modelType : createFolderViewModel,
+        name : 'addFolderView',
+        modelType : addFolderViewModel,
         modelData : {},
         rivetConfig : 'auto',
         bindings : [],

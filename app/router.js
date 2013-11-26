@@ -16,7 +16,7 @@ define([
     'contentDetailView', 'contentDetailViewConfig',
     'contentTypeIndexView', 'contentTypeIndexViewConfig',
     'contentTypeDetailView', 'contentTypeDetailViewConfig',
-    'createFolderView', 'createFolderViewConfig'
+    'addFolderView', 'addFolderViewConfig'
 ],
     function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
               BaseView,
@@ -34,7 +34,7 @@ define([
               ContentDetailView, contentDetailViewConfig,
               ContentTypeIndexView, contentTypeIndexViewConfig,
               ContentTypeDetailView, contentTypeDetailViewConfig,
-              CreateFolderView, createFolderViewConfig
+              AddFolderView, addFolderViewConfig
               ) {
 
         var userModel = new UserModel(),
@@ -349,8 +349,8 @@ define([
         }
 
         function displayCreateFolder() {
-            var createFolderView = new CreateFolderView(createFolderViewConfig);
-            createFolderView.start();
+            var addFolderView = new AddFolderView(addFolderViewConfig);
+            addFolderView.start();
         }
 
         return Router;
