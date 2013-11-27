@@ -75,9 +75,12 @@ define({
     },
     node : {
         deletionWarning: 'Are you sure you want to delete this folder?',
-        successfullyDeletedPre: 'Node ',
+        successfullyDeletedPre: 'Folder ',
         successfullyDeletedPost: ' was successfully deleted.',
-        errorDeleted : 'There was an issue deleting this node: '
+        errorDeleted : 'There was an issue deleting this folder: ',
+        create : {
+            enterName: 'Please enter the name of the folder: '
+        }
     },
     contentType : {
         deletionWarning: 'Are you sure you want to delete this content type?',

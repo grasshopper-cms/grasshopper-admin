@@ -35,10 +35,12 @@ define(['constants', 'base64', 'LocalStorage'], function (constants, base64, Loc
                 headers : {'Authorization' : 'Token ' + token}
             });
         },
-        makeQuery : function(url, data) {
-            return this.post(url, data);
+        makeQuery : function(data) {
+            return this.post(constants.api.contentQuery.url, data);
+        },
+        postNewFolder : function(data) {
+            return this.post(constants.api.node.url, data);
         }
-
     };
 
 });

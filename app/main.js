@@ -201,8 +201,10 @@ require([
         // TODO : This should come from a build task run in Grunt
         $('head').append('<link rel="stylesheet" type="text/css" href="themes/' + constants.defaults.theme + '/main.css" />');
 
-        new Router();
+        var router = new Router();
         Backbone.history.start();
+        router.breadcrumb = [];
+        Backbone.history.on('route', function() { router.breadcrumb.push(this.fragment); }, this);
         // TODO: setup push state on nginx
         //Backbone.history.start({pushState: true});
 });

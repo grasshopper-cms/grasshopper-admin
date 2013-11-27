@@ -11,7 +11,7 @@ define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'cont
     function beforeRender() {
         var self = this;
 
-        Api.makeQuery(constants.api.contentQuery.url,
+        Api.makeQuery(
             {
                 nodes: this.options.nodeId,
                 types: [],
