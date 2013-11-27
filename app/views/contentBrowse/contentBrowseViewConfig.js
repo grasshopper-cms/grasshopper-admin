@@ -23,7 +23,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             },
             {
                 text : resources.mastheadButtons.createFolder,
-                href : '#createFolder'
+                href : constants.internalRoutes.createFolder
             },
             {
                 text : resources.mastheadButtons.actions,

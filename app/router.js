@@ -316,6 +316,7 @@ define([
         }
 
         function displayContentBrowse(nodeId) {
+            this.contentBrowserNodeId = nodeId;
             loadMainContent(ContentBrowseView, _.extend({}, contentBrowseViewConfig,
                 {
                     modelData: {

@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig', 'constants'],
-    function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _, ContentIndexView, contentIndexViewConfig, constants) {
+define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig'],
+    function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _, ContentIndexView, contentIndexViewConfig) {
     'use strict';
 
-    var ContentBrowseView = BaseView.extend({
+    return BaseView.extend({
         afterRender: afterRender
     });
 
@@ -14,7 +14,7 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         var nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
                 {
                     nodeId: this.model.get('nodeId'),
-                    mastheadButtons: this.options.mastheadButtons
+                    mastheadButtons: null
                 }
              ));
         nodeIndexView.start();
@@ -22,7 +22,7 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         var assetIndexView = new AssetIndexView(_.extend({}, assetIndexViewConfig,
                 {
                     nodeId: this.model.get('nodeId'),
-                    mastheadButtons: this.options.mastheadButtons
+                    mastheadButtons: null
                 }
             ));
         assetIndexView.start();
@@ -34,11 +34,10 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
             var contentIndexView = new ContentIndexView(_.extend({}, contentIndexViewConfig,
                 {
                     nodeId: this.model.get('nodeId'),
-                    mastheadButtons: this.options.mastheadButtons
+                    mastheadButtons: null
                 }));
             contentIndexView.start();
         }
     }
 
-    return ContentBrowseView;
 });

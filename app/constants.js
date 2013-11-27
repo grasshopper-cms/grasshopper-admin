@@ -44,7 +44,8 @@ define({
         home : '#home',
         login : '#login',
         logout : '#logout',
-        about : '#about'
+        about : '#about',
+        createFolder : '#createFolder/:id'
     },
     defaults : {
         theme: 'blue-dashboard'

@@ -1,12 +1,13 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
+define(['baseView', 'rivetView', 'jquery', 'underscore'], function (BaseView, rivetView, $, _) {
 
     var MastheadView = BaseView.extend({
         beforeRender : beforeRender,
         afterRender: afterRender,
         setIcon: setIcon,
         setButtons : setButtons,
-        setBreadcrumbs : setBreadcrumbs
+        setBreadcrumbs : setBreadcrumbs,
+        interpolateMastheadButtons : interpolateMastheadButtons
     });
 
     function beforeRender() {
@@ -29,9 +30,8 @@ define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
         if(!buttonArray) {
             this.model.set('buttons', this.options.defaultMastheadButtons);
         } else {
-            this.model.set('buttons', buttonArray);
+            this.model.set('buttons', this.interpolateMastheadButtons(buttonArray));
         }
-
     }
 
     function setBreadcrumbs(breadcrumbs) {
@@ -40,6 +40,21 @@ define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
         } else {
             this.model.set('breadcrumbs', breadcrumbs);
         }
+    }
+
+    function interpolateMastheadButtons(buttonArray) {
+        var self = this;
+        // TODO: The intention here was to reset the mastheadButtons with new information when new info is avail...though.. for some reason rivets is not updating...
+        if (this.app.router.contentBrowserNodeId) {
+            _.each(buttonArray, function(button) {
+                for(var key in button) {
+                    if(_.isString(button[key])) {
+                        button[key] = button[key].replace(':id', self.app.router.contentBrowserNodeId);
+                    }
+                }
+            });
+        }
+        return buttonArray;
     }
 
     return MastheadView;
