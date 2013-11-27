@@ -43,18 +43,33 @@ define(['baseView', 'rivetView', 'jquery', 'underscore'], function (BaseView, ri
     }
 
     function interpolateMastheadButtons(buttonArray) {
-        var self = this;
-        // TODO: The intention here was to reset the mastheadButtons with new information when new info is avail...though.. for some reason rivets is not updating...
+        // TODO: Tons of repetition here. Refactor this.
+        var self = this,
+            interpolatedArray = [],
+            obj = {},
+            max = buttonArray.length,
+            i = 0,
+            key;
+
         if (this.app.router.contentBrowserNodeId) {
-            _.each(buttonArray, function(button) {
-                for(var key in button) {
-                    if(_.isString(button[key])) {
-                        button[key] = button[key].replace(':id', self.app.router.contentBrowserNodeId);
-                    }
+            for(i, max; i < max; i++) {
+                for(key in buttonArray[i]) {
+                    obj[key] = buttonArray[i][key].replace(':id', self.app.router.contentBrowserNodeId);
                 }
-            });
+                interpolatedArray.push(obj);
+                obj = {};
+            }
+        } else {
+            for(i, max; i < max; i++) {
+                for(key in buttonArray[i]) {
+                    obj[key] = buttonArray[i][key].replace('/:id', '');
+                }
+                interpolatedArray.push(obj);
+                obj = {};
+            }
         }
-        return buttonArray;
+
+        return interpolatedArray;
     }
 
     return MastheadView;
