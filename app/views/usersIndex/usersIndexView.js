@@ -56,7 +56,7 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', '
                     // TODO: set this template some other way. Maybe in the Config?
                     templateHtml : rowTemplate,
                     model : model,
-                    mastheadButtons : this.options.mastheadButtons
+                    mastheadButtons : null
                 }
             ));
             userDetailView.start();

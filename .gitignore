@@ -5,3 +5,4 @@ desktop.ini
 *npm-debug*
 build
 .sass-cache
+app/vendor

@@ -59,7 +59,7 @@ define([
                 'item/types(/:id)' : 'displayContentTypeDetail',
                 'items(/nodeid/:nodeId)': 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
-                'createFolder' : 'displayCreateFolder',
+                'createFolder(/:id)' : 'displayCreateFolder',
                 '*path' : 'goHome'
             },
 
@@ -349,7 +349,8 @@ define([
                 }));
         }
 
-        function displayCreateFolder() {
+        function displayCreateFolder(id) {
+            console.log(id);
             var addFolderView = new AddFolderView(addFolderViewConfig);
             addFolderView.start();
         }

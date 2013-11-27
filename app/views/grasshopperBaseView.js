@@ -33,15 +33,15 @@ define(['masseuseBaseView'], function (BaseView) {
         $promise.progress(function(event){
             switch (event) {
                 case BaseView.afterRenderDone:
-                    if (self.options.rivetConfig) {
-                        self.rivetView();
-                        self.channels.views.trigger('rivetViewRendered');
-                    }
                     if (self.options.mastheadButtons) {
                         self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons));
                     }
                     if (self.options.breadcrumbs) {
                         self.channels.views.trigger('updateMastheadBreadcrumbs', (self.options.breadcrumbs));
+                    }
+                    if (self.options.rivetConfig) {
+                        self.rivetView();
+                        self.channels.views.trigger('rivetViewRendered');
                     }
                     break;
             }

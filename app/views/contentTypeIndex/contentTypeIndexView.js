@@ -29,7 +29,7 @@ define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'tex
                 el : '#contentTypeIndexTable',
                 templateHtml : rowTemplate,
                 modelData : data,
-                mastheadButtons : this.options.mastheadButtons
+                mastheadButtons : null
             }));
 
         contentTypeDetailView.start();
