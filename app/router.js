@@ -350,8 +350,13 @@ define([
         }
 
         function displayCreateFolder(id) {
-            console.log(id);
-            var addFolderView = new AddFolderView(addFolderViewConfig);
+            var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
+                {
+                    modelData: {
+                        nodeId : (id) ? id : 'null'
+                    }
+                }
+            ));
             addFolderView.start();
         }
 

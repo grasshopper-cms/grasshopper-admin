@@ -5,15 +5,18 @@ define(['baseView', 'api', 'jquery', 'resources'],
 
     return BaseView.extend({
         afterRender : afterRender,
-        navigateBack : navigateBack
+        navigateBack : navigateBack,
+        createFolder : createFolder
     });
 
     function afterRender() {
         var self = this;
 
+        console.log(this.model.get('nodeId'));
+
         this.displayModal(resources.node.create.enterName, 'input')
             .done(function(data) {
-                _createFolder(data)
+                self.createFolder(data)
                     .done(function() {
                         // TODO: somehow refesh the folder listing in the background so the new folder shows up.
                         self.displayModal('Add Content Types: ', 'addContent')
@@ -40,12 +43,12 @@ define(['baseView', 'api', 'jquery', 'resources'],
         this.app.router.navigateNinja(this.app.router.breadcrumb[this.app.router.breadcrumb.length - 2]);
     }
 
-    function _createFolder(folderName) {
+    function createFolder(folderName) {
         var $deferred = new $.Deferred(),
             data = {
                 label : folderName,
-                slug : 'sfdsafdsdsaoer',
-                parent : '5261781556c02c072a000007'
+                slug : 'ejejejejejejej',
+                parent : this.model.get('nodeId')
             };
 
         Api.postNewFolder(data)
