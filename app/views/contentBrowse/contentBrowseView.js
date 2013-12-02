@@ -4,7 +4,8 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
     'use strict';
 
     return BaseView.extend({
-        afterRender: afterRender
+        afterRender: afterRender,
+        beforeRender: beforeRender
     });
 
     function afterRender() {
@@ -40,4 +41,19 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         }
     }
 
+    function beforeRender() {
+        this.options.breadcrumbs.push(
+            {
+                text: 'breadcrumb1',
+                href: '#'
+            }
+        );
+        this.options.breadcrumbs.push(
+            {
+                text: 'breadcrumb2',
+                href: '#'
+            }
+        );
+        this.channels.views.trigger('updateMastheadBreadcrumbs', (this.options.breadcrumbs));
+    }
 });

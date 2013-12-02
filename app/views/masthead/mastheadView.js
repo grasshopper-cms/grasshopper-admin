@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'jquery', 'underscore'], function (BaseView, rivetView, $, _) {
+define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
 
-    var MastheadView = BaseView.extend({
+    return BaseView.extend({
         beforeRender : beforeRender,
         afterRender: afterRender,
         setIcon: setIcon,
@@ -72,5 +72,4 @@ define(['baseView', 'rivetView', 'jquery', 'underscore'], function (BaseView, ri
         return interpolatedArray;
     }
 
-    return MastheadView;
 });
