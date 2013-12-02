@@ -28,6 +28,9 @@ define({
         assets : {
             url : 'http://localhost:8080/node/:id/assets'
         },
+        nodesContentTypes : {
+            url : 'http://localhost:8080/node/:id/contenttype'
+        },
         contentQuery: {
             url : 'http://localhost:8080/content/query'
         }

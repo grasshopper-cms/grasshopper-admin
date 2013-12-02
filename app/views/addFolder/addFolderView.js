@@ -1,12 +1,13 @@
 /*global define:false*/
-define(['baseView', 'api', 'jquery', 'resources'],
-    function (BaseView, Api, $, resources) {
+define(['baseView', 'api', 'jquery', 'resources', 'underscore'],
+    function (BaseView, Api, $, resources, _) {
     'use strict';
 
     return BaseView.extend({
         afterRender : afterRender,
         navigateBack : navigateBack,
-        createFolder : createFolder
+        createFolder : createFolder,
+        addContentTypesToFolder : addContentTypesToFolder
     });
 
     function afterRender() {
@@ -21,17 +22,23 @@ define(['baseView', 'api', 'jquery', 'resources'],
                         // TODO: refresh the folder listing in the background so the new folder shows up.
                         self.displayModal('Add Content Types: ', 'addContent')
                             .done(function(data) {
-                                console.log(data);
+                                self.addContentTypesToFolder(data)
+                                    .done(function() {
+                                        self.displayTemporaryAlertBox('Content Type Added', true);
+                                    })
+                                    .fail(function(msg) {
+                                        self.displayTemporaryAlertBox(msg);
+                                    });
                             })
                             .always(function() {
                                 self.navigateBack();
                             });
                     })
                     .fail(function() {
-                        self.displayModal('POSTING THE NEW FOLDER DID NOT WORK (remember that the Slug needs to be Unique...for now..until Travis implements the auto Slug generator)')
-                            .always(function() {
-                                self.navigateBack();
-                            });
+                        self.displayTemporaryAlertBox('folder could not be added');
+                    })
+                    .always(function() {
+                        self.navigateBack();
                     });
             })
             .fail(function() {
@@ -58,6 +65,31 @@ define(['baseView', 'api', 'jquery', 'resources'],
             })
             .fail(function() {
                 $deferred.reject();
+            });
+
+        return $deferred.promise();
+    }
+
+    function addContentTypesToFolder(data) {
+        var contentTypes = [],
+            $deferred = new $.Deferred();
+
+        _.each(data.results, function(contentType) {
+            if(contentType.checked) {
+                contentTypes.push(
+                    {
+                        id: contentType._id
+                    }
+                );
+            }
+        });
+
+        Api.addContentTypesToNode(this.model.get('nodeId'), contentTypes)
+            .done(function() {
+                $deferred.resolve();
+            })
+            .fail(function(xhr) {
+                $deferred.reject(xhr.responseJSON.message);
             });
 
         return $deferred.promise();
