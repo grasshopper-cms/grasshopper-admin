@@ -9,16 +9,16 @@ define(['baseView', 'resources'], function (BaseView, resources) {
     function deleteContent() {
         var self = this;
 
-        this.displayModal('Deleting Content has not been tested, confirm with Care!!!')
+        this.displayModal(resources.contentItem.deletionWarning)
             .done(function() {
                 self.model.destroy(
                     {
                         success: function(model) {
-                            self.displayTemporaryAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
+                            self.displayTemporaryAlertBox(resources.contentItem.successfullyDeletedPre + model.get('label') + resources.contentItem.successfullyDeletedPost, true);
                             self.remove();
                         },
                         error: function(model) {
-                            self.displayAlertBox(resources.contentType.errorDeleted + model.get('label'));
+                            self.displayAlertBox(resources.contentItem.errorDeleted + model.get('label'));
                         }
                     });
             });

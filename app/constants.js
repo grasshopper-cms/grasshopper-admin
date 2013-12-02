@@ -31,6 +31,9 @@ define({
         nodesContentTypes : {
             url : 'http://localhost:8080/node/:id/contenttype'
         },
+        content : {
+            url : 'http://localhost:8080/content'
+        },
         contentQuery: {
             url : 'http://localhost:8080/content/query'
         }

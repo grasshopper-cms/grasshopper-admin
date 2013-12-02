@@ -82,6 +82,12 @@ define({
             enterName: 'Please enter the name of the folder: '
         }
     },
+    contentItem : {
+        deletionWarning: 'Are you sure you want to delete this content?',
+        successfullyDeletedPre: 'Content ',
+        successfullyDeletedPost: ' was successfully deleted.',
+        errorDeleted : 'There was an issue deleting this content: '
+    },
     contentType : {
         deletionWarning: 'Are you sure you want to delete this content type?',
         successfullyDeletedPre: 'Content Type ',
