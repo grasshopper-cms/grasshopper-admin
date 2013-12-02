@@ -9,7 +9,9 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
         el : '#stage',
         templateHtml : templateHtml,
         rivetConfig : 'auto',
-        bindings : [],
+        bindings : [
+            ['channels.views', 'refreshContentBrowseView', 'refreshIndexViews']
+        ],
         appendView: true,
         events: {},
         mastheadButtons : [

@@ -19,7 +19,7 @@ define(['baseView', 'api', 'jquery', 'resources', 'underscore'],
             .done(function(data) {
                 self.createFolder(data)
                     .done(function() {
-                        // TODO: refresh the folder listing in the background so the new folder shows up.
+                        self.channels.views.trigger('refreshContentBrowseView');
                         self.displayModal('Add Content Types: ', 'addContent')
                             .done(function(data) {
                                 self.addContentTypesToFolder(data)
