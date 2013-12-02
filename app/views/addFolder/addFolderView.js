@@ -13,8 +13,6 @@ define(['baseView', 'api', 'jquery', 'resources', 'underscore'],
     function afterRender() {
         var self = this;
 
-        console.log(this.model.get('nodeId'));
-
         this.displayModal(resources.node.create.enterName, 'input')
             .done(function(data) {
                 self.createFolder(data)
