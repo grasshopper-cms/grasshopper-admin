@@ -9,8 +9,7 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         startNodeIndexView : startNodeIndexView,
         startAssetIndexView : startAssetIndexView,
         startContentIndexView : startContentIndexView,
-        refreshIndexViews : refreshIndexViews,
-        beforeRender: beforeRender
+        refreshIndexViews : refreshIndexViews
     });
 
     function afterRender() {
@@ -18,22 +17,6 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         $(document).foundation('section', 'reflow');
 
         this.startIndexViews();
-    }
-
-    function beforeRender() {
-        this.options.breadcrumbs.push(
-            {
-                text: 'breadcrumb1',
-                href: '#'
-            }
-        );
-        this.options.breadcrumbs.push(
-            {
-                text: 'breadcrumb2',
-                href: '#'
-            }
-        );
-        this.channels.views.trigger('updateMastheadBreadcrumbs', (this.options.breadcrumbs));
     }
 
     function startIndexViews() {

@@ -74,7 +74,7 @@ define({
         addContentType : 'New Content Type'
     },
     node : {
-        deletionWarning: 'Are you sure you want to delete this folder?',
+        deletionWarning: 'Are you sure you want to delete this folder? All of its contents will also be deleted.',
         successfullyDeletedPre: 'Folder ',
         successfullyDeletedPost: ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this folder: ',
