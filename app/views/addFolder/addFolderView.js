@@ -18,10 +18,10 @@ define(['baseView', 'api', 'jquery', 'resources'],
             .done(function(data) {
                 self.createFolder(data)
                     .done(function() {
-                        // TODO: somehow refesh the folder listing in the background so the new folder shows up.
+                        // TODO: refresh the folder listing in the background so the new folder shows up.
                         self.displayModal('Add Content Types: ', 'addContent')
-                            .done(function() {
-
+                            .done(function(data) {
+                                console.log(data);
                             })
                             .always(function() {
                                 self.navigateBack();

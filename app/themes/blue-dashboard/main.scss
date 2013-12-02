@@ -111,8 +111,6 @@ body, html {
     opacity: 0;
     float: left;
     width: 15px;
-
-
   }
 
   input[type='checkbox'] + label {
@@ -205,9 +203,8 @@ body, html {
       }
     }
     #input-container {
-      input {
+      input:not[type='checkbox'] {
         width: 100%;
-
       }
     }
   }

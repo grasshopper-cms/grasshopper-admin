@@ -40,6 +40,9 @@ define(['constants', 'base64', 'LocalStorage'], function (constants, base64, Loc
         },
         postNewFolder : function(data) {
             return this.post(constants.api.node.url, data);
+        },
+        getContentTypes : function() {
+            return this.request(constants.api.contentTypes.url);
         }
     };
 

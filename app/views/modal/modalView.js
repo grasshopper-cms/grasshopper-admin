@@ -1,10 +1,11 @@
 /*global define:false*/
-define(['baseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html', 'text!views/modal/_addContentModalView.html'],
-    function (BaseView, imageModalTemplate, inputModalTemplate, addContentTemplate) {
+define(['baseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html', 'text!views/modal/_addContentModalView.html', 'api'],
+    function (BaseView, imageModalTemplate, inputModalTemplate, addContentTemplate, Api) {
     'use strict';
 
     var ModalView = BaseView.extend({
         initialize : initialize,
+        beforeRender : beforeRender,
         confirmModal : confirmModal,
         cancelModal : cancelModal
     });
@@ -22,6 +23,18 @@ define(['baseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_
                 break;
         }
         BaseView.prototype.initialize.apply(this, arguments);
+    }
+
+    function beforeRender() {
+        var self = this;
+        if(this.options.type === 'addContent') {
+            Api.getContentTypes()
+                .done(function(data) {
+                    console.log(data);
+                    self.model.set('data', data);
+                });
+        }
+
     }
 
     function confirmModal() {
