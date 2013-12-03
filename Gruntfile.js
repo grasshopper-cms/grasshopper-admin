@@ -82,7 +82,15 @@ module.exports = function (grunt) {
                 })
             }
         },
-
+        autoprefixer : {
+            options : {},
+            no_dest: {
+                src: 'build/themes/blue-dashboard/main.css'
+            },
+            redo: {
+                src: 'build/themes/blue-dashboard/main.css'
+            }
+        },
         connect : {
             site : {
                 options : {
@@ -290,6 +298,7 @@ module.exports = function (grunt) {
         "copy:vendor",
         "connect:site",
         "sass",
+        "autoprefixer:no_dest",
         "open:reload",
         "watch"
     ]);
