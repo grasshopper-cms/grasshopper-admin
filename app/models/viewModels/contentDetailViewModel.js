@@ -7,7 +7,6 @@ define(['grasshopperModel', 'resources', 'constants', 'computedProperty'], funct
                 return constants.internalRoutes.contentDetail.replace(':id', id);
             }),
             statusClass : new ComputedProperty(['status'], function(status) {
-                console.log(status);
                 return (status != 'Live') ? 'inactive' : '';
             })
         },

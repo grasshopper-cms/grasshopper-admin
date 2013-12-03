@@ -1,6 +1,6 @@
 <tr id="[[= viewId ]]">
     <td class="clickableCell"><a>{{data.fileName}}</a></td>
-    <td class="clickableCell">{{data.size | bytesToKilobytes}}</td>
+    <td class="clickableCell">{{data.size | prettyFileSize}}</td>
     <td class="clickableCell">{{data.lastmodified | prettyDate}}</td>
     <td align="center">
         <a data-rv-href="data.url">
