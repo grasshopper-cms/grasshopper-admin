@@ -3,7 +3,6 @@ define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'under
         defaults: {
             resources : resources.user,
             roles : new ComputedProperty(['role'], setPossibleRoles),
-            statusOptions : new ComputedProperty(['enabled'], setStatusOptions),
             // TODO: this should be done inline with Rivets. A decorator. {{ data.firstname | concat data.lastname | spaceAfter }}
             fullName : new ComputedProperty(['firstname', 'lastname'], function(first, last) {
                 return first + ' ' + last;
@@ -22,14 +21,4 @@ define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'under
             return thisRole;
         });
     }
-
-    function setStatusOptions(enabled) {
-        // TODO: Refactor This
-        return _.map(resources.user.statusOptions, function(value, key) {
-           var thisOption = {};
-            thisOption.text = value;
-            return thisOption;
-        });
-    }
-
 });
