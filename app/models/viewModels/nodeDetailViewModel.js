@@ -1,5 +1,6 @@
 define(['grasshopperModel', 'resources', 'computedProperty', 'constants'], function (Model, resources, ComputedProperty, constants) {
     return Model.extend({
+        idAttribute: '_id',
         defaults: {
             resources : resources,
             href : new ComputedProperty(['_id'], function(id) {

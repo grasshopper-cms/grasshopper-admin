@@ -1,9 +1,11 @@
 /*global define:false*/
-define(['baseView', 'resources'], function (BaseView, resources) {
+define(['baseView', 'resources', 'underscore', 'jquery', 'api'], function (BaseView, resources, _, $, Api) {
 
     return BaseView.extend({
         deleteNode : deleteNode,
-        handleRowClick : handleRowClick
+        handleRowClick : handleRowClick,
+        editNode : editNode,
+        addContentTypesToFolder : addContentTypesToFolder
     });
 
     function deleteNode() {
@@ -28,4 +30,54 @@ define(['baseView', 'resources'], function (BaseView, resources) {
         this.app.router.navigateTrigger(this.model.get('href'));
     }
 
+    function editNode() {
+        var self = this;
+
+        console.log(this.model);
+
+        this.displayModal('Edit Folder name:', 'input', this.model.get('label'))
+            .done(function(data) {
+                self.model.set('label', data);
+                self.model.save()
+                    .done(function() {
+                        console.log('the model saved');
+                    })
+                    .fail(function() {
+                        console.log('the model did not save');
+                    })
+                    .always(function() {
+                        self.displayModal('Edit allowed Content Types', 'addContent', self.model.get('allowedTypes'))
+                            .done(function(data) {
+                                self.addContentTypesToFolder(data);
+                            });
+                    });
+            });
+    }
+
+    function addContentTypesToFolder(data) {
+        var contentTypes = [],
+            $deferred = new $.Deferred();
+
+        _.each(data.results, function(contentType) {
+            if(contentType.checked) {
+                contentTypes.push(
+                    {
+                        id: contentType._id
+                    }
+                );
+            }
+        });
+
+        Api.addContentTypesToNode(this.model.get('parent')._id, contentTypes)
+            .done(function() {
+                $deferred.resolve();
+            })
+            .fail(function(xhr) {
+                $deferred.reject(xhr.responseJSON.message);
+            });
+
+        return $deferred.promise();
+    }
+
 });
+

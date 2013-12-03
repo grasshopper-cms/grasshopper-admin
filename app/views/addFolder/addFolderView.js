@@ -57,7 +57,7 @@ define(['baseView', 'api', 'jquery', 'resources', 'underscore'],
                 parent : this.model.get('nodeId')
             };
 
-        Api.postNewFolder(data)
+        Api.postFolder(data)
             .done(function() {
                 $deferred.resolve();
             })
