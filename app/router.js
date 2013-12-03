@@ -353,7 +353,7 @@ define([
             var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
                 {
                     modelData: {
-                        nodeId : (id) ? id : 'null'
+                        nodeId : (id) ? id : null
                     }
                 }
             ));

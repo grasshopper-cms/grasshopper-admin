@@ -52,8 +52,6 @@ define(['baseView', 'api', 'jquery', 'resources', 'underscore'],
         var $deferred = new $.Deferred(),
             data = {
                 label : folderName,
-                // TODO: Slug is no longer working, double check with Travis regarding API updates.
-//                slug : folderName,
                 parent : this.model.get('nodeId')
             };
 
