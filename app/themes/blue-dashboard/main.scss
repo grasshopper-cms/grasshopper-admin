@@ -58,6 +58,14 @@ body, html {
       -webkit-user-select: none;
       user-select: none;
     }
+    .inactive {
+      background-color: $tableInactiveRow;
+      td{
+        a{
+          color: $black;
+        }
+      }
+    }
   }
 
   label, input, button, select, textarea {

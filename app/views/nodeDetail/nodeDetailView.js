@@ -48,7 +48,13 @@ define(['baseView', 'resources', 'underscore', 'jquery', 'api'], function (BaseV
                     .always(function() {
                         self.displayModal('Edit allowed Content Types', 'addContent', self.model.get('allowedTypes'))
                             .done(function(data) {
-                                self.addContentTypesToFolder(data);
+                                self.addContentTypesToFolder(data)
+                                    .done(function () {
+                                        console.log('it  worked!');
+                                    })
+                                    .fail(function() {
+                                        console.log('it did not work');
+                                    });
                             });
                     });
             });
