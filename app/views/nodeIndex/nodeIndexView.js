@@ -8,7 +8,7 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
         appendNodeDetailRow : appendNodeDetailRow
     });
 
-    function beforeRender() {
+    function beforeRender($deferred) {
         var self = this;
 
         // determines if this is the root or not (if it is root then the nodeId will be null)
@@ -27,6 +27,7 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
                         self.appendNodeDetailRow(node);
                     }
                 });
+                $deferred.resolve();
             });
     }
 
@@ -39,7 +40,7 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
                 templateHtml: nodeDetailRowTemplate,
                 mastheadButtons: this.options.mastheadButtons
             }));
-        nodeDetailView.start();
+        this.addChild(nodeDetailView);
     }
 
     return nodeIndexView;
