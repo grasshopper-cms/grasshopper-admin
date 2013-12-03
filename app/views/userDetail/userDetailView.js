@@ -25,8 +25,6 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
                     self.$el.foundation('forms');
                 });
         }
-
-        console.log(this);
     }
 
     function updateModel () {
@@ -53,7 +51,6 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
     }
 
     function toggleEnabled() {
-        console.log('this was called');
         var enabled = this.model.get('enabled');
         this.model.set('enabled', (enabled) ? false : true);
         this.updateModel();

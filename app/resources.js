@@ -40,10 +40,6 @@ define({
             login : 'LOGIN',
             password : 'PASSWORD'
         },
-        statusTitles : {
-            enabled : 'enabled',
-            disabled : 'disabled'
-        },
         roles : {
             admin : 'admin',
             reader : 'reader',
@@ -120,6 +116,7 @@ define({
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',
+    falseText: 'False',
     home : 'Home',
     login : 'Login',
     log_in : 'Log In',
@@ -134,6 +131,7 @@ define({
     settings : 'Settings',
     siteName : 'Grasshopper',
     status : 'Status',
+    trueText: 'True',
     type: 'Type',
     types : 'Types',
     user_name : 'User Name',

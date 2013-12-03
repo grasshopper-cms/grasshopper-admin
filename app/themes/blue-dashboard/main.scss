@@ -20,8 +20,6 @@ $imgPath: '/themes/blue-dashboard/img';
 @import "mixins";
 
 @import "header";
-@import "userdetail";
-
 
 body, html {
 
@@ -128,6 +126,21 @@ body, html {
 
   input[type='checkbox']:checked + label {
     background-position: 0 -15px;
+  }
+
+  $transition-speed: $switch-paddle-transition-speed;
+  $transition-ease: $switch-paddle-transition-ease;
+  $height: $switch-height-med;
+  $font-size: $switch-font-size-med;
+  $line-height: 2.3em;
+  $paddle-bg: $switch-paddle-bg;
+  $positive-color: $switch-negative;
+  $negative-color: $switch-positive-color;
+  $radius: false;
+  $base-style: true;
+
+  .userEnabledSwitch {
+    @include switch($transition-speed, $transition-ease, $height, $font-size, $line-height, $paddle-bg, $positive-color, $negative-color, $radius, $base-style);
   }
 
 
