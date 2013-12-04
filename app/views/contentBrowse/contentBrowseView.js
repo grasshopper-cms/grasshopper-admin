@@ -20,9 +20,13 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
     }
 
     function startIndexViews() {
-        this.startNodeIndexView();
-        this.startAssetIndexView();
-        this.startContentIndexView();
+        this.startNodeIndexView()
+            .then(
+                this.startAssetIndexView()
+            )
+            .then(
+                this.startContentIndexView()
+            );
     }
 
     function refreshIndexViews() {
@@ -33,28 +37,43 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
     }
 
     function startNodeIndexView() {
-        var nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
+        var $deferred = new $.Deferred(),
+            nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
             {
                 nodeId: this.model.get('nodeId'),
                 mastheadButtons: null
             }
         ));
-        nodeIndexView.start();
+        nodeIndexView.start()
+            .done(function() {
+                $deferred.resolve();
+            });
+
+        return $deferred.promise();
     }
 
     function startAssetIndexView() {
-        var assetIndexView = new AssetIndexView(_.extend({}, assetIndexViewConfig,
+        var $deferred = new $.Deferred(),
+            assetIndexView = new AssetIndexView(_.extend({}, assetIndexViewConfig,
             {
                 nodeId: this.model.get('nodeId'),
                 mastheadButtons: null
             }
         ));
-        assetIndexView.start();
+        assetIndexView.start()
+            .done(function() {
+                $deferred.resolve();
+            });
+
+        return $deferred.promise();
     }
 
     function startContentIndexView() {
+        var $deferred = new $.Deferred();
+
         if(!this.model.get('nodeId')){
             this.model.set('inRoot', true);
+            $deferred.resolve();
         } else {
             this.model.set('inRoot', false);
             var contentIndexView = new ContentIndexView(_.extend({}, contentIndexViewConfig,
@@ -62,7 +81,11 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
                     nodeId: this.model.get('nodeId'),
                     mastheadButtons: null
                 }));
-            contentIndexView.start();
+            contentIndexView.start()
+                .done(function() {
+                    $deferred.resolve();
+                });
         }
+        return $deferred.promise();
     }
 });

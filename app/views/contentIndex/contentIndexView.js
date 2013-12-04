@@ -8,7 +8,7 @@ define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'cont
         appendContentDetailRow: appendContentDetailRow
     });
 
-    function beforeRender() {
+    function beforeRender($deferred) {
         var self = this;
 
         Api.makeQuery(
@@ -25,6 +25,7 @@ define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'cont
                 _.each(data, function(content) {
                     self.appendContentDetailRow(content);
                 });
+                $deferred.resolve();
                 self.app.router.mastheadView.model.set('itemsCount', _.size(self.model.attributes.nodeContent));
             });
     }
@@ -38,7 +39,7 @@ define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'cont
                 templateHtml: contentDetailRowTemplate,
                 mastheadButtons: this.options.mastheadButtons
             }));
-        contentDetailView.start();
+        this.addChild(contentDetailView);
     }
 
     return contentIndexView;
