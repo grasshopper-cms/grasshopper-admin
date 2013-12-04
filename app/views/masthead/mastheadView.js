@@ -5,7 +5,6 @@ define(['baseView'], function (BaseView) {
         beforeRender : beforeRender,
         setButtons : setButtons,
         setBreadcrumbs : setBreadcrumbs,
-        setContentData : setContentData,
         interpolateMastheadButtons : interpolateMastheadButtons
     });
 
@@ -28,10 +27,6 @@ define(['baseView'], function (BaseView) {
         } else {
             this.model.set('breadcrumbs', breadcrumbs);
         }
-    }
-
-    function setContentData(type, count) {
-        this.model.set(type, count);
     }
 
     function interpolateMastheadButtons(buttonArray) {

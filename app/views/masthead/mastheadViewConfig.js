@@ -12,8 +12,7 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
         appendView : true,
         bindings : [
             ['channels.views', 'updateMastheadButtons', 'setButtons'],
-            ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs'],
-            ['channels.views', 'updateContentData', 'setContentData']
+            ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']
         ],
         rivetConfig : 'auto',
         defaultBreadcrumbs : [

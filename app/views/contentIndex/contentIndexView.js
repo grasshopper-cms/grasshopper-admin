@@ -25,7 +25,7 @@ define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'cont
                 _.each(data, function(content) {
                     self.appendContentDetailRow(content);
                 });
-                self.channels.views.trigger('updateContentData', 'itemsCount', _.size(self.model.attributes.nodeContent));
+                self.app.router.mastheadView.model.set('itemsCount', _.size(self.model.attributes.nodeContent));
             });
     }
 

@@ -15,9 +15,11 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
         if(this.options.nodeId) {
             this.model.url = this.model.url.replace(':id', this.options.nodeId);
             this.options.root = false;
+            this.app.router.mastheadView.model.set('inRoot', false);
         } else {
             this.model.url = this.model.url.replace(':id', 0);
             this.options.root = true;
+            this.app.router.mastheadView.model.set('inRoot', true);
         }
 
         this.model.fetch()
@@ -27,7 +29,7 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
                         self.appendNodeDetailRow(node);
                     }
                 });
-                self.channels.views.trigger('updateContentData', 'nodesCount', _.size(self.model.attributes) - 2);
+                self.app.router.mastheadView.model.set('nodesCount', _.size(self.model.attributes) - 2);
             });
     }
 
