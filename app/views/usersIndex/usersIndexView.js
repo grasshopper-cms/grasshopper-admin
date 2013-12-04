@@ -11,7 +11,7 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', '
             appendUserRow : appendUserRow
         });
 
-        function beforeRender() {
+        function beforeRender($deferred) {
             var self = this,
                 model = this.model.toJSON();
 
@@ -20,6 +20,7 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', '
                     self.model.get('users').each(function(model){
                         self.appendUserRow(model);
                     });
+                    $deferred.resolve();
                     self.$el.foundation('forms');
                 });
         }
@@ -53,13 +54,12 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', '
                 {
                     name : 'userDetailRow',
                     el : '#usersIndexTable',
-                    // TODO: set this template some other way. Maybe in the Config?
                     templateHtml : rowTemplate,
                     model : model,
                     mastheadButtons : null
                 }
             ));
-            userDetailView.start();
+            this.addChild(userDetailView);
         }
 
         return usersIndexView;
