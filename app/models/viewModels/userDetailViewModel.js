@@ -2,11 +2,7 @@ define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'under
     return Model.extend({
         defaults: {
             resources : resources.user,
-            roles : new ComputedProperty(['role'], setPossibleRoles),
-            // TODO: this should be done inline with Rivets. A decorator. {{ data.firstname | concat data.lastname | spaceAfter }}
-            fullName : new ComputedProperty(['firstname', 'lastname'], function(first, last) {
-                return first + ' ' + last;
-            })
+            roles : new ComputedProperty(['role'], setPossibleRoles)
         },
         urlRoot : constants.api.users.url
 
