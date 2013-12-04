@@ -172,12 +172,7 @@ define([
 
         function loadMainContent (ViewType, config, bypass) {
             var $deferred = new $.Deferred(),
-                newView = new ViewType(config),
-                self = this;
-
-            if(currentView && ! _.contains(ignoreFromTimer, currentView.options.name)) {
-//                spinnerTimer($deferred, newView);
-            }
+                newView = new ViewType(config);
 
             if (currentView && currentView.options.name === config.name && !bypass) {
                 return $deferred.resolve(currentView)

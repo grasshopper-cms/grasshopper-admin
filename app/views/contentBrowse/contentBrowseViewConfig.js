@@ -34,7 +34,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
         ],
         breadcrumbs : [
             {
-                text : resources.content,
+                text : resources.home,
                 href : constants.internalRoutes.content
             }
         ],
