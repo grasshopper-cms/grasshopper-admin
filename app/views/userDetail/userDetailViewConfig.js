@@ -1,11 +1,12 @@
 /*global define:false*/
-define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_userDetailRow.html', 'userDetailViewModel', 'resources', 'constants'], function (formTemplate, rowTemplate, userDetailViewModel, resources, constants) {
+define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_userDetailRow.html', 'userDetailViewModel', 'resources', 'constants'],
+    function (formTemplate, rowTemplate, userDetailViewModel, resources, constants) {
     'use strict';
 
     return {
         name : 'userDetailView',
+        modelData : {},
         ModelType : userDetailViewModel,
-        modelData: {},
         el : '#stage',
         templateHtml : formTemplate,
         events : {

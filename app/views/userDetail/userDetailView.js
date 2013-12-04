@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView, resources, userWorker, constants) {
 
-    var userDetailView = BaseView.extend({
+    return BaseView.extend({
         beforeRender : beforeRender,
         updateModel : updateModel,
         updateNameInHeader : updateNameInHeader,
@@ -61,5 +61,4 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
         this.app.router.navigateTrigger(this.model.get('href'), {}, true);
     }
 
-    return userDetailView;
 });

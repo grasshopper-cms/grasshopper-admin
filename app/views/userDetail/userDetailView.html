@@ -46,10 +46,10 @@
                                 <div class="row">
                                     <div class="large-12 columns attribute">
                                         <div id="statusText" class="userEnabledSwitch">
-                                            <input id="trueSwitch" name="switch-z" type="radio" value="true" data-rv-checked="data.enabled">
+                                            <input id="trueSwitch" name="switch-z" type="radio" value="true" data-rv-checked="data.enabled" data-rv-enabled="data.userModel.role | equals admin">
                                             <label for="trueSwitch" onclick=""> True</label>
 
-                                            <input id="falseSwitch" name="switch-z" type="radio" value="false" data-rv-checked="data.enabled">
+                                            <input id="falseSwitch" name="switch-z" type="radio" value="false" data-rv-checked="data.enabled" data-rv-enabled="data.userModel.role | equals admin">
                                             <label for="falseSwitch" onclick=""> False</label>
 
                                             <span></span>
@@ -98,6 +98,19 @@
                                 <div class="row">
                                     <div class="large-12 columns attribute">
                                         <input id="login" type="text" value="data.login" data-rv-value="data.login"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row listItem" data-rv-show="data.userModel.role | equals admin">
+                            <div class="large-3 columns">
+                                <label for="password" class="right inline">{{data.resources.attributeTitles.password | withColon}}</label>
+                            </div>
+                            <div class="large-9 columns editable">
+                                <div class="row">
+                                    <div class="large-12 columns attribute">
+                                        <input id="password" type="password" value="data.password" data-rv-value="data.password"/>
                                     </div>
                                 </div>
                             </div>

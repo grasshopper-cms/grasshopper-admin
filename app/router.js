@@ -292,13 +292,16 @@ define([
         }
 
         function displayUserDetail (id) {
+            // TODO: I think this can be refactored to take advantage of the new permissions checking system.
             // I did the role check here instead of in the config with permissions, this is because there are Admin's getting their own, Admins getting others, and others getting their own.
             if(this.user.get('role') === 'admin' || this.user.get('_id') === id) {
                 loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
                     {
                         modelData : {
                             id : id,
-                            isAdmin : (this.user.get('role') === 'admin')
+                            // TODO: I think this can be removed considering the model now has access to the entire App.user
+                            isAdmin : (this.user.get('role') === 'admin'),
+                            userModel: this.user.toJSON()
                         }
                     }));
             } else {
