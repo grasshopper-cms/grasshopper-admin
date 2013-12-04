@@ -5,10 +5,7 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
 
     return BaseView.extend({
         afterRender: afterRender,
-        startIndexViews : startIndexViews,
-        startNodeIndexView : startNodeIndexView,
-        startAssetIndexView : startAssetIndexView,
-        startContentIndexView : startContentIndexView,
+        addChildIndexViews : addChildIndexViews,
         refreshIndexViews : refreshIndexViews
     });
 
@@ -16,23 +13,20 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         //TODO: What is this and what is it doing? maybe it should be moved.
         $(document).foundation('section', 'reflow');
 
-        this.startIndexViews();
+        this.addChildIndexViews();
     }
 
-    function startIndexViews() {
-        this.startNodeIndexView();
-        this.startAssetIndexView();
-        this.startContentIndexView();
+    function addChildIndexViews() {
+        addNodeIndexView.call(this);
+        addAssetIndexView.call(this);
+        addContentIndexView.call(this);
     }
 
     function refreshIndexViews() {
-        // TODO: Does emptying they el that contains the Backbone view actually delete the View? If not, then there would be a memory leak here.
-        $('#nodeIndex').empty();
-        $('#assetIndex').empty();
-        this.startIndexViews();
+        this.refreshChildren();
     }
 
-    function startNodeIndexView() {
+    function addNodeIndexView() {
         var nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
             {
                 nodeId: this.model.get('nodeId'),
@@ -42,7 +36,7 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         this.addChild(nodeIndexView);
     }
 
-    function startAssetIndexView() {
+    function addAssetIndexView() {
         var assetIndexView = new AssetIndexView(_.extend({}, assetIndexViewConfig,
             {
                 nodeId: this.model.get('nodeId'),
@@ -52,7 +46,7 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
         this.addChild(assetIndexView);
     }
 
-    function startContentIndexView() {
+    function addContentIndexView() {
         if(!this.model.get('nodeId')){
             this.model.set('inRoot', true);
         } else {
