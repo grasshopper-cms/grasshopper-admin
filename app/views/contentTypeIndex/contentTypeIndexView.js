@@ -8,13 +8,14 @@ define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'tex
         insertContentTypeDetailRow : insertContentTypeDetailRow
     });
 
-    function beforeRender() {
+    function beforeRender($deferred) {
         var self = this;
         this.model.fetch()
             .done(function() {
                 _.each(self.model.get('results'), function(data){
                     self.insertContentTypeDetailRow(data);
                 });
+                $deferred.resolve();
             })
             .fail(function() {
                 //TODO: Error handling here.
@@ -32,8 +33,7 @@ define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'tex
                 modelData : data,
                 mastheadButtons : null
             }));
-
-        contentTypeDetailView.start();
+        this.addChild(contentTypeDetailView);
     }
 
 });
