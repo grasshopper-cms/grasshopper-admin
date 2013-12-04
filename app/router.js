@@ -328,7 +328,11 @@ define([
             loadMainContent(ContentBrowseView, _.extend({}, contentBrowseViewConfig,
                 {
                     modelData: {
-                        nodeId: nodeId
+                        nodeId: nodeId,
+                        breadcrumbs: (nodeId) ? {
+                            text: nodeId,
+                            href: constants.internalRoutes.nodeDetail.replace(':id', nodeId)
+                        } : null
                     }
                 }
             ), true);

@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['baseView', 'underscore'], function (BaseView, _) {
 
     return BaseView.extend({
         beforeRender : beforeRender,
@@ -21,11 +21,17 @@ define(['baseView'], function (BaseView) {
         }
     }
 
-    function setBreadcrumbs(breadcrumbs) {
-        if(!breadcrumbs) {
-            this.model.set('breadcrumbs', this.options.defaultBreadcrumbs);
+    function setBreadcrumbs(view) {
+        if (view && view.model.has('breadcrumbs')) {
+            var crumbs = _.clone(this.model.get('breadcrumbs')),
+                newCrumb = view.model.get('breadcrumbs');
+
+            crumbs.push(newCrumb);
+            this.model.set('breadcrumbs', crumbs);
+        } else if (view && view.options.breadcrumbs){
+            this.model.set('breadcrumbs', view.options.breadcrumbs);
         } else {
-            this.model.set('breadcrumbs', breadcrumbs);
+            this.model.set('breadcrumbs', this.options.defaultBreadcrumbs);
         }
     }
 

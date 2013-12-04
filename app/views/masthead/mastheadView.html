@@ -6,7 +6,9 @@
                     <h2>
                         <i class="icon-file"></i>
                         <span data-rv-each-breadcrumb="data.breadcrumbs">
-                            <a data-rv-href="breadcrumb.href">{{breadcrumb.text | withBackslash}}</a>
+                            <span>
+                                <a data-rv-href="breadcrumb.href">{{breadcrumb.text | withBackslash}}</a>
+                            </span>
                         </span>
                     </h2>
                     <p data-rv-hide="data.inRoot">
