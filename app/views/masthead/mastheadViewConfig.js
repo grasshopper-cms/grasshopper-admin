@@ -4,11 +4,8 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
 
     return {
         name : 'mastheadView',
-        modelData : {
-                        icon: 'icon-file',
-                        description: '23 content items. 45 files.'
-                    },
-        modelType : mastheadViewModel,
+        modelData : {},
+        ModelType : mastheadViewModel,
         el : '#masthead',
         templateHtml : templateHtml,
         events : {},
