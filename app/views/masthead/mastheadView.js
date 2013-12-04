@@ -1,29 +1,17 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
+define(['baseView'], function (BaseView) {
 
     return BaseView.extend({
         beforeRender : beforeRender,
-        afterRender: afterRender,
-        setIcon: setIcon,
         setButtons : setButtons,
         setBreadcrumbs : setBreadcrumbs,
+        setContentData : setContentData,
         interpolateMastheadButtons : interpolateMastheadButtons
     });
 
     function beforeRender() {
         this.setButtons();
         this.setBreadcrumbs();
-    }
-
-    function afterRender () {
-        this.setIcon();
-    }
-
-    function setIcon() {
-        if(this.model.get('icon')) {
-            // TODO: What is this and why is it here?
-            $('#MastheadIcon').addClass(this.model.get('icon'));
-        }
     }
 
     function setButtons(buttonArray) {
@@ -40,6 +28,10 @@ define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
         } else {
             this.model.set('breadcrumbs', breadcrumbs);
         }
+    }
+
+    function setContentData(type, count) {
+        this.model.set(type, count);
     }
 
     function interpolateMastheadButtons(buttonArray) {

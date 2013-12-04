@@ -27,6 +27,7 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
                         self.appendNodeDetailRow(node);
                     }
                 });
+                self.channels.views.trigger('updateContentData', 'nodesCount', _.size(self.model.attributes) - 2);
             });
     }
 

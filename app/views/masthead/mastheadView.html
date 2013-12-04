@@ -4,12 +4,16 @@
             <div class="masthead-pad">
                 <div class="masthead-text">
                     <h2>
-                        <i id="MastheadIcon"></i>
+                        <i class="icon-file"></i>
                         <span data-rv-each-breadcrumb="data.breadcrumbs">
                             <a data-rv-href="breadcrumb.href">{{breadcrumb.text | withBackslash}}</a>
                         </span>
                     </h2>
-                    <p data-rv-text="data.description"></p>
+                    <p>
+                        <span data-rv-show="data.nodesCountText">{{data.nodesCountText | spaceAfter}}</span>
+                        <span data-rv-show="data.filesCountText">{{data.filesCountText | spaceAfter}}</span>
+                        <span data-rv-show="data.itemsCountText">{{data.itemsCountText}}</span>
+                    </p>
                 </div>
             </div>
         </div>

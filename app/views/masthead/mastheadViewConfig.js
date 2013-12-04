@@ -4,18 +4,16 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
 
     return {
         name : 'mastheadView',
-        modelData : {
-                        icon: 'icon-file',
-                        description: '23 content items. 45 files.'
-                    },
-        modelType : mastheadViewModel,
+        modelData : {},
+        ModelType : mastheadViewModel,
         el : '#masthead',
         templateHtml : templateHtml,
         events : {},
         appendView : true,
         bindings : [
             ['channels.views', 'updateMastheadButtons', 'setButtons'],
-            ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']
+            ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs'],
+            ['channels.views', 'updateContentData', 'setContentData']
         ],
         rivetConfig : 'auto',
         defaultBreadcrumbs : [

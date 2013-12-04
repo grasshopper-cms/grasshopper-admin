@@ -24,6 +24,7 @@ define(['baseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore', 't
                         self.appendAssetDetailRow(asset);
                     }
                 });
+                self.channels.views.trigger('updateContentData', 'filesCount', _.size(self.model.attributes) - 2);
             });
     }
 
