@@ -113,6 +113,7 @@ define({
     confirm : 'Confirm',
     content : 'Content',
     contentTypes : 'Content Types',
+    currentlySignedIn : 'You are currently signed in.',
     dashboard : 'Dashboard',
     download : 'Download',
     edit : 'Edit',
@@ -138,5 +139,6 @@ define({
     type: 'Type',
     types : 'Types',
     user_name : 'User Name',
-    users : 'Users'
+    users : 'Users',
+    welcomeBack : 'Welcome Back'
 });

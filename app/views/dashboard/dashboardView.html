@@ -1,10 +1,13 @@
-<div id="dashboard">
-    <div class="container">
+<div id="[[= viewId ]]">
+    <div id="dashboard" class="container">
         <div class="row">
             <div class="large-4 columns">
-                <h3>Welcome back, <span data-dashboard-text="data.name"/>.</h3>
+                <h3>
+                    <span>{{data.resources.welcomeBack | withComma}}</span>
+                    <span>{{data.userModel.firstname | spaceAfter}}{{data.userModel.lastname}}</span>
+                </h3>
 
-                <p>You are currently signed in.</p>
+                <p>{{data.resources.currentlySignedIn}}</p>
 
                  <!-- /#big_stats -->
 

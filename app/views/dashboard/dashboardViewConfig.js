@@ -1,12 +1,14 @@
 /*global define:false*/
-define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources', 'constants'],
-    function (templateHtml, dashboardViewModel, resources, constants) {
+define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources', 'constants', 'viewContext'],
+    function (templateHtml, DashboardViewModel, resources, constants, ViewContext) {
     'use strict';
 
     return {
         name : 'dashboardView',
-        modelData:{},
-        modelType : dashboardViewModel,
+        modelData:{
+            userModel : ViewContext('app.user')
+        },
+        ModelType : DashboardViewModel,
         el : '#stage',
         templateHtml : templateHtml,
         events : {},
