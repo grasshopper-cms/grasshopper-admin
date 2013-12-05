@@ -122,7 +122,8 @@ module.exports = function (grunt) {
                     base : './',
                     middleware : function (connect, options) {
                         return [lrSnippet, folderMount(connect, options.base)]
-                    }
+                    },
+                    open: true
                 }
             }
         },
