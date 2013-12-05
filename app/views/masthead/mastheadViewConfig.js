@@ -10,7 +10,6 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
         templateHtml : templateHtml,
         events : {},
         appendView : true,
-        prependView : false,
         bindings : [
             ['channels.views', 'updateMastheadButtons', 'setButtons'],
             ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']

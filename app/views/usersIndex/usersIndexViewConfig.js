@@ -12,7 +12,6 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
             'change #limitDropdown' : 'changeLimit'
         },
         appendView : true,
-        prependView : false,
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : [

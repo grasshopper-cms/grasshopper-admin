@@ -10,7 +10,6 @@ define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'], fun
         rivetConfig : 'auto',
         bindings : [],
         appendView: true,
-        prependView : false,
         events: {},
         permissions: ['admin', 'reader', 'editor']
     };

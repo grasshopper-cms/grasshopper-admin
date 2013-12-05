@@ -11,7 +11,6 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
         bindings : [
         ],
         appendView : true,
-        prependView : false,
         events : {
 
         },

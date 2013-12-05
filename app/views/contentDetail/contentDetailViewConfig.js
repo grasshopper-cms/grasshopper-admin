@@ -13,7 +13,6 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             'click .clickableCell' : 'handleRowClick'
         },
         appendView : true,
-        prependView : false,
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : [],

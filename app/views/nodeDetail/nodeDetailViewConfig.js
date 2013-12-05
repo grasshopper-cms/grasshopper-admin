@@ -13,8 +13,7 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
             'click #editNode' : 'editNode',
             'click .clickableCell' : 'handleRowClick'
         },
-        appendView : false,
-        prependView : true,
+        appendView : true,
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : [],

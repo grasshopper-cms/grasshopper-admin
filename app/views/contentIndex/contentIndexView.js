@@ -35,7 +35,7 @@ define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'cont
             {
                 name: 'nodeDetailRow',
                 modelData: content,
-                el: '#nodeDetailRow',
+                el: '#contentDetailRow',
                 templateHtml: contentDetailRowTemplate,
                 mastheadButtons: this.options.mastheadButtons
             }));

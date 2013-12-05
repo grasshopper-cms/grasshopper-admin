@@ -9,7 +9,6 @@ define(['addFolderViewModel'], function (addFolderViewModel) {
         rivetConfig : 'auto',
         bindings : [],
         appendView: true,
-        prependView : false,
         events: {},
         permissions: ['admin', 'editor']
     };

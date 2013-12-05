@@ -12,7 +12,6 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel'], function (fo
             'click #saveUser' : 'saveUser'
         },
         appendView : true,
-        prependView : false,
         bindings : [
             ['channels.views', 'rivetViewRendered', 'applyFoundationForms']
         ],

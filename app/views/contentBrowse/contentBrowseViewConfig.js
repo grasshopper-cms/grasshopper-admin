@@ -13,7 +13,6 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             ['channels.views', 'refreshContentBrowseView', 'refreshIndexViews']
         ],
         appendView: true,
-        prependView : false,
         events: {},
         mastheadButtons : [
             {
