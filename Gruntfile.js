@@ -17,7 +17,19 @@ module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
-
+        prompt : {
+            provisionFilesCopied : {
+                options : {
+                    questions : [
+                        {
+                            config: 'provisionConfig',
+                            type: 'confirm',
+                            message: 'Have you copied over provision files?'
+                        }
+                    ]
+                }
+            }
+        },
         watch : {
             options : {
                 // Start a live reload server on the default port: 35729
