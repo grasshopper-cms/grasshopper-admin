@@ -22,6 +22,7 @@ $imgPath: '/themes/blue-dashboard/img';
 @import "header";
 
 body, html {
+  height: 100%;
 
   font-family: $font;
 
@@ -217,7 +218,9 @@ body, html {
   }
 
   #alertBoxPartial {
-    position: relative;
+    bottom: 40px;
+    width: 95%;
+    position: fixed;
     .bad {
       position: absolute;
       width: 100%;
