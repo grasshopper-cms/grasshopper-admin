@@ -52,7 +52,8 @@ define({
         logout : '#logout',
         about : '#about',
         createFolder : '#createFolder/:id',
-        createContent : '#createContent/:id'
+        createContent : '#createContent/:id',
+        createAssets : '#createAssets/:id'
     },
     defaults : {
         theme: 'blue-dashboard'

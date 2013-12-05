@@ -115,6 +115,8 @@ require.config({
         addFolderViewConfig : 'views/addFolder/addFolderViewConfig',
         addContentView : 'views/addContent/addContentView',
         addContentViewConfig : 'views/addContent/addContentViewConfig',
+        addAssetsView : 'views/addAssets/addAssetsView',
+        addAssetsViewConfig : 'views/addAssets/addAssetsViewConfig',
 
         // Mixins
         mixin : 'vendor/masseuse/app/mixin',
@@ -153,6 +155,7 @@ require.config({
         assetDetailViewModel : 'models/viewModels/assetDetailViewModel',
         addFolderViewModel : 'models/viewModels/addFolderViewModel',
         addContentViewModel : 'models/viewModels/addContentViewModel',
+        addAssetsViewModel : 'models/viewModels/addAssetsViewModel',
 
             // Workers
         loginWorker : 'workers/loginWorker',

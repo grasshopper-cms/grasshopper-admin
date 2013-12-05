@@ -17,7 +17,8 @@ define([
     'contentTypeIndexView', 'contentTypeIndexViewConfig',
     'contentTypeDetailView', 'contentTypeDetailViewConfig',
     'addFolderView', 'addFolderViewConfig',
-    'addContentView', 'addContentViewConfig'
+    'addContentView', 'addContentViewConfig',
+    'addAssetsView', 'addAssetsViewConfig'
 ],
     function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
               BaseView,
@@ -36,14 +37,12 @@ define([
               ContentTypeIndexView, contentTypeIndexViewConfig,
               ContentTypeDetailView, contentTypeDetailViewConfig,
               AddFolderView, addFolderViewConfig,
-              AddContentView, addContentViewConfig
+              AddContentView, addContentViewConfig,
+              AddAssetsView, addAssetsViewConfig
               ) {
 
         var userModel = new UserModel(),
-            currentView,
-            ignoreFromTimer = [
-                'loginView'
-            ];
+            currentView;
 
         /**
          * @class Router
@@ -63,6 +62,7 @@ define([
                 'item/:id' : 'displayContentDetail',
                 'createFolder(/:id)' : 'displayCreateFolder',
                 'createContent(/:id)' : 'displayCreateContent',
+                'createAssets(/:id)' : 'displayCreateAssets',
                 '*path' : 'goHome'
             },
 
@@ -94,7 +94,8 @@ define([
             displayContentTypeIndex : displayContentTypeIndex,
             displayContentTypeDetail : displayContentTypeDetail,
             displayCreateFolder : displayCreateFolder,
-            displayCreateContent : displayCreateContent
+            displayCreateContent : displayCreateContent,
+            displayCreateAssets : displayCreateAssets
         });
 
         function onRouteFail () {
@@ -381,6 +382,17 @@ define([
                 }
             ));
             addContentView.start();
+        }
+
+        function displayCreateAssets(id) {
+            var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
+                {
+                    modelData: {
+                        nodeId : (id) ? id : null
+                    }
+                }
+            ));
+            addAssetsView.start();
         }
 
         return Router;
