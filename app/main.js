@@ -154,6 +154,8 @@ require.config({
             // Workers
         loginWorker : 'workers/loginWorker',
         userWorker : 'workers/userWorker',
+        contentTypeWorker : 'workers/contentTypeWorker',
+        nodeWorker : 'workers/nodeWorker',
 
         // Collections
         paginatedCollection : 'vendor/masseuse/app/paginatedCollection',

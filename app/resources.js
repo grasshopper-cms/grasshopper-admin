@@ -69,9 +69,9 @@ define({
         successfullyDeletedPre: 'Folder ',
         successfullyDeletedPost: ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this folder: ',
-        create : {
-            enterName: 'Please enter the name of the folder: '
-        }
+        enterName: 'Please enter the name of the folder: ',
+        errorCreating: 'folder could not be added',
+        editName: 'Edit Folder name:'
     },
     contentItem : {
         deletionWarning: 'Are you sure you want to delete this content?',
@@ -80,6 +80,9 @@ define({
         errorDeleted : 'There was an issue deleting this content: '
     },
     contentType : {
+        addContentTypes: 'Add Content Types: ',
+        editContentTypes: 'Edit allowed Content Types',
+        contentTypeAdded: 'Content Type Added',
         deletionWarning: 'Are you sure you want to delete this content type?',
         successfullyDeletedPre: 'Content Type ',
         successfullyDeletedPost: ' was successfully deleted.',

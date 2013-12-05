@@ -1,11 +1,10 @@
 /*global define:false*/
-define(['baseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html', 'text!views/modal/_addContentModalView.html', 'api', 'underscore'],
-    function (BaseView, imageModalTemplate, inputModalTemplate, addContentTemplate, Api, _) {
+define(['baseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html', 'text!views/modal/_checkboxModalView.html'],
+    function (BaseView, imageModalTemplate, inputModalTemplate, checkboxTemplate) {
     'use strict';
 
     var ModalView = BaseView.extend({
         initialize : initialize,
-        beforeRender : beforeRender,
         confirmModal : confirmModal,
         cancelModal : cancelModal
     });
@@ -18,27 +17,11 @@ define(['baseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_
             case 'input':
                 options.templateHtml = inputModalTemplate;
                 break;
-            case 'addContent':
-                options.templateHtml = addContentTemplate;
+            case 'checkbox':
+                options.templateHtml = checkboxTemplate;
                 break;
         }
         BaseView.prototype.initialize.apply(this, arguments);
-    }
-
-    function beforeRender() {
-        var self = this;
-        if(this.options.type === 'addContent') {
-            Api.getContentTypes()
-                .done(function(data) {
-                    _.each(data.results, function(result) {
-                        if(_.contains(self.model.get('data'), result._id)) {
-                            result.checked = true;
-                        }
-                    });
-                    self.model.set('data', data);
-                });
-        }
-
     }
 
     function confirmModal() {
