@@ -8,18 +8,18 @@ module.exports = function (grunt) {
     grunt.registerTask('vagrant', "use vagrant:help", function vagrant (target, extra) {
         var tasks = {
                 install : {
-                    run : ["shell:install_api_node_modules", "shell:install_api_vagrant_plugins", "vagrant:run:up:--provision", "vagrant:run:exec:grunt:seedDev", "shell:test_vagrant_box", "copy:vagrant"],
+                    run : ["prompt:provisionFilesCopied", "shell:install_api_node_modules", "shell:install_api_vagrant_plugins", "vagrant:run:up:--provision", "vagrant:run:exec:grunt:seedDev", "shell:test_vagrant_box", "copy:vagrant"],
                     help : "Install and set up vagrant box "
                 },
                 test : {
-                    run : ['shell:test_vagrant_box'],
+                    run : ["prompt:provisionFilesCopied", "shell:test_vagrant_box"],
                     help : "grabs an auth token to ensure box is running"
                 },
                 run : {
                     help : "runs arbitrary vagrant tasks - e.g. up, reload, destroy"
                 },
                 reload : {
-                    run : ["vagrant:run:reload:--provision"],
+                    run : ["prompt:provisionFilesCopied", "vagrant:run:reload:--provision"],
                     help : "will reload vagrant and run provisioning shell tasks"
                 }
             },
