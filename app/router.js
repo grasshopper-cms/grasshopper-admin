@@ -16,7 +16,8 @@ define([
     'contentDetailView', 'contentDetailViewConfig',
     'contentTypeIndexView', 'contentTypeIndexViewConfig',
     'contentTypeDetailView', 'contentTypeDetailViewConfig',
-    'addFolderView', 'addFolderViewConfig'
+    'addFolderView', 'addFolderViewConfig',
+    'addContentView', 'addContentViewConfig'
 ],
     function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
               BaseView,
@@ -34,7 +35,8 @@ define([
               ContentDetailView, contentDetailViewConfig,
               ContentTypeIndexView, contentTypeIndexViewConfig,
               ContentTypeDetailView, contentTypeDetailViewConfig,
-              AddFolderView, addFolderViewConfig
+              AddFolderView, addFolderViewConfig,
+              AddContentView, addContentViewConfig
               ) {
 
         var userModel = new UserModel(),
@@ -60,6 +62,7 @@ define([
                 'items(/nodeid/:nodeId)': 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 'createFolder(/:id)' : 'displayCreateFolder',
+                'createContent(/:id)' : 'displayCreateContent',
                 '*path' : 'goHome'
             },
 
@@ -90,7 +93,8 @@ define([
             displayContentDetail : displayContentDetail,
             displayContentTypeIndex : displayContentTypeIndex,
             displayContentTypeDetail : displayContentTypeDetail,
-            displayCreateFolder : displayCreateFolder
+            displayCreateFolder : displayCreateFolder,
+            displayCreateContent : displayCreateContent
         });
 
         function onRouteFail () {
@@ -366,6 +370,17 @@ define([
                 }
             ));
             addFolderView.start();
+        }
+
+        function displayCreateContent(id) {
+            var addContentView = new AddContentView(_.extend({}, addContentViewConfig,
+                {
+                    modelData: {
+                        nodeId : (id) ? id : null
+                    }
+                }
+            ));
+            addContentView.start();
         }
 
         return Router;

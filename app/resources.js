@@ -133,6 +133,7 @@ define({
     settings : 'Settings',
     siteName : 'Grasshopper',
     status : 'Status',
+    thisIsNotImplemented : 'This is not yet implemented.',
     trueText: 'True',
     type: 'Type',
     types : 'Types',

@@ -17,7 +17,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
         mastheadButtons : [
             {
                 text : resources.mastheadButtons.createContent,
-                href : '#'
+                href : constants.internalRoutes.createContent
             },
             {
                 text : resources.mastheadButtons.uploadFile,
