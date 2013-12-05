@@ -1,15 +1,7 @@
-define(['grasshopperModel', 'computedProperty'], function (Model, ComputedProperty) {
+define(['grasshopperModel'], function (Model) {
     return Model.extend({
         defaults: {
-            nodesCountText: new ComputedProperty(['nodesCount'], function(nodesCount) {
-                return (nodesCount) ? nodesCount + ' folders.' : '';
-            }),
-            filesCountText: new ComputedProperty(['filesCount'], function(filesCount) {
-                return (filesCount) ? filesCount + ' files.' : '';
-            }),
-            itemsCountText: new ComputedProperty(['itemsCount'], function(itemsCount) {
-                return (itemsCount) ? itemsCount + ' items.' : '';
-            })
+
         }
     });
 });

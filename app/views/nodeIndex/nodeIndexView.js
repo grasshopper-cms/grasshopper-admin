@@ -31,6 +31,7 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
                 });
                 $deferred.resolve();
                 self.app.router.mastheadView.model.set('nodesCount', _.size(self.model.attributes) - 2);
+                console.log(self.app.router.mastheadView.model.get('nodesCount'));
             });
     }
 
