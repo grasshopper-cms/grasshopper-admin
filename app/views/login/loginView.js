@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['GrasshopperBaseView', 'loginWorker'],function (GrasshopperBaseView, loginWorker) {
+define(['grasshopperBaseView', 'loginWorker'],function (GrasshopperBaseView, loginWorker) {
 
     return GrasshopperBaseView.extend({
         login : login,

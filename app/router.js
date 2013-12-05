@@ -155,16 +155,16 @@ define([
 
             MasseuseRouter.prototype.initialize.apply(this, arguments);
 
-            BaseView.prototype.app = {
+            GrasshopperBaseView.prototype.app = {
                 router : this,
                 user : this.user
             };
-            BaseView.prototype.displayAlertBox = displayAlertBox;
-            BaseView.prototype.displayTemporaryAlertBox = displayTemporaryAlertBox;
-            BaseView.prototype.hideAlertBox = hideAlertBox;
+            GrasshopperBaseView.prototype.displayAlertBox = displayAlertBox;
+            GrasshopperBaseView.prototype.displayTemporaryAlertBox = displayTemporaryAlertBox;
+            GrasshopperBaseView.prototype.hideAlertBox = hideAlertBox;
 
-            BaseView.prototype.displayModal = displayModal;
-            BaseView.prototype.hideModal = hideModal;
+            GrasshopperBaseView.prototype.displayModal = displayModal;
+            GrasshopperBaseView.prototype.hideModal = hideModal;
 
             // TODO: Get rid of this. Move it to a grasshopperCollection or something like that. It does not belong here.
             Backbone.Collection.prototype.set = function(data, options) {
@@ -187,7 +187,7 @@ define([
             newView.start()
                 .progress(function (event) {
                     switch (event) {
-                        case BaseView.beforeRenderDone:
+                        case GrasshopperBaseView.beforeRenderDone:
                             if (currentView) {
                                 currentView.remove();
                             }
@@ -248,7 +248,7 @@ define([
             }));
             this.hideAlertBox();
             alertBoxView.start();
-            BaseView.prototype.alertBoxView = alertBoxView;
+            GrasshopperBaseView.prototype.alertBoxView = alertBoxView;
         }
 
         function displayTemporaryAlertBox(msg, status) {
@@ -260,8 +260,8 @@ define([
         }
 
         function hideAlertBox() {
-            if (BaseView.prototype.alertBoxView && BaseView.prototype.alertBoxView.remove) {
-                BaseView.prototype.alertBoxView.remove();
+            if (GrasshopperBaseView.prototype.alertBoxView && GrasshopperBaseView.prototype.alertBoxView.remove) {
+                GrasshopperBaseView.prototype.alertBoxView.remove();
             }
         }
 
@@ -277,13 +277,13 @@ define([
             }));
             this.hideModal();
             modalView.start();
-            BaseView.prototype.modalView = modalView;
+            GrasshopperBaseView.prototype.modalView = modalView;
             return $deferred.promise();
         }
 
         function hideModal() {
-            if (BaseView.prototype.modalView && BaseView.prototype.modalView.remove) {
-                BaseView.prototype.modalView.remove();
+            if (GrasshopperBaseView.prototype.modalView && GrasshopperBaseView.prototype.modalView.remove) {
+                GrasshopperBaseView.prototype.modalView.remove();
             }
         }
 

@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'contentTypeWorker'], function (GrasshopperBaseView, resources, _, $, Api, contentTypeWorker) {
+define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'contentTypeWorker'],
+    function (GrasshopperBaseView, resources, _, $, Api, contentTypeWorker) {
 
     return GrasshopperBaseView.extend({
         deleteNode : deleteNode,
