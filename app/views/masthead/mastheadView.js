@@ -23,11 +23,7 @@ define(['baseView', 'underscore'], function (BaseView, _) {
 
     function setBreadcrumbs(view) {
         if (view && view.model.has('breadcrumbs')) {
-            var crumbs = _.clone(this.model.get('breadcrumbs')),
-                newCrumb = view.model.get('breadcrumbs');
-
-            crumbs.push(newCrumb);
-            this.model.set('breadcrumbs', crumbs);
+            this.model.set('breadcrumbs', _.flatten(_.clone(view.model.get('breadcrumbs'))));
         } else if (view && view.options.breadcrumbs){
             this.model.set('breadcrumbs', view.options.breadcrumbs);
         } else {

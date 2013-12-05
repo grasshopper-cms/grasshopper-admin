@@ -1,13 +1,25 @@
 /*global define:false*/
-define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig'],
-    function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _, ContentIndexView, contentIndexViewConfig) {
+define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig', 'api', 'constants'],
+    function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _, ContentIndexView, contentIndexViewConfig, Api, constants) {
     'use strict';
 
     return BaseView.extend({
-        afterRender: afterRender,
+        beforeRender : beforeRender,
+        afterRender : afterRender,
         addChildIndexViews : addChildIndexViews,
         refreshIndexViews : refreshIndexViews
     });
+
+    function beforeRender($deferred) {
+        if(this.model.get('nodeId')) {
+            buildMastheadBreadcrumb.call(this)
+                .done(function() {
+                    $deferred.resolve();
+                });
+        } else {
+            $deferred.resolve();
+        }
+    }
 
     function afterRender() {
         //TODO: What is this and what is it doing? maybe it should be moved.
@@ -58,5 +70,36 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
                 }));
             this.addChild(contentIndexView);
         }
+    }
+
+    function buildMastheadBreadcrumb() {
+        var self = this,
+            crumb = [],
+            $deferred = new $.Deferred();
+
+        Api.getNodeDetail(this.model.get('nodeId'))
+            .done(function(data) {
+                if (data.ancestors) {
+                    crumb.push(self.options.breadcrumbs);
+                    _.each(data.ancestors, function(ancestor) {
+                        crumb.push({
+                            text: ancestor.label,
+                            href: constants.internalRoutes.nodeDetail.replace(':id', ancestor._id)
+                        });
+                    });
+                } else {
+                    crumb.push(self.options.breadcrumbs);
+                }
+
+                crumb.push({
+                    text: data.label,
+                    href: constants.internalRoutes.nodeDetail.replace(':id', data._id)
+                });
+
+                self.model.set('breadcrumbs', crumb);
+                $deferred.resolve();
+            });
+
+        return $deferred.promise();
     }
 });

@@ -46,6 +46,9 @@ define(['constants', 'base64', 'LocalStorage'], function (constants, base64, Loc
         },
         addContentTypesToNode : function(nodeId, contentTypes) {
             return this.post(constants.api.nodesContentTypes.url.replace(':id', nodeId), JSON.stringify(contentTypes));
+        },
+        getNodeDetail : function(nodeId) {
+            return this.request(constants.api.node.url + '/' + nodeId);
         }
     };
 
