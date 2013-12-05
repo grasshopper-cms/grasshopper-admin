@@ -111,7 +111,8 @@ module.exports = function (grunt) {
                     base : './build/',
                     middleware : function (connect, options) {
                         return [lrSnippet, folderMount(connect, options.base)]
-                    }
+                    },
+                    open: true
                 }
             },
             tests : {
@@ -125,20 +126,9 @@ module.exports = function (grunt) {
                 }
             }
         },
-
-        open : {
-            reload : {
-                path : 'http://localhost:9001/'
-            },
-            tests : {
-                path : 'http://localhost:9001/tests/'
-            }
-        },
-
         clean: {
             build : ['build']
         },
-
         copy : {
             // TODO: target build copy tasks
             build : {
@@ -183,7 +173,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-
         build_gh_pages : {
             ghPages : {
                 options : {
@@ -245,7 +234,6 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc'
             }
         },
-
         requirejs: {
             dist: {
                 // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
@@ -308,10 +296,9 @@ module.exports = function (grunt) {
         "setupBowerCopy",
         "copy:build",
         "copy:vendor",
-        "connect:site",
         "sass",
         "autoprefixer:no_dest",
-        "open:reload",
+        "connect:site",
         "watch"
     ]);
     grunt.registerTask("testServer", "Build and watch task", [
@@ -319,7 +306,7 @@ module.exports = function (grunt) {
         "copy:build",
         "connect:tests",
         "sass",
-        "open:tests",
+        "connect:tests",
         "watch"
     ]);
     grunt.registerTask("deploy", "Deploy to gh-pages", [
