@@ -10,6 +10,7 @@ define(['text!views/nodeIndex/nodeIndexView.html', 'resources', 'nodeIndexViewMo
         rivetConfig : 'auto',
         bindings : [],
         appendView: true,
+        prependView : false,
         events: {},
         permissions: ['admin', 'reader', 'editor']
     };

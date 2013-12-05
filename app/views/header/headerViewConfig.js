@@ -12,6 +12,7 @@ define(['text!views/header/headerView.html', 'headerViewModel', 'viewContext'], 
         templateHtml : templateHtml,
         events : {},
         appendView : true,
+        prependView : false,
         bindings : [],
         rivetConfig : 'auto'
     };

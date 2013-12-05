@@ -11,6 +11,7 @@ define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resour
         templateHtml : templateHtml,
         events : {},
         appendView : true,
+        prependView : false,
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : [],

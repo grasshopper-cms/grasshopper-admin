@@ -10,6 +10,7 @@ define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function 
         rivetConfig : {
             scope : '#alertBoxPartial',
             prefix : 'alertbox'
-        }
+        },
+        prependView : false
     };
 });

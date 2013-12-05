@@ -14,6 +14,7 @@ define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_
             'click #deleteAsset' : 'deleteAsset'
         },
         appendView : true,
+        prependView : false,
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : []

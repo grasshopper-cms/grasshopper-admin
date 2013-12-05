@@ -15,6 +15,7 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             'click .clickableCell' : 'handleRowClick'
         },
         appendView : true,
+        prependView : false,
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : [
