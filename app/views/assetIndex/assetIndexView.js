@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['baseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore', 'text!views/assetDetail/_assetDetailRow.html'],
-    function (BaseView, AssetDetailView, assetDetailViewConfig, _, assetDetailRowTemplate) {
+define(['grasshopperBaseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore', 'text!views/assetDetail/_assetDetailRow.html'],
+    function (GrasshopperBaseView, AssetDetailView, assetDetailViewConfig, _, assetDetailRowTemplate) {
     'use strict';
 
-    var assetIndexView = BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender: beforeRender,
         appendAssetDetailRow : appendAssetDetailRow
     });

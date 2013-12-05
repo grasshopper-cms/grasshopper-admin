@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView, resources, userWorker, constants) {
+define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'], function (GrasshopperBaseView, resources, userWorker, constants) {
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         updateModel : updateModel,
         updateNameInHeader : updateNameInHeader,

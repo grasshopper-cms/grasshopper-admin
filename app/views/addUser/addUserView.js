@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['baseView', 'resources'], function (BaseView, resources) {
+define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
 
-    var addUserView = BaseView.extend({
+    return GrasshopperBaseView.extend({
         applyFoundationForms : applyFoundationForms,
         saveUser : saveUser
     });
@@ -25,5 +25,4 @@ define(['baseView', 'resources'], function (BaseView, resources) {
         return false;
     }
 
-    return addUserView;
 });

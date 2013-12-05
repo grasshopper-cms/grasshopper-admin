@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig', 'api', 'constants'],
-    function (BaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _, ContentIndexView, contentIndexViewConfig, Api, constants) {
+define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView', 'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig', 'api', 'constants'],
+    function (GrasshopperBaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _, ContentIndexView, contentIndexViewConfig, Api, constants) {
     'use strict';
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         afterRender : afterRender,
         addChildIndexViews : addChildIndexViews,

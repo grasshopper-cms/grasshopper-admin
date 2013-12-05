@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore'],
-    function (BaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate, _) {
+define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore'],
+    function (GrasshopperBaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate, _) {
     'use strict';
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         insertContentTypeDetailRow : insertContentTypeDetailRow
     });

@@ -4,7 +4,7 @@ define(['addAssetsViewModel'], function (addAssetsViewModel) {
 
     return {
         name : 'addAssetsView',
-        modelType : addAssetsViewModel,
+        ModelType : addAssetsViewModel,
         modelData : {},
         rivetConfig : 'auto',
         bindings : [],

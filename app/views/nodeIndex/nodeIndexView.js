@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'text!views/nodeDetail/_nodeDetailRow.html'],
-    function (BaseView, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
+define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'text!views/nodeDetail/_nodeDetailRow.html'],
+    function (GrasshopperBaseView, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
     'use strict';
 
-    var nodeIndexView = BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender: beforeRender,
         appendNodeDetailRow : appendNodeDetailRow
     });
@@ -47,5 +47,4 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
         this.addChild(nodeDetailView);
     }
 
-    return nodeIndexView;
 });

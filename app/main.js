@@ -74,7 +74,7 @@ require.config({
 
         // Views
         masseuseBaseView : 'vendor/masseuse/app/baseView',
-        baseView : 'views/grasshopperBaseView',
+        grasshopperBaseView : 'views/grasshopperBaseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
         dashboardView : 'views/dashboard/dashboardView',

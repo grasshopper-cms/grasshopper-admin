@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['baseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html', 'text!views/modal/_checkboxModalView.html'],
-    function (BaseView, imageModalTemplate, inputModalTemplate, checkboxTemplate) {
+define(['grasshopperBaseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html', 'text!views/modal/_checkboxModalView.html'],
+    function (GrasshopperBaseView, imageModalTemplate, inputModalTemplate, checkboxTemplate) {
     'use strict';
 
-    var ModalView = BaseView.extend({
+    return GrasshopperBaseView.extend({
         initialize : initialize,
         confirmModal : confirmModal,
         cancelModal : cancelModal
@@ -38,5 +38,4 @@ define(['baseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_
         this.remove();
     }
 
-    return ModalView;
 });

@@ -1,7 +1,7 @@
 /*global define*/
 define([
     'backbone', 'underscore', 'masseuseRouter', 'api', 'constants', 'LocalStorage',
-    'baseView',
+    'grasshopperBaseView',
     'loginView', 'loginViewConfig', 'loginWorker',
     'dashboardView', 'dashboardViewConfig',
     'alertBoxView', 'alertBoxViewConfig',
@@ -21,7 +21,7 @@ define([
     'addAssetsView', 'addAssetsViewConfig'
 ],
     function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
-              BaseView,
+              GrasshopperBaseView,
               LoginView, loginViewConfig, loginWorker,
               DashboardView, dashboardViewConfig,
               AlertBoxView, alertBoxViewConfig,

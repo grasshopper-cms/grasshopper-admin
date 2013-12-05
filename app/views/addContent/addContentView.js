@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['baseView', 'resources'],
-    function (BaseView, resources) {
+define(['grasshopperBaseView', 'resources'],
+    function (GrasshopperBaseView, resources) {
     'use strict';
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
         afterRender : afterRender,
         navigateBack : navigateBack
     });

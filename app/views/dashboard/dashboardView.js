@@ -1,8 +1,8 @@
 /*global define:false*/
-define(['baseView', 'jquery', 'cirque'], function (BaseView, $, cirque) {
+define(['grasshopperBaseView', 'jquery', 'cirque'], function (GrasshopperBaseView, $, cirque) {
     'use strict';
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
         afterRender: afterRender
     });
 

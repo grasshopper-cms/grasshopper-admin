@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['baseView', 'resources'], function (BaseView, resources) {
+define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
         deleteContent : deleteContent,
         handleRowClick : handleRowClick
     });

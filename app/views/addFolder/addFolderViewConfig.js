@@ -4,7 +4,7 @@ define(['addFolderViewModel'], function (addFolderViewModel) {
 
     return {
         name : 'addFolderView',
-        modelType : addFolderViewModel,
+        ModelType : addFolderViewModel,
         modelData : {},
         rivetConfig : 'auto',
         bindings : [],

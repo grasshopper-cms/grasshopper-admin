@@ -1,9 +1,8 @@
 /*global define:false*/
-define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', 'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
+define(['grasshopperBaseView', 'userWorker', 'constants', 'underscore', 'userDetailView', 'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
+    function (GrasshopperBaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
 
-    function (BaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
-
-        var usersIndexView = BaseView.extend({
+        return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
             goToPage : goToPage,
             checkAndSetLimit : checkAndSetLimit,
@@ -61,6 +60,4 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', '
             ));
             this.addChild(userDetailView);
         }
-
-        return usersIndexView;
     });

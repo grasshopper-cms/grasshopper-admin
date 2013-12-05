@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['baseView', 'resources', 'underscore', 'jquery', 'api', 'contentTypeWorker'], function (BaseView, resources, _, $, Api, contentTypeWorker) {
+define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'contentTypeWorker'], function (GrasshopperBaseView, resources, _, $, Api, contentTypeWorker) {
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
         deleteNode : deleteNode,
         handleRowClick : handleRowClick,
         editNode : editNode

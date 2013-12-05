@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['grasshopperBaseView'], function (GrasshopperBaseView) {
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
 
     });
 

@@ -4,7 +4,7 @@ define(['addContentViewModel'], function (addContentViewModel) {
 
     return {
         name : 'addContentView',
-        modelType : addContentViewModel,
+        ModelType : addContentViewModel,
         modelData : {},
         rivetConfig : 'auto',
         bindings : [],

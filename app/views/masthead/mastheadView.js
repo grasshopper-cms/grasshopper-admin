@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['baseView', 'underscore'], function (BaseView, _) {
+define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) {
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         setButtons : setButtons,
         setBreadcrumbs : setBreadcrumbs,
