@@ -15,6 +15,9 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
             buildMastheadBreadcrumb.call(this)
                 .done(function() {
                     $deferred.resolve();
+                })
+                .fail(function() {
+                    $deferred.reject();
                 });
         } else {
             $deferred.resolve();
@@ -98,6 +101,9 @@ define(['baseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetInde
 
                 self.model.set('breadcrumbs', crumb);
                 $deferred.resolve();
+            })
+            .fail(function() {
+                $deferred.reject();
             });
 
         return $deferred.promise();
