@@ -17,11 +17,20 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
                 self.model.destroy(
                     {
                         success: function(model) {
-                            self.displayTemporaryAlertBox(resources.contentItem.successfullyDeletedPre + model.get('label') + resources.contentItem.successfullyDeletedPost, true);
+                            self.displayTemporaryAlertBox(
+                                {
+                                    msg: resources.contentItem.successfullyDeletedPre + model.get('label') + resources.contentItem.successfullyDeletedPost,
+                                    status: true
+                                }
+                            );
                             self.remove();
                         },
                         error: function(model) {
-                            self.displayAlertBox(resources.contentItem.errorDeleted + model.get('label'));
+                            self.displayAlertBox(
+                                {
+                                    msg: resources.contentItem.errorDeleted + model.get('label')
+                                }
+                            );
                         }
                     });
             });

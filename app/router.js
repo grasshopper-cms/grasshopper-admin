@@ -239,11 +239,11 @@ define([
             loadMainContent(DashboardView, dashboardViewConfig, true);
         }
 
-        function displayAlertBox (msg, status) {
+        function displayAlertBox (options) {
             var alertBoxView = new AlertBoxView(_.extend(alertBoxViewConfig, {
                 modelData: {
-                    msg: msg,
-                    status: (status)
+                    msg: (options.msg),
+                    status: (options.status)
                 }
             }));
             this.hideAlertBox();
@@ -251,9 +251,9 @@ define([
             GrasshopperBaseView.prototype.alertBoxView = alertBoxView;
         }
 
-        function displayTemporaryAlertBox(msg, status) {
+        function displayTemporaryAlertBox(options) {
             var self = this;
-            self.displayAlertBox(msg, status);
+            self.displayAlertBox(options);
             setTimeout(function() {
                 self.hideAlertBox();
             }, 5000);

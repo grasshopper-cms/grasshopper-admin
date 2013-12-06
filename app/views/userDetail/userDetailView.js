@@ -31,10 +31,19 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'], function
         var self = this;
         this.model.save()
             .done(function (model) {
-                self.displayTemporaryAlertBox(resources.user.successfullyUpdated, true);
+                self.displayTemporaryAlertBox(
+                    {
+                        msg: resources.user.successfullyUpdated,
+                        status: true
+                    }
+                );
                 updateNameInHeader.call(self, model);
             }).fail(function () {
-                self.displayAlertBox(resources.user.updateError);
+                self.displayAlertBox(
+                    {
+                        msg: resources.user.updateError
+                    }
+                );
             });
 
         return false;

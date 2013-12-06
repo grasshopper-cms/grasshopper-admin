@@ -31,11 +31,20 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
             .done(function() {
                 self.model.destroy()
                     .done(function() {
-                        self.displayTemporaryAlertBox(resources.asset.successfullyDeletedPre + self.model.get('fileName') + resources.asset.successfullyDeletedPost, true);
+                        self.displayTemporaryAlertBox(
+                            {
+                                msg: resources.asset.successfullyDeletedPre + self.model.get('fileName') + resources.asset.successfullyDeletedPost,
+                                status: true
+                            }
+                        );
                         self.remove();
                     })
                     .fail(function() {
-                        self.displayAlertBox(resources.asset.errorDeleted + self.model.get('fileName'));
+                        self.displayAlertBox(
+                            {
+                                msg: resources.asset.errorDeleted + self.model.get('fileName')
+                            }
+                        );
                     });
             });
     }

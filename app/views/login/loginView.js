@@ -14,7 +14,11 @@ define(['grasshopperBaseView', 'loginWorker'],function (GrasshopperBaseView, log
     }
 
     function throwLoginError(xhr) {
-        this.displayAlertBox(xhr);
+        this.displayAlertBox(
+            {
+                msg: xhr
+            }
+        );
     }
 
 });

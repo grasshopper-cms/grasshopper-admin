@@ -19,7 +19,11 @@ define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewCo
             })
             .fail(function() {
                 //TODO: Error handling here.
-                this.displayAlertBox('BLAH BLAH BLAH, CONTENT TYPES DID NOT WORK, BLAH BLAH BLAH');
+                this.displayAlertBox(
+                    {
+                        msg: 'BLAH BLAH BLAH, CONTENT TYPES DID NOT WORK, BLAH BLAH BLAH'
+                    }
+                );
             });
     }
 

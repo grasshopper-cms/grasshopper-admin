@@ -16,10 +16,19 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
         this.model.save()
             .success(function() {
                 self.app.router.navigateTrigger('users');
-                self.displayTemporaryAlertBox(resources.user.newUserAdded, true);
+                self.displayTemporaryAlertBox(
+                    {
+                        msg: resources.user.newUserAdded,
+                        status: true
+                    }
+                );
             })
             .error(function(xhr) {
-                self.displayAlertBox(JSON.parse(xhr.responseText).message);
+                self.displayAlertBox(
+                    {
+                        msg: JSON.parse(xhr.responseText).message
+                    }
+                );
             });
 
         return false;

@@ -31,10 +31,19 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                                     .done(function(data) {
                                         contentTypeWorker.addContentTypesToFolder(self.model.get('nodeId'), data)
                                             .done(function() {
-                                                self.displayTemporaryAlertBox(resources.contentType.contentTypeAdded, true);
+                                                self.displayTemporaryAlertBox(
+                                                    {
+                                                        msg: resources.contentType.contentTypeAdded,
+                                                        status: true
+                                                    }
+                                                );
                                             })
                                             .fail(function(msg) {
-                                                self.displayTemporaryAlertBox(msg);
+                                                self.displayTemporaryAlertBox(
+                                                    {
+                                                        msg: msg
+                                                    }
+                                                );
                                             });
                                     })
                                     .always(function() {
@@ -43,7 +52,11 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                             });
                     })
                     .fail(function() {
-                        self.displayTemporaryAlertBox(resources.node.errorCreating);
+                        self.displayTemporaryAlertBox(
+                            {
+                                msg: resources.node.errorCreating
+                            }
+                        );
                     })
                     .always(function() {
                         self.navigateBack();

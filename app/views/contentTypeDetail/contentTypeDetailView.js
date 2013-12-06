@@ -31,11 +31,20 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
                 self.model.destroy(
                     {
                         success: function(model) {
-                            self.displayTemporaryAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
+                            self.displayTemporaryAlertBox(
+                                {
+                                    msg: resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost,
+                                    status: true
+                                }
+                            );
                             self.remove();
                         },
                         error: function(model) {
-                            self.displayAlertBox(resources.contentType.errorDeleted + model.get('label'));
+                            self.displayAlertBox(
+                                {
+                                    msg: resources.contentType.errorDeleted + model.get('label')
+                                }
+                            );
                         }
                     });
             });

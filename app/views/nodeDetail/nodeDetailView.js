@@ -20,10 +20,19 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                     {
                         success: function(model) {
                             self.remove();
-                            self.displayTemporaryAlertBox(resources.node.successfullyDeletedPre + model.get('label') + resources.node.successfullyDeletedPost, true);
+                            self.displayTemporaryAlertBox(
+                                {
+                                    msg: resources.node.successfullyDeletedPre + model.get('label') + resources.node.successfullyDeletedPost,
+                                    status: true
+                                }
+                            );
                         },
                         error: function(model) {
-                            self.displayAlertBox(resources.node.errorDeleted + model.get('label'));
+                            self.displayAlertBox(
+                                {
+                                    msg: resources.node.errorDeleted + model.get('label')
+                                }
+                            );
                         }
                     });
             });
