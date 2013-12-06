@@ -12,7 +12,7 @@ module.exports = function (grunt) {
     grunt.loadTasks('tasks');
 
     // load grunt Config. All config can be found in tasks/options
-    grunt.initConfig(_.extend(config, loadConfig('./tasks/options/')));
+    grunt.initConfig(_.extend(config, loadConfig('./initConfig/')));
 
     grunt.registerTask("server", "Build and watch task", [
         'clean',
