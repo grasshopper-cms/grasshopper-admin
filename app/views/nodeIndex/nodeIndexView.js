@@ -13,10 +13,12 @@ define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'unders
 
         // determines if this is the root or not (if it is root then the nodeId will be null)
         if(this.options.nodeId) {
+            // TODO: Make this a computed property.
             this.model.url = this.model.url.replace(':id', this.options.nodeId);
             this.options.root = false;
             this.app.router.mastheadView.model.set('inRoot', false);
         } else {
+            // TODO: Make this a computed property.
             this.model.url = this.model.url.replace(':id', 0);
             this.options.root = true;
             this.app.router.mastheadView.model.set('inRoot', true);
