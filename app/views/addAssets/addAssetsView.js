@@ -11,7 +11,10 @@ define(['grasshopperBaseView', 'resources'],
     function afterRender() {
         var self = this;
 
-        this.displayModal(resources.thisIsNotImplemented)
+        this.displayModal(
+                {
+                    msg: resources.thisIsNotImplemented
+                })
             .done(function() {
                 self.navigateBack();
             })

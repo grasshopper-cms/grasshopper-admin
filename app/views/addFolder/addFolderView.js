@@ -11,14 +11,23 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
     function afterRender() {
         var self = this;
 
-        this.displayModal(resources.node.enterName, 'input')
+        this.displayModal(
+                {
+                    msg: resources.node.enterName,
+                    type: 'input'
+                })
             .done(function(data) {
                 nodeWorker.createFolder(self.model.get('nodeId'), data)
                     .done(function() {
                         self.channels.views.trigger('refreshContentBrowseView');
                         contentTypeWorker.getAvailableContentTypes()
                             .done(function(availableContentTypes) {
-                                self.displayModal(resources.contentType.addContentTypes, 'checkbox', availableContentTypes)
+                                self.displayModal(
+                                        {
+                                            msg: resources.contentType.addContentTypes,
+                                            type: 'checkbox',
+                                            data: availableContentTypes
+                                        })
                                     .done(function(data) {
                                         contentTypeWorker.addContentTypesToFolder(self.model.get('nodeId'), data)
                                             .done(function() {

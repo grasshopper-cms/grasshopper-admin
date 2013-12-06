@@ -21,7 +21,7 @@ define(['grasshopperBaseView', 'text!views/modal/_imageModalView.html', 'text!vi
                 options.templateHtml = checkboxTemplate;
                 break;
         }
-        BaseView.prototype.initialize.apply(this, arguments);
+        GrasshopperBaseView.prototype.initialize.apply(this, arguments);
     }
 
     function confirmModal() {

@@ -265,14 +265,14 @@ define([
             }
         }
 
-        function displayModal (msg, type, data) {
+        function displayModal (options) {
             var $deferred = new $.Deferred();
             var modalView = new ModalView(_.extend(modalViewConfig, {
                 modelData: {
-                    msg: msg,
-                    data: (data) ? data : null
+                    msg: options.msg,
+                    data: (options.data) ? options.data : null
                 },
-                type: type,
+                type: (options.type) ? options.type : null,
                 $deferred : $deferred
             }));
             this.hideModal();

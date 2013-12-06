@@ -23,7 +23,10 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     function deleteContentType() {
         var self = this;
 
-        this.displayModal(resources.contentType.deletionWarning)
+        this.displayModal(
+                {
+                    msg: resources.contentType.deletionWarning
+                })
             .done(function() {
                 self.model.destroy(
                     {

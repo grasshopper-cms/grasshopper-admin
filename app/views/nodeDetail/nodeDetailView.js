@@ -11,7 +11,10 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
     function deleteNode() {
         var self = this;
 
-        this.displayModal(resources.node.deletionWarning)
+        this.displayModal(
+                {
+                    msg: resources.node.deletionWarning
+                })
             .done(function() {
                 self.model.destroy(
                     {
@@ -33,7 +36,12 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
     function editNode() {
         var self = this;
 
-        this.displayModal(resources.node.editName, 'input', this.model.get('label'))
+        this.displayModal(
+                {
+                    msg: resources.node.editName,
+                    type:  'input',
+                    data: this.model.get('label')
+                })
             .done(function(data) {
                 self.model.set('label', data);
                 self.model.save()
@@ -46,7 +54,12 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                     .always(function() {
                         contentTypeWorker.getAvailableContentTypes(self.model.get('allowedTypes'))
                             .done(function(availableContentTypes) {
-                                self.displayModal(resources.contentType.editContentTypes, 'checkbox', availableContentTypes)
+                                self.displayModal(
+                                        {
+                                            msg: resources.contentType.editContentTypes,
+                                            type: 'checkbox',
+                                            data:  availableContentTypes
+                                        })
                                     .done(function(data) {
                                         contentTypeWorker.addContentTypesToFolder(self.model.get('_id'), data)
                                             .done(function () {
@@ -60,8 +73,4 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                     });
             });
     }
-
-
-
 });
-
