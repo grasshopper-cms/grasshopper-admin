@@ -21,13 +21,6 @@ require.config({
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
-        },
-        codemirror: {
-            exports: 'CodeMirror'
-        },
-        codemirrorjs: {
-            deps : ['codemirror']
-
         }
     },
     packages : [
@@ -48,7 +41,6 @@ require.config({
         LocalStorage : 'vendor/masseuse/app/localStorage',
         cirque: 'vendor/cirque/jquery.cirque',
         modernizr: 'vendor/modernizr/modernizr',
-        codemirror: 'vendor/codemirror/lib/codemirror',
 
         // Routers
         masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
@@ -59,9 +51,6 @@ require.config({
         forms : 'vendor/foundation/js/foundation/foundation.forms',
         dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
         section: 'vendor/foundation/js/foundation/foundation.section',
-
-        // CodeMirror
-        codemirrorjs: 'vendor/codemirror/mode/javascript/javascript',
 
         // Views
         masseuseBaseView : 'vendor/masseuse/app/baseView',

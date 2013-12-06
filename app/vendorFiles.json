@@ -9,11 +9,9 @@
     "foundation" : "vendor/foundation/js/foundation/foundation.js",
     "cirque" : "vendor/cirque/jquery.cirque.js",
     "modernizr" : "vendor/modernizr/modernizr.js",
-    "codemirror" : "vendor/codemirror/lib/codemirror.js",
     "masseuse" : "vendor/masseuse/app/*.js",
     "alerts" : "vendor/foundation/js/foundation/foundation.alerts.js",
     "forms" : "vendor/foundation/js/foundation/foundation.forms.js",
     "dropdown" : "vendor/foundation/js/foundation/foundation.dropdown.js",
-    "section" : "vendor/foundation/js/foundation/foundation.section.js",
-    "codemirrorjs" : "vendor/codemirror/mode/javascript/javascript.js"
+    "section" : "vendor/foundation/js/foundation/foundation.section.js"
 }
