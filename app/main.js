@@ -204,6 +204,7 @@ require([
             escape      : /\[\[-(.+?)\]\]/g
         };
 
+        // TODO: For some reason this is not needed?
         $(document).foundation();
 
         // TODO : This should come from a build task run in Grunt
