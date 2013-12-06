@@ -7,7 +7,6 @@
     "rivets" : "vendor/rivets/dist/rivets.js",
     "base64" : "vendor/js-base64/base64.js",
     "foundation" : "vendor/foundation/js/foundation/foundation.js",
-    "backstrap" : "vendor/theme/backstrap.js",
     "cirque" : "vendor/cirque/jquery.cirque.js",
     "modernizr" : "vendor/modernizr/modernizr.js",
     "codemirror" : "vendor/codemirror/lib/codemirror.js",
