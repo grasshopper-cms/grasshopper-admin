@@ -22,12 +22,6 @@ require.config({
             exports : 'Foundation',
             deps : ['jquery']
         },
-        tinymce: {
-            exports: 'tinyMCE',
-            init: function () {
-                return this.tinymce;
-            }
-        },
         codemirror: {
             exports: 'CodeMirror'
         },
@@ -55,8 +49,6 @@ require.config({
         backstrap: 'vendor/theme/backstrap',
         cirque: 'vendor/cirque/jquery.cirque',
         modernizr: 'vendor/modernizr/modernizr',
-        tinymce: 'vendor/tinymce/js/tinymce/tinymce.min',
-        tinytheme: 'vendor/tinymce/js/tinymce/themes/modern/theme.min',
         codemirror: 'vendor/codemirror/lib/codemirror',
 
         // Routers

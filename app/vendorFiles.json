@@ -10,8 +10,6 @@
     "backstrap" : "vendor/theme/backstrap.js",
     "cirque" : "vendor/cirque/jquery.cirque.js",
     "modernizr" : "vendor/modernizr/modernizr.js",
-    "tinymce" : "vendor/tinymce/js/tinymce/tinymce.min.js",
-    "tinytheme" : "vendor/tinymce/js/tinymce/themes/modern/theme.js",
     "codemirror" : "vendor/codemirror/lib/codemirror.js",
     "masseuse" : "vendor/masseuse/app/*.js",
     "alerts" : "vendor/foundation/js/foundation/foundation.alerts.js",
