@@ -1,6 +1,7 @@
-define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'underscore'],
-    function (Model, ComputedProperty, constants, resources, _) {
-    return Model.extend({
+define(['grasshopperModel', 'masseuse', 'constants', 'resources', 'underscore'],
+    function (Model, masseuse, constants, resources, _) {
+        var ComputedProperty = masseuse.ComputedProperty;
+        return Model.extend({
         defaults: {
             resources : resources.user,
             roles : new ComputedProperty(['role'], setPossibleRoles)

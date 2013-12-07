@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore', 'text!views/assetDetail/_assetDetailRow.html'],
+define(['grasshopperBaseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore',
+    'text!views/assetDetail/_assetDetailRow.html'],
     function (GrasshopperBaseView, AssetDetailView, assetDetailViewConfig, _, assetDetailRowTemplate) {
     'use strict';
 

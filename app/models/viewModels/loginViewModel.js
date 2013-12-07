@@ -1,4 +1,7 @@
-define(['masseuseModel', 'validation', 'computedProperty', 'underscore'], function (Model, validation, ComputedProperty, _) {
+define(['masseuse', 'validation', 'underscore'], function (masseuse, validation, _) {
+    var Model = masseuse.MasseuseModel,
+        ComputedProperty = masseuse.ComputedProperty;
+
     return Model.extend({
         validate : validate,
         defaults: {

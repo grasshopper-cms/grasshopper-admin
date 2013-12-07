@@ -1,4 +1,6 @@
-define(['masseuseModel', 'computedProperty', 'resources', 'constants'], function (Model, ComputedProperty, resources, constants) {
+define(['masseuse', 'resources', 'constants'], function (masseuse, resources, constants) {
+    var Model = masseuse.MasseuseModel,
+        ComputedProperty = masseuse.ComputedProperty;
     return Model.extend({
         defaults : {
             users : [],
