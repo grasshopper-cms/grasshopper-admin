@@ -40,7 +40,6 @@ require.config({
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
         LocalStorage : 'vendor/masseuse/app/localStorage',
         cirque: 'vendor/cirque/jquery.cirque',
-        modernizr: 'vendor/modernizr/modernizr',
 
         // Routers
         masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
@@ -167,8 +166,7 @@ require([
     'alerts',
     'forms',
     'dropdown',
-    'section',
-    'modernizr'
+    'section'
 ],
     /**
      * @param $

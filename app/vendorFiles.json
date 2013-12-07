@@ -8,7 +8,6 @@
     "base64" : "vendor/js-base64/base64.js",
     "foundation" : "vendor/foundation/js/foundation/foundation.js",
     "cirque" : "vendor/cirque/jquery.cirque.js",
-    "modernizr" : "vendor/modernizr/modernizr.js",
     "masseuse" : "vendor/masseuse/app/*.js",
     "alerts" : "vendor/foundation/js/foundation/foundation.alerts.js",
     "forms" : "vendor/foundation/js/foundation/foundation.forms.js",
