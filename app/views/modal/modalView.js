@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html', 'text!views/modal/_checkboxModalView.html'],
+define(['grasshopperBaseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html',
+    'text!views/modal/_checkboxModalView.html'],
     function (GrasshopperBaseView, imageModalTemplate, inputModalTemplate, checkboxTemplate) {
     'use strict';
 

@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/contentIndex/contentIndexView.html', 'contentIndexViewModel'], function (templateHtml, contentIndexViewModel) {
+define(['text!views/contentIndex/contentIndexView.html', 'contentIndexViewModel'],
+    function (templateHtml, contentIndexViewModel) {
     'use strict';
 
     return {

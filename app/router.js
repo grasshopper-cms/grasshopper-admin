@@ -1,6 +1,6 @@
 /*global define*/
 define([
-    'backbone', 'underscore', 'masseuseRouter', 'api', 'constants', 'LocalStorage',
+    'backbone', 'underscore', 'masseuse', 'api', 'constants',
     'grasshopperBaseView',
     'loginView', 'loginViewConfig', 'loginWorker',
     'dashboardView', 'dashboardViewConfig',
@@ -20,7 +20,7 @@ define([
     'addContentView', 'addContentViewConfig',
     'addAssetsView', 'addAssetsViewConfig'
 ],
-    function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
+    function (Backbone, _, masseuse, Api, constants,
               GrasshopperBaseView,
               LoginView, loginViewConfig, loginWorker,
               DashboardView, dashboardViewConfig,
@@ -41,7 +41,9 @@ define([
               AddAssetsView, addAssetsViewConfig
               ) {
 
-        var userModel = new UserModel(),
+        var MasseuseRouter = masseuse.MasseuseRouter,
+            LocalStorage = masseuse.localStorage,
+            userModel = new UserModel(),
             currentView;
 
         /**

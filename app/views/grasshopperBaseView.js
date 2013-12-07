@@ -1,8 +1,9 @@
 /*global define:false*/
-define(['masseuseBaseView'], function (BaseView) {
+define(['masseuse'], function (masseuse) {
     'use strict';
 
-    var oldSet = Backbone.Collection.prototype.set;
+    var BaseView = masseuse.BaseView,
+        oldSet = Backbone.Collection.prototype.set;
 
     return BaseView.extend({
         initialize : initialize,

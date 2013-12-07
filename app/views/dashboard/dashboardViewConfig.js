@@ -1,8 +1,9 @@
 /*global define:false*/
-define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources', 'constants', 'viewContext'],
-    function (templateHtml, DashboardViewModel, resources, constants, ViewContext) {
+define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources', 'constants', 'masseuse'],
+    function (templateHtml, DashboardViewModel, resources, constants, masseuse) {
     'use strict';
 
+        var ViewContext = masseuse.ViewContext;
     return {
         name : 'dashboardView',
         modelData:{

@@ -1,12 +1,13 @@
 define([
     'grasshopperModel',
     'validation',
-    'computedProperty',
+    'masseuse',
     'resources',
     'constants'
-], function (Model, validation, ComputedProperty, resources, constants) {
+], function (Model, validation, masseuse, resources, constants) {
 
     'use strict';
+    var ComputedProperty = masseuse.ComputedProperty;
     return Model.extend({
 //        url : constants.api.user.url,
         defaults : {

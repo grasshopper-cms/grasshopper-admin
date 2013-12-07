@@ -10,7 +10,8 @@ module.exports = {
             livereload : true
         },
         files : [
-            'build/**/*'
+            'build/**',
+            '!build/vendor/**'
         ]
     },
     dev : {
@@ -19,9 +20,9 @@ module.exports = {
             livereload : true
         },
         files : [
-            'app/**/*',
+            'app/**',
             '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
-            '!app/vendor/**/*'
+            '!app/vendor/**'
         ],
         tasks : [
             'jshint', 'copy:redo'
