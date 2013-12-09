@@ -2,17 +2,14 @@
 define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
 
     return GrasshopperBaseView.extend({
-        applyFoundationForms : applyFoundationForms,
         saveUser : saveUser
     });
 
-    function applyFoundationForms() {
-        this.$el.foundation('forms');
-    }
 
     function saveUser() {
         var self = this;
 
+        console.log(this.model);
         this.model.save()
             .success(function() {
                 self.app.router.navigateTrigger('users');

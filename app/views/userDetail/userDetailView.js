@@ -22,7 +22,7 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'], function
         if (!this.model.has('_id')) {
             this.model.fetch()
                 .done(function() {
-                    self.$el.foundation('forms');
+
                 });
         }
     }

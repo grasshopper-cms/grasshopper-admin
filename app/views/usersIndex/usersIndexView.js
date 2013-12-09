@@ -20,7 +20,6 @@ define(['grasshopperBaseView', 'userWorker', 'constants', 'underscore', 'userDet
                         self.appendUserRow(model);
                     });
                     $deferred.resolve();
-                    self.$el.foundation('forms');
                 });
         }
 

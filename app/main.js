@@ -8,14 +8,7 @@ require.config({
         alerts : {
             deps : ['foundation']
         },
-        forms : {
-            exports : 'Forms',
-            deps : ['foundation']
-        },
         dropdown : {
-            deps : ['foundation']
-        },
-        section : {
             deps : ['foundation']
         },
         foundation : {
@@ -47,10 +40,8 @@ require.config({
         router : 'router',
 
         // Foundation Dependencies
-        alerts : 'vendor/foundation/js/foundation/foundation.alerts',
-        forms : 'vendor/foundation/js/foundation/foundation.forms',
+        alerts : 'vendor/foundation/js/foundation/foundation.alert',
         dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
-        section: 'vendor/foundation/js/foundation/foundation.section',
 
         // Views
         masseuseBaseView : 'vendor/masseuse/app/baseView',
@@ -165,9 +156,7 @@ require([
     'router',
     'constants',
     'alerts',
-    'forms',
     'dropdown',
-    'section',
     'modernizr'
 ],
     /**

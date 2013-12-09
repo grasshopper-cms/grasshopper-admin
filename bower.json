@@ -3,7 +3,7 @@
   "dependencies": {
     "lodash-amd": "*",
     "backbone-amd": "~1.0.0",
-    "foundation": "~4.3.1",
+    "foundation": "~5.0.2",
     "jquery": "~2.0.3",
     "requirejs": "~2.1.8",
     "requirejs-text": "~2.0.10",

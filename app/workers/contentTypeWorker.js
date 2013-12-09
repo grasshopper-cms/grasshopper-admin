@@ -30,11 +30,7 @@ define(['api', 'jquery', 'resources', 'underscore'],
 
             _.each(data, function(contentType) {
                 if(contentType.checked) {
-                    contentTypes.push(
-                        {
-                            id: contentType._id
-                        }
-                    );
+                    contentTypes.push(contentType._id);
                 }
             });
 

@@ -12,7 +12,7 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
         if(!this.model.has('_id')) {
             this.model.fetch()
                 .done(function() {
-                    self.$el.foundation('forms');
+
                 })
                 .fail(function() {
                     // TODO: Error Handling
