@@ -36,6 +36,7 @@ require.config({
         foundation : 'vendor/foundation/js/foundation/foundation',
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
         cirque: 'vendor/cirque/jquery.cirque',
+        modernizr: 'vendor/modernizr/modernizr',
 
         // Routers
         router : 'router',
@@ -88,8 +89,6 @@ require.config({
         addContentViewConfig : 'views/addContent/addContentViewConfig',
         addAssetsView : 'views/addAssets/addAssetsView',
         addAssetsViewConfig : 'views/addAssets/addAssetsViewConfig',
-
-
 
         // Models
         selfValidatingModel : 'models/selfValidatingModel',

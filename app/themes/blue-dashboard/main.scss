@@ -10,10 +10,9 @@ $font: 'Open Sans', arial, sans-serif;
 $imgPath: '/themes/blue-dashboard/img';
 
 // Import Foundation
-@import "../../vendor/foundation/scss/normalize";
-@import "../../vendor/foundation/scss/foundation";
+@import "../../vendor/foundation/scss/normalize.scss";
+@import "../../vendor/foundation/scss/foundation.scss";
 
-// Using Sass globbing to import app view scss files.
 @import "colors";
 @import "mixins";
 
