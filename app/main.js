@@ -20,6 +20,10 @@ require.config({
         {
             name : 'underscore',
             location : 'vendor/lodash-amd/underscore'
+        },
+        {
+            name : 'masseuse',
+            location : 'vendor/masseuse/app'
         }
     ],
     paths : {
@@ -31,12 +35,9 @@ require.config({
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
-        LocalStorage : 'vendor/masseuse/app/localStorage',
         cirque: 'vendor/cirque/jquery.cirque',
-        modernizr: 'vendor/modernizr/modernizr',
 
         // Routers
-        masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
         router : 'router',
 
         // Foundation Dependencies
@@ -44,7 +45,6 @@ require.config({
         dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
 
         // Views
-        masseuseBaseView : 'vendor/masseuse/app/baseView',
         grasshopperBaseView : 'views/grasshopperBaseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
@@ -89,18 +89,9 @@ require.config({
         addAssetsView : 'views/addAssets/addAssetsView',
         addAssetsViewConfig : 'views/addAssets/addAssetsViewConfig',
 
-        // Mixins
-        mixin : 'vendor/masseuse/app/mixin',
-        rivetView : 'vendor/masseuse/app/rivetView',
 
-        // Channels
-        channels : 'vendor/masseuse/app/channels',
 
         // Models
-        computedProperty : 'vendor/masseuse/app/computedProperty',
-        proxyProperty : 'vendor/masseuse/app/proxyProperty',
-        viewContext : 'vendor/masseuse/app/viewContext',
-        masseuseModel : 'vendor/masseuse/app/MasseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
         grasshopperModel : 'models/grasshopperModel',
@@ -135,7 +126,6 @@ require.config({
         nodeWorker : 'workers/nodeWorker',
 
         // Collections
-        paginatedCollection : 'vendor/masseuse/app/paginatedCollection',
         userCollection : 'collections/userCollection',
 
         // Api proxy

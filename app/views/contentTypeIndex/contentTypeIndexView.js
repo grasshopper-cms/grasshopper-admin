@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore'],
+define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig',
+    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore'],
     function (GrasshopperBaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate, _) {
     'use strict';
 

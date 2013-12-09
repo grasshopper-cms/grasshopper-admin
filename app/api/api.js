@@ -1,6 +1,7 @@
-define(['constants', 'base64', 'LocalStorage'], function (constants, base64, LocalStorage) {
+define(['constants', 'base64', 'masseuse'], function (constants, base64, masseuse) {
     'use strict';
 
+    var LocalStorage = masseuse.localStorage;
     return {
         getToken : function (username, password) {
             return $.ajax({

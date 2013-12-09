@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'resources', 'constants'], function (templateHtml, UsersIndexViewModel, resources, constants) {
+define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'resources', 'constants'],
+    function (templateHtml, UsersIndexViewModel, resources, constants) {
     'use strict';
 
     return {

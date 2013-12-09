@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/nodeIndex/nodeIndexView.html', 'resources', 'nodeIndexViewModel'], function (templateHtml, resources, nodeIndexViewModel) {
+define(['text!views/nodeIndex/nodeIndexView.html', 'resources', 'nodeIndexViewModel'],
+    function (templateHtml, resources, nodeIndexViewModel) {
     'use strict';
 
     return {

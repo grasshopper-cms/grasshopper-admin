@@ -1,4 +1,5 @@
-define(['grasshopperModel', 'resources', 'computedProperty', 'underscore', 'constants'], function (Model, resources, computedProperty, _, constants) {
+define(['grasshopperModel', 'resources', 'underscore', 'constants'],
+    function (Model, resources, _, constants) {
     return Model.extend({
         defaults: {
             resources : resources,

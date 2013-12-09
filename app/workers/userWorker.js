@@ -1,7 +1,8 @@
-define(['api', 'resources', 'UserModel', 'userCollection', 'LocalStorage'],
-    function (Api, resources, UserModel, UserCollection, LocalStorage) {
+define(['api', 'resources', 'UserModel', 'userCollection', 'masseuse'],
+    function (Api, resources, UserModel, UserCollection, masseuse) {
         'use strict';
 
+        var LocalStorage = masseuse.localStorage;
         return {
             getUsers : getUsers
         };
