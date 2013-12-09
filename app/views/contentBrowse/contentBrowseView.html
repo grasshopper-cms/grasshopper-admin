@@ -6,9 +6,25 @@
                     <p class="title" data-section-title><a href="#"><i class="icon-list-alt"></i>{{data.resources.content | spaceBefore}}</a></p>
                     <div class="content" data-section-content>
                         <input type="text" id="ContentSearch" class="search" placeholder="Search" /> <a href="#"><i class="icon-search"></i></a>
-                        <div id="nodeIndex">
-                            <!--Built from nodeIndexView-->
-                        </div>
+                        <div id="nodeIndex"></div>
+                        <div id="contentIndex"></div>
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>{{data.resources.name}}</th>
+                                    <th>{{data.resources.contentBrowse.author}}</th>
+                                    <th>{{data.resources.status}}</th>
+                                    <th>{{data.resources.contentBrowse.modified}}</th>
+                                    <th style="text-align: center">{{data.resources.actions}}</th>
+                                </tr>
+                            </thead>
+                            <tbody id="nodeDetailRow">
+                                <!--built Dynamically nodeDetailViewRow via nodeIndexView-->
+                            </tbody>
+                            <tbody id="contentDetailRow">
+                                <!--built Dynamically contentDetailView via contentIndexView-->
+                            </tbody>
+                        </table>
                     </div>
                 </section>
                 <section data-rv-hide="data.inRoot">

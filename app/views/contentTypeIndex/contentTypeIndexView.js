@@ -1,23 +1,30 @@
 /*global define:false*/
-define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore'],
-    function (BaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate, _) {
+define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig',
+    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore'],
+    function (GrasshopperBaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate, _) {
     'use strict';
 
-    return BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         insertContentTypeDetailRow : insertContentTypeDetailRow
     });
 
-    function beforeRender() {
+    function beforeRender($deferred) {
         var self = this;
         this.model.fetch()
             .done(function() {
                 _.each(self.model.get('results'), function(data){
                     self.insertContentTypeDetailRow(data);
                 });
+                $deferred.resolve();
             })
             .fail(function() {
-                this.displayAlertBox('BLAH BLAH BLAH, CONTENT TYPES DID NOT WORK, BLAH BLAH BLAH');
+                //TODO: Error handling here.
+                this.displayAlertBox(
+                    {
+                        msg: 'BLAH BLAH BLAH, CONTENT TYPES DID NOT WORK, BLAH BLAH BLAH'
+                    }
+                );
             });
     }
 
@@ -29,10 +36,9 @@ define(['baseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig', 'tex
                 el : '#contentTypeIndexTable',
                 templateHtml : rowTemplate,
                 modelData : data,
-                mastheadButtons : this.options.mastheadButtons
+                mastheadButtons : null
             }));
-
-        contentTypeDetailView.start();
+        this.addChild(contentTypeDetailView);
     }
 
 });

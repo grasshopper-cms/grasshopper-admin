@@ -1,5 +1,7 @@
 /*global define:false*/
-define(['text!views/contentTypeDetail/contentTypeDetailView.html', 'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'contentTypeDetailViewModel', 'resources', 'constants'], function (formTemplate, rowTemplate, contentTypeDetailViewModel, resources, constants) {
+define(['text!views/contentTypeDetail/contentTypeDetailView.html',
+    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'contentTypeDetailViewModel', 'resources', 'constants'],
+    function (formTemplate, rowTemplate, contentTypeDetailViewModel, resources, constants) {
     'use strict';
 
     return {
@@ -9,7 +11,8 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html', 'text!views/c
         el : '#stage',
         templateHtml : formTemplate,
         events : {
-            'click #deleteContentType' : 'deleteContentType'
+            'click #deleteContentType' : 'deleteContentType',
+            'click .clickableCell' : 'handleRowClick'
         },
         appendView : true,
         bindings : [],

@@ -26,7 +26,6 @@ define({
             }
         }
     },
-
     user : {
         userDetailHeaderText : 'Profile for: ',
         loggedInAs : 'Logged in as',
@@ -39,14 +38,6 @@ define({
             email : 'EMAIL',
             login : 'LOGIN',
             password : 'PASSWORD'
-        },
-        statusTitles : {
-            enabled : 'enabled',
-            disabled : 'disabled'
-        },
-        statusOptions : {
-          enabled : true,
-          disabled : false
         },
         roles : {
             admin : 'admin',
@@ -74,16 +65,34 @@ define({
         addContentType : 'New Content Type'
     },
     node : {
-        deletionWarning: 'Are you sure you want to delete this folder?',
-        successfullyDeletedPre: 'Node ',
+        deletionWarning: 'Are you sure you want to delete this folder? All of its contents will also be deleted.',
+        successfullyDeletedPre: 'Folder ',
         successfullyDeletedPost: ' was successfully deleted.',
-        errorDeleted : 'There was an issue deleting this node: '
+        errorDeleted : 'There was an issue deleting this folder: ',
+        enterName: 'Please enter the name of the folder: ',
+        errorCreating: 'folder could not be added',
+        editName: 'Edit Folder name:'
+    },
+    contentItem : {
+        deletionWarning: 'Are you sure you want to delete this content?',
+        successfullyDeletedPre: 'Content ',
+        successfullyDeletedPost: ' was successfully deleted.',
+        errorDeleted : 'There was an issue deleting this content: '
     },
     contentType : {
+        addContentTypes: 'Add Content Types: ',
+        editContentTypes: 'Edit allowed Content Types',
+        contentTypeAdded: 'Content Type Added',
         deletionWarning: 'Are you sure you want to delete this content type?',
         successfullyDeletedPre: 'Content Type ',
         successfullyDeletedPost: ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: '
+    },
+    asset : {
+        deletionWarning : 'Are you sure you want to delete this asset?',
+        successfullyDeletedPre: 'Asset Name: ',
+        successfullyDeletedPost: ' was successfully deleted.',
+        errorDeleted : 'There was an issue deleting this asset: '
     },
     contentBrowse : {
         author: 'Author',
@@ -100,12 +109,17 @@ define({
     add : 'Add',
     addNewUser : 'Add New User',
     cancel : 'Cancel',
+    close : 'Close',
     confirm : 'Confirm',
     content : 'Content',
     contentTypes : 'Content Types',
+    currentlySignedIn : 'You are currently signed in.',
+    dashboard : 'Dashboard',
+    download : 'Download',
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',
+    falseText: 'False',
     home : 'Home',
     login : 'Login',
     log_in : 'Log In',
@@ -120,8 +134,11 @@ define({
     settings : 'Settings',
     siteName : 'Grasshopper',
     status : 'Status',
+    thisIsNotImplemented : 'This is not yet implemented.',
+    trueText: 'True',
     type: 'Type',
     types : 'Types',
     user_name : 'User Name',
-    users : 'Users'
+    users : 'Users',
+    welcomeBack : 'Welcome Back'
 });

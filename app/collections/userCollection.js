@@ -1,5 +1,8 @@
-define(['backbone', 'UserModel', 'constants', 'paginatedCollection', 'LocalStorage'], function (Backbone, UserModel, constants, PaginatedCollection, LocalStorage) {
+define(['backbone', 'UserModel', 'constants', 'masseuse'],
+    function (Backbone, UserModel, constants, masseuse) {
 
+        var LocalStorage = masseuse.localStorage,
+            PaginatedCollection = masseuse.PaginatedCollection;
     return PaginatedCollection.extend({
         paginationConfig : {
             pageSize : constants.userCollection.pageSize,

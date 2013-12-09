@@ -13,32 +13,39 @@ module.exports = function (grunt) {
                     platform: grunt.config.get('platform')
                 }
             })),
-            pathArray = [],
             template = grunt.file.read('app/main.js'),
-            pathsToReturn = {};
+            pathsToReturn = {},
+            finished;
 
         // De-nest the Paths.JSON
-        for(var category in processedPaths) {
-            for(var subcategory in processedPaths[category]) {
-                pathsToReturn[subcategory] = processedPaths[category][subcategory];
-            }
-        }
-
-        // Re-build into a string.
-        _.each(pathsToReturn, function(value, key) {
-            pathArray.push(key + ':' + "'" + value + "'" );
-        })
+        extractStrings(processedPaths, pathsToReturn);
 
         // Interpolate paths into Main.js
-        var finished = grunt.template.process(template, {
+        finished = grunt.template.process(template, {
             data:
             {
-                paths: '\n, paths: {' + pathArray.join(', \n') + '\n }'
+                paths: '\n, paths: ' + JSON.stringify(pathsToReturn, null, "    ")
             }
         });
 
         grunt.file.write('temp/main.js', finished);
     });
+
+    function extractStrings(pathsTree, pathsToReturn) {
+        _.each(_.keys(pathsTree), function(key) {
+            var value = pathsTree[key];
+            if (_.isString(value)) {
+                if (! pathsToReturn[key]) {
+                    pathsToReturn[key] = value;
+                } else {
+                    grunt.fail.warn('Duplicate paths entry for: "' + key + '"');
+                }
+            } else {
+                grunt.log.writeln("fetching paths for: " + key);
+                extractStrings(value, pathsToReturn);
+            }
+        });
+    }
 
     /////////////////////////
 
@@ -46,26 +53,22 @@ module.exports = function (grunt) {
 
         var paths = grunt.file.read('app/paths.json'),
             processedPaths = JSON.parse(grunt.template.process(paths, {
-                                                                        data:
-                                                                        {
-                                                                            platform: grunt.config.get('platform')
-                                                                        }
-                                                                      })),
+                data:
+                {
+                    platform: grunt.config.get('platform')
+                }
+            })),
             pathArray = [],
             template = grunt.file.read('tests/main.js'),
             pathsToReturn = {};
 
         // De-nest the Paths.JSON
-        for(var category in processedPaths) {
-            for(var subcategory in processedPaths[category]) {
-                pathsToReturn[subcategory] = processedPaths[category][subcategory];
-            }
-        }
+        extractStrings(processedPaths, pathsToReturn);
 
         // Re-build into a string.
         _.each(pathsToReturn, function(value, key) {
-            pathArray.push(key + ':' + "'../app/" + value + "'" );
-        })
+            pathArray.push(key + ':' + "'../" + value + "'" );
+        });
 
         // Interpolate paths into Main.js
         var finished = grunt.template.process(template, {
@@ -75,8 +78,6 @@ module.exports = function (grunt) {
             }
         });
 
-        grunt.file.write('temp/main.js', finished);
+        grunt.file.write('temp/tests/main.js', finished);
     });
-
-
 };

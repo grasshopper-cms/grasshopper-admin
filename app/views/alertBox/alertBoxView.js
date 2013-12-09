@@ -1,10 +1,9 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['grasshopperBaseView'], function (GrasshopperBaseView) {
     'use strict';
 
-    var AlertBoxView = BaseView.extend({
+    return GrasshopperBaseView.extend({
 
     });
 
-    return AlertBoxView;
 });

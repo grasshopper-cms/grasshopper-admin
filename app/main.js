@@ -8,38 +8,22 @@ require.config({
         alerts : {
             deps : ['foundation']
         },
-        forms : {
-            exports : 'Forms',
-            deps : ['foundation']
-        },
         dropdown : {
-            deps : ['foundation']
-        },
-        section : {
             deps : ['foundation']
         },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
-        },
-        tinymce: {
-            exports: 'tinyMCE',
-            init: function () {
-                return this.tinymce;
-            }
-        },
-        codemirror: {
-            exports: 'CodeMirror'
-        },
-        codemirrorjs: {
-            deps : ['codemirror']
-
         }
     },
     packages : [
         {
             name : 'underscore',
             location : 'vendor/lodash-amd/underscore'
+        },
+        {
+            name : 'masseuse',
+            location : 'vendor/masseuse/app'
         }
     ],
     paths : {
@@ -51,30 +35,17 @@ require.config({
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
-        LocalStorage : 'vendor/masseuse/app/localStorage',
-        backstrap: 'vendor/theme/backstrap',
         cirque: 'vendor/cirque/jquery.cirque',
-        modernizr: 'vendor/modernizr/modernizr',
-        tinymce: 'vendor/tinymce/js/tinymce/tinymce.min',
-        tinytheme: 'vendor/tinymce/js/tinymce/themes/modern/theme.min',
-        codemirror: 'vendor/codemirror/lib/codemirror',
 
         // Routers
-        masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
         router : 'router',
 
         // Foundation Dependencies
-        alerts : 'vendor/foundation/js/foundation/foundation.alerts',
-        forms : 'vendor/foundation/js/foundation/foundation.forms',
+        alerts : 'vendor/foundation/js/foundation/foundation.alert',
         dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
-        section: 'vendor/foundation/js/foundation/foundation.section',
-
-        // CodeMirror
-        codemirrorjs: 'vendor/codemirror/mode/javascript/javascript',
 
         // Views
-        masseuseBaseView : 'vendor/masseuse/app/baseView',
-        baseView : 'views/grasshopperBaseView',
+        grasshopperBaseView : 'views/grasshopperBaseView',
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
         dashboardView : 'views/dashboard/dashboardView',
@@ -109,19 +80,18 @@ require.config({
         contentDetailViewConfig : 'views/contentDetail/contentDetailViewConfig',
         contentIndexView : 'views/contentIndex/contentIndexView',
         contentIndexViewConfig : 'views/contentIndex/contentIndexViewConfig',
+        assetDetailView : 'views/assetDetail/assetDetailView',
+        assetDetailViewConfig : 'views/assetDetail/assetDetailViewConfig',
+        addFolderView : 'views/addFolder/addFolderView',
+        addFolderViewConfig : 'views/addFolder/addFolderViewConfig',
+        addContentView : 'views/addContent/addContentView',
+        addContentViewConfig : 'views/addContent/addContentViewConfig',
+        addAssetsView : 'views/addAssets/addAssetsView',
+        addAssetsViewConfig : 'views/addAssets/addAssetsViewConfig',
 
-        // Mixins
-        mixin : 'vendor/masseuse/app/mixin',
-        rivetView : 'vendor/masseuse/app/rivetView',
 
-        // Channels
-        channels : 'vendor/masseuse/app/channels',
 
         // Models
-        computedProperty : 'vendor/masseuse/app/computedProperty',
-        proxyProperty : 'vendor/masseuse/app/proxyProperty',
-        viewContext : 'vendor/masseuse/app/viewContext',
-        masseuseModel : 'vendor/masseuse/app/MasseuseModel',
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
         grasshopperModel : 'models/grasshopperModel',
@@ -144,13 +114,18 @@ require.config({
         assetIndexViewModel : 'models/viewModels/assetIndexViewModel',
         contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
         contentDetailViewModel : 'models/viewModels/contentDetailViewModel',
+        assetDetailViewModel : 'models/viewModels/assetDetailViewModel',
+        addFolderViewModel : 'models/viewModels/addFolderViewModel',
+        addContentViewModel : 'models/viewModels/addContentViewModel',
+        addAssetsViewModel : 'models/viewModels/addAssetsViewModel',
 
             // Workers
         loginWorker : 'workers/loginWorker',
         userWorker : 'workers/userWorker',
+        contentTypeWorker : 'workers/contentTypeWorker',
+        nodeWorker : 'workers/nodeWorker',
 
         // Collections
-        paginatedCollection : 'vendor/masseuse/app/paginatedCollection',
         userCollection : 'collections/userCollection',
 
         // Api proxy
@@ -171,9 +146,7 @@ require([
     'router',
     'constants',
     'alerts',
-    'forms',
     'dropdown',
-    'section',
     'modernizr'
 ],
     /**
@@ -190,13 +163,16 @@ require([
             escape      : /\[\[-(.+?)\]\]/g
         };
 
+        // TODO: For some reason this is not needed?
         $(document).foundation();
 
         // TODO : This should come from a build task run in Grunt
         $('head').append('<link rel="stylesheet" type="text/css" href="themes/' + constants.defaults.theme + '/main.css" />');
 
-        new Router();
+        var router = new Router();
         Backbone.history.start();
+        router.breadcrumb = [];
+        Backbone.history.on('route', function() { router.breadcrumb.push(this.fragment); }, this);
         // TODO: setup push state on nginx
         //Backbone.history.start({pushState: true});
 });

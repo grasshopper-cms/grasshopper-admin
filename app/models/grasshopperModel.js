@@ -1,14 +1,17 @@
 define([
-    'masseuseModel',
+    'masseuse',
     'validation',
-    'computedProperty',
     'resources',
     'constants',
-    'LocalStorage',
     'underscore'
-], function (Model, validation, ComputedProperty, resources, constants, LocalStorage, _) {
+], function (masseuse, validation, resources, constants, _) {
 
     'use strict';
+
+    var Model = masseuse.MasseuseModel,
+        ComputedProperty = masseuse.ComputedProperty,
+        LocalStorage = masseuse.localStorage;
+
     return Model.extend({
         fetch : fetch,
         save : save,

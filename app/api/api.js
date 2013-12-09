@@ -1,6 +1,7 @@
-define(['constants', 'base64', 'LocalStorage'], function (constants, base64, LocalStorage) {
+define(['constants', 'base64', 'masseuse'], function (constants, base64, masseuse) {
     'use strict';
 
+    var LocalStorage = masseuse.localStorage;
     return {
         getToken : function (username, password) {
             return $.ajax({
@@ -35,10 +36,21 @@ define(['constants', 'base64', 'LocalStorage'], function (constants, base64, Loc
                 headers : {'Authorization' : 'Token ' + token}
             });
         },
-        makeQuery : function(url, data) {
-            return this.post(url, data);
+        makeQuery : function(data) {
+            return this.post(constants.api.contentQuery.url, data);
+        },
+        postFolder : function(data) {
+            return this.post(constants.api.node.url, data);
+        },
+        getContentTypes : function() {
+            return this.request(constants.api.contentTypes.url);
+        },
+        addContentTypesToNode : function(nodeId, contentTypes) {
+            return this.post(constants.api.nodesContentTypes.url.replace(':id', nodeId), JSON.stringify(contentTypes));
+        },
+        getNodeDetail : function(nodeId) {
+            return this.request(constants.api.node.url + '/' + nodeId);
         }
-
     };
 
 });

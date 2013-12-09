@@ -1,16 +1,21 @@
 <div id="[[=viewId ]]" class="container">
     <div class="row">
         <div class="large-6 columns">
-
             <div class="masthead-pad">
-
                 <div class="masthead-text">
                     <h2>
-                        <i id="MastheadIcon"></i>
-                        <span data-rv-text="data.title"></span>
-
+                        <i class="icon-file"></i>
+                        <span data-rv-each-breadcrumb="data.breadcrumbs">
+                            <span>
+                                <a data-rv-href="breadcrumb.href">{{breadcrumb.text | withBackslash}}</a>
+                            </span>
+                        </span>
                     </h2>
-                    <p data-rv-text="data.description"></p>
+                    <p data-rv-hide="data.inRoot">
+                        <span data-rv-show="data.nodesCount">{{data.nodesCount | pluralize folder | withComma}}</span>
+                        <span data-rv-show="data.filesCount">{{data.filesCount | pluralize file | withComma}}</span>
+                        <span data-rv-show="data.itemsCount">{{data.itemsCount | pluralize item}}</span>
+                    </p>
                 </div>
             </div>
         </div>

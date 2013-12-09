@@ -1,8 +1,9 @@
 /*global define:false*/
-define(['masseuseBaseView'], function (BaseView) {
+define(['masseuse'], function (masseuse) {
     'use strict';
 
-    var oldSet = Backbone.Collection.prototype.set;
+    var BaseView = masseuse.BaseView,
+        oldSet = Backbone.Collection.prototype.set;
 
     return BaseView.extend({
         initialize : initialize,
@@ -33,12 +34,15 @@ define(['masseuseBaseView'], function (BaseView) {
         $promise.progress(function(event){
             switch (event) {
                 case BaseView.afterRenderDone:
+                    if (self.options.mastheadButtons) {
+                        self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons));
+                    }
+                    if (self.options.breadcrumbs) {
+                        self.channels.views.trigger('updateMastheadBreadcrumbs', self);
+                    }
                     if (self.options.rivetConfig) {
                         self.rivetView();
                         self.channels.views.trigger('rivetViewRendered');
-                    }
-                    if (self.options.mastheadButtons) {
-                        self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons));
                     }
                     break;
             }

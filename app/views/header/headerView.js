@@ -1,9 +1,8 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['grasshopperBaseView'], function (GrasshopperBaseView) {
 
-    var HeaderView = BaseView.extend({
+    return GrasshopperBaseView.extend({
 
     });
 
-    return HeaderView;
 });

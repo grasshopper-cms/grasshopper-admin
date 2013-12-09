@@ -1,22 +1,27 @@
 /*global define:false*/
-define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'text!views/nodeDetail/_nodeDetailRow.html'], function (BaseView, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
+define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'text!views/nodeDetail/_nodeDetailRow.html'],
+    function (GrasshopperBaseView, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
     'use strict';
 
-    var nodeIndexView = BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender: beforeRender,
         appendNodeDetailRow : appendNodeDetailRow
     });
 
-    function beforeRender() {
+    function beforeRender($deferred) {
         var self = this;
 
         // determines if this is the root or not (if it is root then the nodeId will be null)
         if(this.options.nodeId) {
+            // TODO: Make this a computed property.
             this.model.url = this.model.url.replace(':id', this.options.nodeId);
             this.options.root = false;
+            this.app.router.mastheadView.model.set('inRoot', false);
         } else {
+            // TODO: Make this a computed property.
             this.model.url = this.model.url.replace(':id', 0);
             this.options.root = true;
+            this.app.router.mastheadView.model.set('inRoot', true);
         }
 
         this.model.fetch()
@@ -26,6 +31,8 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
                         self.appendNodeDetailRow(node);
                     }
                 });
+                $deferred.resolve();
+                self.app.router.mastheadView.model.set('nodesCount', _.size(self.model.attributes) - 2);
             });
     }
 
@@ -38,8 +45,7 @@ define(['baseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'tex
                 templateHtml: nodeDetailRowTemplate,
                 mastheadButtons: this.options.mastheadButtons
             }));
-        nodeDetailView.start();
+        this.addChild(nodeDetailView);
     }
 
-    return nodeIndexView;
 });

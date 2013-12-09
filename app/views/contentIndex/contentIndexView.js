@@ -1,17 +1,18 @@
 /*global define:false*/
-define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'contentDetailViewConfig', 'text!views/contentDetail/_contentDetailRow.html'],
-    function (BaseView, Api, constants, _, ContentDetailView, contentDetailViewConfig, contentDetailRowTemplate) {
+define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailView', 'contentDetailViewConfig',
+    'text!views/contentDetail/_contentDetailRow.html'],
+    function (GrasshopperBaseView, Api, constants, _, ContentDetailView, contentDetailViewConfig, contentDetailRowTemplate) {
     'use strict';
 
-    var contentIndexView = BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender: beforeRender,
         appendContentDetailRow: appendContentDetailRow
     });
 
-    function beforeRender() {
+    function beforeRender($deferred) {
         var self = this;
 
-        Api.makeQuery(constants.api.contentQuery.url,
+        Api.makeQuery(
             {
                 nodes: this.options.nodeId,
                 types: [],
@@ -25,6 +26,8 @@ define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'cont
                 _.each(data, function(content) {
                     self.appendContentDetailRow(content);
                 });
+                $deferred.resolve();
+                self.app.router.mastheadView.model.set('itemsCount', _.size(self.model.attributes.nodeContent));
             });
     }
 
@@ -33,12 +36,11 @@ define(['baseView', 'api', 'constants', 'underscore', 'contentDetailView', 'cont
             {
                 name: 'nodeDetailRow',
                 modelData: content,
-                el: '#nodeDetailRow',
+                el: '#contentDetailRow',
                 templateHtml: contentDetailRowTemplate,
                 mastheadButtons: this.options.mastheadButtons
             }));
-        contentDetailView.start();
+        this.addChild(contentDetailView);
     }
 
-    return contentIndexView;
 });

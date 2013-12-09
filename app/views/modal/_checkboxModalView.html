@@ -1,0 +1,24 @@
+<div id="[[= viewId ]]">
+    <div id="modal-container">
+        <div id="modal-contents">
+            <div class="row">
+                <div id="modal-text">
+                    <h2>{{data.msg}}</h2>
+                </div>
+            </div>
+            <div id="input-container" class="row">
+                <div class="small-11 columns small-centered">
+                    <div class="row" data-rv-each-type="data.data">
+                        <input data-rv-id="type._id" type="checkbox" data-rv-checked="type.checked"><label class="inline" data-rv-for="type._id">{{type.label}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="button-container">
+                    <button id="confirm">{{data.resources.save}}</button>
+                    <button id="cancel">{{data.resources.close}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

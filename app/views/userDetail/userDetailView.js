@@ -1,28 +1,29 @@
 /*global define:false*/
-define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView, resources, userWorker, constants) {
+define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
+    function (GrasshopperBaseView, resources, userWorker, constants) {
 
-    var userDetailView = BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         updateModel : updateModel,
         updateNameInHeader : updateNameInHeader,
-        toggleEnabled : toggleEnabled
+        toggleEnabled : toggleEnabled,
+        handleRowClick : handleRowClick
     });
 
     function beforeRender () {
         var self = this;
 
-        // TODO: make this a computed property. It is checking to see if the current model's ID is the same as Logged in user, the API endpoints are different for Admin editing their own (/user) and admin editing someone else (/users/id)
+        // It is checking to see if the current model's ID is the same as Logged in user, the API endpoints are different for Admin editing their own (/user) and admin editing someone else (/users/id)
         if (this.model.get('id') === this.app.user.get('_id')) {
             this.model.url = constants.api.user.url;
         } else {
             this.model.urlRoot = constants.api.users.url;
         }
 
-        // TODO: Here I am checking to see if the model that is passed to it already has an _id (the id coming from Backbone) if it does, then it does not need to fetch because it already exists.
         if (!this.model.has('_id')) {
             this.model.fetch()
                 .done(function() {
-                    self.$el.foundation('forms');
+
                 });
         }
     }
@@ -31,10 +32,19 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
         var self = this;
         this.model.save()
             .done(function (model) {
-                self.displayTemporaryAlertBox(resources.user.successfullyUpdated, true);
+                self.displayTemporaryAlertBox(
+                    {
+                        msg: resources.user.successfullyUpdated,
+                        status: true
+                    }
+                );
                 updateNameInHeader.call(self, model);
             }).fail(function () {
-                self.displayAlertBox(resources.user.updateError);
+                self.displayAlertBox(
+                    {
+                        msg: resources.user.updateError
+                    }
+                );
             });
 
         return false;
@@ -56,5 +66,9 @@ define(['baseView', 'resources', 'userWorker', 'constants'], function (BaseView,
         this.updateModel();
     }
 
-    return userDetailView;
+    function handleRowClick(e) {
+        e.stopPropagation();
+        this.app.router.navigateTrigger(this.model.get('href'), {}, true);
+    }
+
 });

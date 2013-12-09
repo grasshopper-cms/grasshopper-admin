@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeIndexViewModel', 'resources', 'constants'], function (templateHtml, contentTypeIndexViewModel, resources, constants) {
+define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeIndexViewModel', 'resources', 'constants'],
+    function (templateHtml, contentTypeIndexViewModel, resources, constants) {
     'use strict';
 
     return {
@@ -20,6 +21,12 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
                 href : constants.internalRoutes.newContentType
             }
         ],
-        permissions: ['admin', 'reader', 'editor']
+        breadcrumbs : [
+            {
+                text : resources.contentTypes,
+                href : constants.internalRoutes.contentTypes
+            }
+        ],
+        permissions: ['admin', 'editor']
     };
 });

@@ -1,7 +1,7 @@
 /*global define*/
 define([
-    'backbone', 'underscore', 'masseuseRouter', 'api', 'constants', 'LocalStorage',
-    'baseView',
+    'backbone', 'underscore', 'masseuse', 'api', 'constants',
+    'grasshopperBaseView',
     'loginView', 'loginViewConfig', 'loginWorker',
     'dashboardView', 'dashboardViewConfig',
     'alertBoxView', 'alertBoxViewConfig',
@@ -15,10 +15,13 @@ define([
     'contentBrowseView', 'contentBrowseViewConfig',
     'contentDetailView', 'contentDetailViewConfig',
     'contentTypeIndexView', 'contentTypeIndexViewConfig',
-    'contentTypeDetailView', 'contentTypeDetailViewConfig'
+    'contentTypeDetailView', 'contentTypeDetailViewConfig',
+    'addFolderView', 'addFolderViewConfig',
+    'addContentView', 'addContentViewConfig',
+    'addAssetsView', 'addAssetsViewConfig'
 ],
-    function (Backbone, _, MasseuseRouter, Api, constants, LocalStorage,
-              BaseView,
+    function (Backbone, _, masseuse, Api, constants,
+              GrasshopperBaseView,
               LoginView, loginViewConfig, loginWorker,
               DashboardView, dashboardViewConfig,
               AlertBoxView, alertBoxViewConfig,
@@ -32,14 +35,16 @@ define([
               ContentBrowseView, contentBrowseViewConfig,
               ContentDetailView, contentDetailViewConfig,
               ContentTypeIndexView, contentTypeIndexViewConfig,
-              ContentTypeDetailView, contentTypeDetailViewConfig
+              ContentTypeDetailView, contentTypeDetailViewConfig,
+              AddFolderView, addFolderViewConfig,
+              AddContentView, addContentViewConfig,
+              AddAssetsView, addAssetsViewConfig
               ) {
 
-        var userModel = new UserModel(),
-            currentView,
-            ignoreFromTimer = [
-                'loginView'
-            ];
+        var MasseuseRouter = masseuse.MasseuseRouter,
+            LocalStorage = masseuse.localStorage,
+            userModel = new UserModel(),
+            currentView;
 
         /**
          * @class Router
@@ -57,6 +62,9 @@ define([
                 'item/types(/:id)' : 'displayContentTypeDetail',
                 'items(/nodeid/:nodeId)': 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
+                'createFolder(/:id)' : 'displayCreateFolder',
+                'createContent(/:id)' : 'displayCreateContent',
+                'createAssets(/:id)' : 'displayCreateAssets',
                 '*path' : 'goHome'
             },
 
@@ -86,7 +94,10 @@ define([
             displayContentBrowse : displayContentBrowse,
             displayContentDetail : displayContentDetail,
             displayContentTypeIndex : displayContentTypeIndex,
-            displayContentTypeDetail : displayContentTypeDetail
+            displayContentTypeDetail : displayContentTypeDetail,
+            displayCreateFolder : displayCreateFolder,
+            displayCreateContent : displayCreateContent,
+            displayCreateAssets : displayCreateAssets
         });
 
         function onRouteFail () {
@@ -96,15 +107,25 @@ define([
         function beforeRouting () {
             var $deferred = new $.Deferred();
 
+            if (this.mastheadView) {
+                this.mastheadView.model.set(
+                    {
+                        nodesCount : null,
+                        filesCount : null,
+                        itemsCount : null
+                    }
+                );
+            }
+
             loginWorker.userIsStillValidUser.call(this, $deferred);
 
             return $deferred.promise();
         }
 
-        function navigateTrigger (fragment, options) {
+        function navigateTrigger (fragment, options, doBeforeRender) {
             options = options || {};
             options.trigger = true;
-            this.navigate(fragment, options);
+            this.navigate(fragment, options, doBeforeRender);
         }
 
         function navigateNinja (fragment, options) {
@@ -136,16 +157,16 @@ define([
 
             MasseuseRouter.prototype.initialize.apply(this, arguments);
 
-            BaseView.prototype.app = {
+            GrasshopperBaseView.prototype.app = {
                 router : this,
                 user : this.user
             };
-            BaseView.prototype.displayAlertBox = displayAlertBox;
-            BaseView.prototype.displayTemporaryAlertBox = displayTemporaryAlertBox;
-            BaseView.prototype.hideAlertBox = hideAlertBox;
+            GrasshopperBaseView.prototype.displayAlertBox = displayAlertBox;
+            GrasshopperBaseView.prototype.displayTemporaryAlertBox = displayTemporaryAlertBox;
+            GrasshopperBaseView.prototype.hideAlertBox = hideAlertBox;
 
-            BaseView.prototype.displayModal = displayModal;
-            BaseView.prototype.hideModal = hideModal;
+            GrasshopperBaseView.prototype.displayModal = displayModal;
+            GrasshopperBaseView.prototype.hideModal = hideModal;
 
             // TODO: Get rid of this. Move it to a grasshopperCollection or something like that. It does not belong here.
             Backbone.Collection.prototype.set = function(data, options) {
@@ -158,12 +179,7 @@ define([
 
         function loadMainContent (ViewType, config, bypass) {
             var $deferred = new $.Deferred(),
-                newView = new ViewType(config),
-                self = this;
-
-            if(currentView && ! _.contains(ignoreFromTimer, currentView.options.name)) {
-//                spinnerTimer($deferred, newView);
-            }
+                newView = new ViewType(config);
 
             if (currentView && currentView.options.name === config.name && !bypass) {
                 return $deferred.resolve(currentView)
@@ -173,7 +189,7 @@ define([
             newView.start()
                 .progress(function (event) {
                     switch (event) {
-                        case BaseView.beforeRenderDone:
+                        case GrasshopperBaseView.beforeRenderDone:
                             if (currentView) {
                                 currentView.remove();
                             }
@@ -225,49 +241,51 @@ define([
             loadMainContent(DashboardView, dashboardViewConfig, true);
         }
 
-        function displayAlertBox (msg, status) {
+        function displayAlertBox (options) {
             var alertBoxView = new AlertBoxView(_.extend(alertBoxViewConfig, {
                 modelData: {
-                    msg: msg,
-                    status: (status)
+                    msg: (options.msg),
+                    status: (options.status)
                 }
             }));
             this.hideAlertBox();
             alertBoxView.start();
-            BaseView.prototype.alertBoxView = alertBoxView;
+            GrasshopperBaseView.prototype.alertBoxView = alertBoxView;
         }
 
-        function displayTemporaryAlertBox(msg, status) {
+        function displayTemporaryAlertBox(options) {
             var self = this;
-            self.displayAlertBox(msg, status);
+            self.displayAlertBox(options);
             setTimeout(function() {
                 self.hideAlertBox();
             }, 5000);
         }
 
         function hideAlertBox() {
-            if (BaseView.prototype.alertBoxView && BaseView.prototype.alertBoxView.remove) {
-                BaseView.prototype.alertBoxView.remove();
+            if (GrasshopperBaseView.prototype.alertBoxView && GrasshopperBaseView.prototype.alertBoxView.remove) {
+                GrasshopperBaseView.prototype.alertBoxView.remove();
             }
         }
 
-        function displayModal (msg) {
+        function displayModal (options) {
             var $deferred = new $.Deferred();
             var modalView = new ModalView(_.extend(modalViewConfig, {
                 modelData: {
-                    msg: msg
+                    msg: options.msg,
+                    data: (options.data) ? options.data : null
                 },
+                type: (options.type) ? options.type : null,
                 $deferred : $deferred
             }));
             this.hideModal();
             modalView.start();
-            BaseView.prototype.modalView = modalView;
+            GrasshopperBaseView.prototype.modalView = modalView;
             return $deferred.promise();
         }
 
         function hideModal() {
-            if (BaseView.prototype.modalView && BaseView.prototype.modalView.remove) {
-                BaseView.prototype.modalView.remove();
+            if (GrasshopperBaseView.prototype.modalView && GrasshopperBaseView.prototype.modalView.remove) {
+                GrasshopperBaseView.prototype.modalView.remove();
             }
         }
 
@@ -276,13 +294,16 @@ define([
         }
 
         function displayUserDetail (id) {
+            // TODO: I think this can be refactored to take advantage of the new permissions checking system.
             // I did the role check here instead of in the config with permissions, this is because there are Admin's getting their own, Admins getting others, and others getting their own.
             if(this.user.get('role') === 'admin' || this.user.get('_id') === id) {
                 loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
                     {
                         modelData : {
                             id : id,
-                            isAdmin : (this.user.get('role') === 'admin')
+                            // TODO: I think this can be removed considering the model now has access to the entire App.user
+                            isAdmin : (this.user.get('role') === 'admin'),
+                            userModel: this.user.toJSON()
                         }
                     }));
             } else {
@@ -310,6 +331,7 @@ define([
         }
 
         function displayContentBrowse(nodeId) {
+            this.contentBrowserNodeId = nodeId;
             loadMainContent(ContentBrowseView, _.extend({}, contentBrowseViewConfig,
                 {
                     modelData: {
@@ -340,6 +362,39 @@ define([
                         id : id
                     }
                 }));
+        }
+
+        function displayCreateFolder(id) {
+            var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
+                {
+                    modelData: {
+                        nodeId : (id) ? id : null
+                    }
+                }
+            ));
+            addFolderView.start();
+        }
+
+        function displayCreateContent(id) {
+            var addContentView = new AddContentView(_.extend({}, addContentViewConfig,
+                {
+                    modelData: {
+                        nodeId : (id) ? id : null
+                    }
+                }
+            ));
+            addContentView.start();
+        }
+
+        function displayCreateAssets(id) {
+            var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
+                {
+                    modelData: {
+                        nodeId : (id) ? id : null
+                    }
+                }
+            ));
+            addAssetsView.start();
         }
 
         return Router;

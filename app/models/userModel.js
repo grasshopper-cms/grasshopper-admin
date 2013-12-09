@@ -1,12 +1,13 @@
 define([
     'grasshopperModel',
     'validation',
-    'computedProperty',
+    'masseuse',
     'resources',
     'constants'
-], function (Model, validation, ComputedProperty, resources, constants) {
+], function (Model, validation, masseuse, resources, constants) {
 
     'use strict';
+    var ComputedProperty = masseuse.ComputedProperty;
     return Model.extend({
 //        url : constants.api.user.url,
         defaults : {
@@ -23,15 +24,12 @@ define([
             isReader : new ComputedProperty(['role'], function (role) {
                 return resources.user.roles.reader == role;
             }),
-            urlLink : new ComputedProperty(['_id'], function (id) {
+            href : new ComputedProperty(['_id'], function (id) {
                 return constants.internalRoutes.user + '/' + id;
             }),
             // TODO: Do these need to be computed properties? On the backbone docs there seems to be a way of transparent mapping:  id : '_id' should work
             id : new ComputedProperty(['_id'], function(id) {
                 return id;
-            }),
-            fullName : new  ComputedProperty(['firstname', 'lastname'], function(firstName, lastName) {
-                return firstName + ' ' + lastName;
             })
         }
     });

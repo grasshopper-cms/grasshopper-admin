@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', 'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
+define(['grasshopperBaseView', 'userWorker', 'constants', 'underscore', 'userDetailView', 'userDetailViewConfig',
+    'text!views/userDetail/_userDetailRow.html'],
+    function (GrasshopperBaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
 
-    function (BaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
-
-        var usersIndexView = BaseView.extend({
+        return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
             goToPage : goToPage,
             checkAndSetLimit : checkAndSetLimit,
@@ -11,7 +11,7 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', '
             appendUserRow : appendUserRow
         });
 
-        function beforeRender() {
+        function beforeRender($deferred) {
             var self = this,
                 model = this.model.toJSON();
 
@@ -20,7 +20,7 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', '
                     self.model.get('users').each(function(model){
                         self.appendUserRow(model);
                     });
-                    self.$el.foundation('forms');
+                    $deferred.resolve();
                 });
         }
 
@@ -53,14 +53,11 @@ define(['baseView', 'userWorker', 'constants', 'underscore', 'userDetailView', '
                 {
                     name : 'userDetailRow',
                     el : '#usersIndexTable',
-                    // TODO: set this template some other way. Maybe in the Config?
                     templateHtml : rowTemplate,
                     model : model,
-                    mastheadButtons : this.options.mastheadButtons
+                    mastheadButtons : null
                 }
             ));
-            userDetailView.start();
+            this.addChild(userDetailView);
         }
-
-        return usersIndexView;
     });

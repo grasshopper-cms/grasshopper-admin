@@ -1,0 +1,23 @@
+<div id="[[= viewId ]]">
+    <div id="modal-container">
+        <div id="modal-contents">
+            <div class="row">
+                <div id="modal-text">
+                    <h2>{{data.msg}}</h2>
+                </div>
+            </div>
+            <div id="image-container" class="row">
+                <img data-rv-src="data.data">
+            </div>
+            <div class="row">
+                <div id="button-container">
+                    <button id="confirm">
+                        <i class="icon-download-alt"></i>
+                        {{data.resources.download}}
+                    </button>
+                    <button id="cancel">{{data.resources.close}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

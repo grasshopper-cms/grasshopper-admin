@@ -1,16 +1,12 @@
-define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'underscore'], function (Model, ComputedProperty, constants, resources, _) {
-    return Model.extend({
+define(['grasshopperModel', 'masseuse', 'constants', 'resources', 'underscore'],
+    function (Model, masseuse, constants, resources, _) {
+        var ComputedProperty = masseuse.ComputedProperty;
+        return Model.extend({
         defaults: {
             resources : resources.user,
-            roles : new ComputedProperty(['role'], setPossibleRoles),
-            statusOptions : new ComputedProperty(['enabled'], setStatusOptions),
-            // TODO: this should be done inline with Rivets. A decorator. {{ data.firstname | concat data.lastname | spaceAfter }}
-            fullName : new ComputedProperty(['firstname', 'lastname'], function(first, last) {
-                return first + ' ' + last;
-            })
+            roles : new ComputedProperty(['role'], setPossibleRoles)
         },
         urlRoot : constants.api.users.url
-
     });
 
     function setPossibleRoles(role) {
@@ -22,14 +18,4 @@ define(['grasshopperModel', 'computedProperty', 'constants', 'resources', 'under
             return thisRole;
         });
     }
-
-    function setStatusOptions(enabled) {
-        // TODO: Refactor This
-        return _.map(resources.user.statusOptions, function(value, key) {
-           var thisOption = {};
-            thisOption.text = value;
-            return thisOption;
-        });
-    }
-
 });

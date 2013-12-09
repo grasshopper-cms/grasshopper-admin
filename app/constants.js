@@ -28,6 +28,12 @@ define({
         assets : {
             url : 'http://localhost:8080/node/:id/assets'
         },
+        nodesContentTypes : {
+            url : 'http://localhost:8080/node/:id/contenttype'
+        },
+        content : {
+            url : 'http://localhost:8080/content'
+        },
         contentQuery: {
             url : 'http://localhost:8080/content/query'
         }
@@ -44,7 +50,10 @@ define({
         home : '#home',
         login : '#login',
         logout : '#logout',
-        about : '#about'
+        about : '#about',
+        createFolder : '#createFolder/:id',
+        createContent : '#createContent/:id',
+        createAssets : '#createAssets/:id'
     },
     defaults : {
         theme: 'blue-dashboard'
@@ -62,20 +71,3 @@ define({
         }
     }
 });
-
-///search
-
-//var query = {
-//    nodes: "526d5179966a883540000006",  will accept a string or array of ID's,
-//    types: [],
-//    filters: [],
-//    options: {}
-//};
-//request(url)
-//    .post('/content/query')
-//    .set('Accept', 'application/json')
-//    .set('Accept-Language', 'en_US')
-//    .set('authorization', 'Token ' + globalReaderToken)
-//    .send(query)
-//    .end(function(err, res) {
-//    });

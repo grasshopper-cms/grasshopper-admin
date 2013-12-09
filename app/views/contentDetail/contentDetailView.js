@@ -1,25 +1,42 @@
 /*global define:false*/
-define(['baseView', 'resources'], function (BaseView, resources) {
+define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
 
-    return BaseView.extend({
-        deleteContent : deleteContent
+    return GrasshopperBaseView.extend({
+        deleteContent : deleteContent,
+        handleRowClick : handleRowClick
     });
 
     function deleteContent() {
         var self = this;
 
-        this.displayModal('Deleting Content has not been tested, confirm with Care!!!')
+        this.displayModal(
+                {
+                    msg: resources.contentItem.deletionWarning
+                })
             .done(function() {
                 self.model.destroy(
                     {
                         success: function(model) {
-                            self.displayTemporaryAlertBox(resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost, true);
+                            self.displayTemporaryAlertBox(
+                                {
+                                    msg: resources.contentItem.successfullyDeletedPre + model.get('label') + resources.contentItem.successfullyDeletedPost,
+                                    status: true
+                                }
+                            );
                             self.remove();
                         },
                         error: function(model) {
-                            self.displayAlertBox(resources.contentType.errorDeleted + model.get('label'));
+                            self.displayAlertBox(
+                                {
+                                    msg: resources.contentItem.errorDeleted + model.get('label')
+                                }
+                            );
                         }
                     });
             });
+    }
+
+    function handleRowClick() {
+        this.app.router.navigateTrigger(this.model.get('href'));
     }
 });

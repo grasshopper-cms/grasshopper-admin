@@ -1,36 +1,64 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'jquery'], function (BaseView, rivetView, $) {
+define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) {
 
-    var MastheadView = BaseView.extend({
+    return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
-        afterRender: afterRender,
-        setIcon: setIcon,
-        setButtons : setButtons
+        setButtons : setButtons,
+        setBreadcrumbs : setBreadcrumbs,
+        interpolateMastheadButtons : interpolateMastheadButtons
     });
 
     function beforeRender() {
         this.setButtons();
-    }
-
-    function afterRender () {
-        this.setIcon();
-    }
-
-    function setIcon() {
-        if(this.model.get('icon')) {
-            // TODO: What is this and why is it here?
-            $('#MastheadIcon').addClass(this.model.get('icon'));
-        }
+        this.setBreadcrumbs();
     }
 
     function setButtons(buttonArray) {
         if(!buttonArray) {
-            this.model.set('buttons', this.options.mastheadButtons);
+            this.model.set('buttons', this.options.defaultMastheadButtons);
         } else {
-            this.model.set('buttons', buttonArray);
+            this.model.set('buttons', this.interpolateMastheadButtons(buttonArray));
         }
-
     }
 
-    return MastheadView;
+    function setBreadcrumbs(view) {
+        if (view && view.model.has('breadcrumbs')) {
+            this.model.set('breadcrumbs', _.flatten(_.clone(view.model.get('breadcrumbs'))));
+        } else if (view && view.options.breadcrumbs){
+            this.model.set('breadcrumbs', view.options.breadcrumbs);
+        } else {
+            this.model.set('breadcrumbs', this.options.defaultBreadcrumbs);
+        }
+    }
+
+    function interpolateMastheadButtons(buttonArray) {
+        // TODO: Tons of repetition here. Refactor this.
+        var self = this,
+            interpolatedArray = [],
+            obj = {},
+            max = buttonArray.length,
+            i = 0,
+            key;
+
+        if (this.app.router.contentBrowserNodeId) {
+            for(i, max; i < max; i++) {
+                for(key in buttonArray[i]) {
+                    obj[key] = buttonArray[i][key].replace(':id', self.app.router.contentBrowserNodeId);
+                }
+                interpolatedArray.push(obj);
+                obj = {};
+            }
+        } else {
+            for(i, max; i < max; i++) {
+                for(key in buttonArray[i]) {
+                    obj[key] = buttonArray[i][key].replace('/:id', '');
+                }
+                interpolatedArray.push(obj);
+                obj = {};
+            }
+        }
+
+        return interpolatedArray;
+    }
+
 });

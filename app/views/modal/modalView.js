@@ -1,14 +1,32 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['grasshopperBaseView', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html',
+    'text!views/modal/_checkboxModalView.html'],
+    function (GrasshopperBaseView, imageModalTemplate, inputModalTemplate, checkboxTemplate) {
     'use strict';
 
-    var ModalView = BaseView.extend({
+    return GrasshopperBaseView.extend({
+        initialize : initialize,
         confirmModal : confirmModal,
         cancelModal : cancelModal
     });
 
+    function initialize(options) {
+        switch (options.type) {
+            case 'image':
+                options.templateHtml = imageModalTemplate;
+                break;
+            case 'input':
+                options.templateHtml = inputModalTemplate;
+                break;
+            case 'checkbox':
+                options.templateHtml = checkboxTemplate;
+                break;
+        }
+        GrasshopperBaseView.prototype.initialize.apply(this, arguments);
+    }
+
     function confirmModal() {
-        this.options.$deferred.resolve();
+        this.options.$deferred.resolve(this.model.get('data'));
         _removeModal.call(this);
     }
 
@@ -21,5 +39,4 @@ define(['baseView'], function (BaseView) {
         this.remove();
     }
 
-    return ModalView;
 });

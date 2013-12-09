@@ -1,9 +1,12 @@
 /*global define:false*/
-define(['baseView'], function (BaseView) {
+define(['grasshopperBaseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore',
+    'text!views/assetDetail/_assetDetailRow.html'],
+    function (GrasshopperBaseView, AssetDetailView, assetDetailViewConfig, _, assetDetailRowTemplate) {
     'use strict';
 
-    var assetIndexView = BaseView.extend({
-        beforeRender: beforeRender
+    return GrasshopperBaseView.extend({
+        beforeRender: beforeRender,
+        appendAssetDetailRow : appendAssetDetailRow
     });
 
     function beforeRender() {
@@ -17,8 +20,30 @@ define(['baseView'], function (BaseView) {
 
         this.model.fetch()
             .done(function() {
-                console.log(self.model);
+                _.each(self.model.attributes, function(asset) {
+                    if(_.has(asset, 'url')) {
+                        self.appendAssetDetailRow(asset);
+                    }
+                });
+                self.app.router.mastheadView.model.set('filesCount', _.size(self.model.attributes) - 2);
             });
+    }
+
+    function appendAssetDetailRow(asset) {
+        var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,
+            {
+                name : 'assetDetailRow',
+                modelData : _.extend(asset,
+                    {
+                        nodeId : this.options.nodeId
+                    }
+                ),
+                el : '#assetDetailRow',
+                templateHtml : assetDetailRowTemplate,
+                mastheadButtons : this.options.mastheadButtons
+            }
+        ));
+        assetDetailView.start();
     }
 
     return assetIndexView;

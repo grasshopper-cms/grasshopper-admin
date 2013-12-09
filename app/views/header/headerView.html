@@ -6,7 +6,7 @@
         <div id="top-nav">
             <ul class="pull-right">
                 <li><img class="profile-pic" data-rv-show="data.loggedIn" src="http://placehold.it/20x20"/></li>
-                <li><a data-rv-href="data.userModel.urlLink"><i class="icon-user"></i><span data-rv-text="data.resources.user.loggedInAs | spaceAfter"></span><span data-rv-text="data.userModel.fullName"></span></a></li>
+                <li><a data-rv-href="data.userModel.href"><i class="icon-user"></i><span data-rv-text="data.resources.user.loggedInAs | spaceAfter"></span><span>{{data.userModel.firstname | spaceAfter}}{{data.userModel.lastname}}</span></a></li>
                 <li class="dropdown">
                     <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
                         {{data.resources.settings}}
@@ -53,7 +53,7 @@
                                 </a>
                             </li>
 
-                            <li data-rv-show="data.userModel.role | includes admin reader editor">
+                            <li data-rv-show="data.userModel.role | includes admin editor">
                                 <a data-rv-href="data.constants.internalRoutes.contentTypes">
                                     <i class="icon-cogs"></i>
                                     <span>{{data.resources.types}}</span>

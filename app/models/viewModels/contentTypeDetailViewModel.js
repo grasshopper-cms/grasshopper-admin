@@ -1,9 +1,10 @@
-define(['grasshopperModel', 'resources', 'constants', 'computedProperty'], function (Model, resources, constants, ComputedProperty) {
+define(['grasshopperModel', 'resources', 'constants', 'masseuse'], function (Model, resources, constants, masseuse) {
+    var ComputedProperty = masseuse.ComputedProperty;
     return Model.extend({
         idAttribute : '_id',
         defaults: {
             resources : resources,
-            urlLink : new ComputedProperty(['_id'], function(id) {
+            href : new ComputedProperty(['_id'], function(id) {
                 return constants.internalRoutes.contentTypes + '/' + id;
             })
         },

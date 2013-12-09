@@ -1,29 +1,34 @@
 /*global define:false*/
-define(['baseView', 'resources'], function (BaseView, resources) {
+define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
 
-    var addUserView = BaseView.extend({
-        applyFoundationForms : applyFoundationForms,
+    return GrasshopperBaseView.extend({
         saveUser : saveUser
     });
 
-    function applyFoundationForms() {
-        this.$el.foundation('forms');
-    }
 
     function saveUser() {
         var self = this;
 
+        console.log(this.model);
         this.model.save()
             .success(function() {
                 self.app.router.navigateTrigger('users');
-                self.displayTemporaryAlertBox(resources.user.newUserAdded, true);
+                self.displayTemporaryAlertBox(
+                    {
+                        msg: resources.user.newUserAdded,
+                        status: true
+                    }
+                );
             })
             .error(function(xhr) {
-                self.displayAlertBox(JSON.parse(xhr.responseText).message);
+                self.displayAlertBox(
+                    {
+                        msg: JSON.parse(xhr.responseText).message
+                    }
+                );
             });
 
         return false;
     }
 
-    return addUserView;
 });

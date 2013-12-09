@@ -1,0 +1,13 @@
+<tr id="[[= viewId ]]">
+    <td class="clickableCell"><a>{{data.fileName}}</a></td>
+    <td class="clickableCell">{{data.size | prettyFileSize}}</td>
+    <td class="clickableCell">{{data.lastmodified | prettyDate}}</td>
+    <td align="center">
+        <a data-rv-href="data.url">
+            <i class="icon-download-alt"></i>
+        </a>
+        <a id="deleteAsset">
+            <i class="icon-trash"></i>
+        </a>
+    </td>
+</tr>

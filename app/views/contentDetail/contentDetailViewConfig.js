@@ -1,5 +1,7 @@
 /*global define:false*/
-define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDetail/_contentDetailRow.html', 'contentDetailViewModel', 'resources', 'constants'], function (formTemplate, rowTemplate, contentDetailViewModel, resources, constants) {
+define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDetail/_contentDetailRow.html',
+    'contentDetailViewModel', 'resources', 'constants'],
+    function (formTemplate, rowTemplate, contentDetailViewModel, resources, constants) {
     'use strict';
 
     return {
@@ -9,7 +11,8 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
         el : '#stage',
         templateHtml : formTemplate,
         events : {
-            'click #deleteContent' : 'deleteContent'
+            'click #deleteContent' : 'deleteContent',
+            'click .clickableCell' : 'handleRowClick'
         },
         appendView : true,
         bindings : [],

@@ -1,13 +1,13 @@
 /*global define:false*/
-define(['baseView', 'rivetView','jquery', 'cirque'], function (BaseView, rivetView, $, cirque) {
+define(['grasshopperBaseView', 'jquery', 'cirque'], function (GrasshopperBaseView, $, cirque) {
     'use strict';
 
-    var DashboardView = BaseView.extend({
-        rivetView : rivetView({rivetScope : '#dashboard', rivetPrefix : 'dashboard'}),
+    return GrasshopperBaseView.extend({
         afterRender: afterRender
     });
 
     function afterRender() {
+        // TODO: What is this and what is it doing?
         $('.report-cirque').cirque ({
             radius: 60,
             total: 7630,
@@ -15,5 +15,5 @@ define(['baseView', 'rivetView','jquery', 'cirque'], function (BaseView, rivetVi
             trackColor: '#CCCCCC'
         });
     }
-    return DashboardView;
+
 });
