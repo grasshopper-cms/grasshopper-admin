@@ -27,8 +27,7 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
     }
 
     function afterRender() {
-        //TODO: What is this and what is it doing? maybe it should be moved.
-        $(document).foundation('section', 'reflow');
+        this.$el.foundation();
 
         this.addChildIndexViews();
     }
