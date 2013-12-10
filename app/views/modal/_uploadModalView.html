@@ -1,0 +1,22 @@
+<div id="[[= viewId ]]">
+    <div id="modal-container">
+        <div id="modal-contents">
+            <div class="row">
+                <div id="modal-text">
+                    <h2>{{data.msg}}</h2>
+                </div>
+            </div>
+            <div id="dropZone">Drag and Drop Files Here.</div>
+            <input type="file" id="upload" name="files[]" multiple="multiple"/>
+            <ul>
+                <li data-rv-each-file="data.files">{{file.name | withColon}}{{file.size | prettyFileSize | withColon}}{{file.type}}</li>
+            </ul>
+            <div class="row">
+                <div id="button-container">
+                    <button id="confirm">{{data.resources.upload}}</button>
+                    <button id="cancel">{{data.resources.cancel}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

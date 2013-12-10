@@ -3,7 +3,8 @@ define(['masseuse', 'resources', 'constants'], function (masseuse, resources, co
     return Model.extend({
         defaults : {
             resources : resources,
-            constants : constants
+            constants : constants,
+            files : []
         }
     });
 });

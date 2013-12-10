@@ -13,18 +13,23 @@ define(['grasshopperBaseView', 'resources'],
 
         this.displayModal(
                 {
-                    msg: resources.thisIsNotImplemented
+                    msg: 'Upload an Asset!',
+                    type: 'upload',
+                    data: {}
                 })
-            .done(function() {
+            .done(function(data) {
+                console.log(data);
                 self.navigateBack();
             })
             .fail(function() {
+                console.log('negator');
                 self.navigateBack();
             });
     }
 
     function navigateBack() {
         this.app.router.navigateNinja(this.app.router.breadcrumb[this.app.router.breadcrumb.length - 2]);
+        this.app.router.breadcrumb.pop();
     }
 
 });

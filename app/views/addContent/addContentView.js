@@ -25,6 +25,7 @@ define(['grasshopperBaseView', 'resources'],
 
     function navigateBack() {
         this.app.router.navigateNinja(this.app.router.breadcrumb[this.app.router.breadcrumb.length - 2]);
+        this.app.router.breadcrumb.pop();
     }
 
 });

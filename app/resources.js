@@ -141,6 +141,7 @@ define({
     trueText: 'True',
     type: 'Type',
     types : 'Types',
+    upload : 'Upload',
     user_name : 'User Name',
     users : 'Users',
     welcomeBack : 'Welcome Back'
