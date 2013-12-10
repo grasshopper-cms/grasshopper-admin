@@ -39,7 +39,10 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
 
     function handleFileSelect(e) {
         var files = _.clone(this.model.attributes.files);
-        files.push(e.target.files[0]);
+
+        _.each(e.target.files, function(file) {
+            files.push(file);
+        });
 
         updateFileModel.call(this, files);
     }
@@ -51,13 +54,16 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
         this.handleDragLeave(e);
 
         var files = _.clone(this.model.attributes.files);
-        files.push(e.originalEvent.dataTransfer.files[0]);
+
+        _.each(e.originalEvent.dataTransfer.files, function(file) {
+            files.push(file);
+        });
 
         updateFileModel.call(this, files);
     }
 
     function updateFileModel(files) {
-        this.model.get('data').files.push(files);
+        this.model.get('data').files = files;
         this.model.set('files', files);
     }
 
