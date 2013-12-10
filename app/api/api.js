@@ -50,6 +50,12 @@ define(['constants', 'base64', 'masseuse'], function (constants, base64, masseus
         },
         getNodeDetail : function(nodeId) {
             return this.request(constants.api.node.url + '/' + nodeId);
+        },
+        renameAsset : function(url, originalName, newName) {
+            return this.post(url + '/rename', {
+                original: originalName,
+                updated: newName
+            });
         }
     };
 

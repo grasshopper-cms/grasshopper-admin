@@ -11,7 +11,8 @@ define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_
         templateHtml : formTemplate,
         events : {
             'click .clickableCell' : 'handleRowClick',
-            'click #deleteAsset' : 'deleteAsset'
+            'click #deleteAsset' : 'deleteAsset',
+            'click #editAsset' : 'editAsset'
         },
         appendView : true,
         bindings : [],

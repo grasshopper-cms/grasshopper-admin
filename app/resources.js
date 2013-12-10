@@ -92,7 +92,10 @@ define({
         deletionWarning : 'Are you sure you want to delete this asset?',
         successfullyDeletedPre: 'Asset Name: ',
         successfullyDeletedPost: ' was successfully deleted.',
-        errorDeleted : 'There was an issue deleting this asset: '
+        errorDeleted : 'There was an issue deleting this asset: ',
+        editFileName : 'Edit File Name',
+        editNameSuccess : 'File name was successfully updated.',
+        editNameFail : 'File name could not be updated.'
     },
     contentBrowse : {
         author: 'Author',

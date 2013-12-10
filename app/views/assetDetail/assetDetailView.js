@@ -1,9 +1,10 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
+define(['grasshopperBaseView', 'resources', 'api'], function (GrasshopperBaseView, resources, Api) {
 
     return GrasshopperBaseView.extend({
         handleRowClick : handleRowClick,
-        deleteAsset : deleteAsset
+        deleteAsset : deleteAsset,
+        editAsset : editAsset
     });
 
     function handleRowClick(e) {
@@ -35,6 +36,36 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
                         self.displayAlertBox(
                             {
                                 msg: resources.asset.errorDeleted + self.model.get('fileName')
+                            }
+                        );
+                    });
+            });
+    }
+
+    function editAsset() {
+        var self = this;
+
+        this.displayModal(
+            {
+                msg: resources.asset.editFileName,
+                type: 'input',
+                data: this.model.get('fileName')
+            })
+            .done(function(data) {
+                Api.renameAsset(self.model.urlRoot(), self.model.get('fileName'), data)
+                    .done(function() {
+                        self.model.set('fileName', data);
+                        self.displayTemporaryAlertBox(
+                            {
+                                msg: resources.asset.editNameSuccess,
+                                status: true
+                            }
+                        );
+                    })
+                    .fail(function() {
+                        self.displayTemporaryAlertBox(
+                            {
+                                msg: resources.asset.editNameFail
                             }
                         );
                     });
