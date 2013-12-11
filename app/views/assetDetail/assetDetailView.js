@@ -20,7 +20,10 @@ define(['grasshopperBaseView', 'resources', 'api'], function (GrasshopperBaseVie
     function deleteAsset() {
         var self = this;
 
-        this.displayModal(resources.asset.deletionWarning)
+        this.displayModal(
+                {
+                    msg: resources.asset.deletionWarning
+                })
             .done(function() {
                 self.model.destroy()
                     .done(function() {

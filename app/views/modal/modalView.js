@@ -34,7 +34,9 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
     }
 
     function beforeRender() {
-        this.model.get('data').files = [];
+        if(this.model.has('data')){
+            this.model.get('data').files = [];
+        }
     }
 
     function handleFileSelect(e) {

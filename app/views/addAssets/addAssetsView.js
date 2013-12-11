@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'jquery', 'api'],
-    function (GrasshopperBaseView, _, $, Api) {
+define(['grasshopperBaseView', 'underscore', 'jquery', 'createAssetWorker'],
+    function (GrasshopperBaseView, _, $, createAssetWorker) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -13,7 +13,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'api'],
 
         this.displayModal(
                 {
-                    msg: 'Upload an Asset!',
+                    msg: 'Upload an Asset! THIS CURRENTLY DOES NOT WORK WITH FILES THAT HAVE UNDERSCORES AND LARGE FILES.',
                     type: 'upload',
                     data: {}
                 })
@@ -24,7 +24,6 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'api'],
                 self.navigateBack();
             })
             .fail(function() {
-                console.log('negator');
                 self.navigateBack();
             });
     }
@@ -35,17 +34,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'api'],
     }
 
     function appendAssetDetailRow(file) {
-        console.log(file);
-
-//        $('#assetDetailRow').append('<tr><td>'+ file.name +'</td><td>BLAH</td><td>BLAH</td><td>BLAH</td></tr>');
-
-        Api.postNewAsset(this.model.get('nodeId'), file);
-//            .done(function(data) {
-//                console.log(data);
-//            })
-//            .fail(function(data) {
-//                console.log(data);
-//            });
+        createAssetWorker.postNewAsset(this.model.get('nodeId'), file);
     }
 
 });

@@ -56,35 +56,6 @@ define(['constants', 'base64', 'masseuse'], function (constants, base64, masseus
                 original: originalName,
                 updated: newName
             });
-        },
-        postNewAsset : function(nodeId, assetDetails) {
-            var token = LocalStorage.get('authToken'),
-                form_data = new FormData();
-
-            form_data.append('file', assetDetails);
-
-            var request = new XMLHttpRequest();
-
-            request.upload.addEventListener('progress', function(e){
-                console.log(Math.ceil(e.loaded/e.total) * 100 + '%');
-            }, false);
-
-            request.open('POST', constants.api.assets.url.replace(':id', nodeId));
-
-            request.setRequestHeader('Authorization', 'Token ' + token);
-
-            request.send(form_data);
-
-//            return $.ajax({
-//                url : constants.api.assets.url.replace(':id', nodeId),
-//
-//                contentType : 'multipart/form-data; boundry=111',
-//                processData: false,
-//                data : form_data,
-//
-//                type : 'POST',
-//                headers : {'Authorization' : 'Token ' + token}
-//            });
         }
     };
 

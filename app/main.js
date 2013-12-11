@@ -127,6 +127,7 @@ require.config({
         userWorker : 'workers/userWorker',
         contentTypeWorker : 'workers/contentTypeWorker',
         nodeWorker : 'workers/nodeWorker',
+        createAssetWorker : 'workers/createAssetWorker',
 
         // Collections
         userCollection : 'collections/userCollection',
