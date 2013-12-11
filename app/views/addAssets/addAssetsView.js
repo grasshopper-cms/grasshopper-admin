@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources'],
-    function (GrasshopperBaseView, resources) {
+define(['grasshopperBaseView', 'underscore', 'jquery', 'api'],
+    function (GrasshopperBaseView, _, $, Api) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -18,7 +18,9 @@ define(['grasshopperBaseView', 'resources'],
                     data: {}
                 })
             .done(function(data) {
-                console.log(data);
+                _.each(data.files, function(file) {
+                   appendAssetDetailRow.call(self, file);
+                });
                 self.navigateBack();
             })
             .fail(function() {
@@ -32,4 +34,36 @@ define(['grasshopperBaseView', 'resources'],
         this.app.router.breadcrumb.pop();
     }
 
+    function appendAssetDetailRow(file) {
+        console.log(file);
+
+//        $('#assetDetailRow').append('<tr><td>'+ file.name +'</td><td>BLAH</td><td>BLAH</td><td>BLAH</td></tr>');
+
+        Api.postNewAsset(this.model.get('nodeId'), JSON.stringify(file))
+            .done(function(data) {
+                console.log(data);
+            })
+            .fail(function(data) {
+                console.log(data);
+            });
+    }
+
 });
+
+
+//function appendAssetDetailRow(asset) {
+//    var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,
+//        {
+//            name : 'assetDetailRow',
+//            modelData : _.extend(asset,
+//                {
+//                    nodeId : this.options.nodeId
+//                }
+//            ),
+//            el : '#assetDetailRow',
+//            templateHtml : assetDetailRowTemplate,
+//            mastheadButtons : this.options.mastheadButtons
+//        }
+//    ));
+//    assetDetailView.start();
+//}

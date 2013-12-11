@@ -56,6 +56,23 @@ define(['constants', 'base64', 'masseuse'], function (constants, base64, masseus
                 original: originalName,
                 updated: newName
             });
+        },
+        postNewAsset : function(nodeId, assetDetails) {
+            var token = LocalStorage.get('authToken'),
+                form_data = new FormData();
+
+            form_data.append('file', assetDetails);
+
+            return $.ajax({
+                url : constants.api.assets.url.replace(':id', nodeId),
+
+                contentType : 'multipart/form-data',
+                processData: false,
+                data : form_data,
+
+                type : 'POST',
+                headers : {'Authorization' : 'Token ' + token}
+            });
         }
     };
 
