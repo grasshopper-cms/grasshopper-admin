@@ -39,31 +39,13 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'api'],
 
 //        $('#assetDetailRow').append('<tr><td>'+ file.name +'</td><td>BLAH</td><td>BLAH</td><td>BLAH</td></tr>');
 
-        Api.postNewAsset(this.model.get('nodeId'), JSON.stringify(file))
-            .done(function(data) {
-                console.log(data);
-            })
-            .fail(function(data) {
-                console.log(data);
-            });
+        Api.postNewAsset(this.model.get('nodeId'), file);
+//            .done(function(data) {
+//                console.log(data);
+//            })
+//            .fail(function(data) {
+//                console.log(data);
+//            });
     }
 
 });
-
-
-//function appendAssetDetailRow(asset) {
-//    var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,
-//        {
-//            name : 'assetDetailRow',
-//            modelData : _.extend(asset,
-//                {
-//                    nodeId : this.options.nodeId
-//                }
-//            ),
-//            el : '#assetDetailRow',
-//            templateHtml : assetDetailRowTemplate,
-//            mastheadButtons : this.options.mastheadButtons
-//        }
-//    ));
-//    assetDetailView.start();
-//}

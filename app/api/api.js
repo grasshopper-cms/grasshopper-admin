@@ -63,16 +63,28 @@ define(['constants', 'base64', 'masseuse'], function (constants, base64, masseus
 
             form_data.append('file', assetDetails);
 
-            return $.ajax({
-                url : constants.api.assets.url.replace(':id', nodeId),
+            var request = new XMLHttpRequest();
 
-                contentType : 'multipart/form-data',
-                processData: false,
-                data : form_data,
+            request.upload.addEventListener('progress', function(e){
+                console.log(Math.ceil(e.loaded/e.total) * 100 + '%');
+            }, false);
 
-                type : 'POST',
-                headers : {'Authorization' : 'Token ' + token}
-            });
+            request.open('POST', constants.api.assets.url.replace(':id', nodeId));
+
+            request.setRequestHeader('Authorization', 'Token ' + token);
+
+            request.send(form_data);
+
+//            return $.ajax({
+//                url : constants.api.assets.url.replace(':id', nodeId),
+//
+//                contentType : 'multipart/form-data; boundry=111',
+//                processData: false,
+//                data : form_data,
+//
+//                type : 'POST',
+//                headers : {'Authorization' : 'Token ' + token}
+//            });
         }
     };
 
