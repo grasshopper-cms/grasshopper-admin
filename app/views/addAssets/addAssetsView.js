@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'jquery', 'createAssetWorker'],
-    function (GrasshopperBaseView, _, $, createAssetWorker) {
+define(['grasshopperBaseView', 'underscore', 'jquery', 'assetWorker'],
+    function (GrasshopperBaseView, _, $, assetWorker) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -34,7 +34,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'createAssetWorker'],
     }
 
     function appendAssetDetailRow(file) {
-        createAssetWorker.postNewAsset(this.model.get('nodeId'), file);
+        assetWorker.postNewAsset(this.model.get('nodeId'), file);
     }
 
 });
