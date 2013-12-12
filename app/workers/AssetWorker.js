@@ -1,4 +1,4 @@
-define(['constants', 'masseuse', 'jquery', 'underscore'], function (constants, Masseuse, $, _) {
+define(['constants', 'masseuse', 'jquery'], function (constants, Masseuse, $) {
     'use strict';
 
     var LocalStorage = Masseuse.localStorage;
@@ -17,7 +17,7 @@ define(['constants', 'masseuse', 'jquery', 'underscore'], function (constants, M
         var request = new XMLHttpRequest();
 
         request.upload.addEventListener('progress', function(e){
-            $deferred.notify(Math.ceil(e.loaded/e.total) * 100);
+            $deferred.notify((e.loaded/e.total) * 100 + '%');
         }, false);
 
         request.open('POST', constants.api.assets.url.replace(':id', nodeId));
@@ -30,7 +30,7 @@ define(['constants', 'masseuse', 'jquery', 'underscore'], function (constants, M
                 return;
             }
             if([200,304].indexOf(request.status) === -1) {
-                $deferred.reject(new Error('Server responded with a status of ' + request.status));
+                $deferred.reject(request.status);
             } else {
                 $deferred.resolve(JSON.parse(request.response).message);
             }

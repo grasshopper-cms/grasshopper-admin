@@ -1,16 +1,19 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'api', 'assetWorker'], function (GrasshopperBaseView, resources, Api, AssetWorker) {
+define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
+    function (GrasshopperBaseView, resources, Api, AssetWorker, $) {
 
     return GrasshopperBaseView.extend({
         afterRender : afterRender,
         handleRowClick : handleRowClick,
         deleteAsset : deleteAsset,
-        editAsset : editAsset
+        editAsset : editAsset,
+        postNewAsset : postNewAsset,
+        cancelUpload : cancelUpload
     });
 
     function afterRender() {
         if(this.model.has('fileData')) {
-            postNewAsset.call(this);
+            this.postNewAsset();
         }
     }
 
@@ -83,19 +86,57 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker'], function (Gra
     }
 
     function postNewAsset() {
+        var self = this;
+
+        this.model.set('uploadError', false);
+
         AssetWorker.postNewAsset(this.model.get('nodeId'), this.model.get('fileData'))
             .done(function(response) {
-                // Flash success then completely remove the fileData from the model
-                console.log(response);
+                handleSuccessfulUpload.call(self, response);
             })
             .fail(function(error) {
-                // Flash as FAIL and throw up a retry button
-                console.log(error);
+                handleFailedUpload.call(self, error);
             })
             .progress(function(percentDone) {
-                // Update the width of the progress bar
-                console.log(percentDone);
+                handleUploadProgress.call(self, percentDone);
             });
+    }
+
+    function handleUploadProgress(percentDone) {
+        $('.meter').width(percentDone);
+    }
+
+    function handleSuccessfulUpload(response) {
+        var self = this;
+
+        $('.meter').text(response);
+
+        this.model.fetch()
+            .done(function() {
+                self.model.unset('fileData');
+            });
+
+        this.displayTemporaryAlertBox(
+            {
+                msg: response,
+                status: true
+            }
+        );
+    }
+
+    function handleFailedUpload(error) {
+
+        this.model.set('uploadError', true);
+
+        this.displayTemporaryAlertBox(
+            {
+                msg: resources.assets.uploadAssetError
+            }
+        );
+    }
+
+    function cancelUpload() {
+        this.remove();
     }
 
 });

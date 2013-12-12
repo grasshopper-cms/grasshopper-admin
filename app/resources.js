@@ -95,7 +95,8 @@ define({
         errorDeleted : 'There was an issue deleting this asset: ',
         editFileName : 'Edit File Name',
         editNameSuccess : 'File name was successfully updated.',
-        editNameFail : 'File name could not be updated.'
+        editNameFail : 'File name could not be updated.',
+        uploadAssetError : 'Upload Failed'
     },
     contentBrowse : {
         author: 'Author',
@@ -132,6 +133,7 @@ define({
     next : 'Next',
     previous : 'Previous',
     profile : 'Profile',
+    retry : 'Retry',
     role : 'Role',
     save : 'Save',
     settings : 'Settings',

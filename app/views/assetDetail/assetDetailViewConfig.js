@@ -12,7 +12,9 @@ define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_
         events : {
             'click .clickableCell' : 'handleRowClick',
             'click #deleteAsset' : 'deleteAsset',
-            'click #editAsset' : 'editAsset'
+            'click #editAsset' : 'editAsset',
+            'click #retryUpload' : 'postNewAsset',
+            'click #cancelUpload' : 'cancelUpload'
         },
         appendView : true,
         bindings : [],

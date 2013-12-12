@@ -14,8 +14,31 @@
         </a>
     </td>
     <td data-rv-show="data.fileData" colspan="2">
-        <div class="progress">
+        <div data-rv-hide="data.uploadError" class="progress">
             <span class="meter" style="width: 0;"></span>
+        </div>
+        <div data-rv-show="data.uploadError" id="uploadError">
+            <div class="row">
+                <div class="small-3 columns">
+                    <span>
+                        {{data.resources.asset.uploadAssetError | spaceAfter}}
+                    </span>
+                </div>
+                <div class="small-9 columns">
+                    <ul class="button-group radius">
+                        <li>
+                            <a id="retryUpload" class="button alert tiny">
+                                {{data.resources.retry}}
+                            </a>
+                        </li>
+                        <li>
+                            <a id="cancelUpload" class="button alert tiny">
+                                {{data.resources.cancel}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </td>
 </tr>
