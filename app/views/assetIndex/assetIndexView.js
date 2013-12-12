@@ -45,6 +45,4 @@ define(['grasshopperBaseView', 'assetDetailView', 'assetDetailViewConfig', 'unde
         ));
         assetDetailView.start();
     }
-
-    return assetIndexView;
 });

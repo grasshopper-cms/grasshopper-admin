@@ -1,8 +1,8 @@
 <tr id="[[= viewId ]]">
     <td class="clickableCell"><a>{{data.fileName}}</a></td>
     <td class="clickableCell">{{data.size | prettyFileSize}}</td>
-    <td class="clickableCell">{{data.lastmodified | prettyDate}}</td>
-    <td align="center">
+    <td data-rv-hide="data.fileData" class="clickableCell">{{data.lastmodified | prettyDate}}</td>
+    <td data-rv-hide="data.fileData" align="center">
         <a id="editAsset">
             <i class="icon-edit"></i>
         </a>
@@ -12,5 +12,10 @@
         <a id="deleteAsset">
             <i class="icon-trash"></i>
         </a>
+    </td>
+    <td data-rv-show="data.fileData" colspan="2">
+        <div class="progress">
+            <span class="meter" style="width: 0;"></span>
+        </div>
     </td>
 </tr>
