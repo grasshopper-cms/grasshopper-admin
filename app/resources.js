@@ -97,8 +97,7 @@ define({
         editNameSuccess : 'File name was successfully updated.',
         editNameFail : 'File name could not be updated.',
         uploadAssetError : 'Upload Failed',
-        dragFilesHere : 'Drag and Drop Files Here.',
-        selectFiles : 'Select Some Files'
+        dragFilesHere : 'Drag and Drop Files Here. Or Click to Select.'
     },
     contentBrowse : {
         author: 'Author',
