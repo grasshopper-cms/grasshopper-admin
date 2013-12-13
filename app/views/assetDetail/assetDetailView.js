@@ -87,9 +87,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
 
     function postNewAsset() {
         var self = this;
-
         this.model.set('uploadError', false);
-
         AssetWorker.postNewAsset(this.model.get('nodeId'), this.model.get('fileData'))
             .done(function(response) {
                 handleSuccessfulUpload.call(self, response);
@@ -108,14 +106,11 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
 
     function handleSuccessfulUpload(response) {
         var self = this;
-
         $('.meter').text(response);
-
         this.model.fetch()
             .done(function() {
                 self.model.unset('fileData');
             });
-
         this.displayTemporaryAlertBox(
             {
                 msg: response,
@@ -125,12 +120,10 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
     }
 
     function handleFailedUpload(error) {
-
         this.model.set('uploadError', true);
-
         this.displayTemporaryAlertBox(
             {
-                msg: resources.assets.uploadAssetError
+                msg: resources.asset.uploadAssetError
             }
         );
     }

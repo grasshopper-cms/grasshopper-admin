@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html',
-    'text!views/modal/_checkboxModalView.html', 'text!views/modal/_uploadModalView.html'],
-    function (GrasshopperBaseView, _, imageModalTemplate, inputModalTemplate, checkboxTemplate, uploadTemplate) {
+    'text!views/modal/_checkboxModalView.html', 'text!views/modal/_uploadModalView.html', 'text!views/modal/modalView.html'],
+    function (GrasshopperBaseView, _, imageModalTemplate, inputModalTemplate, checkboxTemplate, uploadTemplate, defaultTemplate) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -28,6 +28,9 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
                 break;
             case 'upload':
                 options.templateHtml = uploadTemplate;
+                break;
+            default:
+                options.templateHtml = defaultTemplate;
                 break;
         }
         GrasshopperBaseView.prototype.initialize.apply(this, arguments);
