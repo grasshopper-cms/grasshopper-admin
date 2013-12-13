@@ -226,6 +226,11 @@ body, html {
         border-color: rgb(0, 125, 166);
       }
     }
+    #uploadFileInput {
+      visibility: hidden;
+      height: 0;
+      width: 0;
+    }
   }
 
   #alertBoxPartial {

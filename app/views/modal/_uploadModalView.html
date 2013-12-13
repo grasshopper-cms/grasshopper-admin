@@ -6,8 +6,9 @@
                     <h2>{{data.msg}}</h2>
                 </div>
             </div>
-            <div id="dropZone">Drag and Drop Files Here.</div>
-            <input type="file" id="upload" name="files" multiple="multiple"/>
+            <div id="dropZone">{{data.resources.asset.dragFilesHere}}</div>
+            <a id="uploadFileButton" class="button">{{data.resources.asset.selectFiles}}</a>
+            <input type="file" id="uploadFileInput" name="files" multiple="multiple"/>
             <ul>
                 <li data-rv-each-file="data.files">{{file.name | withColon}}{{file.size | prettyFileSize | withColon}}{{file.type}}</li>
             </ul>

@@ -11,7 +11,8 @@ define(['text!views/modal/modalView.html', 'modalViewModel'], function (template
         events : {
             'click #confirm' : 'confirmModal',
             'click #cancel' : 'cancelModal',
-            'change #upload' : 'handleFileSelect',
+            'click #uploadFileButton' : 'fireClickOnUploadFileInput',
+            'change #uploadFileInput' : 'handleFileSelect',
             'dragover #dropZone' : 'handleDragOver',
             'drop #dropZone' : 'handleFileDrop',
             'dragleave #dropZone' : 'handleDragLeave'

@@ -7,6 +7,7 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
     return GrasshopperBaseView.extend({
         initialize : initialize,
         beforeRender : beforeRender,
+        fireClickOnUploadFileInput : fireClickOnUploadFileInput,
         handleFileSelect : handleFileSelect,
         handleFileDrop : handleFileDrop,
         handleDragOver : handleDragOver,
@@ -40,6 +41,12 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
         if(this.model.has('data')){
             this.model.get('data').files = [];
         }
+    }
+
+    function fireClickOnUploadFileInput(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        document.querySelector('#uploadFileInput').click();
     }
 
     function handleFileSelect(e) {
