@@ -78,7 +78,7 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
         if(e.target.className != 'active') {
             e.target.classList.add('active');
         }
-        e.originalEvent.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+        e.originalEvent.dataTransfer.dropEffect = 'copy';
     }
 
     function handleDragLeave(e) {

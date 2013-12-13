@@ -9,21 +9,39 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
     });
 
     function afterRender() {
-        var self = this;
+        if(this.model.get('nodeId')){
+            handleUpload.call(this);
+        } else {
+            uploadInRoot.call(this);
+        }
+    }
 
+    function handleUpload() {
+        var self = this;
         this.displayModal(
-                {
-                    msg: 'Upload an Asset!',
-                    type: 'upload',
-                    data: {}
-                })
+            {
+                msg: 'Upload an Asset!',
+                type: 'upload',
+                data: {}
+            })
             .done(function(data) {
                 _.each(data.files, function(file) {
-                   appendAssetDetailRow.call(self, file);
+                    appendAssetDetailRow.call(self, file);
                 });
                 self.navigateBack();
             })
             .fail(function() {
+                self.navigateBack();
+            });
+    }
+
+    function uploadInRoot() {
+        var self = this;
+        this.displayModal(
+            {
+                msg: 'You cannot upload assets in the Root.'
+            })
+            .always(function() {
                 self.navigateBack();
             });
     }
