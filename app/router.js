@@ -75,6 +75,7 @@ define([
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
             excludeFromBeforeRouting : ['login', 'logout'],
+            userHasBreadcrumbs : userHasBreadcrumbs,
 
             navigateTrigger : navigateTrigger,
             navigateNinja : navigateNinja,
@@ -120,6 +121,10 @@ define([
             loginWorker.userIsStillValidUser.call(this, $deferred);
 
             return $deferred.promise();
+        }
+
+        function userHasBreadcrumbs() {
+            return (this.breadcrumb.length !== 0);
         }
 
         function navigateTrigger (fragment, options, doBeforeRender) {
@@ -365,36 +370,48 @@ define([
         }
 
         function displayCreateFolder(id) {
-            var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
-                {
-                    modelData: {
-                        nodeId : (id) ? id : null
+            if(this.userHasBreadcrumbs()) {
+                var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
+                    {
+                        modelData: {
+                            nodeId : (id) ? id : null
+                        }
                     }
-                }
-            ));
-            addFolderView.start();
+                ));
+                addFolderView.start();
+            } else {
+                this.goHome();
+            }
         }
 
         function displayCreateContent(id) {
-            var addContentView = new AddContentView(_.extend({}, addContentViewConfig,
-                {
-                    modelData: {
-                        nodeId : (id) ? id : null
+            if(this.userHasBreadcrumbs()) {
+                var addContentView = new AddContentView(_.extend({}, addContentViewConfig,
+                    {
+                        modelData: {
+                            nodeId : (id) ? id : null
+                        }
                     }
-                }
-            ));
-            addContentView.start();
+                ));
+                addContentView.start();
+            } else {
+                this.goHome();
+            }
         }
 
         function displayCreateAssets(id) {
-            var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
-                {
-                    modelData: {
-                        nodeId : (id) ? id : null
+            if(this.userHasBreadcrumbs()) {
+                var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
+                    {
+                        modelData: {
+                            nodeId : (id) ? id : null
+                        }
                     }
-                }
-            ));
-            addAssetsView.start();
+                ));
+                addAssetsView.start();
+            } else {
+                this.goHome();
+            }
         }
 
         return Router;
