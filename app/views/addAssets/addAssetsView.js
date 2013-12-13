@@ -25,6 +25,7 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                 data: {}
             })
             .done(function(data) {
+                self.channels.views.trigger('activateTab', 'filesTab');
                 _.each(data.files, function(file) {
                     appendAssetDetailRow.call(self, file);
                 });

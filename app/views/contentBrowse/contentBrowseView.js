@@ -9,7 +9,8 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
         beforeRender : beforeRender,
         afterRender : afterRender,
         addChildIndexViews : addChildIndexViews,
-        refreshIndexViews : refreshIndexViews
+        refreshIndexViews : refreshIndexViews,
+        activateTab : activateTab
     });
 
     function beforeRender($deferred) {
@@ -108,5 +109,9 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
             });
 
         return $deferred.promise();
+    }
+
+    function activateTab(tab) {
+        $('#' + tab + ' a').click();
     }
 });

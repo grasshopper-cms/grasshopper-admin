@@ -10,7 +10,8 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
         templateHtml : templateHtml,
         rivetConfig : 'auto',
         bindings : [
-            ['channels.views', 'refreshContentBrowseView', 'refreshIndexViews']
+            ['channels.views', 'refreshContentBrowseView', 'refreshIndexViews'],
+            ['channels.views', 'activateTab', 'activateTab']
         ],
         appendView: true,
         events: {},
