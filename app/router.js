@@ -370,48 +370,43 @@ define([
         }
 
         function displayCreateFolder(nodeId) {
-            if(this.userHasBreadcrumbs()) {
-                var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
-                    {
-                        modelData: {
-                            nodeId : (nodeId) ? nodeId : null
-                        }
+            var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
+                {
+                    modelData: {
+                        nodeId : (nodeId) ? nodeId : null
                     }
-                ));
-                addFolderView.start();
-            } else {
-                this.goHome();
-            }
+                }
+            ));
+            addFolderView.start();
         }
 
         function displayCreateContent(nodeId) {
-            if(this.userHasBreadcrumbs()) {
-                var addContentView = new AddContentView(_.extend({}, addContentViewConfig,
-                    {
-                        modelData: {
-                            nodeId : (nodeId) ? nodeId : null
-                        }
+            var addContentView = new AddContentView(_.extend({}, addContentViewConfig,
+                {
+                    modelData: {
+                        nodeId : (nodeId) ? nodeId : null
                     }
-                ));
-                addContentView.start();
-            } else {
-                this.goHome();
-            }
+                }
+            ));
+            addContentView.start();
         }
 
         function displayCreateAssets(nodeId) {
-            if(this.userHasBreadcrumbs()) {
-                var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
-                    {
-                        modelData: {
-                            nodeId : (nodeId) ? nodeId : null
-                        }
-                    }
-                ));
-                addAssetsView.start();
-            } else {
-                this.goHome();
+            if (this.userHasBreadcrumbs() && _.last(this.breadcrumb).indexOf('items/nodeid') === -1) {
+                //TODO: See below
+                console.log('If this passes, then also load up the contentBrowseView with the nodeId in the background');
+                console.log('though for some reason, At this very moment, when I navigate directly to these views, I am redirected Home. I think this might have to do with permissions...');
             }
+
+
+            var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
+                {
+                    modelData: {
+                        nodeId : (nodeId) ? nodeId : null
+                    }
+                }
+            ));
+            addAssetsView.start();
         }
 
         return Router;
