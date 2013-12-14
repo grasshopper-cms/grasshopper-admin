@@ -60,11 +60,11 @@ define([
                 'addUser' : 'displayAddUser',
                 'item/types' : 'displayContentTypeIndex',
                 'item/types(/:id)' : 'displayContentTypeDetail',
+                'items/nodeid/:nodeId/createAssets' : displayCreateAssets,
+                'items/nodeid/:nodeId/createFolder' : displayCreateFolder,
+                'items/nodeid/:nodeId/createContent' : displayCreateContent,
                 'items(/nodeid/:nodeId)': 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
-                'createFolder(/:id)' : 'displayCreateFolder',
-                'createContent(/:id)' : 'displayCreateContent',
-                'createAssets(/:id)' : 'displayCreateAssets',
                 '*path' : 'goHome'
             },
 
@@ -74,7 +74,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login', 'logout', 'createAssets(/:id)', 'createContent(/:id)', 'createFolder(/:id)'],
+            excludeFromBeforeRouting : ['login', 'logout'],
             userHasBreadcrumbs : userHasBreadcrumbs,
 
             navigateTrigger : navigateTrigger,
@@ -369,12 +369,12 @@ define([
                 }));
         }
 
-        function displayCreateFolder(id) {
+        function displayCreateFolder(nodeId) {
             if(this.userHasBreadcrumbs()) {
                 var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
                     {
                         modelData: {
-                            nodeId : (id) ? id : null
+                            nodeId : (nodeId) ? nodeId : null
                         }
                     }
                 ));
@@ -384,12 +384,12 @@ define([
             }
         }
 
-        function displayCreateContent(id) {
+        function displayCreateContent(nodeId) {
             if(this.userHasBreadcrumbs()) {
                 var addContentView = new AddContentView(_.extend({}, addContentViewConfig,
                     {
                         modelData: {
-                            nodeId : (id) ? id : null
+                            nodeId : (nodeId) ? nodeId : null
                         }
                     }
                 ));
@@ -399,12 +399,12 @@ define([
             }
         }
 
-        function displayCreateAssets(id) {
+        function displayCreateAssets(nodeId) {
             if(this.userHasBreadcrumbs()) {
                 var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
                     {
                         modelData: {
-                            nodeId : (id) ? id : null
+                            nodeId : (nodeId) ? nodeId : null
                         }
                     }
                 ));
