@@ -74,7 +74,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login', 'logout'],
+            excludeFromBeforeRouting : ['login', 'logout', 'createAssets(/:id)', 'createContent(/:id)', 'createFolder(/:id)'],
             userHasBreadcrumbs : userHasBreadcrumbs,
 
             navigateTrigger : navigateTrigger,
@@ -124,7 +124,7 @@ define([
         }
 
         function userHasBreadcrumbs() {
-            return (this.breadcrumb.length !== 0);
+            return (this.breadcrumb && this.breadcrumb.length !== 0);
         }
 
         function navigateTrigger (fragment, options, doBeforeRender) {
