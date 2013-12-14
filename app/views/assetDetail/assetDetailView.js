@@ -64,16 +64,19 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
                 type: 'input',
                 data: this.model.get('fileName')
             })
-            .done(function(data) {
-                Api.renameAsset(self.model.urlRoot(), self.model.get('fileName'), data)
+            .done(function(newName) {
+                Api.renameAsset(self.model.urlRoot(), self.model.get('fileName'), newName)
                     .done(function() {
-                        self.model.set('fileName', data);
-                        self.displayTemporaryAlertBox(
-                            {
-                                msg: resources.asset.editNameSuccess,
-                                status: true
-                            }
-                        );
+                        self.model.set('fileName', newName);
+                        self.model.fetch()
+                            .done(function() {
+                                self.displayTemporaryAlertBox(
+                                    {
+                                        msg: resources.asset.editNameSuccess,
+                                        status: true
+                                    }
+                                );
+                            });
                     })
                     .fail(function() {
                         self.displayTemporaryAlertBox(
