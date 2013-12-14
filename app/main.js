@@ -14,6 +14,9 @@ require.config({
         tabs : {
             deps : ['foundation']
         },
+        tooltip : {
+            deps : ['foundation']
+        },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
@@ -48,6 +51,7 @@ require.config({
         alerts : 'vendor/foundation/js/foundation/foundation.alert',
         dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
         tabs: 'vendor/foundation/js/foundation/foundation.tab',
+        tooltip: 'vendor/foundation/js/foundation/foundation.tooltip',
 
         // Views
         grasshopperBaseView : 'views/grasshopperBaseView',
@@ -152,6 +156,7 @@ require([
     'alerts',
     'dropdown',
     'tabs',
+    'tooltip',
     'modernizr'
 ],
     /**

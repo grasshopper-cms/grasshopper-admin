@@ -233,6 +233,10 @@ body, html {
     }
   }
 
+  .tooltip {
+    z-index: 10000;
+  }
+
   #alertBoxPartial {
     bottom: 40px;
     width: 95%;

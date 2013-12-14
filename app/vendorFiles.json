@@ -12,5 +12,6 @@
     "masseuse" : "vendor/masseuse/app/**/*.js",
     "alerts" : "vendor/foundation/js/foundation/foundation.alert.js",
     "dropdown" : "vendor/foundation/js/foundation/foundation.dropdown.js",
-    "tabs": "vendor/foundation/js/foundation/foundation.tab.js"
+    "tabs": "vendor/foundation/js/foundation/foundation.tab.js",
+    "tooltip": "vendor/foundation/js/foundation/foundation.tooltip.js"
 }
