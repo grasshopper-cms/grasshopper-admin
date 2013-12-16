@@ -124,6 +124,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
 
     function handleFailedUpload(error) {
         this.model.set('uploadError', true);
+        handleUploadProgress.call(this, 0);
         this.displayTemporaryAlertBox(
             {
                 msg: resources.asset.uploadAssetError
