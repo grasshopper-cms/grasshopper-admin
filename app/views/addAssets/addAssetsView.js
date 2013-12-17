@@ -9,7 +9,7 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
     });
 
     function afterRender() {
-        if(this.model.get('nodeId')){
+        if(this.model.get('nodeId') !== '0'){
             handleUpload.call(this);
         } else {
             uploadInRoot.call(this);

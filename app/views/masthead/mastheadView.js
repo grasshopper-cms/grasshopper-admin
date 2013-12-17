@@ -51,7 +51,7 @@ define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) 
         } else {
             for(i, max; i < max; i++) {
                 for(key in buttonArray[i]) {
-                    obj[key] = buttonArray[i][key].replace('/:id', '');
+                    obj[key] = buttonArray[i][key].replace(':id', 0);
                 }
                 interpolatedArray.push(obj);
                 obj = {};

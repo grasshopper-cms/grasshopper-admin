@@ -393,16 +393,14 @@ define([
 
         function displayCreateAssets(nodeId) {
             if (this.userHasBreadcrumbs() && _.last(this.breadcrumb).indexOf('items/nodeid') === -1) {
-                //TODO: See below
-                console.log('If this passes, then also load up the contentBrowseView with the nodeId in the background');
-                console.log('though for some reason, At this very moment, when I navigate directly to these views, I am redirected Home. I think this might have to do with permissions...');
+
             }
 
 
             var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
                 {
                     modelData: {
-                        nodeId : (nodeId) ? nodeId : null
+                        nodeId : nodeId
                     }
                 }
             ));
