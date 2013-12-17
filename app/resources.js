@@ -86,7 +86,8 @@ define({
         deletionWarning: 'Are you sure you want to delete this content type?',
         successfullyDeletedPre: 'Content Type ',
         successfullyDeletedPost: ' was successfully deleted.',
-        errorDeleted : 'There was an issue deleting this content type: '
+        errorDeleted : 'There was an issue deleting this content type: ',
+        serverError : 'Content Types could not be retrieved.'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',

@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig',
-    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore'],
-    function (GrasshopperBaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate, _) {
+    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore', 'resources'],
+    function (GrasshopperBaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate, _, resources) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -18,11 +18,10 @@ define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewCo
                 });
                 $deferred.resolve();
             })
-            .fail(function() {
-                //TODO: Error handling here.
-                this.displayAlertBox(
+            .fail(function(xhr) {
+                self.displayAlertBox(
                     {
-                        msg: 'BLAH BLAH BLAH, CONTENT TYPES DID NOT WORK, BLAH BLAH BLAH'
+                        msg: resources.contentType.serverError + ' ' + xhr.responseJSON.message
                     }
                 );
             });
