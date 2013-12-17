@@ -316,7 +316,6 @@ define([
                     {
                         modelData : {
                             id : id,
-                            // TODO: I think this can be removed considering the model now has access to the entire App.user
                             userModel: this.user.toJSON()
                         }
                     }));
