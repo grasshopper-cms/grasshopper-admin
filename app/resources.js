@@ -39,13 +39,13 @@ define({
             login : 'LOGIN',
             password : 'PASSWORD'
         },
-        roles : {
-            admin : 'admin',
-            reader : 'reader',
-            editor : 'editor',
-            author : 'author',
-            none : 'none'
-        },
+        roles : [
+            'admin',
+            'reader',
+            'editor',
+            'author',
+            'none'
+        ],
         successfullyUpdated : 'User was successfully updated',
         updateError: 'User was successfully updated',
         errors : {
