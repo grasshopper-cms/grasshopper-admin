@@ -4,8 +4,7 @@ define(['grasshopperBaseView', 'resources'],
     'use strict';
 
     return GrasshopperBaseView.extend({
-        afterRender : afterRender,
-        navigateBack : navigateBack
+        afterRender : afterRender
     });
 
     function afterRender() {
@@ -16,16 +15,17 @@ define(['grasshopperBaseView', 'resources'],
                     msg: resources.thisIsNotImplemented
                 })
             .done(function() {
-                self.navigateBack();
+                navigateBack.call(self);
             })
             .fail(function() {
-                self.navigateBack();
+                navigateBack.call(self);
             });
     }
 
     function navigateBack() {
-        this.app.router.navigateNinja(this.app.router.breadcrumb[this.app.router.breadcrumb.length - 2]);
-        this.app.router.breadcrumb.pop();
+        this.app.router.navigateBack();
+        this.app.router.removeThisRouteFromBreadcrumb();
+        this.remove();
     }
 
 });

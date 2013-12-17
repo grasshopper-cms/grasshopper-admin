@@ -4,8 +4,7 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
     'use strict';
 
     return GrasshopperBaseView.extend({
-        afterRender : afterRender,
-        navigateBack : navigateBack
+        afterRender : afterRender
     });
 
     function afterRender() {
@@ -29,10 +28,10 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                 _.each(data.files, function(file) {
                     appendAssetDetailRow.call(self, file);
                 });
-                self.navigateBack();
+                navigateBack.call(self);
             })
             .fail(function() {
-                self.navigateBack();
+                navigateBack.call(self);
             });
     }
 
@@ -43,14 +42,15 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                 msg: 'You cannot upload assets in the Root.'
             })
             .always(function() {
-                self.navigateBack();
+                navigateBack.call(self);
             });
     }
 
-    function navigateBack() {
-        this.app.router.navigateNinja(this.app.router.breadcrumb[this.app.router.breadcrumb.length - 2]);
-        this.app.router.breadcrumb.pop();
-    }
+     function navigateBack() {
+         this.app.router.navigateBack();
+         this.app.router.removeThisRouteFromBreadcrumb();
+         this.remove();
+     }
 
     function appendAssetDetailRow(file) {
         var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,

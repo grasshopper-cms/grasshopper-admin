@@ -76,10 +76,12 @@ define([
             beforeRouting : beforeRouting,
             excludeFromBeforeRouting : ['login', 'logout'],
             userHasBreadcrumbs : userHasBreadcrumbs,
+            removeThisRouteFromBreadcrumb : removeThisRouteFromBreadcrumb,
 
             navigateTrigger : navigateTrigger,
             navigateNinja : navigateNinja,
             navigateDeferred : navigateDeferred,
+            navigateBack : navigateBack,
 
             loadMainContent : loadMainContent,
 
@@ -127,6 +129,10 @@ define([
             return (this.breadcrumb && this.breadcrumb.length !== 0);
         }
 
+        function removeThisRouteFromBreadcrumb() {
+            this.breadcrumb.pop();
+        }
+
         function navigateTrigger (fragment, options, doBeforeRender) {
             options = options || {};
             options.trigger = true;
@@ -143,6 +149,10 @@ define([
             options = options || {};
             options.deferred = true;
             this.navigate(fragment, options);
+        }
+
+        function navigateBack() {
+            this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 2]);
         }
 
         function navigate (fragment, options, doBeforeRender) {
@@ -273,8 +283,8 @@ define([
         }
 
         function displayModal (options) {
-            var $deferred = new $.Deferred();
-            var modalView = new ModalView(_.extend(modalViewConfig, {
+            var $deferred = new $.Deferred(),
+                modalView = new ModalView(_.extend(modalViewConfig, {
                 modelData: {
                     msg: options.msg,
                     data: (options.data) ? options.data : null
@@ -318,6 +328,7 @@ define([
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
+            // TODO: Refactor this to take advantage of the permissions checking system.
             if (this.user.get('role') === 'admin') {
                 loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
                     {
@@ -392,10 +403,10 @@ define([
         }
 
         function displayCreateAssets(nodeId) {
-            if (this.userHasBreadcrumbs() && _.last(this.breadcrumb).indexOf('items/nodeid') === -1) {
 
+            if (!this.userHasBreadcrumbs()) {
+                this.displayContentBrowse(nodeId);
             }
-
 
             var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
                 {
