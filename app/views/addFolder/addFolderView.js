@@ -8,25 +8,28 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
     });
 
     function afterRender() {
-        var self = this;
+        getFolderName.call(this);
+    }
 
+    function getFolderName() {
+        var self = this;
         this.displayModal(
-                {
-                    msg: resources.node.enterName,
-                    type: 'input'
-                })
+            {
+                msg: resources.node.enterName,
+                type: 'input'
+            })
             .done(function(modalData) {
-                nodeWorker.createFolder(self.model.get('nodeId'), modalData.data)
+                createFolder.call(self, modalData.data)
                     .done(function() {
                         self.channels.views.trigger('refreshContentBrowseView');
                         contentTypeWorker.getAvailableContentTypes()
                             .done(function(availableContentTypes) {
                                 self.displayModal(
-                                        {
-                                            msg: resources.contentType.addContentTypes,
-                                            type: 'checkbox',
-                                            data: availableContentTypes
-                                        })
+                                    {
+                                        msg: resources.contentType.addContentTypes,
+                                        type: 'checkbox',
+                                        data: availableContentTypes
+                                    })
                                     .done(function(modalData) {
                                         contentTypeWorker.addContentTypesToFolder(self.model.get('nodeId'), modalData.data)
                                             .done(function() {
@@ -56,14 +59,16 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                                 msg: resources.node.errorCreating
                             }
                         );
-                    })
-                    .always(function() {
-                        navigateBack.call(self);
                     });
             })
             .fail(function() {
                 navigateBack.call(self);
             });
+    }
+
+
+    function createFolder(folderName) {
+        return nodeWorker.createFolder(this.model.get('nodeId'), folderName);
     }
 
     function navigateBack(trigger) {
