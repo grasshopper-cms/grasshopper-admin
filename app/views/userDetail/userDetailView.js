@@ -11,7 +11,6 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
     });
 
     function beforeRender () {
-        var self = this;
 
         // It is checking to see if the current model's ID is the same as Logged in user, the API endpoints are different for Admin editing their own (/user) and admin editing someone else (/users/id)
         if (this.model.get('id') === this.app.user.get('_id')) {
