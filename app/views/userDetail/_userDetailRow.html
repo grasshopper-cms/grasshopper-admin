@@ -5,7 +5,7 @@
                             {{data.lastname}}
     </td>
     <td class="clickableCell">{{data.login}}</td>
-    <td class="clickableCell">{{data.role}}</td>
+    <td class="clickableCell">{{data.role | humanize}}</td>
     <td class="clickableCell">{{data.email}}</td>
     <td align="center">
         <a data-rv-href="data.href">
