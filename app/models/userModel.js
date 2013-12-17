@@ -9,7 +9,6 @@ define([
     'use strict';
     var ComputedProperty = masseuse.ComputedProperty;
     return Model.extend({
-//        url : constants.api.user.url,
         idAttribute : '_id',
         defaults : {
             login : false,
@@ -18,9 +17,6 @@ define([
             email : false,
             loggedIn : new ComputedProperty(['enabled'], function (enabled) {
                 return enabled;
-            }),
-            isReader : new ComputedProperty(['role'], function (role) {
-                return resources.user.roles.reader == role;
             }),
             href : new ComputedProperty(['_id'], function (id) {
                 return constants.internalRoutes.user + '/' + id;
