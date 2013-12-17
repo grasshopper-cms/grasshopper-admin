@@ -66,8 +66,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
             });
     }
 
-    function navigateBack() {
-        this.app.router.navigateBack();
+    function navigateBack(trigger) {
+        this.app.router.navigateBack(trigger);
         this.app.router.removeThisRouteFromBreadcrumb();
         this.remove();
     }
