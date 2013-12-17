@@ -60,9 +60,9 @@ define([
                 'addUser' : 'displayAddUser',
                 'item/types' : 'displayContentTypeIndex',
                 'item/types(/:id)' : 'displayContentTypeDetail',
-                'items/nodeid/:nodeId/createAssets' : displayCreateAssets,
-                'items/nodeid/:nodeId/createFolder' : displayCreateFolder,
-                'items/nodeid/:nodeId/createContent' : displayCreateContent,
+                'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
+                'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
+                'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
                 'items(/nodeid/:nodeId)': 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 '*path' : 'goHome'
@@ -153,7 +153,6 @@ define([
 
         function navigateBack(trigger) {
             if(trigger) {
-                console.log('this happened');
                 this.navigateTrigger(this.breadcrumb[this.breadcrumb.length - 2]);
             } else {
                 this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 2]);
