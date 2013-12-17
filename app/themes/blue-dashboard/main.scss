@@ -392,9 +392,19 @@ body, html {
     }
   }
 
+  // Users Index
   #usersIndex {
     #UserSearch {
       width:180px;
+    }
+  }
+  // Users Detail
+  #userDetail {
+    #statusText {
+      label {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 <div id="[[= viewId ]]">
-    <div class="row">
+    <div id="userDetail" class="row">
         <div class="large-10 small-centered columns">
             <fieldset>
                 <legend>
@@ -47,10 +47,10 @@
                                     <div class="large-12 columns attribute">
                                         <div id="statusText" class="userEnabledSwitch">
                                             <input id="trueSwitch" name="switch-z" type="radio" value="true" data-rv-checked="data.enabled" data-rv-enabled="data.userModel.role | equals admin">
-                                            <label for="trueSwitch" onclick=""> True</label>
+                                            <label for="trueSwitch" onclick="">Yes</label>
 
                                             <input id="falseSwitch" name="switch-z" type="radio" value="false" data-rv-checked="data.enabled" data-rv-enabled="data.userModel.role | equals admin">
-                                            <label for="falseSwitch" onclick=""> False</label>
+                                            <label for="falseSwitch" onclick="">No</label>
 
                                             <span></span>
                                         </div>
@@ -67,9 +67,9 @@
                                 <div class="row">
                                     <div class="large-12 columns attribute">
                                         <form class="custom">
-                                            <select id="role" data-rv-enabled="data.isAdmin" data-rv-value="data.role">
+                                            <select id="role" data-rv-enabled="data.isAdmin" data-rv-value="data.role | humanize">
                                                 <option data-rv-each-role="data.roles"
-                                                        data-rv-text="role.text"></option>
+                                                        data-rv-text="role.text | humanize"></option>
                                             </select>
                                         </form>
                                     </div>
