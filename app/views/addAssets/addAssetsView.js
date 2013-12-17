@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailViewConfig', 'text!views/assetDetail/_assetDetailRow.html'],
-    function (GrasshopperBaseView, _, AssetDetailView, assetDetailViewConfig, assetDetailRowTemplate) {
+define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailViewConfig', 'text!views/assetDetail/_assetDetailRow.html', 'resources'],
+    function (GrasshopperBaseView, _, AssetDetailView, assetDetailViewConfig, assetDetailRowTemplate, resources) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -19,7 +19,7 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
         var self = this;
         this.displayModal(
             {
-                msg: 'Upload an Asset!',
+                msg: resources.asset.uploadAssetModalMsg,
                 type: 'upload',
                 data: {}
             })
@@ -39,7 +39,7 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
         var self = this;
         this.displayModal(
             {
-                msg: 'You cannot upload assets in the Root.'
+                msg: resources.asset.uploadInRoot
             })
             .always(function() {
                 navigateBack.call(self);

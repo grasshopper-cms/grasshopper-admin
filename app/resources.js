@@ -87,7 +87,9 @@ define({
         successfullyDeletedPre: 'Content Type ',
         successfullyDeletedPost: ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: ',
-        serverError : 'Content Types could not be retrieved.'
+        serverError : 'Content Types could not be retrieved.',
+        selectContentType : 'Which Content Type would you like to use?',
+        contentInRoot : 'You cannot create content in the Root.'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
@@ -98,7 +100,9 @@ define({
         editNameSuccess : 'File name was successfully updated.',
         editNameFail : 'File name could not be updated.',
         uploadAssetError : 'Upload Failed',
-        dragFilesHere : 'Drag and Drop Files Here. Or Click to Select.'
+        dragFilesHere : 'Drag and Drop Files Here. Or Click to Select.',
+        uploadInRoot : 'You cannot upload assets in the Root.',
+        uploadAssetModalMsg : 'Upload an Asset.'
     },
     contentBrowse : {
         author: 'Author',

@@ -23,7 +23,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
                 data = [{_id: 1234, helpText: 'HELP TEXT', label: 'First ContentType'}, {_id: 23456, helpText: 'HELP TEXT 2', label: 'Second ContentType'}, {_id: 45454, helpText: 'HELP TEXT 3', label: 'second ContentType'}];
                 self.displayModal(
                     {
-                        msg: 'Which Content Type would you like to use?',
+                        msg: resources.contentType.selectContentType,
                         data: data,
                         type: 'radio'
                     })
@@ -46,7 +46,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
         var self = this;
         this.displayModal(
             {
-                msg: 'You cannot create content in the Root.'
+                msg: resources.contentType.contentInRoot
             })
             .always(function() {
                 $deferred.reject();
