@@ -21,7 +21,7 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
         mastheadButtons : [
                                 {
                                     text : resources.mastheadButtons.addNewUser,
-                                    href : '#' + constants.api.newUser.shortUrl
+                                    href : constants.internalRoutes.newUser
                                 }
                           ]
     };
