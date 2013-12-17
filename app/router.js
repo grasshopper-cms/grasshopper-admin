@@ -403,7 +403,6 @@ define([
         }
 
         function displayCreateAssets(nodeId) {
-
             if (!this.userHasBreadcrumbs()) {
                 this.displayContentBrowse(nodeId);
             }
