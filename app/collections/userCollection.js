@@ -1,8 +1,7 @@
 define(['backbone', 'UserModel', 'constants', 'masseuse'],
     function (Backbone, UserModel, constants, masseuse) {
-
-        var LocalStorage = masseuse.localStorage,
-            PaginatedCollection = masseuse.PaginatedCollection;
+        'use strict';
+        var PaginatedCollection = masseuse.PaginatedCollection;
     return PaginatedCollection.extend({
         paginationConfig : {
             pageSize : constants.userCollection.pageSize,

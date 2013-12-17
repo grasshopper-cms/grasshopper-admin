@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['masseuse'], function (masseuse) {
+define(['backbone', 'masseuse'], function (Backbone, masseuse) {
     'use strict';
 
     var BaseView = masseuse.BaseView,

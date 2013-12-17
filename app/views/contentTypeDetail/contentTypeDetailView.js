@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
-
+    'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         deleteContentType : deleteContentType,
@@ -8,7 +8,6 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     });
 
     function beforeRender () {
-        var self = this;
         if(!this.model.has('_id')) {
             this.model.fetch()
                 .done(function() {
@@ -33,7 +32,8 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
                         success: function(model) {
                             self.displayTemporaryAlertBox(
                                 {
-                                    msg: resources.contentType.successfullyDeletedPre + model.get('label') + resources.contentType.successfullyDeletedPost,
+                                    msg: resources.contentType.successfullyDeletedPre + model.get('label') +
+                                        resources.contentType.successfullyDeletedPost,
                                     status: true
                                 }
                             );

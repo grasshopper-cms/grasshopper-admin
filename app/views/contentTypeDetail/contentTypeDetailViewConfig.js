@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/contentTypeDetail/contentTypeDetailView.html',
-    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'contentTypeDetailViewModel', 'resources', 'constants'],
-    function (formTemplate, rowTemplate, contentTypeDetailViewModel, resources, constants) {
+    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'contentTypeDetailViewModel'],
+    function (formTemplate, rowTemplate, contentTypeDetailViewModel) {
     'use strict';
 
     return {

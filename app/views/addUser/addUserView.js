@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
-
+    'use strict';
     return GrasshopperBaseView.extend({
         saveUser : saveUser
     });

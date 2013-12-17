@@ -1,13 +1,23 @@
 {
+    "browser" : true,
     "globals": {
         "define": false,
         "require": false,
-        "console": false
+        "beforeEach": false,
+        "describe": false,
+        "it": false,
+        "console": true
     },
     "curly": true,
     "quotmark": "single",
     "debug" : true,
-    "validthis": true,
-    "supernew" : true,
+    "validthis" : true,
+    "expr" : true,
+    "loopfunc" : false,
+    "onevar" : true,
+    "strict" : true,
+    "undef" : true,
+    "unused" : true,
+    "maxlen" : 121,
     "newcap" : false
 }

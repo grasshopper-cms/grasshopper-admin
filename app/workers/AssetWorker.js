@@ -10,11 +10,12 @@ define(['constants', 'masseuse', 'jquery'], function (constants, Masseuse, $) {
     function postNewAsset(nodeId, file) {
         var token = LocalStorage.get('authToken'),
             form_data = new FormData(),
-            $deferred = new $.Deferred();
+            $deferred = new $.Deferred(),
+            request;
 
         form_data.append('file', file);
 
-        var request = new XMLHttpRequest();
+        request = new XMLHttpRequest();
 
         request.upload.addEventListener('progress', function(e){
             $deferred.notify((e.loaded/e.total) * 100 + '%');
@@ -25,7 +26,7 @@ define(['constants', 'masseuse', 'jquery'], function (constants, Masseuse, $) {
         request.setRequestHeader('Authorization', 'Token ' + token);
         request.setRequestHeader('Accept', '*/*');
 
-        request.onreadystatechange = function(e) {
+        request.onreadystatechange = function() {
             if(request.readyState !== 4) {
                 return;
             }

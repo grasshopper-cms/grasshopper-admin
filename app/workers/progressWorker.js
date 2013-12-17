@@ -12,7 +12,8 @@
 //                velocity : initialSpeed,
 //                distance : 0,
 //                deccelerate : function(delta) {
-//                    this.velocity = Math.max(maxUpdateAcceleration, this.velocity - (5 * maxUpdateAcceleration) * delta);
+//                    this.velocity = Math.max(maxUpdateAcceleration, this.velocity -
+//                      (5 * maxUpdateAcceleration) * delta);
 //                },
 //                accelerate : function(delta) {
 //                    this.velocity = this.velocity + maxUpdateAcceleration * delta;

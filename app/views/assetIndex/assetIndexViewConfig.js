@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'], function (templateHtml, assetIndexViewModel) {
+define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'],
+    function (templateHtml, assetIndexViewModel) {
     'use strict';
 
     return {

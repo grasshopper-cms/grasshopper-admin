@@ -1,6 +1,6 @@
 /*global define*/
 define([
-    'backbone', 'underscore', 'masseuse', 'api', 'constants',
+    'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants',
     'grasshopperBaseView',
     'loginView', 'loginViewConfig', 'loginWorker',
     'dashboardView', 'dashboardViewConfig',
@@ -20,7 +20,7 @@ define([
     'addContentView', 'addContentViewConfig',
     'addAssetsView', 'addAssetsViewConfig'
 ],
-    function (Backbone, _, masseuse, Api, constants,
+    function ($, Backbone, _, masseuse, Api, constants,
               GrasshopperBaseView,
               LoginView, loginViewConfig, loginWorker,
               DashboardView, dashboardViewConfig,
@@ -41,16 +41,18 @@ define([
               AddAssetsView, addAssetsViewConfig
               ) {
 
+        'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
             LocalStorage = masseuse.localStorage,
             userModel = new UserModel(),
-            currentView;
+            currentView,
+            Router;
 
         /**
          * @class Router
          * @extends MasseuseRouter
          */
-        var Router = MasseuseRouter.extend({
+        Router = MasseuseRouter.extend({
             routes : {
                 'login' : 'displayLogin',
                 'logout' : 'goLogout',
@@ -310,7 +312,8 @@ define([
 
         function displayUserDetail (id) {
             // TODO: I think this can be refactored to take advantage of the new permissions checking system.
-            // I did the role check here instead of in the config with permissions, this is because there are Admin's getting their own, Admins getting others, and others getting their own.
+            // I did the role check here instead of in the config with permissions, this is because there are Admin's
+            // getting their own, Admins getting others, and others getting their own.
             if(this.user.get('role') === 'admin' || this.user.get('_id') === id) {
                 loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
                     {

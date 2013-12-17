@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources'], function (templateHtml, mastheadViewModel, resources) {
+define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources'],
+    function (templateHtml, mastheadViewModel, resources) {
     'use strict';
 
     return {

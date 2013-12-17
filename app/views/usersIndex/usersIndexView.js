@@ -1,8 +1,8 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userWorker', 'constants', 'underscore', 'userDetailView', 'userDetailViewConfig',
-    'text!views/userDetail/_userDetailRow.html'],
-    function (GrasshopperBaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
-
+define(['jquery','grasshopperBaseView', 'userWorker', 'constants', 'underscore', 'userDetailView',
+    'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
+    function ($, GrasshopperBaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
+        'use strict';
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
             goToPage : goToPage,

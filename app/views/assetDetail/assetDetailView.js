@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
     function (GrasshopperBaseView, resources, Api, AssetWorker, $) {
-
+        'use strict';
     return GrasshopperBaseView.extend({
         afterRender : afterRender,
         handleRowClick : handleRowClick,
@@ -39,7 +39,8 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
                     .done(function() {
                         self.displayTemporaryAlertBox(
                             {
-                                msg: resources.asset.successfullyDeletedPre + self.model.get('fileName') + resources.asset.successfullyDeletedPost,
+                                msg: resources.asset.successfullyDeletedPre + self.model.get('fileName') +
+                                    resources.asset.successfullyDeletedPost,
                                 status: true
                             }
                         );
@@ -122,7 +123,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
         );
     }
 
-    function handleFailedUpload(error) {
+    function handleFailedUpload() {
         this.model.set('uploadError', true);
         handleUploadProgress.call(this, 0);
         this.displayTemporaryAlertBox(

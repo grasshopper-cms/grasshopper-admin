@@ -1,5 +1,6 @@
 define(['grasshopperModel', 'resources', 'underscore', 'constants', 'masseuse'],
     function (Model, resources, _, constants, masseuse) {
+        'use strict';
         var ComputedProperty = masseuse.ComputedProperty;
     return Model.extend({
         defaults: {

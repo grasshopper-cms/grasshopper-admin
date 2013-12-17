@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_assetDetailRow.html', 'assetDetailViewModel'],
+define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_assetDetailRow.html',
+    'assetDetailViewModel'],
     function (formTemplate, rowTemplate, assetDetailViewModel) {
     'use strict';
 

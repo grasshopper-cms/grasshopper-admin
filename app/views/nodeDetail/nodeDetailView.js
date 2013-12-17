@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'contentTypeWorker'],
     function (GrasshopperBaseView, resources, _, $, Api, contentTypeWorker) {
-
+        'use strict';
     return GrasshopperBaseView.extend({
         deleteNode : deleteNode,
         handleRowClick : handleRowClick,
@@ -22,7 +22,8 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                             self.remove();
                             self.displayTemporaryAlertBox(
                                 {
-                                    msg: resources.node.successfullyDeletedPre + model.get('label') + resources.node.successfullyDeletedPost,
+                                    msg: resources.node.successfullyDeletedPre + model.get('label') +
+                                        resources.node.successfullyDeletedPost,
                                     status: true
                                 }
                             );

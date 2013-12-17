@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore', 'text!views/nodeDetail/_nodeDetailRow.html'],
+define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore',
+    'text!views/nodeDetail/_nodeDetailRow.html'],
     function (GrasshopperBaseView, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
     'use strict';
 
@@ -13,7 +14,8 @@ define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'unders
 
         if(this.options.nodeId) {
             // TODO: Make this a computed property.
-            // The nodeId is coming through as 0 when in the root. So. This check is worthless. Though, the inRoot stuff is still valid.
+            // The nodeId is coming through as 0 when in the root. So. This check is worthless.
+            // Though, the inRoot stuff is still valid.
             this.model.url = this.model.url.replace(':id', this.options.nodeId);
             this.options.root = false;
             this.app.router.mastheadView.model.set('inRoot', false);

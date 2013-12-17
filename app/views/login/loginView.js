@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'loginWorker'],function (GrasshopperBaseView, loginWorker) {
-
+    'use strict';
     return GrasshopperBaseView.extend({
         login : login,
         throwLoginError : throwLoginError

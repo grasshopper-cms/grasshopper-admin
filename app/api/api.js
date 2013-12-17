@@ -1,4 +1,4 @@
-define(['constants', 'base64', 'masseuse'], function (constants, base64, masseuse) {
+define(['jquery', 'constants', 'base64', 'masseuse'], function ($, constants, base64, masseuse) {
     'use strict';
 
     var LocalStorage = masseuse.localStorage;

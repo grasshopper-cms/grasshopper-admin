@@ -1,15 +1,15 @@
 define([
+    'backbone',
     'masseuse',
     'validation',
     'resources',
     'constants',
     'underscore'
-], function (masseuse, validation, resources, constants, _) {
+], function (Backbone, masseuse, validation, resources, constants, _) {
 
     'use strict';
 
     var Model = masseuse.MasseuseModel,
-        ComputedProperty = masseuse.ComputedProperty,
         LocalStorage = masseuse.localStorage;
 
     return Model.extend({
@@ -41,7 +41,7 @@ define([
         return Backbone.Model.prototype.fetch.apply(this, args);
     }
 
-    function save (options) {
+    function save () {
         // TODO: look at filmfreshModel for reference on how to support passing in objects
         var saveOptions = {headers : {
                 'Authorization' : 'Token ' + LocalStorage.get('authToken')

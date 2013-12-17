@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
-
+    'use strict';
     return GrasshopperBaseView.extend({
         deleteContent : deleteContent,
         handleRowClick : handleRowClick
@@ -19,7 +19,8 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
                         success: function(model) {
                             self.displayTemporaryAlertBox(
                                 {
-                                    msg: resources.contentItem.successfullyDeletedPre + model.get('label') + resources.contentItem.successfullyDeletedPost,
+                                    msg: resources.contentItem.successfullyDeletedPre + model.get('label') +
+                                        resources.contentItem.successfullyDeletedPost,
                                     status: true
                                 }
                             );

@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) {
-
+    'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         setButtons : setButtons,

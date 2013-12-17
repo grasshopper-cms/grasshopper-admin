@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nodeDetailRow.html',
-    'nodeDetailViewModel', 'resources', 'constants'],
-    function (formTemplate, rowTemplate, nodeDetailViewModel, resources, constants) {
+    'nodeDetailViewModel'],
+    function (formTemplate, rowTemplate, nodeDetailViewModel) {
     'use strict';
 
     return {
