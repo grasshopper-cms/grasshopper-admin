@@ -20,35 +20,36 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
         contentTypeWorker.getNodesContentTypes(this.model.get('nodeId'))
             .done(function(data) {
                 console.log(data);
+                data = [{_id: 1234, helpText: 'HELP TEXT', label: 'First ContentType'}, {_id: 23456, helpText: 'HELP TEXT 2', label: 'Second ContentType'}, {_id: 45454, helpText: 'HELP TEXT 3', label: 'second ContentType'}];
                 self.displayModal(
                     {
-                        msg: resources.thisIsNotImplemented,
+                        msg: 'Which Content Type would you like to use?',
                         data: data,
                         type: 'radio'
                     })
-                    .done(function() {})
-                    .fail(function() {
+                    .done(function(modalData) {
+                        self.model.set('contentTypeId', modalData.selectedType);
                         $deferred.resolve();
-                        navigateBack.call(self, true);
                     })
-                    .always(function() {
-                        $deferred.resolve();
+                    .fail(function() {
+                        $deferred.reject();
+                        navigateBack.call(self, true);
                     });
             })
             .fail(function(data) {
-//                $deferred.reject();
+                $deferred.reject();
                 console.log(data);
             });
     }
 
-    function createContentInRoot() {
+    function createContentInRoot($deferred) {
         var self = this;
         this.displayModal(
             {
                 msg: 'You cannot create content in the Root.'
             })
             .always(function() {
-//                $deferred.resolve();
+                $deferred.reject();
                 navigateBack.call(self, true);
             });
     }
@@ -56,7 +57,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
     function navigateBack(trigger) {
         this.app.router.navigateBack(trigger);
         this.app.router.removeThisRouteFromBreadcrumb();
-        this.remove();
+//        this.remove();
     }
 
 });

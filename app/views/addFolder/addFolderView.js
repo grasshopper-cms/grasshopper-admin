@@ -15,8 +15,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                     msg: resources.node.enterName,
                     type: 'input'
                 })
-            .done(function(data) {
-                nodeWorker.createFolder(self.model.get('nodeId'), data)
+            .done(function(modalData) {
+                nodeWorker.createFolder(self.model.get('nodeId'), modalData.data)
                     .done(function() {
                         self.channels.views.trigger('refreshContentBrowseView');
                         contentTypeWorker.getAvailableContentTypes()
@@ -27,8 +27,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                                             type: 'checkbox',
                                             data: availableContentTypes
                                         })
-                                    .done(function(data) {
-                                        contentTypeWorker.addContentTypesToFolder(self.model.get('nodeId'), data)
+                                    .done(function(modalData) {
+                                        contentTypeWorker.addContentTypesToFolder(self.model.get('nodeId'), modalData.data)
                                             .done(function() {
                                                 self.displayTemporaryAlertBox(
                                                     {

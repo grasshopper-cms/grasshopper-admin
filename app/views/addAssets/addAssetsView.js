@@ -23,9 +23,9 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                 type: 'upload',
                 data: {}
             })
-            .done(function(data) {
+            .done(function(modalData) {
                 self.channels.views.trigger('activateTab', 'filesTab');
-                _.each(data.files, function(file) {
+                _.each(modalData.files, function(file) {
                     appendAssetDetailRow.call(self, file);
                 });
                 navigateBack.call(self);

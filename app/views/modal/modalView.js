@@ -7,7 +7,6 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
 
     return GrasshopperBaseView.extend({
         initialize : initialize,
-        beforeRender : beforeRender,
         afterRender : afterRender,
         fireClickOnUploadFileInput : fireClickOnUploadFileInput,
         handleFileSelect : handleFileSelect,
@@ -40,12 +39,6 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
                 break;
         }
         GrasshopperBaseView.prototype.initialize.apply(this, arguments);
-    }
-
-    function beforeRender() {
-        if(this.model.has('data')){
-            this.model.get('data').files = [];
-        }
     }
 
     function afterRender() {
@@ -84,7 +77,6 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
     }
 
     function updateFileModel(files) {
-        this.model.get('data').files = files;
         this.model.set('files', files);
     }
 
@@ -102,7 +94,7 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
     }
 
     function confirmModal() {
-        this.options.$deferred.resolve(this.model.get('data'));
+        this.options.$deferred.resolve(this.model.attributes);
         _removeModal.call(this);
     }
 
