@@ -67,7 +67,7 @@
                                 <div class="row">
                                     <div class="large-12 columns attribute">
                                         <form class="custom">
-                                            <select id="role" data-rv-enabled="data.isAdmin" data-rv-value="data.role | humanize">
+                                            <select id="role" data-rv-enabled="data.userModel.role | equals admin" data-rv-value="data.role | humanize">
                                                 <option data-rv-each-role="data.roles"
                                                         data-rv-text="role | humanize"></option>
                                             </select>

@@ -317,7 +317,6 @@ define([
                         modelData : {
                             id : id,
                             // TODO: I think this can be removed considering the model now has access to the entire App.user
-                            isAdmin : (this.user.get('role') === 'admin'),
                             userModel: this.user.toJSON()
                         }
                     }));
