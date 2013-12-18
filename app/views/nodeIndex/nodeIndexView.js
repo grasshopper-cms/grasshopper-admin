@@ -14,7 +14,8 @@ define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'unders
 
         if(this.options.nodeId) {
             // TODO: Make this a computed property.
-            // TODO: The nodeId is coming through as 0 when in the root. So. This check is worthless. Though, the inRoot stuff is still valid.
+            // TODO: The nodeId is coming through as 0 when in the root. So. This check is worthless.
+            // Though, the inRoot stuff is still valid.
             // TODO: This inRoot stuff is expressed in a bunch of different places....try to DRY this up.
             this.model.url = this.model.url.replace(':id', this.options.nodeId);
             this.options.root = false;

@@ -1,16 +1,22 @@
 /*global define:false*/
-define(['backbone', 'masseuse'], function (Backbone, masseuse) {
+define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse) {
     'use strict';
 
     var BaseView = masseuse.BaseView,
         oldSet = Backbone.Collection.prototype.set;
+//        rivetView = helpers.rivetView;
 
     return BaseView.extend({
         initialize : initialize,
         start : start
     });
 
-    function initialize() {
+    function initialize(options) {
+        this.options = options;
+        if (options.rivetConfig) {
+//            options.plugins = [];
+//            options.plugins.push(rivetView(options.rivetConfig).methodWithActualOptions);
+        }
         Backbone.Collection.prototype.set = function (data, options) {
             if (data && data.results) {
                 data = data.results;

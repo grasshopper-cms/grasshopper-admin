@@ -4,13 +4,13 @@ define([
     'validation',
     'resources',
     'constants',
-    'underscore'
-], function (Backbone, masseuse, validation, resources, constants, _) {
+    'underscore', 'helpers'
+], function (Backbone, masseuse, validation, resources, constants, _, helpers) {
 
     'use strict';
 
     var Model = masseuse.MasseuseModel,
-        LocalStorage = masseuse.localStorage;
+        LocalStorage = helpers.localStorage;
 
     return Model.extend({
         fetch : fetch,

@@ -18,7 +18,8 @@ define([
     'contentTypeDetailView', 'contentTypeDetailViewConfig',
     'addFolderView', 'addFolderViewConfig',
     'addContentView', 'addContentViewConfig',
-    'addAssetsView', 'addAssetsViewConfig'
+    'addAssetsView', 'addAssetsViewConfig',
+    'helpers'
 ],
     function ($, Backbone, _, masseuse, Api, constants,
               GrasshopperBaseView,
@@ -38,12 +39,13 @@ define([
               ContentTypeDetailView, contentTypeDetailViewConfig,
               AddFolderView, addFolderViewConfig,
               AddContentView, addContentViewConfig,
-              AddAssetsView, addAssetsViewConfig
+              AddAssetsView, addAssetsViewConfig,
+              helpers
               ) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
-            LocalStorage = masseuse.localStorage,
+            LocalStorage = helpers.localStorage,
             userModel = new UserModel(),
             currentView,
             Router;

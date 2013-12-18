@@ -1,7 +1,7 @@
-define(['constants', 'masseuse', 'jquery'], function (constants, Masseuse, $) {
+define(['constants', 'masseuse', 'jquery', 'helpers'], function (constants, Masseuse, $, helpers) {
     'use strict';
 
-    var LocalStorage = Masseuse.localStorage;
+    var LocalStorage = helpers.localStorage;
 
     return {
         postNewAsset : postNewAsset

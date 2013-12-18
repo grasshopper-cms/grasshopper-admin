@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!views/addContent/addContentView.html', 'addContentViewModel'], function (addContentTemplate, addContentViewModel) {
+define(['text!views/addContent/addContentView.html', 'addContentViewModel'],
+    function (addContentTemplate, addContentViewModel) {
     'use strict';
 
     return {

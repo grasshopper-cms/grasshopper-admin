@@ -1,7 +1,7 @@
 /*global module:false, require:false*/
 module.exports = function (grunt) {
 
-    "use strict";
+    'use strict';
 
     var _ = grunt.util._,
         config = {};
@@ -16,28 +16,28 @@ module.exports = function (grunt) {
     // load grunt Config. All config can be found in tasks/options
     grunt.initConfig(_.extend(config, loadConfig('./initConfig/')));
 
-    grunt.registerTask("server", "Build and watch task", [
+    grunt.registerTask('server', 'Build and watch task', [
         'clean',
-        "jshint",
-//        "checkDependencies",
-        "setupBowerCopy",
-        "copy:build",
-        "copy:vendor",
-        "sass",
-        "autoprefixer:no_dest",
-        "connect:site",
-        "watch"
+        'jshint',
+//        'checkDependencies',
+        'setupBowerCopy',
+        'copy:build',
+        'copy:vendor',
+        'sass',
+        'autoprefixer:no_dest',
+        'connect:site',
+        'watch'
     ]);
-    grunt.registerTask("testServer", "Build and watch task", [
-        "jshint",
-        "copy:build",
-        "connect:tests",
-        "sass",
-        "connect:tests",
-        "watch"
+    grunt.registerTask('testServer', 'Build and watch task', [
+        'jshint',
+        'copy:build',
+        'connect:tests',
+        'sass',
+        'connect:tests',
+        'watch'
     ]);
-    grunt.registerTask("deploy", "Deploy to gh-pages", [
-        "clean",
+    grunt.registerTask('deploy', 'Deploy to gh-pages', [
+        'clean',
         'copy:deploy',
         'useminPrepare',
         'requirejs',
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         'rev',
         'sass',
         'usemin',
-        "build_gh_pages"
+        'build_gh_pages'
     ]);
 
     function loadConfig(files) {

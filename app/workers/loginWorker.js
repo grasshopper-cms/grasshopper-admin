@@ -1,8 +1,8 @@
-define(['api', 'jquery', 'resources', 'masseuse'],
-    function (Api, $, resources, masseuse) {
+define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
+    function (Api, $, resources, masseuse, helpers) {
         'use strict';
 
-        var LocalStorage = masseuse.localStorage;
+        var LocalStorage = helpers.localStorage;
         /**
          * @class loginWorker
          */
