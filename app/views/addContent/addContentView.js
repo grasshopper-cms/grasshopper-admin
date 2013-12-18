@@ -19,8 +19,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
         var self = this;
         contentTypeWorker.getNodesContentTypes(this.model.get('nodeId'))
             .done(function(data) {
-                console.log(data);
-                data = [{_id: 1234, helpText: 'HELP TEXT', label: 'First ContentType'}, {_id: 23456, helpText: 'HELP TEXT 2', label: 'Second ContentType'}, {_id: 45454, helpText: 'HELP TEXT 3', label: 'second ContentType'}];
+                // TODO: Remove this stub when the API Works.
+                data = resources.dummyContentTypeData;
                 self.displayModal(
                     {
                         msg: resources.contentType.selectContentType,
@@ -33,7 +33,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
                     })
                     .fail(function() {
                         $deferred.reject();
-                        navigateBack.call(self, true);
+                        navigateBack.call(self);
                     });
             })
             .fail(function(data) {
@@ -57,7 +57,6 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
     function navigateBack(trigger) {
         this.app.router.navigateBack(trigger);
         this.app.router.removeThisRouteFromBreadcrumb();
-//        this.remove();
     }
 
 });

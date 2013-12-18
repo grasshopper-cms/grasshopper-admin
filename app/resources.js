@@ -152,5 +152,22 @@ define({
     upload : 'Upload',
     user_name : 'User Name',
     users : 'Users',
-    welcomeBack : 'Welcome Back'
+    welcomeBack : 'Welcome Back',
+    dummyContentTypeData: [
+        {
+            _id: 1234,
+            helpText: 'HELP TEXT',
+            label: 'First ContentType'
+        },
+        {
+            _id: 23456,
+            helpText: 'HELP TEXT 2',
+            label: 'Second ContentType'
+        },
+        {
+            _id: 45454,
+            helpText: 'HELP TEXT 3',
+            label: 'second ContentType'
+        }
+    ]
 });
