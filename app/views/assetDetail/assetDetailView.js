@@ -65,10 +65,10 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
                 type: 'input',
                 data: this.model.get('fileName')
             })
-            .done(function(newName) {
-                Api.renameAsset(self.model.urlRoot(), self.model.get('fileName'), newName)
+            .done(function(modalData) {
+                Api.renameAsset(self.model.urlRoot(), self.model.get('fileName'), modalData.data)
                     .done(function() {
-                        self.model.set('fileName', newName);
+                        self.model.set('fileName', modalData.data);
                         self.model.fetch()
                             .done(function() {
                                 self.displayTemporaryAlertBox(

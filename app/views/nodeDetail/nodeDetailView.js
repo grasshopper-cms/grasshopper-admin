@@ -52,8 +52,8 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                     type:  'input',
                     data: this.model.get('label')
                 })
-            .done(function(data) {
-                self.model.set('label', data);
+            .done(function(modalData) {
+                self.model.set('label', modalData.data);
                 self.model.save()
                     .done(function() {
                         console.log('the model saved');
@@ -70,8 +70,8 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                                             type: 'checkbox',
                                             data:  availableContentTypes
                                         })
-                                    .done(function(data) {
-                                        contentTypeWorker.addContentTypesToFolder(self.model.get('_id'), data)
+                                    .done(function(modalData) {
+                                        contentTypeWorker.addContentTypesToFolder(self.model.get('_id'), modalData.data)
                                             .done(function () {
                                                 console.log('it  worked!');
                                             })
