@@ -5,7 +5,6 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         updateModel : updateModel,
-        updateNameInHeader : updateNameInHeader,
         toggleEnabled : toggleEnabled,
         handleRowClick : handleRowClick
     });
@@ -38,10 +37,10 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
                     }
                 );
                 updateNameInHeader.call(self, model);
-            }).fail(function () {
+            }).fail(function (xhr) {
                 self.displayAlertBox(
                     {
-                        msg: resources.user.updateError
+                        msg: xhr.responseJSON.message
                     }
                 );
             });

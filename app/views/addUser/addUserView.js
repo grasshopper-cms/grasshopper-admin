@@ -9,7 +9,6 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     function saveUser() {
         var self = this;
 
-        console.log(this.model);
         this.model.save()
             .success(function() {
                 self.app.router.navigateTrigger('users');
@@ -23,7 +22,7 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
             .error(function(xhr) {
                 self.displayAlertBox(
                     {
-                        msg: JSON.parse(xhr.responseText).message
+                        msg: xhr.responseJSON.message
                     }
                 );
             });
