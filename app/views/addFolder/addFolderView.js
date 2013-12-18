@@ -8,27 +8,30 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
     });
 
     function afterRender() {
-        var self = this;
+        getFolderName.call(this);
+    }
 
+    function getFolderName() {
+        var self = this;
         this.displayModal(
-                {
-                    msg: resources.node.enterName,
-                    type: 'input'
-                })
-            .done(function(data) {
-                nodeWorker.createFolder(self.model.get('nodeId'), data)
+            {
+                msg: resources.node.enterName,
+                type: 'input'
+            })
+            .done(function(modalData) {
+                createFolder.call(self, modalData.data)
                     .done(function() {
                         self.channels.views.trigger('refreshContentBrowseView');
                         contentTypeWorker.getAvailableContentTypes()
                             .done(function(availableContentTypes) {
                                 self.displayModal(
-                                        {
-                                            msg: resources.contentType.addContentTypes,
-                                            type: 'checkbox',
-                                            data: availableContentTypes
-                                        })
-                                    .done(function(data) {
-                                        contentTypeWorker.addContentTypesToFolder(self.model.get('nodeId'), data)
+                                    {
+                                        msg: resources.contentType.addContentTypes,
+                                        type: 'checkbox',
+                                        data: availableContentTypes
+                                    })
+                                    .done(function(modalData) {
+                                        contentTypeWorker.addContentTypesToFolder(self.model.get('nodeId'), modalData.data)
                                             .done(function() {
                                                 self.displayTemporaryAlertBox(
                                                     {
@@ -56,9 +59,6 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                                 msg: resources.node.errorCreating
                             }
                         );
-                    })
-                    .always(function() {
-                        navigateBack.call(self);
                     });
             })
             .fail(function() {
@@ -66,8 +66,13 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
             });
     }
 
-    function navigateBack() {
-        this.app.router.navigateBack();
+
+    function createFolder(folderName) {
+        return nodeWorker.createFolder(this.model.get('nodeId'), folderName);
+    }
+
+    function navigateBack(trigger) {
+        this.app.router.navigateBack(trigger);
         this.app.router.removeThisRouteFromBreadcrumb();
         this.remove();
     }

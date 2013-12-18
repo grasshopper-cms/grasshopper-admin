@@ -5,7 +5,8 @@ define(['api', 'jquery', 'resources', 'underscore'],
 
         return {
             getAvailableContentTypes : getAvailableContentTypes,
-            addContentTypesToFolder : addContentTypesToFolder
+            addContentTypesToFolder : addContentTypesToFolder,
+            getNodesContentTypes : getNodesContentTypes
         };
 
         function getAvailableContentTypes(previousContentTypes) {
@@ -40,6 +41,20 @@ define(['api', 'jquery', 'resources', 'underscore'],
                 })
                 .fail(function(xhr) {
                     $deferred.reject(xhr.responseJSON.message);
+                });
+
+            return $deferred.promise();
+        }
+
+        function getNodesContentTypes(nodeId) {
+            var $deferred = new $.Deferred();
+
+            Api.getNodeDetail(nodeId)
+                .done(function(data) {
+                    $deferred.resolve(data);
+                })
+                .fail(function(data) {
+                    $deferred.reject(data);
                 });
 
             return $deferred.promise();

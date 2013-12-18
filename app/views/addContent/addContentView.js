@@ -1,31 +1,62 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources'],
-    function (GrasshopperBaseView, resources) {
+define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
+    function (GrasshopperBaseView, resources, contentTypeWorker) {
     'use strict';
 
     return GrasshopperBaseView.extend({
-        afterRender : afterRender
+        beforeRender : beforeRender
     });
 
-    function afterRender() {
-        var self = this;
+    function beforeRender($deferred) {
+        if(this.model.get('nodeId') !== '0'){
+            handleCreateContent.call(this, $deferred);
+        } else {
+            createContentInRoot.call(this, $deferred);
+        }
+    }
 
-        this.displayModal(
-                {
-                    msg: resources.thisIsNotImplemented
-                })
-            .done(function() {
-                navigateBack.call(self);
+    function handleCreateContent($deferred) {
+        var self = this;
+        contentTypeWorker.getNodesContentTypes(this.model.get('nodeId'))
+            .done(function(data) {
+                // TODO: Remove this stub when the API Works.
+                data = resources.dummyContentTypeData;
+                self.displayModal(
+                    {
+                        msg: resources.contentType.selectContentType,
+                        data: data,
+                        type: 'radio'
+                    })
+                    .done(function(modalData) {
+                        self.model.set('contentTypeId', modalData.selectedType);
+                        $deferred.resolve();
+                    })
+                    .fail(function() {
+                        $deferred.reject();
+                        navigateBack.call(self);
+                    });
             })
-            .fail(function() {
-                navigateBack.call(self);
+            .fail(function(data) {
+                $deferred.reject();
+                console.log(data);
             });
     }
 
-    function navigateBack() {
-        this.app.router.navigateBack();
+    function createContentInRoot($deferred) {
+        var self = this;
+        this.displayModal(
+            {
+                msg: resources.contentType.contentInRoot
+            })
+            .always(function() {
+                $deferred.reject();
+                navigateBack.call(self, true);
+            });
+    }
+
+    function navigateBack(trigger) {
+        this.app.router.navigateBack(trigger);
         this.app.router.removeThisRouteFromBreadcrumb();
-        this.remove();
     }
 
 });

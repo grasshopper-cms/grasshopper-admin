@@ -62,9 +62,9 @@ define([
                 'addUser' : 'displayAddUser',
                 'item/types' : 'displayContentTypeIndex',
                 'item/types(/:id)' : 'displayContentTypeDetail',
-                'items/nodeid/:nodeId/createAssets' : displayCreateAssets,
-                'items/nodeid/:nodeId/createFolder' : displayCreateFolder,
-                'items/nodeid/:nodeId/createContent' : displayCreateContent,
+                'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
+                'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
+                'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
                 'items(/nodeid/:nodeId)': 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 '*path' : 'goHome'
@@ -153,8 +153,12 @@ define([
             this.navigate(fragment, options);
         }
 
-        function navigateBack() {
-            this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 2]);
+        function navigateBack(trigger) {
+            if(trigger) {
+                this.navigateTrigger(this.breadcrumb[this.breadcrumb.length - 2]);
+            } else {
+                this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 2]);
+            }
         }
 
         function navigate (fragment, options, doBeforeRender) {
@@ -393,14 +397,12 @@ define([
         }
 
         function displayCreateContent(nodeId) {
-            var addContentView = new AddContentView(_.extend({}, addContentViewConfig,
+            loadMainContent(AddContentView, _.extend({}, addContentViewConfig,
                 {
-                    modelData: {
-                        nodeId : (nodeId) ? nodeId : null
+                    modelData : {
+                        nodeId : nodeId
                     }
-                }
-            ));
-            addContentView.start();
+                }));
         }
 
         function displayCreateAssets(nodeId) {

@@ -1,7 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailViewConfig',
-    'text!views/assetDetail/_assetDetailRow.html'],
-    function (GrasshopperBaseView, _, AssetDetailView, assetDetailViewConfig, assetDetailRowTemplate) {
+define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailViewConfig', 'text!views/assetDetail/_assetDetailRow.html', 'resources'],
+    function (GrasshopperBaseView, _, AssetDetailView, assetDetailViewConfig, assetDetailRowTemplate, resources) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -20,13 +19,13 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
         var self = this;
         this.displayModal(
             {
-                msg: 'Upload an Asset!',
+                msg: resources.asset.uploadAssetModalMsg,
                 type: 'upload',
                 data: {}
             })
-            .done(function(data) {
+            .done(function(modalData) {
                 self.channels.views.trigger('activateTab', 'filesTab');
-                _.each(data.files, function(file) {
+                _.each(modalData.files, function(file) {
                     appendAssetDetailRow.call(self, file);
                 });
                 navigateBack.call(self);
@@ -40,15 +39,15 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
         var self = this;
         this.displayModal(
             {
-                msg: 'You cannot upload assets in the Root.'
+                msg: resources.asset.uploadInRoot
             })
             .always(function() {
                 navigateBack.call(self);
             });
     }
 
-     function navigateBack() {
-         this.app.router.navigateBack();
+     function navigateBack(trigger) {
+         this.app.router.navigateBack(trigger);
          this.app.router.removeThisRouteFromBreadcrumb();
          this.remove();
      }
