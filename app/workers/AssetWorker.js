@@ -37,8 +37,6 @@ define(['constants', 'masseuse', 'jquery', 'helpers'], function (constants, Mass
             }
         };
 
-        console.log(request);
-
         request.send(form_data);
 
         return $deferred.promise();
