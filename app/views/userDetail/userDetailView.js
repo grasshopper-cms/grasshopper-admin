@@ -31,28 +31,12 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
         var self = this;
         this.model.save()
             .done(function (model) {
-                self.displayTemporaryAlertBox(
-                    {
-                        msg: resources.user.successfullyUpdated,
-                        status: true
-                    }
-                );
-                updateNameInHeader.call(self, model);
+                _handleSuccessfulSave.call(self, model);
             }).fail(function (xhr) {
-                self.displayAlertBox(
-                    {
-                        msg: xhr.responseJSON.message
-                    }
-                );
+                _handleFailedSave.call(self, xhr);
             });
 
         return false;
-    }
-
-    function updateNameInHeader(model) {
-        if (this.app.user.get('_id') === model._id) {
-            this.app.user.set(model);
-        }
     }
 
     function toggleEnabled() {
@@ -64,6 +48,30 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
     function handleRowClick(e) {
         e.stopPropagation();
         this.app.router.navigateTrigger(this.model.get('href'), {}, true);
+    }
+
+    function _handleSuccessfulSave(model) {
+     this.displayTemporaryAlertBox(
+         {
+             msg: resources.user.successfullyUpdated,
+             status: true
+         }
+     );
+     _updateNameInHeader.call(this, model);
+    }
+
+    function _handleFailedSave(xhr) {
+        this.displayAlertBox(
+            {
+                msg: xhr.responseJSON.message
+            }
+        );
+    }
+
+    function _updateNameInHeader(model) {
+        if (this.app.user.get('_id') === model._id) {
+            this.app.user.set(model);
+        }
     }
 
 });
