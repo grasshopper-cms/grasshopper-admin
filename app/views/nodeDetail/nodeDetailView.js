@@ -16,25 +16,23 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                     msg: resources.node.deletionWarning
                 })
             .done(function() {
-                self.model.destroy(
-                    {
-                        success: function(model) {
-                            self.remove();
-                            self.displayTemporaryAlertBox(
-                                {
-                                    msg: resources.node.successfullyDeletedPre + model.get('label') +
-                                        resources.node.successfullyDeletedPost,
-                                    status: true
-                                }
-                            );
-                        },
-                        error: function(model) {
-                            self.displayAlertBox(
-                                {
-                                    msg: resources.node.errorDeleted + model.get('label')
-                                }
-                            );
-                        }
+                self.model.destroy()
+                    .done(function() {
+                        self.displayTemporaryAlertBox(
+                            {
+                                msg: resources.node.successfullyDeletedPre + self.model.get('label') +
+                                    resources.node.successfullyDeletedPost,
+                                status: true
+                            }
+                        );
+                        self.remove();
+                    })
+                    .fail(function() {
+                        self.displayAlertBox(
+                            {
+                                msg: resources.node.errorDeleted + self.model.get('label')
+                            }
+                        );
                     });
             });
     }
@@ -56,30 +54,46 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                 self.model.set('label', modalData.data);
                 self.model.save()
                     .done(function() {
-                        console.log('the model saved');
-                    })
-                    .fail(function() {
-                        console.log('the model did not save');
-                    })
-                    .always(function() {
+                        self.displayTemporaryAlertBox(
+                            {
+                                msg: resources.node.successfullyUpdated,
+                                status: true
+                            }
+                        );
                         contentTypeWorker.getAvailableContentTypes(self.model.get('allowedTypes'))
                             .done(function(availableContentTypes) {
                                 self.displayModal(
-                                        {
-                                            msg: resources.contentType.editContentTypes,
-                                            type: 'checkbox',
-                                            data:  availableContentTypes
-                                        })
+                                    {
+                                        msg: resources.contentType.editContentTypes,
+                                        type: 'checkbox',
+                                        data:  availableContentTypes
+                                    })
                                     .done(function(modalData) {
                                         contentTypeWorker.addContentTypesToFolder(self.model.get('_id'), modalData.data)
                                             .done(function () {
-                                                console.log('it  worked!');
+                                                self.displayTemporaryAlertBox(
+                                                    {
+                                                        msg: resources.contentType.contentTypeAdded,
+                                                        status: true
+                                                    }
+                                                );
                                             })
-                                            .fail(function() {
-                                                console.log('it did not work');
+                                            .fail(function(msg) {
+                                                self.displayAlertBox(
+                                                    {
+                                                        msg: msg
+                                                    }
+                                                );
                                             });
                                     });
                             });
+                    })
+                    .fail(function() {
+                        self.displayAlertBox(
+                            {
+                                msg: resources.node.errorUpdated
+                            }
+                        );
                     });
             });
     }
