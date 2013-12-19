@@ -240,10 +240,20 @@ body, html {
     z-index: 10000;
   }
 
-  #alertBoxPartial {
-    bottom: 40px;
+  #alertBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 75px;
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+  }
+  .alertBoxPartial {
+    height: 46px;
     width: 95%;
-    position: fixed;
     .bad {
       position: absolute;
       width: 100%;
@@ -270,9 +280,8 @@ body, html {
         }
       }
     }
-
-
   }
+
 
   #login-page {
 

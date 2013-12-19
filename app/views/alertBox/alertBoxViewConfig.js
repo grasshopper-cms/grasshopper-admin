@@ -8,12 +8,12 @@ define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function 
         el : '#alertBox',
         templateHtml : templateHtml,
         appendView : true,
-        rivetConfig : {
-            scope : '#alertBoxPartial',
-            prefix : 'alertbox'
-        },
+        rivetConfig : 'auto',
         events : {
             'click #closeAlertBox' : 'closeAlertBox'
-        }
+        },
+        bindings : [
+            ['channels.views', 'hideAlertBoxes', 'closeAlertBox']
+        ]
     };
 });

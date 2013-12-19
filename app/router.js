@@ -160,7 +160,7 @@ define([
             // TODO: Move in to masseuse parts that we can
             if (currentView instanceof Backbone.View) {
                 // (and override destroy in GH to remove alerts)
-                currentView.hideAlertBox();
+                currentView.hideAlertBox.call(currentView);
             }
             if (doBeforeRender) {
                 this.beforeRouting();
@@ -258,29 +258,24 @@ define([
         }
 
         function displayAlertBox (options) {
-            var alertBoxView = new AlertBoxView(_.extend(alertBoxViewConfig, {
-                modelData : {
-                    msg : (options.msg),
-                    status : (options.status)
-                }
-            }));
-            this.hideAlertBox();
+            var alertBoxView = new AlertBoxView(_.extend({}, alertBoxViewConfig,
+                {
+                    modelData : {
+                        msg : (options.msg),
+                        status : (options.status)
+                    },
+                    temporary : options.temporary
+                }));
             alertBoxView.start();
-            GrasshopperBaseView.prototype.alertBoxView = alertBoxView;
         }
 
         function displayTemporaryAlertBox (options) {
-            var self = this;
-            self.displayAlertBox(options);
-            setTimeout(function () {
-                self.hideAlertBox();
-            }, 5000);
+            options.temporary = true;
+            this.displayAlertBox(options);
         }
 
         function hideAlertBox () {
-            if (GrasshopperBaseView.prototype.alertBoxView && GrasshopperBaseView.prototype.alertBoxView.remove) {
-                GrasshopperBaseView.prototype.alertBoxView.remove();
-            }
+            this.channels.views.trigger('hideAlertBoxes');
         }
 
         function displayModal (options) {
