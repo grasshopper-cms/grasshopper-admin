@@ -33,7 +33,7 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
                 });
         }
 
-        function userIsStillValidUser($deferred) {
+        function userIsStillValidUser ($deferred) {
             var self = this,
                 token = LocalStorage.get('authToken');
             if (token) {
@@ -59,7 +59,7 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
             }
         }
 
-        function _tokenIsValid(data) {
+        function _tokenIsValid (data) {
             this.user.set(data);
             if (!this.headerView) {
                 this.startHeader();
@@ -67,15 +67,15 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
             this.$deferred.resolve();
         }
 
-        function _tokenIsNotValid() {
+        function _tokenIsNotValid () {
             this.goLogout();
             this.$deferred.reject();
         }
 
-        function verifyAuthToken($deferred) {
+        function verifyAuthToken ($deferred) {
             var self = this;
             Api.authenticateToken(LocalStorage.get('authToken'))
-                .error(function() {
+                .error(function () {
                     console.log('verifyAuthTokenFired');
                     $deferred.reject();
                     self.goLogout();

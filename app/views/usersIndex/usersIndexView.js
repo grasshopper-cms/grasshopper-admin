@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['jquery','grasshopperBaseView', 'userWorker', 'constants', 'underscore', 'userDetailView',
+define(['jquery', 'grasshopperBaseView', 'userWorker', 'constants', 'underscore', 'userDetailView',
     'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
     function ($, GrasshopperBaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
         'use strict';
@@ -11,13 +11,13 @@ define(['jquery','grasshopperBaseView', 'userWorker', 'constants', 'underscore',
             appendUserRow : appendUserRow
         });
 
-        function beforeRender($deferred) {
+        function beforeRender ($deferred) {
             var self = this,
                 model = this.model.toJSON();
 
             this.goToPage(model.pageNumber || model.defaultPage, model.pageLimit || model.defaultLimit)
-                .done(function() {
-                    self.model.get('users').each(function(model){
+                .done(function () {
+                    self.model.get('users').each(function (model) {
                         self.appendUserRow(model);
                     });
                     $deferred.resolve();
@@ -47,7 +47,7 @@ define(['jquery','grasshopperBaseView', 'userWorker', 'constants', 'underscore',
             this.goToPage(constants.userCollection.page, event.target.value);
         }
 
-        function appendUserRow(model) {
+        function appendUserRow (model) {
 
             var userDetailView = new UserDetailView(_.extend({}, userDetailViewConfig,
                 {

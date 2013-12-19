@@ -2,13 +2,13 @@ define(['grasshopperModel', 'resources', 'masseuse', 'constants'], function (Mod
     'use strict';
     var ComputedProperty = masseuse.ComputedProperty;
     return Model.extend({
-        idAttribute: '_id',
-        defaults: {
+        idAttribute : '_id',
+        defaults : {
             resources : resources,
-            href : new ComputedProperty(['_id'], function(id) {
+            href : new ComputedProperty(['_id'], function (id) {
                 return constants.internalRoutes.nodeDetail.replace(':id', id);
             }),
-            id : new ComputedProperty(['_id'], function(id) {
+            id : new ComputedProperty(['_id'], function (id) {
                 return id;
             })
         },

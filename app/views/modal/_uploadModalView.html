@@ -8,6 +8,7 @@
             </div>
             <div id="dropZone">{{data.resources.asset.dragFilesHere}}</div>
             <input type="file" id="uploadFileInput" name="files" multiple="multiple"/>
+
             <div class="row">
                 <div class="small-12 text-center">
                     <span data-rv-show="data.files">Selected Files:</span>
@@ -15,7 +16,9 @@
                 </div>
             </div>
             <ol>
-                <li data-rv-each-file="data.files">{{file.name | withColon}}{{file.size | prettyFileSize | withColon}}{{file.type}}</li>
+                <li data-rv-each-file="data.files">{{file.name | withColon}}{{file.size | prettyFileSize |
+                    withColon}}{{file.type}}
+                </li>
             </ol>
             <div class="row">
                 <div class="small-12 text-center">

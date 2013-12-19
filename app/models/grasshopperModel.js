@@ -22,11 +22,11 @@ define([
         var token = LocalStorage.get('authToken'),
             args = Array.prototype.slice.call(arguments, 0),
             fetchOptions = {
-                data: {},
-                headers: {
-                    'Authorization' :  'Token ' + token
+                data : {},
+                headers : {
+                    'Authorization' : 'Token ' + token
                 },
-                success: function(){
+                success : function () {
 
                 }
             };
@@ -44,8 +44,8 @@ define([
     function save () {
         // TODO: look at filmfreshModel for reference on how to support passing in objects
         var saveOptions = {headers : {
-                'Authorization' : 'Token ' + LocalStorage.get('authToken')
-            }};
+            'Authorization' : 'Token ' + LocalStorage.get('authToken')
+        }};
         return Backbone.Model.prototype.save.call(this, null, saveOptions);
     }
 

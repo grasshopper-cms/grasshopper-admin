@@ -1,3 +1,4 @@
+/*globals module:true*/
 module.exports = {
     files : [
         'app/**/*.js',

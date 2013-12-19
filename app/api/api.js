@@ -23,7 +23,7 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 headers : {'Authorization' : 'Token ' + token}
             });
         },
-        getUsers : function() {
+        getUsers : function () {
             return this.request(constants.api.users.url);
         },
         post : function (url, data) {
@@ -36,25 +36,25 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 headers : {'Authorization' : 'Token ' + token}
             });
         },
-        makeQuery : function(data) {
+        makeQuery : function (data) {
             return this.post(constants.api.contentQuery.url, data);
         },
-        postFolder : function(data) {
+        postFolder : function (data) {
             return this.post(constants.api.node.url, data);
         },
-        getContentTypes : function() {
+        getContentTypes : function () {
             return this.request(constants.api.contentTypes.url);
         },
-        addContentTypesToNode : function(nodeId, contentTypes) {
+        addContentTypesToNode : function (nodeId, contentTypes) {
             return this.post(constants.api.nodesContentTypes.url.replace(':id', nodeId), JSON.stringify(contentTypes));
         },
-        getNodeDetail : function(nodeId) {
+        getNodeDetail : function (nodeId) {
             return this.request(constants.api.node.url + '/' + nodeId);
         },
-        renameAsset : function(url, originalName, newName) {
+        renameAsset : function (url, originalName, newName) {
             return this.post(url + '/rename', {
-                original: originalName,
-                updated: newName
+                original : originalName,
+                updated : newName
             });
         }
     };

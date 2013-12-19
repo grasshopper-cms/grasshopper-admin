@@ -47,7 +47,7 @@ define({
             'none'
         ],
         successfullyUpdated : 'User was successfully updated',
-        updateError: 'User was successfully updated',
+        updateError : 'User was successfully updated',
         errors : {
             403 : 'You do not have adequate permissions to view/edit this profile.'
         },
@@ -65,30 +65,30 @@ define({
         addContentType : 'New Content Type'
     },
     node : {
-        deletionWarning: 'Are you sure you want to delete this folder? All of its contents will also be deleted.',
-        successfullyDeletedPre: 'Folder ',
-        successfullyDeletedPost: ' was successfully deleted.',
+        deletionWarning : 'Are you sure you want to delete this folder? All of its contents will also be deleted.',
+        successfullyDeletedPre : 'Folder ',
+        successfullyDeletedPost : ' was successfully deleted.',
         successfullyUpdated : 'Node was successfully updated.',
         successfullyCreated : 'Node was successfully created.',
         errorUpdated : 'Node could not be updated.',
         errorDeleted : 'There was an issue deleting this folder: ',
-        enterName: 'Please enter the name of the folder: ',
-        errorCreating: 'folder could not be added',
-        editName: 'Edit Folder name:'
+        enterName : 'Please enter the name of the folder: ',
+        errorCreating : 'folder could not be added',
+        editName : 'Edit Folder name:'
     },
     contentItem : {
-        deletionWarning: 'Are you sure you want to delete this content?',
-        successfullyDeletedPre: 'Content ',
-        successfullyDeletedPost: ' was successfully deleted.',
+        deletionWarning : 'Are you sure you want to delete this content?',
+        successfullyDeletedPre : 'Content ',
+        successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: '
     },
     contentType : {
-        addContentTypes: 'Add Content Types: ',
-        editContentTypes: 'Edit allowed Content Types',
-        contentTypeAdded: 'Content Type Added',
-        deletionWarning: 'Are you sure you want to delete this content type?',
-        successfullyDeletedPre: 'Content Type ',
-        successfullyDeletedPost: ' was successfully deleted.',
+        addContentTypes : 'Add Content Types: ',
+        editContentTypes : 'Edit allowed Content Types',
+        contentTypeAdded : 'Content Type Added',
+        deletionWarning : 'Are you sure you want to delete this content type?',
+        successfullyDeletedPre : 'Content Type ',
+        successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: ',
         serverError : 'Content Types could not be retrieved.',
         selectContentType : 'Which Content Type would you like to use?',
@@ -96,8 +96,8 @@ define({
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
-        successfullyDeletedPre: 'Asset Name: ',
-        successfullyDeletedPost: ' was successfully deleted.',
+        successfullyDeletedPre : 'Asset Name: ',
+        successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this asset: ',
         editFileName : 'Edit File Name',
         editNameSuccess : 'File name was successfully updated.',
@@ -108,14 +108,14 @@ define({
         uploadAssetModalMsg : 'Upload an Asset.'
     },
     contentBrowse : {
-        author: 'Author',
-        modified: 'Modified'
+        author : 'Author',
+        modified : 'Modified'
     },
     fileIndex : {
-        files: 'Files',
-        fileName: 'File Name',
-        size: 'Size',
-        modified: 'Modified'
+        files : 'Files',
+        fileName : 'File Name',
+        size : 'Size',
+        modified : 'Modified'
     },
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
@@ -132,7 +132,7 @@ define({
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',
-    falseText: 'False',
+    falseText : 'False',
     home : 'Home',
     login : 'Login',
     log_in : 'Log In',
@@ -149,28 +149,28 @@ define({
     siteName : 'Grasshopper',
     status : 'Status',
     thisIsNotImplemented : 'This is not yet implemented.',
-    trueText: 'True',
-    type: 'Type',
+    trueText : 'True',
+    type : 'Type',
     types : 'Types',
     upload : 'Upload',
     user_name : 'User Name',
     users : 'Users',
     welcomeBack : 'Welcome Back',
-    dummyContentTypeData: [
+    dummyContentTypeData : [
         {
-            _id: 1234,
-            helpText: 'HELP TEXT',
-            label: 'First ContentType'
+            _id : 1234,
+            helpText : 'HELP TEXT',
+            label : 'First ContentType'
         },
         {
-            _id: 23456,
-            helpText: 'HELP TEXT 2',
-            label: 'Second ContentType'
+            _id : 23456,
+            helpText : 'HELP TEXT 2',
+            label : 'Second ContentType'
         },
         {
-            _id: 45454,
-            helpText: 'HELP TEXT 3',
-            label: 'second ContentType'
+            _id : 45454,
+            helpText : 'HELP TEXT 3',
+            label : 'second ContentType'
         }
     ]
 });

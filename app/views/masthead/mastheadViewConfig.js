@@ -1,28 +1,28 @@
 /*global define:false*/
 define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources'],
     function (templateHtml, mastheadViewModel, resources) {
-    'use strict';
+        'use strict';
 
-    return {
-        name : 'mastheadView',
-        modelData : {},
-        ModelType : mastheadViewModel,
-        el : '#masthead',
-        templateHtml : templateHtml,
-        events : {},
-        appendView : true,
-        bindings : [
-            ['channels.views', 'updateMastheadButtons', 'setButtons'],
-            ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']
-        ],
-        rivetConfig : 'auto',
-        defaultBreadcrumbs : [
-            {
-                text: resources.home,
-                href: '#'
-            }
-        ],
-        defaultMastheadButtons : [
+        return {
+            name : 'mastheadView',
+            modelData : {},
+            ModelType : mastheadViewModel,
+            el : '#masthead',
+            templateHtml : templateHtml,
+            events : {},
+            appendView : true,
+            bindings : [
+                ['channels.views', 'updateMastheadButtons', 'setButtons'],
+                ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']
+            ],
+            rivetConfig : 'auto',
+            defaultBreadcrumbs : [
+                {
+                    text : resources.home,
+                    href : '#'
+                }
+            ],
+            defaultMastheadButtons : [
                 {
                     text : resources.mastheadButtons.createContent,
                     href : '#'
@@ -40,5 +40,5 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
                     href : '#'
                 }
             ]
-    };
-});
+        };
+    });

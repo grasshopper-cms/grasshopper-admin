@@ -21,27 +21,14 @@ define([
     'addAssetsView', 'addAssetsViewConfig',
     'helpers'
 ],
-    function ($, Backbone, _, masseuse, Api, constants,
-              GrasshopperBaseView,
-              LoginView, loginViewConfig, loginWorker,
-              DashboardView, dashboardViewConfig,
-              AlertBoxView, alertBoxViewConfig,
-              ModalView, modalViewConfig,
-              resources,
-              UserDetailView, userDetailViewConfig, userWorker, UserModel,
-              HeaderView, headerViewConfig,
-              MastheadView, mastheadViewConfig,
-              UsersIndexView, usersIndexViewConfig,
-              AddUserView, addUserViewConfig,
-              ContentBrowseView, contentBrowseViewConfig,
-              ContentDetailView, contentDetailViewConfig,
-              ContentTypeIndexView, contentTypeIndexViewConfig,
-              ContentTypeDetailView, contentTypeDetailViewConfig,
-              AddFolderView, addFolderViewConfig,
-              AddContentView, addContentViewConfig,
-              AddAssetsView, addAssetsViewConfig,
-              helpers
-              ) {
+    function ($, Backbone, _, masseuse, Api, constants, GrasshopperBaseView, LoginView, loginViewConfig, loginWorker,
+              DashboardView, dashboardViewConfig, AlertBoxView, alertBoxViewConfig, ModalView, modalViewConfig,
+              resources, UserDetailView, userDetailViewConfig, userWorker, UserModel, HeaderView, headerViewConfig,
+              MastheadView, mastheadViewConfig, UsersIndexView, usersIndexViewConfig, AddUserView, addUserViewConfig,
+              ContentBrowseView, contentBrowseViewConfig, ContentDetailView, contentDetailViewConfig,
+              ContentTypeIndexView, contentTypeIndexViewConfig, ContentTypeDetailView, contentTypeDetailViewConfig,
+              AddFolderView, addFolderViewConfig, AddContentView, addContentViewConfig, AddAssetsView,
+              addAssetsViewConfig, helpers) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
@@ -67,7 +54,7 @@ define([
                 'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
-                'items(/nodeid/:nodeId)': 'displayContentBrowse',
+                'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 '*path' : 'goHome'
             },
@@ -129,15 +116,15 @@ define([
             return $deferred.promise();
         }
 
-        function userHasBreadcrumbs() {
+        function userHasBreadcrumbs () {
             return (this.breadcrumb && this.breadcrumb.length !== 0);
         }
 
-        function removeThisRouteFromBreadcrumb() {
+        function removeThisRouteFromBreadcrumb () {
             this.breadcrumb.pop();
         }
 
-        function _handleRoutingFromRefreshOnModal(nodeId) {
+        function _handleRoutingFromRefreshOnModal (nodeId) {
             this.breadcrumb.push(Backbone.history.fragment);
             this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
             this.displayContentBrowse(nodeId);
@@ -161,8 +148,8 @@ define([
             this.navigate(fragment, options);
         }
 
-        function navigateBack(trigger) {
-            if(trigger) {
+        function navigateBack (trigger) {
+            if (trigger) {
                 this.navigateTrigger(this.breadcrumb[this.breadcrumb.length - 2]);
             } else {
                 this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 2]);
@@ -175,7 +162,7 @@ define([
                 // (and override destroy in GH to remove alerts)
                 currentView.hideAlertBox();
             }
-            if(doBeforeRender) {
+            if (doBeforeRender) {
                 this.beforeRouting();
             }
             Backbone.Router.prototype.navigate.apply(this, arguments);
@@ -198,7 +185,7 @@ define([
             GrasshopperBaseView.prototype.hideModal = hideModal;
 
             // TODO: Get rid of this. Move it to a grasshopperCollection or something like that. It does not belong here.
-            Backbone.Collection.prototype.set = function(data, options) {
+            Backbone.Collection.prototype.set = function (data, options) {
                 if (data && data.results) {
                     data = data.results;
                 }
@@ -218,13 +205,13 @@ define([
             newView.start()
                 .progress(function (event) {
                     switch (event) {
-                        case GrasshopperBaseView.beforeRenderDone:
-                            if (currentView) {
-                                currentView.remove();
-                            }
+                    case GrasshopperBaseView.beforeRenderDone:
+                        if (currentView) {
+                            currentView.remove();
+                        }
 
-                            currentView = newView;
-                            break;
+                        currentView = newView;
+                        break;
                     }
                 })
                 .done(function () {
@@ -245,7 +232,7 @@ define([
         }
 
         function removeHeader () {
-            if(this.headerView && this.mastheadView) {
+            if (this.headerView && this.mastheadView) {
                 this.headerView.remove();
                 this.mastheadView.remove();
                 this.headerView = null;
@@ -256,7 +243,7 @@ define([
         function goLogout () {
             var self = this;
             LocalStorage.remove('authToken')
-                .done(function() {
+                .done(function () {
                     self.user.clear();
                     self.navigate('login', {trigger : true}, true);
                 });
@@ -272,9 +259,9 @@ define([
 
         function displayAlertBox (options) {
             var alertBoxView = new AlertBoxView(_.extend(alertBoxViewConfig, {
-                modelData: {
-                    msg: (options.msg),
-                    status: (options.status)
+                modelData : {
+                    msg : (options.msg),
+                    status : (options.status)
                 }
             }));
             this.hideAlertBox();
@@ -282,15 +269,15 @@ define([
             GrasshopperBaseView.prototype.alertBoxView = alertBoxView;
         }
 
-        function displayTemporaryAlertBox(options) {
+        function displayTemporaryAlertBox (options) {
             var self = this;
             self.displayAlertBox(options);
-            setTimeout(function() {
+            setTimeout(function () {
                 self.hideAlertBox();
             }, 5000);
         }
 
-        function hideAlertBox() {
+        function hideAlertBox () {
             if (GrasshopperBaseView.prototype.alertBoxView && GrasshopperBaseView.prototype.alertBoxView.remove) {
                 GrasshopperBaseView.prototype.alertBoxView.remove();
             }
@@ -299,20 +286,20 @@ define([
         function displayModal (options) {
             var $deferred = new $.Deferred(),
                 modalView = new ModalView(_.extend(modalViewConfig, {
-                modelData: {
-                    msg: options.msg,
-                    data: (options.data) ? options.data : null
-                },
-                type: (options.type) ? options.type : null,
-                $deferred : $deferred
-            }));
+                    modelData : {
+                        msg : options.msg,
+                        data : (options.data) ? options.data : null
+                    },
+                    type : (options.type) ? options.type : null,
+                    $deferred : $deferred
+                }));
             this.hideModal();
             modalView.start();
             GrasshopperBaseView.prototype.modalView = modalView;
             return $deferred.promise();
         }
 
-        function hideModal() {
+        function hideModal () {
             if (GrasshopperBaseView.prototype.modalView && GrasshopperBaseView.prototype.modalView.remove) {
                 GrasshopperBaseView.prototype.modalView.remove();
             }
@@ -326,12 +313,12 @@ define([
             // TODO: I think this can be refactored to take advantage of the new permissions checking system.
             // I did the role check here instead of in the config with permissions, this is because there are Admin's
             // getting their own, Admins getting others, and others getting their own.
-            if(this.user.get('role') === 'admin' || this.user.get('_id') === id) {
+            if (this.user.get('role') === 'admin' || this.user.get('_id') === id) {
                 loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
                     {
                         modelData : {
                             id : id,
-                            userModel: this.user.toJSON()
+                            userModel : this.user.toJSON()
                         }
                     }));
             } else {
@@ -359,18 +346,18 @@ define([
             loadMainContent(AddUserView, addUserViewConfig);
         }
 
-        function displayContentBrowse(nodeId) {
+        function displayContentBrowse (nodeId) {
             this.contentBrowserNodeId = nodeId;
             loadMainContent(ContentBrowseView, _.extend({}, contentBrowseViewConfig,
                 {
-                    modelData: {
-                        nodeId: nodeId
+                    modelData : {
+                        nodeId : nodeId
                     }
                 }
             ), true);
         }
 
-        function displayContentDetail(id) {
+        function displayContentDetail (id) {
             loadMainContent(ContentDetailView, _.extend({}, contentDetailViewConfig,
                 {
                     modelData : {
@@ -380,11 +367,11 @@ define([
             ), true);
         }
 
-        function displayContentTypeIndex() {
+        function displayContentTypeIndex () {
             loadMainContent(ContentTypeIndexView, contentTypeIndexViewConfig);
         }
 
-        function displayContentTypeDetail(id) {
+        function displayContentTypeDetail (id) {
             loadMainContent(ContentTypeDetailView, _.extend(contentTypeDetailViewConfig,
                 {
                     modelData : {
@@ -393,13 +380,13 @@ define([
                 }));
         }
 
-        function displayCreateFolder(nodeId) {
+        function displayCreateFolder (nodeId) {
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModal.call(this, nodeId);
             }
             var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
                 {
-                    modelData: {
+                    modelData : {
                         nodeId : (nodeId) ? nodeId : null
                     }
                 }
@@ -407,7 +394,7 @@ define([
             addFolderView.start();
         }
 
-        function displayCreateContent(nodeId) {
+        function displayCreateContent (nodeId) {
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModal.call(this, nodeId);
             }
@@ -419,13 +406,13 @@ define([
                 }));
         }
 
-        function displayCreateAssets(nodeId) {
+        function displayCreateAssets (nodeId) {
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModal.call(this, nodeId);
             }
             var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
                 {
-                    modelData: {
+                    modelData : {
                         nodeId : nodeId
                     }
                 }

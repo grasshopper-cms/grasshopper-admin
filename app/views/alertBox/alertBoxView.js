@@ -6,7 +6,7 @@ define(['grasshopperBaseView'], function (GrasshopperBaseView) {
         closeAlertBox : closeAlertBox
     });
 
-    function closeAlertBox() {
+    function closeAlertBox () {
         this.remove();
         return false;
     }

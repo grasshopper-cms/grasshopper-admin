@@ -46,17 +46,17 @@ require.config({
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
-        cirque: 'vendor/cirque/jquery.cirque',
-        modernizr: 'vendor/modernizr/modernizr',
+        cirque : 'vendor/cirque/jquery.cirque',
+        modernizr : 'vendor/modernizr/modernizr',
 
         // Routers
         router : 'router',
 
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alert',
-        dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
-        tabs: 'vendor/foundation/js/foundation/foundation.tab',
-        tooltip: 'vendor/foundation/js/foundation/foundation.tooltip',
+        dropdown : 'vendor/foundation/js/foundation/foundation.dropdown',
+        tabs : 'vendor/foundation/js/foundation/foundation.tab',
+        tooltip : 'vendor/foundation/js/foundation/foundation.tooltip',
 
         // Views
         grasshopperBaseView : 'views/grasshopperBaseView',
@@ -131,7 +131,7 @@ require.config({
         addContentViewModel : 'models/viewModels/addContentViewModel',
         addAssetsViewModel : 'models/viewModels/addAssetsViewModel',
 
-            // Workers
+        // Workers
         loginWorker : 'workers/loginWorker',
         userWorker : 'workers/userWorker',
         contentTypeWorker : 'workers/contentTypeWorker',
@@ -169,14 +169,14 @@ require([
      * @param $
      * @param {Router} Router
      */
-    function (Backbone, _, $, Router, constants) {
+        function (Backbone, _, $, Router, constants) {
 
         'use strict';
 
         _.templateSettings = {
-            evaluate    : /\[\[(.+?)\]\]/g,
+            evaluate : /\[\[(.+?)\]\]/g,
             interpolate : /\[\[=(.+?)\]\]/g,
-            escape      : /\[\[-(.+?)\]\]/g
+            escape : /\[\[-(.+?)\]\]/g
         };
 
         // TODO: For some reason this is not needed?
@@ -189,7 +189,9 @@ require([
         var router = new Router();
         Backbone.history.start();
         router.breadcrumb = [];
-        Backbone.history.on('route', function() { router.breadcrumb.push(this.fragment); }, this);
+        Backbone.history.on('route', function () {
+            router.breadcrumb.push(this.fragment);
+        }, this);
         // TODO: setup push state on nginx
         //Backbone.history.start({pushState: true});
-});
+    });
