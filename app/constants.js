@@ -34,11 +34,11 @@ define({
         content : {
             url : 'http://localhost:8080/content'
         },
-        contentQuery: {
+        contentQuery : {
             url : 'http://localhost:8080/content/query'
         }
     },
-    internalRoutes: {
+    internalRoutes : {
         user : '#user',
         users : '#users',
         newUser : '#addUser',
@@ -56,7 +56,7 @@ define({
         createAssets : '#items/nodeid/:id/createAssets'
     },
     defaults : {
-        theme: 'blue-dashboard'
+        theme : 'blue-dashboard'
     },
     userCollection : {
         pageSize : 5,

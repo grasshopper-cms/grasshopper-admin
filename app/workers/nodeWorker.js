@@ -7,7 +7,7 @@ define(['api', 'jquery'],
             createFolder : createFolder
         };
 
-        function createFolder(nodeId, folderName) {
+        function createFolder (nodeId, folderName) {
             var $deferred = new $.Deferred(),
                 data = {
                     label : folderName,
@@ -15,10 +15,10 @@ define(['api', 'jquery'],
                 };
 
             Api.postFolder(data)
-                .done(function() {
+                .done(function () {
                     $deferred.resolve();
                 })
-                .fail(function() {
+                .fail(function () {
                     $deferred.reject();
                 });
 

@@ -5,7 +5,7 @@ define(['masseuse', 'validation', 'underscore'], function (masseuse, validation,
 
     return Model.extend({
         validate : validate,
-        defaults: {
+        defaults : {
             username : '',
             password : '',
             usernameError : new ComputedProperty(['username'], validateUserLoginAttribute, true),

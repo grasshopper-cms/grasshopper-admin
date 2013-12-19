@@ -20,7 +20,7 @@ define(['api', 'resources', 'UserModel', 'userCollection', 'masseuse', 'helpers'
             };
 
             userCollection.fetch(options)
-                .done(function(){
+                .done(function () {
                     view.model.set({
                         users : userCollection
                     });

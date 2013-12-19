@@ -8,41 +8,41 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     });
 
     function beforeRender () {
-        if(!this.model.has('_id')) {
+        if (!this.model.has('_id')) {
             this.model.fetch()
-                .done(function() {
+                .done(function () {
 
                 })
-                .fail(function() {
+                .fail(function () {
                     // TODO: Error Handling
                 });
         }
     }
 
-    function deleteContentType() {
+    function deleteContentType () {
         var self = this;
 
         this.displayModal(
-                {
-                    msg: resources.contentType.deletionWarning
-                })
-            .done(function() {
+            {
+                msg : resources.contentType.deletionWarning
+            })
+            .done(function () {
                 self.model.destroy(
                     {
-                        success: function(model) {
+                        success : function (model) {
                             self.displayTemporaryAlertBox(
                                 {
-                                    msg: resources.contentType.successfullyDeletedPre + model.get('label') +
+                                    msg : resources.contentType.successfullyDeletedPre + model.get('label') +
                                         resources.contentType.successfullyDeletedPost,
-                                    status: true
+                                    status : true
                                 }
                             );
                             self.remove();
                         },
-                        error: function(model) {
+                        error : function (model) {
                             self.displayAlertBox(
                                 {
-                                    msg: resources.contentType.errorDeleted + model.get('label')
+                                    msg : resources.contentType.errorDeleted + model.get('label')
                                 }
                             );
                         }
@@ -50,7 +50,7 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
             });
     }
 
-    function handleRowClick(e) {
+    function handleRowClick (e) {
         e.stopPropagation();
         this.app.router.navigateTrigger(this.model.get('href'), {}, true);
     }

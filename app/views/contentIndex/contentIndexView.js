@@ -1,47 +1,46 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailView', 'contentDetailViewConfig',
     'text!views/contentDetail/_contentDetailRow.html'],
-    function (GrasshopperBaseView, Api, constants, _, ContentDetailView, contentDetailViewConfig,
-              contentDetailRowTemplate) {
-    'use strict';
+    function (GrasshopperBaseView, Api, constants, _, ContentDetailView, contentDetailViewConfig, contentDetailRowTemplate) {
+        'use strict';
 
-    return GrasshopperBaseView.extend({
-        beforeRender: beforeRender,
-        appendContentDetailRow: appendContentDetailRow
-    });
+        return GrasshopperBaseView.extend({
+            beforeRender : beforeRender,
+            appendContentDetailRow : appendContentDetailRow
+        });
 
-    function beforeRender($deferred) {
-        var self = this;
+        function beforeRender ($deferred) {
+            var self = this;
 
-        Api.makeQuery(
-            {
-                nodes: this.options.nodeId,
-                types: [],
-                filters: [],
-                options: {
-                    fake : true
-                }
-            })
-            .done(function(data) {
-                self.model.set('nodeContent', data);
-                _.each(data, function(content) {
-                    self.appendContentDetailRow(content);
+            Api.makeQuery(
+                {
+                    nodes : this.options.nodeId,
+                    types : [],
+                    filters : [],
+                    options : {
+                        fake : true
+                    }
+                })
+                .done(function (data) {
+                    self.model.set('nodeContent', data);
+                    _.each(data, function (content) {
+                        self.appendContentDetailRow(content);
+                    });
+                    $deferred.resolve();
+                    self.app.router.mastheadView.model.set('itemsCount', _.size(self.model.attributes.nodeContent));
                 });
-                $deferred.resolve();
-                self.app.router.mastheadView.model.set('itemsCount', _.size(self.model.attributes.nodeContent));
-            });
-    }
+        }
 
-    function appendContentDetailRow(content) {
-        var contentDetailView = new ContentDetailView(_.extend({}, contentDetailViewConfig,
-            {
-                name: 'nodeDetailRow',
-                modelData: content,
-                el: '#contentDetailRow',
-                templateHtml: contentDetailRowTemplate,
-                mastheadButtons: this.options.mastheadButtons
-            }));
-        this.addChild(contentDetailView);
-    }
+        function appendContentDetailRow (content) {
+            var contentDetailView = new ContentDetailView(_.extend({}, contentDetailViewConfig,
+                {
+                    name : 'nodeDetailRow',
+                    modelData : content,
+                    el : '#contentDetailRow',
+                    templateHtml : contentDetailRowTemplate,
+                    mastheadButtons : this.options.mastheadButtons
+                }));
+            this.addChild(contentDetailView);
+        }
 
-});
+    });

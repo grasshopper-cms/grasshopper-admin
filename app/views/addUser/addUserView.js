@@ -6,34 +6,34 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     });
 
 
-    function saveUser() {
+    function saveUser () {
         var self = this;
 
         this.model.save()
-            .success(function() {
+            .success(function () {
                 _handleSuccessfulSave.call(self);
             })
-            .error(function(xhr) {
+            .error(function (xhr) {
                 _handleSaveError.call(self, xhr);
             });
 
         return false;
     }
 
-    function _handleSuccessfulSave() {
+    function _handleSuccessfulSave () {
         this.app.router.navigateTrigger('users');
         this.displayTemporaryAlertBox(
             {
-                msg: resources.user.newUserAdded,
-                status: true
+                msg : resources.user.newUserAdded,
+                status : true
             }
         );
     }
 
-    function _handleSaveError(xhr) {
+    function _handleSaveError (xhr) {
         this.displayAlertBox(
             {
-                msg: xhr.responseJSON.message
+                msg : xhr.responseJSON.message
             }
         );
     }

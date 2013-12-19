@@ -7,7 +7,7 @@ define(['constants', 'masseuse', 'jquery', 'helpers'], function (constants, Mass
         postNewAsset : postNewAsset
     };
 
-    function postNewAsset(nodeId, file) {
+    function postNewAsset (nodeId, file) {
         var token = LocalStorage.get('authToken'),
             form_data = new FormData(),
             $deferred = new $.Deferred(),
@@ -17,8 +17,8 @@ define(['constants', 'masseuse', 'jquery', 'helpers'], function (constants, Mass
 
         request = new XMLHttpRequest();
 
-        request.upload.addEventListener('progress', function(e){
-            $deferred.notify((e.loaded/e.total) * 100 + '%');
+        request.upload.addEventListener('progress', function (e) {
+            $deferred.notify((e.loaded / e.total) * 100 + '%');
         }, false);
 
         request.open('POST', constants.api.assets.url.replace(':id', nodeId));
@@ -26,11 +26,11 @@ define(['constants', 'masseuse', 'jquery', 'helpers'], function (constants, Mass
         request.setRequestHeader('Authorization', 'Token ' + token);
         request.setRequestHeader('Accept', '*/*');
 
-        request.onreadystatechange = function() {
-            if(request.readyState !== 4) {
+        request.onreadystatechange = function () {
+            if (request.readyState !== 4) {
                 return;
             }
-            if([200,304].indexOf(request.status) === -1) {
+            if ([200, 304].indexOf(request.status) === -1) {
                 $deferred.reject(request.status);
             } else {
                 $deferred.resolve(JSON.parse(request.response).message);

@@ -11,7 +11,7 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
         start : start
     });
 
-    function initialize(options) {
+    function initialize (options) {
         this.options = options;
         if (options.rivetConfig) {
             options.plugins = [];
@@ -27,9 +27,9 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
         BaseView.prototype.initialize.apply(this, arguments);
     }
 
-    function start() {
+    function start () {
         // Checking user permissions
-        if(this.options.permissions && this.options.permissions.indexOf(this.app.user.get('role')) === -1) {
+        if (this.options.permissions && this.options.permissions.indexOf(this.app.user.get('role')) === -1) {
             this.app.router.navigateTrigger('home');
             return;
         }
@@ -37,20 +37,20 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
         var $promise = BaseView.prototype.start.apply(this, arguments),
             self = this;
 
-        $promise.progress(function(event){
+        $promise.progress(function (event) {
             switch (event) {
-                case BaseView.afterRenderDone:
-                    if (self.options.mastheadButtons) {
-                        self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons));
-                    }
-                    if (self.options.breadcrumbs) {
-                        self.channels.views.trigger('updateMastheadBreadcrumbs', self);
-                    }
-                    if (self.options.rivetConfig) {
-                        self.rivetView();
-                        self.channels.views.trigger('rivetViewRendered');
-                    }
-                    break;
+            case BaseView.afterRenderDone:
+                if (self.options.mastheadButtons) {
+                    self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons));
+                }
+                if (self.options.breadcrumbs) {
+                    self.channels.views.trigger('updateMastheadBreadcrumbs', self);
+                }
+                if (self.options.rivetConfig) {
+                    self.rivetView();
+                    self.channels.views.trigger('rivetViewRendered');
+                }
+                break;
             }
         });
 

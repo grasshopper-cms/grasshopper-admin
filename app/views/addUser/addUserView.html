@@ -9,7 +9,8 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="firstName" class="right inline">{{data.resources.user.attributeTitles.firstName | withColon}}</label>
+                            <label for="firstName" class="right inline">{{data.resources.user.attributeTitles.firstName
+                                | withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
                             <div class="row">
@@ -22,7 +23,8 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="lastName" class="right inline">{{data.resources.user.attributeTitles.lastName | withColon}}</label>
+                            <label for="lastName" class="right inline">{{data.resources.user.attributeTitles.lastName |
+                                withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
                             <div class="row">
@@ -35,13 +37,15 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="role" class="right inline">{{data.resources.user.attributeTitles.role | withColon}}</label>
+                            <label for="role" class="right inline">{{data.resources.user.attributeTitles.role |
+                                withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
                             <div class="row">
                                 <div class="large-12 columns attribute">
                                     <select id="role" data-rv-value="data.role">
-                                        <option data-rv-each-role="data.roles" data-rv-text="role | humanize" data-rv-value="role"></option>
+                                        <option data-rv-each-role="data.roles" data-rv-text="role | humanize"
+                                                data-rv-value="role"></option>
                                     </select>
                                 </div>
                             </div>
@@ -50,7 +54,8 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="email" class="right inline">{{data.resources.user.attributeTitles.email | withColon}}</label>
+                            <label for="email" class="right inline">{{data.resources.user.attributeTitles.email |
+                                withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
                             <div class="row">
@@ -63,7 +68,8 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="login" class="right inline">{{data.resources.user.attributeTitles.login | withColon}}</label>
+                            <label for="login" class="right inline">{{data.resources.user.attributeTitles.login |
+                                withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
                             <div class="row">
@@ -76,12 +82,14 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="password" class="right inline">{{data.resources.user.attributeTitles.password | withColon}}</label>
+                            <label for="password" class="right inline">{{data.resources.user.attributeTitles.password |
+                                withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
                             <div class="row">
                                 <div class="large-12 columns attribute">
-                                    <input id="password" type="password" value="data.password" data-rv-value="data.password"/>
+                                    <input id="password" type="password" value="data.password"
+                                           data-rv-value="data.password"/>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +97,8 @@
 
                     <div class="row">
                         <div class="large-5 small-offset-7 columns">
-                            <input id="saveUser" type="submit" class="button success radius" data-rv-value="data.resources.save">
+                            <input id="saveUser" type="submit" class="button success radius"
+                                   data-rv-value="data.resources.save">
                         </div>
                     </div>
                 </form>
