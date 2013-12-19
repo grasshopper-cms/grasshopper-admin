@@ -1,4 +1,6 @@
-module.exports = function(grunt) {
+/*globals module:true*/
+module.exports = function() {
+    'use strict';
 
     var path = require('path'),
         lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
@@ -13,7 +15,7 @@ module.exports = function(grunt) {
                 hostname : 'localhost',
                 base : './build/',
                 middleware : function (connect, options) {
-                    return [lrSnippet, folderMount(connect, options.base)]
+                    return [lrSnippet, folderMount(connect, options.base)];
                 },
                 open: true
             }
@@ -24,10 +26,10 @@ module.exports = function(grunt) {
                 hostname : 'localhost',
                 base : './',
                 middleware : function (connect, options) {
-                    return [lrSnippet, folderMount(connect, options.base)]
+                    return [lrSnippet, folderMount(connect, options.base)];
                 },
                 open: true
             }
         }
-    }
+    };
 };
