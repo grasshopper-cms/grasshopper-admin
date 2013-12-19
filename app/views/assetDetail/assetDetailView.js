@@ -46,7 +46,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
                 .done(function (modalData) {
                     _postRenamedAsset.call(self, modalData.data)
                         .done(function () {
-                            _handleSuccessfulAssetRename.call(self, modal.data);
+                            _handleSuccessfulAssetRename.call(self, modalData.data);
                         })
                         .fail(function () {
                             _handleAssetRenameError.call(self);
