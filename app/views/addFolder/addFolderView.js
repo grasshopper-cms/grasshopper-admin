@@ -21,6 +21,12 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
             .done(function(modalData) {
                 createFolder.call(self, modalData.data)
                     .done(function() {
+                        self.displayTemporaryAlertBox(
+                            {
+                                msg: resources.node.successfullyCreated,
+                                status: true
+                            }
+                        );
                         self.channels.views.trigger('refreshContentBrowseView');
                         contentTypeWorker.getAvailableContentTypes()
                             .done(function(availableContentTypes) {
