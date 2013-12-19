@@ -137,6 +137,12 @@ define([
             this.breadcrumb.pop();
         }
 
+        function _handleRoutingFromRefreshOnModal(nodeId) {
+            this.breadcrumb.push(Backbone.history.fragment);
+            this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
+            this.displayContentBrowse(nodeId);
+        }
+
         function navigateTrigger (fragment, options, doBeforeRender) {
             options = options || {};
             options.trigger = true;
@@ -388,6 +394,9 @@ define([
         }
 
         function displayCreateFolder(nodeId) {
+            if (!this.userHasBreadcrumbs()) {
+                _handleRoutingFromRefreshOnModal.call(this, nodeId);
+            }
             var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
                 {
                     modelData: {
@@ -399,6 +408,9 @@ define([
         }
 
         function displayCreateContent(nodeId) {
+            if (!this.userHasBreadcrumbs()) {
+                _handleRoutingFromRefreshOnModal.call(this, nodeId);
+            }
             loadMainContent(AddContentView, _.extend({}, addContentViewConfig,
                 {
                     modelData : {
@@ -409,9 +421,8 @@ define([
 
         function displayCreateAssets(nodeId) {
             if (!this.userHasBreadcrumbs()) {
-                this.displayContentBrowse(nodeId);
+                _handleRoutingFromRefreshOnModal.call(this, nodeId);
             }
-
             var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
                 {
                     modelData: {
