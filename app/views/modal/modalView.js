@@ -3,7 +3,8 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
     'text!views/modal/_inputModalView.html', 'text!views/modal/_checkboxModalView.html',
     'text!views/modal/_uploadModalView.html', 'text!views/modal/modalView.html',
     'text!views/modal/_radioModalView.html'],
-    function (GrasshopperBaseView, _, imageModalTemplate, inputModalTemplate, checkboxTemplate, uploadTemplate, defaultTemplate, radioTemplate) {
+    function (GrasshopperBaseView, _, imageModalTemplate, inputModalTemplate, checkboxTemplate, uploadTemplate,
+              defaultTemplate, radioTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({

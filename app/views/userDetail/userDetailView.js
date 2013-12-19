@@ -21,9 +21,7 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
 
             if (!this.model.has('_id')) {
                 this.model.fetch()
-                    .done(function () {
-
-                    });
+                    .done(function () { });
             }
         }
 

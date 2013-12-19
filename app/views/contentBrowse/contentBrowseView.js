@@ -1,7 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView',
     'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig', 'api', 'constants'],
-    function (GrasshopperBaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _, ContentIndexView, contentIndexViewConfig, Api, constants) {
+    function (GrasshopperBaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _,
+              ContentIndexView, contentIndexViewConfig, Api, constants) {
         'use strict';
 
         return GrasshopperBaseView.extend({

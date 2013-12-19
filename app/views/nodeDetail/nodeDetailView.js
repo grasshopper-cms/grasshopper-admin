@@ -69,7 +69,8 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                                             data : availableContentTypes
                                         })
                                         .done(function (modalData) {
-                                            contentTypeWorker.addContentTypesToFolder(self.model.get('_id'), modalData.data)
+                                            contentTypeWorker.addContentTypesToFolder(self.model.get('_id'),
+                                                    modalData.data)
                                                 .done(function () {
                                                     self.displayTemporaryAlertBox(
                                                         {

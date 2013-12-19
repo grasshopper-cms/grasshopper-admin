@@ -9,13 +9,10 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
 
     function beforeRender () {
         if (!this.model.has('_id')) {
-            this.model.fetch()
-                .done(function () {
-
-                })
-                .fail(function () {
-                    // TODO: Error Handling
-                });
+            this.model
+                .fetch()
+                .done(function () {})
+                .fail(function () { /* TODO: Error Handling */ });
         }
     }
 
