@@ -110,7 +110,6 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
 
     function handleSuccessfulUpload(response) {
         var self = this;
-        $('.meter').text(response);
         this.model.fetch()
             .done(function() {
                 self.model.unset('fileData');
