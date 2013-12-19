@@ -9,8 +9,6 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-    grunt.loadNpmTasks('grunt-check-modules');
-
     grunt.loadTasks('tasks');
 
     // load grunt Config. All config can be found in tasks/options
@@ -19,7 +17,6 @@ module.exports = function (grunt) {
     grunt.registerTask('server', 'Build and watch task', [
         'clean',
         'jshint',
-//        'checkDependencies',
         'setupBowerCopy',
         'copy:build',
         'copy:vendor',
