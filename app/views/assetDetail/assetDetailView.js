@@ -5,7 +5,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
     return GrasshopperBaseView.extend({
         afterRender : afterRender,
         handleRowClick : handleRowClick,
-        deleteAsset : deleteAsset,
+        prepareToDeleteAsset : prepareToDeleteAsset,
         editAsset : editAsset,
         postNewAsset : postNewAsset,
         cancelUpload : cancelUpload
@@ -27,7 +27,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
             });
     }
 
-    function deleteAsset() {
+    function prepareToDeleteAsset() {
         var self = this;
 
         this.displayModal(
@@ -35,56 +35,21 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
                     msg: resources.asset.deletionWarning
                 })
             .done(function() {
-                self.model.destroy()
-                    .done(function() {
-                        self.displayTemporaryAlertBox(
-                            {
-                                msg: resources.asset.successfullyDeletedPre + self.model.get('fileName') +
-                                    resources.asset.successfullyDeletedPost,
-                                status: true
-                            }
-                        );
-                        self.remove();
-                    })
-                    .fail(function() {
-                        self.displayAlertBox(
-                            {
-                                msg: resources.asset.errorDeleted + self.model.get('fileName')
-                            }
-                        );
-                    });
+                _deleteAsset.call(self);
             });
     }
 
     function editAsset() {
         var self = this;
 
-        this.displayModal(
-            {
-                msg: resources.asset.editFileName,
-                type: 'input',
-                data: this.model.get('fileName')
-            })
+        _getNewFileName.call(this)
             .done(function(modalData) {
-                Api.renameAsset(self.model.urlRoot(), self.model.get('fileName'), modalData.data)
+                _postRenamedAsset.call(self, modalData.data)
                     .done(function() {
-                        self.model.set('fileName', modalData.data);
-                        self.model.fetch()
-                            .done(function() {
-                                self.displayTemporaryAlertBox(
-                                    {
-                                        msg: resources.asset.editNameSuccess,
-                                        status: true
-                                    }
-                                );
-                            });
+                        _handleSuccessfulAssetRename.call(self, modal.data);
                     })
                     .fail(function() {
-                        self.displayTemporaryAlertBox(
-                            {
-                                msg: resources.asset.editNameFail
-                            }
-                        );
+                        _handleAssetRenameError.call(self);
                     });
             });
     }
@@ -94,21 +59,92 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
         this.model.set('uploadError', false);
         AssetWorker.postNewAsset(this.model.get('nodeId'), this.model.get('fileData'))
             .done(function(response) {
-                handleSuccessfulUpload.call(self, response);
+                _handleSuccessfulUpload.call(self, response);
             })
             .fail(function(error) {
-                handleFailedUpload.call(self, error);
+                _handleFailedUpload.call(self, error);
             })
             .progress(function(percentDone) {
-                handleUploadProgress.call(self, percentDone);
+                _handleUploadProgress.call(self, percentDone);
             });
     }
 
-    function handleUploadProgress(percentDone) {
+    function cancelUpload() {
+        this.remove();
+    }
+
+    function _deleteAsset () {
+        var self = this;
+
+        this.model.destroy()
+            .done(function() {
+                _handleSuccessfulDelete.call(self);
+            })
+            .fail(function() {
+                _handleDeletionError.call(self);
+            });
+    }
+
+    function _handleSuccessfulDelete () {
+        this.displayTemporaryAlertBox(
+            {
+                msg: resources.asset.successfullyDeletedPre + this.model.get('fileName') +
+                    resources.asset.successfullyDeletedPost,
+                status: true
+            }
+        );
+        this.remove();
+    }
+
+    function _handleDeletionError () {
+        this.displayAlertBox(
+            {
+                msg: resources.asset.errorDeleted + this.model.get('fileName')
+            }
+        );
+    }
+
+    function _getNewFileName() {
+        return this.displayModal(
+            {
+                msg: resources.asset.editFileName,
+                type: 'input',
+                data: this.model.get('fileName')
+            });
+    }
+
+    function _postRenamedAsset(newFileName) {
+        return Api.renameAsset(this.model.urlRoot(), this.model.get('fileName'), newFileName);
+    }
+
+    function _handleSuccessfulAssetRename(newFileName) {
+        var self = this;
+
+        this.model.set('fileName', newFileName);
+        this.model.fetch()
+            .done(function() {
+                self.displayTemporaryAlertBox(
+                    {
+                        msg: resources.asset.editNameSuccess,
+                        status: true
+                    }
+                );
+            });
+    }
+
+    function _handleAssetRenameError() {
+        this.displayTemporaryAlertBox(
+            {
+                msg: resources.asset.editNameFail
+            }
+        );
+    }
+
+    function _handleUploadProgress(percentDone) {
         $('.meter').width(percentDone);
     }
 
-    function handleSuccessfulUpload(response) {
+    function _handleSuccessfulUpload(response) {
         var self = this;
         this.model.fetch()
             .done(function() {
@@ -122,7 +158,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
         );
     }
 
-    function handleFailedUpload() {
+    function _handleFailedUpload() {
         this.model.set('uploadError', true);
         handleUploadProgress.call(this, 0);
         this.displayTemporaryAlertBox(
@@ -130,10 +166,6 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
                 msg: resources.asset.uploadAssetError
             }
         );
-    }
-
-    function cancelUpload() {
-        this.remove();
     }
 
 });
