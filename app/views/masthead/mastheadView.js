@@ -32,33 +32,31 @@ define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) 
     }
 
     function interpolateMastheadButtons (buttonArray) {
-        // TODO: Tons of repetition here. Refactor this.
-        var self = this,
-            interpolatedArray = [],
-            obj = {},
+        var interpolatedArray = [],
             max = buttonArray.length,
-            i = 0,
-            key;
+            i = 0;
 
-        if (this.app.router.contentBrowserNodeId) {
-            for (i, max; i < max; i++) {
-                for (key in buttonArray[i]) {
-                    obj[key] = buttonArray[i][key].replace(':id', self.app.router.contentBrowserNodeId);
-                }
-                interpolatedArray.push(obj);
-                obj = {};
-            }
-        } else {
-            for (i, max; i < max; i++) {
-                for (key in buttonArray[i]) {
-                    obj[key] = buttonArray[i][key].replace(':id', 0);
-                }
-                interpolatedArray.push(obj);
-                obj = {};
-            }
+        for (i, max; i < max; i++) {
+            interpolatedArray.push(_interpolateButton.call(this, buttonArray[i]));
         }
 
         return interpolatedArray;
     }
 
+    function _interpolateButton(thisButton) {
+        var nodeId = this.app.router.contentBrowserNodeId,
+            newButton = {},
+            key;
+        for (key in thisButton) {
+            if (nodeId) {
+                newButton[key] = thisButton[key].replace(':id', nodeId);
+            } else {
+                newButton[key] = thisButton[key].replace(':id', 0);
+            }
+        }
+        return newButton;
+    }
+
 });
+
+
