@@ -46,7 +46,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
             .done(function(modalData) {
                 _postRenamedAsset.call(self, modalData.data)
                     .done(function() {
-                        _handleSuccessfulAssetRename.call(self, modal.data);
+                        _handleSuccessfulAssetRename.call(self, modalData.data);
                     })
                     .fail(function() {
                         _handleAssetRenameError.call(self);
@@ -160,7 +160,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
 
     function _handleFailedUpload() {
         this.model.set('uploadError', true);
-        handleUploadProgress.call(this, 0);
+        _handleUploadProgress.call(this, 0);
         this.displayTemporaryAlertBox(
             {
                 msg: resources.asset.uploadAssetError
