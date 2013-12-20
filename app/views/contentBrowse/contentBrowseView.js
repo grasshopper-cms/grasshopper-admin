@@ -85,7 +85,7 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
             Api.getNodeDetail(this.model.get('nodeId'))
                 .done(function (data) {
                     if (data.ancestors) {
-                        crumb.push(self.options.breadcrumbs);
+                        crumb.push(self.breadcrumbs);
                         _.each(data.ancestors, function (ancestor) {
                             crumb.push({
                                 text : ancestor.label,

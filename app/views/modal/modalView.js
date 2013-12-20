@@ -96,12 +96,12 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
         }
 
         function confirmModal () {
-            this.options.$deferred.resolve(this.model.attributes);
+            this.$deferred.resolve(this.model.attributes);
             _removeModal.call(this);
         }
 
         function cancelModal () {
-            this.options.$deferred.reject();
+            this.$deferred.reject();
             _removeModal.call(this);
         }
 

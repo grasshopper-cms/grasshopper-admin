@@ -8,7 +8,7 @@ define(['grasshopperBaseView'], function (GrasshopperBaseView) {
     });
 
     function afterRender () {
-        if(this.options.temporary) {
+        if(this.temporary) {
             _handleTemporaryAlertBox.call(this);
         }
     }

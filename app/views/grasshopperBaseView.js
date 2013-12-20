@@ -12,11 +12,14 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
     });
 
     function initialize (options) {
-        this.options = options;
+
         if (options.rivetConfig) {
+            options.viewOptions = options.viewOptions || [];
+            options.viewOptions.push('rivetConfig');
             options.plugins = [];
             options.plugins.push(rivetsPlugin);
         }
+        this.options = options;
         Backbone.Collection.prototype.set = function (data, options) {
             if (data && data.results) {
                 data = data.results;
@@ -29,7 +32,7 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
 
     function start () {
         // Checking user permissions
-        if (this.options.permissions && this.options.permissions.indexOf(this.app.user.get('role')) === -1) {
+        if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
             this.app.router.navigateTrigger('home');
             return;
         }
@@ -40,13 +43,13 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
         $promise.progress(function (event) {
             switch (event) {
             case BaseView.afterRenderDone:
-                if (self.options.mastheadButtons) {
-                    self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons));
+                if (self.mastheadButtons) {
+                    self.channels.views.trigger('updateMastheadButtons', (self.mastheadButtons));
                 }
-                if (self.options.breadcrumbs) {
+                if (self.breadcrumbs) {
                     self.channels.views.trigger('updateMastheadBreadcrumbs', self);
                 }
-                if (self.options.rivetConfig) {
+                if (self.rivetConfig) {
                     self.rivetView();
                     self.channels.views.trigger('rivetViewRendered');
                 }
