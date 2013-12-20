@@ -253,10 +253,10 @@ body, html {
   }
   .alertBoxPartial {
     height: 46px;
-    width: 95%;
+    width: 100%;
     .bad {
-      position: absolute;
-      width: 100%;
+      margin: auto;
+      width: 95%;
       .error {
         @include alert-base;
         @include alert-style($alertColorBad);
@@ -268,8 +268,8 @@ body, html {
       }
     }
     .good {
-      position: absolute;
-      width: 100%;
+      margin: auto;
+      width: 95%;
       .error {
         @include alert-base;
         @include alert-style($alertColorGood);
