@@ -13,9 +13,20 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
 
     function initialize (options) {
         options.viewOptions = options.viewOptions || [];
-        options.viewOptions.push('rivetConfig');
+        options.viewOptions =  options.viewOptions.concat(
+            [
+                'rivetConfig',
+                '$deferred',
+                'type',
+                'temporary',
+                'defaultBreadcrumbs',
+                'defaultMastheadButtons',
+                'breadcrumbs',
+                'mastheadButtons',
+                'permissions',
+                'nodeId'
+            ]);
         if (options.rivetConfig) {
-            options.viewOptions.push('rivetConfig');
             options.plugins = [];
             options.plugins.push(rivetsPlugin);
         }
