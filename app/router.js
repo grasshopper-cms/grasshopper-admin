@@ -126,8 +126,12 @@ define([
 
         function _handleRoutingFromRefreshOnModal (nodeId) {
             this.breadcrumb.push(Backbone.history.fragment);
-            this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
-            nodeId = (nodeId === '0') ? null : nodeId;
+            if(nodeId === '0') {
+                nodeId = null;
+                this.breadcrumb.unshift(constants.internalRoutes.content.replace('#', ''));
+            } else {
+                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
+            }
             this.displayContentBrowse(nodeId);
         }
 

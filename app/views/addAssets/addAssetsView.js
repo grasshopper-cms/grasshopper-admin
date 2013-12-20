@@ -9,6 +9,9 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
         });
 
         function afterRender () {
+            //TODO: I am doing this node ==='0' check in three different files right now,
+            // addAssetsView, assContentView, and addFolderView.
+            // Figure out a better way. Maybe in before routing?
             if (this.model.get('nodeId') !== '0') {
                 handleUpload.call(this);
             } else {
