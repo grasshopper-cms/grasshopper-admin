@@ -3,12 +3,12 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
     function (GrasshopperBaseView, resources, _, $, Api, contentTypeWorker) {
         'use strict';
         return GrasshopperBaseView.extend({
-            deleteNode : deleteNode,
+            prepareToDeleteNode : prepareToDeleteNode,
             handleRowClick : handleRowClick,
             editNode : editNode
         });
 
-        function deleteNode () {
+        function prepareToDeleteNode () {
             var self = this;
 
             this.displayModal(
@@ -16,24 +16,7 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                     msg : resources.node.deletionWarning
                 })
                 .done(function () {
-                    self.model.destroy()
-                        .done(function () {
-                            self.displayTemporaryAlertBox(
-                                {
-                                    msg : resources.node.successfullyDeletedPre + self.model.get('label') +
-                                        resources.node.successfullyDeletedPost,
-                                    status : true
-                                }
-                            );
-                            self.remove();
-                        })
-                        .fail(function () {
-                            self.displayAlertBox(
-                                {
-                                    msg : resources.node.errorDeleted + self.model.get('label')
-                                }
-                            );
-                        });
+                    _deleteNode.call(self);
                 });
         }
 
@@ -97,5 +80,36 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                             );
                         });
                 });
+        }
+
+        function _deleteNode() {
+            var self = this;
+
+            this.model.destroy()
+                .done(function () {
+                    _handleSuccessfulNodeDeletion.call(self);
+                })
+                .fail(function () {
+                    _handleFailedNodeDeletion.call(self);
+                });
+        }
+
+        function _handleSuccessfulNodeDeletion() {
+            this.displayTemporaryAlertBox(
+                {
+                    msg : resources.node.successfullyDeletedPre + this.model.get('label') +
+                        resources.node.successfullyDeletedPost,
+                    status : true
+                }
+            );
+            this.remove();
+        }
+
+        function _handleFailedNodeDeletion() {
+            this.displayAlertBox(
+                {
+                    msg : resources.node.errorDeleted + this.model.get('label')
+                }
+            );
         }
     });
