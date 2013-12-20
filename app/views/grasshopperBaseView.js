@@ -12,9 +12,9 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
     });
 
     function initialize (options) {
-
+        options.viewOptions = options.viewOptions || [];
+        options.viewOptions.push('rivetConfig');
         if (options.rivetConfig) {
-            options.viewOptions = options.viewOptions || [];
             options.viewOptions.push('rivetConfig');
             options.plugins = [];
             options.plugins.push(rivetsPlugin);
