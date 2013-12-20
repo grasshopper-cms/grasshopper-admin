@@ -5,7 +5,7 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         return GrasshopperBaseView.extend({
             prepareToDeleteNode : prepareToDeleteNode,
             handleRowClick : handleRowClick,
-            editNode : editNode
+            prepareToEditNode : prepareToEditNode
         });
 
         function prepareToDeleteNode () {
@@ -24,61 +24,98 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
             this.app.router.navigateTrigger(this.model.get('href'));
         }
 
-        function editNode () {
+        function prepareToEditNode () {
             var self = this;
 
-            this.displayModal(
+            _getNewNodeName.call(this)
+                .done(function (modalData) {
+                    _editNode.call(self, modalData.data);
+                });
+        }
+
+        function _editNode(newNodeName) {
+            var self = this;
+
+            this.model.set('label', newNodeName);
+            this.model.save()
+                .done(function () {
+                    _handleSuccessfulNodeSave.call(self);
+                    _getAvailableContentTypes.call(self)
+                        .done(function(availableContentTypes) {
+                            _askUserWhichContentTypesToAttach.call(self, availableContentTypes)
+                                .done(function(modalData) {
+                                    _attachContentTypesToNode.call(self, modalData.data)
+                                        .done(function () {
+                                            _handleSuccessfulContentTypeAddition.call(self);
+                                        })
+                                        .fail(function (msg) {
+                                            _handleFailedContentTypeAddition.call(self, msg);
+                                        });
+                                });
+                        });
+                })
+                .fail(function () {
+                    _handleFailedNodeSave.call(self);
+                });
+        }
+
+        function _handleFailedContentTypeAddition(msg) {
+            this.displayAlertBox(
+                {
+                    msg : msg
+                }
+            );
+        }
+
+        function _handleSuccessfulContentTypeAddition() {
+            this.displayTemporaryAlertBox(
+                {
+                    msg : resources.contentType.contentTypeAdded,
+                    status : true
+                }
+            );
+        }
+
+        function _attachContentTypesToNode(selectedContentTypes) {
+            return contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes);
+        }
+
+        function _handleSuccessfulNodeSave() {
+            this.displayTemporaryAlertBox(
+                {
+                    msg : resources.node.successfullyUpdated,
+                    status : true
+                }
+            );
+        }
+
+        function _askUserWhichContentTypesToAttach(availableContentTypes) {
+            return this.displayModal(
+                {
+                    msg : resources.contentType.editContentTypes,
+                    type : 'checkbox',
+                    data : availableContentTypes
+                });
+        }
+
+        function _getAvailableContentTypes() {
+            return contentTypeWorker.getAvailableContentTypes(this.model.get('allowedTypes'));
+        }
+
+        function _handleFailedNodeSave() {
+            this.displayAlertBox(
+                {
+                    msg : resources.node.errorUpdated
+                }
+            );
+        }
+
+        function _getNewNodeName() {
+            return this.displayModal(
                 {
                     msg : resources.node.editName,
                     type : 'input',
                     data : this.model.get('label')
-                })
-                .done(function (modalData) {
-                    self.model.set('label', modalData.data);
-                    self.model.save()
-                        .done(function () {
-                            self.displayTemporaryAlertBox(
-                                {
-                                    msg : resources.node.successfullyUpdated,
-                                    status : true
-                                }
-                            );
-                            contentTypeWorker.getAvailableContentTypes(self.model.get('allowedTypes'))
-                                .done(function (availableContentTypes) {
-                                    self.displayModal(
-                                        {
-                                            msg : resources.contentType.editContentTypes,
-                                            type : 'checkbox',
-                                            data : availableContentTypes
-                                        })
-                                        .done(function (modalData) {
-                                            contentTypeWorker.addContentTypesToFolder(self.model.get('_id'),
-                                                    modalData.data)
-                                                .done(function () {
-                                                    self.displayTemporaryAlertBox(
-                                                        {
-                                                            msg : resources.contentType.contentTypeAdded,
-                                                            status : true
-                                                        }
-                                                    );
-                                                })
-                                                .fail(function (msg) {
-                                                    self.displayAlertBox(
-                                                        {
-                                                            msg : msg
-                                                        }
-                                                    );
-                                                });
-                                        });
-                                });
-                        })
-                        .fail(function () {
-                            self.displayAlertBox(
-                                {
-                                    msg : resources.node.errorUpdated
-                                }
-                            );
-                        });
                 });
         }
 

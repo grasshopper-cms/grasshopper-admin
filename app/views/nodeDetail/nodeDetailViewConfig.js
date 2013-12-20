@@ -12,7 +12,7 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
             templateHtml : formTemplate,
             events : {
                 'click #deleteNode' : 'prepareToDeleteNode',
-                'click #editNode' : 'editNode',
+                'click #editNode' : 'prepareToEditNode',
                 'click .clickableCell' : 'handleRowClick'
             },
             appendView : true,
