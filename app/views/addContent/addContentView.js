@@ -50,7 +50,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
                 })
                 .always(function () {
                     $deferred.reject();
-                    navigateBack.call(self, true);
+                    navigateBack.call(self);
                 });
         }
 

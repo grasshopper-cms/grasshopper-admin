@@ -127,6 +127,7 @@ define([
         function _handleRoutingFromRefreshOnModal (nodeId) {
             this.breadcrumb.push(Backbone.history.fragment);
             this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
+            nodeId = (nodeId === '0') ? null : nodeId;
             this.displayContentBrowse(nodeId);
         }
 
