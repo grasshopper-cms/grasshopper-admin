@@ -15,7 +15,7 @@ define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) 
 
     function setButtons (buttonArray) {
         if (!buttonArray) {
-            this.model.set('buttons', this.options.defaultMastheadButtons);
+            this.model.set('buttons', this.defaultMastheadButtons);
         } else {
             this.model.set('buttons', this.interpolateMastheadButtons(buttonArray));
         }
@@ -24,10 +24,10 @@ define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) 
     function setBreadcrumbs (view) {
         if (view && view.model.has('breadcrumbs')) {
             this.model.set('breadcrumbs', _.flatten(_.clone(view.model.get('breadcrumbs'))));
-        } else if (view && view.options.breadcrumbs) {
-            this.model.set('breadcrumbs', view.options.breadcrumbs);
+        } else if (view && view.breadcrumbs) {
+            this.model.set('breadcrumbs', view.breadcrumbs);
         } else {
-            this.model.set('breadcrumbs', this.options.defaultBreadcrumbs);
+            this.model.set('breadcrumbs', this.defaultBreadcrumbs);
         }
     }
 

@@ -15,7 +15,7 @@ define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailV
 
             Api.makeQuery(
                 {
-                    nodes : this.options.nodeId,
+                    nodes : this.nodeId,
                     types : [],
                     filters : [],
                     options : {
@@ -39,7 +39,7 @@ define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailV
                     modelData : content,
                     el : '#contentDetailRow',
                     templateHtml : contentDetailRowTemplate,
-                    mastheadButtons : this.options.mastheadButtons
+                    mastheadButtons : this.mastheadButtons
                 }));
             this.addChild(contentDetailView);
         }

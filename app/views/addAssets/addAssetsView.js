@@ -69,7 +69,7 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                     },
                     el : '#assetDetailRow',
                     templateHtml : assetDetailRowTemplate,
-                    mastheadButtons : this.options.mastheadButtons
+                    mastheadButtons : this.mastheadButtons
                 }
             ));
             assetDetailView.start();

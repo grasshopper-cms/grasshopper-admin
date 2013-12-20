@@ -202,7 +202,7 @@ define([
             var $deferred = new $.Deferred(),
                 newView = new ViewType(config);
 
-            if (currentView && currentView.options.name === config.name && !bypass) {
+            if (currentView && currentView.name === config.name && !bypass) {
                 return $deferred.resolve(currentView)
                     .promise();
             }
