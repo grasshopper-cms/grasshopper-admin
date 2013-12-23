@@ -26,21 +26,25 @@ define(['api', 'jquery', 'resources', 'underscore'],
         }
 
         function addContentTypesToFolder (nodeId, data) {
-            var contentTypes = [],
-                $deferred = new $.Deferred();
+            var $deferred = new $.Deferred(),
+                contentTypeToPost = {},
+                requests = [],
+                contentTypes = _.where(data, {checked: true});
 
-            _.each(data, function (contentType) {
-                if (contentType.checked) {
-                    contentTypes.push(contentType._id);
-                }
+//            TODO: This is a HACK. There is a better endpoint to hit where I can post multiple contentypes at once.
+//            Though, It does not work and I could not afford to spend more time debugging. needs to be revisited.
+
+            _.each(contentTypes, function(contentType) {
+                contentTypeToPost.id = contentType._id;
+                requests.push(Api.addContentTypesToNode(nodeId, contentTypeToPost));
             });
 
-            Api.addContentTypesToNode(nodeId, contentTypes)
-                .done(function () {
+            $.when.apply($, requests)
+                .done(function() {
                     $deferred.resolve();
                 })
-                .fail(function (xhr) {
-                    $deferred.reject(xhr.responseJSON.message);
+                .fail(function() {
+                    $deferred.reject('Content Types could not be added.');
                 });
 
             return $deferred.promise();
