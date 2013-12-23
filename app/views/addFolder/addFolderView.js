@@ -20,9 +20,9 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                 })
                 .done(function (modalData) {
                     _createFolder.call(self, modalData.data)
-                        .done(function () {
-                            _handleSuccessfulFolderCreation.call(self);
-                            _prepareToAddContentTypesToFolder.call(self);
+                        .done(function (newFolderModel) {
+                            _handleSuccessfulFolderCreation.call(self, newFolderModel);
+                            _prepareToAddContentTypesToFolder.call(self, newFolderModel);
                         })
                         .fail(function () {
                             _handleFailedFolderCreation.call(self);
@@ -33,10 +33,12 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                 });
         }
 
-        function _handleSuccessfulFolderCreation() {
+        function _handleSuccessfulFolderCreation(newFolderModel) {
             this.displayTemporaryAlertBox(
                 {
-                    msg : resources.node.successfullyCreated,
+                    msg : resources.node.successfullyCreatedPre +
+                        newFolderModel.label +
+                        resources.node.successfullyCreatedPost,
                     status : true
                 }
             );
@@ -51,14 +53,14 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
             );
         }
 
-        function _prepareToAddContentTypesToFolder() {
+        function _prepareToAddContentTypesToFolder(newFolderModel) {
             var self = this;
 
             _getAvailableContentTypes.call(this)
                 .done(function (availableContentTypes) {
                     _askUserWhatContentTypesToAttach.call(self, availableContentTypes)
                         .done(function (modalData) {
-                            _actuallyAddContentTypesToFolder.call(self, modalData.data)
+                            _actuallyAddContentTypesToFolder.call(self, modalData.data, newFolderModel._id)
                                 .done(function () {
                                     _handleSuccessfulContentTypeAdd.call(self);
                                 })
@@ -89,8 +91,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
             );
         }
 
-        function _actuallyAddContentTypesToFolder(selectedContentTypes) {
-            return contentTypeWorker.addContentTypesToFolder(this.model.get('nodeId'), selectedContentTypes);
+        function _actuallyAddContentTypesToFolder(selectedContentTypes, newFolderId) {
+            return contentTypeWorker.addContentTypesToFolder(newFolderId, selectedContentTypes);
         }
 
         function _askUserWhatContentTypesToAttach(availableContentTypes) {

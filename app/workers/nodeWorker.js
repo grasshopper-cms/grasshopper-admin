@@ -15,8 +15,8 @@ define(['api', 'jquery'],
                 };
 
             Api.postFolder(data)
-                .done(function () {
-                    $deferred.resolve();
+                .done(function (data) {
+                    $deferred.resolve(data);
                 })
                 .fail(function () {
                     $deferred.reject();
