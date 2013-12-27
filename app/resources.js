@@ -93,7 +93,8 @@ define({
         errorDeleted : 'There was an issue deleting this content type: ',
         serverError : 'Content Types could not be retrieved.',
         selectContentType : 'Which Content Type would you like to use?',
-        contentInRoot : 'You cannot create content in the Root.'
+        contentInRoot : 'You cannot create content in the Root.',
+        noContentTypes : 'This folder has no allowed content types.'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
@@ -156,22 +157,5 @@ define({
     upload : 'Upload',
     user_name : 'User Name',
     users : 'Users',
-    welcomeBack : 'Welcome Back',
-    dummyContentTypeData : [
-        {
-            _id : 1234,
-            helpText : 'HELP TEXT',
-            label : 'First ContentType'
-        },
-        {
-            _id : 23456,
-            helpText : 'HELP TEXT 2',
-            label : 'Second ContentType'
-        },
-        {
-            _id : 45454,
-            helpText : 'HELP TEXT 3',
-            label : 'second ContentType'
-        }
-    ]
+    welcomeBack : 'Welcome Back'
 });

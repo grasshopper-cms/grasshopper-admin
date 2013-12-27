@@ -8,41 +8,91 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
         });
 
         function beforeRender ($deferred) {
+            // TODO: This node ID check is done in a bunch of different Views. Move this somewhere else to DRY this up.
             if (this.model.get('nodeId') !== '0') {
-                handleCreateContent.call(this, $deferred);
+                _handleCreateContent.call(this, $deferred);
             } else {
-                createContentInRoot.call(this, $deferred);
+                _createContentInRoot.call(this, $deferred);
             }
         }
 
-        function handleCreateContent ($deferred) {
+        function _handleCreateContent ($deferred) {
             var self = this;
-            contentTypeWorker.getNodesContentTypes(this.model.get('nodeId'))
-                .done(function (data) {
+            _getNodesContentTypes.call(self, self.model.get('nodeId'))
+                .done(function (nodeData) {
+                    console.log(nodeData);
                     // TODO: Remove this stub when the API Works.
-                    data = resources.dummyContentTypeData;
-                    self.displayModal(
-                        {
-                            msg : resources.contentType.selectContentType,
-                            data : data,
-                            type : 'radio'
-                        })
-                        .done(function (modalData) {
-                            self.model.set('contentTypeId', modalData.selectedType);
-                            $deferred.resolve();
-                        })
-                        .fail(function () {
-                            $deferred.reject();
-                            navigateBack.call(self);
-                        });
+                    if(nodeData.allowedTypes) {
+                        switch (nodeData.allowedTypes.length) {
+                        case (0) :
+                            _handleNodeWithZeroContentTypes.call(self, $deferred);
+                            break;
+                        case (1) :
+                            _handleNodeWithOneContentType.call(self, $deferred, nodeData.allowedTypes[0]);
+                            break;
+                        default :
+                            _getSelectedContentTypeFromUser.call(self, nodeData.allowedTypes)
+                                .done(function (modalData) {
+                                    _handleSuccessfulContentTypeSelection.call(self, $deferred, modalData.selectedType);
+                                })
+                                .fail(function () {
+                                    _handleCanceledContentTypeSelection.call(self, $deferred);
+                                });
+                            break;
+                        }
+                    }
                 })
-                .fail(function (data) {
-                    $deferred.reject();
-                    console.log(data);
+                .fail(function (xhr) {
+                    _handleFailedContentTypeRetrieval.call(self, $deferred, xhr);
                 });
         }
 
-        function createContentInRoot ($deferred) {
+        function _getNodesContentTypes(nodeId) {
+            return contentTypeWorker.getNodesContentTypes(nodeId);
+        }
+
+        function _handleNodeWithZeroContentTypes($deferred) {
+            var self = this;
+            this.displayModal(
+                {
+                    msg : resources.contentType.noContentTypes
+                })
+                .always(function () {
+                    $deferred.reject();
+                    _navigateBack.call(self);
+                });
+        }
+
+        function _handleNodeWithOneContentType($deferred, contentType) {
+            this.model.set('contentTypeId', contentType._id);
+            $deferred.resolve();
+        }
+
+        function _getSelectedContentTypeFromUser(nodeData) {
+            return this.displayModal(
+                {
+                    msg : resources.contentType.selectContentType,
+                    data : nodeData,
+                    type : 'radio'
+                });
+        }
+
+        function _handleSuccessfulContentTypeSelection($deferred, selectedContentType) {
+            this.model.set('contentTypeId', selectedContentType);
+            $deferred.resolve();
+        }
+
+        function _handleCanceledContentTypeSelection($deferred) {
+            $deferred.reject();
+            _navigateBack.call(this);
+        }
+
+        function _handleFailedContentTypeRetrieval($deferred, xhr) {
+            $deferred.reject();
+            console.log(xhr);
+        }
+
+        function _createContentInRoot ($deferred) {
             var self = this;
             this.displayModal(
                 {
@@ -50,11 +100,11 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
                 })
                 .always(function () {
                     $deferred.reject();
-                    navigateBack.call(self);
+                    _navigateBack.call(self);
                 });
         }
 
-        function navigateBack (trigger) {
+        function _navigateBack (trigger) {
             this.app.router.navigateBack(trigger);
             this.app.router.removeThisRouteFromBreadcrumb();
         }
