@@ -178,6 +178,8 @@ define([
 
             MasseuseRouter.prototype.initialize.apply(this, arguments);
 
+            GrasshopperBaseView.prototype.channels.addChannel('views');
+
             GrasshopperBaseView.prototype.app = {
                 router : this,
                 user : this.user
