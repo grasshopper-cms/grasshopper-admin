@@ -19,6 +19,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                     type : 'input'
                 })
                 .done(function (modalData) {
+                    self.channels.views.trigger('activateTab', 'contentTab');
                     _createFolder.call(self, modalData.data)
                         .done(function (newFolderModel) {
                             _handleSuccessfulFolderCreation.call(self, newFolderModel);
