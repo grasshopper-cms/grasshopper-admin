@@ -21,7 +21,6 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
             _getNodesContentTypes.call(self, self.model.get('nodeId'))
                 .done(function (nodeData) {
                     console.log(nodeData);
-                    // TODO: Remove this stub when the API Works.
                     if(nodeData.allowedTypes) {
                         switch (nodeData.allowedTypes.length) {
                         case (0) :
