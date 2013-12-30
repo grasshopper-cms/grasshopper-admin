@@ -13,13 +13,13 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
             // addAssetsView, assContentView, and addFolderView.
             // Figure out a better way. Maybe in before routing?
             if (this.model.get('nodeId') !== '0') {
-                handleUpload.call(this);
+                _handleUpload.call(this);
             } else {
-                uploadInRoot.call(this);
+                _uploadInRoot.call(this);
             }
         }
 
-        function handleUpload () {
+        function _handleUpload () {
             var self = this;
             this.displayModal(
                 {
@@ -30,33 +30,33 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                 .done(function (modalData) {
                     self.channels.views.trigger('activateTab', 'filesTab');
                     _.each(modalData.files, function (file) {
-                        appendAssetDetailRow.call(self, file);
+                        _appendAssetDetailRow.call(self, file);
                     });
-                    navigateBack.call(self);
+                    _navigateBack.call(self);
                 })
                 .fail(function () {
-                    navigateBack.call(self);
+                    _navigateBack.call(self);
                 });
         }
 
-        function uploadInRoot () {
+        function _uploadInRoot () {
             var self = this;
             this.displayModal(
                 {
                     msg : resources.asset.uploadInRoot
                 })
                 .always(function () {
-                    navigateBack.call(self);
+                    _navigateBack.call(self);
                 });
         }
 
-        function navigateBack (trigger) {
+        function _navigateBack (trigger) {
             this.app.router.navigateBack(trigger);
             this.app.router.removeThisRouteFromBreadcrumb();
             this.remove();
         }
 
-        function appendAssetDetailRow (file) {
+        function _appendAssetDetailRow (file) {
             var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,
                 {
                     name : 'assetDetailRow',
