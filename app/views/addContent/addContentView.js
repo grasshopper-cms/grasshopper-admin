@@ -20,7 +20,6 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
             var self = this;
             _getNodesContentTypes.call(self, self.model.get('nodeId'))
                 .done(function (nodeData) {
-                    console.log(nodeData);
                     if(nodeData.allowedTypes) {
                         switch (nodeData.allowedTypes.length) {
                         case (0) :
