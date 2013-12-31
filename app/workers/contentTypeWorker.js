@@ -14,6 +14,9 @@ define(['api', 'jquery', 'resources', 'underscore'],
             Api.getContentTypes()
                 .done(function (data) {
                     if (previousContentTypes) {
+                        previousContentTypes = _.map(previousContentTypes, function(contenttype) {
+                            return contenttype._id;
+                        });
                         _.each(data.results, function (result) {
                             if (_.contains(previousContentTypes, result._id)) {
                                 result.checked = true;
