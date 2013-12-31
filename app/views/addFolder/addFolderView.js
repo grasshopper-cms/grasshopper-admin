@@ -82,6 +82,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'nodeWorker'],
                     status : true
                 }
             );
+            this.channels.views.trigger('refreshContentBrowseView');
         }
 
         function _handleFailedContentTypeAdd(msg) {
