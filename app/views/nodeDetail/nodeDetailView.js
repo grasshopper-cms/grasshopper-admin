@@ -27,9 +27,12 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         function prepareToEditNode () {
             var self = this;
 
-            _getNewNodeName.call(this)
-                .done(function (modalData) {
-                    _editNode.call(self, modalData.data);
+            this.model.fetch()
+                .done(function() {
+                    _getNewNodeName.call(self)
+                        .done(function (modalData) {
+                            _editNode.call(self, modalData.data);
+                        });
                 });
         }
 
