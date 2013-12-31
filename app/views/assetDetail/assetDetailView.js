@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
-    function (GrasshopperBaseView, resources, Api, AssetWorker, $) {
+define(['grasshopperBaseView', 'resources', 'api', 'assetWorker'],
+    function (GrasshopperBaseView, resources, Api, AssetWorker) {
         'use strict';
         return GrasshopperBaseView.extend({
             afterRender : afterRender,
@@ -141,7 +141,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker', 'jquery'],
         }
 
         function _handleUploadProgress(percentDone) {
-            $('.meter').width(percentDone);
+            this.model.set('progressWidth', percentDone);
         }
 
         function _handleSuccessfulUpload(response) {
