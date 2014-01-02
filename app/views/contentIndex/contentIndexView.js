@@ -6,13 +6,15 @@ define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailV
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender : beforeRender,
-            appendContentDetailRow : appendContentDetailRow
+            beforeRender : beforeRender
         });
 
         function beforeRender ($deferred) {
-            var self = this;
+            _getContent.call(this, $deferred);
+        }
 
+        function _getContent($deferred) {
+            var self = this;
             Api.makeQuery(
                 {
                     nodes : this.nodeId,
@@ -23,16 +25,32 @@ define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailV
                     }
                 })
                 .done(function (data) {
-                    self.model.set('nodeContent', data);
-                    _.each(data, function (content) {
-                        self.appendContentDetailRow(content);
-                    });
-                    $deferred.resolve();
-                    self.app.router.mastheadView.model.set('itemsCount', _.size(self.model.attributes.nodeContent));
+                    _handleSuccessfulContentQuery.call(self, data, $deferred);
+                })
+                .fail(function() {
+                    _handleFailedContentQuery.call(self, $deferred);
                 });
         }
 
-        function appendContentDetailRow (content) {
+        function _handleSuccessfulContentQuery(data, $deferred) {
+            var self = this;
+
+            this.model.set('nodeContent', data);
+            _.each(data, function (content) {
+                _appendContentDetailRow.call(self, content);
+            });
+            this.app.router.mastheadView.model.set('itemsCount', _.size(this.model.attributes.nodeContent));
+            $deferred.resolve();
+        }
+
+        function _handleFailedContentQuery($deferred) {
+            this.displayAlertBox({
+                msg: 'Content Could not be retrieved in this node.'
+            });
+            $deferred.reject();
+        }
+
+        function _appendContentDetailRow (content) {
             var contentDetailView = new ContentDetailView(_.extend({}, contentDetailViewConfig,
                 {
                     name : 'nodeDetailRow',
