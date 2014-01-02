@@ -18,32 +18,49 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     function deleteContent () {
         var self = this;
 
-        this.displayModal(
+        _confirmDeletion.call(self)
+            .done(function () {
+                _destroyThisModel.call(self);
+            });
+    }
+
+    function _confirmDeletion() {
+        return this.displayModal(
             {
                 msg : resources.contentItem.deletionWarning
-            })
-            .done(function () {
-                self.model.destroy(
-                    {
-                        success : function (model) {
-                            self.displayTemporaryAlertBox(
-                                {
-                                    msg : resources.contentItem.successfullyDeletedPre + model.get('label') +
-                                        resources.contentItem.successfullyDeletedPost,
-                                    status : true
-                                }
-                            );
-                            self.remove();
-                        },
-                        error : function (model) {
-                            self.displayAlertBox(
-                                {
-                                    msg : resources.contentItem.errorDeleted + model.get('label')
-                                }
-                            );
-                        }
-                    });
             });
+    }
+
+    function _destroyThisModel() {
+        var self = this;
+        this.model.destroy(
+            {
+                success : function (model) {
+                    _handleSuccessfulDeletion.call(self, model);
+                },
+                error : function (model) {
+                    _handleFailedDeletion.call(self, model);
+                }
+            });
+    }
+
+    function _handleFailedDeletion(model) {
+        this.displayAlertBox(
+            {
+                msg : resources.contentItem.errorDeleted + model.get('label')
+            }
+        );
+    }
+
+    function _handleSuccessfulDeletion(model) {
+        this.displayTemporaryAlertBox(
+            {
+                msg : resources.contentItem.successfullyDeletedPre + model.get('label') +
+                    resources.contentItem.successfullyDeletedPost,
+                status : true
+            }
+        );
+        this.remove();
     }
 
     function handleRowClick () {
