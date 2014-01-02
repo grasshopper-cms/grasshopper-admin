@@ -363,7 +363,7 @@ define([
             loadMainContent(ContentDetailView, _.extend({}, contentDetailViewConfig,
                 {
                     modelData : {
-                        id : id
+                        _id : id
                     }
                 }
             ), true);
