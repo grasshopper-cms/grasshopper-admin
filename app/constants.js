@@ -34,11 +34,11 @@ define({
         content : {
             url : 'http://localhost:8080/content'
         },
-        contentQuery: {
+        contentQuery : {
             url : 'http://localhost:8080/content/query'
         }
     },
-    internalRoutes: {
+    internalRoutes : {
         user : '#user',
         users : '#users',
         newUser : '#addUser',
@@ -51,12 +51,12 @@ define({
         login : '#login',
         logout : '#logout',
         about : '#about',
-        createFolder : '#createFolder/:id',
-        createContent : '#createContent/:id',
-        createAssets : '#createAssets/:id'
+        createFolder : '#items/nodeid/:id/createFolder',
+        createContent : '#items/nodeid/:id/createContent',
+        createAssets : '#items/nodeid/:id/createAssets'
     },
     defaults : {
-        theme: 'blue-dashboard'
+        theme : 'blue-dashboard'
     },
     userCollection : {
         pageSize : 5,

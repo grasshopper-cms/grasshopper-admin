@@ -1,10 +1,11 @@
 define(['masseuse', 'validation', 'underscore'], function (masseuse, validation, _) {
+    'use strict';
     var Model = masseuse.MasseuseModel,
         ComputedProperty = masseuse.ComputedProperty;
 
     return Model.extend({
         validate : validate,
-        defaults: {
+        defaults : {
             username : '',
             password : '',
             usernameError : new ComputedProperty(['username'], validateUserLoginAttribute, true),
@@ -14,7 +15,7 @@ define(['masseuse', 'validation', 'underscore'], function (masseuse, validation,
         }
     });
 
-    function validate (attributes, options) {
+    function validate (attributes) {
         var self = this,
             invalid;
 

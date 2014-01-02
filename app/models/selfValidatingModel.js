@@ -1,4 +1,5 @@
 define(['masseuse'], function (masseuse) {
+    'use strict';
     /**
      * To use this model, extend it and it will auto run the validate function - if present - on set.
      */

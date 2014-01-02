@@ -1,41 +1,58 @@
 <div id="[[= viewId ]]">
     <div class="row">
         <div class="large-12 columns">
-            <div class="section-container auto" data-section>
-                <section class="active">
-                    <p class="title" data-section-title><a href="#"><i class="icon-list-alt"></i>{{data.resources.content | spaceBefore}}</a></p>
-                    <div class="content" data-section-content>
-                        <input type="text" id="ContentSearch" class="search" placeholder="Search" /> <a href="#"><i class="icon-search"></i></a>
-                        <div id="nodeIndex"></div>
-                        <div id="contentIndex"></div>
-                        <table class="content-table">
-                            <thead>
-                                <tr>
-                                    <th>{{data.resources.name}}</th>
-                                    <th>{{data.resources.contentBrowse.author}}</th>
-                                    <th>{{data.resources.status}}</th>
-                                    <th>{{data.resources.contentBrowse.modified}}</th>
-                                    <th style="text-align: center">{{data.resources.actions}}</th>
-                                </tr>
-                            </thead>
-                            <tbody id="nodeDetailRow">
-                                <!--built Dynamically nodeDetailViewRow via nodeIndexView-->
-                            </tbody>
-                            <tbody id="contentDetailRow">
-                                <!--built Dynamically contentDetailView via contentIndexView-->
-                            </tbody>
-                        </table>
+            <dl class="tabs" data-tab>
+                <dd class="active" id="contentTab">
+                    <a href="#panel2-1">
+                        <p class="title">
+                            <i class="icon-list-alt"></i>
+                            {{data.resources.content | spaceBefore}}
+                        </p>
+                    </a>
+                </dd>
+                <dd data-rv-hide="data.inRoot" id="filesTab">
+                    <a href="#panel2-2">
+                        <p class="title">
+                            <i class="icon-paper-clip"></i>
+                            {{data.resources.fileIndex.files | spaceBefore}}
+                        </p>
+                    </a>
+                </dd>
+            </dl>
+
+            <div class="tabs-content">
+                <div class="content active" id="panel2-1">
+                    <input type="text" id="ContentSearch" class="search" placeholder="Search"/><a href="#"><i
+                        class="icon-search"></i></a>
+
+                    <div id="nodeIndex"></div>
+                    <div id="contentIndex"></div>
+                    <table class="content-table">
+                        <thead>
+                        <tr>
+                            <th>{{data.resources.name}}</th>
+                            <th>{{data.resources.contentBrowse.author}}</th>
+                            <th>{{data.resources.status}}</th>
+                            <th>{{data.resources.contentBrowse.modified}}</th>
+                            <th style="text-align: center">{{data.resources.actions}}</th>
+                        </tr>
+                        </thead>
+                        <tbody id="nodeDetailRow">
+                        <!--built Dynamically nodeDetailViewRow via nodeIndexView-->
+                        </tbody>
+                        <tbody id="contentDetailRow">
+                        <!--built Dynamically contentDetailView via contentIndexView-->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="content" id="panel2-2" data-rv-hide="data.inRoot">
+                    <input type="text" id="FileSearch" class="search" placeholder="Search"/><a href="#"><i
+                        class="icon-search"></i></a>
+
+                    <div id="assetIndex">
+                        <!--Built from assetIndex-->
                     </div>
-                </section>
-                <section data-rv-hide="data.inRoot">
-                    <p class="title" data-section-title><a href="#"><i class="icon-paper-clip"></i>{{data.resources.fileIndex.files | spaceBefore}}</a></p>
-                    <div  class="content" data-section-content>
-                        <input type="text" id="FileSearch" class="search" placeholder="Search" /> <a href="#"><i class="icon-search"></i></a>
-                        <div id="assetIndex">
-                            <!--Built from assetIndex-->
-                        </div>
-                    </div>
-                </section>
+                </div>
             </div>
         </div>
     </div>

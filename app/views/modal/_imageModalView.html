@@ -10,12 +10,12 @@
                 <img data-rv-src="data.data">
             </div>
             <div class="row">
-                <div id="button-container">
-                    <button id="confirm">
-                        <i class="icon-download-alt"></i>
-                        {{data.resources.download}}
-                    </button>
-                    <button id="cancel">{{data.resources.close}}</button>
+                <div class="small-12 text-center">
+                    <ul id="button-container" class="button-group radius">
+                        <li><a data-rv-href="data.data" download id="confirm" class="button small"><i
+                                class="icon-download-alt"></i>{{data.resources.download | spaceBefore}}</a></li>
+                        <li><a id="cancel" class="button small">{{data.resources.close}}</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

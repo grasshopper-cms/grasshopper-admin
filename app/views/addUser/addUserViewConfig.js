@@ -5,7 +5,7 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel'], function (fo
     return {
         name : 'addUserView',
         ModelType : addUserViewModel,
-        modelData: {},
+        modelData : {},
         el : '#stage',
         templateHtml : formTemplate,
         events : {
@@ -15,6 +15,6 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel'], function (fo
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : [],
-        permissions: ['admin']
+        permissions : ['admin']
     };
 });

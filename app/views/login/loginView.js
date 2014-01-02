@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'loginWorker'],function (GrasshopperBaseView, loginWorker) {
-
+define(['grasshopperBaseView', 'loginWorker'], function (GrasshopperBaseView, loginWorker) {
+    'use strict';
     return GrasshopperBaseView.extend({
         login : login,
         throwLoginError : throwLoginError
@@ -13,10 +13,10 @@ define(['grasshopperBaseView', 'loginWorker'],function (GrasshopperBaseView, log
         return false;
     }
 
-    function throwLoginError(xhr) {
+    function throwLoginError (xhr) {
         this.displayAlertBox(
             {
-                msg: xhr
+                msg : xhr
             }
         );
     }

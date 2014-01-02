@@ -1,13 +1,44 @@
 <tr id="[[= viewId ]]">
     <td class="clickableCell"><a>{{data.fileName}}</a></td>
     <td class="clickableCell">{{data.size | prettyFileSize}}</td>
-    <td class="clickableCell">{{data.lastmodified | prettyDate}}</td>
-    <td align="center">
-        <a data-rv-href="data.url">
+    <td data-rv-hide="data.fileData" class="clickableCell">{{data.lastmodified | prettyDate}}</td>
+    <td data-rv-hide="data.fileData" align="center">
+        <a id="editAsset">
+            <i class="icon-edit"></i>
+        </a>
+        <a data-rv-href="data.url" download>
             <i class="icon-download-alt"></i>
         </a>
         <a id="deleteAsset">
             <i class="icon-trash"></i>
         </a>
+    </td>
+    <td data-rv-show="data.fileData" colspan="2">
+        <div data-rv-hide="data.uploadError" class="progress">
+            <span id="uploadProgressMeter" class="meter" data-rv-width="data.progressWidth"></span>
+        </div>
+        <div data-rv-show="data.uploadError" id="uploadError">
+            <div class="row">
+                <div class="small-3 columns">
+                    <span>
+                        {{data.resources.asset.uploadAssetError | spaceAfter}}
+                    </span>
+                </div>
+                <div class="small-9 columns">
+                    <ul class="button-group radius">
+                        <li>
+                            <a id="retryUpload" class="button alert tiny">
+                                {{data.resources.retry}}
+                            </a>
+                        </li>
+                        <li>
+                            <a id="cancelUpload" class="button alert tiny">
+                                {{data.resources.cancel}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </td>
 </tr>

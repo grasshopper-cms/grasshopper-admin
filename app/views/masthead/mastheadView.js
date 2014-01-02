@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) {
-
+    'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         setButtons : setButtons,
@@ -8,57 +8,55 @@ define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) 
         interpolateMastheadButtons : interpolateMastheadButtons
     });
 
-    function beforeRender() {
+    function beforeRender () {
         this.setButtons();
         this.setBreadcrumbs();
     }
 
-    function setButtons(buttonArray) {
-        if(!buttonArray) {
-            this.model.set('buttons', this.options.defaultMastheadButtons);
+    function setButtons (buttonArray) {
+        if (!buttonArray) {
+            this.model.set('buttons', this.defaultMastheadButtons);
         } else {
             this.model.set('buttons', this.interpolateMastheadButtons(buttonArray));
         }
     }
 
-    function setBreadcrumbs(view) {
+    function setBreadcrumbs (view) {
         if (view && view.model.has('breadcrumbs')) {
             this.model.set('breadcrumbs', _.flatten(_.clone(view.model.get('breadcrumbs'))));
-        } else if (view && view.options.breadcrumbs){
-            this.model.set('breadcrumbs', view.options.breadcrumbs);
+        } else if (view && view.breadcrumbs) {
+            this.model.set('breadcrumbs', view.breadcrumbs);
         } else {
-            this.model.set('breadcrumbs', this.options.defaultBreadcrumbs);
+            this.model.set('breadcrumbs', this.defaultBreadcrumbs);
         }
     }
 
-    function interpolateMastheadButtons(buttonArray) {
-        // TODO: Tons of repetition here. Refactor this.
-        var self = this,
-            interpolatedArray = [],
-            obj = {},
+    function interpolateMastheadButtons (buttonArray) {
+        var interpolatedArray = [],
             max = buttonArray.length,
-            i = 0,
-            key;
+            i = 0;
 
-        if (this.app.router.contentBrowserNodeId) {
-            for(i, max; i < max; i++) {
-                for(key in buttonArray[i]) {
-                    obj[key] = buttonArray[i][key].replace(':id', self.app.router.contentBrowserNodeId);
-                }
-                interpolatedArray.push(obj);
-                obj = {};
-            }
-        } else {
-            for(i, max; i < max; i++) {
-                for(key in buttonArray[i]) {
-                    obj[key] = buttonArray[i][key].replace('/:id', '');
-                }
-                interpolatedArray.push(obj);
-                obj = {};
-            }
+        for (i, max; i < max; i++) {
+            interpolatedArray.push(_interpolateButton.call(this, buttonArray[i]));
         }
 
         return interpolatedArray;
     }
 
+    function _interpolateButton(thisButton) {
+        var nodeId = this.app.router.contentBrowserNodeId,
+            newButton = {},
+            key;
+        for (key in thisButton) {
+            if (nodeId) {
+                newButton[key] = thisButton[key].replace(':id', nodeId);
+            } else {
+                newButton[key] = thisButton[key].replace(':id', 0);
+            }
+        }
+        return newButton;
+    }
+
 });
+
+

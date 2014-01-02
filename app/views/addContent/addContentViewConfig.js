@@ -1,15 +1,19 @@
 /*global define:false*/
-define(['addContentViewModel'], function (addContentViewModel) {
-    'use strict';
+define(['text!views/addContent/addContentView.html', 'addContentViewModel'],
+    function (addContentTemplate, addContentViewModel) {
+        'use strict';
 
-    return {
-        name : 'addContentView',
-        ModelType : addContentViewModel,
-        modelData : {},
-        rivetConfig : 'auto',
-        bindings : [],
-        appendView: true,
-        events: {},
-        permissions: ['admin', 'editor']
-    };
-});
+        return {
+            name : 'addContentView',
+            ModelType : addContentViewModel,
+            modelData : {},
+            el : '#stage',
+            templateHtml : addContentTemplate,
+            events : {},
+            rivetConfig : 'auto',
+            bindings : [],
+            appendView : true,
+            mastheadButtons : [],
+            permissions : ['admin', 'editor']
+        };
+    });

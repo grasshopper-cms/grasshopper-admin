@@ -11,6 +11,12 @@ require.config({
         dropdown : {
             deps : ['foundation']
         },
+        tabs : {
+            deps : ['foundation']
+        },
+        tooltip : {
+            deps : ['foundation']
+        },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
@@ -24,6 +30,11 @@ require.config({
         {
             name : 'masseuse',
             location : 'vendor/masseuse/app'
+        },
+        {
+            // TODO: move this to separate submodule
+            name : 'helpers',
+            location : 'vendor/masseuse/helpers/app'
         }
     ],
     paths : {
@@ -35,14 +46,17 @@ require.config({
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
-        cirque: 'vendor/cirque/jquery.cirque',
+        cirque : 'vendor/cirque/jquery.cirque',
+        modernizr : 'vendor/modernizr/modernizr',
 
         // Routers
         router : 'router',
 
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alert',
-        dropdown: 'vendor/foundation/js/foundation/foundation.dropdown',
+        dropdown : 'vendor/foundation/js/foundation/foundation.dropdown',
+        tabs : 'vendor/foundation/js/foundation/foundation.tab',
+        tooltip : 'vendor/foundation/js/foundation/foundation.tooltip',
 
         // Views
         grasshopperBaseView : 'views/grasshopperBaseView',
@@ -89,8 +103,6 @@ require.config({
         addAssetsView : 'views/addAssets/addAssetsView',
         addAssetsViewConfig : 'views/addAssets/addAssetsViewConfig',
 
-
-
         // Models
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
@@ -119,11 +131,12 @@ require.config({
         addContentViewModel : 'models/viewModels/addContentViewModel',
         addAssetsViewModel : 'models/viewModels/addAssetsViewModel',
 
-            // Workers
+        // Workers
         loginWorker : 'workers/loginWorker',
         userWorker : 'workers/userWorker',
         contentTypeWorker : 'workers/contentTypeWorker',
         nodeWorker : 'workers/nodeWorker',
+        assetWorker : 'workers/assetWorker',
 
         // Collections
         userCollection : 'collections/userCollection',
@@ -141,38 +154,44 @@ require.config({
 });
 
 require([
+    'backbone',
     'underscore',
     'jquery',
     'router',
     'constants',
     'alerts',
     'dropdown',
+    'tabs',
+    'tooltip',
     'modernizr'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-    function (_, $, Router, constants) {
+        function (Backbone, _, $, Router, constants) {
 
         'use strict';
 
         _.templateSettings = {
-            evaluate    : /\[\[(.+?)\]\]/g,
+            evaluate : /\[\[(.+?)\]\]/g,
             interpolate : /\[\[=(.+?)\]\]/g,
-            escape      : /\[\[-(.+?)\]\]/g
+            escape : /\[\[-(.+?)\]\]/g
         };
 
         // TODO: For some reason this is not needed?
         $(document).foundation();
 
         // TODO : This should come from a build task run in Grunt
-        $('head').append('<link rel="stylesheet" type="text/css" href="themes/' + constants.defaults.theme + '/main.css" />');
+        $('head').append('<link rel="stylesheet" type="text/css" href="themes/' +
+            constants.defaults.theme + '/main.css" />');
 
         var router = new Router();
         Backbone.history.start();
         router.breadcrumb = [];
-        Backbone.history.on('route', function() { router.breadcrumb.push(this.fragment); }, this);
+        Backbone.history.on('route', function () {
+            router.breadcrumb.push(this.fragment);
+        }, this);
         // TODO: setup push state on nginx
         //Backbone.history.start({pushState: true});
-});
+    });

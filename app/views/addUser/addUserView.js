@@ -1,34 +1,41 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
-
+    'use strict';
     return GrasshopperBaseView.extend({
         saveUser : saveUser
     });
 
 
-    function saveUser() {
+    function saveUser () {
         var self = this;
 
-        console.log(this.model);
         this.model.save()
-            .success(function() {
-                self.app.router.navigateTrigger('users');
-                self.displayTemporaryAlertBox(
-                    {
-                        msg: resources.user.newUserAdded,
-                        status: true
-                    }
-                );
+            .success(function () {
+                _handleSuccessfulSave.call(self);
             })
-            .error(function(xhr) {
-                self.displayAlertBox(
-                    {
-                        msg: JSON.parse(xhr.responseText).message
-                    }
-                );
+            .error(function (xhr) {
+                _handleSaveError.call(self, xhr);
             });
 
         return false;
+    }
+
+    function _handleSuccessfulSave () {
+        this.app.router.navigateTrigger('users');
+        this.displayTemporaryAlertBox(
+            {
+                msg : resources.user.newUserAdded,
+                status : true
+            }
+        );
+    }
+
+    function _handleSaveError (xhr) {
+        this.displayAlertBox(
+            {
+                msg : xhr.responseJSON.message
+            }
+        );
     }
 
 });

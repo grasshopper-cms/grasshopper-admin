@@ -1,16 +1,36 @@
 /*global define:false*/
-define(['masseuse'], function (masseuse) {
+define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helpers) {
     'use strict';
 
     var BaseView = masseuse.BaseView,
-        oldSet = Backbone.Collection.prototype.set;
+        oldSet = Backbone.Collection.prototype.set,
+        rivetsPlugin = helpers.rivetsPlugin;
 
     return BaseView.extend({
         initialize : initialize,
         start : start
     });
 
-    function initialize() {
+    function initialize (options) {
+        options.viewOptions = options.viewOptions || [];
+        options.viewOptions =  options.viewOptions.concat(
+            [
+                'rivetConfig',
+                '$deferred',
+                'type',
+                'temporary',
+                'defaultBreadcrumbs',
+                'defaultMastheadButtons',
+                'breadcrumbs',
+                'mastheadButtons',
+                'permissions',
+                'nodeId'
+            ]);
+        if (options.rivetConfig) {
+            options.plugins = [];
+            options.plugins.push(rivetsPlugin);
+        }
+        this.options = options;
         Backbone.Collection.prototype.set = function (data, options) {
             if (data && data.results) {
                 data = data.results;
@@ -21,9 +41,9 @@ define(['masseuse'], function (masseuse) {
         BaseView.prototype.initialize.apply(this, arguments);
     }
 
-    function start() {
+    function start () {
         // Checking user permissions
-        if(this.options.permissions && this.options.permissions.indexOf(this.app.user.get('role')) === -1) {
+        if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
             this.app.router.navigateTrigger('home');
             return;
         }
@@ -31,20 +51,20 @@ define(['masseuse'], function (masseuse) {
         var $promise = BaseView.prototype.start.apply(this, arguments),
             self = this;
 
-        $promise.progress(function(event){
+        $promise.progress(function (event) {
             switch (event) {
-                case BaseView.afterRenderDone:
-                    if (self.options.mastheadButtons) {
-                        self.channels.views.trigger('updateMastheadButtons', (self.options.mastheadButtons));
-                    }
-                    if (self.options.breadcrumbs) {
-                        self.channels.views.trigger('updateMastheadBreadcrumbs', self);
-                    }
-                    if (self.options.rivetConfig) {
-                        self.rivetView();
-                        self.channels.views.trigger('rivetViewRendered');
-                    }
-                    break;
+            case BaseView.afterRenderDone:
+                if (self.mastheadButtons) {
+                    self.channels.views.trigger('updateMastheadButtons', (self.mastheadButtons));
+                }
+                if (self.breadcrumbs) {
+                    self.channels.views.trigger('updateMastheadBreadcrumbs', self);
+                }
+                if (self.rivetConfig) {
+                    self.rivetView();
+                    self.channels.views.trigger('rivetViewRendered');
+                }
+                break;
             }
         });
 

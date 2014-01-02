@@ -3,10 +3,13 @@
         <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
             <i class="icon-home"></i>
         </a>
+
         <div id="top-nav">
             <ul class="pull-right">
                 <li><img class="profile-pic" data-rv-show="data.loggedIn" src="http://placehold.it/20x20"/></li>
-                <li><a data-rv-href="data.userModel.href"><i class="icon-user"></i><span data-rv-text="data.resources.user.loggedInAs | spaceAfter"></span><span>{{data.userModel.firstname | spaceAfter}}{{data.userModel.lastname}}</span></a></li>
+                <li><a data-rv-href="data.userModel.href"><i class="icon-user"></i><span
+                        data-rv-text="data.resources.user.loggedInAs | spaceAfter"></span><span>{{data.userModel.firstname | spaceAfter}}{{data.userModel.lastname}}</span></a>
+                </li>
                 <li class="dropdown">
                     <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
                         {{data.resources.settings}}
@@ -14,14 +17,18 @@
                     </a>
 
                     <ul id="settings-dropdown" data-dropdown-content class="dropdown-menu right">
-                        <li><a id="myProfileButton" data-rv-show="data.userModel.loggedIn" data-rv-href="data.userModel.urlLink">{{data.resources.edit}} {{data.resources.profile}}</a></li>
+                        <li><a id="myProfileButton" data-rv-show="data.userModel.loggedIn"
+                               data-rv-href="data.userModel.urlLink">{{data.resources.edit}}
+                            {{data.resources.profile}}</a></li>
                         <li><a data-rv-href="data.constants.internalRoutes.about">{{data.resources.site.about}}</a></li>
                     </ul>
                 </li>
 
-                <li><a id="logOutButton" data-rv-href="data.constants.internalRoutes.logout" data-rv-show="data.userModel.loggedIn">{{data.resources.log_out}}</a>
+                <li><a id="logOutButton" data-rv-href="data.constants.internalRoutes.logout"
+                       data-rv-show="data.userModel.loggedIn">{{data.resources.log_out}}</a>
                 </li>
-                <li><a id="logInButton" data-rv-href="data.constants.internalRoutes.login" data-rv-hide="data.userModel.loggedIn">{{data.resources.log_in}}</a>
+                <li><a id="logInButton" data-rv-href="data.constants.internalRoutes.login"
+                       data-rv-hide="data.userModel.loggedIn">{{data.resources.log_in}}</a>
                 </li>
             </ul>
 
@@ -68,7 +75,8 @@
                             </li>
                         </ul>
 
-                    </div> <!-- /.nav-collapse -->
+                    </div>
+                    <!-- /.nav-collapse -->
                 </div>
             </div>
         </div>

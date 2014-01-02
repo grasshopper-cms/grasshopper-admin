@@ -10,10 +10,9 @@ $font: 'Open Sans', arial, sans-serif;
 $imgPath: '/themes/blue-dashboard/img';
 
 // Import Foundation
-@import "../../vendor/foundation/scss/normalize";
-@import "../../vendor/foundation/scss/foundation";
+@import "../../vendor/foundation/scss/normalize.scss";
+@import "../../vendor/foundation/scss/foundation.scss";
 
-// Using Sass globbing to import app view scss files.
 @import "colors";
 @import "mixins";
 
@@ -190,6 +189,8 @@ body, html {
   #modal-contents {
     z-index: 99;
     height: auto;
+    max-height: 100%;
+    max-width: 100%;
     background-color: $modal-contents-background-color;
     padding: 1.25em;
     border: solid 1px $modal-contents-border-color;
@@ -198,11 +199,12 @@ body, html {
       text-align: center;
     }
     #button-container {
-      text-align: center;
+      display: inline-block;
       margin-top: 10px;
     }
     #image-container {
       img {
+        max-height: 75%;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -213,15 +215,48 @@ body, html {
         width: 100%;
       }
     }
+    #dropZone {
+      height: 60px;
+      border: 2px dashed #bbb;
+      border-radius: 5px;
+      padding: 25px;
+      text-align: center;
+      color: #bbb;
+      &:hover {
+        border-color: rgb(0, 125, 166);
+      }
+      &.active {
+        border-color: rgb(0, 125, 166);
+      }
+    }
+    #uploadFileInput {
+      visibility: hidden;
+      height: 0;
+      width: 0;
+    }
   }
 
-  #alertBoxPartial {
-    bottom: 40px;
-    width: 95%;
-    position: fixed;
+  .tooltip {
+    z-index: 10000;
+  }
+
+  #alertBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 75px;
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+  }
+  .alertBoxPartial {
+    height: 46px;
+    width: 100%;
     .bad {
-      position: absolute;
-      width: 100%;
+      margin: auto;
+      width: 95%;
       .error {
         @include alert-base;
         @include alert-style($alertColorBad);
@@ -233,8 +268,8 @@ body, html {
       }
     }
     .good {
-      position: absolute;
-      width: 100%;
+      margin: auto;
+      width: 95%;
       .error {
         @include alert-base;
         @include alert-style($alertColorGood);
@@ -245,9 +280,8 @@ body, html {
         }
       }
     }
-
-
   }
+
 
   #login-page {
 
@@ -367,9 +401,19 @@ body, html {
     }
   }
 
+  // Users Index
   #usersIndex {
     #UserSearch {
       width:180px;
+    }
+  }
+  // Users Detail
+  #userDetail {
+    #statusText {
+      label {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
     }
   }
 
@@ -389,6 +433,37 @@ body, html {
         }
       }
     }
+  }
+
+  .tabs {
+    border-bottom: 1px solid $tabBorderColor;
+    & dd {
+      border: 1px solid $tabBorderColor;
+    }
+    & dd.active {
+      border-bottom: 1px solid $activeTabBorderColor;
+    }
+    p{
+      margin-bottom: 0;
+    }
+  }
+  .tabs-content {
+    .content {
+      width: 100%;
+    }
+  }
+
+  // Asset Detail View
+  #uploadProgressMeter {
 
   }
+
+  #uploadError {
+    text-align: center;
+
+    a {
+      margin-bottom: 0;
+    }
+  }
+
 }

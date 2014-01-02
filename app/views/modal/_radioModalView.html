@@ -1,0 +1,32 @@
+<div id="[[= viewId ]]">
+    <div id="modal-container">
+        <div id="modal-contents">
+            <div class="row">
+                <div id="modal-text">
+                    <h2>{{data.msg}}</h2>
+                </div>
+            </div>
+            <div id="input-container" class="row">
+                <div class="small-11 columns small-centered">
+                    <div class="row" data-rv-each-type="data.data">
+                        <input data-rv-id="type._id" name="radio" type="radio" data-rv-value="type._id"
+                               data-rv-checked="data.selectedType">
+                        <label class="inline" data-rv-for="type._id">
+                            <span data-tooltip class="has-tip" data-rv-title="type.helpText">
+                                {{type.label}}
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 text-center">
+                    <ul id="button-container" class="button-group radius">
+                        <li><a id="confirm" class="button small">{{data.resources.save}}</a></li>
+                        <li><a id="cancel" class="button small">{{data.resources.close}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

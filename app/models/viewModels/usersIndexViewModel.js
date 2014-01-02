@@ -1,4 +1,5 @@
 define(['masseuse', 'resources', 'constants'], function (masseuse, resources, constants) {
+    'use strict';
     var Model = masseuse.MasseuseModel,
         ComputedProperty = masseuse.ComputedProperty;
     return Model.extend({
