@@ -32,9 +32,8 @@ require.config({
             location : 'vendor/masseuse/app'
         },
         {
-            // TODO: move this to separate submodule
             name : 'helpers',
-            location : 'vendor/masseuse/helpers/app'
+            location : 'vendor/helpers/app'
         }
     ],
     paths : {
