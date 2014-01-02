@@ -38,6 +38,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
                                 });
                             break;
                         }
+                    } else {
+                        _handleNodeWithZeroContentTypes.call(self, $deferred);
                     }
                 })
                 .fail(function (xhr) {
