@@ -134,7 +134,6 @@ require.config({
         loginWorker : 'workers/loginWorker',
         userWorker : 'workers/userWorker',
         contentTypeWorker : 'workers/contentTypeWorker',
-        nodeWorker : 'workers/nodeWorker',
         assetWorker : 'workers/assetWorker',
 
         // Collections
