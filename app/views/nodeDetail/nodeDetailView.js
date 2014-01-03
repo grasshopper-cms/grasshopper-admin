@@ -22,7 +22,7 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
                 {
                     msg : resources.node.deletionWarning
                 })
-                .done(function () {
+                .then(function () {
                     _deleteNode.call(self);
                 });
         }
@@ -80,6 +80,18 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
             return $deferred.promise();
         }
 
+        function _attachContentTypesToNode(selectedContentTypes) {
+            var self = this;
+
+            contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes)
+                .done(function () {
+                    _handleSuccessfulContentTypeAddition.call(self);
+                })
+                .fail(function (msg) {
+                    _handleFailedContentTypeAddition.call(self, msg);
+                });
+        }
+
         function _handleFailedContentTypeAddition(msg) {
             this.displayAlertBox(
                 {
@@ -97,16 +109,12 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
             );
         }
 
-        function _attachContentTypesToNode(selectedContentTypes) {
-            var self = this;
-
-            contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes)
-                .done(function () {
-                    _handleSuccessfulContentTypeAddition.call(self);
-                })
-                .fail(function (msg) {
-                    _handleFailedContentTypeAddition.call(self, msg);
-                });
+        function _handleFailedNodeSave() {
+            this.displayAlertBox(
+                {
+                    msg : resources.node.errorUpdated
+                }
+            );
         }
 
         function _handleSuccessfulNodeSave() {
@@ -130,16 +138,6 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         function _getAvailableContentTypes() {
             return contentTypeWorker.getAvailableContentTypes(this.model.get('allowedTypes'));
         }
-
-        function _handleFailedNodeSave() {
-            this.displayAlertBox(
-                {
-                    msg : resources.node.errorUpdated
-                }
-            );
-        }
-
-
 
         function _deleteNode() {
             var self = this;
