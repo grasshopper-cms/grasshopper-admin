@@ -20,27 +20,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
             var self = this;
             _getNodesContentTypes.call(self, self.model.get('nodeId'))
                 .done(function (nodeData) {
-                    if(nodeData.allowedTypes) {
-                        switch (nodeData.allowedTypes.length) {
-                        case (0) :
-                            _handleNodeWithZeroContentTypes.call(self, $deferred);
-                            break;
-                        case (1) :
-                            _handleNodeWithOneContentType.call(self, $deferred, nodeData.allowedTypes[0]);
-                            break;
-                        default :
-                            _getSelectedContentTypeFromUser.call(self, nodeData.allowedTypes)
-                                .done(function (modalData) {
-                                    _handleSuccessfulContentTypeSelection.call(self, $deferred, modalData.selectedType);
-                                })
-                                .fail(function () {
-                                    _handleCanceledContentTypeSelection.call(self, $deferred);
-                                });
-                            break;
-                        }
-                    } else {
-                        _handleNodeWithZeroContentTypes.call(self, $deferred);
-                    }
+                    _decideHowToHandleContentTypeSelection.call(self, $deferred, nodeData.allowedTypes);
                 })
                 .fail(function (xhr) {
                     _handleFailedContentTypeRetrieval.call(self, $deferred, xhr);
@@ -49,6 +29,32 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
 
         function _getNodesContentTypes(nodeId) {
             return contentTypeWorker.getNodesContentTypes(nodeId);
+        }
+
+        function _decideHowToHandleContentTypeSelection($deferred, allowedTypes) {
+            var self = this;
+
+            if(allowedTypes) {
+                switch (allowedTypes.length) {
+                case (0) :
+                    _handleNodeWithZeroContentTypes.call(self, $deferred);
+                    break;
+                case (1) :
+                    _handleNodeWithOneContentType.call(self, $deferred, allowedTypes[0]);
+                    break;
+                default :
+                    _getSelectedContentTypeFromUser.call(self, allowedTypes)
+                        .done(function (modalData) {
+                            _handleSuccessfulContentTypeSelection.call(self, $deferred, modalData.selectedType);
+                        })
+                        .fail(function () {
+                            _handleCanceledContentTypeSelection.call(self, $deferred);
+                        });
+                    break;
+                }
+            } else {
+                _handleNodeWithZeroContentTypes.call(self, $deferred);
+            }
         }
 
         function _handleNodeWithZeroContentTypes($deferred) {
