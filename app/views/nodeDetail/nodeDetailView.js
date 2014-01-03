@@ -3,10 +3,17 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
     function (GrasshopperBaseView, resources, _, $, Api, contentTypeWorker) {
         'use strict';
         return GrasshopperBaseView.extend({
+            beforeRender : beforeRender,
             prepareToDeleteNode : prepareToDeleteNode,
             handleRowClick : handleRowClick,
             prepareToEditNode : prepareToEditNode
         });
+
+        function beforeRender() {
+            if(this.model.isNew()) {
+                _saveNodeWorkflow.call(this);
+            }
+        }
 
         function prepareToDeleteNode () {
             var self = this;
@@ -22,44 +29,52 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
 
         function handleRowClick () {
             this.app.router.navigateTrigger(this.model.get('href'));
+            return false;
         }
 
         function prepareToEditNode () {
             var self = this;
 
-            this.model.fetch()
-                .done(function() {
-                    _getNewNodeName.call(self)
-                        .done(function (modalData) {
-                            _editNode.call(self, modalData.data);
+            $.when(this.model.fetch(), _getNewNodeName.call(this))
+                .then(function(model, modalData) {
+                    self.model.set('label', modalData.data);
+                    _saveNodeWorkflow.call(self);
+                });
+        }
+
+        function _saveNodeWorkflow() {
+            var self = this;
+
+            $.when(_saveThisNode.call(this), _getAvailableContentTypes.call(this))
+                .then(function(model, availableContentTypes) {
+                    _askUserWhichContentTypesToAttach.call(self, availableContentTypes)
+                        .done(function(modalData) {
+                            _attachContentTypesToNode.call(self, modalData.data)
+                                .done(function () {
+                                    _handleSuccessfulContentTypeAddition.call(self);
+                                })
+                                .fail(function (msg) {
+                                    _handleFailedContentTypeAddition.call(self, msg);
+                                });
                         });
                 });
         }
 
-        function _editNode(newNodeName) {
-            var self = this;
+        function _saveThisNode() {
+            var self = this,
+                $deferred = new $.Deferred();
 
-            this.model.set('label', newNodeName);
             this.model.save()
-                .done(function () {
+                .done(function() {
                     _handleSuccessfulNodeSave.call(self);
-                    _getAvailableContentTypes.call(self)
-                        .done(function(availableContentTypes) {
-                            _askUserWhichContentTypesToAttach.call(self, availableContentTypes)
-                                .done(function(modalData) {
-                                    _attachContentTypesToNode.call(self, modalData.data)
-                                        .done(function () {
-                                            _handleSuccessfulContentTypeAddition.call(self);
-                                        })
-                                        .fail(function (msg) {
-                                            _handleFailedContentTypeAddition.call(self, msg);
-                                        });
-                                });
-                        });
+                    $deferred.resolve();
                 })
-                .fail(function () {
+                .fail(function() {
                     _handleFailedNodeSave.call(self);
+                    $deferred.reject();
                 });
+
+            return $deferred.promise();
         }
 
         function _handleFailedContentTypeAddition(msg) {
