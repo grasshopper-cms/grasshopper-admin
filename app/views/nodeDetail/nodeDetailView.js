@@ -35,10 +35,19 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         function prepareToEditNode () {
             var self = this;
 
-            $.when(this.model.fetch(), _getNewNodeName.call(this))
+            $.when(this.model.fetch(), _askUserForNewNodeName.call(this))
                 .then(function(model, modalData) {
                     self.model.set('label', modalData.data);
                     _saveNodeWorkflow.call(self);
+                });
+        }
+
+        function _askUserForNewNodeName() {
+            return this.displayModal(
+                {
+                    msg : resources.node.editName,
+                    type : 'input',
+                    data : this.model.get('label')
                 });
         }
 
@@ -48,14 +57,8 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
             $.when(_saveThisNode.call(this), _getAvailableContentTypes.call(this))
                 .then(function(model, availableContentTypes) {
                     _askUserWhichContentTypesToAttach.call(self, availableContentTypes)
-                        .done(function(modalData) {
-                            _attachContentTypesToNode.call(self, modalData.data)
-                                .done(function () {
-                                    _handleSuccessfulContentTypeAddition.call(self);
-                                })
-                                .fail(function (msg) {
-                                    _handleFailedContentTypeAddition.call(self, msg);
-                                });
+                        .then(function(modalData) {
+                            _attachContentTypesToNode.call(self, modalData.data);
                         });
                 });
         }
@@ -95,7 +98,15 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         }
 
         function _attachContentTypesToNode(selectedContentTypes) {
-            return contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes);
+            var self = this;
+
+            contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes)
+                .done(function () {
+                    _handleSuccessfulContentTypeAddition.call(self);
+                })
+                .fail(function (msg) {
+                    _handleFailedContentTypeAddition.call(self, msg);
+                });
         }
 
         function _handleSuccessfulNodeSave() {
@@ -128,14 +139,7 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
             );
         }
 
-        function _getNewNodeName() {
-            return this.displayModal(
-                {
-                    msg : resources.node.editName,
-                    type : 'input',
-                    data : this.model.get('label')
-                });
-        }
+
 
         function _deleteNode() {
             var self = this;
