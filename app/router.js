@@ -174,8 +174,6 @@ define([
         }
 
         function initialize () {
-            var oldSet = Backbone.Collection.prototype.set;
-
             MasseuseRouter.prototype.initialize.apply(this, arguments);
 
             GrasshopperBaseView.prototype.channels.addChannel('views');
@@ -191,13 +189,6 @@ define([
             GrasshopperBaseView.prototype.displayModal = displayModal;
             GrasshopperBaseView.prototype.hideModal = hideModal;
 
-            // TODO: Get rid of this. Move it to a grasshopperCollection or something like that. It does not belong here.
-            Backbone.Collection.prototype.set = function (data, options) {
-                if (data && data.results) {
-                    data = data.results;
-                }
-                oldSet.call(this, data, options);
-            };
         }
 
         function loadMainContent (ViewType, config, bypass) {
