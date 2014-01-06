@@ -54,6 +54,11 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         function _saveNodeWorkflow() {
             var self = this;
 
+//            $
+//                .when(_getAvailableContentTypes.call(this), _saveThisNode.call(this))
+//                .then(_askUserWhichContentTypesToAttach.bind(this, availableContentTypes))
+//                .then(_attachContentTypesToNode.bind(this, modalData));
+
             $.when(_saveThisNode.call(this), _getAvailableContentTypes.call(this))
                 .then(function(model, availableContentTypes) {
                     _askUserWhichContentTypesToAttach.call(self, availableContentTypes)
