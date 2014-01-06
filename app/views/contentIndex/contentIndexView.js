@@ -14,7 +14,6 @@ define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailV
         }
 
         function _getContent($deferred) {
-            var self = this;
             Api.makeQuery(
                 {
                     nodes : this.nodeId,
@@ -24,15 +23,11 @@ define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailV
                         fake : true
                     }
                 })
-                .done(function (data) {
-                    _handleSuccessfulContentQuery.call(self, data, $deferred);
-                })
-                .fail(function() {
-                    _handleFailedContentQuery.call(self, $deferred);
-                });
+                .done(_handleSuccessfulContentQuery.bind(this, $deferred))
+                .fail(_handleFailedContentQuery.bind(this, $deferred));
         }
 
-        function _handleSuccessfulContentQuery(data, $deferred) {
+        function _handleSuccessfulContentQuery($deferred, data) {
             var self = this;
 
             this.model.set('nodeContent', data);

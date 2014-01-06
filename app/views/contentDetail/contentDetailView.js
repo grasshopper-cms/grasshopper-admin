@@ -16,12 +16,8 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     }
 
     function deleteContent () {
-        var self = this;
-
-        _confirmDeletion.call(self)
-            .done(function () {
-                _destroyThisModel.call(self);
-            });
+        _confirmDeletion.call(this)
+            .then(_destroyThisModel.bind(this));
     }
 
     function _confirmDeletion() {
@@ -31,6 +27,7 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
             });
     }
 
+    // TODO: Refactor this. I believe that this.model.destroy can take the .done and .fail callbacks.
     function _destroyThisModel() {
         var self = this;
         this.model.destroy(
