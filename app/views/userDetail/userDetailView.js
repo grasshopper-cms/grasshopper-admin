@@ -26,13 +26,9 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
         }
 
         function updateModel () {
-            var self = this;
             this.model.save()
-                .done(function (model) {
-                    _handleSuccessfulSave.call(self, model);
-                }).fail(function (xhr) {
-                    _handleFailedSave.call(self, xhr);
-                });
+                .done(_handleSuccessfulSave.bind(this))
+                .fail(_handleFailedSave.bind(this));
 
             return false;
         }
