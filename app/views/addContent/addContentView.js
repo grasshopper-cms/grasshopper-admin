@@ -17,22 +17,18 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
         }
 
         function _handleCreateContent ($deferred) {
-            var self = this;
-            _getNodesContentTypes.call(self, self.model.get('nodeId'))
-                .done(function (nodeData) {
-                    _decideHowToHandleContentTypeSelection.call(self, $deferred, nodeData.allowedTypes);
-                })
-                .fail(function (xhr) {
-                    _handleFailedContentTypeRetrieval.call(self, $deferred, xhr);
-                });
+            _getNodesContentTypes.call(this, this.model.get('nodeId'))
+                .done(_decideHowToHandleContentTypeSelection.bind(this, $deferred))
+                .fail(_handleFailedContentTypeRetrieval.bind(this, $deferred));
         }
 
         function _getNodesContentTypes(nodeId) {
             return contentTypeWorker.getNodesContentTypes(nodeId);
         }
 
-        function _decideHowToHandleContentTypeSelection($deferred, allowedTypes) {
-            var self = this;
+        function _decideHowToHandleContentTypeSelection($deferred, nodeData) {
+            var self = this,
+                allowedTypes = nodeData.allowedTypes;
 
             if(allowedTypes) {
                 switch (allowedTypes.length) {

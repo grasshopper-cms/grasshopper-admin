@@ -75,9 +75,9 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
             return $deferred.promise();
         }
 
-        function _attachContentTypesToNode(selectedContentTypes) {
-            var self = this;
-            selectedContentTypes = selectedContentTypes.data;
+        function _attachContentTypesToNode(modalData) {
+            var self = this,
+                selectedContentTypes = modalData.data;
 
             contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes)
                 .done(function () {
@@ -123,7 +123,6 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         }
 
         function _askUserWhichContentTypesToAttach(availableContentTypes) {
-            debugger;
             return this.displayModal(
                 {
                     msg : resources.contentType.editContentTypes,
