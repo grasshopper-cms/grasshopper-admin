@@ -16,15 +16,11 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         }
 
         function prepareToDeleteNode () {
-            var self = this;
-
             this.displayModal(
                 {
                     msg : resources.node.deletionWarning
                 })
-                .then(function () {
-                    _deleteNode.call(self);
-                });
+                .then(_deleteNode.bind(this));
         }
 
         function handleRowClick () {
@@ -35,8 +31,8 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         function prepareToEditNode () {
             var self = this;
 
-            $.when(this.model.fetch(), _askUserForNewNodeName.call(this))
-                .then(function(model, modalData) {
+            $.when(_askUserForNewNodeName.call(this), this.model.fetch())
+                .then(function(modalData) {
                     self.model.set('label', modalData.data);
                     _saveNodeWorkflow.call(self);
                 });
@@ -59,33 +55,21 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         }
 
         function _saveThisNode() {
-            var self = this,
-                $deferred = new $.Deferred();
+            var $deferred = new $.Deferred();
 
             this.model.save()
-                .done(function() {
-                    _handleSuccessfulNodeSave.call(self);
-                    $deferred.resolve();
-                })
-                .fail(function() {
-                    _handleFailedNodeSave.call(self);
-                    $deferred.reject();
-                });
+                .done(_handleSuccessfulNodeSave.bind(this, $deferred))
+                .fail(_handleFailedNodeSave.bind(this, $deferred));
 
             return $deferred.promise();
         }
 
         function _attachContentTypesToNode(modalData) {
-            var self = this,
-                selectedContentTypes = modalData.data;
+            var selectedContentTypes = modalData.data;
 
             contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes)
-                .done(function () {
-                    _handleSuccessfulContentTypeAddition.call(self);
-                })
-                .fail(function (msg) {
-                    _handleFailedContentTypeAddition.call(self, msg);
-                });
+                .done(_handleSuccessfulContentTypeAddition.bind(this))
+                .fail(_handleFailedContentTypeAddition.bind(this));
         }
 
         function _handleFailedContentTypeAddition(msg) {
@@ -105,21 +89,23 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
             );
         }
 
-        function _handleFailedNodeSave() {
+        function _handleFailedNodeSave($deferred) {
             this.displayAlertBox(
                 {
                     msg : resources.node.errorUpdated
                 }
             );
+            $deferred.reject();
         }
 
-        function _handleSuccessfulNodeSave() {
+        function _handleSuccessfulNodeSave($deferred) {
             this.displayTemporaryAlertBox(
                 {
                     msg : resources.node.successfullyUpdated,
                     status : true
                 }
             );
+            $deferred.resolve();
         }
 
         function _askUserWhichContentTypesToAttach(availableContentTypes) {
@@ -136,15 +122,9 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         }
 
         function _deleteNode() {
-            var self = this;
-
             this.model.destroy()
-                .done(function () {
-                    _handleSuccessfulNodeDeletion.call(self);
-                })
-                .fail(function () {
-                    _handleFailedNodeDeletion.call(self);
-                });
+                .done(_handleSuccessfulNodeDeletion.bind(this))
+                .fail(_handleFailedNodeDeletion.bind(this));
         }
 
         function _handleSuccessfulNodeDeletion() {
