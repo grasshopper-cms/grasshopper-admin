@@ -11,7 +11,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             el : '#stage',
             templateHtml : formTemplate,
             events : {
-                'click #deleteContentType' : 'deleteContentType',
+                'click #deleteContentType' : 'prepareToDeleteContentType',
                 'click .clickableCell' : 'handleRowClick'
             },
             appendView : true,
