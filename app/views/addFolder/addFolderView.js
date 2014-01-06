@@ -25,9 +25,7 @@ define(['grasshopperBaseView', 'resources', 'underscore',
                     self.channels.views.trigger('activateTab', 'contentTab');
                     _appendNodeDetailRow.call(self, modalData.data);
                 })
-                .always(function () {
-                    _navigateBack.call(self);
-                });
+                .always(_navigateBack.bind(this));
         }
 
         function _appendNodeDetailRow(nodeName) {

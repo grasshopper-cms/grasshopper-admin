@@ -34,20 +34,15 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                     });
                     _navigateBack.call(self);
                 })
-                .fail(function () {
-                    _navigateBack.call(self);
-                });
+                .fail(_navigateBack.bind(this));
         }
 
         function _uploadInRoot () {
-            var self = this;
             this.displayModal(
                 {
                     msg : resources.asset.uploadInRoot
                 })
-                .always(function () {
-                    _navigateBack.call(self);
-                });
+                .always(_navigateBack.bind(this));
         }
 
         function _navigateBack (trigger) {

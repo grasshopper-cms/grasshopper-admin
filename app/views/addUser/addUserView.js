@@ -7,15 +7,9 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
 
 
     function saveUser () {
-        var self = this;
-
         this.model.save()
-            .success(function () {
-                _handleSuccessfulSave.call(self);
-            })
-            .error(function (xhr) {
-                _handleSaveError.call(self, xhr);
-            });
+            .success(_handleSuccessfulSave.bind(this))
+            .error(_handleSaveError.bind(this));
 
         return false;
     }

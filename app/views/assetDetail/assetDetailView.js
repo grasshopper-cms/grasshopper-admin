@@ -28,15 +28,11 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker'],
         }
 
         function prepareToDeleteAsset() {
-            var self = this;
-
             this.displayModal(
                 {
                     msg: resources.asset.deletionWarning
                 })
-                .done(function() {
-                    _deleteAsset.call(self);
-                });
+                .done(_deleteAsset.bind(this));
         }
 
         function editAsset() {
@@ -45,28 +41,17 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker'],
             _getNewFileName.call(this)
                 .done(function(modalData) {
                     _postRenamedAsset.call(self, modalData.data)
-                        .done(function() {
-                            _handleSuccessfulAssetRename.call(self, modalData.data);
-                        })
-                        .fail(function() {
-                            _handleAssetRenameError.call(self);
-                        });
+                        .done(_handleSuccessfulAssetRename.bind(self, modalData.data))
+                        .fail(_handleAssetRenameError.bind(this));
                 });
         }
 
         function postNewAsset() {
-            var self = this;
             this.model.set('uploadError', false);
             AssetWorker.postNewAsset(this.model.get('nodeId'), this.model.get('fileData'))
-                .done(function(response) {
-                    _handleSuccessfulUpload.call(self, response);
-                })
-                .fail(function(error) {
-                    _handleFailedUpload.call(self, error);
-                })
-                .progress(function(percentDone) {
-                    _handleUploadProgress.call(self, percentDone);
-                });
+                .done(_handleSuccessfulUpload.bind(this))
+                .fail(_handleFailedUpload.bind(this))
+                .progress(_handleUploadProgress.bind(this));
         }
 
         function cancelUpload() {
@@ -74,15 +59,9 @@ define(['grasshopperBaseView', 'resources', 'api', 'assetWorker'],
         }
 
         function _deleteAsset () {
-            var self = this;
-
             this.model.destroy()
-                .done(function() {
-                    _handleSuccessfulDelete.call(self);
-                })
-                .fail(function() {
-                    _handleDeletionError.call(self);
-                });
+                .done(_handleSuccessfulDelete.bind(this))
+                .fail(_handleDeletionError.bind(this));
         }
 
         function _handleSuccessfulDelete () {
