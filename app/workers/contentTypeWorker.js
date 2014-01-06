@@ -44,7 +44,7 @@ define(['api', 'jquery', 'resources', 'underscore'],
 
             $.when.apply($, requests)
                 .done(_resolveDeferred.bind(this, $deferred))
-                .fail(_rejectDeferred.bind(this, 'Content Types could not be added.'));
+                .fail(_rejectDeferred.bind(this, $deferred, 'Content Types could not be added.'));
 
             return $deferred.promise();
         }
@@ -53,8 +53,8 @@ define(['api', 'jquery', 'resources', 'underscore'],
             var $deferred = new $.Deferred();
 
             Api.getNodeDetail(nodeId)
-                .done(_resolveDeferred.bind(this, data))
-                .fail(_rejectDeferred.bind(this, data));
+                .done(_resolveDeferred.bind(this, $deferred))
+                .fail(_rejectDeferred.bind(this, $deferred));
 
             return $deferred.promise();
         }
