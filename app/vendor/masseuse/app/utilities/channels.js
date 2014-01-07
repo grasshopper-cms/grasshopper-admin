@@ -1,14 +1,13 @@
 /*global define:false*/
-define(['underscore', 'backbone', './namespace'], function (_, Backbone, namespace) {
+define(['underscore', 'backbone', './nameSpace'], function (_, Backbone, namespace) {
     'use strict';
 
     var channels;
 
     /**
-     * Channels is a singleton.
+     * @class Channels is a singleton event bus.
      * @param channel
-     * @returns {*}
-     * @constructor
+     * @module utilities/Channels
      */
     function Channels(channel) {
         if (channels) {

@@ -63,9 +63,14 @@ module.exports = function (grunt) {
         },
 
         build_gh_pages : {
-            ghPages : {
+            jsdoc : {
                 options : {
-                    build_branch : 'builds',
+                    dist : 'build'
+                }
+            },
+            bower : {
+                options : {
+                    build_branch : 'bower',
                     dist : 'build'
                 }
             }
@@ -84,10 +89,63 @@ module.exports = function (grunt) {
 
         jsdoc : {
             dist : {
-                src: ['app/**/*.js', '!app/vendor/**'],
+                src: ['README.md', 'app/**/*.js', '!app/vendor/**'],
                 options: {
                     destination: 'docs'
                 }
+            }
+        },
+
+        clean : {
+            build : ['build']
+        },
+
+        copy : {
+            jsdoc : {
+                files : [
+                    {
+                        expand : true,
+                        cwd : 'docs/',
+                        src: [
+                            '**'
+                        ],
+                        dest : 'build/docs/'
+                    }
+                ]
+            },
+            tests : {
+                files : [
+                    {
+                        expand : true,
+                        cwd : 'tests/',
+                        src: [
+                            '**'
+                        ],
+                        dest : 'build/tests/'
+                    }
+                ]
+            },
+            app : {
+                files : [
+                    {
+                        expand : true,
+                        cwd : 'app/',
+                        src: [
+                            '**'
+                        ],
+                        dest : 'build/app/'
+                    }
+                ]
+            }
+        },
+
+        shell : {
+            'testPhantom' : {
+                options : {
+                    stdout : true,
+                    stderr : true
+                },
+                command : 'mocha-phantomjs tests/index.html'
             }
         }
     });
@@ -96,8 +154,11 @@ module.exports = function (grunt) {
     grunt.registerTask('test', 'Build and watch task', [
         'jshint', 'connect:tests',  'open:masseuse', 'watch'
     ]);
-    grunt.registerTask('deploy', 'Deploy to gh-pages', [
-        'jshint', 'copy', 'build_gh_pages'
+    grunt.registerTask('test-cli', 'Run tests headless', [
+        'jshint', 'shell:testPhantom'
+    ]);
+    grunt.registerTask('deployDocs', 'Deploy to gh-pages', [
+        'clean:build', 'jshint', 'copy:jsdoc', 'copy:app', 'copy:tests', 'build_gh_pages:jsdoc'
     ]);
 
 };

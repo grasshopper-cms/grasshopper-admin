@@ -5,27 +5,17 @@ define([
 ], function ($, Backbone, _, Channels, ViewContext, lifeCycle, getProperty) {
     'use strict';
 
-    /*
-     options : {
-        name : 'BaseView',
-        appendView : true,
-        ModelType : undefined,
-        bindings : [
-            // Example: [stringObjectToListenTo, stringEventName, stringCallbackFunction]
-            //          ['model', 'change:something', 'callbackFunction']
-            // Bindings have to be all strings, since config does not have access to the view's context
-            // if strings are provided it is assumed that the context is the view
-        ],
-        templateHtml : undefined,
-        modelData : undefined,
-     },
-     */
-
     var viewOptions = ['name', 'appendView'],
         BEFORE_RENDER_DONE = 'beforeRenderDone',
         RENDER_DONE = 'renderDone',
         AFTER_RENDER_DONE = 'afterRenderDone',
         MODEL_DATA = 'modelData',
+        /**
+         * @class A View that adds lifecycle methods to Views that are optionally async using jQuery promises.
+         * Adds support for adding child Views
+         * @module views/BaseView
+         * @type {*|extend|extend|extend|void|Object}
+         */
         BaseView = Backbone.View.extend({
             defaultBindings : [],
             initialize : initialize,
@@ -225,13 +215,19 @@ define([
     }
 
     function refreshChildren () {
+        var $deferred = new $.Deferred(),
+            childPromiseArray = [];
+
         _(this.children).each(function (child) {
-            child.removeAllChildren();
             if (child.hasStarted) {
                 Backbone.View.prototype.remove.apply(child);
             }
-            child.start();
+            childPromiseArray.push(child.start());
         });
+
+        $.when.apply($, childPromiseArray).then($deferred.resolve);
+
+        return $deferred.promise();
     }
 
     /**
