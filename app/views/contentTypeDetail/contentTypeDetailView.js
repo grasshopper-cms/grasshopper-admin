@@ -1,20 +1,27 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
+define(['grasshopperBaseView', 'resources', 'plugins'], function (GrasshopperBaseView, resources, plugins) {
     'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
+        afterRender : afterRender,
         prepareToDeleteContentType : prepareToDeleteContentType,
-        handleRowClick : handleRowClick
+        handleRowClick : handleRowClick,
+        addNewFieldToContentType : addNewFieldToContentType
     });
 
-    function beforeRender () {
-        // TODO: I think this can be refactored with if(this.model.isNew()) {}
-        if (!this.model.has('_id')) {
-            this.model
-                .fetch()
-                .done(function () {})
-                .fail(function () { /* TODO: Error Handling */ });
+    function beforeRender ($deferred) {
+        if (!this.model.has('label')) {
+            this.model.fetch()
+                .done($deferred.resolve)
+                .fail($deferred.reject);
+        } else {
+            $deferred.resolve();
         }
+        this.model.set('plugins', plugins);
+    }
+
+    function afterRender() {
+        this.$el.foundation();
     }
 
     function prepareToDeleteContentType () {
@@ -59,6 +66,10 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     function handleRowClick (e) {
         e.stopPropagation();
         this.app.router.navigateTrigger(this.model.get('href'), {}, true);
+    }
+
+    function addNewFieldToContentType() {
+        console.log('rivet click biotch');
     }
 
 });

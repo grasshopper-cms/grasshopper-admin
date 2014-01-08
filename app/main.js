@@ -145,6 +145,9 @@ require.config({
         // Validation
         validation : 'validation/validation',
 
+        // Plugins
+        plugins : 'plugins',
+
         // Resources File
         resources : 'resources',
         constants : 'constants'
