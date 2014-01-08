@@ -68,8 +68,10 @@ define(['grasshopperBaseView', 'resources', 'plugins'], function (GrasshopperBas
         this.app.router.navigateTrigger(this.model.get('href'), {}, true);
     }
 
-    function addNewFieldToContentType() {
-        console.log('rivet click biotch');
+    function addNewFieldToContentType(e, context) {
+        console.log(this);
+        console.log(e);
+        console.log(context);
     }
 
 });
