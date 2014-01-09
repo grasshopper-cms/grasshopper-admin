@@ -7,7 +7,7 @@ define(['text!plugins/datePicker/datePickerPlugin.html', 'plugins/datePicker/dat
             name : 'datePickerPlugin',
             ModelType : datePickerPluginModel,
             modelData : {},
-            el : '#stage',
+            el : '',
             templateHtml : datePickerPluginTemplate,
             events : {},
             rivetConfig : 'auto',

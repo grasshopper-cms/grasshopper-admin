@@ -1,6 +1,6 @@
 {
   "name": "masseuse",
-  "version": "0.0.3",
+  "version": "0.1.1",
   "description": "A Backbone helper library with a View lifecycle, View configs, child Views, Proxy and Computed Properties, and a custom Router with beforeRouting support",
   "main": " ",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "https://github.com/Solid-Interactive/masseuse.git"
   },
   "keywords": [
-    "Backbone"
+    "backbone", "rivets", "view lifecycle", "async", "promises", "config", "child views", "bower"
   ],
   "author": "SOLID Interactive",
   "license": "MIT",

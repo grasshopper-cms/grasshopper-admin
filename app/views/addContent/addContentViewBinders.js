@@ -6,30 +6,25 @@ define(['jquery', 'underscore', 'plugins', 'require'], function ($, _, plugins, 
 
     return {
         fieldtype : function(el, value) {
-            var plugin = _.find(plugins.fields, {type : value.type}),
-                View,
-                Config;
+            var plugin = _.find(plugins.fields, {type : value.type});
 
+//            console.log(el);
+//            console.log(value);
 
-            require([plugin.view], function(view) {
-                View = view;
+            $(el).attr('id', value._id);
 
-                require([plugin.config], function(config) {
-                    Config = config;
+            require([plugin.view, plugin.config], function(ViewModule, configModule) {
 
-                    var view = new View(_.extend({}, Config, {
-                        modelData : {
+                var viewInstance = new ViewModule(_.extend({}, configModule, {
+                    modelData : {},
+                    el : '#'+ value._id
+                }));
 
-                        },
-                        el : $(el).attr('id')
-                    }));
-//
-                    console.log(view);
-                });
+                console.log(viewInstance);
+                viewInstance.start();
+                debugger;
+
             });
-
-
-
         }
     };
 

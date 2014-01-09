@@ -13,7 +13,6 @@ define(['text!plugins/textBox/textBoxPlugin.html', 'plugins/textBox/textBoxPlugi
             rivetConfig : 'auto',
             bindings : [],
             appendView : true,
-            mastheadButtons : [],
-            permissions : []
+            mastheadButtons : []
         };
     });

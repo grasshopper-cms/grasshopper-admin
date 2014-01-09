@@ -7,7 +7,7 @@ define(['text!plugins/paragraph/paragraphPlugin.html', 'plugins/paragraph/paragr
             name : 'paragraphPlugin',
             ModelType : paragraphPluginModel,
             modelData : {},
-            el : '#stage',
+            el : '',
             templateHtml : paragraphPluginTemplate,
             events : {},
             rivetConfig : 'auto',

@@ -10,7 +10,7 @@
     "lodash": "~1.3.1",
     "rivets": "~0.5.12",
     "js-base64": "~2.1.2",
-    "masseuse": "~0.0.3"
+    "masseuse": "~0.1.1"
   },
   "devDependencies": {
     "mocha": "~1.12.1",
