@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/addContent/addContentView.html', 'addContentViewModel'],
-    function (addContentTemplate, addContentViewModel) {
+define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'addContentViewBinders'],
+    function (addContentTemplate, addContentViewModel, addContentViewBinders) {
         'use strict';
 
         return {
@@ -14,6 +14,7 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel'],
             bindings : [],
             appendView : true,
             mastheadButtons : [],
-            permissions : ['admin', 'editor']
+            permissions : ['admin', 'editor'],
+            rivetBinders : [addContentViewBinders]
         };
     });

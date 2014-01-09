@@ -1,26 +1,45 @@
 /*global define*/
 define({
-    fields: [
-        {
-            name : 'Date Picker',
-            helpText : 'Date Picker Help Text',
-            id : 1,
-            datePickerPlugin : 'plugins/datePicker/datePickerPlugin.js',
-            datePickerPluginConfig : 'plugins/datePicker/datePickerPluginConfig.js'
-        },
-        {
-            name : 'Paragraph',
-            helpText : 'paragraph Help Text',
-            id : 2,
-            paragraphPlugin : 'plugins/paragraph/paragraphPlugin.js',
-            paragraphPluginConfig : 'plugins/paragraph/paragraphPluginConfig.js'
-        },
+    fields : [
         {
             name : 'Text Box',
-            helpText : 'Text Box Help Text',
+            type : 'textbox',
+            helpText : 'Text Box Help Text!',
+            id : 1,
+            view : './plugins/datePicker/datePickerPlugin.js',
+            config : './plugins/datePicker/datePickerPluginConfig.js'
+        },
+        {
+            name : 'Text Area',
+            type : 'textarea',
+            helpText : 'text Area Help Text',
+            id : 2,
+            view : './plugins/paragraph/paragraphPlugin.js',
+            config : './plugins/paragraph/paragraphPluginConfig.js'
+        },
+        {
+            name : 'Dropdown',
+            type : 'dropdown',
+            helpText : 'Dropdown Help Text',
             id : 3,
-            textBoxPlugin : 'plugins/textBox/textBoxPlugin.js',
-            textBoxPluginConfig : 'plugins/textBox/textBoxPluginConfig.js'
+            view : './plugins/textBox/textBoxPlugin.js',
+            config : './plugins/textBox/textBoxPluginConfig.js'
+        },
+        {
+            name : 'Readonly',
+            type : 'readonly',
+            helpText : 'Readonly Help Text',
+            id : 4,
+            view : './plugins/textBox/textBoxPlugin.js',
+            config : './plugins/textBox/textBoxPluginConfig.js'
+        },
+        {
+            name : 'Reference',
+            type : 'ref',
+            helpText : 'Reference Help Text',
+            id : 5,
+            view : './plugins/textBox/textBoxPlugin.js',
+            config : './plugins/textBox/textBoxPluginConfig.js'
         }
     ]
 });

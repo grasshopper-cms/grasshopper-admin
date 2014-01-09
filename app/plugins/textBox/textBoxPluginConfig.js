@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!plugins/textBox/textBoxPlugin.html', 'textBoxPluginModel'],
+define(['text!plugins/textBox/textBoxPlugin.html', 'plugins/textBox/textBoxPluginModel'],
     function (textBoxPluginTemplate, textBoxPluginModel) {
         'use strict';
 

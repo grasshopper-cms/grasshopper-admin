@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!plugins/datePicker/datePickerPlugin.html', 'datePickerPluginModel'],
+define(['text!plugins/datePicker/datePickerPlugin.html', 'plugins/datePicker/datePickerPluginModel'],
     function (datePickerPluginTemplate, datePickerPluginModel) {
         'use strict';
 

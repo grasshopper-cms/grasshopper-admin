@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
-    function (GrasshopperBaseView, resources, contentTypeWorker) {
+define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
+    function (GrasshopperBaseView, resources, contentTypeWorker, Api) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -67,7 +67,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
 
         function _handleNodeWithOneContentType($deferred, contentType) {
             this.model.set('contentTypeId', contentType._id);
-            $deferred.resolve();
+            _getSelectedContentTypeSchema.call(this, $deferred);
         }
 
         function _getSelectedContentTypeFromUser(nodeData) {
@@ -81,7 +81,21 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
 
         function _handleSuccessfulContentTypeSelection($deferred, selectedContentType) {
             this.model.set('contentTypeId', selectedContentType);
-            $deferred.resolve();
+            _getSelectedContentTypeSchema.call(this, $deferred);
+        }
+
+        function _getSelectedContentTypeSchema($deferred) {
+            var self = this;
+
+            Api.getContentType(this.model.get('contentTypeId'))
+                .done(function(data) {
+                    self.model.set('fields', data.fields);
+                    $deferred.resolve();
+                })
+                .fail(function() {
+                    $deferred.reject();
+                });
+
         }
 
         function _handleCanceledContentTypeSelection($deferred) {

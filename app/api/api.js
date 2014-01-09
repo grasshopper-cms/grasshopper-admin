@@ -45,6 +45,9 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         getContentTypes : function () {
             return this.request(constants.api.contentTypes.url);
         },
+        getContentType : function(id) {
+            return this.request(constants.api.contentTypes.url +'/'+ id);
+        },
         addContentTypesToNode : function (nodeId, contentType) {
             return this.post(constants.api.nodesContentTypes.url.replace(':id', nodeId), contentType);
         },

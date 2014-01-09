@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!plugins/paragraph/paragraphPlugin.html', 'paragraphPluginModel'],
+define(['text!plugins/paragraph/paragraphPlugin.html', 'plugins/paragraph/paragraphPluginModel'],
     function (paragraphPluginTemplate, paragraphPluginModel) {
         'use strict';
 
