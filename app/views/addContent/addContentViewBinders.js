@@ -2,28 +2,23 @@
 define(['jquery', 'underscore', 'plugins', 'require'], function ($, _, plugins, require) {
     'use strict';
 
-
-
     return {
         fieldtype : function(el, value) {
             var plugin = _.find(plugins.fields, {type : value.type});
 
 //            console.log(el);
-//            console.log(value);
-
-            $(el).attr('id', value._id);
+            console.log(value);
+//            console.log(this);
+//            console.log(this.view.models.view);
 
             require([plugin.view, plugin.config], function(ViewModule, configModule) {
 
                 var viewInstance = new ViewModule(_.extend({}, configModule, {
-                    modelData : {},
-                    el : '#'+ value._id
+                    modelData : value,
+                    el : el
                 }));
 
-                console.log(viewInstance);
                 viewInstance.start();
-                debugger;
-
             });
         }
     };

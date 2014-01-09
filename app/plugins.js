@@ -6,24 +6,24 @@ define({
             type : 'textbox',
             helpText : 'Text Box Help Text!',
             id : 1,
-            view : './plugins/datePicker/datePickerPlugin.js',
-            config : './plugins/datePicker/datePickerPluginConfig.js'
+            view : './plugins/textBox/textBoxPlugin.js',
+            config : './plugins/textBox/textBoxPluginConfig.js'
         },
         {
             name : 'Text Area',
             type : 'textarea',
             helpText : 'text Area Help Text',
             id : 2,
-            view : './plugins/paragraph/paragraphPlugin.js',
-            config : './plugins/paragraph/paragraphPluginConfig.js'
+            view : './plugins/textArea/textAreaPlugin.js',
+            config : './plugins/textArea/textAreaPluginConfig.js'
         },
         {
             name : 'Dropdown',
             type : 'dropdown',
             helpText : 'Dropdown Help Text',
             id : 3,
-            view : './plugins/textBox/textBoxPlugin.js',
-            config : './plugins/textBox/textBoxPluginConfig.js'
+            view : './plugins/dropdown/dropdownPlugin.js',
+            config : './plugins/dropdown/dropdownPluginConfig.js'
         },
         {
             name : 'Readonly',
