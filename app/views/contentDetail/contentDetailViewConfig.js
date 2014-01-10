@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDetail/_contentDetailRow.html',
-    'contentDetailViewModel'],
-    function (formTemplate, rowTemplate, contentDetailViewModel) {
+    'contentDetailViewModel', 'pluginBinder'],
+    function (formTemplate, rowTemplate, contentDetailViewModel, pluginBinder) {
         'use strict';
 
         return {
@@ -18,6 +18,7 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             bindings : [],
             rivetConfig : 'auto',
             mastheadButtons : [],
-            permissions : ['admin', 'reader', 'editor']
+            permissions : ['admin', 'reader', 'editor'],
+            rivetBinders : [pluginBinder]
         };
     });

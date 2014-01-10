@@ -3,6 +3,7 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
+        afterRender : afterRender,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick
     });
@@ -13,6 +14,10 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
         } else {
             $deferred.resolve();
         }
+    }
+
+    function afterRender() {
+        console.log(this);
     }
 
     function deleteContent () {

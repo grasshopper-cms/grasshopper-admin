@@ -1,5 +1,5 @@
 /* jshint loopfunc:true */
-define(['vendor/jquery', 'underscore', 'plugins', 'require'], function ($, _, plugins, require) {
+define(['jquery', 'underscore', 'plugins', 'require'], function ($, _, plugins, require) {
     'use strict';
 
 

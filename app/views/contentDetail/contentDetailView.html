@@ -17,42 +17,18 @@
                 </div>
                 <hr/>
                 <div class="row">
-                    This Models attributes :
+                    This content type Id : {{data.type}}
                 </div>
                 <hr/>
                 <div class="row">
-                    <pre><code>{{data | jsonAsString}}</code></pre>
+                    This Models attributes :
                 </div>
-
-                <!--<div class="field-item">-->
-                    <!--<h3>Field Name</h3>-->
-                    <!--<input type="text"/>-->
-                <!--</div>-->
-                <!--<div class="field-item">-->
-                    <!--<h3><input type="checkbox" value="true" name="boolean"/> Boolean Field</h3>-->
-                <!--</div>-->
-                <!--<div class="field-item">-->
-                    <!--<h3>WYSIWYG Field name</h3>-->
-                    <!--<textarea name="blah" class="wysiwyg"></textarea>-->
-                <!--</div>-->
-                <!--<div class="field-item">-->
-                    <!--<h3>Multiline Text</h3>-->
-                    <!--<textarea name="blah"></textarea>-->
-                <!--</div>-->
-                <!--<div class="field-item">-->
-                    <!--<h3>Dropdown</h3>-->
-                    <!--<select>-->
-                        <!--<option>--</option>-->
-                        <!--<option>Option 1</option>-->
-                        <!--<option>Option 2</option>-->
-                        <!--<option>Option 3</option>-->
-                        <!--<option>Option 4</option>-->
-                    <!--</select>-->
-                <!--</div>-->
-                <!--<div class="field-item">-->
-                    <!--<h3>Code</h3>-->
-                    <!--<textarea class="code-editor"></textarea>-->
-                <!--</div>-->
+                <hr/>
+                // I need arivets binder to iterate of over the keys and values in an object.
+                <div data-rv-each-field="data.fields">
+                    <div data-rv-fieldtype="field"></div>
+                    <hr>
+                </div>
             </div>
         </div>
     </div>

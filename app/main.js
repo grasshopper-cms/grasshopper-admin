@@ -153,7 +153,7 @@ require.config({
         plugins : 'plugins',
 
         // Binders
-        addContentViewBinders : 'views/addContent/addContentViewBinders',
+        pluginBinder : 'pluginBinder',
 
         // Resources File
         resources : 'resources',
