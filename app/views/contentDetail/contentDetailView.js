@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
+define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (GrasshopperBaseView, resources, $, Api) {
     'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
-        afterRender : afterRender,
+        consoleLogIT : consoleLogIT,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick
     });
@@ -14,10 +14,6 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
         } else {
             $deferred.resolve();
         }
-    }
-
-    function afterRender() {
-        console.log(this);
     }
 
     function deleteContent () {
@@ -65,13 +61,27 @@ define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, reso
     }
 
     function _fetchContentDetails($deferred) {
+        var self = this;
         this.model.fetch()
-            .done(function() {
+            .done(_getContentSchema.bind(self, $deferred))
+            .fail(function() {
+                self.displayAlertBox({
+                    msg : 'Could not retrieve content.'
+                });
+                $deferred.reject();
+            });
+    }
+
+    function _getContentSchema($deferred) {
+        var self = this;
+        Api.getContentType(this.model.get('type'))
+            .done(function(schema) {
+                self.model.set('schema', schema);
                 $deferred.resolve();
             })
             .fail(function() {
-                this.displayAlertBox({
-                    msg : 'Could not retrieve content.'
+                self.displayAlertBox({
+                    msg : 'Could not retrieve content type for this content.'
                 });
                 $deferred.reject();
             });

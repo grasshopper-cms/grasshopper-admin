@@ -1,6 +1,6 @@
 /* jshint loopfunc:true */
-define(['jquery', 'underscore', 'plugins', 'require', 'proxyProperty'],
-    function ($, _, plugins, require, ProxyProperty) {
+define(['jquery', 'underscore', 'plugins', 'require', 'masseuse'],
+    function ($, _, plugins, require, masseuse) {
         'use strict';
 
 
@@ -9,16 +9,14 @@ define(['jquery', 'underscore', 'plugins', 'require', 'proxyProperty'],
                 var plugin = _.find(plugins.fields, {type : field.type}),
                     rivets = this;
 
-//            console.log(el);
-//            console.log(field);
-//            console.log(this);
-                console.log(this.view.models.view.model);
-
                 require([plugin.view, plugin.config], function(ViewModule, configModule) {
 
                     var viewInstance = new ViewModule(_.extend({}, configModule, {
                         modelData : {
-                            value: ProxyProperty('fields.' + field._id, rivets.view.models.view.model)
+                            value: masseuse.ProxyProperty('fields.' + field._id, rivets.view.models.view.model),
+                            label: field.label,
+                            _id: field._id,
+                            type: field.type
                         },
                         el : el
                     }));
