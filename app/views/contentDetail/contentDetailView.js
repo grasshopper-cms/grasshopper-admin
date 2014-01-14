@@ -3,7 +3,6 @@ define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (Grasshop
     'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
-        consoleLogIT : consoleLogIT,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick
     });
