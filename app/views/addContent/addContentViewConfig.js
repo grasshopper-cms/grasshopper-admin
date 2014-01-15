@@ -10,7 +10,7 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'plu
             el : '#stage',
             templateHtml : addContentTemplate,
             events : {
-                'blur .fieldtype' : 'consoleLogIt'
+                'click #saveContentButton' : 'saveContent'
             },
             rivetConfig : 'auto',
             bindings : [],

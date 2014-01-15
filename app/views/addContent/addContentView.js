@@ -4,7 +4,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender : beforeRender
+            beforeRender : beforeRender,
+            saveContent : saveContent
         });
 
         function beforeRender ($deferred) {
@@ -14,6 +15,18 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
             } else {
                 _createContentInRoot.call(this, $deferred);
             }
+        }
+
+        function saveContent() {
+            console.log(this);
+            console.log(this.model.url());
+            this.model.save()
+                .done(function() {
+                    console.log('it worked');
+                })
+                .fail(function() {
+                    console.log('it did not work');
+                });
         }
 
         function _handleCreateContent ($deferred) {
@@ -67,6 +80,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
 
         function _handleNodeWithOneContentType($deferred, contentType) {
             this.model.set('contentTypeId', contentType._id);
+            _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
         }
 
@@ -81,7 +95,17 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
 
         function _handleSuccessfulContentTypeSelection($deferred, selectedContentType) {
             this.model.set('contentTypeId', selectedContentType);
+            _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
+        }
+
+        function _setNewContentsAuthor() {
+            this.model.set('author', {
+                _id : this.app.user.get('_id'),
+                firstname : this.app.user.get('firstname'),
+                lastname : this.app.user.get('lastname'),
+                fullname : this.app.user.get('firstname') +' '+ this.app.user.get('lastname')
+            });
         }
 
         function _getSelectedContentTypeSchema($deferred) {

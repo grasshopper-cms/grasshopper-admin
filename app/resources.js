@@ -81,7 +81,8 @@ define({
         deletionWarning : 'Are you sure you want to delete this content?',
         successfullyDeletedPre : 'Content ',
         successfullyDeletedPost : ' was successfully deleted.',
-        errorDeleted : 'There was an issue deleting this content: '
+        errorDeleted : 'There was an issue deleting this content: ',
+        createContent : 'Create new content.'
     },
     contentType : {
         addContentTypes : 'Add Content Types: ',

@@ -1,10 +1,57 @@
 <div id="[[= viewId ]]">
     <div class="row">
         <div class="large-10 small-centered columns">
+            <h3>{{data.resources.contentItem.createContent}}</h3>
+        </div>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="large-10 small-centered columns">
+            <div class="row">
+                <div class="small-3 columns">
+                    <label data-rv-for="data._id" class="right inline">Label</label>
+                </div>
+                <div class="small-9 columns">
+                    <input type="text" data-rv-id="data._id" placeholder="Label" data-rv-value="data.label">
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-3 columns">
+                    <label data-rv-for="data._id" class="right inline">Author</label>
+                </div>
+                <div class="small-9 columns">
+                    <input type="text" data-rv-id="data._id" data-rv-value="data.author.fullname" readonly="true">
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-3 columns">
+                    <label data-rv-for="data._id" class="right inline">Slug</label>
+                </div>
+                <div class="small-9 columns">
+                    <input type="text" data-rv-id="data._id" data-rv-placeholder="data.type" data-rv-value="data.slug">
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-3 columns">
+                    <label data-rv-for="data._id" class="right inline">Status</label>
+                </div>
+                <div class="small-9 columns">
+                    <input type="text" data-rv-id="data._id" data-rv-placeholder="data.type" data-rv-value="data.status">
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="large-10 small-centered columns">
             <div data-rv-each-field="data.schema">
                 <div class="fieldtype" data-rv-fieldtype="field"></div>
-                <hr>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-10 small-centered columns">
+            <a id="saveContentButton" class="button radius right">{{data.resources.save}}</a>
         </div>
     </div>
 </div>
