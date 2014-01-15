@@ -1,10 +1,20 @@
-define(['grasshopperModel', 'resources', 'constants'], function (Model, resources, constants) {
+define(['grasshopperModel', 'resources', 'constants', 'masseuse'], function (Model, resources, constants, masseuse) {
     'use strict';
+
+    var ComputedProperty = masseuse.ComputedProperty;
+
     return Model.extend({
         defaults : {
             resources : resources,
-            fields : {}
+            fields : {},
+            slug : new ComputedProperty(['label'], function(label) {
+                return toUnderscore(label);
+            }, true)
         },
         urlRoot : constants.api.content.url
     });
+
+    function toUnderscore(string){
+        return string.trim().toLowerCase().replace(' ', '_');
+    }
 });
