@@ -9,7 +9,9 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'plu
             modelData : {},
             el : '#stage',
             templateHtml : addContentTemplate,
-            events : {},
+            events : {
+                'blur .fieldtype' : 'consoleLogIt'
+            },
             rivetConfig : 'auto',
             bindings : [],
             appendView : true,

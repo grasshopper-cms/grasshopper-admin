@@ -21,6 +21,7 @@ define(['jquery', 'underscore', 'plugins', 'require', 'masseuse'],
                         el : el
                     }));
 
+                    rivets.view.models.view.addChild(viewInstance);
                     viewInstance.start();
                 });
             }

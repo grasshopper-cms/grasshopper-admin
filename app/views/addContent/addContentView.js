@@ -89,7 +89,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
 
             Api.getContentType(this.model.get('contentTypeId'))
                 .done(function(data) {
-                    self.model.set('fields', data.fields);
+                    self.model.set('schema', data.fields);
                     $deferred.resolve();
                 })
                 .fail(function() {
