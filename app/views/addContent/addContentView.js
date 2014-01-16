@@ -5,6 +5,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
 
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
+            afterRender : afterRender,
             saveContent : saveContent
         });
 
@@ -15,6 +16,10 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
             } else {
                 _createContentInRoot.call(this, $deferred);
             }
+        }
+
+        function afterRender() {
+            this.$el.foundation();
         }
 
         function saveContent() {

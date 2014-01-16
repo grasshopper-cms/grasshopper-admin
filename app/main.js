@@ -17,6 +17,9 @@ require.config({
         tooltip : {
             deps : ['foundation']
         },
+        abide : {
+            deps : ['foundation']
+        },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
@@ -60,6 +63,7 @@ require.config({
         dropdown : 'vendor/foundation/js/foundation/foundation.dropdown',
         tabs : 'vendor/foundation/js/foundation/foundation.tab',
         tooltip : 'vendor/foundation/js/foundation/foundation.tooltip',
+        abide : 'vendor/foundation/js/foundation/foundation.abide',
 
         // Views
         grasshopperBaseView : 'views/grasshopperBaseView',
@@ -171,6 +175,7 @@ require([
     'dropdown',
     'tabs',
     'tooltip',
+    'abide',
     'modernizr'
 ],
     /**

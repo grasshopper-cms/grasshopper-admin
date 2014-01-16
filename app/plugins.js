@@ -30,8 +30,8 @@ define({
             type : 'readonly',
             helpText : 'Readonly Help Text',
             id : 4,
-            view : './plugins/textBox/textBoxPlugin.js',
-            config : './plugins/textBox/textBoxPluginConfig.js'
+            view : './plugins/readonly/readonlyPlugin.js',
+            config : './plugins/readonly/readonlyPluginConfig.js'
         },
         {
             name : 'Reference',

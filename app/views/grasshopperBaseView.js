@@ -31,6 +31,7 @@ define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, 
             options.plugins = [];
             options.plugins.push(rivetsPlugin.plugin);
         }
+        // TODO: I think I can get rid of this line.... Nowhere in this app do I call this.options or self.options.
         this.options = options;
         Backbone.Collection.prototype.set = function (data, options) {
             if (data && data.results) {

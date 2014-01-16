@@ -16,5 +16,6 @@
     "alerts" : "vendor/foundation/js/foundation/foundation.alert.js",
     "dropdown" : "vendor/foundation/js/foundation/foundation.dropdown.js",
     "tabs": "vendor/foundation/js/foundation/foundation.tab.js",
-    "tooltip": "vendor/foundation/js/foundation/foundation.tooltip.js"
+    "tooltip": "vendor/foundation/js/foundation/foundation.tooltip.js",
+    "abide": "vendor/foundation/js/foundation/foundation.abide.js"
 }
