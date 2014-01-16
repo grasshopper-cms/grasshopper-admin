@@ -4,8 +4,8 @@
     "backbone-amd": "~1.0.0",
     "jquery": "~2.0.3",
     "requirejs": "~2.1.8",
-    "lodash-amd": "*",
-    "rivets": "~0.5.12"
+    "lodash-amd": "~2.4.1",
+    "rivets": "~0.6.5"
   },
   "devDependencies": {
     "mocha": "~1.12.1",
@@ -15,14 +15,14 @@
     "squire": "*"
   },
   "homepage": "https://github.com/Solid-Interactive/masseuse",
-  "version": "0.2.0",
-  "_release": "0.2.0",
+  "version": "0.2.1",
+  "_release": "0.2.1",
   "_resolution": {
     "type": "version",
-    "tag": "0.2.0",
-    "commit": "402fcb38ee900ed3675aeb9e496ce7a25a932301"
+    "tag": "0.2.1",
+    "commit": "dd1736a7af52e37a7b437cdf332570929080d7a2"
   },
   "_source": "git://github.com/Solid-Interactive/masseuse.git",
-  "_target": "~0.2.0",
+  "_target": "~0.2.1",
   "_originalSource": "masseuse"
 }

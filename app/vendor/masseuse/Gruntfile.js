@@ -80,7 +80,8 @@ module.exports = function (grunt) {
             files : [
                 'app/**/*.js',
                 'tests/**/*.js',
-                '!app/vendor/**/*.js'
+                '!app/vendor/**/*.js',
+                '!app/vendor2/**/*.js'
             ],
             options : {
                 jshintrc : '.jshintrc'
@@ -91,7 +92,12 @@ module.exports = function (grunt) {
             dist : {
                 src: ['README.md', 'app/**/*.js', '!app/vendor/**'],
                 options: {
-                    destination: 'docs'
+                    'destination' : 'docs',
+                    'plugins': [ 'plugins/markdown' ],
+                    'markdown': {
+                        'parser': 'gfm',
+                        'hardwrap': true
+                    }
                 }
             }
         },
@@ -101,6 +107,27 @@ module.exports = function (grunt) {
         },
 
         copy : {
+            bower : {
+                files : [
+                    {
+                        expand : true,
+                        src: [
+                            'app/**',
+                            '!app/vendor/**',
+                            'tests/**',
+                            'LICENSE-MIT',
+                            'README.md',
+                            'bower.json',
+                            '.travis.yml',
+                            'package.json',
+                            'Gruntfile.js',
+                            '.jshintrc',
+                            '.bowerrc'
+                        ],
+                        dest : 'build/'
+                    }
+                ]
+            },
             jsdoc : {
                 files : [
                     {
@@ -165,7 +192,10 @@ module.exports = function (grunt) {
         'jshint', 'shell:bower', 'shell:testPhantom'
     ]);
     grunt.registerTask('deployDocs', 'Deploy to gh-pages', [
-        'clean:build', 'jshint', 'shell:bower', 'copy:jsdoc', 'copy:app', 'copy:tests', 'build_gh_pages:jsdoc', 'shell:bower'
+        'clean:build', 'jshint', 'shell:bower', 'copy:jsdoc',
+        'copy:app', 'copy:tests', 'build_gh_pages:jsdoc', 'shell:bower'
     ]);
-
+    grunt.registerTask('deployBower', 'Deploy to bower', [
+        'clean:build', 'copy:bower', 'build_gh_pages:bower', 'shell:bower'
+    ]);
 };
