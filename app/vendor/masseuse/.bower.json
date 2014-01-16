@@ -15,14 +15,14 @@
     "squire": "*"
   },
   "homepage": "https://github.com/Solid-Interactive/masseuse",
-  "version": "0.2.1",
-  "_release": "0.2.1",
+  "version": "0.2.2",
+  "_release": "0.2.2",
   "_resolution": {
     "type": "version",
-    "tag": "0.2.1",
-    "commit": "dd1736a7af52e37a7b437cdf332570929080d7a2"
+    "tag": "0.2.2",
+    "commit": "97bf3f839e6736ef8709adda752aaad10c1aa7cb"
   },
   "_source": "git://github.com/Solid-Interactive/masseuse.git",
-  "_target": "~0.2.1",
+  "_target": "~0.2.2",
   "_originalSource": "masseuse"
 }
