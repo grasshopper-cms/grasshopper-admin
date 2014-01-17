@@ -8,7 +8,7 @@ define(['text!plugins/readonly/readonlyPlugin.html', 'plugins/readonly/readonlyP
             ModelType : readonlyPluginModel,
             modelData : {},
             el : '#stage',
-            templateHtml : readonlyPluginTemplate,
+            template : readonlyPluginTemplate,
             events : {},
             rivetConfig : 'auto',
             bindings : [],

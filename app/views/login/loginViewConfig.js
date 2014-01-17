@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/login/loginView.html', 'loginViewModel'], function (templateHtml, loginViewModel) {
+define(['text!views/login/loginView.html', 'loginViewModel'], function (template, loginViewModel) {
     'use strict';
 
     return {
@@ -9,7 +9,7 @@ define(['text!views/login/loginView.html', 'loginViewModel'], function (template
         // See the rivetView "publish" method
         ModelType : loginViewModel,
         el : '#stage',
-        templateHtml : templateHtml,
+        template : template,
         events : {
             'click #loginButton' : 'login'
         },

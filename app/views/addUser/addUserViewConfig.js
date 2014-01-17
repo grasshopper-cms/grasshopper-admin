@@ -7,7 +7,7 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel'], function (fo
         ModelType : addUserViewModel,
         modelData : {},
         el : '#stage',
-        templateHtml : formTemplate,
+        template : formTemplate,
         events : {
             'click #saveUser' : 'saveUser'
         },

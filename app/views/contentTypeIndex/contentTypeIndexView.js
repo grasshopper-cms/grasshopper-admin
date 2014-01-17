@@ -33,7 +33,7 @@ define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewCo
                 {
                     name : 'contentDetailrow',
                     el : '#contentTypeIndexTable',
-                    templateHtml : rowTemplate,
+                    template : rowTemplate,
                     modelData : data,
                     mastheadButtons : null
                 }));

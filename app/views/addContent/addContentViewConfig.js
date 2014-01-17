@@ -8,7 +8,7 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'plu
             ModelType : addContentViewModel,
             modelData : {},
             el : '#stage',
-            templateHtml : addContentTemplate,
+            template : addContentTemplate,
             events : {
                 'click #saveContentButton' : 'saveContent'
             },

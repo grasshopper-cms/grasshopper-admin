@@ -53,7 +53,7 @@ define(['jquery', 'grasshopperBaseView', 'userWorker', 'constants', 'underscore'
                 {
                     name : 'userDetailRow',
                     el : '#usersIndexTable',
-                    templateHtml : rowTemplate,
+                    template : rowTemplate,
                     model : model,
                     mastheadButtons : null
                 }

@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['text!views/header/headerView.html', 'headerViewModel', 'masseuse'],
-    function (templateHtml, HeaderViewModel, masseuse) {
+    function (template, HeaderViewModel, masseuse) {
         'use strict';
 
         var ViewContext = masseuse.ViewContext;
@@ -12,7 +12,7 @@ define(['text!views/header/headerView.html', 'headerViewModel', 'masseuse'],
             },
             ModelType : HeaderViewModel,
             el : '#header',
-            templateHtml : templateHtml,
+            template : template,
             events : {},
             appendView : true,
             bindings : [],

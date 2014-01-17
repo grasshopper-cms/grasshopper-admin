@@ -9,7 +9,7 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
             ModelType : nodeDetailViewModel,
             modelData : {},
             el : '#stage',
-            templateHtml : formTemplate,
+            template : formTemplate,
             events : {
                 'click #deleteNode' : 'prepareToDeleteNode',
                 'click #editNode' : 'prepareToEditNode',

@@ -22,22 +22,22 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
         function initialize (options) {
             switch (options.type) {
             case 'image':
-                options.templateHtml = imageModalTemplate;
+                options.template = imageModalTemplate;
                 break;
             case 'input':
-                options.templateHtml = inputModalTemplate;
+                options.template = inputModalTemplate;
                 break;
             case 'checkbox':
-                options.templateHtml = checkboxTemplate;
+                options.template = checkboxTemplate;
                 break;
             case 'upload':
-                options.templateHtml = uploadTemplate;
+                options.template = uploadTemplate;
                 break;
             case 'radio':
-                options.templateHtml = radioTemplate;
+                options.template = radioTemplate;
                 break;
             default:
-                options.templateHtml = defaultTemplate;
+                options.template = defaultTemplate;
                 break;
             }
             GrasshopperBaseView.prototype.initialize.apply(this, arguments);

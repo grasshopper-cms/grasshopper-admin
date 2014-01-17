@@ -9,7 +9,7 @@ define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_
             ModelType : assetDetailViewModel,
             modelData : {},
             el : '#stage',
-            templateHtml : formTemplate,
+            template : formTemplate,
             events : {
                 'click .clickableCell' : 'handleRowClick',
                 'click #deleteAsset' : 'prepareToDeleteAsset',

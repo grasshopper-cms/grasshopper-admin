@@ -9,7 +9,7 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             modelData : {},
             ModelType : userDetailViewModel,
             el : '#stage',
-            templateHtml : formTemplate,
+            template : formTemplate,
             events : {
                 'click #saveUser' : 'updateModel',
                 'click .toggleEnabled' : 'toggleEnabled',

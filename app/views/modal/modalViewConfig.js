@@ -1,12 +1,12 @@
 /*global define:false*/
-define(['text!views/modal/modalView.html', 'modalViewModel'], function (templateHtml, modalViewModel) {
+define(['text!views/modal/modalView.html', 'modalViewModel'], function (template, modalViewModel) {
     'use strict';
 
     return {
         name : 'modalView',
         ModelType : modalViewModel,
         el : '#modal',
-        templateHtml : templateHtml,
+        template : template,
         rivetConfig : 'auto',
         appendView : true,
         events : {

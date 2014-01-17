@@ -8,7 +8,7 @@ define(['text!plugins/textArea/textAreaPlugin.html', 'plugins/textArea/textAreaP
             ModelType : textAreaPluginModel,
             modelData : {},
             el : '',
-            templateHtml : textAreaPluginTemplate,
+            template : textAreaPluginTemplate,
             events : {},
             rivetConfig : 'auto',
             bindings : [],

@@ -8,7 +8,7 @@ define(['text!plugins/textBox/textBoxPlugin.html', 'plugins/textBox/textBoxPlugi
             ModelType : textBoxPluginModel,
             modelData : {},
             el : '#stage',
-            templateHtml : textBoxPluginTemplate,
+            template : textBoxPluginTemplate,
             events : {},
             rivetConfig : 'auto',
             bindings : [],

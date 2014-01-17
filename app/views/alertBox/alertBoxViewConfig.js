@@ -1,12 +1,12 @@
 /*global define:false*/
-define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function (templateHtml, alertBoxViewModel) {
+define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function (template, alertBoxViewModel) {
     'use strict';
 
     return {
         name : 'alertBoxView',
         ModelType : alertBoxViewModel,
         el : '#alertBox',
-        templateHtml : templateHtml,
+        template : template,
         appendView : true,
         rivetConfig : 'auto',
         events : {

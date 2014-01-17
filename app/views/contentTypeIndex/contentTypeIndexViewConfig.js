@@ -1,13 +1,13 @@
 /*global define:false*/
 define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeIndexViewModel', 'resources', 'constants'],
-    function (templateHtml, contentTypeIndexViewModel, resources, constants) {
+    function (template, contentTypeIndexViewModel, resources, constants) {
         'use strict';
 
         return {
             name : 'contentTypeIndexView',
             ModelType : contentTypeIndexViewModel,
             el : '#stage',
-            templateHtml : templateHtml,
+            template : template,
             rivetConfig : 'auto',
             bindings : [
             ],

@@ -1,13 +1,13 @@
 /*global define:false*/
 define(['text!views/contentIndex/contentIndexView.html', 'contentIndexViewModel'],
-    function (templateHtml, contentIndexViewModel) {
+    function (template, contentIndexViewModel) {
         'use strict';
 
         return {
             name : 'contentIndexView',
             ModelType : contentIndexViewModel,
             el : '#contentIndex',
-            templateHtml : templateHtml,
+            template : template,
             rivetConfig : 'auto',
             bindings : [],
             appendView : true,

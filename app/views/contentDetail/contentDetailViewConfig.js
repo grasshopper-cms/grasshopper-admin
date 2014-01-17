@@ -9,7 +9,7 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             ModelType : contentDetailViewModel,
             modelData : {},
             el : '#stage',
-            templateHtml : formTemplate,
+            template : formTemplate,
             events : {
                 'click #deleteContent' : 'deleteContent',
                 'click .clickableCell' : 'handleRowClick'

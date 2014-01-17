@@ -8,7 +8,7 @@ define(['text!plugins/dropdown/dropdownPlugin.html', 'plugins/dropdown/dropdownP
             ModelType : dropdownPluginModel,
             modelData : {},
             el : '',
-            templateHtml : dropdownPluginTemplate,
+            template : dropdownPluginTemplate,
             events : {},
             rivetConfig : 'auto',
             bindings : [],

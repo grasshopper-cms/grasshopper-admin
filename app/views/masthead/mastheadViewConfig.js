@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources'],
-    function (templateHtml, mastheadViewModel, resources) {
+    function (template, mastheadViewModel, resources) {
         'use strict';
 
         return {
@@ -8,7 +8,7 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
             modelData : {},
             ModelType : mastheadViewModel,
             el : '#masthead',
-            templateHtml : templateHtml,
+            template : template,
             events : {},
             appendView : true,
             bindings : [
