@@ -1,146 +1,144 @@
-<div id="[[= viewId ]]">
-    <div id="userDetail" class="row">
-        <div class="large-10 small-centered columns">
-            <fieldset>
-                <legend>
-                    <h2>{{model:resources->userDetailHeaderText}}{{model:firstname | spaceAfter}}{{model:lastname}}</h2>
-                </legend>
+<div id="userDetail" class="row">
+    <div class="large-10 small-centered columns">
+        <fieldset>
+            <legend>
+                <h2>{{model:resources->userDetailHeaderText}}{{model:firstname | spaceAfter}}{{model:lastname}}</h2>
+            </legend>
 
-                <div class="row">
-                    <div class="large-4 columns">
-                        <img class="gravatar"
-                             src="http://content.screencast.com/users/GregSolid/folders/Jing/media/f45e09fd-036c-446e-900a-cc60e3e071d6/00000032.png"/>
+            <div class="row">
+                <div class="large-4 columns">
+                    <img class="gravatar"
+                         src="http://content.screencast.com/users/GregSolid/folders/Jing/media/f45e09fd-036c-446e-900a-cc60e3e071d6/00000032.png"/>
+                </div>
+
+                <div class="large-8 columns">
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="firstName" class="right inline">{{model:resources->attributeTitles->firstName |
+                                withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="firstName" type="text" value="model:name"
+                                           data-rv-value="model:firstname"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="large-8 columns">
-                        <div class="row listItem">
-                            <div class="large-3 columns">
-                                <label for="firstName" class="right inline">{{model:resources->attributeTitles->firstName |
-                                    withColon}}</label>
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="lastName" class="right inline">{{model:resources->attributeTitles->lastName |
+                                withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="lastName" type="text" value="model:name"
+                                           data-rv-value="model:lastname"/>
+                                </div>
                             </div>
-                            <div class="large-9 columns editable">
-                                <div class="row">
-                                    <div class="large-12 columns attribute">
-                                        <input id="firstName" type="text" value="model:name"
-                                               data-rv-value="model:firstname"/>
+                        </div>
+                    </div>
+
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="statusText" class="right inline">{{model:resources->attributeTitles->enabled |
+                                withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <div id="statusText" class="userEnabledSwitch">
+                                        <input id="trueSwitch" name="switch-z" type="radio" value="true"
+                                               data-rv-checked="model:enabled"
+                                               data-rv-enabled="model:userModel->role | equals admin">
+                                        <label for="trueSwitch" onclick="">Yes</label>
+
+                                        <input id="falseSwitch" name="switch-z" type="radio" value="false"
+                                               data-rv-checked="model:enabled"
+                                               data-rv-enabled="model:userModel->role | equals admin">
+                                        <label for="falseSwitch" onclick="">No</label>
+
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row listItem">
-                            <div class="large-3 columns">
-                                <label for="lastName" class="right inline">{{model:resources->attributeTitles->lastName |
-                                    withColon}}</label>
-                            </div>
-                            <div class="large-9 columns editable">
-                                <div class="row">
-                                    <div class="large-12 columns attribute">
-                                        <input id="lastName" type="text" value="model:name"
-                                               data-rv-value="model:lastname"/>
-                                    </div>
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="role" class="right inline">{{model:resources->attributeTitles->role |
+                                withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <form class="custom">
+                                        <select id="role" data-rv-enabled="model:userModel->role | equals admin"
+                                                data-rv-value="model:role | humanize">
+                                            <option data-rv-each-role="model:roles"
+                                                    data-rv-text="role | humanize"></option>
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row listItem">
-                            <div class="large-3 columns">
-                                <label for="statusText" class="right inline">{{model:resources->attributeTitles->enabled |
-                                    withColon}}</label>
-                            </div>
-                            <div class="large-9 columns editable">
-                                <div class="row">
-                                    <div class="large-12 columns attribute">
-                                        <div id="statusText" class="userEnabledSwitch">
-                                            <input id="trueSwitch" name="switch-z" type="radio" value="true"
-                                                   data-rv-checked="model:enabled"
-                                                   data-rv-enabled="model:userModel->role | equals admin">
-                                            <label for="trueSwitch" onclick="">Yes</label>
-
-                                            <input id="falseSwitch" name="switch-z" type="radio" value="false"
-                                                   data-rv-checked="model:enabled"
-                                                   data-rv-enabled="model:userModel->role | equals admin">
-                                            <label for="falseSwitch" onclick="">No</label>
-
-                                            <span></span>
-                                        </div>
-                                    </div>
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="email" class="right inline">{{model:resources->attributeTitles->email |
+                                withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="email" type="text" value="model:email" data-rv-value="model:email"/>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row listItem">
-                            <div class="large-3 columns">
-                                <label for="role" class="right inline">{{model:resources->attributeTitles->role |
-                                    withColon}}</label>
-                            </div>
-                            <div class="large-9 columns editable">
-                                <div class="row">
-                                    <div class="large-12 columns attribute">
-                                        <form class="custom">
-                                            <select id="role" data-rv-enabled="model:userModel->role | equals admin"
-                                                    data-rv-value="model:role | humanize">
-                                                <option data-rv-each-role="model:roles"
-                                                        data-rv-text="role | humanize"></option>
-                                            </select>
-                                        </form>
-                                    </div>
+                    <div class="row listItem">
+                        <div class="large-3 columns">
+                            <label for="login" class="right inline">{{model:resources->attributeTitles->login |
+                                withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="login" type="text" value="model:login" data-rv-value="model:login"/>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row listItem">
-                            <div class="large-3 columns">
-                                <label for="email" class="right inline">{{model:resources->attributeTitles->email |
-                                    withColon}}</label>
-                            </div>
-                            <div class="large-9 columns editable">
-                                <div class="row">
-                                    <div class="large-12 columns attribute">
-                                        <input id="email" type="text" value="model:email" data-rv-value="model:email"/>
-                                    </div>
+                    <div class="row listItem" data-rv-show="model:userModel->role | equals admin">
+                        <div class="large-3 columns">
+                            <label for="password" class="right inline">{{model:resources->attributeTitles->password |
+                                withColon}}</label>
+                        </div>
+                        <div class="large-9 columns editable">
+                            <div class="row">
+                                <div class="large-12 columns attribute">
+                                    <input id="password" type="password" value="model:password"
+                                           data-rv-value="model:password"/>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row listItem">
-                            <div class="large-3 columns">
-                                <label for="login" class="right inline">{{model:resources->attributeTitles->login |
-                                    withColon}}</label>
-                            </div>
-                            <div class="large-9 columns editable">
-                                <div class="row">
-                                    <div class="large-12 columns attribute">
-                                        <input id="login" type="text" value="model:login" data-rv-value="model:login"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row listItem" data-rv-show="model:userModel->role | equals admin">
-                            <div class="large-3 columns">
-                                <label for="password" class="right inline">{{model:resources->attributeTitles->password |
-                                    withColon}}</label>
-                            </div>
-                            <div class="large-9 columns editable">
-                                <div class="row">
-                                    <div class="large-12 columns attribute">
-                                        <input id="password" type="password" value="model:password"
-                                               data-rv-value="model:password"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="small-12 columns">
-                                <input id="saveUser" type="submit" class="button success radius right"
-                                       data-rv-text="model:resources->save"/>
-                            </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <input id="saveUser" type="submit" class="button success radius right"
+                                   data-rv-text="model:resources->save"/>
                         </div>
                     </div>
                 </div>
-            </fieldset>
-        </div>
+            </div>
+        </fieldset>
     </div>
 </div>

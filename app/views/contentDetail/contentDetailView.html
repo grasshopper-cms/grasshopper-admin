@@ -1,33 +1,31 @@
-<div id="[[= viewId ]]">
-    <div id="contentEdit">
-        <div class="row">
-            <div class="large-12 columns">
-                <div class="row">
-                    <div class="large-6 columns">
-                        <h3 class="title">{{data.label}}</h3>
-                    </div>
-                    <hr/>
-                </div>
-                <div class="row">
-                    The Parents NodeID : <span>{{data.node._id}}</span>
+<div id="contentEdit">
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-6 columns">
+                    <h3 class="title">{{data.label}}</h3>
                 </div>
                 <hr/>
-                <div class="row">
-                    This Content Id : {{data._id}}
-                </div>
-                <hr/>
-                <div class="row">
-                    This content type Id : {{data.type}}
-                </div>
-                <hr/>
-                <div class="row">
-                    This Models attributes :
-                </div>
-                <hr/>
-                <div data-rv-each-field="data.schema.fields">
-                    <div data-rv-fieldtype="field"></div>
-                    <hr>
-                </div>
+            </div>
+            <div class="row">
+                The Parents NodeID : <span>{{data.node._id}}</span>
+            </div>
+            <hr/>
+            <div class="row">
+                This Content Id : {{data._id}}
+            </div>
+            <hr/>
+            <div class="row">
+                This content type Id : {{data.type}}
+            </div>
+            <hr/>
+            <div class="row">
+                This Models attributes :
+            </div>
+            <hr/>
+            <div data-rv-each-field="data.schema.fields">
+                <div data-rv-fieldtype="field"></div>
+                <hr>
             </div>
         </div>
     </div>

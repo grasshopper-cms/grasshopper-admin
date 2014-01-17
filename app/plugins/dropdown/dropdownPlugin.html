@@ -1,15 +1,13 @@
-<div id="[[= viewId ]]">
-    <div class="row">
-        <div class="large-10 small-centered columns">
-            <div class="row">
-                <div class="small-3 columns">
-                    <label data-rv-for="data._id" class="right inline">{{data.label}}</label>
-                </div>
-                <div class="small-9 columns">
-                    <select data-rv-id="data._id">
-                        <option data-rv-each-option="data.options">{{option}}</option>
-                    </select>
-                </div>
+<div class="row">
+    <div class="large-10 small-centered columns">
+        <div class="row">
+            <div class="small-3 columns">
+                <label data-rv-for="model:_id" class="right inline">{{model:label}}</label>
+            </div>
+            <div class="small-9 columns">
+                <select data-rv-id="model:_id">
+                    <option data-rv-each-option="model:options">{{option}}</option>
+                </select>
             </div>
         </div>
     </div>

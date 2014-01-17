@@ -1,61 +1,59 @@
-<div id="[[= viewId ]]">
-    <div class="row">
-        <div class="large-10 small-centered columns">
-            <form data-abide>
-                <fieldset>
-                    <legend>{{model:resources->contentItem->createContent}}</legend>
-                    <div class="row">
-                        <div class="large-10 small-centered columns">
-                            <div class="row">
-                                <div class="small-3 columns">
-                                    <label data-rv-for="model:_id" class="right inline">Label</label>
-                                </div>
-                                <div class="small-9 columns">
-                                    <input type="text" data-rv-id="model:_id" placeholder="Label" data-rv-value="model:label" required>
-                                    <small class="error">Label is A Required field.</small>
-                                </div>
+<div class="row">
+    <div class="large-10 small-centered columns">
+        <form data-abide>
+            <fieldset>
+                <legend>{{model:resources->contentItem->createContent}}</legend>
+                <div class="row">
+                    <div class="large-10 small-centered columns">
+                        <div class="row">
+                            <div class="small-3 columns">
+                                <label data-rv-for="model:_id" class="right inline">Label</label>
                             </div>
-                            <div class="row">
-                                <div class="small-3 columns">
-                                    <label data-rv-for="model:_id" class="right inline">Author</label>
-                                </div>
-                                <div class="small-9 columns">
-                                    <input type="text" data-rv-id="model:_id" data-rv-value="model:author->fullname" readonly="true">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="small-3 columns">
-                                    <label data-rv-for="model:_id" class="right inline">Slug</label>
-                                </div>
-                                <div class="small-9 columns">
-                                    <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:type" data-rv-value="model:slug" readonly="true">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="small-3 columns">
-                                    <label data-rv-for="model:_id" class="right inline">Status</label>
-                                </div>
-                                <div class="small-9 columns">
-                                    <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:type" data-rv-value="model:status">
-                                </div>
+                            <div class="small-9 columns">
+                                <input type="text" data-rv-id="model:_id" placeholder="Label" data-rv-value="model:label" required>
+                                <small class="error">Label is A Required field.</small>
                             </div>
                         </div>
-                        <hr>
-                    </div>
-                    <div class="row">
-                        <div class="large-10 small-centered columns">
-                            <div data-rv-each-field="model:schema">
-                                <div class="fieldtype" data-rv-fieldtype="field"></div>
+                        <div class="row">
+                            <div class="small-3 columns">
+                                <label data-rv-for="model:_id" class="right inline">Author</label>
+                            </div>
+                            <div class="small-9 columns">
+                                <input type="text" data-rv-id="model:_id" data-rv-value="model:author->fullname" readonly="true">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="small-3 columns">
+                                <label data-rv-for="model:_id" class="right inline">Slug</label>
+                            </div>
+                            <div class="small-9 columns">
+                                <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:type" data-rv-value="model:slug" readonly="true">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="small-3 columns">
+                                <label data-rv-for="model:_id" class="right inline">Status</label>
+                            </div>
+                            <div class="small-9 columns">
+                                <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:type" data-rv-value="model:status">
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="large-10 small-centered columns">
-                            <button id="saveContentButton" type="submit" class="button radius right">{{model:resources->save}}</button>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="large-10 small-centered columns">
+                        <div data-rv-each-field="model:schema">
+                            <div class="fieldtype" data-rv-fieldtype="field"></div>
                         </div>
                     </div>
-                </fieldset>
-            </form>
-        </div>
+                </div>
+                <div class="row">
+                    <div class="large-10 small-centered columns">
+                        <button id="saveContentButton" type="submit" class="button radius right">{{model:resources->save}}</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
 </div>
