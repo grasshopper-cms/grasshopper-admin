@@ -19,6 +19,7 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
                 this.model.urlRoot = constants.api.users.url;
             }
 
+            // TODO: I think this can be replaced with a this.model.isNew()
             if (!this.model.has('_id')) {
                 this.model.fetch()
                     .done(function () { });

@@ -7,3 +7,6 @@
 [submodule "app/vendor/helpers"]
 	path = app/vendor/helpers
 	url = git@git.thinksolid.com:javascript/helpers.git
+[submodule "app/vendor/masseuse"]
+	path = app/vendor/masseuse
+	url = https://github.com/Solid-Interactive/masseuse.git

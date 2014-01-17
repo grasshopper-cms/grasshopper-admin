@@ -3,7 +3,7 @@
         <div class="large-12  columns">
             <div class="row">
                 <div class="large-3 columns">
-                    <h3 class="title">{{data.resources.contentTypes}}</h3>
+                    <h3 class="title">{{model:resources->contentTypes}}</h3>
                 </div>
                 <div class="large-3 large-offset-6 columns">
                     <input type="text" id="ContentSearch" class="search" placeholder="Search"/> <a href="#"><i
@@ -18,8 +18,8 @@
             <table width="100%">
                 <thead>
                 <tr>
-                    <th width='700'>{{data.resources.name}}</th>
-                    <th style="text-align: center">{{data.resources.actions}}</th>
+                    <th width='700'>{{model:resources->name}}</th>
+                    <th style="text-align: center">{{model:resources->actions}}</th>
                 </tr>
                 </thead>
                 <tbody id="contentTypeIndexTable">
@@ -33,16 +33,16 @@
             <div class="row">
                 <div class="large-12 columns">
                     <ul class="pagination">
-                        <li data-rv-class-unavailable="data.prevPage.disabled" class="arrow"><a
-                                data-rv-disabled="data.prevPage.disabled"
-                                data-rv-onClick="data.prevPage.onClick"
-                                data-rv-href="data.prevPage.link">{{data.resources.previous}}</a></li>
-                        <li data-rv-each-page="data.pages" data-rv-class-current="page.current"><a
+                        <li data-rv-class-unavailable="model:prevPage->disabled" class="arrow"><a
+                                data-rv-disabled="model:prevPage->disabled"
+                                data-rv-onClick="model:prevPage->onClick"
+                                data-rv-href="model:prevPage.link">{{model:resources->previous}}</a></li>
+                        <li data-rv-each-page="model:pages" data-rv-class-current="page.current"><a
                                 data-rv-text="page.page" data-rv-href="page.link"></a></li>
-                        <li data-rv-class-unavailable="data.nextPage.disabled" class="arrow"><a
-                                data-rv-disabled="data.nextPage.disabled"
-                                data-rv-onClick="data.nextPage.onClick"
-                                data-rv-href="data.nextPage.link">{{data.resources.next}}</a></li>
+                        <li data-rv-class-unavailable="model:nextPage->disabled" class="arrow"><a
+                                data-rv-disabled="model:nextPage->disabled"
+                                data-rv-onClick="model:nextPage->onClick"
+                                data-rv-href="model:nextPage->link">{{model:resources->next}}</a></li>
                     </ul>
                 </div>
             </div>

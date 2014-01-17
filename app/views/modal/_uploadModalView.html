@@ -3,28 +3,28 @@
         <div id="modal-contents">
             <div class="row">
                 <div id="modal-text">
-                    <h2>{{data.msg}}</h2>
+                    <h2>{{model:msg}}</h2>
                 </div>
             </div>
-            <div id="dropZone">{{data.resources.asset.dragFilesHere}}</div>
+            <div id="dropZone">{{model:resources->asset->dragFilesHere}}</div>
             <input type="file" id="uploadFileInput" name="files" multiple="multiple"/>
 
             <div class="row">
                 <div class="small-12 text-center">
-                    <span data-rv-show="data.files">Selected Files:</span>
+                    <span data-rv-show="model:files">Selected Files:</span>
                     <hr/>
                 </div>
             </div>
             <ol>
-                <li data-rv-each-file="data.files">{{file.name | withColon}}{{file.size | prettyFileSize |
+                <li data-rv-each-file="model:files">{{file.name | withColon}}{{file.size | prettyFileSize |
                     withColon}}{{file.type}}
                 </li>
             </ol>
             <div class="row">
                 <div class="small-12 text-center">
                     <ul id="button-container" class="button-group radius">
-                        <li><a id="confirm" class="button small">{{data.resources.upload}}</a></li>
-                        <li><a id="cancel" class="button small">{{data.resources.cancel}}</a></li>
+                        <li><a id="confirm" class="button small">{{model:resources->upload}}</a></li>
+                        <li><a id="cancel" class="button small">{{model:resources->cancel}}</a></li>
                     </ul>
                 </div>
             </div>

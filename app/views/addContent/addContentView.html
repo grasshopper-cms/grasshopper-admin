@@ -3,40 +3,40 @@
         <div class="large-10 small-centered columns">
             <form data-abide>
                 <fieldset>
-                    <legend>{{data.resources.contentItem.createContent}}</legend>
+                    <legend>{{model:resources->contentItem->createContent}}</legend>
                     <div class="row">
                         <div class="large-10 small-centered columns">
                             <div class="row">
                                 <div class="small-3 columns">
-                                    <label data-rv-for="data._id" class="right inline">Label</label>
+                                    <label data-rv-for="model:_id" class="right inline">Label</label>
                                 </div>
                                 <div class="small-9 columns">
-                                    <input type="text" data-rv-id="data._id" placeholder="Label" data-rv-value="data.label" required>
+                                    <input type="text" data-rv-id="model:_id" placeholder="Label" data-rv-value="model:label" required>
                                     <small class="error">Label is A Required field.</small>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="small-3 columns">
-                                    <label data-rv-for="data._id" class="right inline">Author</label>
+                                    <label data-rv-for="model:_id" class="right inline">Author</label>
                                 </div>
                                 <div class="small-9 columns">
-                                    <input type="text" data-rv-id="data._id" data-rv-value="data.author.fullname" readonly="true">
+                                    <input type="text" data-rv-id="model:_id" data-rv-value="model:author->fullname" readonly="true">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="small-3 columns">
-                                    <label data-rv-for="data._id" class="right inline">Slug</label>
+                                    <label data-rv-for="model:_id" class="right inline">Slug</label>
                                 </div>
                                 <div class="small-9 columns">
-                                    <input type="text" data-rv-id="data._id" data-rv-placeholder="data.type" data-rv-value="data.slug" readonly="true">
+                                    <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:type" data-rv-value="model:slug" readonly="true">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="small-3 columns">
-                                    <label data-rv-for="data._id" class="right inline">Status</label>
+                                    <label data-rv-for="model:_id" class="right inline">Status</label>
                                 </div>
                                 <div class="small-9 columns">
-                                    <input type="text" data-rv-id="data._id" data-rv-placeholder="data.type" data-rv-value="data.status">
+                                    <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:type" data-rv-value="model:status">
                                 </div>
                             </div>
                         </div>
@@ -44,14 +44,14 @@
                     </div>
                     <div class="row">
                         <div class="large-10 small-centered columns">
-                            <div data-rv-each-field="data.schema">
+                            <div data-rv-each-field="model:schema">
                                 <div class="fieldtype" data-rv-fieldtype="field"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="large-10 small-centered columns">
-                            <button id="saveContentButton" type="submit" class="button radius right">{{data.resources.save}}</button>
+                            <button id="saveContentButton" type="submit" class="button radius right">{{model:resources->save}}</button>
                         </div>
                     </div>
                 </fieldset>

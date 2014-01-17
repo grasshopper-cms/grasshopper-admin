@@ -3,7 +3,7 @@
         <div class="large-10 small-centered columns">
             <fieldset>
                 <legend>
-                    <h2>{{data.resources.userDetailHeaderText}}{{data.firstname | spaceAfter}}{{data.lastname}}</h2>
+                    <h2>{{model:resources->userDetailHeaderText}}{{model:firstname | spaceAfter}}{{model:lastname}}</h2>
                 </legend>
 
                 <div class="row">
@@ -15,14 +15,14 @@
                     <div class="large-8 columns">
                         <div class="row listItem">
                             <div class="large-3 columns">
-                                <label for="firstName" class="right inline">{{data.resources.attributeTitles.firstName |
+                                <label for="firstName" class="right inline">{{model:resources->attributeTitles->firstName |
                                     withColon}}</label>
                             </div>
                             <div class="large-9 columns editable">
                                 <div class="row">
                                     <div class="large-12 columns attribute">
-                                        <input id="firstName" type="text" value="data.name"
-                                               data-rv-value="data.firstname"/>
+                                        <input id="firstName" type="text" value="model:name"
+                                               data-rv-value="model:firstname"/>
                                     </div>
                                 </div>
                             </div>
@@ -30,14 +30,14 @@
 
                         <div class="row listItem">
                             <div class="large-3 columns">
-                                <label for="lastName" class="right inline">{{data.resources.attributeTitles.lastName |
+                                <label for="lastName" class="right inline">{{model:resources->attributeTitles->lastName |
                                     withColon}}</label>
                             </div>
                             <div class="large-9 columns editable">
                                 <div class="row">
                                     <div class="large-12 columns attribute">
-                                        <input id="lastName" type="text" value="data.name"
-                                               data-rv-value="data.lastname"/>
+                                        <input id="lastName" type="text" value="model:name"
+                                               data-rv-value="model:lastname"/>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
 
                         <div class="row listItem">
                             <div class="large-3 columns">
-                                <label for="statusText" class="right inline">{{data.resources.attributeTitles.enabled |
+                                <label for="statusText" class="right inline">{{model:resources->attributeTitles->enabled |
                                     withColon}}</label>
                             </div>
                             <div class="large-9 columns editable">
@@ -53,13 +53,13 @@
                                     <div class="large-12 columns attribute">
                                         <div id="statusText" class="userEnabledSwitch">
                                             <input id="trueSwitch" name="switch-z" type="radio" value="true"
-                                                   data-rv-checked="data.enabled"
-                                                   data-rv-enabled="data.userModel.role | equals admin">
+                                                   data-rv-checked="model:enabled"
+                                                   data-rv-enabled="model:userModel->role | equals admin">
                                             <label for="trueSwitch" onclick="">Yes</label>
 
                                             <input id="falseSwitch" name="switch-z" type="radio" value="false"
-                                                   data-rv-checked="data.enabled"
-                                                   data-rv-enabled="data.userModel.role | equals admin">
+                                                   data-rv-checked="model:enabled"
+                                                   data-rv-enabled="model:userModel->role | equals admin">
                                             <label for="falseSwitch" onclick="">No</label>
 
                                             <span></span>
@@ -71,16 +71,16 @@
 
                         <div class="row listItem">
                             <div class="large-3 columns">
-                                <label for="role" class="right inline">{{data.resources.attributeTitles.role |
+                                <label for="role" class="right inline">{{model:resources->attributeTitles->role |
                                     withColon}}</label>
                             </div>
                             <div class="large-9 columns editable">
                                 <div class="row">
                                     <div class="large-12 columns attribute">
                                         <form class="custom">
-                                            <select id="role" data-rv-enabled="data.userModel.role | equals admin"
-                                                    data-rv-value="data.role | humanize">
-                                                <option data-rv-each-role="data.roles"
+                                            <select id="role" data-rv-enabled="model:userModel->role | equals admin"
+                                                    data-rv-value="model:role | humanize">
+                                                <option data-rv-each-role="model:roles"
                                                         data-rv-text="role | humanize"></option>
                                             </select>
                                         </form>
@@ -91,13 +91,13 @@
 
                         <div class="row listItem">
                             <div class="large-3 columns">
-                                <label for="email" class="right inline">{{data.resources.attributeTitles.email |
+                                <label for="email" class="right inline">{{model:resources->attributeTitles->email |
                                     withColon}}</label>
                             </div>
                             <div class="large-9 columns editable">
                                 <div class="row">
                                     <div class="large-12 columns attribute">
-                                        <input id="email" type="text" value="data.email" data-rv-value="data.email"/>
+                                        <input id="email" type="text" value="model:email" data-rv-value="model:email"/>
                                     </div>
                                 </div>
                             </div>
@@ -105,28 +105,28 @@
 
                         <div class="row listItem">
                             <div class="large-3 columns">
-                                <label for="login" class="right inline">{{data.resources.attributeTitles.login |
+                                <label for="login" class="right inline">{{model:resources->attributeTitles->login |
                                     withColon}}</label>
                             </div>
                             <div class="large-9 columns editable">
                                 <div class="row">
                                     <div class="large-12 columns attribute">
-                                        <input id="login" type="text" value="data.login" data-rv-value="data.login"/>
+                                        <input id="login" type="text" value="model:login" data-rv-value="model:login"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row listItem" data-rv-show="data.userModel.role | equals admin">
+                        <div class="row listItem" data-rv-show="model:userModel->role | equals admin">
                             <div class="large-3 columns">
-                                <label for="password" class="right inline">{{data.resources.attributeTitles.password |
+                                <label for="password" class="right inline">{{model:resources->attributeTitles->password |
                                     withColon}}</label>
                             </div>
                             <div class="large-9 columns editable">
                                 <div class="row">
                                     <div class="large-12 columns attribute">
-                                        <input id="password" type="password" value="data.password"
-                                               data-rv-value="data.password"/>
+                                        <input id="password" type="password" value="model:password"
+                                               data-rv-value="model:password"/>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                         <div class="row">
                             <div class="small-12 columns">
                                 <input id="saveUser" type="submit" class="button success radius right"
-                                       data-rv-text="data.resources.save"/>
+                                       data-rv-text="model:resources->save"/>
                             </div>
                         </div>
                     </div>

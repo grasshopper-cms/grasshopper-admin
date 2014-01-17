@@ -20,21 +20,21 @@
 
                                         <div class="field">
                                             <label for="loginUsername">Username:</label>
-                                            <input type="text" id="loginUsername" data-rv-class-error="data.usernameError"
-                                                   placeholder="User Name" data-rv-value="data.username"
+                                            <input type="text" id="loginUsername" data-rv-class-error="model:usernameError"
+                                                   placeholder="User Name" data-rv-value="model:username"
                                                    class="login username-field">
 
-                                            <div data-rv-text="data.usernameError"></div>
+                                            <div data-rv-text="model:usernameError"></div>
                                         </div>
 
                                         <div class="field">
                                             <label for="loginPassword">Password:</label>
                                             <input type="password" id="loginPassword"
-                                                   data-rv-class-error="data.passwordError"
-                                                   placeholder="Password" data-rv-value="data.password"
+                                                   data-rv-class-error="model:passwordError"
+                                                   placeholder="Password" data-rv-value="model:password"
                                                    class="login password-field">
 
-                                            <div data-rv-text="data.passwordError"></div>
+                                            <div data-rv-text="model:passwordError"></div>
                                         </div>
                                         <!-- /password -->
 
@@ -53,7 +53,7 @@
                                 <div class="large-4 small-12 columns">
                                     <input id="loginButton" class="login-button button btn btn-primary btn-large"
                                            type="submit"
-                                           data-rv-class-disabled="data.hasError" value="Sign In">
+                                           data-rv-class-disabled="model:hasError" value="Sign In">
                                     </input>
                                 </div>
                             </div>

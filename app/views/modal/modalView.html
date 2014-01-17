@@ -3,14 +3,14 @@
         <div id="modal-contents" class="small-6">
             <div class="row">
                 <div id="modal-text">
-                    <h2>{{data.msg}}</h2>
+                    <h2>{{model:msg}}</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="small-12 text-center">
                     <ul id="button-container" class="button-group radius">
-                        <li><a id="confirm" class="button small">{{data.resources.confirm}}</a></li>
-                        <li><a id="cancel" class="button small">{{data.resources.cancel}}</a></li>
+                        <li><a id="confirm" class="button small">{{model:resources->confirm}}</a></li>
+                        <li><a id="cancel" class="button small">{{model:resources->cancel}}</a></li>
                     </ul>
                 </div>
             </div>
