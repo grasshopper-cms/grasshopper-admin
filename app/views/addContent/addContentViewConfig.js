@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'pluginBinder'],
-    function (addContentTemplate, addContentViewModel, pluginBinder) {
+define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'grasshopperBinders'],
+    function (addContentTemplate, addContentViewModel, grasshopperBinders) {
         'use strict';
 
         return {
@@ -17,6 +17,6 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'plu
             appendView : true,
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
-            rivetBinders : [pluginBinder]
+            rivetBinders : [grasshopperBinders]
         };
     });

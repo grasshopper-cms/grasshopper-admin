@@ -109,6 +109,8 @@ require.config({
         addContentViewConfig : 'views/addContent/addContentViewConfig',
         addAssetsView : 'views/addAssets/addAssetsView',
         addAssetsViewConfig : 'views/addAssets/addAssetsViewConfig',
+        pluginWrapperView : 'views/pluginWrapper/pluginWrapperView',
+        pluginWrapperViewConfig : 'views/pluginWrapper/pluginWrapperViewConfig',
 
         // Models
         selfValidatingModel : 'models/selfValidatingModel',
@@ -137,6 +139,7 @@ require.config({
         addFolderViewModel : 'models/viewModels/addFolderViewModel',
         addContentViewModel : 'models/viewModels/addContentViewModel',
         addAssetsViewModel : 'models/viewModels/addAssetsViewModel',
+        pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',
@@ -157,7 +160,7 @@ require.config({
         plugins : 'plugins',
 
         // Binders
-        pluginBinder : 'pluginBinder',
+        grasshopperBinders : 'grasshopperBinders',
 
         // Resources File
         resources : 'resources',

@@ -8,7 +8,7 @@
             <ul class="pull-right">
                 <li><img class="profile-pic" data-rv-show="model:loggedIn" src="http://placehold.it/20x20"/></li>
                 <li><a data-rv-href="model:userModel:href"><i class="icon-user"></i><span
-                        data-rv-text="model:resources->user->loggedInAs | spaceAfter"></span><span>{{model.attributes.userModel.attributes.firstname | spaceAfter}}{{model.attributes.userModel.attributes.lastname}}</span></a>
+                        data-rv-text="model:resources->user->loggedInAs | spaceAfter"></span><span>{{model:userModel->firstname}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">

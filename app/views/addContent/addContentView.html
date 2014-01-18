@@ -1,10 +1,10 @@
 <div class="row">
-    <div class="large-10 small-centered columns">
+    <div class="large-12 small-centered columns">
         <form data-abide>
             <fieldset>
                 <legend>{{model:resources->contentItem->createContent}}</legend>
                 <div class="row">
-                    <div class="large-10 small-centered columns">
+                    <div class="large-12 small-centered columns">
                         <div class="row">
                             <div class="small-3 columns">
                                 <label data-rv-for="model:_id" class="right inline">Label</label>
@@ -42,14 +42,14 @@
                     <hr>
                 </div>
                 <div class="row">
-                    <div class="large-10 small-centered columns">
+                    <div class="large-12 small-centered columns">
                         <div data-rv-each-field="model:schema">
-                            <div class="fieldtype" data-rv-fieldtype="field"></div>
+                            <div data-rv-fieldwrapper="field"></div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="large-10 small-centered columns">
+                    <div class="large-12 small-centered columns">
                         <button id="saveContentButton" type="submit" class="button radius right">{{model:resources->save}}</button>
                     </div>
                 </div>

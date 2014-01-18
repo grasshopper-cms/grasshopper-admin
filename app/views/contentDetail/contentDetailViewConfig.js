@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDetail/_contentDetailRow.html',
-    'contentDetailViewModel', 'pluginBinder'],
-    function (formTemplate, rowTemplate, contentDetailViewModel, pluginBinder) {
+    'contentDetailViewModel', 'grasshopperBinders'],
+    function (formTemplate, rowTemplate, contentDetailViewModel, grasshopperBinders) {
         'use strict';
 
         return {
@@ -19,6 +19,6 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             rivetConfig : 'auto',
             mastheadButtons : [],
             permissions : ['admin', 'reader', 'editor'],
-            rivetBinders : [pluginBinder]
+            rivetBinders : [grasshopperBinders]
         };
     });

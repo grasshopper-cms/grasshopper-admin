@@ -311,7 +311,7 @@ define([
                     {
                         modelData : {
                             id : id,
-                            userModel : this.user.toJSON()
+                            userModel : this.user
                         }
                     }));
             } else {

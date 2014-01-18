@@ -65,7 +65,8 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
 
         function _updateNameInHeader (model) {
             if (this.app.user.get('_id') === model._id) {
-                this.app.user.set(model);
+//                this.app.user.set(model);
+                this.model.set('userModel', model);
             }
         }
 
