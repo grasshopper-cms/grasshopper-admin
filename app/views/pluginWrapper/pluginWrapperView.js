@@ -32,7 +32,7 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'masseuse'],
 
                 var viewInstance = new ViewModule(_.extend({}, configModule, {
                     modelData : {
-                        value: masseuse.ProxyProperty('value', self.model),
+                        value: null,
                         label: self.model.get('label'),
                         _id: self.model.get('_id'),
                         type: self.model.get('type'),
@@ -40,6 +40,17 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'masseuse'],
                     },
                     appendTo : self.$el.find('#field')
                 }));
+
+            self.listenTo(viewInstance.model, 'change:value', function (){
+                    var outValue = [],
+                        i;
+
+                    for(i = 0; i < self.children.length; i++) {
+                        outValue.push(self.children[i].model.get('value'));
+                    }
+
+                    self.model.set(outValue);
+                });
 
                 self.addChild(viewInstance);
                 viewInstance.start();
