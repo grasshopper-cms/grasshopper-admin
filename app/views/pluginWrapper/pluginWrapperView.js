@@ -4,13 +4,27 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'masseuse'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender : beforeRender,
             afterRender : afterRender,
             addField : addField,
             removeField : removeField
         });
 
-        function beforeRender() {
+        function afterRender() {
+            _addPlugin.call(this);
+        }
+
+        function addField() {
+            _addPlugin.call(this);
+        }
+
+        function removeField() {
+            var lastChild = _.last(this.children);
+
+            lastChild.remove();
+            this.removeChild(lastChild);
+        }
+
+        function _addPlugin() {
             var plugin = _.find(plugins.fields, {type : this.model.get('type')}),
                 self = this;
 
@@ -24,24 +38,11 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'masseuse'],
                         type: self.model.get('type'),
                         required : self.model.get('required')
                     },
-                    appendTo : self.el.getElementById('#field')
+                    appendTo : self.$el.find('#field')
                 }));
 
                 self.addChild(viewInstance);
+                viewInstance.start();
             });
-        }
-
-        function afterRender() {
-            console.log(this.el);
-        }
-
-        function addField() {
-            console.log('ADDDD FIELD');
-            return false;
-        }
-
-        function removeField() {
-            console.log('REMOVE FIELD');
-            return false;
         }
     });

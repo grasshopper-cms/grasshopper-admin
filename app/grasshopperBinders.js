@@ -1,6 +1,6 @@
 /* jshint loopfunc:true */
-define(['jquery', 'underscore', 'plugins', 'require', 'masseuse', 'pluginWrapperView', 'pluginWrapperViewConfig'],
-    function ($, _, plugins, require, masseuse, PluginWrapperView, pluginWrapperViewConfig) {
+define(['jquery', 'underscore', 'masseuse', 'pluginWrapperView', 'pluginWrapperViewConfig'],
+    function ($, _, masseuse, PluginWrapperView, pluginWrapperViewConfig) {
         'use strict';
 
 
@@ -13,31 +13,10 @@ define(['jquery', 'underscore', 'plugins', 'require', 'masseuse', 'pluginWrapper
                     modelData : _.extend({}, field, {
                         value: masseuse.ProxyProperty('fields.' + field._id, rivets.view.models.view.model)
                     }),
-                    el : el
+                    appendTo : el
                 }));
                 rivets.view.models.view.addChild(viewInstance);
                 viewInstance.start();
-            },
-
-            fieldtype : function(el, field) {
-                var plugin = _.find(plugins.fields, {type : field.get('type')}),
-                    rivets = this;
-
-                require([plugin.view, plugin.config], function(ViewModule, configModule) {
-
-                    var viewInstance = new ViewModule(_.extend({}, configModule, {
-                        modelData : {
-                            value: masseuse.ProxyProperty('value', rivets.view.models.view.model),
-                            label: field.get('label'),
-                            _id: field.get('_id'),
-                            type: field.get('type')
-                        },
-                        el : el
-                    }));
-
-                    rivets.view.models.view.addChild(viewInstance);
-                    viewInstance.start();
-                });
             }
         };
 
