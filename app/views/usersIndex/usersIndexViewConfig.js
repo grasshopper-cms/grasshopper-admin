@@ -7,12 +7,12 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
             name : 'usersIndexView',
             modelData : {},
             ModelType : UsersIndexViewModel,
-            el : '#stage',
+            appendTo : '#stage',
+            wrapper : false,
             template : template,
             events : {
                 'change #limitDropdown' : 'changeLimit'
             },
-            appendView : true,
             bindings : [],
             rivetConfig : 'auto',
             mastheadButtons : [

@@ -10,10 +10,10 @@ define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resour
                 userModel : ViewContext('app.user')
             },
             ModelType : DashboardViewModel,
-            el : '#stage',
+            appendTo : '#stage',
+            wrapper : false,
             template : template,
             events : {},
-            appendView : true,
             bindings : [],
             rivetConfig : 'auto',
             mastheadButtons : [],

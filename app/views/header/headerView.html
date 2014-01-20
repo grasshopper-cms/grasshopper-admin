@@ -7,8 +7,8 @@
         <div id="top-nav">
             <ul class="pull-right">
                 <li><img class="profile-pic" data-rv-show="model:loggedIn" src="http://placehold.it/20x20"/></li>
-                <li><a data-rv-href="model:userModel:href"><i class="icon-user"></i><span
-                        data-rv-text="model:resources->user->loggedInAs | spaceAfter"></span><span>{{model:userModel->firstname}}</span></a>
+                <li><a data-rv-href="model:userModel->href"><i class="icon-user"></i><span
+                        data-rv-text="model:resources->user->loggedInAs | spaceAfter"></span><span>{{model:userModel->firstname | spaceAfter}}{{model:userModel->lastname | spaceAfter}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
@@ -17,18 +17,18 @@
                     </a>
 
                     <ul id="settings-dropdown" data-dropdown-content class="dropdown-menu right">
-                        <li><a id="myProfileButton" data-rv-show="model:userModel:loggedIn"
-                               data-rv-href="model:userModel:urlLink">{{model:resources->edit}}
+                        <li><a id="myProfileButton" data-rv-show="model:userModel->loggedIn"
+                               data-rv-href="model:userModel->urlLink">{{model:resources->edit}}
                             {{model:resources->profile}}</a></li>
                         <li><a data-rv-href="model:constants->internalRoutes->about">{{model:resources->site->about}}</a></li>
                     </ul>
                 </li>
 
                 <li><a id="logOutButton" data-rv-href="model:constants->internalRoutes->logout"
-                       data-rv-show="model:userModel:loggedIn">{{model:resources->log_out}}</a>
+                       data-rv-show="model:userModel->loggedIn">{{model:resources->log_out}}</a>
                 </li>
                 <li><a id="logInButton" data-rv-href="model:constants->internalRoutes->login"
-                       data-rv-hide="model:userModel:loggedIn">{{model:resources->log_in}}</a>
+                       data-rv-hide="model:userModel->loggedIn">{{model:resources->log_in}}</a>
                 </li>
             </ul>
 
@@ -53,21 +53,21 @@
                                 </a>
                             </li>
 
-                            <li data-rv-show="model:userModel:role | includes admin reader editor">
+                            <li data-rv-show="model:userModel->role | includes admin reader editor">
                                 <a data-rv-href="model:constants->internalRoutes->content">
                                     <i class="icon-th"></i>
                                     <span>{{model:resources->content}}</span>
                                 </a>
                             </li>
 
-                            <li data-rv-show="model:userModel:role | includes admin editor">
+                            <li data-rv-show="model:userModel->role | includes admin editor">
                                 <a data-rv-href="model:constants->internalRoutes->contentTypes">
                                     <i class="icon-cogs"></i>
                                     <span>{{model:resources->types}}</span>
                                 </a>
                             </li>
 
-                            <li data-rv-show="model:userModel:role | equals admin">
+                            <li data-rv-show="model:userModel->role | equals admin">
                                 <a data-rv-href="model:constants->internalRoutes->users">
                                     <i class="icon-user"></i>
                                     <span>{{model:resources->users}}</span>

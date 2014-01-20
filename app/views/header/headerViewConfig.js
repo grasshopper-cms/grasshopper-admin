@@ -11,10 +11,10 @@ define(['text!views/header/headerView.html', 'headerViewModel', 'masseuse'],
                 userModel : ViewContext('app.user')
             },
             ModelType : HeaderViewModel,
-            el : '#header',
+            appendTo : '#header',
+            wrapper : false,
             template : template,
             events : {},
-            appendView : true,
             bindings : [],
             rivetConfig : 'auto'
         };

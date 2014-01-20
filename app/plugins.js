@@ -14,24 +14,24 @@ define({
             type : 'textarea',
             helpText : 'text Area Help Text',
             id : 2,
-            view : './plugins/textArea/textAreaPlugin.js',
-            config : './plugins/textArea/textAreaPluginConfig.js'
+            view : './plugins/textBox/textBoxPlugin.js',
+            config : './plugins/textBox/textBoxPluginConfig.js'
         },
         {
             name : 'Dropdown',
             type : 'dropdown',
             helpText : 'Dropdown Help Text',
             id : 3,
-            view : './plugins/dropdown/dropdownPlugin.js',
-            config : './plugins/dropdown/dropdownPluginConfig.js'
+            view : './plugins/textBox/textBoxPlugin.js',
+            config : './plugins/textBox/textBoxPluginConfig.js'
         },
         {
             name : 'Readonly',
             type : 'readonly',
             helpText : 'Readonly Help Text',
             id : 4,
-            view : './plugins/readonly/readonlyPlugin.js',
-            config : './plugins/readonly/readonlyPluginConfig.js'
+            view : './plugins/textBox/textBoxPlugin.js',
+            config : './plugins/textBox/textBoxPluginConfig.js'
         },
         {
             name : 'Reference',

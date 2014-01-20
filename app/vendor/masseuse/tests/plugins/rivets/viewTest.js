@@ -1,12 +1,13 @@
-define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'rivetsPlugin', 'sinonSpy'],
-    function ($, _, chai, mocha, sinon, sinonChai, rivetsPlugin) {
+define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'rivetsPlugin', 'masseuse', 'sinonSpy'],
+    function ($, _, chai, mocha, sinon, sinonChai, rivetsPlugin, masseuse) {
 
         'use strict';
 
         var testDom = 'testDom',
             riveted = 'riveted',
             $body = $('body'),
-            RivetView = rivetsPlugin.view;
+            RivetView = rivetsPlugin.view,
+            Model = masseuse.MasseuseModel;
 
         chai.use(sinonChai);
         mocha.setup('bdd');
@@ -75,10 +76,75 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'rivetsPl
                             };
                             rivetView = new RivetView(options);
                         });
-                        it('test dom is riveted with nested data', function(done) {
+                        it('test dom is riveted with nested data in a model', function(done) {
                             rivetView.start().done(function() {
                                 $('#' + riveted).html().should.equal('A the an.');
                                 done();
+                            });
+                        });
+                        describe('nested models', function() {
+                            var nested;
+                            beforeEach(function() {
+                                nested = new Model({title:'test'});
+                                options = {
+                                    el : '#' + testDom,
+                                    template : '<div id="' + riveted + '">{{model:nested->title}}</div>',
+                                    modelData : {
+                                        nested : nested
+                                    }
+                                };
+                                rivetView = new RivetView(options);
+                            });
+                            it('test dom is riveted with nested model in a model', function(done) {
+                                rivetView.start().done(function() {
+                                    $('#' + riveted).html().should.equal('test');
+                                    done();
+                                });
+                            });
+                            it('test dom changes when nested model changes', function(done) {
+                                rivetView.start().done(function() {
+                                    nested.set('title', 'other');
+                                    $('#' + riveted).html().should.equal('other');
+                                    done();
+                                });
+                            });
+                        });
+                        describe('deeply nested model', function() {
+                            var nested,
+                                deepNested;
+                            beforeEach(function() {
+                                nested = new Model({title:'test'});
+                                deepNested = new Model({oh:{yeah:'boom'}});
+                                nested.set({this:{that:{other: deepNested}}});
+                                options = {
+                                    el : '#' + testDom,
+                                    template : '<div id="' + riveted +
+                                        '">{{model:nested->this->that->other->oh->yeah}}</div>',
+                                    modelData : {
+                                        nested : nested
+                                    }
+                                };
+                                rivetView = new RivetView(options);
+                            });
+                            it('test dom is riveted when deeply nested model changes', function(done) {
+                                rivetView.start().done(function() {
+                                    $('#' + riveted).html().should.equal('boom');
+                                    done();
+                                });
+                            });
+                            it('test dom changes when top level model sets nested model', function(done) {
+                                rivetView.start().done(function() {
+                                    rivetView.model.set('nested.this.that.other.oh.yeah', 'changed');
+                                    $('#' + riveted).html().should.equal('changed');
+                                    done();
+                                });
+                            });
+                            it('test dom changes when deep model sets nested model', function(done) {
+                                rivetView.start().done(function() {
+                                    deepNested.set('oh.yeah', 'la la la');
+                                    $('#' + riveted).html().should.equal('la la la');
+                                    done();
+                                });
                             });
                         });
                     });
@@ -101,14 +167,6 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'rivetsPl
                         it('test dom is riveted with initial data', function(done) {
                             rivetView.start().done(function() {
                                 $('#' + riveted).attr('href').should.equal('http://www.blah.com');
-                                done();
-                            });
-                        });
-                        it('model is riveted to test dom', function(done) {
-                            rivetView.start().done(function() {
-                                var $riveted = $('#' + riveted);
-                                $riveted.attr('href', '#');
-                                $riveted.attr('href').should.equal('#');
                                 done();
                             });
                         });

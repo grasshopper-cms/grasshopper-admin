@@ -5,9 +5,9 @@ define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function 
     return {
         name : 'alertBoxView',
         ModelType : alertBoxViewModel,
-        el : '#alertBox',
+        appendTo : '#alertBox',
+        wrapper : false,
         template : template,
-        appendView : true,
         rivetConfig : 'auto',
         events : {
             'click #closeAlertBox' : 'closeAlertBox'

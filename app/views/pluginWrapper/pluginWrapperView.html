@@ -5,13 +5,14 @@
                 <label data-rv-for="model:_id" class="right inline">{{model:label}}</label>
             </div>
             <div class="small-9 columns">
-                <div class="row" data-rv-id="model:_id">
-                    <div data-rv-fieldtype="model"></div>
-                </div>
+                <!--<div class="row" data-rv-id="model:_id">-->
+                    <!--<div data-rv-fieldtype="model"></div>-->
+                <!--</div>-->
+                <div id="field"></div>
                 <div class="row" data-rv-show="model:multi">
                     <ul class="button-group radius right">
-                        <li><button id="addField" class="button tiny"><i class="icon-plus"></i></button></li>
-                        <li><button id="removeField" class="button tiny"><i class="icon-minus"></i></button></li>
+                        <li><button type="button" id="addField" class="button tiny"><i class="icon-plus"></i></button></li>
+                        <li><button type="button" id="removeField" class="button tiny"><i class="icon-minus"></i></button></li>
                     </ul>
                 </div>
             </div>
@@ -19,4 +20,3 @@
         <hr>
     </div>
 </div>
-

@@ -6,14 +6,14 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
         return {
             name : 'contentBrowseView',
             ModelType : contentBrowseViewModel,
-            el : '#stage',
+            appendTo : '#stage',
+            wrapper : false,
             template : template,
             rivetConfig : 'auto',
             bindings : [
                 ['channels.views', 'refreshContentBrowseView', 'refreshIndexViews'],
                 ['channels.views', 'activateTab', 'activateTab']
             ],
-            appendView : true,
             events : {},
             mastheadButtons : [
                 {

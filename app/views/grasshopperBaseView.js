@@ -25,7 +25,9 @@ define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, 
                 'permissions',
                 'nodeId',
                 'rivetBinders',
-                'rivetFormatters'
+                'rivetFormatters',
+                'wrapper',
+                'appendTo'
             ]);
         if (options.rivetConfig) {
             options.plugins = [];

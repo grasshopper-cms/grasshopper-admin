@@ -50,7 +50,8 @@ define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailV
                 {
                     name : 'nodeDetailRow',
                     modelData : content,
-                    el : '#contentDetailRow',
+                    appendTo : '#contentDetailRow',
+                    wrapper : false,
                     template : contentDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
                 }));

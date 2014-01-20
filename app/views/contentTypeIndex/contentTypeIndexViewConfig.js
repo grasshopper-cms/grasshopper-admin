@@ -6,15 +6,12 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
         return {
             name : 'contentTypeIndexView',
             ModelType : contentTypeIndexViewModel,
-            el : '#stage',
+            appendTo : '#stage',
+            wrapper : false,
             template : template,
             rivetConfig : 'auto',
-            bindings : [
-            ],
-            appendView : true,
-            events : {
-
-            },
+            bindings : [],
+            events : {},
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addContentType,

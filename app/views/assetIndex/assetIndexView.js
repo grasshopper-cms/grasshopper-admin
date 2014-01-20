@@ -34,7 +34,8 @@ define(['grasshopperBaseView', 'assetDetailView', 'assetDetailViewConfig', 'unde
                 {
                     name : 'assetDetailRow',
                     modelData : _.extend(asset, { nodeId : this.nodeId }),
-                    el : '#assetDetailRow',
+                    appendTo : '#assetDetailRow',
+                    wrapper : false,
                     template : assetDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
                 }

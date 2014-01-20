@@ -62,7 +62,8 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                         lastmodified : file.lastModifiedDate,
                         fileData : file
                     },
-                    el : '#assetDetailRow',
+                    appendTo : '#assetDetailRow',
+                    wrapper : false,
                     template : assetDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
                 }

@@ -18,6 +18,7 @@ define(['jquery', 'underscore', 'plugins', 'require', 'masseuse', 'pluginWrapper
                 rivets.view.models.view.addChild(viewInstance);
                 viewInstance.start();
             },
+
             fieldtype : function(el, field) {
                 var plugin = _.find(plugins.fields, {type : field.get('type')}),
                     rivets = this;

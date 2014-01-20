@@ -15,6 +15,6 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse'], function (Mod
     });
 
     function toUnderscore(string){
-        return string.trim().toLowerCase().replace(' ', '_');
+        return string.trim().toLowerCase().replace(/ /g, '_');
     }
 });

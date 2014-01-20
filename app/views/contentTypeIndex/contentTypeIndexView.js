@@ -32,7 +32,8 @@ define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewCo
             var contentTypeDetailView = new ContentTypeDetailView(_.extend({}, contentTypeDetailViewConfig,
                 {
                     name : 'contentDetailrow',
-                    el : '#contentTypeIndexTable',
+                    appendTo : '#contentTypeIndexTable',
+                    wrapper : false,
                     template : rowTemplate,
                     modelData : data,
                     mastheadButtons : null

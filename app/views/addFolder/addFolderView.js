@@ -36,7 +36,8 @@ define(['grasshopperBaseView', 'resources', 'underscore',
                         label: nodeName,
                         parent: this.model.get('nodeId')
                     },
-                    el : '#nodeDetailRow',
+                    appendTo : '#nodeDetailRow',
+                    wrapper: false,
                     template : nodeDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
                 }));

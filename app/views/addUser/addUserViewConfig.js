@@ -6,12 +6,12 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel'], function (fo
         name : 'addUserView',
         ModelType : addUserViewModel,
         modelData : {},
-        el : '#stage',
+        appendTo : '#stage',
+        wrapper : false,
         template : formTemplate,
         events : {
             'click #saveUser' : 'saveUser'
         },
-        appendView : true,
         bindings : [],
         rivetConfig : 'auto',
         mastheadButtons : [],

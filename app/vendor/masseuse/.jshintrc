@@ -12,7 +12,7 @@
     },
     "curly": true,
     "quotmark": "single",
-    "debug" : false,
+    "debug" : true,
     "validthis" : true,
     "expr" : true,
     "loopfunc" : false,
@@ -26,5 +26,5 @@
     "indent" : 4,
     "noarg" : true,
     "maxdepth" : 2,
-    "devel" : false
+    "devel" : true
 }

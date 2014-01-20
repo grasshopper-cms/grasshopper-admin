@@ -7,15 +7,15 @@ define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewMod
             name : 'pluginWrapperView',
             ModelType : pluginWrapperViewModel,
             modelData : {},
-            el : '#stage',
+            appendTo : '#stage',
+            wrapper : false,
             template : pluginWrapperTemplate,
             events : {
-                'click addField' : 'addField',
-                'click removeField' : 'removeField'
+                'click #addField' : 'addField',
+                'click #removeField' : 'removeField'
             },
             rivetConfig : 'auto',
             bindings : [],
-            appendView : true,
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
             rivetBinders : [grasshopperBinders]

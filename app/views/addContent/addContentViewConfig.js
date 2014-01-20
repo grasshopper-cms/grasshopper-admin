@@ -7,14 +7,14 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'gra
             name : 'addContentView',
             ModelType : addContentViewModel,
             modelData : {},
-            el : '#stage',
+            appendTo : '#stage',
+            wrapper : false,
             template : addContentTemplate,
             events : {
                 'click #saveContentButton' : 'saveContent'
             },
             rivetConfig : 'auto',
             bindings : [],
-            appendView : true,
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
             rivetBinders : [grasshopperBinders]

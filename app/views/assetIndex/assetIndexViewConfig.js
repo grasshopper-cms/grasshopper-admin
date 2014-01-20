@@ -6,11 +6,11 @@ define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'],
         return {
             name : 'assetIndexView',
             ModelType : assetIndexViewModel,
-            el : '#assetIndex',
+            appendTo : '#assetIndex',
+            wrapper : false,
             template : template,
             rivetConfig : 'auto',
             bindings : [],
-            appendView : true,
             events : {},
             permissions : ['admin', 'reader', 'editor']
         };

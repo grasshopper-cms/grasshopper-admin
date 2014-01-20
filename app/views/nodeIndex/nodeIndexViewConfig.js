@@ -6,11 +6,11 @@ define(['text!views/nodeIndex/nodeIndexView.html', 'resources', 'nodeIndexViewMo
         return {
             name : 'nodeIndexView',
             ModelType : nodeIndexViewModel,
-            el : '#nodeIndex',
+            appendTo : '#nodeIndex',
+            wrapper : false,
             template : template,
             rivetConfig : 'auto',
             bindings : [],
-            appendView : true,
             events : {},
             permissions : ['admin', 'reader', 'editor']
         };

@@ -44,7 +44,8 @@ define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'unders
                 {
                     name : 'nodeDetailRow',
                     modelData : node,
-                    el : '#nodeDetailRow',
+                    appendTo : '#nodeDetailRow',
+                    wrapper : false,
                     template : nodeDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
                 }));

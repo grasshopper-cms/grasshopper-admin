@@ -5,10 +5,10 @@ define(['text!views/modal/modalView.html', 'modalViewModel'], function (template
     return {
         name : 'modalView',
         ModelType : modalViewModel,
-        el : '#modal',
+        appendTo : '#modal',
+        wrapper : false,
         template : template,
         rivetConfig : 'auto',
-        appendView : true,
         events : {
             'click #confirm' : 'confirmModal',
             'click #cancel' : 'cancelModal',

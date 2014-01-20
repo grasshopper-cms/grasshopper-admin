@@ -8,13 +8,13 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             name : 'contentDetailView',
             ModelType : contentDetailViewModel,
             modelData : {},
-            el : '#stage',
+            appendTo : '#stage',
+            wrapper : false,
             template : formTemplate,
             events : {
                 'click #deleteContent' : 'deleteContent',
                 'click .clickableCell' : 'handleRowClick'
             },
-            appendView : true,
             bindings : [],
             rivetConfig : 'auto',
             mastheadButtons : [],
