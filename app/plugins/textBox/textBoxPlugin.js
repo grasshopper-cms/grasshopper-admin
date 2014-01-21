@@ -4,11 +4,7 @@ define(['grasshopperBaseView'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-            afterRender: afterRender
-        });
 
-        function afterRender() {
-            console.log(this);
-        }
+        });
 
     });

@@ -33,15 +33,11 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone', 'require'],
 
 
         function addField() {
-            console.log('add field');
             _addPlugin.call(this, undefined);
         }
 
         function removeField() {
-            var lastChild = _.last(this.children);
-
-            lastChild.remove();
-            this.removeChild(lastChild);
+            this.collection.pop();
         }
 
         function _handleMulti() {
@@ -50,22 +46,18 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone', 'require'],
 
             if(values && values instanceof Array) {
                 _.each(values, function(value) {
-                    _addPlugin.call(self, value);
+                    _addPlugin.call(self, value, true);
                 });
             } else {
-                _addPlugin.call(this, values);
+                _addPlugin.call(this, values, true);
             }
         }
 
-        function _addPlugin(value) {
+        function _addPlugin(value, silent) {
             var model = _.extend({} , _.omit(this.model.attributes, ['value', 'multiCollection', 'viewId']), {
                 value : value
             });
 
-            console.log(model);
-
-            this.collection.add(new Backbone.Model(model));
-
-            console.log(this.collection);
+            this.collection.add(model, [{silent : (silent)}]);
         }
     });
