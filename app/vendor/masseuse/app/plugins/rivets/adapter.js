@@ -107,7 +107,11 @@ define(['jquery', 'rivets', './configureMethod', 'backbone', 'underscore'],
             _.extend(Rivets.binders, config.rivetBinders);
 
             // bind data to rivets values.
-            return Rivets.bind(this.$el, {model : this.model, view : this});
+            return Rivets.bind(this.$el, {
+                model : this.model,
+                view : this,
+                collection: this.collection
+            });
 
         }).methodWithDefaultOptions;
     });

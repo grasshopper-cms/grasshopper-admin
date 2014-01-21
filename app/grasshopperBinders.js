@@ -13,9 +13,9 @@ define(['jquery', 'underscore', 'masseuse',
 
                 viewInstance = new PluginWrapperView(_.extend({}, pluginWrapperViewConfig, {
                     modelData : _.extend({}, field, {
-                        value: masseuse.ProxyProperty('fields.' + field._id, rivets.view.models.view.model),
-                        multiCollection : new Backbone.Collection([], {})
+                        value: masseuse.ProxyProperty('fields.' + field._id, rivets.view.models.view.model)
                     }),
+                    collection : new Backbone.Collection([], {}),
                     appendTo : el
                 }));
                 rivets.view.models.view.addChild(viewInstance);
