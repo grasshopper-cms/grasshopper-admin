@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'pluginWrapperViewConfig', 'plugins', 'require', 'backbone'],
+    'pluginWrapperView', 'pluginWrapperViewConfig', 'backbone'],
     function ($, _, masseuse,
-              PluginWrapperView, pluginWrapperViewConfig, plugins, require, Backbone) {
+              PluginWrapperView, pluginWrapperViewConfig, Backbone) {
         'use strict';
 
 
@@ -11,18 +11,18 @@ define(['jquery', 'underscore', 'masseuse',
                 var rivets = this,
                     viewInstance;
 
+//                console.log(el);
+//                console.log(field);
+//                console.log(currentValue);
+
                 viewInstance = new PluginWrapperView(_.extend({}, pluginWrapperViewConfig, {
-                    modelData : _.extend({}, field),
+                    modelData : _.extend({}, field, {
+                        value: masseuse.ProxyProperty('fields.' + field._id, rivets.view.models.view.model)
+                    }),
                     collection : new (Backbone.Collection.extend({
                         initialize: function (models, options) {
-                            var inModels = models;
 
-                            // Ensure that we are dealing with an array
-                            if (!inModels instanceof Array) {
-                                inModels = [models];
-                            }
-
-                            Backbone.Collection.prototype.initialize.call(this, inModels, options);
+                            Backbone.Collection.prototype.initialize.call(this, models, options);
 
                             this.listenTo(rivets.view.models.view.model, 'change', function () {
                                 // Update the collection here with the new data from the server
@@ -46,22 +46,29 @@ define(['jquery', 'underscore', 'masseuse',
                 rivets.view.models.view.addChild(viewInstance);
                 viewInstance.start();
             },
+
+
+
+
+
+
+
             fieldtype : function(el, model) {
-                var plugin = _.find(plugins.fields, {type : model.get('type')}),
-                    rivets = this;
+                var rivets = this,
+                    viewInstance,
+                    ViewModule = model.get('ViewModule'),
+                    configModule = model.get('configModule');
 
-                require([plugin.view, plugin.config], function(ViewModule, configModule) {
+                console.log(model);
 
-                    var viewInstance = new ViewModule(_.extend({}, configModule, {
-                        modelData : _.extend({}, model.attributes, {
-                            value: masseuse.ProxyProperty('value', rivets.view.models.view.model)
-                        }),
-                        appendTo : el
-                    }));
-
-                    rivets.view.models.view.addChild(viewInstance);
-                    viewInstance.start();
-                });
+                viewInstance = ViewModule(_.extend({}, configModule, {
+                    modelData : _.extend({}, {}, {
+//                        value: masseuse.ProxyProperty('value', rivets.view.models.view.model)
+                    }),
+                    appendTo : el
+                }));
+                console.log(viewInstance);
+//                viewInstance.start();
             }
         };
 
