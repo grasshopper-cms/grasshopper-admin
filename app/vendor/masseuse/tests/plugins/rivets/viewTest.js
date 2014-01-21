@@ -108,6 +108,21 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'rivetsPl
                                     done();
                                 });
                             });
+                            it('test dom changes when nested model changes from parent model', function(done) {
+                                rivetView.start().done(function() {
+                                    rivetView.model.set('nested.title', 'Another Mother');
+                                    $('#' + riveted).html().should.equal('Another Mother');
+                                    done();
+                                });
+                            });
+                            it('test dom changes when entire nested model changes from a model to an object ' +
+                                'from parent model', function(done) {
+                                rivetView.start().done(function() {
+                                    rivetView.model.set('nested', {title: 'Jo Momma'});
+                                    $('#' + riveted).html().should.equal('Jo Momma');
+                                    done();
+                                });
+                            });
                         });
                         describe('deeply nested model', function() {
                             var nested,

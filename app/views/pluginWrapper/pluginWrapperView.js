@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins', 'underscore', 'masseuse'],
-    function (GrasshopperBaseView, plugins, _, masseuse) {
+define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone'],
+    function (GrasshopperBaseView, plugins, _, Backbone) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -14,6 +14,7 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'masseuse'],
         }
 
         function addField() {
+            console.log('add field');
             _addPlugin.call(this);
         }
 
@@ -25,35 +26,13 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'masseuse'],
         }
 
         function _addPlugin() {
-            var plugin = _.find(plugins.fields, {type : this.model.get('type')}),
-                self = this;
 
-            require([plugin.view, plugin.config], function(ViewModule, configModule) {
+            var model = new Backbone.Model(),
+                collection = this.model.get('multiCollection');
 
-                var viewInstance = new ViewModule(_.extend({}, configModule, {
-                    modelData : {
-                        value: null,
-                        label: self.model.get('label'),
-                        _id: self.model.get('_id'),
-                        type: self.model.get('type'),
-                        required : self.model.get('required')
-                    },
-                    appendTo : self.$el.find('#field')
-                }));
+            model.set(_.omit(_.clone(this.model.attributes), ['value', 'multiCollection']));
 
-            self.listenTo(viewInstance.model, 'change:value', function (){
-                    var outValue = [],
-                        i;
-
-                    for(i = 0; i < self.children.length; i++) {
-                        outValue.push(self.children[i].model.get('value'));
-                    }
-
-                    self.model.set(outValue);
-                });
-
-                self.addChild(viewInstance);
-                viewInstance.start();
-            });
+            collection.add(model);
+            console.log(this);
         }
     });
