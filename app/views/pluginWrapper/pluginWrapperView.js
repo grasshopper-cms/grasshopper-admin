@@ -33,6 +33,5 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone'],
             model.set(_.omit(_.clone(this.model.attributes), ['value', 'multiCollection']));
 
             collection.add(model);
-            console.log(this);
         }
     });
