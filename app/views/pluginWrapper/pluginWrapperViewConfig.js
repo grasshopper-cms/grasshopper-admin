@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewModel', 'grasshopperBinders'],
-    function (pluginWrapperTemplate, pluginWrapperViewModel, grasshopperBinders) {
+define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewModel', 'binders'],
+    function (pluginWrapperTemplate, pluginWrapperViewModel, binders) {
         'use strict';
 
         return {
@@ -18,6 +18,6 @@ define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewMod
             bindings : [],
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
-            rivetBinders : [grasshopperBinders]
+            rivetBinders : [binders]
         };
     });

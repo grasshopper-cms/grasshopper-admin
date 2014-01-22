@@ -160,7 +160,10 @@ require.config({
         plugins : 'plugins',
 
         // Binders
-        grasshopperBinders : 'grasshopperBinders',
+        binders : 'binders',
+
+        // Formatters
+        formatters : 'formatters',
 
         // Resources File
         resources : 'resources',

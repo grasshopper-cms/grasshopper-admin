@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'grasshopperBinders'],
-    function (addContentTemplate, addContentViewModel, grasshopperBinders) {
+define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'binders'],
+    function (addContentTemplate, addContentViewModel, binders) {
         'use strict';
 
         return {
@@ -18,6 +18,6 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'gra
             bindings : [],
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
-            rivetBinders : [grasshopperBinders]
+            rivetBinders : [binders]
         };
     });
