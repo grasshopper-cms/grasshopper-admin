@@ -11,9 +11,6 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 headers : {'Authorization' : 'Basic ' + base64.encode(username + ':' + password)}
             });
         },
-        authenticateToken : function () {
-            return this.request(constants.api.user.url);
-        },
         request : function (url) {
             var token = LocalStorage.get('authToken');
             return $.ajax({
@@ -25,6 +22,18 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         },
         getUsers : function () {
             return this.request(constants.api.users.url);
+        },
+        getContentTypes : function () {
+            return this.request(constants.api.contentTypes.url);
+        },
+        getContentType : function(id) {
+            return this.request(constants.api.contentTypes.url +'/'+ id);
+        },
+        getNodeDetail : function (nodeId) {
+            return this.request(constants.api.node.url + '/' + nodeId);
+        },
+        authenticateToken : function () {
+            return this.request(constants.api.user.url);
         },
         post : function (url, data) {
             var token = LocalStorage.get('authToken');
@@ -42,17 +51,8 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         postFolder : function (data) {
             return this.post(constants.api.node.url, data);
         },
-        getContentTypes : function () {
-            return this.request(constants.api.contentTypes.url);
-        },
-        getContentType : function(id) {
-            return this.request(constants.api.contentTypes.url +'/'+ id);
-        },
         addContentTypesToNode : function (nodeId, contentType) {
             return this.post(constants.api.nodesContentTypes.url.replace(':id', nodeId), contentType);
-        },
-        getNodeDetail : function (nodeId) {
-            return this.request(constants.api.node.url + '/' + nodeId);
         },
         renameAsset : function (url, originalName, newName) {
             return this.post(url + '/rename', {
