@@ -9,7 +9,7 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
             handleRowClick : handleRowClick
         });
 
-        function beforeRender () {
+        function beforeRender ($deferred) {
 
             // It is checking to see if the current model's ID is the same as Logged in user, the API endpoints are
             // different for Admin editing their own (/user) and admin editing someone else (/users/id)
@@ -22,7 +22,9 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
             // TODO: I think this can be replaced with a this.model.isNew()
             if (!this.model.has('_id')) {
                 this.model.fetch()
-                    .done(function () { });
+                    .done($deferred.resolve);
+            } else {
+                $deferred.resolve();
             }
         }
 
@@ -37,6 +39,7 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
         function toggleEnabled () {
             var enabled = this.model.get('enabled');
             this.model.set('enabled', (enabled) ? false : true);
+            this.model.trigger('change:enabled');
             this.updateModel();
         }
 

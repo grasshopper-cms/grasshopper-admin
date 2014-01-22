@@ -4,7 +4,8 @@ define(['grasshopperModel', 'constants', 'resources'],
         return Model.extend({
             defaults : {
                 resources : resources.user,
-                roles : resources.user.roles
+                roles : resources.user.roles,
+                enabled : true
             },
             urlRoot : constants.api.users.url
         });

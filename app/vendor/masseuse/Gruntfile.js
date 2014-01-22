@@ -111,6 +111,7 @@ module.exports = function (grunt) {
                             'app/**',
                             '!app/vendor/**',
                             'tests/**',
+                            'release_notes/**',
                             'LICENSE-MIT',
                             'README.md',
                             'bower.json',
@@ -167,7 +168,7 @@ module.exports = function (grunt) {
                 options : {
                     stdout : true,
                     stderr : true,
-                    callback : fullStop.bind(null, 'Tests failed.')
+                    failOnError : true
                 },
                 command : 'mocha-phantomjs tests/index.html'
             },
@@ -175,7 +176,7 @@ module.exports = function (grunt) {
                 options : {
                     stdout : true,
                     stderr : true,
-                    callback : fullStop.bind(null, 'Bower install failed.')
+                    failOnError : true
                 },
                 command : 'bower install'
             },
@@ -183,19 +184,12 @@ module.exports = function (grunt) {
                 options : {
                     stdout : true,
                     stderr : true,
-                    callback : fullStop.bind(null, 'Docs commit failed.')
+                    failOnError : true
                 },
                 command : 'git commit docs -m "jsdoc update"'
             }
         }
     });
-
-    function fullStop(msg, err, stdout, stderr, cb) {
-        if (err) {
-            grunt.fail.fatal(msg + ' Full stop.');
-        }
-        cb();
-    }
 
     // To start editing your slideshow using livereload, run 'grunt server'
     grunt.registerTask('test', 'Build and watch task', [
