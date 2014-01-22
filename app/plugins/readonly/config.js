@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!plugins/readonly/readonlyPlugin.html', 'plugins/readonly/readonlyPluginModel'],
+define(['text!plugins/readonly/template.html', 'plugins/readonly/model'],
     function (readonlyPluginTemplate, readonlyPluginModel) {
         'use strict';
 
@@ -7,12 +7,10 @@ define(['text!plugins/readonly/readonlyPlugin.html', 'plugins/readonly/readonlyP
             name : 'readonlyPlugin',
             ModelType : readonlyPluginModel,
             modelData : {},
-            el : '#stage',
             template : readonlyPluginTemplate,
             events : {},
             rivetConfig : 'auto',
             bindings : [],
-            appendView : true,
             mastheadButtons : []
         };
     });

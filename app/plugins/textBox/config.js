@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!plugins/textBox/textBoxPlugin.html', 'plugins/textBox/textBoxPluginModel'],
+define(['text!plugins/textbox/template.html', 'plugins/textbox/model'],
     function (textBoxPluginTemplate, textBoxPluginModel) {
         'use strict';
 
@@ -11,7 +11,6 @@ define(['text!plugins/textBox/textBoxPlugin.html', 'plugins/textBox/textBoxPlugi
             events : {},
             rivetConfig : 'auto',
             bindings : [],
-            appendView : true,
             mastheadButtons : []
         };
     });

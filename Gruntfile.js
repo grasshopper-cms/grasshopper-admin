@@ -20,6 +20,7 @@ module.exports = function (grunt) {
         'setupBowerCopy',
         'copy:build',
         'copy:vendor',
+        'buildPluginsSingleton',
         'sass',
         'autoprefixer:no_dest',
         'connect:site',

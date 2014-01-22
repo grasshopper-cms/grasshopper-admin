@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!plugins/dropdown/dropdownPlugin.html', 'plugins/dropdown/dropdownPluginModel'],
+define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model'],
     function (dropdownPluginTemplate, dropdownPluginModel) {
         'use strict';
 
@@ -7,12 +7,10 @@ define(['text!plugins/dropdown/dropdownPlugin.html', 'plugins/dropdown/dropdownP
             name : 'dropdownPlugin',
             ModelType : dropdownPluginModel,
             modelData : {},
-            el : '',
             template : dropdownPluginTemplate,
             events : {},
             rivetConfig : 'auto',
             bindings : [],
-            appendView : true,
             mastheadButtons : []
         };
     });

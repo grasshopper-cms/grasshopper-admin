@@ -10,20 +10,23 @@ module.exports = function (grunt) {
     plugins.fields = [];
 
     grunt.registerTask('buildPluginsSingleton', function () {
-        grunt.file.recurse('app/plugins', callback);
-        console.log(plugins);
+        var pluginsFile,
+            templatedFile;
+        grunt.file.recurse('app/plugins', buildPluginsObject);
+        pluginsFile = grunt.file.read('app/plugins.js');
+        templatedFile = grunt.template.process(pluginsFile, {
+            data: {
+                plugins : JSON.stringify(plugins, null, "    ")
+            }
+        });
+
+        grunt.file.write('build/plugins.js', templatedFile);
     });
 
-    function callback(abspath, rootdir, subdir, filename) {
-        var thisField;
-        console.log(abspath);
-        console.log(rootdir);
-        console.log(subdir);
-        console.log(filename);
-        console.log('----------------------------');
+    function buildPluginsObject(abspath, rootdir, subdir, filename) {
+        var thisField,
+            readMe;
 
-        // Loop through the directory.
-        // if the sub directory is not in the fields array. push it on.
         if(_.isEmpty(_.where(plugins.fields, {type: subdir}))) {
             plugins.fields.push({
                 type: subdir,
@@ -32,25 +35,21 @@ module.exports = function (grunt) {
             idCounter++;
         }
 
-        // if the filename is a view. then add its path minus the app/
-        // to the view property on the field
         if(filename === 'view.js') {
             thisField = _.where(plugins.fields, {type: subdir})[0];
             thisField.view = abspath.replace('app', '.');
         }
-        // then read the view file and get the 'Name', 'HelpText'
-        // attach those to the field property as well.
 
-        // if the filename is a config. Then add its path minuts the app/
-        // to the config property on the field
+        if(filename === 'readme.json') {
+            thisField = _.where(plugins.fields, {type: subdir})[0];
+            readMe = grunt.file.readJSON(abspath);
+            thisField.helpText = readMe.helpText;
+            thisField.name = readMe.name;
+        }
+
         if(filename === 'config.js') {
             thisField = _.where(plugins.fields, {type: subdir})[0];
             thisField.config = abspath.replace('app', '.');
         }
-
-
-
-
     }
-
 };

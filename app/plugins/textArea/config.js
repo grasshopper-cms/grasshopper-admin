@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!plugins/textArea/textAreaPlugin.html', 'plugins/textArea/textAreaPluginModel'],
+define(['text!plugins/textArea/template.html', 'plugins/textArea/model'],
     function (textAreaPluginTemplate, textAreaPluginModel) {
         'use strict';
 
@@ -7,12 +7,10 @@ define(['text!plugins/textArea/textAreaPlugin.html', 'plugins/textArea/textAreaP
             name : 'textAreaPlugin',
             ModelType : textAreaPluginModel,
             modelData : {},
-            el : '',
             template : textAreaPluginTemplate,
             events : {},
             rivetConfig : 'auto',
             bindings : [],
-            appendView : true,
             mastheadButtons : []
         };
     });
