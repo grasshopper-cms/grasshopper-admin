@@ -155,9 +155,9 @@ define([
 
         function navigateBack (trigger) {
             if (trigger) {
-                this.navigateTrigger(this.breadcrumb[this.breadcrumb.length - 2]);
+                this.navigateTrigger(this.breadcrumb[this.breadcrumb.length - 1]);
             } else {
-                this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 2]);
+                this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 1]);
             }
         }
 

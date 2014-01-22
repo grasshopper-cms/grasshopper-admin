@@ -46,8 +46,8 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
         }
 
         function _navigateBack (trigger) {
-            this.app.router.navigateBack(trigger);
             this.app.router.removeThisRouteFromBreadcrumb();
+            this.app.router.navigateBack(trigger);
             this.remove();
         }
 

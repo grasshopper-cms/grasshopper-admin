@@ -155,8 +155,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
         }
 
         function _navigateBack (trigger) {
-            this.app.router.navigateBack(trigger);
             this.app.router.removeThisRouteFromBreadcrumb();
+            this.app.router.navigateBack(trigger);
         }
 
     });
