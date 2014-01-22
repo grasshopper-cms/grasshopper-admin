@@ -245,9 +245,8 @@ body, html {
     flex-wrap: nowrap;
     justify-content: flex-end;
     align-items: center;
-    min-height: 75px;
-    position: absolute;
-    bottom: 50px;
+    position: fixed;
+    bottom: 30px;
     width: 100%;
   }
   .alertBoxPartial {
