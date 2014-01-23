@@ -11,27 +11,50 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
             userIsStillValidUser : userIsStillValidUser
         };
 
-        function doLogin (loginView) {
+        function doLogin () {
             var self = this;
-            Api.getToken(loginView.model.get('username'), loginView.model.get('password'))
-                .done(function (data) {
-                    if ('Token' === data.token_type) {
-                        LocalStorage.set('authToken', data.access_token);
-                    }
-                    Api.authenticateToken(LocalStorage.get('authToken'))
-                        .done(function (data) {
-                            loginView.model.clear();
-                            loginView.app.user.set(data);
-                            loginView.app.router.navigateTrigger('home');
-                        })
-                        .fail(function () {
-                            self.navigateTrigger('login');
-                        });
+
+            _getToken.call(this, this.model.get('username'), this.model.get('password'))
+                .done(function(tokenObj) {
+                    _setLocalStorageToken.call(self, tokenObj);
+                    _authenticateToken.call(self)
+                        .done(_handleSuccessfulAuthentication.bind(self))
+                        .fail(_handleFailedAuthentication.bind(self));
                 })
-                .fail(function (xhr) {
-                    loginView.throwLoginError(resources.api.login.errors[xhr.status]);
+                .fail(function(xhr) {
+                    self.throwLoginError(resources.api.login.errors[xhr.status]);
                 });
         }
+
+        function _getToken(username, password) {
+            return Api.getToken(username, password);
+        }
+
+        function _setLocalStorageToken(tokenObj) {
+            if ('Token' === tokenObj.token_type) {
+                LocalStorage.set('authToken', tokenObj.access_token);
+            }
+        }
+
+        function _authenticateToken() {
+            return Api.authenticateToken(LocalStorage.get('authToken'));
+        }
+
+        function _handleSuccessfulAuthentication(userModel) {
+            if(userModel.role !== 'external') {
+                this.model.clear();
+                this.app.user.set(userModel);
+                this.app.router.navigateTrigger('home');
+            } else {
+                this.model.clear();
+                this.app.router.navigateTrigger('logout');
+            }
+        }
+
+        function _handleFailedAuthentication() {
+            this.navigateTrigger('login');
+        }
+
 
         function userIsStillValidUser ($deferred) {
             var self = this,

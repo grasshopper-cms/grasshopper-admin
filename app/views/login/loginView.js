@@ -8,7 +8,7 @@ define(['grasshopperBaseView', 'loginWorker'], function (GrasshopperBaseView, lo
 
     function login () {
         if (this.model.isValid()) {
-            loginWorker.doLogin(this);
+            loginWorker.doLogin.call(this);
         }
         return false;
     }
