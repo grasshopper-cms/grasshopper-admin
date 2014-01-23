@@ -2,10 +2,10 @@
 define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, masseuse, helpers, rivetsPlugin) {
     'use strict';
 
-    var BaseView = masseuse.BaseView,
+    var RivetView = rivetsPlugin.view,
         oldSet = Backbone.Collection.prototype.set;
 
-    return BaseView.extend({
+    return RivetView.extend({
         initialize : initialize,
         start : start
     });
@@ -24,8 +24,8 @@ define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, 
                 'mastheadButtons',
                 'permissions',
                 'nodeId',
-                'rivetBinders',
-                'rivetFormatters',
+                'rivetsBinders',
+                'rivetsFormatters',
                 'wrapper',
                 'appendTo',
                 'collection'
@@ -43,7 +43,7 @@ define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, 
             oldSet.call(this, data, options);
         };
 
-        BaseView.prototype.initialize.apply(this, arguments);
+        RivetView.prototype.initialize.apply(this, arguments);
     }
 
     function start () {
@@ -53,22 +53,22 @@ define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, 
             return;
         }
 
-        var $promise = BaseView.prototype.start.apply(this, arguments),
+        var $promise = RivetView.prototype.start.apply(this, arguments),
             self = this;
 
         $promise.progress(function (event) {
             switch (event) {
-            case BaseView.afterRenderDone:
+            case RivetView.afterRenderDone:
                 if (self.mastheadButtons) {
                     self.channels.views.trigger('updateMastheadButtons', (self.mastheadButtons));
                 }
                 if (self.breadcrumbs) {
                     self.channels.views.trigger('updateMastheadBreadcrumbs', self);
                 }
-                if (self.rivetConfig) {
-                    self.rivetView();
-                    self.channels.views.trigger('rivetViewRendered');
-                }
+//                if (self.rivetConfig) {
+//                    self.rivetView();
+//                    self.channels.views.trigger('rivetViewRendered');
+//                }
                 break;
             }
         });

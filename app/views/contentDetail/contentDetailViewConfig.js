@@ -19,6 +19,6 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             rivetConfig : 'auto',
             mastheadButtons : [],
             permissions : ['admin', 'reader', 'editor'],
-            rivetBinders : [binders]
+            rivetsBinders : [binders]
         };
     });

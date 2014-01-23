@@ -18,6 +18,6 @@ define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewMod
             bindings : [],
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
-            rivetBinders : [binders]
+            rivetsBinders : [binders]
         };
     });

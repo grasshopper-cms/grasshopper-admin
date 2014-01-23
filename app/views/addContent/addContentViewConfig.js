@@ -18,6 +18,6 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'bin
             bindings : [],
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
-            rivetBinders : [binders]
+            rivetsBinders : [binders]
         };
     });
