@@ -9,12 +9,12 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
             ModelType : UsersIndexViewModel,
             appendTo : '#stage',
             wrapper : false,
+            rivetConfig : 'auto',
             template : template,
             events : {
                 'change #limitDropdown' : 'changeLimit'
             },
             bindings : [],
-            rivetConfig : 'auto',
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addNewUser,

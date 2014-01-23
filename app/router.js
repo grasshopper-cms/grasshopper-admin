@@ -59,6 +59,7 @@ define([
                 '*path' : 'goHome'
             },
 
+            user : userModel,
             initialize : initialize,
             startHeader : startHeader,
             removeHeader : removeHeader,
@@ -80,7 +81,6 @@ define([
             displayApp : displayApp,
             displayLogin : displayLogin,
             goLogout : goLogout,
-            user : userModel,
             navigate : navigate,
             displayUsersIndex : displayUsersIndex,
             displayUserDetail : displayUserDetail,
@@ -162,9 +162,7 @@ define([
         }
 
         function navigate (fragment, options, doBeforeRender) {
-            // TODO: Move in to masseuse parts that we can
             if (currentView instanceof Backbone.View) {
-                // (and override destroy in GH to remove alerts)
                 currentView.hideAlertBox.call(currentView);
             }
             if (doBeforeRender) {
@@ -223,7 +221,11 @@ define([
         }
 
         function startHeader () {
-            this.headerView = new HeaderView(headerViewConfig);
+            this.headerView = new HeaderView(_.extend({}, headerViewConfig, {
+                modelData : {
+                    userModel : this.user
+                }
+            }));
             this.headerView.start();
             this.mastheadView = new MastheadView(mastheadViewConfig);
             this.mastheadView.start();
@@ -321,18 +323,13 @@ define([
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
-            // TODO: Refactor this to take advantage of the permissions checking system.
-            if (this.user.get('role') === 'admin') {
-                loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
-                    {
-                        modelData : {
-                            pageNumber : pageNumber,
-                            pageLimit : pageLimit
-                        }
-                    }), true);
-            } else {
-                this.navigateTrigger('home');
-            }
+            loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
+                {
+                    modelData : {
+                        pageNumber : pageNumber,
+                        pageLimit : pageLimit
+                    }
+                }), true);
         }
 
         function displayAddUser () {

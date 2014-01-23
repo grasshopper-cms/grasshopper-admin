@@ -7,9 +7,7 @@ define(['text!views/header/headerView.html', 'headerViewModel', 'masseuse'],
 
         return {
             name : 'headerView',
-            modelData : {
-                userModel : ViewContext('app.user')
-            },
+            modelData : {},
             ModelType : HeaderViewModel,
             appendTo : '#header',
             wrapper : false,

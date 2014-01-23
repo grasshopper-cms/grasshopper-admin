@@ -10,6 +10,7 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             ModelType : userDetailViewModel,
             appendTo : '#stage',
             wrapper : false,
+            rivetConfig : 'auto',
             template : formTemplate,
             events : {
                 'click #saveUser' : 'updateModel',
@@ -17,7 +18,6 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
                 'click .clickableCell' : 'handleRowClick'
             },
             bindings : [],
-            rivetConfig : 'auto',
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addNewUser,
