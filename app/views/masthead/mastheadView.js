@@ -14,6 +14,8 @@ define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) 
     }
 
     function setButtons (buttonArray) {
+        //TODO: This resets the mastheadbuttons each time.
+        // I should do a check to see if anything has changed before updating it again.
         if (!buttonArray) {
             this.model.set('buttons', this.defaultMastheadButtons);
         } else {
@@ -39,7 +41,6 @@ define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) 
         for (i, max; i < max; i++) {
             interpolatedArray.push(_interpolateButton.call(this, buttonArray[i]));
         }
-
         return interpolatedArray;
     }
 

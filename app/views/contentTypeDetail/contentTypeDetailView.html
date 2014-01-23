@@ -1,3 +1,53 @@
-<div id="[[= viewId ]]">
-    {{data | jsonAsString}}
+<div id="contentTypeDetailView">
+    <div class="row">
+        <div class="large-12  columns">
+            <div class="row">
+                <div class="large-6 columns">
+                    <h3 class="title">{{model:label}}</h3>
+                </div>
+                <div class="large-6 columns">
+                    <a href="#" data-dropdown="drop" class="button tiny radius dropdown right">{{model:resources->contentType->addNewField}}</a><br>
+                    <ul id="drop" data-dropdown-content class="f-dropdown">
+                        <li data-rv-each-field="model:plugins.fields">
+                            <a data-rv-on-click="view.addNewFieldToContentType">
+                                {{field.name}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <ul>
+                <li><span>Help Text: </span>{{model:helpText}}</li>
+                <li><span>meta: </span>{{model:meta}}</li>
+                <li><span>Description: </span>{{model:description}}</li>
+            </ul>
+            <hr>
+            <h3>{{model:resources->contentType->fields | withColon}}</h3>
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th>{{model:resources->label}}</th>
+                        <th>{{model:resources->contentType->fieldType}}</th>
+                        <th>required</th>
+                        <th>instancing</th>
+                        <th style="text-align: center">{{model:resources->actions}}</th>
+                    </tr>
+                </thead>
+                <tbody id="fieldTypeIndexTable">
+                    <tr data-rv-each-field="model:fields">
+                        <td>{{field.label}}</td>
+                        <td>{{field.type}}</td>
+                        <td>{{field.required}}</td>
+                        <td>{{field.instancing}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

@@ -1,20 +1,17 @@
 /*global define:false*/
 define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeIndexViewModel', 'resources', 'constants'],
-    function (templateHtml, contentTypeIndexViewModel, resources, constants) {
+    function (template, contentTypeIndexViewModel, resources, constants) {
         'use strict';
 
         return {
             name : 'contentTypeIndexView',
             ModelType : contentTypeIndexViewModel,
-            el : '#stage',
-            templateHtml : templateHtml,
+            appendTo : '#stage',
+            wrapper : false,
+            template : template,
             rivetConfig : 'auto',
-            bindings : [
-            ],
-            appendView : true,
-            events : {
-
-            },
+            bindings : [],
+            events : {},
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addContentType,

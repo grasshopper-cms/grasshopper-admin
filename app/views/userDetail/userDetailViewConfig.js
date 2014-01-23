@@ -8,16 +8,16 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             name : 'userDetailView',
             modelData : {},
             ModelType : userDetailViewModel,
-            el : '#stage',
-            templateHtml : formTemplate,
+            appendTo : '#stage',
+            wrapper : false,
+            rivetConfig : 'auto',
+            template : formTemplate,
             events : {
                 'click #saveUser' : 'updateModel',
                 'click .toggleEnabled' : 'toggleEnabled',
                 'click .clickableCell' : 'handleRowClick'
             },
-            appendView : true,
             bindings : [],
-            rivetConfig : 'auto',
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addNewUser,

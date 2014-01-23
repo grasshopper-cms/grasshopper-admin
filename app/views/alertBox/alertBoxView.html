@@ -1,13 +1,13 @@
-<div id="[[= viewId ]]" class="alertBoxPartial">
-    <div data-rv-hide="data.status" class="bad">
+<div class="alertBoxPartial">
+    <div data-rv-hide="model:status" class="bad">
         <div data-alert class="error">
-            <div data-rv-text="data.msg"></div>
+            <div data-rv-text="model:msg"></div>
             <a href="#" id="closeAlertBox" class="close">&times;</a>
         </div>
     </div>
-    <div data-rv-show="data.status" class="good">
+    <div data-rv-show="model:status" class="good">
         <div data-alert class="error">
-            <div data-rv-text="data.msg"></div>
+            <div data-rv-text="model:msg"></div>
             <a href="#" id="closeAlertBox" class="close">&times;</a>
         </div>
     </div>

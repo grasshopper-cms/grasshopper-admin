@@ -1,55 +1,77 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
+define(['grasshopperBaseView', 'resources', 'plugins'], function (GrasshopperBaseView, resources, plugins) {
     'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
-        deleteContentType : deleteContentType,
-        handleRowClick : handleRowClick
+        afterRender : afterRender,
+        prepareToDeleteContentType : prepareToDeleteContentType,
+        handleRowClick : handleRowClick,
+        addNewFieldToContentType : addNewFieldToContentType
     });
 
-    function beforeRender () {
-        if (!this.model.has('_id')) {
-            this.model
-                .fetch()
-                .done(function () {})
-                .fail(function () { /* TODO: Error Handling */ });
+    function beforeRender ($deferred) {
+        if (!this.model.has('label')) {
+            this.model.fetch()
+                .done($deferred.resolve)
+                .fail($deferred.reject);
+        } else {
+            $deferred.resolve();
         }
+        this.model.set('plugins', plugins);
     }
 
-    function deleteContentType () {
-        var self = this;
+    function afterRender() {
+        this.$el.foundation();
+    }
 
-        this.displayModal(
+    function prepareToDeleteContentType () {
+        _warnUserBeforeDeleting.call(this)
+            .then(_actuallyDeleteContentType.bind(this));
+    }
+
+    function _warnUserBeforeDeleting() {
+        return this.displayModal(
             {
                 msg : resources.contentType.deletionWarning
-            })
-            .done(function () {
-                self.model.destroy(
-                    {
-                        success : function (model) {
-                            self.displayTemporaryAlertBox(
-                                {
-                                    msg : resources.contentType.successfullyDeletedPre + model.get('label') +
-                                        resources.contentType.successfullyDeletedPost,
-                                    status : true
-                                }
-                            );
-                            self.remove();
-                        },
-                        error : function (model) {
-                            self.displayAlertBox(
-                                {
-                                    msg : resources.contentType.errorDeleted + model.get('label')
-                                }
-                            );
-                        }
-                    });
             });
+    }
+
+    function _actuallyDeleteContentType() {
+        this.model.destroy(
+            {
+                success : _handleSuccessfulContentTypeDeletion.bind(this),
+                error : _handleFailedContentTypeDeletion.bind(this)
+            });
+    }
+
+    function _handleSuccessfulContentTypeDeletion(model) {
+        this.displayTemporaryAlertBox(
+            {
+                msg : resources.contentType.successfullyDeletedPre + model.get('label') +
+                    resources.contentType.successfullyDeletedPost,
+                status : true
+            }
+        );
+        this.remove();
+    }
+
+    function _handleFailedContentTypeDeletion(model) {
+        this.displayAlertBox(
+            {
+                msg : resources.contentType.errorDeleted + model.get('label')
+            }
+        );
     }
 
     function handleRowClick (e) {
         e.stopPropagation();
         this.app.router.navigateTrigger(this.model.get('href'), {}, true);
+    }
+
+    function addNewFieldToContentType(e, context) {
+        console.log(this);
+        console.log(e);
+        console.log(context);
     }
 
 });

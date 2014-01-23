@@ -1,23 +1,21 @@
-<div id="[[= viewId ]]">
-    <div id="modal-container">
-        <div id="modal-contents">
-            <div class="row">
-                <div id="modal-text">
-                    <h2>{{data.msg}}</h2>
-                </div>
+<div id="modal-container">
+    <div id="modal-contents">
+        <div class="row">
+            <div id="modal-text">
+                <h2>{{model:msg}}</h2>
             </div>
-            <div id="input-container" class="row">
-                <div class="small-8 columns small-centered">
-                    <input type="text" data-rv-value="data.data"/>
-                </div>
+        </div>
+        <div id="input-container" class="row">
+            <div class="small-8 columns small-centered">
+                <input type="text" data-rv-value="model:data"/>
             </div>
-            <div class="row">
-                <div class="small-12 text-center">
-                    <ul id="button-container" class="button-group radius">
-                        <li><a id="confirm" class="button small">{{data.resources.save}}</a></li>
-                        <li><a id="cancel" class="button small">{{data.resources.cancel}}</a></li>
-                    </ul>
-                </div>
+        </div>
+        <div class="row">
+            <div class="small-12 text-center">
+                <ul id="button-container" class="button-group radius">
+                    <li><a id="confirm" class="button small">{{model:resources->save}}</a></li>
+                    <li><a id="cancel" class="button small">{{model:resources->cancel}}</a></li>
+                </ul>
             </div>
         </div>
     </div>

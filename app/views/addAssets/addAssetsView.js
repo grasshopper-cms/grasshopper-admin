@@ -34,25 +34,20 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                     });
                     _navigateBack.call(self);
                 })
-                .fail(function () {
-                    _navigateBack.call(self);
-                });
+                .fail(_navigateBack.bind(this));
         }
 
         function _uploadInRoot () {
-            var self = this;
             this.displayModal(
                 {
                     msg : resources.asset.uploadInRoot
                 })
-                .always(function () {
-                    _navigateBack.call(self);
-                });
+                .always(_navigateBack.bind(this));
         }
 
         function _navigateBack (trigger) {
-            this.app.router.navigateBack(trigger);
             this.app.router.removeThisRouteFromBreadcrumb();
+            this.app.router.navigateBack(trigger);
             this.remove();
         }
 
@@ -67,8 +62,9 @@ define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailView
                         lastmodified : file.lastModifiedDate,
                         fileData : file
                     },
-                    el : '#assetDetailRow',
-                    templateHtml : assetDetailRowTemplate,
+                    appendTo : '#assetDetailRow',
+                    wrapper : false,
+                    template : assetDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
                 }
             ));

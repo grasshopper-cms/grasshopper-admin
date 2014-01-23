@@ -1,16 +1,16 @@
 /*global define:false*/
 define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources'],
-    function (templateHtml, mastheadViewModel, resources) {
+    function (template, mastheadViewModel, resources) {
         'use strict';
 
         return {
             name : 'mastheadView',
             modelData : {},
             ModelType : mastheadViewModel,
-            el : '#masthead',
-            templateHtml : templateHtml,
+            appendTo : '#masthead',
+            wrapper : false,
+            template : template,
             events : {},
-            appendView : true,
             bindings : [
                 ['channels.views', 'updateMastheadButtons', 'setButtons'],
                 ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']

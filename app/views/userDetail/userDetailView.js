@@ -9,7 +9,7 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
             handleRowClick : handleRowClick
         });
 
-        function beforeRender () {
+        function beforeRender ($deferred) {
 
             // It is checking to see if the current model's ID is the same as Logged in user, the API endpoints are
             // different for Admin editing their own (/user) and admin editing someone else (/users/id)
@@ -19,20 +19,19 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
                 this.model.urlRoot = constants.api.users.url;
             }
 
+            // TODO: I think this can be replaced with a this.model.isNew()
             if (!this.model.has('_id')) {
                 this.model.fetch()
-                    .done(function () { });
+                    .done($deferred.resolve);
+            } else {
+                $deferred.resolve();
             }
         }
 
         function updateModel () {
-            var self = this;
             this.model.save()
-                .done(function (model) {
-                    _handleSuccessfulSave.call(self, model);
-                }).fail(function (xhr) {
-                    _handleFailedSave.call(self, xhr);
-                });
+                .done(_handleSuccessfulSave.bind(this))
+                .fail(_handleFailedSave.bind(this));
 
             return false;
         }
@@ -40,6 +39,7 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
         function toggleEnabled () {
             var enabled = this.model.get('enabled');
             this.model.set('enabled', (enabled) ? false : true);
+            this.model.trigger('change:enabled');
             this.updateModel();
         }
 
@@ -69,6 +69,7 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
         function _updateNameInHeader (model) {
             if (this.app.user.get('_id') === model._id) {
                 this.app.user.set(model);
+//                this.model.set('userModel', model);
             }
         }
 

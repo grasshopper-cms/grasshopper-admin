@@ -1,20 +1,18 @@
 /*global define:false*/
 define(['text!views/header/headerView.html', 'headerViewModel', 'masseuse'],
-    function (templateHtml, HeaderViewModel, masseuse) {
+    function (template, HeaderViewModel, masseuse) {
         'use strict';
 
         var ViewContext = masseuse.ViewContext;
 
         return {
             name : 'headerView',
-            modelData : {
-                userModel : ViewContext('app.user')
-            },
+            modelData : {},
             ModelType : HeaderViewModel,
-            el : '#header',
-            templateHtml : templateHtml,
+            appendTo : '#header',
+            wrapper : false,
+            template : template,
             events : {},
-            appendView : true,
             bindings : [],
             rivetConfig : 'auto'
         };

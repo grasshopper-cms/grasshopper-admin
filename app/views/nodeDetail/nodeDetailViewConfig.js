@@ -8,14 +8,14 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
             name : 'nodeDetailView',
             ModelType : nodeDetailViewModel,
             modelData : {},
-            el : '#stage',
-            templateHtml : formTemplate,
+            appendTo : '#stage',
+            wrapper : false,
+            template : formTemplate,
             events : {
                 'click #deleteNode' : 'prepareToDeleteNode',
                 'click #editNode' : 'prepareToEditNode',
                 'click .clickableCell' : 'handleRowClick'
             },
-            appendView : true,
             bindings : [],
             rivetConfig : 'auto',
             mastheadButtons : [],

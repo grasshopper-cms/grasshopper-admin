@@ -52,8 +52,9 @@ define(['jquery', 'grasshopperBaseView', 'userWorker', 'constants', 'underscore'
             var userDetailView = new UserDetailView(_.extend({}, userDetailViewConfig,
                 {
                     name : 'userDetailRow',
-                    el : '#usersIndexTable',
-                    templateHtml : rowTemplate,
+                    appendTo : '#usersIndexTable',
+                    wrapper : false,
+                    template : rowTemplate,
                     model : model,
                     mastheadButtons : null
                 }

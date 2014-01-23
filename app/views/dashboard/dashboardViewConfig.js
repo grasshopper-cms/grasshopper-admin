@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources', 'constants', 'masseuse'],
-    function (templateHtml, DashboardViewModel, resources, constants, masseuse) {
+    function (template, DashboardViewModel, resources, constants, masseuse) {
         'use strict';
 
         var ViewContext = masseuse.ViewContext;
@@ -10,10 +10,10 @@ define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resour
                 userModel : ViewContext('app.user')
             },
             ModelType : DashboardViewModel,
-            el : '#stage',
-            templateHtml : templateHtml,
+            appendTo : '#stage',
+            wrapper : false,
+            template : template,
             events : {},
-            appendView : true,
             bindings : [],
             rivetConfig : 'auto',
             mastheadButtons : [],

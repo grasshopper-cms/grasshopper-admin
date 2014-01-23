@@ -81,7 +81,8 @@ define({
         deletionWarning : 'Are you sure you want to delete this content?',
         successfullyDeletedPre : 'Content ',
         successfullyDeletedPost : ' was successfully deleted.',
-        errorDeleted : 'There was an issue deleting this content: '
+        errorDeleted : 'There was an issue deleting this content: ',
+        createContent : 'Create new content.'
     },
     contentType : {
         addContentTypes : 'Add Content Types: ',
@@ -94,7 +95,10 @@ define({
         serverError : 'Content Types could not be retrieved.',
         selectContentType : 'Which Content Type would you like to use?',
         contentInRoot : 'You cannot create content in the Root.',
-        noContentTypes : 'This folder has no allowed content types.'
+        noContentTypes : 'This folder has no allowed content types.',
+        fields : 'Fields',
+        fieldType : 'Field Type',
+        addNewField : 'Add New Field'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
@@ -136,6 +140,7 @@ define({
     enabled : 'Enabled',
     falseText : 'False',
     home : 'Home',
+    label : 'Label',
     login : 'Login',
     log_in : 'Log In',
     log_out : 'Log Out',

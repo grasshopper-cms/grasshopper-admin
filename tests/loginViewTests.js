@@ -183,7 +183,7 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
                 });
             });
 
-            describe("its templateHtml attribute", function() {
+            describe("its template attribute", function() {
                 xit("exists", function() {
 
                 });

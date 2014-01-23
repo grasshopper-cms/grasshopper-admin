@@ -1,10 +1,10 @@
-<table id="[[= viewId ]]" class="content-table">
+<table class="content-table">
     <thead>
     <tr>
-        <th>{{data.resources.fileIndex.fileName}}</th>
-        <th>{{data.resources.fileIndex.size}}</th>
-        <th>{{data.resources.fileIndex.modified}}</th>
-        <th style="text-align: center">{{data.resources.actions}}</th>
+        <th>{{model:resources->fileIndex->fileName}}</th>
+        <th>{{model:resources->fileIndex->size}}</th>
+        <th>{{model:resources->fileIndex->modified}}</th>
+        <th style="text-align: center">{{model:resources->actions}}</th>
     </tr>
     </thead>
     <tbody id="assetDetailRow">

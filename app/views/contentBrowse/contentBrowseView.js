@@ -34,16 +34,16 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
         }
 
         function addChildIndexViews () {
-            addNodeIndexView.call(this);
-            addAssetIndexView.call(this);
-            addContentIndexView.call(this);
+            _addNodeIndexView.call(this);
+            _addAssetIndexView.call(this);
+            _addContentIndexView.call(this);
         }
 
         function refreshIndexViews () {
             this.refreshChildren();
         }
 
-        function addNodeIndexView () {
+        function _addNodeIndexView () {
             var nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
                 {
                     nodeId : this.model.get('nodeId'),
@@ -53,7 +53,7 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
             this.addChild(nodeIndexView);
         }
 
-        function addAssetIndexView () {
+        function _addAssetIndexView () {
             var assetIndexView = new AssetIndexView(_.extend({}, assetIndexViewConfig,
                 {
                     nodeId : this.model.get('nodeId'),
@@ -63,7 +63,7 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
             this.addChild(assetIndexView);
         }
 
-        function addContentIndexView () {
+        function _addContentIndexView () {
             if (!this.model.get('nodeId')) {
                 this.model.set('inRoot', true);
             } else {
@@ -77,6 +77,7 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
             }
         }
 
+        // TODO: Refactor this method...it is ugly.
         function buildMastheadBreadcrumb () {
             var self = this,
                 crumb = [],

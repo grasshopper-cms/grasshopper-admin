@@ -3,63 +3,73 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
     function (GrasshopperBaseView, resources, _, $, Api, contentTypeWorker) {
         'use strict';
         return GrasshopperBaseView.extend({
+            beforeRender : beforeRender,
             prepareToDeleteNode : prepareToDeleteNode,
             handleRowClick : handleRowClick,
             prepareToEditNode : prepareToEditNode
         });
 
-        function prepareToDeleteNode () {
-            var self = this;
+        function beforeRender() {
+            if(this.model.isNew()) {
+                _saveNodeWorkflow.call(this);
+            }
+        }
 
+        function prepareToDeleteNode () {
             this.displayModal(
                 {
                     msg : resources.node.deletionWarning
                 })
-                .done(function () {
-                    _deleteNode.call(self);
-                });
+                .then(_deleteNode.bind(this));
         }
 
         function handleRowClick () {
             this.app.router.navigateTrigger(this.model.get('href'));
+            return false;
         }
 
         function prepareToEditNode () {
             var self = this;
 
-            this.model.fetch()
-                .done(function() {
-                    _getNewNodeName.call(self)
-                        .done(function (modalData) {
-                            _editNode.call(self, modalData.data);
-                        });
+            $.when(_askUserForNewNodeName.call(this), this.model.fetch())
+                .then(function(modalData) {
+                    self.model.set('label', modalData.data);
+                    _saveNodeWorkflow.call(self);
                 });
         }
 
-        function _editNode(newNodeName) {
-            var self = this;
-
-            this.model.set('label', newNodeName);
-            this.model.save()
-                .done(function () {
-                    _handleSuccessfulNodeSave.call(self);
-                    _getAvailableContentTypes.call(self)
-                        .done(function(availableContentTypes) {
-                            _askUserWhichContentTypesToAttach.call(self, availableContentTypes)
-                                .done(function(modalData) {
-                                    _attachContentTypesToNode.call(self, modalData.data)
-                                        .done(function () {
-                                            _handleSuccessfulContentTypeAddition.call(self);
-                                        })
-                                        .fail(function (msg) {
-                                            _handleFailedContentTypeAddition.call(self, msg);
-                                        });
-                                });
-                        });
-                })
-                .fail(function () {
-                    _handleFailedNodeSave.call(self);
+        function _askUserForNewNodeName() {
+            return this.displayModal(
+                {
+                    msg : resources.node.editName,
+                    type : 'input',
+                    data : this.model.get('label')
                 });
+        }
+
+        function _saveNodeWorkflow() {
+            $
+                .when(_getAvailableContentTypes.call(this), _saveThisNode.call(this))
+                .then(_askUserWhichContentTypesToAttach.bind(this))
+                .then(_attachContentTypesToNode.bind(this));
+        }
+
+        function _saveThisNode() {
+            var $deferred = new $.Deferred();
+
+            this.model.save()
+                .done(_handleSuccessfulNodeSave.bind(this, $deferred))
+                .fail(_handleFailedNodeSave.bind(this, $deferred));
+
+            return $deferred.promise();
+        }
+
+        function _attachContentTypesToNode(modalData) {
+            var selectedContentTypes = modalData.data;
+
+            contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes)
+                .done(_handleSuccessfulContentTypeAddition.bind(this))
+                .fail(_handleFailedContentTypeAddition.bind(this));
         }
 
         function _handleFailedContentTypeAddition(msg) {
@@ -79,17 +89,23 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
             );
         }
 
-        function _attachContentTypesToNode(selectedContentTypes) {
-            return contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes);
+        function _handleFailedNodeSave($deferred) {
+            this.displayAlertBox(
+                {
+                    msg : resources.node.errorUpdated
+                }
+            );
+            $deferred.reject();
         }
 
-        function _handleSuccessfulNodeSave() {
+        function _handleSuccessfulNodeSave($deferred) {
             this.displayTemporaryAlertBox(
                 {
                     msg : resources.node.successfullyUpdated,
                     status : true
                 }
             );
+            $deferred.resolve();
         }
 
         function _askUserWhichContentTypesToAttach(availableContentTypes) {
@@ -105,33 +121,10 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
             return contentTypeWorker.getAvailableContentTypes(this.model.get('allowedTypes'));
         }
 
-        function _handleFailedNodeSave() {
-            this.displayAlertBox(
-                {
-                    msg : resources.node.errorUpdated
-                }
-            );
-        }
-
-        function _getNewNodeName() {
-            return this.displayModal(
-                {
-                    msg : resources.node.editName,
-                    type : 'input',
-                    data : this.model.get('label')
-                });
-        }
-
         function _deleteNode() {
-            var self = this;
-
             this.model.destroy()
-                .done(function () {
-                    _handleSuccessfulNodeDeletion.call(self);
-                })
-                .fail(function () {
-                    _handleFailedNodeDeletion.call(self);
-                });
+                .done(_handleSuccessfulNodeDeletion.bind(this))
+                .fail(_handleFailedNodeDeletion.bind(this));
         }
 
         function _handleSuccessfulNodeDeletion() {

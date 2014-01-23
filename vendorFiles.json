@@ -11,10 +11,11 @@
     "modernizr" : "vendor/modernizr/modernizr.js",
     "masseuse" : "vendor/masseuse/app/**/*.js",
     "masseuseV" : "!vendor/masseuse/app/vendor/**",
-    "helpers" : "vendor/masseuse/helpers/app/**/*.js",
-    "helpersV" : "!vendor/masseuse/helpers/app/vendor/**",
+    "helpers" : "vendor/helpers/app/**/*.js",
+    "helpersV" : "!vendor/helpers/app/vendor/**",
     "alerts" : "vendor/foundation/js/foundation/foundation.alert.js",
     "dropdown" : "vendor/foundation/js/foundation/foundation.dropdown.js",
     "tabs": "vendor/foundation/js/foundation/foundation.tab.js",
-    "tooltip": "vendor/foundation/js/foundation/foundation.tooltip.js"
+    "tooltip": "vendor/foundation/js/foundation/foundation.tooltip.js",
+    "abide": "vendor/foundation/js/foundation/foundation.abide.js"
 }

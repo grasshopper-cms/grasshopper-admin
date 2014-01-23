@@ -8,8 +8,9 @@ define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_
             name : 'assetDetailView',
             ModelType : assetDetailViewModel,
             modelData : {},
-            el : '#stage',
-            templateHtml : formTemplate,
+            appendTo : '#stage',
+            wrapper : false,
+            template : formTemplate,
             events : {
                 'click .clickableCell' : 'handleRowClick',
                 'click #deleteAsset' : 'prepareToDeleteAsset',
@@ -17,7 +18,6 @@ define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_
                 'click #retryUpload' : 'postNewAsset',
                 'click #cancelUpload' : 'cancelUpload'
             },
-            appendView : true,
             bindings : [],
             rivetConfig : 'auto',
             mastheadButtons : []

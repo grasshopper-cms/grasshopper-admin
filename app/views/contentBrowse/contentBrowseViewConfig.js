@@ -1,19 +1,19 @@
 /*global define:false*/
 define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'contentBrowseViewModel', 'constants'],
-    function (templateHtml, resources, contentBrowseViewModel, constants) {
+    function (template, resources, contentBrowseViewModel, constants) {
         'use strict';
 
         return {
             name : 'contentBrowseView',
             ModelType : contentBrowseViewModel,
-            el : '#stage',
-            templateHtml : templateHtml,
+            appendTo : '#stage',
+            wrapper : false,
+            template : template,
             rivetConfig : 'auto',
             bindings : [
                 ['channels.views', 'refreshContentBrowseView', 'refreshIndexViews'],
                 ['channels.views', 'activateTab', 'activateTab']
             ],
-            appendView : true,
             events : {},
             mastheadButtons : [
                 {

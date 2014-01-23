@@ -17,6 +17,9 @@ require.config({
         tooltip : {
             deps : ['foundation']
         },
+        abide : {
+            deps : ['foundation']
+        },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
@@ -32,9 +35,12 @@ require.config({
             location : 'vendor/masseuse/app'
         },
         {
-            // TODO: move this to separate submodule
+            name : 'rivetsPlugin',
+            location : 'vendor/masseuse/app/plugins/rivets'
+        },
+        {
             name : 'helpers',
-            location : 'vendor/masseuse/helpers/app'
+            location : 'vendor/helpers/app'
         }
     ],
     paths : {
@@ -57,6 +63,7 @@ require.config({
         dropdown : 'vendor/foundation/js/foundation/foundation.dropdown',
         tabs : 'vendor/foundation/js/foundation/foundation.tab',
         tooltip : 'vendor/foundation/js/foundation/foundation.tooltip',
+        abide : 'vendor/foundation/js/foundation/foundation.abide',
 
         // Views
         grasshopperBaseView : 'views/grasshopperBaseView',
@@ -102,6 +109,8 @@ require.config({
         addContentViewConfig : 'views/addContent/addContentViewConfig',
         addAssetsView : 'views/addAssets/addAssetsView',
         addAssetsViewConfig : 'views/addAssets/addAssetsViewConfig',
+        pluginWrapperView : 'views/pluginWrapper/pluginWrapperView',
+        pluginWrapperViewConfig : 'views/pluginWrapper/pluginWrapperViewConfig',
 
         // Models
         selfValidatingModel : 'models/selfValidatingModel',
@@ -130,12 +139,12 @@ require.config({
         addFolderViewModel : 'models/viewModels/addFolderViewModel',
         addContentViewModel : 'models/viewModels/addContentViewModel',
         addAssetsViewModel : 'models/viewModels/addAssetsViewModel',
+        pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',
         userWorker : 'workers/userWorker',
         contentTypeWorker : 'workers/contentTypeWorker',
-        nodeWorker : 'workers/nodeWorker',
         assetWorker : 'workers/assetWorker',
 
         // Collections
@@ -146,6 +155,15 @@ require.config({
 
         // Validation
         validation : 'validation/validation',
+
+        // Plugins
+        plugins : 'plugins',
+
+        // Binders
+        binders : 'binders',
+
+        // Formatters
+        formatters : 'formatters',
 
         // Resources File
         resources : 'resources',
@@ -163,6 +181,7 @@ require([
     'dropdown',
     'tabs',
     'tooltip',
+    'abide',
     'modernizr'
 ],
     /**

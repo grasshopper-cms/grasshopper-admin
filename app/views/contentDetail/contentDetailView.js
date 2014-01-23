@@ -1,43 +1,88 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
+define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (GrasshopperBaseView, resources, $, Api) {
     'use strict';
     return GrasshopperBaseView.extend({
+        beforeRender : beforeRender,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick
     });
 
-    function deleteContent () {
-        var self = this;
+    function beforeRender($deferred) {
+        if(!this.model.has('label')) {
+            _fetchContentDetails.call(this, $deferred);
+        } else {
+            $deferred.resolve();
+        }
+    }
 
-        this.displayModal(
+    function deleteContent () {
+        _confirmDeletion.call(this)
+            .then(_destroyThisModel.bind(this));
+    }
+
+    function _confirmDeletion() {
+        return this.displayModal(
             {
                 msg : resources.contentItem.deletionWarning
-            })
-            .done(function () {
-                self.model.destroy(
-                    {
-                        success : function (model) {
-                            self.displayTemporaryAlertBox(
-                                {
-                                    msg : resources.contentItem.successfullyDeletedPre + model.get('label') +
-                                        resources.contentItem.successfullyDeletedPost,
-                                    status : true
-                                }
-                            );
-                            self.remove();
-                        },
-                        error : function (model) {
-                            self.displayAlertBox(
-                                {
-                                    msg : resources.contentItem.errorDeleted + model.get('label')
-                                }
-                            );
-                        }
-                    });
             });
+    }
+
+    function _destroyThisModel() {
+        this.model.destroy(
+            {
+                success : _handleSuccessfulDeletion.bind(this),
+                error : _handleFailedDeletion.bind(this)
+            });
+    }
+
+    function _handleFailedDeletion(model) {
+        this.displayAlertBox(
+            {
+                msg : resources.contentItem.errorDeleted + model.get('label')
+            }
+        );
+    }
+
+    function _handleSuccessfulDeletion(model) {
+        this.displayTemporaryAlertBox(
+            {
+                msg : resources.contentItem.successfullyDeletedPre + model.get('label') +
+                    resources.contentItem.successfullyDeletedPost,
+                status : true
+            }
+        );
+        this.remove();
     }
 
     function handleRowClick () {
         this.app.router.navigateTrigger(this.model.get('href'));
+        return false;
+    }
+
+    function _fetchContentDetails($deferred) {
+        var self = this;
+        this.model.fetch()
+            .done(_getContentSchema.bind(self, $deferred))
+            .fail(function() {
+                self.displayAlertBox({
+                    msg : 'Could not retrieve content.'
+                });
+                $deferred.reject();
+            });
+    }
+
+    function _getContentSchema($deferred) {
+        var self = this;
+        Api.getContentType(this.model.get('type'))
+            .done(function(schema) {
+                self.model.set('schema', schema);
+                $deferred.resolve();
+            })
+            .fail(function() {
+                self.displayAlertBox({
+                    msg : 'Could not retrieve content type for this content.'
+                });
+                $deferred.reject();
+            });
     }
 });

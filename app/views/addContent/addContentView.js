@@ -1,11 +1,18 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
-    function (GrasshopperBaseView, resources, contentTypeWorker) {
+define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
+    function (GrasshopperBaseView, resources, contentTypeWorker, Api) {
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender : beforeRender
+            beforeRender : beforeRender,
+            afterRender : afterRender,
+            saveContent : saveContent,
+            consoleLogIt : consoleLogIt
         });
+
+        function consoleLogIt() {
+            console.log(this.model);
+        }
 
         function beforeRender ($deferred) {
             // TODO: This node ID check is done in a bunch of different Views. Move this somewhere else to DRY this up.
@@ -16,37 +23,57 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
             }
         }
 
-        function _handleCreateContent ($deferred) {
-            var self = this;
-            _getNodesContentTypes.call(self, self.model.get('nodeId'))
-                .done(function (nodeData) {
-                    if(nodeData.allowedTypes) {
-                        switch (nodeData.allowedTypes.length) {
-                        case (0) :
-                            _handleNodeWithZeroContentTypes.call(self, $deferred);
-                            break;
-                        case (1) :
-                            _handleNodeWithOneContentType.call(self, $deferred, nodeData.allowedTypes[0]);
-                            break;
-                        default :
-                            _getSelectedContentTypeFromUser.call(self, nodeData.allowedTypes)
-                                .done(function (modalData) {
-                                    _handleSuccessfulContentTypeSelection.call(self, $deferred, modalData.selectedType);
-                                })
-                                .fail(function () {
-                                    _handleCanceledContentTypeSelection.call(self, $deferred);
-                                });
-                            break;
-                        }
-                    }
+        function afterRender() {
+            this.$el.foundation();
+        }
+
+        function saveContent() {
+            console.log(this);
+            console.log(this.model.url());
+            this.model.save()
+                .done(function() {
+                    console.log('it worked');
                 })
-                .fail(function (xhr) {
-                    _handleFailedContentTypeRetrieval.call(self, $deferred, xhr);
+                .fail(function() {
+                    console.log('it did not work');
                 });
+        }
+
+        function _handleCreateContent ($deferred) {
+            _getNodesContentTypes.call(this, this.model.get('nodeId'))
+                .done(_decideHowToHandleContentTypeSelection.bind(this, $deferred))
+                .fail(_handleFailedContentTypeRetrieval.bind(this, $deferred));
         }
 
         function _getNodesContentTypes(nodeId) {
             return contentTypeWorker.getNodesContentTypes(nodeId);
+        }
+
+        function _decideHowToHandleContentTypeSelection($deferred, nodeData) {
+            var self = this,
+                allowedTypes = nodeData.allowedTypes;
+
+            if(allowedTypes) {
+                switch (allowedTypes.length) {
+                case (0) :
+                    _handleNodeWithZeroContentTypes.call(self, $deferred);
+                    break;
+                case (1) :
+                    _handleNodeWithOneContentType.call(self, $deferred, allowedTypes[0]);
+                    break;
+                default :
+                    _getSelectedContentTypeFromUser.call(self, allowedTypes)
+                        .done(function (modalData) {
+                            _handleSuccessfulContentTypeSelection.call(self, $deferred, modalData.selectedType);
+                        })
+                        .fail(function () {
+                            _handleCanceledContentTypeSelection.call(self, $deferred);
+                        });
+                    break;
+                }
+            } else {
+                _handleNodeWithZeroContentTypes.call(self, $deferred);
+            }
         }
 
         function _handleNodeWithZeroContentTypes($deferred) {
@@ -63,7 +90,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
 
         function _handleNodeWithOneContentType($deferred, contentType) {
             this.model.set('contentTypeId', contentType._id);
-            $deferred.resolve();
+            _setNewContentsAuthor.call(this);
+            _getSelectedContentTypeSchema.call(this, $deferred);
         }
 
         function _getSelectedContentTypeFromUser(nodeData) {
@@ -77,7 +105,31 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
 
         function _handleSuccessfulContentTypeSelection($deferred, selectedContentType) {
             this.model.set('contentTypeId', selectedContentType);
-            $deferred.resolve();
+            _setNewContentsAuthor.call(this);
+            _getSelectedContentTypeSchema.call(this, $deferred);
+        }
+
+        function _setNewContentsAuthor() {
+            this.model.set('author', {
+                _id : this.app.user.get('_id'),
+                firstname : this.app.user.get('firstname'),
+                lastname : this.app.user.get('lastname'),
+                fullname : this.app.user.get('firstname') +' '+ this.app.user.get('lastname')
+            });
+        }
+
+        function _getSelectedContentTypeSchema($deferred) {
+            var self = this;
+
+            Api.getContentType(this.model.get('contentTypeId'))
+                .done(function(data) {
+                    self.model.set('schema', data.fields);
+                    $deferred.resolve();
+                })
+                .fail(function() {
+                    $deferred.reject();
+                });
+
         }
 
         function _handleCanceledContentTypeSelection($deferred) {
@@ -103,8 +155,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker'],
         }
 
         function _navigateBack (trigger) {
-            this.app.router.navigateBack(trigger);
             this.app.router.removeThisRouteFromBreadcrumb();
+            this.app.router.navigateBack(trigger);
         }
 
     });

@@ -59,6 +59,7 @@ define([
                 '*path' : 'goHome'
             },
 
+            user : userModel,
             initialize : initialize,
             startHeader : startHeader,
             removeHeader : removeHeader,
@@ -80,7 +81,6 @@ define([
             displayApp : displayApp,
             displayLogin : displayLogin,
             goLogout : goLogout,
-            user : userModel,
             navigate : navigate,
             displayUsersIndex : displayUsersIndex,
             displayUserDetail : displayUserDetail,
@@ -155,16 +155,14 @@ define([
 
         function navigateBack (trigger) {
             if (trigger) {
-                this.navigateTrigger(this.breadcrumb[this.breadcrumb.length - 2]);
+                this.navigateTrigger(this.breadcrumb[this.breadcrumb.length - 1]);
             } else {
-                this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 2]);
+                this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 1]);
             }
         }
 
         function navigate (fragment, options, doBeforeRender) {
-            // TODO: Move in to masseuse parts that we can
             if (currentView instanceof Backbone.View) {
-                // (and override destroy in GH to remove alerts)
                 currentView.hideAlertBox.call(currentView);
             }
             if (doBeforeRender) {
@@ -174,8 +172,6 @@ define([
         }
 
         function initialize () {
-            var oldSet = Backbone.Collection.prototype.set;
-
             MasseuseRouter.prototype.initialize.apply(this, arguments);
 
             GrasshopperBaseView.prototype.channels.addChannel('views');
@@ -191,13 +187,6 @@ define([
             GrasshopperBaseView.prototype.displayModal = displayModal;
             GrasshopperBaseView.prototype.hideModal = hideModal;
 
-            // TODO: Get rid of this. Move it to a grasshopperCollection or something like that. It does not belong here.
-            Backbone.Collection.prototype.set = function (data, options) {
-                if (data && data.results) {
-                    data = data.results;
-                }
-                oldSet.call(this, data, options);
-            };
         }
 
         function loadMainContent (ViewType, config, bypass) {
@@ -232,7 +221,11 @@ define([
         }
 
         function startHeader () {
-            this.headerView = new HeaderView(headerViewConfig);
+            this.headerView = new HeaderView(_.extend({}, headerViewConfig, {
+                modelData : {
+                    userModel : this.user
+                }
+            }));
             this.headerView.start();
             this.mastheadView = new MastheadView(mastheadViewConfig);
             this.mastheadView.start();
@@ -320,7 +313,7 @@ define([
                     {
                         modelData : {
                             id : id,
-                            userModel : this.user.toJSON()
+                            userModel : this.user
                         }
                     }));
             } else {
@@ -330,18 +323,13 @@ define([
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
-            // TODO: Refactor this to take advantage of the permissions checking system.
-            if (this.user.get('role') === 'admin') {
-                loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
-                    {
-                        modelData : {
-                            pageNumber : pageNumber,
-                            pageLimit : pageLimit
-                        }
-                    }), true);
-            } else {
-                this.navigateTrigger('home');
-            }
+            loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
+                {
+                    modelData : {
+                        pageNumber : pageNumber,
+                        pageLimit : pageLimit
+                    }
+                }), true);
         }
 
         function displayAddUser () {
@@ -363,7 +351,7 @@ define([
             loadMainContent(ContentDetailView, _.extend({}, contentDetailViewConfig,
                 {
                     modelData : {
-                        id : id
+                        _id : id
                     }
                 }
             ), true);
@@ -377,7 +365,7 @@ define([
             loadMainContent(ContentTypeDetailView, _.extend(contentTypeDetailViewConfig,
                 {
                     modelData : {
-                        id : id
+                        _id : id
                     }
                 }));
         }

@@ -1,12 +1,11 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helpers) {
+define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, masseuse, helpers, rivetsPlugin) {
     'use strict';
 
-    var BaseView = masseuse.BaseView,
-        oldSet = Backbone.Collection.prototype.set,
-        rivetsPlugin = helpers.rivetsPlugin;
+    var RivetView = rivetsPlugin.view,
+        oldSet = Backbone.Collection.prototype.set;
 
-    return BaseView.extend({
+    return RivetView.extend({
         initialize : initialize,
         start : start
     });
@@ -24,12 +23,15 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
                 'breadcrumbs',
                 'mastheadButtons',
                 'permissions',
-                'nodeId'
+                'nodeId',
+                'rivetsBinders',
+                'rivetsFormatters',
+                'wrapper',
+                'appendTo',
+                'collection'
             ]);
-        if (options.rivetConfig) {
-            options.plugins = [];
-            options.plugins.push(rivetsPlugin);
-        }
+
+        // TODO: I think I can get rid of this line.... Nowhere in this app do I call this.options or self.options.
         this.options = options;
         Backbone.Collection.prototype.set = function (data, options) {
             if (data && data.results) {
@@ -38,7 +40,7 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
             oldSet.call(this, data, options);
         };
 
-        BaseView.prototype.initialize.apply(this, arguments);
+        RivetView.prototype.initialize.apply(this, arguments);
     }
 
     function start () {
@@ -48,22 +50,22 @@ define(['backbone', 'masseuse', 'helpers'], function (Backbone, masseuse, helper
             return;
         }
 
-        var $promise = BaseView.prototype.start.apply(this, arguments),
+        var $promise = RivetView.prototype.start.apply(this, arguments),
             self = this;
 
         $promise.progress(function (event) {
             switch (event) {
-            case BaseView.afterRenderDone:
+            case RivetView.afterRenderDone:
                 if (self.mastheadButtons) {
                     self.channels.views.trigger('updateMastheadButtons', (self.mastheadButtons));
                 }
                 if (self.breadcrumbs) {
                     self.channels.views.trigger('updateMastheadBreadcrumbs', self);
                 }
-                if (self.rivetConfig) {
-                    self.rivetView();
-                    self.channels.views.trigger('rivetViewRendered');
-                }
+//                if (self.rivetConfig) {
+//                    self.rivetView();
+//                    self.channels.views.trigger('rivetViewRendered');
+//                }
                 break;
             }
         });
