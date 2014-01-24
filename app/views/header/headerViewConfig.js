@@ -1,9 +1,7 @@
 /*global define:false*/
-define(['text!views/header/headerView.html', 'headerViewModel', 'masseuse'],
-    function (template, HeaderViewModel, masseuse) {
+define(['text!views/header/headerView.html', 'headerViewModel'],
+    function (template, HeaderViewModel) {
         'use strict';
-
-        var ViewContext = masseuse.ViewContext;
 
         return {
             name : 'headerView',
