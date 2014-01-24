@@ -89,7 +89,6 @@ define(['jquery', 'underscore', 'masseuse',
                         }),
                         appendTo : el
                     }));
-
                 },
 
                 unbind : function(el) {
@@ -106,7 +105,17 @@ define(['jquery', 'underscore', 'masseuse',
 //                    console.log(model);
 //                    console.log(this);
 //                    console.log('------------------------------------');
-                    this.viewInstance.start();
+                    if (this.viewInstance) {
+                        this.viewInstance.$el.empty();
+                        this.viewInstance.$el.remove();
+                        this.viewInstance.model = model;
+                    }
+
+                    if (!this.viewInstance.hasStarted) {
+                        this.viewInstance.start();
+                    } else {
+                        this.viewInstance.render();
+                    }
                 },
                 publish : true
             }
