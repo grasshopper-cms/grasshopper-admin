@@ -25,7 +25,7 @@ module.exports = {
             '!app/vendor/**'
         ],
         tasks : [
-            'jshint', 'copy:redo'
+            'jshint', 'copy:build'
         ]
     },
     tests : {
