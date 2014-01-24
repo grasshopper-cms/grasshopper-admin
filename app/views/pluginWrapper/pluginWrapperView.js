@@ -37,10 +37,6 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone', 'require'],
         }
 
         function removeField(e, context) {
-//            console.log(this);
-//            console.log(e);
-//            console.log(context.view);
-//            console.log(context.field);
             this.collection.remove(context.field);
         }
 

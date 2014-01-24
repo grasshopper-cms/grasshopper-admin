@@ -9,12 +9,6 @@ define(['jquery', 'underscore', 'masseuse',
         return {
             fieldwrapper : {
                 bind : function(el) {
-//                    console.log('bind');
-//                    console.log(el);
-//                    console.log(this);
-//                    console.log('------------------------------------');
-
-
                     var rivets = this,
                         viewInstance;
 
@@ -59,27 +53,12 @@ define(['jquery', 'underscore', 'masseuse',
                     }));
                     rivets.model.view.addChild(viewInstance);
                 },
-                unbind : function(el) {
-//                    console.log('unbind');
-//                    console.log(el);
-//                    console.log(this);
-//                    console.log('------------------------------------');
-                },
-                routine : function(el, model) {
-//                    console.log('routine');
-//                    console.log(el);
-//                    console.log(model);
-//                    console.log(this);
-//                    console.log('------------------------------------');
-                },
+                unbind : function() {},
+                routine : function() {},
                 publish : true
             },
             fieldtype : {
                 bind: function(el) {
-//                    console.log('bind');
-//                    console.log(el);
-//                    console.log(this);
-//                    console.log('------------------------------------');
                     var ViewModule = this.model.field.get('ViewModule'),
                         configModule = this.model.field.get('configModule');
 
@@ -91,20 +70,11 @@ define(['jquery', 'underscore', 'masseuse',
                     }));
                 },
 
-                unbind : function(el) {
-//                    console.log('unbind');
-//                    console.log(el);
-//                    console.log(this);
-//                    console.log('------------------------------------');
+                unbind : function() {
                     this.viewInstance.remove();
                 },
 
                 routine : function(el, model) {
-//                    console.log('routine');
-//                    console.log(el);
-//                    console.log(model);
-//                    console.log(this);
-//                    console.log('------------------------------------');
                     if (this.viewInstance) {
                         this.viewInstance.$el.empty();
                         this.viewInstance.$el.remove();
@@ -120,21 +90,4 @@ define(['jquery', 'underscore', 'masseuse',
                 publish : true
             }
         };
-
     });
-
-//fieldtype : function(el, model) {
-//    var viewInstance,
-//        ViewModule = model.get('ViewModule'),
-//        configModule = model.get('configModule');
-//
-//    console.log('Creating new field view');
-//
-//    viewInstance = new ViewModule(_.extend({}, configModule, {
-//        modelData : _.extend({}, model.attributes, {
-//            value : masseuse.ProxyProperty('value', model)
-//        }),
-//        appendTo : el
-//    }));
-//    viewInstance.start();
-//}
