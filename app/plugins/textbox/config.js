@@ -10,6 +10,7 @@ define(['text!plugins/textbox/template.html', 'plugins/textbox/model'],
             template : textBoxPluginTemplate,
             events : {},
             rivetConfig : 'auto',
+            wrapper: false,
             bindings : [],
             mastheadButtons : []
         };

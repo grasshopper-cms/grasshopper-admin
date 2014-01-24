@@ -16,7 +16,7 @@ define(['jquery', 'underscore', 'masseuse',
                         value: masseuse.ProxyProperty('fields.' + field._id, rivets.view.models.view.model)
                     }),
                     collection : new (Backbone.Collection.extend({
-                        initialize: function (models, options) {
+                        initialize: function () {
 //
 //                            Backbone.Collection.prototype.initialize.call(this, models, options);
 //
@@ -43,7 +43,6 @@ define(['jquery', 'underscore', 'masseuse',
                     appendTo : el
                 }));
                 rivets.view.models.view.addChild(viewInstance);
-                viewInstance.start();
             },
             fieldtype : function(el, model) {
                 var viewInstance,

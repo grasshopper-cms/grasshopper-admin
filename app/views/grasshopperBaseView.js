@@ -62,10 +62,6 @@ define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, 
                 if (self.breadcrumbs) {
                     self.channels.views.trigger('updateMastheadBreadcrumbs', self);
                 }
-//                if (self.rivetConfig) {
-//                    self.rivetView();
-//                    self.channels.views.trigger('rivetViewRendered');
-//                }
                 break;
             }
         });
