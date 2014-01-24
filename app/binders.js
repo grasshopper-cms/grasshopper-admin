@@ -27,7 +27,11 @@ define(['jquery', 'underscore', 'masseuse',
 //
                             this.on('add remove reset change', function () {
                                 // Update the parent model value
-                                rivets.view.models.view.model.set('fields.' + field._id, this.toJSON());
+                                var values = this.toJSON();
+
+                                if (values) {
+                                    rivets.view.models.view.model.set('fields.' + field._id, values);
+                                }
                             });
                         },
                         toJSON: function () {

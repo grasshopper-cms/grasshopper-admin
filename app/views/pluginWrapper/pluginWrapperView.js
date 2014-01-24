@@ -46,18 +46,18 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone', 'require'],
 
             if(values && values instanceof Array) {
                 _.each(values, function(value) {
-                    _addPlugin.call(self, value, true);
+                    _addPlugin.call(self, value);
                 });
             } else {
-                _addPlugin.call(this, values, true);
+                _addPlugin.call(this, values);
             }
         }
 
-        function _addPlugin(value, silent) {
+        function _addPlugin(value) {
             var model = _.extend({} , _.omit(this.model.attributes, ['value', 'multiCollection', 'viewId']), {
                 value : value
             });
 
-            this.collection.add(model, [{silent : (silent)}]);
+            this.collection.add(model);
         }
     });
