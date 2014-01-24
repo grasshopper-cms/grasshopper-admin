@@ -34,9 +34,6 @@ define(['jquery', 'underscore', 'masseuse',
                                         // Could probably use viewInstance.model.set() here.
                                         rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
                                     }
-//
-//                                    this.invoke('set', {isLast: false}, {silent: true});
-//                                    this.last().set('isLast', true, {silent: true});
                                 });
                             },
                             toJSON: function () {
@@ -69,11 +66,9 @@ define(['jquery', 'underscore', 'masseuse',
                         appendTo : el
                     }));
                 },
-
                 unbind : function() {
                     this.viewInstance.remove();
                 },
-
                 routine : function(el, model) {
                     if (this.viewInstance) {
                         this.viewInstance.$el.empty();
