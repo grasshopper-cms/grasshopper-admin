@@ -1,5 +1,8 @@
 <div class="row">
     <div class="large-12 small-centered columns">
-        <textarea type="text" data-rv-placeholder="model:type" data-rv-value="model:value"></textarea>
+        <form data-abide>
+            <textarea type="text" data-rv-placeholder="model:type" data-rv-value="model:value" data-rv-required="model:required"></textarea>
+            <small class="error">{{model:errorMessage}}</small>
+        </form>
     </div>
 </div>

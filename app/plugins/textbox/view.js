@@ -4,7 +4,6 @@ define(['grasshopperBaseView'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-
         });
 
     });

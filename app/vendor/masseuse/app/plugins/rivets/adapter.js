@@ -69,6 +69,9 @@ define(['jquery', 'rivets', './configureMethod', 'backbone', 'underscore'],
                  * @param value
                  */
                 publish : function (model, keypath, value) {
+                    if (model instanceof Backbone.Collection) {
+
+                    }
                     if (model instanceof Backbone.Model) {
                         model.set(keypath.replace(keySeparator,'.'), value);
                     }

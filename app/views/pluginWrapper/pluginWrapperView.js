@@ -36,8 +36,12 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone', 'require'],
             _addPlugin.call(this, undefined);
         }
 
-        function removeField() {
-            this.collection.pop();
+        function removeField(e, context) {
+//            console.log(this);
+//            console.log(e);
+//            console.log(context.view);
+//            console.log(context.field);
+            this.collection.remove(context.field);
         }
 
         function _handleMulti() {
