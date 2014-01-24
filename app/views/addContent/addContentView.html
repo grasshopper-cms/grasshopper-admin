@@ -10,8 +10,12 @@
                                 <label data-rv-for="model:_id" class="right inline">Label</label>
                             </div>
                             <div class="small-9 columns">
-                                <input type="text" data-rv-id="model:_id" placeholder="Label" data-rv-value="model:label" required>
-                                <small class="error">Label is A Required field.</small>
+                                <div class="row">
+                                    <div class="small-11 columns">
+                                        <input type="text" data-rv-id="model:_id" placeholder="Label" data-rv-value="model:label" required>
+                                        <small class="error">Label is A Required field.</small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -19,7 +23,11 @@
                                 <label data-rv-for="model:_id" class="right inline">Author</label>
                             </div>
                             <div class="small-9 columns">
-                                <input type="text" data-rv-id="model:_id" data-rv-value="model:author->fullname" readonly="true">
+                                <div class="row">
+                                    <div class="small-11 columns">
+                                        <input type="text" data-rv-id="model:_id" data-rv-value="model:author->fullname" readonly="true">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -27,7 +35,11 @@
                                 <label data-rv-for="model:_id" class="right inline">Slug</label>
                             </div>
                             <div class="small-9 columns">
-                                <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:type" data-rv-value="model:slug" readonly="true">
+                                <div class="row">
+                                    <div class="small-11 columns">
+                                        <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:type" data-rv-value="model:slug" readonly="true">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -35,10 +47,14 @@
                                 <label data-rv-for="model:_id" class="right inline">Status</label>
                             </div>
                             <div class="small-9 columns">
-                                <select data-rv-id="model:_id" data-rv-value="model:status">
-                                    <option value="live">Live</option>
-                                    <option value="not_live">Not Live</option>
-                                </select>
+                                <div class="row">
+                                    <div class="small-11 columns">
+                                        <select data-rv-id="model:_id" data-rv-value="model:status">
+                                            <option value="live">Live</option>
+                                            <option value="not_live">Not Live</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
