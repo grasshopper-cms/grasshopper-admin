@@ -11,9 +11,16 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse'],
                 }),
                 statusClass : new ComputedProperty(['status'], function (status) {
                     return (status != 'Live') ? 'inactive' : '';
-                })
+                }),
+                slug : new ComputedProperty(['label'], function(label) {
+                    return toUnderscore(label);
+                }, true)
             },
             urlRoot : constants.api.content.url
         });
+
+        function toUnderscore(string){
+            return string.trim().toLowerCase().replace(/ /g, '_');
+        }
 
     });

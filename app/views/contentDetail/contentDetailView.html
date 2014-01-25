@@ -1,32 +1,107 @@
 <div id="contentEdit">
     <div class="row">
         <div class="large-12 columns">
-            <div class="row">
-                <div class="large-6 columns">
-                    <h3 class="title">{{data.label}}</h3>
-                </div>
-                <hr/>
-            </div>
-            <div class="row">
-                The Parents NodeID : <span>{{data.node._id}}</span>
-            </div>
-            <hr/>
-            <div class="row">
-                This Content Id : {{data._id}}
-            </div>
-            <hr/>
-            <div class="row">
-                This content type Id : {{data.type}}
-            </div>
-            <hr/>
-            <div class="row">
-                This Models attributes :
-            </div>
-            <hr/>
-            <div data-rv-each-field="data.schema.fields">
-                <div data-rv-fieldtype="field"></div>
-                <hr>
-            </div>
+            <form data-abide>
+                <fieldset>
+                    <legend><h2>{{model:label}}</h2></legend>
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label data-rv-for="model:_id" class="right inline">Label</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <div class="row">
+                                <div class="small-11 columns">
+                                    <input type="text" data-rv-id="model:_id" placeholder="Label" data-rv-value="model:label" required>
+                                    <small class="error">Label is A Required field.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label data-rv-for="model:_id" class="right inline">Author</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <div class="row">
+                                <div class="small-11 columns">
+                                    <input type="text" data-rv-id="model:_id" data-rv-value="model:author->fullname" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label data-rv-for="model:_id" class="right inline">Slug</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <div class="row">
+                                <div class="small-11 columns">
+                                    <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:type" data-rv-value="model:slug" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label data-rv-for="model:_id" class="right inline">Status</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <div class="row">
+                                <div class="small-11 columns">
+                                    <select data-rv-id="model:_id" data-rv-value="model:status">
+                                        <option data-rv-each-option="model:resources->contentItem->statusOptions">{{option}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label for="parentNode" class="right inline">Parent Node</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <div class="row">
+                                <div class="small-11 columns">
+                                    <input type="text" id="parentNode" data-rv-value="model:node->_id" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label for="id" class="right inline">ID</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <div class="row">
+                                <div class="small-11 columns">
+                                    <input type="text" id="id" data-rv-value="model:_id" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label for="contentTypeId" class="right inline">Content Type</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <div class="row">
+                                <div class="small-11 columns">
+                                    <input type="text" id="contentTypeId" data-rv-value="model:type" readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div data-rv-each-field="model:schema->fields">
+                        <div data-rv-fieldwrapper="field"></div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 small-centered columns">
+                            <button id="saveContentButton" type="submit" class="button radius right">{{model:resources->save}}</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>

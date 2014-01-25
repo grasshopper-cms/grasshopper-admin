@@ -10,13 +10,13 @@
                         <div class="small-11 columns">
                             <div data-rv-fieldtype="field"></div>
                         </div>
-                        <div class="small-1 columns">
+                        <div class="small-1 columns" data-rv-hide="field:type | equals readonly">
                             <button type="button" id="removeField" class="button radius tiny right" data-rv-show="model:multi" data-rv-on-click="view.removeField"><i class="icon-minus"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="row" data-rv-show="model:multi">
-                    <button type="button" id="addField" class="button radius tiny right"><i class="icon-plus"></i></button>
+                    <button data-rv-hide="model:type | equals readonly" type="button" id="addField" class="button radius tiny right"><i class="icon-plus"></i></button>
                 </div>
             </div>
         </div>

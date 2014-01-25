@@ -82,7 +82,12 @@ define({
         successfullyDeletedPre : 'Content ',
         successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: ',
-        createContent : 'Create new content.'
+        createContent : 'Create new content.',
+        statusOptions : [
+            'Live',
+            'Inactive'
+        ],
+        readonly : 'Readonly'
     },
     contentType : {
         addContentTypes : 'Add Content Types: ',
