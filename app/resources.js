@@ -71,10 +71,10 @@ define({
         successfullyUpdated : 'Folder was successfully updated.',
         successfullyCreatedPre : 'Folder: ',
         successfullyCreatedPost : ' was successfully created.',
-        errorUpdated : 'Node could not be updated.',
+        errorUpdated : 'Folder could not be updated.',
         errorDeleted : 'There was an issue deleting this folder: ',
         enterName : 'Please enter the name of the folder: ',
-        errorCreating : 'folder could not be added',
+        errorCreating : 'Folder could not be added.',
         editName : 'Edit Folder name:'
     },
     contentItem : {
@@ -82,7 +82,7 @@ define({
         successfullyDeletedPre : 'Content ',
         successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: ',
-        createContent : 'Create new content.',
+        createContent : 'New content.',
         statusOptions : [
             'Live',
             'Inactive'
