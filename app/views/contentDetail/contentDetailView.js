@@ -4,7 +4,8 @@ define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (Grasshop
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
         deleteContent : deleteContent,
-        handleRowClick : handleRowClick
+        handleRowClick : handleRowClick,
+        saveContent : saveContent
     });
 
     function beforeRender($deferred) {
@@ -57,6 +58,10 @@ define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (Grasshop
     function handleRowClick () {
         this.app.router.navigateTrigger(this.model.get('href'));
         return false;
+    }
+
+    function saveContent() {
+        console.log('this fired');
     }
 
     function _fetchContentDetails($deferred) {

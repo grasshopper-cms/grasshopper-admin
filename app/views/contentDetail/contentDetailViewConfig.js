@@ -13,7 +13,8 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             template : formTemplate,
             events : {
                 'click #deleteContent' : 'deleteContent',
-                'click .clickableCell' : 'handleRowClick'
+                'click .clickableCell' : 'handleRowClick',
+                'click #saveContentButton' : 'saveContent'
             },
             bindings : [],
             rivetConfig : 'auto',
