@@ -5,7 +5,7 @@
                 <legend><h2>{{model:label}}</h2></legend>
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="label" class="right inline">Label</label>
+                        <label for="label" class="right inline">{{model:resources->contentItem->label}}</label>
                     </div>
                     <div class="small-9 columns">
                         <div class="row">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="author" class="right inline">Author</label>
+                        <label for="author" class="right inline">{{model:resources->contentItem->author}}</label>
                     </div>
                     <div class="small-9 columns">
                         <div class="row collapse">
@@ -33,12 +33,12 @@
                 </div>
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="slug" class="right inline">Slug</label>
+                        <label for="slug" class="right inline">{{model:resources->contentItem->slug}}</label>
                     </div>
                     <div class="small-9 columns">
                         <div class="row collapse">
                             <div class="small-10 columns">
-                                <input type="text" id="slug" placeholder="slug" data-rv-value="model:slug" readonly="true">
+                                <input type="text" id="slug" data-rv-placeholder="model:resources->contentItem->slug" data-rv-value="model:slug" readonly="true">
                             </div>
                             <div class="small-1 columns left">
                                 <span class="postfix radius"><i class="icon-lock"></i></span>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="status" class="right inline">Status</label>
+                        <label for="status" class="right inline">{{model:resources->contentItem->status}}</label>
                     </div>
                     <div class="small-9 columns">
                         <div class="row">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="parentNode" class="right inline">Parent Node</label>
+                        <label for="parentNode" class="right inline">{{model:resources->contentItem->parent}}</label>
                     </div>
                     <div class="small-9 columns">
                         <div class="row collapse">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="id" class="right inline">ID</label>
+                        <label for="id" class="right inline">{{model:resources->contentItem->id}}</label>
                     </div>
                     <div class="small-9 columns">
                         <div class="row collapse">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="contentTypeId" class="right inline">Content Type</label>
+                        <label for="contentTypeId" class="right inline">{{model:resources->contentItem->type}}</label>
                     </div>
                     <div class="small-9 columns">
                         <div class="row collapse">

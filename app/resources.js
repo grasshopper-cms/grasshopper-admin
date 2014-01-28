@@ -90,7 +90,15 @@ define({
         readonly : 'Readonly',
         labelErrorMessage : 'Label is a required field.',
         successfullyAdded : 'Content successfully added.',
-        failedToAdd : 'Content could not be saved.'
+        failedToAdd : 'Content could not be saved.',
+        label : 'Label',
+        labelRequiredMessage : 'Label is a required field.',
+        author : 'Author',
+        slug : 'Slug',
+        status : 'Status',
+        parent : 'Parent Folder',
+        id : 'Content Id',
+        type : 'Content Type'
     },
     contentType : {
         addContentTypes : 'Add Content Types: ',
