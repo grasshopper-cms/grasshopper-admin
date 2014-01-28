@@ -391,7 +391,9 @@ define([
             loadMainContent(AddContentView, _.extend({}, addContentViewConfig,
                 {
                     modelData : {
-                        nodeId : nodeId
+                        node : {
+                            _id : nodeId
+                        }
                     }
                 }));
         }
