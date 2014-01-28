@@ -27,8 +27,8 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers'],
             return string.trim().toLowerCase().replace(/ /g, '_');
         }
 
-        function validatePresence(label) {
-            return !validation.stringHasLength(label);
+        function validatePresence(string) {
+            return !validation.stringHasLength(string);
         }
 
     });
