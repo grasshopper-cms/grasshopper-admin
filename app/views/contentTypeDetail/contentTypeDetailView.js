@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'plugins'], function (GrasshopperBaseView, resources, plugins) {
+define(['grasshopperBaseView', 'resources', 'plugins', 'api', 'underscore', 'jquery'],
+    function (GrasshopperBaseView, resources, plugins, Api, _, $) {
     'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
@@ -30,10 +31,66 @@ define(['grasshopperBaseView', 'resources', 'plugins'], function (GrasshopperBas
     }
 
     function _warnUserBeforeDeleting() {
-        return this.displayModal(
-            {
-                msg : resources.contentType.deletionWarning
+        var $deferred = new $.Deferred(),
+            self = this;
+
+        _getContentTypesContent.call(this)
+            .done(function(content) {
+                self.displayModal(
+                    {
+                        msg : resources.contentType.deletionWarningWithAssociatedContent,
+                        data : content,
+                        type : 'list'
+                    })
+                    .done(function() {
+                        $deferred.resolve();
+                    })
+                    .fail(function() {
+                        $deferred.reject();
+                    });
+            })
+            .fail(function() {
+                self.displayModal(
+                    {
+                        msg : resources.contentType.deletionWarningWithoutAssociatedContent
+                    })
+                    .done(function() {
+                        $deferred.resolve();
+                    })
+                    .fail(function() {
+                        $deferred.reject();
+                    });
             });
+
+        return $deferred.promise();
+    }
+
+    function _getContentTypesContent() {
+        var $deferred = new $.Deferred(),
+            self = this;
+
+        Api.makeQuery(
+            {
+                nodes : [],
+                types : [],
+                filters : [],
+                options : {
+                    fake : true
+                }
+            })
+            .done(function(results) {
+                var content = _.where(results, {type: self.model.get('_id')});
+                if(content.length > 0) {
+                    $deferred.resolve(_.pluck(content, 'label'));
+                } else {
+                    $deferred.reject();
+                }
+            })
+            .fail(function() {
+                $deferred.reject();
+            });
+
+        return $deferred.promise();
     }
 
     function _actuallyDeleteContentType() {

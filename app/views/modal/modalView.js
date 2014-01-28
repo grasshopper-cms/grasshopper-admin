@@ -2,9 +2,9 @@
 define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.html',
     'text!views/modal/_inputModalView.html', 'text!views/modal/_checkboxModalView.html',
     'text!views/modal/_uploadModalView.html', 'text!views/modal/modalView.html',
-    'text!views/modal/_radioModalView.html'],
+    'text!views/modal/_radioModalView.html', 'text!views/modal/_listModalView.html'],
     function (GrasshopperBaseView, _, imageModalTemplate, inputModalTemplate, checkboxTemplate, uploadTemplate,
-              defaultTemplate, radioTemplate) {
+              defaultTemplate, radioTemplate, listTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -35,6 +35,9 @@ define(['grasshopperBaseView', 'underscore', 'text!views/modal/_imageModalView.h
                 break;
             case 'radio':
                 options.template = radioTemplate;
+                break;
+            case 'list':
+                options.template = listTemplate;
                 break;
             default:
                 options.template = defaultTemplate;
