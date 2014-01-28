@@ -6,13 +6,8 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api', 'constan
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
             afterRender : afterRender,
-            saveContent : saveContent,
-            consoleLogIt : consoleLogIt
+            saveContent : saveContent
         });
-
-        function consoleLogIt() {
-            console.log(this.model);
-        }
 
         function beforeRender ($deferred) {
             // TODO: This node ID check is done in a bunch of different Views. Move this somewhere else to DRY this up.

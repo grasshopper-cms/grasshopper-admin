@@ -5,13 +5,8 @@ define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (Grasshop
         beforeRender : beforeRender,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick,
-        saveContent : saveContent,
-        consoleLogIt : consoleLogIt
+        saveContent : saveContent
     });
-
-    function consoleLogIt() {
-        console.log(this.model.attributes);
-    }
 
     function beforeRender($deferred) {
         if(!this.model.has('label')) {
