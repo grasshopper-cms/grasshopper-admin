@@ -45,7 +45,7 @@ define(['grasshopperBaseView', 'plugins', 'underscore'],
             var values = this.model.get('value'),
                 self = this;
 
-            if(values && values instanceof Array) {
+            if(values && _.isArray(values)) {
                 _.each(values, function(value) {
                     _addPlugin.call(self, value);
                 });

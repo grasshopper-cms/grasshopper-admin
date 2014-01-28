@@ -31,7 +31,7 @@ define(['jquery', 'underscore', 'masseuse',
                                     var values = this.toJSON();
 
                                     if (values) {
-                                        // Could probably use viewInstance.model.set() here.
+                                        // TODO: Could probably use viewInstance.model.set() here.
                                         rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
                                     }
                                 });
@@ -56,13 +56,14 @@ define(['jquery', 'underscore', 'masseuse',
             },
             fieldtype : {
                 bind: function(el) {
-                    var ViewModule = this.model.field.get('ViewModule'),
-                        configModule = this.model.field.get('configModule');
+                    var rivets = this,
+                        ViewModule = rivets.model.field.get('ViewModule'),
+                        configModule = rivets.model.field.get('configModule');
 
-                    this.viewInstance = new ViewModule(_.extend({}, configModule, {
-                        modelData : _.extend({}, this.model.field.attributes, {
-                            value : masseuse.ProxyProperty('value', this.model.field)
-                        }),
+                    rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
+                        modelData : {
+                            value : masseuse.ProxyProperty('value', rivets.model.field)
+                        },
                         appendTo : el
                     }));
                 },
@@ -73,7 +74,7 @@ define(['jquery', 'underscore', 'masseuse',
                     if (this.viewInstance) {
                         this.viewInstance.$el.empty();
                         this.viewInstance.$el.remove();
-                        this.viewInstance.model = model;
+                        this.viewInstance.model.set(model.attributes);
                     }
 
                     if (!this.viewInstance.hasStarted) {

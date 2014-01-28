@@ -14,7 +14,8 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             events : {
                 'click #deleteContent' : 'deleteContent',
                 'click .clickableCell' : 'handleRowClick',
-                'click #saveContentButton' : 'saveContent'
+                'click #saveContentButton' : 'saveContent',
+                'blur input' : 'consoleLogIt'
             },
             bindings : [],
             rivetConfig : 'auto',

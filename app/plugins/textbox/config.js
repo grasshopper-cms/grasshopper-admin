@@ -6,9 +6,7 @@ define(['text!plugins/textbox/template.html', 'plugins/textbox/model'],
         return {
             name : 'textBoxPlugin',
             ModelType : textBoxPluginModel,
-            modelData : {
-                something: 'something'
-            },
+            modelData : {},
             template : textBoxPluginTemplate,
             events : {},
             rivetConfig : 'auto',
