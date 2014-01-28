@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="small-11 columns">
                                 <input type="text" id="label" placeholder="Label" data-rv-value="model:label" required>
-                                <small class="error">Label is A Required field.</small>
+                                <small class="error" data-rv-show="model:labelHasError">{{model:resources->contentItem->labelErrorMessage}}</small>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                     <div class="small-9 columns">
                         <div class="row">
                             <div class="small-11 columns">
-                                <input type="text" id="slug" data-rv-placeholder="model:type" data-rv-value="model:slug" readonly="true">
+                                <input type="text" id="slug" placeholder="slug" data-rv-value="model:slug" readonly="true">
                             </div>
                         </div>
                     </div>

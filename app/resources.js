@@ -87,7 +87,8 @@ define({
             'Live',
             'Inactive'
         ],
-        readonly : 'Readonly'
+        readonly : 'Readonly',
+        labelErrorMessage : 'Label is a required field.'
     },
     contentType : {
         addContentTypes : 'Add Content Types: ',
