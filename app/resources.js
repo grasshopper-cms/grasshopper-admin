@@ -88,7 +88,9 @@ define({
             'Inactive'
         ],
         readonly : 'Readonly',
-        labelErrorMessage : 'Label is a required field.'
+        labelErrorMessage : 'Label is a required field.',
+        successfullyAdded : 'Content successfully added.',
+        failedToAdd : 'Content could not be saved.'
     },
     contentType : {
         addContentTypes : 'Add Content Types: ',

@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
-    function (GrasshopperBaseView, resources, contentTypeWorker, Api) {
+define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api', 'constants'],
+    function (GrasshopperBaseView, resources, contentTypeWorker, Api, constants) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -29,13 +29,31 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
 
         function saveContent() {
             this.model.save()
-                .done(function() {
-                    console.log('it worked');
-                })
-                .fail(function() {
-                    console.log('it did not work');
-                });
+                .done(_handleSuccessfulSave.bind(this))
+                .fail(_handleFailedSave.bind(this));
         }
+
+        function _handleSuccessfulSave() {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.nodeDetail.replace(':id', this.model.get('node._id'))
+            );
+            this.displayTemporaryAlertBox(
+                {
+                    msg : resources.contentItem.successfullyAdded,
+                    status : true
+                }
+            );
+        }
+
+        function _handleFailedSave() {
+            this.displayAlertBox(
+                {
+                    msg : resources.contentItem.failedToAdd
+                }
+            );
+        }
+
+
 
         function _handleCreateContent ($deferred) {
             _getNodesContentTypes.call(this, this.model.get('node._id'))
