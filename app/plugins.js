@@ -1,2 +1,8 @@
 /*global define*/
-define(<%= plugins %>);
+define(<%= defineBlock %>,
+    function(<%= argumentsBlock %>) {
+        return {
+            fields : [<%= plugins %>
+            ]
+        };
+    });

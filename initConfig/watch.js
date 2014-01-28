@@ -25,7 +25,7 @@ module.exports = {
             '!app/vendor/**'
         ],
         tasks : [
-            'jshint', 'copy:build', 'buildPluginsSingleton'
+            'jshint', 'copy:build', 'registerPlugins'
         ]
     },
     tests : {
