@@ -28,26 +28,14 @@
             </ul>
             <hr>
             <h3>{{model:resources->contentType->fields | withColon}}</h3>
-            <table width="100%">
-                <thead>
-                    <tr>
-                        <th>{{model:resources->label}}</th>
-                        <th>{{model:resources->contentType->fieldType}}</th>
-                        <th>required</th>
-                        <th>instancing</th>
-                        <th style="text-align: center">{{model:resources->actions}}</th>
-                    </tr>
-                </thead>
-                <tbody id="fieldTypeIndexTable">
-                    <tr data-rv-each-field="collection:">
-                        <td>{{field:name}}</td>
+            <dl class="accordion" data-accordion>
+                <dd data-rv-each-field="collection:">
+                    <a data-rv-href="field.cid | prepend #">{{field:label}}</a>
+                    <div data-rv-id="field.cid" class="content">
                         <td>{{field:type}}</td>
-                        <td>{{field:required}}</td>
-                        <td>{{field:instancing}}</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+                    </div>
+                </dd>
+            </dl>
         </div>
     </div>
     <div class="row">

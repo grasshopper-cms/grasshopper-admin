@@ -110,15 +110,8 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
     }
 
     function addNewFieldToContentType(e, context) {
-        console.log(this);
-        console.log(e);
-        console.log(context.field);
-        this.collection.add({
-            _id: 'title',
-            type: 'textbox',
-            required: true,
-            label: 'Zebulon'
-        });
+        e.preventDefault();
+        this.collection.add(context.field);
     }
 
     function saveContentType() {

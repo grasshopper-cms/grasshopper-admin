@@ -5,7 +5,7 @@ define([], function () {
      * @namespace formatters
      */
     return {
-        isLast : isLast
+        prepend : prepend
     };
 
     /**
@@ -14,7 +14,8 @@ define([], function () {
      * @param value
      * @returns {string}
      */
-    function isLast() {
 
+    function prepend(value, string) {
+        return string + value;
     }
 });

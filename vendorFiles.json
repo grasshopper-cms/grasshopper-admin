@@ -15,6 +15,7 @@
     "helpersV" : "!vendor/helpers/app/vendor/**",
     "alerts" : "vendor/foundation/js/foundation/foundation.alert.js",
     "dropdown" : "vendor/foundation/js/foundation/foundation.dropdown.js",
+    "accordion" : "vendor/foundation/js/foundation/foundation.accordion.js",
     "tabs": "vendor/foundation/js/foundation/foundation.tab.js",
     "tooltip": "vendor/foundation/js/foundation/foundation.tooltip.js",
     "abide": "vendor/foundation/js/foundation/foundation.abide.js"

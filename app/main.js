@@ -11,6 +11,9 @@ require.config({
         dropdown : {
             deps : ['foundation']
         },
+        accordion : {
+            deps : ['foundation']
+        },
         tabs : {
             deps : ['foundation']
         },
@@ -61,6 +64,7 @@ require.config({
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alert',
         dropdown : 'vendor/foundation/js/foundation/foundation.dropdown',
+        accordion : 'vendor/foundation/js/foundation/foundation.accordion',
         tabs : 'vendor/foundation/js/foundation/foundation.tab',
         tooltip : 'vendor/foundation/js/foundation/foundation.tooltip',
         abide : 'vendor/foundation/js/foundation/foundation.abide',
@@ -179,6 +183,7 @@ require([
     'constants',
     'alerts',
     'dropdown',
+    'accordion',
     'tabs',
     'tooltip',
     'abide',

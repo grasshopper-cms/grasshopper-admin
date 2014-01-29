@@ -1,7 +1,8 @@
 /*global define:false*/
 define(['text!views/contentTypeDetail/contentTypeDetailView.html',
-    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'contentTypeDetailViewModel', 'binders', 'backbone'],
-    function (formTemplate, rowTemplate, contentTypeDetailViewModel, binders, Backbone) {
+    'text!views/contentTypeDetail/_contentTypeDetailRow.html',
+    'contentTypeDetailViewModel', 'binders', 'backbone', 'formatters'],
+    function (formTemplate, rowTemplate, contentTypeDetailViewModel, binders, Backbone, formatters) {
         'use strict';
 
         return {
@@ -21,6 +22,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             mastheadButtons : [],
             permissions : ['admin', 'editor', 'reader'],
             rivetsBinders : [binders],
+            rivetsFormatters : [formatters],
             collection : new Backbone.Collection()
         };
     });
