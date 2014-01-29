@@ -6,6 +6,7 @@ define(['jquery', 'underscore', 'masseuse',
         'use strict';
 
 
+
         return {
             fieldwrapper : {
                 bind : function(el) {
@@ -90,26 +91,26 @@ define(['jquery', 'underscore', 'masseuse',
                     var self = this,
                         keypath = this.keypath,
                         property = keypath.substring(keypath.indexOf(':') + 1).replace('->','.'),
-                        value = this.model.get(property);
+                        value = this.model.get(property),
+                        inlineEditableTemplate = '<%= value %>',
+                        template = _.template(inlineEditableTemplate, { value : value }),
+                        $el = $(el),
+                        $input;
 
-                    $(el).after('<input id="hoolaHoops" value=\"' + value + '\" style="display: none; width: 100%;">' +
-                        '<i class="icon-edit" style="display: none;"></i>');
+                    $input = $(template).insertAfter($el);
 
-                    setTimeout(function() {
-                        $('#hoolaHoops').on('focusout', function() {
-                            $(el).show();
-                            $('#hoolaHoops').hide();
-                            self.model.set(property, $('#hoolaHoops').val());
-                        });
-                    }, 1000);
-
-                    $(el).on('click', function() {
-                        $(el).hide();
-                        $('#hoolaHoops').show();
-                        $('#hoolaHoops').focus();
+                    $input.on('focusout', function() {
+                        $el.show();
+                        $input.hide();
+                        self.model.set(property, $input.val());
                     });
 
-                    $(el).on('mouseover mouseout', function() {
+                    $el.on('click', function() {
+                        $el.hide();
+                        $input.show().focus();
+                    });
+
+                    $el.on('mouseover mouseout', function() {
                         $('i.icon-edit').toggle();
                     });
 
