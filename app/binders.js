@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'pluginWrapperViewConfig', 'backbone'],
+    'pluginWrapperView', 'pluginWrapperViewConfig', 'backbone', 'plugins'],
     function ($, _, masseuse,
-              PluginWrapperView, pluginWrapperViewConfig, Backbone) {
+              PluginWrapperView, pluginWrapperViewConfig, Backbone, plugins) {
         'use strict';
 
 
@@ -118,6 +118,36 @@ define(['jquery', 'underscore', 'masseuse',
                 },
                 unbind : function() {},
                 routine : function() {}
+            },
+            fieldform : {
+                bind: function(el) {
+                    var rivets = this,
+                        plugin = _.find(plugins.fields, {type : rivets.model.field.get('type')}),
+                        ViewModule = plugin.view,
+                        configModule = plugin.config;
+
+                    rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
+                        template : configModule.setupTemplate,
+                        appendTo : el
+                    }));
+                },
+                unbind : function() {
+                    this.viewInstance.remove();
+                },
+                routine : function(el, model) {
+                    if (this.viewInstance) {
+                        this.viewInstance.$el.empty();
+                        this.viewInstance.$el.remove();
+                        this.viewInstance.model.set(model.attributes);
+                    }
+
+                    if (!this.viewInstance.hasStarted) {
+                        this.viewInstance.start();
+                    } else {
+                        this.viewInstance.render();
+                    }
+                },
+                publish : true
             }
         };
     });

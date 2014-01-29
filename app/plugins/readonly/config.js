@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!plugins/readonly/template.html', 'plugins/readonly/model'],
-    function (readonlyPluginTemplate, readonlyPluginModel) {
+define(['text!plugins/readonly/template.html', 'plugins/readonly/model', 'text!plugins/readonly/setupTemplate.html'],
+    function (readonlyPluginTemplate, readonlyPluginModel, setupTemplate) {
         'use strict';
 
         return {
@@ -9,6 +9,7 @@ define(['text!plugins/readonly/template.html', 'plugins/readonly/model'],
             modelData : {},
             wrapper: false,
             template : readonlyPluginTemplate,
+            setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',
             bindings : [],

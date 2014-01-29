@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!plugins/password/template.html', 'plugins/password/model'],
-    function (passwordPluginTemplate, passwordPluginModel) {
+define(['text!plugins/password/template.html', 'plugins/password/model', 'text!plugins/password/setupTemplate.html'],
+    function (passwordPluginTemplate, passwordPluginModel, setupTemplate) {
         'use strict';
 
         return {
@@ -8,6 +8,7 @@ define(['text!plugins/password/template.html', 'plugins/password/model'],
             ModelType : passwordPluginModel,
             modelData : {},
             template : passwordPluginTemplate,
+            setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',
             wrapper: false,

@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!plugins/textbox/template.html', 'plugins/textbox/model'],
-    function (textBoxPluginTemplate, textBoxPluginModel) {
+define(['text!plugins/textbox/template.html', 'plugins/textbox/model', 'text!plugins/textbox/setupTemplate.html'],
+    function (textBoxPluginTemplate, textBoxPluginModel, setupTemplate) {
         'use strict';
 
         return {
@@ -8,6 +8,7 @@ define(['text!plugins/textbox/template.html', 'plugins/textbox/model'],
             ModelType : textBoxPluginModel,
             modelData : {},
             template : textBoxPluginTemplate,
+            setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',
             wrapper: false,
