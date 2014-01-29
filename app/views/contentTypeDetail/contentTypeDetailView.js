@@ -19,7 +19,7 @@ define(['grasshopperBaseView', 'resources', 'plugins', 'api', 'underscore', 'jqu
         } else {
             $deferred.resolve();
         }
-        this.model.set('plugins', plugins);
+        this.model.set('plugins', plugins.fields);
     }
 
     function afterRender() {
@@ -27,43 +27,25 @@ define(['grasshopperBaseView', 'resources', 'plugins', 'api', 'underscore', 'jqu
     }
 
     function prepareToDeleteContentType () {
-        _warnUserBeforeDeleting.call(this)
+        _getContentTypesContent.call(this)
+            .then(_warnUserBeforeDeleting.bind(this))
             .then(_actuallyDeleteContentType.bind(this));
     }
 
-    function _warnUserBeforeDeleting() {
-        var $deferred = new $.Deferred(),
-            self = this;
+    function _warnUserBeforeDeleting(associatedContent) {
+        if(associatedContent) {
+            return this.displayModal(
+                {
+                    msg : resources.contentType.deletionWarningWithAssociatedContent,
+                    data : associatedContent,
+                    type : 'list'
+                });
+        }
 
-        _getContentTypesContent.call(this)
-            .done(function(content) {
-                self.displayModal(
-                    {
-                        msg : resources.contentType.deletionWarningWithAssociatedContent,
-                        data : content,
-                        type : 'list'
-                    })
-                    .done(function() {
-                        $deferred.resolve();
-                    })
-                    .fail(function() {
-                        $deferred.reject();
-                    });
-            })
-            .fail(function() {
-                self.displayModal(
-                    {
-                        msg : resources.contentType.deletionWarningWithoutAssociatedContent
-                    })
-                    .done(function() {
-                        $deferred.resolve();
-                    })
-                    .fail(function() {
-                        $deferred.reject();
-                    });
+        return this.displayModal(
+            {
+                msg : resources.contentType.deletionWarningWithoutAssociatedContent
             });
-
-        return $deferred.promise();
     }
 
     function _getContentTypesContent() {
@@ -84,7 +66,7 @@ define(['grasshopperBaseView', 'resources', 'plugins', 'api', 'underscore', 'jqu
                 if(content.length > 0) {
                     $deferred.resolve(_.pluck(content, 'label'));
                 } else {
-                    $deferred.reject();
+                    $deferred.resolve();
                 }
             })
             .fail(function() {
