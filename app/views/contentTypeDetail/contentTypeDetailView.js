@@ -7,7 +7,8 @@ define(['grasshopperBaseView', 'resources', 'plugins', 'api', 'underscore', 'jqu
         afterRender : afterRender,
         prepareToDeleteContentType : prepareToDeleteContentType,
         handleRowClick : handleRowClick,
-        addNewFieldToContentType : addNewFieldToContentType
+        addNewFieldToContentType : addNewFieldToContentType,
+        saveContentType : saveContentType
     });
 
     function beforeRender ($deferred) {
@@ -129,6 +130,29 @@ define(['grasshopperBaseView', 'resources', 'plugins', 'api', 'underscore', 'jqu
         console.log(this);
         console.log(e);
         console.log(context);
+    }
+
+    function saveContentType() {
+        this.model.save()
+            .done(_handleSuccessfulModelSave.call(this))
+            .fail(_handleFailedModelSave.call(this));
+    }
+
+    function _handleSuccessfulModelSave() {
+        this.displayTemporaryAlertBox(
+            {
+                msg: resources.contentType.successfulSave,
+                status: true
+            }
+        );
+    }
+
+    function _handleFailedModelSave() {
+        this.displayAlertBox(
+            {
+                msg: resources.contentType.failedSave
+            }
+        );
     }
 
 });

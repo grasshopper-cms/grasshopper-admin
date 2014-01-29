@@ -13,7 +13,8 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             template : formTemplate,
             events : {
                 'click #deleteContentType' : 'prepareToDeleteContentType',
-                'click .clickableCell' : 'handleRowClick'
+                'click .clickableCell' : 'handleRowClick',
+                'click #saveContentType' : 'saveContentType'
             },
             bindings : [],
             rivetConfig : 'auto',

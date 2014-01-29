@@ -116,7 +116,9 @@ define({
         noContentTypes : 'This folder has no allowed content types.',
         fields : 'Fields',
         fieldType : 'Field Type',
-        addNewField : 'Add New Field'
+        addNewField : 'Add New Field',
+        successfulSave : 'Content type successfully saved.',
+        failedSave : 'Content type could not be saved.'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
