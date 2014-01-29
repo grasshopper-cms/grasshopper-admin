@@ -92,7 +92,8 @@ define(['jquery', 'underscore', 'masseuse',
                         keypath = this.keypath,
                         property = keypath.substring(keypath.indexOf(':') + 1).replace('->','.'),
                         value = this.model.get(property),
-                        inlineEditableTemplate = '<%= value %>',
+                        inlineEditableTemplate = '<input value="[[= value ]]" style="display: none; ' +
+                            'width: 100%;"><i class="icon-edit" style="display: none;"></i>',
                         template = _.template(inlineEditableTemplate, { value : value }),
                         $el = $(el),
                         $input;

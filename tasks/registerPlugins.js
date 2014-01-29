@@ -21,11 +21,12 @@ module.exports = function (grunt) {
     plugins.fields = [];
 
     grunt.registerTask('registerPlugins', function () {
-        var pluginsFile,
+        var pluginsFile = grunt.file.read('app/plugins.js'),
             templatedFile;
-        grunt.file.recurse('app/plugins', buildPluginsObject);
-        pluginsFile = grunt.file.read('app/plugins.js');
 
+        _doCleanup();
+
+        grunt.file.recurse('app/plugins', buildPluginsObject);
 
         grunt.log.writeln(['Registering Plugins:']);
 
@@ -46,6 +47,15 @@ module.exports = function (grunt) {
 
         grunt.file.write('build/plugins.js', templatedFile);
     });
+
+    function _doCleanup() {
+        plugins = {};
+        idCounter = 1;
+        defineBlock = [];
+        argumentsBlock = [];
+        pluginsAsTemplatedArray = [];
+        plugins.fields = [];
+    }
 
     function buildPluginsObject(abspath, rootdir, subdir, filename) {
         var thisField,
