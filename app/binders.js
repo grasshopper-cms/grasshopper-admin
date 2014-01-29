@@ -84,6 +84,38 @@ define(['jquery', 'underscore', 'masseuse',
                     }
                 },
                 publish : true
+            },
+            inlineedit : {
+                bind: function(el) {
+                    var self = this,
+                        keypath = this.keypath,
+                        property = keypath.substring(keypath.indexOf(':') + 1).replace('->','.'),
+                        value = this.model.get(property);
+
+                    $(el).after('<input id="hoolaHoops" value=\"' + value + '\" style="display: none; width: 100%;">' +
+                        '<i class="icon-edit" style="display: none;"></i>');
+
+                    setTimeout(function() {
+                        $('#hoolaHoops').on('focusout', function() {
+                            $(el).show();
+                            $('#hoolaHoops').hide();
+                            self.model.set(property, $('#hoolaHoops').val());
+                        });
+                    }, 1000);
+
+                    $(el).on('click', function() {
+                        $(el).hide();
+                        $('#hoolaHoops').show();
+                        $('#hoolaHoops').focus();
+                    });
+
+                    $(el).on('mouseover mouseout', function() {
+                        $('i.icon-edit').toggle();
+                    });
+
+                },
+                unbind : function() {},
+                routine : function() {}
             }
         };
     });

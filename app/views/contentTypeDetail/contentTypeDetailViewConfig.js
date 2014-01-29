@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/contentTypeDetail/contentTypeDetailView.html',
-    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'contentTypeDetailViewModel'],
-    function (formTemplate, rowTemplate, contentTypeDetailViewModel) {
+    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'contentTypeDetailViewModel', 'binders'],
+    function (formTemplate, rowTemplate, contentTypeDetailViewModel, binders) {
         'use strict';
 
         return {
@@ -18,6 +18,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             bindings : [],
             rivetConfig : 'auto',
             mastheadButtons : [],
-            permissions : ['admin', 'editor', 'reader']
+            permissions : ['admin', 'editor', 'reader'],
+            rivetsBinders : [binders]
         };
     });
