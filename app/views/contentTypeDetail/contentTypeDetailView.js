@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'plugins', 'api', 'underscore', 'jquery'],
-    function (GrasshopperBaseView, resources, plugins, Api, _, $) {
+define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
+    function (GrasshopperBaseView, resources, Api, _, $) {
     'use strict';
     return GrasshopperBaseView.extend({
         beforeRender : beforeRender,
@@ -19,11 +19,12 @@ define(['grasshopperBaseView', 'resources', 'plugins', 'api', 'underscore', 'jqu
         } else {
             $deferred.resolve();
         }
-        this.model.set('plugins', plugins.fields);
     }
 
     function afterRender() {
+        // TODO: Because the dropdown options are riveted, I need to re-foundationize it afterRender.
         this.$el.foundation();
+        this.collection.reset(this.model.get('fields'));
     }
 
     function prepareToDeleteContentType () {
@@ -111,10 +112,17 @@ define(['grasshopperBaseView', 'resources', 'plugins', 'api', 'underscore', 'jqu
     function addNewFieldToContentType(e, context) {
         console.log(this);
         console.log(e);
-        console.log(context);
+        console.log(context.field);
+        this.collection.add({
+            _id: 'title',
+            type: 'textbox',
+            required: true,
+            label: 'Zebulon'
+        });
     }
 
     function saveContentType() {
+        this.model.set('fields', this.collection.toJSON());
         this.model.save()
             .done(_handleSuccessfulModelSave.call(this))
             .fail(_handleFailedModelSave.call(this));
