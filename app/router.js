@@ -358,11 +358,11 @@ define([
         }
 
         function displayContentTypeIndex () {
-            loadMainContent(ContentTypeIndexView, contentTypeIndexViewConfig);
+            loadMainContent(ContentTypeIndexView, _.extend({}, contentTypeIndexViewConfig));
         }
 
         function displayContentTypeDetail (id) {
-            loadMainContent(ContentTypeDetailView, _.extend(contentTypeDetailViewConfig,
+            loadMainContent(ContentTypeDetailView, _.extend({}, contentTypeDetailViewConfig,
                 {
                     modelData : {
                         _id : id

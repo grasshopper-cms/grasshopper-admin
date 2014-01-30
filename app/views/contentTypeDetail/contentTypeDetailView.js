@@ -17,7 +17,6 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
 
             this.model.fetch()
                 .done(function() {
-                    console.log(self.model.attributes);
                     _handleSuccessfulModelFetch.call(self, $deferred);
                 })
                 .fail($deferred.reject);
@@ -28,13 +27,11 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
     }
 
     function _handleSuccessfulModelFetch($deferred) {
-        console.log(this.model.get('fields'));
         this.collection.reset(this.model.get('fields'));
         $deferred.resolve();
     }
 
     function afterRender() {
-        console.log(this);
         // TODO: Because the dropdown options are riveted, I need to re-foundationize it afterRender.
         this.$el.foundation();
     }
