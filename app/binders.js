@@ -124,30 +124,35 @@ define(['jquery', 'underscore', 'masseuse',
                     var rivets = this,
                         plugin = _.find(plugins.fields, {type : rivets.model.field.get('type')}),
                         ViewModule = plugin.view,
-                        configModule = plugin.config;
+                        configModule = plugin.config,
+                        viewInstance;
 
-                    rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
+                    viewInstance = new ViewModule($.extend(true, {}, configModule, {
                         template : configModule.setupTemplate,
                         appendTo : el
                     }));
+
+                    rivets.model.view.addChild(viewInstance);
                 },
                 unbind : function() {
-                    this.viewInstance.remove();
+//                    this.viewInstance.remove();
                 },
                 routine : function(el, model) {
-                    if (this.viewInstance) {
-                        this.viewInstance.$el.empty();
-                        this.viewInstance.$el.remove();
-                        this.viewInstance.model.set(model.attributes);
-                    }
-
-                    if (!this.viewInstance.hasStarted) {
-                        this.viewInstance.start();
-                    } else {
-                        this.viewInstance.render();
-                    }
+                    el;
+                    model;
+//                    if (this.viewInstance) {
+//                        this.viewInstance.$el.empty();
+//                        this.viewInstance.$el.remove();
+//                        this.viewInstance.model.set(model.attributes);
+//                    }
+//
+//                    if (!this.viewInstance.hasStarted) {
+//                        this.viewInstance.start();
+//                    } else {
+//                        this.viewInstance.render();
+//                    }
                 },
-                publish : true
+                publishes : true
             }
         };
     });

@@ -12,19 +12,31 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
     });
 
     function beforeRender ($deferred) {
+        var self = this;
         if (!this.model.has('label')) {
+
             this.model.fetch()
-                .done($deferred.resolve)
+                .done(function() {
+                    console.log(self.model.attributes);
+                    _handleSuccessfulModelFetch.call(self, $deferred);
+                })
                 .fail($deferred.reject);
         } else {
             $deferred.resolve();
         }
+
+    }
+
+    function _handleSuccessfulModelFetch($deferred) {
+        console.log(this.model.get('fields'));
+        this.collection.reset(this.model.get('fields'));
+        $deferred.resolve();
     }
 
     function afterRender() {
+        console.log(this);
         // TODO: Because the dropdown options are riveted, I need to re-foundationize it afterRender.
         this.$el.foundation();
-        this.collection.reset(this.model.get('fields'));
     }
 
     function prepareToDeleteContentType () {

@@ -47,7 +47,7 @@
             </div>
             <dl class="accordion" data-accordion>
                 <dd data-rv-each-field="collection:">
-                    <a data-rv-href="field.cid | prepend #">
+                    <a data-rv-href="field:label | prepend #">
                         <div class="row">
                             <div class="small-4 columns">{{field:label}}</div>
                             <div class="small-2 columns">{{field:type}}</div>
@@ -56,7 +56,7 @@
                             <div class="small-2 columns">ACTIONS</div>
                         </div>
                     </a>
-                    <div data-rv-id="field.cid" class="content">
+                    <div data-rv-id="field:label" class="content active">
                         <div data-rv-fieldform="field"></div>
                     </div>
                 </dd>
