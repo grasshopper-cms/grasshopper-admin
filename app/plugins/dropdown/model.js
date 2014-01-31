@@ -5,7 +5,7 @@ define(['grasshopperModel', 'masseuse'], function (Model, masseuse) {
 
     return Model.extend({
         defaults : {
-            _id : new ComputedProperty(['label'], generateSlug)
+            _id : new ComputedProperty(['label'], generateSlug, true)
         }
     });
 

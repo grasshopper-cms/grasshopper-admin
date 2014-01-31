@@ -6,7 +6,7 @@ define(['grasshopperModel', 'masseuse', 'helpers'], function (Model, masseuse, h
 
     return Model.extend({
         defaults : {
-            _id : new ComputedProperty(['label'], generateSlug),
+            _id : new ComputedProperty(['label'], generateSlug, true),
             hasError: new ComputedProperty(['value', 'required'], validatePresence, true),
             errorMessage: new ComputedProperty(['label'], function(label) {
                 return label + ' is a required field.';

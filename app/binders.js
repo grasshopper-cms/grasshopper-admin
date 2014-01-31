@@ -140,9 +140,24 @@ define(['jquery', 'underscore', 'masseuse',
                     }));
 
                     rivets.model.view.addChild(viewInstance);
+                    rivets.viewInstance = viewInstance;
                 },
-                unbind : function() {},
-                routine : function() {},
+                unbind : function() {
+                    this.viewInstance.remove();
+                },
+                routine : function(el, model) {
+                    if (this.viewInstance) {
+                        this.viewInstance.$el.empty();
+                        this.viewInstance.$el.remove();
+                        this.viewInstance.model.set(model.attributes);
+                    }
+
+                    if (!this.viewInstance.hasStarted) {
+                        this.viewInstance.start();
+                    } else {
+                        this.viewInstance.render();
+                    }
+                },
                 publishes : true
             }
         };

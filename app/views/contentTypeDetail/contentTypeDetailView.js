@@ -119,6 +119,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
     }
 
     function addNewFieldToContentType(e, context) {
+        console.log(context);
         e.preventDefault();
         this.collection.add(context.field);
     }
