@@ -103,6 +103,16 @@ body, html {
     transition: border linear 0.2s, box-shadow linear 0.2s;
   }
 
+  [contenteditable="true"] {
+    padding: 10px;
+    outline: 2px dashed #CCC;
+  }
+
+  [contenteditable="true"]:hover {
+    cursor: text;
+    outline: 2px dashed #0090D2;
+  }
+
   $transition-speed: $switch-paddle-transition-speed;
   $transition-ease: $switch-paddle-transition-ease;
   $height: $switch-height-med;

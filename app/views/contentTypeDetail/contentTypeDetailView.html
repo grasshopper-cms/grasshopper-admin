@@ -3,7 +3,7 @@
         <div class="large-12  columns">
             <div class="row">
                 <div class="large-6 columns">
-                    <h3 class="title" data-rv-inlineedit="model:label">{{model:label}}</h3>
+                    <h3 class="title" data-rv-editable="model:label">{{model:label}}</h3>
                 </div>
                 <div class="large-6 columns">
                     <a href="#" data-dropdown="drop" class="button tiny radius dropdown right">{{model:resources->contentType->addNewField}}</a><br>
@@ -21,11 +21,24 @@
     </div>
     <div class="row">
         <div class="large-12 columns">
-            <ul>
-                <li><span>Help Text: </span><span contenteditable="true" data-rv-content="model:helpText"></span></li>
-                <li><span>meta: </span><span contenteditable="true" data-rv-content="model:meta"></span></li>
-                <li><span>Description: </span><span contenteditable="true" data-rv-content="model:description"></span></li>
-            </ul>
+            <div class="row">
+                <div class="small-2 columns">
+                    <label for="helpText" class="right inline">Help Text:</label>
+                </div>
+                <div class="small-10 columns">
+                    <span id="helpText" data-rv-editable="model:helpText"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-2 columns">
+                    <label for="description" class="right inline">Description:</label>
+                </div>
+                <div class="small-10 columns">
+                    <span id="description" data-rv-editable="model:description"></span>
+                </div>
+            </div>
+
             <hr>
             <h3>{{model:resources->contentType->fields | withColon}}</h3>
             <div class="row">
@@ -36,10 +49,10 @@
                     <h3>{{model:resources->contentType->fieldType}}</h3>
                 </div>
                 <div class="small-2 columns">
-                    <h3>required</h3>
+                    <h3>Required</h3>
                 </div>
                 <div class="small-2 columns">
-                    <h3>instancing</h3>
+                    <h3>Instancing</h3>
                 </div>
             </div>
             <dl class="accordion" data-accordion>
