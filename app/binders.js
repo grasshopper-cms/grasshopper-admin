@@ -139,7 +139,7 @@ define(['jquery', 'underscore', 'masseuse',
                         appendTo : el
                     }));
 
-                    rivets.model.view.addChild(viewInstance);
+//                    rivets.model.view.addChild(viewInstance);
                     rivets.viewInstance = viewInstance;
                 },
                 unbind : function() {
