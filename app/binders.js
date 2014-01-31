@@ -139,6 +139,7 @@ define(['jquery', 'underscore', 'masseuse',
                         appendTo : el
                     }));
 
+                    // TODO: Having this in there breaks stuff. though I think not having it could be a memory leak.
 //                    rivets.model.view.addChild(viewInstance);
                     rivets.viewInstance = viewInstance;
                 },
@@ -159,6 +160,23 @@ define(['jquery', 'underscore', 'masseuse',
                     }
                 },
                 publishes : true
+            },
+            content : {
+                routine: function(el, model) {
+                    this.view.binders.text.call(this, el, model);
+                },
+                bind : function(el) {
+                    var self = this;
+
+                    this.callback = function() {
+                        self.view.adapters[':'].publish(self.model, self.key.path, el.textContent);
+                    };
+
+                    el.addEventListener('input', this.callback, false);
+                },
+                unbind: function(el) {
+                    el.removeEventListener('input', this.callback, false);
+                }
             }
         };
     });
