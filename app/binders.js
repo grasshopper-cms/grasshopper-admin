@@ -93,8 +93,6 @@ define(['jquery', 'underscore', 'masseuse',
                         viewInstance,
                         modelData = {};
 
-                    console.log(rivets);
-
                     _.each(rivets.model.field.attributes.availableProperties, function(property) {
                         modelData[property] = masseuse.ProxyProperty(property, rivets.model.field);
                     });
