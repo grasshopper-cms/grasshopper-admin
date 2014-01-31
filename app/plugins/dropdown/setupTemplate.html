@@ -38,17 +38,17 @@
                 <div class="row">
                     <label>Required</label>
 
-                    <input id="requiredRadioTrue" name="requiredRadio" type="radio" value="true" data-rv-checked="model:required">
+                    <input id="requiredRadioTrue" data-rv-name="model.cid  | prepend requiredRadio" type="radio" value="true" data-rv-checked="model:required">
                     <label for="requiredRadioTrue">Yes</label>
 
-                    <input id="requiredRadioFalse" name="requiredRadio" type="radio" value="false" data-rv-checked="model:required">
+                    <input id="requiredRadioFalse" data-rv-name="model.cid  | prepend requiredRadio" type="radio" value="false" data-rv-checked="model:required">
                     <label for="requiredRadioFalse">No</label>
                 </div>
                 <div class="row">
                     <div data-rv-each-option="collection:">
                         <input type="text" class="optionInput" placeholder="dropdown option" data-rv-value="option:label">
                     </div>
-                    <button id="addOptionToDropdown" class="right tiny radius"><i class="icon-plus"></i></button>
+                    <button id="addOptionToDropdown" class="right tiny radius"><i class="icon-plus"></i><span> Add Option</span></button>
                 </div>
             </div>
         </div>
