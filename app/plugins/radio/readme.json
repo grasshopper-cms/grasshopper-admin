@@ -1,4 +1,4 @@
 {
-    "helpText" : "checkbox Help Text",
-    "name" : "Checkbox"
+    "helpText" : "radio Help Text",
+    "name" : "Radio"
 }

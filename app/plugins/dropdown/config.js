@@ -1,6 +1,7 @@
 /*global define:false*/
-define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!plugins/dropdown/setupTemplate.html'],
-    function (dropdownPluginTemplate, dropdownPluginModel, setupTemplate) {
+define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!plugins/dropdown/setupTemplate.html',
+'backbone'],
+    function (dropdownPluginTemplate, dropdownPluginModel, setupTemplate, Backbone) {
         'use strict';
 
         return {
@@ -10,9 +11,13 @@ define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!p
             wrapper: false,
             template : dropdownPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
+            events : {
+                'click #addOptionToDropdown' : 'addOptionToDropdown',
+                'blur .optionInput' : 'reduceCollection'
+            },
             rivetConfig : 'auto',
             bindings : [],
-            mastheadButtons : []
+            mastheadButtons : [],
+            collection : new Backbone.Collection()
         };
     });

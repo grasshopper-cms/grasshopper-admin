@@ -1,13 +1,13 @@
 /*global define:false*/
-define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!plugins/checkbox/setupTemplate.html'],
-    function (checkboxPluginTemplate, checkboxPluginModel, setupTemplate) {
+define(['text!plugins/radio/template.html', 'plugins/radio/model', 'text!plugins/radio/setupTemplate.html'],
+    function (radioPluginTemplate, radioPluginModel, setupTemplate) {
         'use strict';
 
         return {
-            name : 'checkboxPlugin',
-            ModelType : checkboxPluginModel,
+            name : 'radioPlugin',
+            ModelType : radioPluginModel,
             modelData : {},
-            template : checkboxPluginTemplate,
+            template : radioPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',

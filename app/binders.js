@@ -125,33 +125,24 @@ define(['jquery', 'underscore', 'masseuse',
                         plugin = _.find(plugins.fields, {type : rivets.model.field.get('type')}),
                         ViewModule = plugin.view,
                         configModule = plugin.config,
-                        viewInstance;
+                        viewInstance,
+                        property,
+                        modelData = {};
+
+                    for(property in rivets.model.field.attributes) {
+                        modelData[property] = masseuse.ProxyProperty(property, rivets.model.field);
+                    }
 
                     viewInstance = new ViewModule($.extend(true, {}, configModule, {
+                        modelData : modelData,
                         template : configModule.setupTemplate,
                         appendTo : el
                     }));
 
                     rivets.model.view.addChild(viewInstance);
                 },
-                unbind : function() {
-//                    this.viewInstance.remove();
-                },
-                routine : function(el, model) {
-                    el;
-                    model;
-//                    if (this.viewInstance) {
-//                        this.viewInstance.$el.empty();
-//                        this.viewInstance.$el.remove();
-//                        this.viewInstance.model.set(model.attributes);
-//                    }
-//
-//                    if (!this.viewInstance.hasStarted) {
-//                        this.viewInstance.start();
-//                    } else {
-//                        this.viewInstance.render();
-//                    }
-                },
+                unbind : function() {},
+                routine : function() {},
                 publishes : true
             }
         };

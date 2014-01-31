@@ -254,7 +254,7 @@ define([
         }
 
         function displayApp () {
-            loadMainContent(DashboardView, dashboardViewConfig, true);
+            loadMainContent(DashboardView, _.extend({}, dashboardViewConfig), true);
         }
 
         function displayAlertBox (options) {
@@ -323,7 +323,7 @@ define([
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
-            loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
+            loadMainContent(UsersIndexView, _.extend({}, usersIndexViewConfig,
                 {
                     modelData : {
                         pageNumber : pageNumber,
