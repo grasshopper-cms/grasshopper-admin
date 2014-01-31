@@ -15,7 +15,15 @@ module.exports = function (grunt) {
                                 '\n\t\t\t\t\tconfig: <%= config + "Config" %>, ' +
                                 '\n\t\t\t\t\thelpText: "<%= helpText %>", ' +
                                 '\n\t\t\t\t\tname: "<%= name %>", ' +
-                                '\n\t\t\t\t\tview: <%= view + "View" %> ' +
+                                '\n\t\t\t\t\tview: <%= view + "View" %>, ' +
+                                '\n\t\t\t\t\tavailableProperties: [\n' +
+                                    '<% _.each(availableProperties, function(property) { %>' +
+                                        '\t\t\t\t\t\t"<%= property %>"' +
+                                        '<% if(_.last(availableProperties) !== property) {' +
+                                            ' print(","); ' +
+                                            '} %>\n' +
+                                    '<% }); %>' +
+                                    '\t\t\t\t\t]' +
                                 '\n\t\t\t\t}';
 
     plugins.fields = [];
@@ -81,6 +89,7 @@ module.exports = function (grunt) {
             readMe = grunt.file.readJSON(abspath);
             thisField.helpText = readMe.helpText;
             thisField.name = readMe.name;
+            thisField.availableProperties = readMe.availableProperties;
         }
 
         if(filename === 'config.js') {

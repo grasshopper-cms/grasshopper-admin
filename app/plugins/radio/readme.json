@@ -1,4 +1,12 @@
 {
     "helpText" : "radio Help Text",
-    "name" : "Radio"
+    "name" : "Radio",
+    "availableProperties" : [
+        "label",
+        "type",
+        "required",
+        "instancing",
+        "multi",
+        "validation"
+    ]
 }

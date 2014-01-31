@@ -1,4 +1,12 @@
 {
     "helpText" : "TextArea Help Text",
-    "name" : "TextArea"
+    "name" : "TextArea",
+    "availableProperties" : [
+        "label",
+        "type",
+        "required",
+        "instancing",
+        "multi",
+        "validation"
+    ]
 }

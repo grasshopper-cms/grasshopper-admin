@@ -1,4 +1,12 @@
 {
     "helpText" : "Readonly Help Text",
-    "name" : "Readonly"
+    "name" : "Readonly",
+    "availableProperties" : [
+        "label",
+        "type",
+        "required",
+        "instancing",
+        "multi",
+        "validation"
+    ]
 }

@@ -1,4 +1,12 @@
 {
     "helpText" : "password Help Text",
-    "name" : "Password"
+    "name" : "Password",
+    "availableProperties" : [
+        "label",
+        "type",
+        "required",
+        "instancing",
+        "multi",
+        "validation"
+    ]
 }

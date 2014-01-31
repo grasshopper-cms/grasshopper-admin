@@ -5,8 +5,6 @@ define(['jquery', 'underscore', 'masseuse',
               PluginWrapperView, pluginWrapperViewConfig, Backbone, plugins) {
         'use strict';
 
-
-
         return {
             fieldwrapper : {
                 bind : function(el) {
@@ -86,39 +84,6 @@ define(['jquery', 'underscore', 'masseuse',
                 },
                 publish : true
             },
-            inlineedit : {
-                bind: function(el) {
-                    var self = this,
-                        keypath = this.keypath,
-                        property = keypath.substring(keypath.indexOf(':') + 1).replace('->','.'),
-                        value = this.model.get(property),
-                        inlineEditableTemplate = '<input value="[[= value ]]" style="display: none; ' +
-                            'width: 100%;"><i class="icon-edit" style="display: none;"></i>',
-                        template = _.template(inlineEditableTemplate, { value : value }),
-                        $el = $(el),
-                        $input;
-
-                    $input = $(template).insertAfter($el);
-
-                    $input.on('focusout', function() {
-                        $el.show();
-                        $input.hide();
-                        self.model.set(property, $input.val());
-                    });
-
-                    $el.on('click', function() {
-                        $el.hide();
-                        $input.show().focus();
-                    });
-
-                    $el.on('mouseover mouseout', function() {
-                        $('i.icon-edit').toggle();
-                    });
-
-                },
-                unbind : function() {},
-                routine : function() {}
-            },
             fieldform : {
                 bind: function(el) {
                     var rivets = this,
@@ -126,12 +91,13 @@ define(['jquery', 'underscore', 'masseuse',
                         ViewModule = plugin.view,
                         configModule = plugin.config,
                         viewInstance,
-                        property,
                         modelData = {};
 
-                    for(property in rivets.model.field.attributes) {
+                    console.log(rivets);
+
+                    _.each(rivets.model.field.attributes.availableProperties, function(property) {
                         modelData[property] = masseuse.ProxyProperty(property, rivets.model.field);
-                    }
+                    });
 
                     viewInstance = new ViewModule($.extend(true, {}, configModule, {
                         modelData : modelData,
@@ -161,22 +127,26 @@ define(['jquery', 'underscore', 'masseuse',
                 },
                 publishes : true
             },
-            content : {
+            editable : {
                 routine: function(el, model) {
                     this.view.binders.text.call(this, el, model);
                 },
                 bind : function(el) {
-                    var self = this;
+                    var $el = $(el);
+                    if(!$el.attr('contenteditable')) {
+                        $el.attr('contenteditable', true);
+                    }
 
-                    this.callback = function() {
-                        self.view.adapters[':'].publish(self.model, self.key.path, el.textContent);
-                    };
-
-                    el.addEventListener('input', this.callback, false);
+                    el.addEventListener('input', _callback.bind(this,el), false);
                 },
                 unbind: function(el) {
-                    el.removeEventListener('input', this.callback, false);
+                    el.removeEventListener('input', _callback.bind(this,el), false);
                 }
             }
         };
+
+        function _callback(el) {
+            this.view.adapters[':'].publish(
+                this.model,this.keypath.substring(this.keypath.indexOf(':')+1), el.textContent);
+        }
     });

@@ -1,4 +1,12 @@
 {
     "helpText" : "checkbox Help Text",
-    "name" : "Checkbox"
+    "name" : "Checkbox",
+    "availableProperties" : [
+        "label",
+        "type",
+        "required",
+        "instancing",
+        "multi",
+        "validation"
+    ]
 }

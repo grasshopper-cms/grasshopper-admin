@@ -1,4 +1,12 @@
 {
     "helpText" : "REF Help Text",
-    "name" : "Ref"
+    "name" : "Ref",
+    "availableProperties" : [
+        "label",
+        "type",
+        "required",
+        "instancing",
+        "multi",
+        "validation"
+    ]
 }

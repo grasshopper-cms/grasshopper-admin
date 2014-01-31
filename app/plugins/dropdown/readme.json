@@ -1,4 +1,13 @@
 {
     "helpText" : "Dropdown Help Text",
-    "name" : "Dropdown"
+    "name" : "Dropdown",
+    "availableProperties" : [
+        "label",
+        "type",
+        "required",
+        "instancing",
+        "multi",
+        "validation",
+        "options"
+    ]
 }
