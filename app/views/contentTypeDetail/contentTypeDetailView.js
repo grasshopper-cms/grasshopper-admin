@@ -14,7 +14,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
 
     function beforeRender ($deferred) {
         var self = this;
-        if (!this.model.has('label')) {
+        if (!this.model.has('label') && !this.model.isNew()) {
 
             this.model.fetch()
                 .done(function() {

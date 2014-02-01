@@ -51,6 +51,7 @@ define([
                 'addUser' : 'displayAddUser',
                 'item/types' : 'displayContentTypeIndex',
                 'item/types(/:id)' : 'displayContentTypeDetail',
+                'item/types/new' : 'displayContentTypeDetail',
                 'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
@@ -284,7 +285,7 @@ define([
 
         function displayModal (options) {
             var $deferred = new $.Deferred(),
-                modalView = new ModalView(_.extend(modalViewConfig, {
+                modalView = new ModalView(_.extend({}, modalViewConfig, {
                     modelData : {
                         msg : options.msg,
                         data : (options.data) ? options.data : null
