@@ -8,7 +8,8 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
         prepareToDeleteContentType : prepareToDeleteContentType,
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
-        saveContentType : saveContentType
+        saveContentType : saveContentType,
+        removeFieldFromCollection : removeFieldFromCollection
     });
 
     function beforeRender ($deferred) {
@@ -32,7 +33,6 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
     }
 
     function afterRender() {
-        // TODO: Because the dropdown options are riveted, I need to re-foundationize it afterRender.
         this.$el.foundation();
     }
 
@@ -119,33 +119,45 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
     }
 
     function addNewFieldToContentType(e, context) {
-        console.log(context);
         e.preventDefault();
         this.collection.add(context.field);
     }
 
     function saveContentType() {
         this.model.set('fields', this.collection.toJSON());
-        this.model.save()
-            .done(_handleSuccessfulModelSave.call(this))
-            .fail(_handleFailedModelSave.call(this));
+
+        console.log(this);
+//        this.model.save()
+//            .done(_handleSuccessfulModelSave.call(this))
+//            .fail(_handleFailedModelSave.call(this));
     }
 
-    function _handleSuccessfulModelSave() {
-        this.displayTemporaryAlertBox(
-            {
-                msg: resources.contentType.successfulSave,
-                status: true
-            }
-        );
-    }
+//    function _handleSuccessfulModelSave() {
+//        this.displayTemporaryAlertBox(
+//            {
+//                msg: resources.contentType.successfulSave,
+//                status: true
+//            }
+//        );
+//    }
+//
+//    function _handleFailedModelSave() {
+//        this.displayAlertBox(
+//            {
+//                msg: resources.contentType.failedSave
+//            }
+//        );
+//    }
 
-    function _handleFailedModelSave() {
-        this.displayAlertBox(
-            {
-                msg: resources.contentType.failedSave
-            }
-        );
+    function removeFieldFromCollection(e, context) {
+        var self = this;
+        this.displayModal({
+            msg : resources.contentType.removeFieldWarning
+        })
+            .done(function() {
+                self.collection.remove(context.field);
+            });
+
     }
 
 });

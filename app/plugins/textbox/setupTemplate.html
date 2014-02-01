@@ -4,7 +4,7 @@
             <div class="small-6 columns">
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="label" class="right inline">Label</label>
+                        <label for="label" class="right inline">{{model:resources->label}}</label>
                     </div>
                     <div class="small-9 columns">
                         <input type="text" id="label" placeholder="label" data-rv-value="model:label">
@@ -12,7 +12,7 @@
                 </div>
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="_id" class="right inline">_id</label>
+                        <label for="_id" class="right inline">{{model:resources->id}}</label>
                     </div>
                     <div class="small-9 columns">
                         <div class="row">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="instancing" class="right inline">Instancing</label>
+                        <label for="instancing" class="right inline">{{model:resources->instancing}}</label>
                     </div>
                     <div class="small-9 columns">
                         <input id="instancing" type="number" data-rv-value="model:instancing">
@@ -36,22 +36,24 @@
             </div>
             <div class="small-6 columns">
                 <div class="row">
-                    <label>Required</label>
+                    <label>{{model:resources->required}}</label>
 
                     <input id="requiredRadioTrue" data-rv-name="model.cid  | prepend requiredRadio" type="radio" value="true" data-rv-checked="model:required">
-                    <label for="requiredRadioTrue">Yes</label>
+                    <label for="requiredRadioTrue">{{model:resources->yes}}</label>
 
                     <input id="requiredRadioFalse" data-rv-name="model.cid  | prepend requiredRadio" type="radio" value="false" data-rv-checked="model:required">
-                    <label for="requiredRadioFalse">No</label>
+                    <label for="requiredRadioFalse">{{model:resources->no}}</label>
                 </div>
                 <div class="row">
-                    <input id="multi" type="checkbox" data-rv-checked="model:multi"><label for="multi">Multi</label>
+                    <input id="multi" type="checkbox" data-rv-checked="model:multi"><label for="multi">{{model:resources->multi}}</label>
                 </div>
             </div>
         </div>
         <div class="row">
-            <hr>
-            VALIDATION SECTION
+            <div class="small-12 columns">
+                <hr>
+                VALIDATION SECTION TEXTBOX
+            </div>
         </div>
     </div>
 </div>

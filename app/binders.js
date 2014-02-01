@@ -90,14 +90,17 @@ define(['jquery', 'underscore', 'masseuse',
                         plugin = _.find(plugins.fields, {type : rivets.model.field.get('type')}),
                         ViewModule = plugin.view,
                         configModule = plugin.config,
-                        viewInstance,
                         modelData = {};
 
-                    _.each(rivets.model.field.attributes.availableProperties, function(property) {
+                    _.each(plugin.availableProperties, function(property) {
+                        if(!rivets.model.field.has(property)) {
+                            rivets.model.field.set(property, '', {silent:true});
+                        }
+
                         modelData[property] = masseuse.ProxyProperty(property, rivets.model.field);
                     });
 
-                    viewInstance = new ViewModule($.extend(true, {}, configModule, {
+                    rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
                         modelData : modelData,
                         template : configModule.setupTemplate,
                         appendTo : el
@@ -105,7 +108,6 @@ define(['jquery', 'underscore', 'masseuse',
 
                     // TODO: Having this in there breaks stuff. though I think not having it could be a memory leak.
 //                    rivets.model.view.addChild(viewInstance);
-                    rivets.viewInstance = viewInstance;
                 },
                 unbind : function() {
                     this.viewInstance.remove();

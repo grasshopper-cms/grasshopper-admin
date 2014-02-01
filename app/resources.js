@@ -118,7 +118,12 @@ define({
         fieldType : 'Field Type',
         addNewField : 'Add New Field',
         successfulSave : 'Content type successfully saved.',
-        failedSave : 'Content type could not be saved.'
+        failedSave : 'Content type could not be saved.',
+        removeFieldWarning: 'Warning! If you delete this field. ' +
+            'This field will be deleted form all content of this type.',
+        addOption : 'Add Option',
+        helpText : 'Help Text',
+        description: 'Description'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
@@ -160,16 +165,21 @@ define({
     enabled : 'Enabled',
     falseText : 'False',
     home : 'Home',
+    id : 'ID',
+    instancing : 'Instancing',
     label : 'Label',
     login : 'Login',
     log_in : 'Log In',
     log_out : 'Log Out',
     menu : 'Menu',
+    multi : 'Multi',
     name : 'Name',
+    no : 'No',
     next : 'Next',
     previous : 'Previous',
     profile : 'Profile',
     retry : 'Retry',
+    required : 'Required',
     role : 'Role',
     save : 'Save',
     settings : 'Settings',
@@ -182,5 +192,6 @@ define({
     upload : 'Upload',
     user_name : 'User Name',
     users : 'Users',
-    welcomeBack : 'Welcome Back'
+    welcomeBack : 'Welcome Back',
+    yes : 'Yes'
 });

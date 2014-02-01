@@ -1,4 +1,4 @@
-define(['grasshopperModel', 'masseuse', 'helpers'], function (Model, masseuse, helpers) {
+define(['grasshopperModel', 'masseuse', 'helpers', 'resources'], function (Model, masseuse, helpers, resources) {
     'use strict';
 
     var ComputedProperty = masseuse.ComputedProperty,
@@ -6,6 +6,7 @@ define(['grasshopperModel', 'masseuse', 'helpers'], function (Model, masseuse, h
 
     return Model.extend({
         defaults : {
+            resources : resources,
             hasError: new ComputedProperty(['value', 'required'], validatePresence, true),
             errorMessage: new ComputedProperty(['label'], function(label) {
                 return label + ' is a required field.';
