@@ -1,14 +1,11 @@
 /*global define:false*/
-define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources', 'constants', 'masseuse'],
-    function (template, DashboardViewModel, resources, constants, masseuse) {
+define(['text!views/dashboard/dashboardView.html', 'dashboardViewModel', 'resources', 'constants'],
+    function (template, DashboardViewModel, resources, constants) {
         'use strict';
 
-        var ViewContext = masseuse.ViewContext;
         return {
             name : 'dashboardView',
-            modelData : {
-                userModel : ViewContext('app.user')
-            },
+            modelData : {},
             ModelType : DashboardViewModel,
             appendTo : '#stage',
             wrapper : false,

@@ -254,7 +254,11 @@ define([
         }
 
         function displayApp () {
-            loadMainContent(DashboardView, _.extend({}, dashboardViewConfig), true);
+            loadMainContent(DashboardView, _.extend({}, dashboardViewConfig, {
+                modelData : {
+                    userModel : this.user
+                }
+            }), true);
         }
 
         function displayAlertBox (options) {
