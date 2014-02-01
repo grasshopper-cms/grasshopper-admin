@@ -305,21 +305,19 @@ define([
         }
 
         function displayUserDetail (id) {
-            // TODO: I think this can be refactored to take advantage of the new permissions checking system.
             // I did the role check here instead of in the config with permissions, this is because there are Admin's
             // getting their own, Admins getting others, and others getting their own.
             if (this.user.get('role') === 'admin' || this.user.get('_id') === id) {
                 loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
                     {
                         modelData : {
-                            id : id,
+                            _id : id,
                             userModel : this.user
                         }
                     }));
             } else {
                 this.navigateTrigger('home');
             }
-
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
@@ -333,7 +331,7 @@ define([
         }
 
         function displayAddUser () {
-            loadMainContent(AddUserView, addUserViewConfig);
+            loadMainContent(AddUserView, _.extend({}, addUserViewConfig));
         }
 
         function displayContentBrowse (nodeId) {
