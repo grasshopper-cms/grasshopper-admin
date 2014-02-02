@@ -126,27 +126,28 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
         this.model.set('fields', this.collection.toJSON());
 
         console.log(this);
-//        this.model.save()
-//            .done(_handleSuccessfulModelSave.call(this))
-//            .fail(_handleFailedModelSave.call(this));
+        this.model.save()
+            .done(_handleSuccessfulModelSave.call(this))
+            .fail(_handleFailedModelSave.call(this));
     }
 
-//    function _handleSuccessfulModelSave() {
-//        this.displayTemporaryAlertBox(
-//            {
-//                msg: resources.contentType.successfulSave,
-//                status: true
-//            }
-//        );
-//    }
-//
-//    function _handleFailedModelSave() {
-//        this.displayAlertBox(
-//            {
-//                msg: resources.contentType.failedSave
-//            }
-//        );
-//    }
+    function _handleSuccessfulModelSave() {
+        this.displayTemporaryAlertBox(
+            {
+                msg: resources.contentType.successfulSave,
+                status: true
+            }
+        );
+    }
+
+    function _handleFailedModelSave(xhr) {
+        console.log(xhr);
+        this.displayAlertBox(
+            {
+                msg: resources.contentType.failedSave
+            }
+        );
+    }
 
     function removeFieldFromCollection(e, context) {
         var self = this;
