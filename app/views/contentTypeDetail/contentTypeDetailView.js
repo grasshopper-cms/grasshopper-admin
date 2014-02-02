@@ -24,7 +24,6 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
         } else {
             $deferred.resolve();
         }
-
     }
 
     function _handleSuccessfulModelFetch($deferred) {
@@ -157,7 +156,6 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
             .done(function() {
                 self.collection.remove(context.field);
             });
-
     }
 
 });
