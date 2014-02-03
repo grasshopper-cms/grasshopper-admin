@@ -13,4 +13,5 @@ define(['grasshopperModel', 'resources', 'masseuse'], function (Model, resources
     function generateSlug(label) {
         return label.replace(/ /g,'').toLowerCase();
     }
+
 });

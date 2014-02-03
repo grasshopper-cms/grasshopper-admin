@@ -1,0 +1,12 @@
+{
+    "helpText" : "DateTime Help Text",
+    "name" : "Date Time",
+    "availableProperties" : [
+        "label",
+        "type",
+        "required",
+        "instancing",
+        "multi",
+        "validation"
+    ]
+}
