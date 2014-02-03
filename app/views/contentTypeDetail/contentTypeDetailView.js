@@ -14,7 +14,6 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
 
     function beforeRender ($deferred) {
         if (!this.model.has('label') && !this.model.isNew()) {
-
             this.model.fetch()
                 .done(_handleSuccessfulModelFetch.bind(this, $deferred))
                 .fail($deferred.reject);
@@ -124,8 +123,8 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
 
         console.log(this);
         this.model.save()
-            .done(_handleSuccessfulModelSave.call(this))
-            .fail(_handleFailedModelSave.call(this));
+            .done(_handleSuccessfulModelSave.bind(this))
+            .fail(_handleFailedModelSave.bind(this));
     }
 
     function _handleSuccessfulModelSave() {
