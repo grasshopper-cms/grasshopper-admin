@@ -13,13 +13,10 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
     });
 
     function beforeRender ($deferred) {
-        var self = this;
         if (!this.model.has('label') && !this.model.isNew()) {
 
             this.model.fetch()
-                .done(function() {
-                    _handleSuccessfulModelFetch.call(self, $deferred);
-                })
+                .done(_handleSuccessfulModelFetch.bind(this, $deferred))
                 .fail($deferred.reject);
         } else {
             $deferred.resolve();
