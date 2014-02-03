@@ -18,6 +18,7 @@ define(['grasshopperBaseView', 'resources', 'api', 'underscore', 'jquery'],
                 .done(_handleSuccessfulModelFetch.bind(this, $deferred))
                 .fail($deferred.reject);
         } else {
+            this.collection.reset();
             $deferred.resolve();
         }
     }
