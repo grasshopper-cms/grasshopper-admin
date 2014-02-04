@@ -1,9 +1,10 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api', 'constants'],
-    function (GrasshopperBaseView, resources, contentTypeWorker, Api, constants) {
+define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentTypeWorker', 'api', 'constants'],
+    function (GrasshopperBaseView, addContentViewConfig, resources, contentTypeWorker, Api, constants) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : addContentViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
             saveContent : saveContent

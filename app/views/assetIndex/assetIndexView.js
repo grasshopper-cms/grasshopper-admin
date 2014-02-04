@@ -1,10 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore',
+define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'underscore',
     'text!views/assetDetail/_assetDetailRow.html'],
-    function (GrasshopperBaseView, AssetDetailView, assetDetailViewConfig, _, assetDetailRowTemplate) {
+    function (GrasshopperBaseView, assetIndexViewConfig, AssetDetailView, _,
+              assetDetailRowTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : assetIndexViewConfig,
             beforeRender : beforeRender,
             appendAssetDetailRow : appendAssetDetailRow
         });
@@ -30,16 +32,14 @@ define(['grasshopperBaseView', 'assetDetailView', 'assetDetailViewConfig', 'unde
         }
 
         function appendAssetDetailRow (asset) {
-            var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,
-                {
+            var assetDetailView = new AssetDetailView({
                     name : 'assetDetailRow',
                     modelData : _.extend(asset, { nodeId : this.nodeId }),
                     appendTo : '#assetDetailRow',
                     wrapper : false,
                     template : assetDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
-                }
-            ));
+                });
             assetDetailView.start();
         }
     });

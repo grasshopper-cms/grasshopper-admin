@@ -12,7 +12,7 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel'], function (fo
         events : {
             'click #saveUser' : 'saveUser'
         },
-        bindings : [],
+        listeners : [],
         rivetConfig : 'auto',
         mastheadButtons : [],
         permissions : ['admin']

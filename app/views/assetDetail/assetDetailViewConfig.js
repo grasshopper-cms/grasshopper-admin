@@ -18,7 +18,7 @@ define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_
                 'click #retryUpload' : 'postNewAsset',
                 'click #cancelUpload' : 'cancelUpload'
             },
-            bindings : [],
+            listeners : [],
             rivetConfig : 'auto',
             mastheadButtons : []
         };

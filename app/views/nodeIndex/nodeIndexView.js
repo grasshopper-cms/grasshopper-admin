@@ -1,10 +1,11 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore',
+define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'underscore',
     'text!views/nodeDetail/_nodeDetailRow.html'],
-    function (GrasshopperBaseView, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
+    function (GrasshopperBaseView, nodeIndexViewConfig, NodeDetailView, _, nodeDetailRowTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions: nodeIndexViewConfig,
             beforeRender : beforeRender,
             appendNodeDetailRow : appendNodeDetailRow
         });
@@ -40,15 +41,14 @@ define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'unders
         }
 
         function appendNodeDetailRow (node) {
-            var nodeDetailView = new NodeDetailView(_.extend({}, nodeDetailViewConfig,
-                {
+            var nodeDetailView = new NodeDetailView({
                     name : 'nodeDetailRow',
                     modelData : node,
                     appendTo : '#nodeDetailRow',
                     wrapper : false,
                     template : nodeDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
-                }));
+                });
             this.addChild(nodeDetailView);
         }
 

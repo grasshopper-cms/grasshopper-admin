@@ -1,7 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources'], function (GrasshopperBaseView, resources) {
+define(['grasshopperBaseView', 'addUserViewConfig', 'resources'],
+    function (GrasshopperBaseView, resources, addUserViewConfig) {
     'use strict';
     return GrasshopperBaseView.extend({
+        defaultOptions : addUserViewConfig,
         saveUser : saveUser
     });
 

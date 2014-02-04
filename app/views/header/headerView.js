@@ -1,8 +1,8 @@
 /*global define:false*/
-define(['grasshopperBaseView'], function (GrasshopperBaseView) {
+define(['grasshopperBaseView', 'headerViewConfig'], function (GrasshopperBaseView, headerViewConfig) {
     'use strict';
     return GrasshopperBaseView.extend({
-
+        defaultOptions : headerViewConfig
     });
 
 });

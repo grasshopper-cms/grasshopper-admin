@@ -10,7 +10,7 @@ define(['text!views/contentIndex/contentIndexView.html', 'contentIndexViewModel'
             wrapper : false,
             template : template,
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             events : {},
             permissions : ['admin', 'reader', 'editor']
         };

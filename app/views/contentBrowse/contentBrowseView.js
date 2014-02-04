@@ -1,11 +1,13 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig', 'assetIndexView',
-    'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig', 'api', 'constants'],
-    function (GrasshopperBaseView, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView, assetIndexViewConfig, _,
-              ContentIndexView, contentIndexViewConfig, Api, constants) {
+define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexView',
+    'assetIndexView', 'underscore', 'contentIndexView',
+    'api', 'constants'],
+    function (GrasshopperBaseView, contentBrowseViewConfig, $, NodeIndexView, AssetIndexView,
+              _, ContentIndexView, Api, constants) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : contentBrowseViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
             addChildIndexViews : addChildIndexViews,
@@ -44,22 +46,18 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
         }
 
         function _addNodeIndexView () {
-            var nodeIndexView = new NodeIndexView(_.extend({}, nodeIndexViewConfig,
-                {
+            var nodeIndexView = new NodeIndexView({
                     nodeId : this.model.get('nodeId'),
                     mastheadButtons : null
-                }
-            ));
+                });
             this.addChild(nodeIndexView);
         }
 
         function _addAssetIndexView () {
-            var assetIndexView = new AssetIndexView(_.extend({}, assetIndexViewConfig,
-                {
+            var assetIndexView = new AssetIndexView({
                     nodeId : this.model.get('nodeId'),
                     mastheadButtons : null
-                }
-            ));
+                });
             this.addChild(assetIndexView);
         }
 
@@ -68,11 +66,10 @@ define(['grasshopperBaseView', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
                 this.model.set('inRoot', true);
             } else {
                 this.model.set('inRoot', false);
-                var contentIndexView = new ContentIndexView(_.extend({}, contentIndexViewConfig,
-                    {
+                var contentIndexView = new ContentIndexView({
                         nodeId : this.model.get('nodeId'),
                         mastheadButtons : null
-                    }));
+                    });
                 this.addChild(contentIndexView);
             }
         }

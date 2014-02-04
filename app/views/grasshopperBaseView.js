@@ -1,8 +1,8 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, masseuse, helpers, rivetsPlugin) {
+define(['backbone', 'masseuse'], function (Backbone, masseuse) {
     'use strict';
 
-    var RivetView = rivetsPlugin.view,
+    var RivetView = masseuse.plugins.rivets.RivetsView,
         oldSet = Backbone.Collection.prototype.set;
 
     return RivetView.extend({

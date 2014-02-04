@@ -12,7 +12,7 @@ define(['text!plugins/datetime/template.html', 'plugins/datetime/model', 'text!p
             events : {},
             rivetConfig : 'auto',
             wrapper: false,
-            bindings : [],
+            listeners : [],
             mastheadButtons : []
         };
     });

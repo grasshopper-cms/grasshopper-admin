@@ -12,7 +12,7 @@ define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function 
         events : {
             'click #closeAlertBox' : 'closeAlertBox'
         },
-        bindings : [
+        listeners : [
             ['channels.views', 'hideAlertBoxes', 'closeAlertBox']
         ]
     };

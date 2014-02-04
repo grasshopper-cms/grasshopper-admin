@@ -12,7 +12,7 @@ define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!p
             events : {},
             rivetConfig : 'auto',
             wrapper: false,
-            bindings : [],
+            listeners : [],
             mastheadButtons : []
         };
     });

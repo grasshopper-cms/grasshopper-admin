@@ -1,11 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailView', 'contentDetailViewConfig',
+define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'underscore', 'contentDetailView',
     'text!views/contentDetail/_contentDetailRow.html'],
-    function (GrasshopperBaseView, Api, constants, _, ContentDetailView, contentDetailViewConfig,
+    function (GrasshopperBaseView, contentIndexViewConfig, Api, constants, _, ContentDetailView,
               contentDetailRowTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : contentIndexViewConfig,
             beforeRender : beforeRender
         });
 
@@ -46,15 +47,14 @@ define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailV
         }
 
         function _appendContentDetailRow (content) {
-            var contentDetailView = new ContentDetailView(_.extend({}, contentDetailViewConfig,
-                {
+            var contentDetailView = new ContentDetailView({
                     name : 'nodeDetailRow',
                     modelData : content,
                     appendTo : '#contentDetailRow',
                     wrapper : false,
                     template : contentDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
-                }));
+                });
             this.addChild(contentDetailView);
         }
 

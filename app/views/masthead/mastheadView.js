@@ -1,7 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) {
+define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
+    function (GrasshopperBaseView, mastheadViewConfig, _) {
     'use strict';
     return GrasshopperBaseView.extend({
+        defaultOptions : mastheadViewConfig,
         beforeRender : beforeRender,
         setButtons : setButtons,
         setBreadcrumbs : setBreadcrumbs,

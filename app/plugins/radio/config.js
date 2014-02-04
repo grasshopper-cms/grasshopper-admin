@@ -12,7 +12,7 @@ define(['text!plugins/radio/template.html', 'plugins/radio/model', 'text!plugins
             events : {},
             rivetConfig : 'auto',
             wrapper: false,
-            bindings : [],
+            listeners : [],
             mastheadButtons : []
         };
     });

@@ -1,8 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
-    function (GrasshopperBaseView, resources, userWorker, constants) {
+define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'userWorker', 'constants'],
+    function (GrasshopperBaseView, userDetailViewConfig, resources, userWorker, constants) {
         'use strict';
         return GrasshopperBaseView.extend({
+            defaultOptions : userDetailViewConfig,
             beforeRender : beforeRender,
             updateModel : updateModel,
             toggleEnabled : toggleEnabled,
