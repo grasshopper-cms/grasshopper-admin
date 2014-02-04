@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexView', 'nodeIndexViewConfig',
-    'assetIndexView', 'assetIndexViewConfig', 'underscore', 'contentIndexView', 'contentIndexViewConfig',
+define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexView',
+    'assetIndexView', 'underscore', 'contentIndexView',
     'api', 'constants'],
-    function (GrasshopperBaseView, contentBrowseViewConfig, $, NodeIndexView, nodeIndexViewConfig, AssetIndexView,
-              assetIndexViewConfig, _, ContentIndexView, contentIndexViewConfig, Api, constants) {
+    function (GrasshopperBaseView, contentBrowseViewConfig, $, NodeIndexView, AssetIndexView,
+              _, ContentIndexView, Api, constants) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -54,12 +54,10 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         }
 
         function _addAssetIndexView () {
-            var assetIndexView = new AssetIndexView(_.extend({}, assetIndexViewConfig,
-                {
+            var assetIndexView = new AssetIndexView({
                     nodeId : this.model.get('nodeId'),
                     mastheadButtons : null
-                }
-            ));
+                });
             this.addChild(assetIndexView);
         }
 
@@ -68,11 +66,10 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
                 this.model.set('inRoot', true);
             } else {
                 this.model.set('inRoot', false);
-                var contentIndexView = new ContentIndexView(_.extend({}, contentIndexViewConfig,
-                    {
+                var contentIndexView = new ContentIndexView({
                         nodeId : this.model.get('nodeId'),
                         mastheadButtons : null
-                    }));
+                    });
                 this.addChild(contentIndexView);
             }
         }

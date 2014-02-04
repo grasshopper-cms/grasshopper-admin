@@ -1,11 +1,14 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'api', 'constants', 'underscore', 'contentDetailView', 'contentDetailViewConfig',
+define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'underscore', 'contentDetailView',
+    'contentDetailViewConfig',
     'text!views/contentDetail/_contentDetailRow.html'],
-    function (GrasshopperBaseView, Api, constants, _, ContentDetailView, contentDetailViewConfig,
+    function (GrasshopperBaseView, contentIndexViewConfig, Api, constants, _, ContentDetailView,
+              contentDetailViewConfig,
               contentDetailRowTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : contentIndexViewConfig,
             beforeRender : beforeRender
         });
 
