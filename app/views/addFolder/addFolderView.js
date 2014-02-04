@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'addFolderViewConfig', 'resources', 'underscore',
-    'nodeDetailView', 'nodeDetailViewConfig', 'text!views/nodeDetail/_nodeDetailRow.html'],
+    'nodeDetailView', 'text!views/nodeDetail/_nodeDetailRow.html'],
     function (GrasshopperBaseView, addFolderViewConfig, resources, _,
-              NodeDetailView, nodeDetailViewConfig, nodeDetailRowTemplate) {
+              NodeDetailView, nodeDetailRowTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -30,8 +30,7 @@ define(['grasshopperBaseView', 'addFolderViewConfig', 'resources', 'underscore',
         }
 
         function _appendNodeDetailRow(nodeName) {
-            var nodeDetailView = new NodeDetailView(_.extend({}, nodeDetailViewConfig,
-                {
+            var nodeDetailView = new NodeDetailView({
                     name : 'nodeDetailRow',
                     modelData : {
                         label: nodeName,
@@ -41,7 +40,7 @@ define(['grasshopperBaseView', 'addFolderViewConfig', 'resources', 'underscore',
                     wrapper: false,
                     template : nodeDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
-                }));
+                });
             nodeDetailView.start();
         }
 

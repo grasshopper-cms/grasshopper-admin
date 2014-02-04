@@ -1,8 +1,8 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'contentTypeDetailView', 'contentTypeDetailViewConfig',
+define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'contentTypeDetailView',
     'text!views/contentTypeDetail/_contentTypeDetailRow.html',
     'underscore', 'resources'],
-    function (GrasshopperBaseView, contentTypeIndexViewConfig, ContentTypeDetailView, contentTypeDetailViewConfig,
+    function (GrasshopperBaseView, contentTypeIndexViewConfig, ContentTypeDetailView,
               rowTemplate,
               _, resources) {
         'use strict';
@@ -33,15 +33,14 @@ define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'contentTypeDetailV
 
         function insertContentTypeDetailRow (data) {
 
-            var contentTypeDetailView = new ContentTypeDetailView(_.extend({}, contentTypeDetailViewConfig,
-                {
+            var contentTypeDetailView = new ContentTypeDetailView({
                     name : 'contentDetailrow',
                     appendTo : '#contentTypeIndexTable',
                     wrapper : false,
                     template : rowTemplate,
                     modelData : data,
                     mastheadButtons : null
-                }));
+                });
             this.addChild(contentTypeDetailView);
         }
 

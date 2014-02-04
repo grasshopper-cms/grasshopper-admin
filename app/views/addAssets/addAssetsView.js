@@ -54,8 +54,7 @@ define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'assetDetail
         }
 
         function _appendAssetDetailRow (file) {
-            var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,
-                {
+            var assetDetailView = new AssetDetailView({
                     name : 'assetDetailRow',
                     modelData : {
                         nodeId : this.model.get('nodeId'),
@@ -68,8 +67,7 @@ define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'assetDetail
                     wrapper : false,
                     template : assetDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
-                }
-            ));
+                });
             assetDetailView.start();
         }
 

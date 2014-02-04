@@ -1,8 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'api', 'assetWorker'],
-    function (GrasshopperBaseView, resources, Api, AssetWorker) {
+define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'assetWorker'],
+    function (GrasshopperBaseView, assetDetailViewConfig, resources, Api, AssetWorker) {
         'use strict';
         return GrasshopperBaseView.extend({
+            defaultOptions : assetDetailViewConfig,
             afterRender : afterRender,
             handleRowClick : handleRowClick,
             prepareToDeleteAsset : prepareToDeleteAsset,

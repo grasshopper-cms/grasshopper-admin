@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['jquery', 'grasshopperBaseView', 'usersIndexViewConfig', 'userWorker', 'constants', 'underscore',
-    'userDetailView', 'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
+    'userDetailView', 'text!views/userDetail/_userDetailRow.html'],
     function ($, GrasshopperBaseView, usersIndexViewConfig, userWorker, constants, _,
-              UserDetailView, userDetailViewConfig, rowTemplate) {
+              UserDetailView, rowTemplate) {
         'use strict';
         return GrasshopperBaseView.extend({
             defaultOptions : usersIndexViewConfig,
@@ -51,16 +51,14 @@ define(['jquery', 'grasshopperBaseView', 'usersIndexViewConfig', 'userWorker', '
 
         function appendUserRow (model) {
 
-            var userDetailView = new UserDetailView(_.extend({}, userDetailViewConfig,
-                {
+            var userDetailView = new UserDetailView({
                     name : 'userDetailRow',
                     appendTo : '#usersIndexTable',
                     wrapper : false,
                     template : rowTemplate,
                     model : model,
                     mastheadButtons : null
-                }
-            ));
+                });
             this.addChild(userDetailView);
         }
     });
