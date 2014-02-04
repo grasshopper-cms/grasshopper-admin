@@ -14,7 +14,7 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'bin
                 'click #saveContentButton' : 'saveContent'
             },
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
             rivetsBinders : [binders]

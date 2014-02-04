@@ -1,6 +1,6 @@
 # masseuse [![Build Status](https://travis-ci.org/Solid-Interactive/masseuse.png?branch=bower)](https://travis-ci.org/Solid-Interactive/masseuse)
 
-Version: _1.3.3_
+Version: _1.4.0_
 
 Bower pulls from the [bower branch](https://github.com/Solid-Interactive/masseuse/tree/bower) (build badge is showing results for [bower branch](https://github.com/Solid-Interactive/masseuse/tree/bower)):
 
@@ -9,14 +9,20 @@ https://github.com/Solid-Interactive/masseuse
 ## Docs & Tests
 
 * [JSDocs](http://solid-interactive.github.io/masseuse/docs/)
+    * [masseuse](http://solid-interactive.github.io/masseuse/docs/masseuse.html)
+        * [BaseView](http://solid-interactive.github.io/masseuse/docs/BaseView.html)
+        * [channels](http://solid-interactive.github.io/masseuse/docs/Channels.html)
+        * [ComputedProperty](http://solid-interactive.github.io/masseuse/docs/ComputedProperty.html)
+        * [MasseuseModel](http://solid-interactive.github.io/masseuse/docs/MasseuseModel.html)
+        * [MasseuseRouter](http://solid-interactive.github.io/masseuse/docs/MasseuseRouter.html)
+        * [ProxyProperty](http://solid-interactive.github.io/masseuse/docs/ProxyProperty.html)
+        * [ViewContext](http://solid-interactive.github.io/masseuse/docs/ViewContext.html)
+        * plugins
+            * rivets
+                * [RivetsView](http://solid-interactive.github.io/masseuse/docs/RivetsView.html)
+
 * [Tests - unoptimized for readability](http://solid-interactive.github.io/masseuse/tests/)
-* See the [wiki](https://github.com/Solid-Interactive/masseuse/wiki) for more detailed explanations.
-    * [BaseView](https://github.com/Solid-Interactive/masseuse/wiki/BaseView)
-    * [ComputedProperty](https://github.com/Solid-Interactive/masseuse/wiki/ComputedProperty)
-    * [MasseuseModel](https://github.com/Solid-Interactive/masseuse/wiki/MasseuseModel)
-    * [Options](https://github.com/Solid-Interactive/masseuse/wiki/Options)
-    * [ProxyProperty](https://github.com/Solid-Interactive/masseuse/wiki/ProxyProperty)
-    * [RivetView](https://github.com/Solid-Interactive/masseuse/wiki/Rivetview)
+
 
 ## Installation
 
@@ -101,6 +107,9 @@ npm install -g mocha-phantomjs phantomjs
 
 ## Release Notes
 
+* 1.4.0 - 2014-01-30 - [features](release_notes/1.4.0.md)
+* 1.3.4 - 2014-01-29 - [patches](release_notes/1.3.4.md)
+* 1.3.3 - 2014-01-28 - [patches](release_notes/1.3.3.md)
 * 1.3.2 - 2014-01-24 - [patches](release_notes/1.3.2.md)
 * 1.3.1 - 2014-01-24 - [patches](release_notes/1.3.1.md)
 * 1.3.0 - 2014-01-24 - [features](release_notes/1.3.0.md)
@@ -131,4 +140,4 @@ npm install -g mocha-phantomjs phantomjs
 * Jesse McCabe
 
 
-_Compiled file. Do not modify directly. Created: 2014-01-28:06:25:12_
+_Compiled file. Do not modify directly. Created: 2014-01-30 08:58:53_

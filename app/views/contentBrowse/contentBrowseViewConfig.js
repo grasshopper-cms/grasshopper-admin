@@ -10,7 +10,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             wrapper : false,
             template : template,
             rivetConfig : 'auto',
-            bindings : [
+            listeners : [
                 ['channels.views', 'refreshContentBrowseView', 'refreshIndexViews'],
                 ['channels.views', 'activateTab', 'activateTab']
             ],

@@ -16,7 +16,7 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
                 'click .clickableCell' : 'handleRowClick',
                 'click #saveContentButton' : 'saveContent'
             },
-            bindings : [],
+            listeners : [],
             rivetConfig : 'auto',
             mastheadButtons : [],
             permissions : ['admin', 'reader', 'editor'],

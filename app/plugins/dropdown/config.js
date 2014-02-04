@@ -16,7 +16,7 @@ define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!p
                 'blur .optionInput' : 'reduceCollection'
             },
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             mastheadButtons : [],
             collection : new Backbone.Collection()
         };

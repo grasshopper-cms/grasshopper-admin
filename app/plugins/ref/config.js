@@ -12,7 +12,7 @@ define(['text!plugins/ref/template.html', 'plugins/ref/model', 'text!plugins/ref
             setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             mastheadButtons : []
         };
     });

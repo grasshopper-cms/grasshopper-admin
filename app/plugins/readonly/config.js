@@ -12,7 +12,7 @@ define(['text!plugins/readonly/template.html', 'plugins/readonly/model', 'text!p
             setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             mastheadButtons : []
         };
     });

@@ -11,7 +11,7 @@ define(['text!views/header/headerView.html', 'headerViewModel'],
             wrapper : false,
             template : template,
             events : {},
-            bindings : [],
+            listeners : [],
             rivetConfig : 'auto'
         };
     });

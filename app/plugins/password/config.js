@@ -12,7 +12,7 @@ define(['text!plugins/password/template.html', 'plugins/password/model', 'text!p
             events : {},
             rivetConfig : 'auto',
             wrapper: false,
-            bindings : [],
+            listeners : [],
             mastheadButtons : []
         };
     });

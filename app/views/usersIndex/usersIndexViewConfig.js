@@ -14,7 +14,7 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
             events : {
                 'change #limitDropdown' : 'changeLimit'
             },
-            bindings : [],
+            listeners : [],
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addNewUser,

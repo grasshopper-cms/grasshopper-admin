@@ -14,7 +14,7 @@ define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewMod
                 'click #addField' : 'addField'
             },
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
             rivetsBinders : [binders],

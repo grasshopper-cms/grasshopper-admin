@@ -12,7 +12,7 @@ define(['text!plugins/textbox/template.html', 'plugins/textbox/model', 'text!plu
             events : {},
             rivetConfig : 'auto',
             wrapper: false,
-            bindings : [],
+            listeners : [],
             mastheadButtons : []
         };
     });

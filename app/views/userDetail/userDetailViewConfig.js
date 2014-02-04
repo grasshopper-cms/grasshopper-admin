@@ -17,7 +17,7 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
                 'click .toggleEnabled' : 'toggleEnabled',
                 'click .clickableCell' : 'handleRowClick'
             },
-            bindings : [],
+            listeners : [],
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addNewUser,

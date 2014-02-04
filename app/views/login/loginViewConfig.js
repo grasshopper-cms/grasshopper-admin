@@ -14,7 +14,7 @@ define(['text!views/login/loginView.html', 'loginViewModel'], function (template
         events : {
             'click #loginButton' : 'login'
         },
-        bindings : [
+        listeners : [
         ],
         rivetConfig : 'auto'
     };

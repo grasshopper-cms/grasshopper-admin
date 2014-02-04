@@ -17,7 +17,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                 'click .clickableCell' : 'handleRowClick',
                 'click #saveContentType' : 'saveContentType'
             },
-            bindings : [],
+            listeners : [],
             rivetConfig : 'auto',
             mastheadButtons : [],
             permissions : ['admin', 'editor', 'reader'],

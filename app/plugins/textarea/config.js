@@ -12,7 +12,7 @@ define(['text!plugins/textArea/template.html', 'plugins/textArea/model', 'text!p
             setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             mastheadButtons : []
         };
     });
