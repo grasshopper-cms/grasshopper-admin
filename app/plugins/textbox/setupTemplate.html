@@ -25,14 +25,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="small-3 columns">
-                        <label for="instancing" class="right inline">{{model:resources->instancing}}</label>
-                    </div>
-                    <div class="small-9 columns">
-                        <input id="instancing" type="number" data-rv-value="model:instancing">
-                    </div>
-                </div>
             </div>
             <div class="small-6 columns">
                 <div class="row">
@@ -45,7 +37,27 @@
                     <label for="requiredRadioFalse">{{model:resources->no}}</label>
                 </div>
                 <div class="row">
-                    <input id="multi" type="checkbox" data-rv-checked="model:multi"><label for="multi">{{model:resources->multi}}</label>
+                    <fieldset>
+                        <legend>
+                            <input id="multi" type="checkbox" data-rv-checked="model:multi"><label for="multi">{{model:resources->multi}}</label>
+                        </legend>
+                        <div class="row" data-rv-show="model:multi">
+                            <div class="small-4 columns">
+                                <label for="instancing" class="right inline">{{model:resources->instancing}}</label>
+                            </div>
+                            <div class="small-8 columns">
+                                <input id="instancing" type="number" data-rv-value="model:instancing">
+                            </div>
+                        </div>
+                        <div class="row" data-rv-show="model:multi">
+                            <div class="small-4 columns">
+                                <label for="maximum" class="right inline">{{model:resources->maximumAllowed}}</label>
+                            </div>
+                            <div class="small-8 columns">
+                                <input id="maximum" type="number" data-rv-value="model:maximum">
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
             </div>
         </div>

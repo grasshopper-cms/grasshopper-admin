@@ -7,7 +7,7 @@ define(['grasshopperModel', 'masseuse', 'helpers', 'resources'], function (Model
     return Model.extend({
         defaults : {
             resources : resources,
-            _id : new ComputedProperty(['label'], generateSlug, true),
+            _id : new ComputedProperty(['label'], generateSlug),
             hasError: new ComputedProperty(['value', 'required'], validatePresence, true),
             errorMessage: new ComputedProperty(['label'], function(label) {
                 return label + ' is a required field.';
@@ -23,7 +23,10 @@ define(['grasshopperModel', 'masseuse', 'helpers', 'resources'], function (Model
     }
 
     function generateSlug(label) {
-        return label.replace(/ /g,'').toLowerCase();
+        if(label) {
+            return label.replace(/ /g,'').toLowerCase();
+        }
+        return '';
     }
 
 });

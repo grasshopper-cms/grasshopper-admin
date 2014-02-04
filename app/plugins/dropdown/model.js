@@ -6,11 +6,14 @@ define(['grasshopperModel', 'masseuse', 'resources'], function (Model, masseuse,
     return Model.extend({
         defaults : {
             resources : resources,
-            _id : new ComputedProperty(['label'], generateSlug, true)
+            _id : new ComputedProperty(['label'], generateSlug)
         }
     });
 
     function generateSlug(label) {
-        return label.replace(/ /g,'').toLowerCase();
+        if(label) {
+            return label.replace(/ /g,'').toLowerCase();
+        }
+        return '';
     }
 });
