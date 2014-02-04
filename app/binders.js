@@ -85,19 +85,28 @@ define(['jquery', 'underscore', 'masseuse',
                 publish : true
             },
             fieldform : {
-                bind: function(el) {
+                bind: function() {},
+                unbind : function() {
+                    this.viewInstance.remove();
+                },
+                routine : function(el, model) {
                     var rivets = this,
-                        plugin = _.find(plugins.fields, {type : rivets.model.field.get('type')}),
+                        plugin = _.find(plugins.fields, {type : model.get('type')}),
                         ViewModule = plugin.view,
                         configModule = plugin.config,
                         modelData = {};
+
+                    if (rivets.viewInstance) {
+                        rivets.model.view.removeChild(this.viewInstance);
+                        rivets.viewInstance.remove();
+                    }
 
                     _.each(plugin.availableProperties, function(property) {
                         if(!rivets.model.field.has(property)) {
                             rivets.model.field.set(property, '', {silent:true});
                         }
 
-                        modelData[property] = masseuse.ProxyProperty(property, rivets.model.field);
+                        modelData[property] = masseuse.ProxyProperty(property, model);
                     });
 
                     rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
@@ -106,24 +115,7 @@ define(['jquery', 'underscore', 'masseuse',
                         appendTo : el
                     }));
 
-                    // TODO: Having this in there breaks stuff. though I think not having it could be a memory leak.
-//                    rivets.model.view.addChild(viewInstance);
-                },
-                unbind : function() {
-                    this.viewInstance.remove();
-                },
-                routine : function(el, model) {
-                    if (this.viewInstance) {
-                        this.viewInstance.$el.empty();
-                        this.viewInstance.$el.remove();
-                        this.viewInstance.model.set(model.attributes);
-                    }
-
-                    if (!this.viewInstance.hasStarted) {
-                        this.viewInstance.start();
-                    } else {
-                        this.viewInstance.render();
-                    }
+                    rivets.viewInstance.start();
                 },
                 publishes : true
             },
