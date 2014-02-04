@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'pluginWrapperViewConfig', 'backbone'],
+    'pluginWrapperView', 'backbone'],
     function ($, _, masseuse,
-              PluginWrapperView, pluginWrapperViewConfig, Backbone) {
+              PluginWrapperView, Backbone) {
         'use strict';
 
         return {
