@@ -1,10 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'assetDetailView', 'assetDetailViewConfig',
+define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'assetDetailView', 'assetDetailViewConfig',
     'text!views/assetDetail/_assetDetailRow.html', 'resources'],
-    function (GrasshopperBaseView, _, AssetDetailView, assetDetailViewConfig, assetDetailRowTemplate, resources) {
+    function (GrasshopperBaseView, addAssetsViewConfig, _, AssetDetailView, assetDetailViewConfig,
+              assetDetailRowTemplate, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : addAssetsViewConfig,
             afterRender : afterRender
         });
 

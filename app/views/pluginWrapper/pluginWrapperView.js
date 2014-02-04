@@ -1,9 +1,10 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins', 'underscore'],
-    function (GrasshopperBaseView, plugins, _) {
+define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'plugins', 'underscore'],
+    function (GrasshopperBaseView, pluginWrapperViewConfig, plugins, _) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : pluginWrapperViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
             addField : addField,

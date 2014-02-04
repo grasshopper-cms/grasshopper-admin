@@ -1,10 +1,14 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentTypeDetailView', 'contentTypeDetailViewConfig',
-    'text!views/contentTypeDetail/_contentTypeDetailRow.html', 'underscore', 'resources'],
-    function (GrasshopperBaseView, ContentTypeDetailView, contentTypeDetailViewConfig, rowTemplate, _, resources) {
+define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'contentTypeDetailView', 'contentTypeDetailViewConfig',
+    'text!views/contentTypeDetail/_contentTypeDetailRow.html',
+    'underscore', 'resources'],
+    function (GrasshopperBaseView, contentTypeIndexViewConfig, ContentTypeDetailView, contentTypeDetailViewConfig,
+              rowTemplate,
+              _, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : contentTypeIndexViewConfig,
             beforeRender : beforeRender,
             insertContentTypeDetailRow : insertContentTypeDetailRow
         });

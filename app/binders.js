@@ -7,11 +7,14 @@ define(['jquery', 'underscore', 'masseuse',
 
         return {
             fieldwrapper : {
-                bind : function(el) {
-                    var rivets = this,
-                        viewInstance;
+                bind : function() {},
+                unbind : function() {
+                    this.viewInstance.start();
+                },
+                routine : function(el) {
+                    var rivets = this;
 
-                    viewInstance = new PluginWrapperView(_.extend({}, pluginWrapperViewConfig, {
+                    rivets.viewInstance = new PluginWrapperView({
                         modelData : _.extend({}, rivets.model.field, {
                             value: masseuse.ProxyProperty('fields.' + rivets.model.field._id, rivets.model.view.model)
                         }),
@@ -46,11 +49,10 @@ define(['jquery', 'underscore', 'masseuse',
                             }
                         }))([], {}),
                         appendTo : el
-                    }));
-                    rivets.model.view.addChild(viewInstance);
+                    });
+//                    rivets.model.view.addChild(viewInstance);
+                    rivets.viewInstance.start();
                 },
-                unbind : function() {},
-                routine : function() {},
                 publish : true
             },
             fieldtype : {

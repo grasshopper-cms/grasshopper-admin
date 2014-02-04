@@ -1,7 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (GrasshopperBaseView, resources, $, Api) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api) {
     'use strict';
     return GrasshopperBaseView.extend({
+        defaultOptions : contentDetailViewConfig,
         beforeRender : beforeRender,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick,

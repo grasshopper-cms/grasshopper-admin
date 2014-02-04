@@ -1,11 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'underscore',
+define(['grasshopperBaseView', 'addFolderViewConfig', 'resources', 'underscore',
     'nodeDetailView', 'nodeDetailViewConfig', 'text!views/nodeDetail/_nodeDetailRow.html'],
-    function (GrasshopperBaseView, resources, _,
+    function (GrasshopperBaseView, addFolderViewConfig, resources, _,
               NodeDetailView, nodeDetailViewConfig, nodeDetailRowTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : addFolderViewConfig,
             afterRender : afterRender
         });
 

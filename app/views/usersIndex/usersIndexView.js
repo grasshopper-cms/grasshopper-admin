@@ -1,9 +1,11 @@
 /*global define:false*/
-define(['jquery', 'grasshopperBaseView', 'userWorker', 'constants', 'underscore', 'userDetailView',
-    'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
-    function ($, GrasshopperBaseView, userWorker, constants, _, UserDetailView, userDetailViewConfig, rowTemplate) {
+define(['jquery', 'grasshopperBaseView', 'usersIndexViewConfig', 'userWorker', 'constants', 'underscore',
+    'userDetailView', 'userDetailViewConfig', 'text!views/userDetail/_userDetailRow.html'],
+    function ($, GrasshopperBaseView, usersIndexViewConfig, userWorker, constants, _,
+              UserDetailView, userDetailViewConfig, rowTemplate) {
         'use strict';
         return GrasshopperBaseView.extend({
+            defaultOptions : usersIndexViewConfig,
             beforeRender : beforeRender,
             goToPage : goToPage,
             checkAndSetLimit : checkAndSetLimit,
