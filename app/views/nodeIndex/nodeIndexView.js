@@ -1,10 +1,11 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore',
+define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'nodeDetailViewConfig', 'underscore',
     'text!views/nodeDetail/_nodeDetailRow.html'],
-    function (GrasshopperBaseView, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
+    function (GrasshopperBaseView, nodeIndexViewConfig, NodeDetailView, nodeDetailViewConfig, _, nodeDetailRowTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions: nodeIndexViewConfig,
             beforeRender : beforeRender,
             appendNodeDetailRow : appendNodeDetailRow
         });
