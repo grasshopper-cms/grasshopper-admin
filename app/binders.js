@@ -9,7 +9,7 @@ define(['jquery', 'underscore', 'masseuse',
             fieldwrapper : {
                 bind : function() {},
                 unbind : function() {
-                    this.viewInstance.start();
+                    this.viewInstance.remove();
                 },
                 routine : function(el) {
                     var rivets = this;
@@ -56,7 +56,13 @@ define(['jquery', 'underscore', 'masseuse',
                 publish : true
             },
             fieldtype : {
-                bind: function(el) {
+                bind: function() {
+
+                },
+                unbind : function() {
+                    this.viewInstance.remove();
+                },
+                routine : function(el) {
                     var rivets = this,
                         ViewModule = rivets.model.field.get('ViewModule'),
                         configModule = rivets.model.field.get('configModule');
@@ -67,11 +73,7 @@ define(['jquery', 'underscore', 'masseuse',
                         },
                         appendTo : el
                     }));
-                },
-                unbind : function() {
-                    this.viewInstance.remove();
-                },
-                routine : function(el, model) {
+
                     if (this.viewInstance) {
                         this.viewInstance.$el.empty();
                         this.viewInstance.$el.remove();
