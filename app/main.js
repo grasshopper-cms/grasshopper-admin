@@ -38,10 +38,6 @@ require.config({
             location : 'vendor/masseuse/app'
         },
         {
-            name : 'rivetsPlugin',
-            location : 'vendor/masseuse/app/plugins/rivets'
-        },
-        {
             name : 'helpers',
             location : 'vendor/helpers/app'
         }
