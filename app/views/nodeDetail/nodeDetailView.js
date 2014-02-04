@@ -4,13 +4,13 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'resources', 'underscore'
         'use strict';
         return GrasshopperBaseView.extend({
             defaultOptions : nodeDetailViewConfig,
-            beforeRender : beforeRender,
+            afterRender : afterRender,
             prepareToDeleteNode : prepareToDeleteNode,
             handleRowClick : handleRowClick,
             prepareToEditNode : prepareToEditNode
         });
 
-        function beforeRender() {
+        function afterRender() {
             if(this.model.isNew()) {
                 _saveNodeWorkflow.call(this);
             }
