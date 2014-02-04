@@ -1,8 +1,10 @@
 /*global define:false*/
 define(['text!views/contentTypeDetail/contentTypeDetailView.html',
     'text!views/contentTypeDetail/_contentTypeDetailRow.html',
-    'contentTypeDetailViewModel', 'binders', 'backbone', 'formatters'],
-    function (formTemplate, rowTemplate, contentTypeDetailViewModel, binders, Backbone, formatters) {
+    'contentTypeDetailViewModel', 'appBinders', 'contentTypeDetailBinders',
+    'backbone', 'formatters'],
+    function (formTemplate, rowTemplate, contentTypeDetailViewModel, appBinders, contentTypeDetailBinders,
+              Backbone, formatters) {
         'use strict';
 
         return {
@@ -21,7 +23,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             rivetConfig : 'auto',
             mastheadButtons : [],
             permissions : ['admin', 'editor', 'reader'],
-            rivetsBinders : [binders],
+            rivetsBinders : [appBinders, contentTypeDetailBinders],
             rivetsFormatters : [formatters],
             collection : new Backbone.Collection()
         };

@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'pluginWrapperViewConfig', 'backbone', 'plugins'],
+    'pluginWrapperView', 'pluginWrapperViewConfig', 'backbone'],
     function ($, _, masseuse,
-              PluginWrapperView, pluginWrapperViewConfig, Backbone, plugins) {
+              PluginWrapperView, pluginWrapperViewConfig, Backbone) {
         'use strict';
 
         return {
@@ -54,74 +54,6 @@ define(['jquery', 'underscore', 'masseuse',
                     rivets.viewInstance.start();
                 },
                 publish : true
-            },
-            fieldtype : {
-                bind: function() {
-
-                },
-                unbind : function() {
-                    this.viewInstance.remove();
-                },
-                routine : function(el) {
-                    var rivets = this,
-                        ViewModule = rivets.model.field.get('ViewModule'),
-                        configModule = rivets.model.field.get('configModule');
-
-                    rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
-                        modelData : {
-                            value : masseuse.ProxyProperty('value', rivets.model.field)
-                        },
-                        appendTo : el
-                    }));
-
-                    if (this.viewInstance) {
-                        this.viewInstance.$el.empty();
-                        this.viewInstance.$el.remove();
-                        this.viewInstance.model.set(model.attributes);
-                    }
-
-                    if (!this.viewInstance.hasStarted) {
-                        this.viewInstance.start();
-                    } else {
-                        this.viewInstance.render();
-                    }
-                },
-                publish : true
-            },
-            fieldform : {
-                bind: function() {},
-                unbind : function() {
-                    this.viewInstance.remove();
-                },
-                routine : function(el, model) {
-                    var rivets = this,
-                        plugin = _.find(plugins.fields, {type : model.get('type')}),
-                        ViewModule = plugin.view,
-                        configModule = plugin.config,
-                        modelData = {};
-
-                    if (rivets.viewInstance) {
-                        rivets.model.view.removeChild(this.viewInstance);
-                        rivets.viewInstance.remove();
-                    }
-
-                    _.each(plugin.availableProperties, function(property) {
-                        if(!rivets.model.field.has(property)) {
-                            rivets.model.field.set(property, '', {silent:true});
-                        }
-
-                        modelData[property] = masseuse.ProxyProperty(property, model);
-                    });
-
-                    rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
-                        modelData : modelData,
-                        template : configModule.setupTemplate,
-                        appendTo : el
-                    }));
-
-                    rivets.viewInstance.start();
-                },
-                publishes : true
             },
             editable : {
                 routine: function(el, model) {

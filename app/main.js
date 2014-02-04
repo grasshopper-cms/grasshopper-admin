@@ -160,7 +160,9 @@ require.config({
         plugins : 'plugins',
 
         // Binders
-        binders : 'binders',
+        appBinders : 'appBinders',
+        pluginWrapperBinders : 'views/pluginWrapper/pluginWrapperBinders',
+        contentTypeDetailBinders : 'views/contentTypeDetail/contentTypeDetailBinders',
 
         // Formatters
         formatters : 'formatters',
