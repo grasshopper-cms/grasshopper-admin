@@ -11,7 +11,6 @@ define(['grasshopperBaseView'],
 
         function beforeRender() {
             this.collection.reset(this.model.get('options'));
-            console.log(this);
         }
 
         function addOptionToDropdown() {
