@@ -1,14 +1,13 @@
-define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'rivetsPlugin',
+define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai',
     'masseuse', 'backbone', 'sinonSpy'],
-    function ($, _, chai, mocha, sinon, sinonChai, rivetsPlugin,
-              masseuse, Backbone) {
+    function ($, _, chai, mocha, sinon, sinonChai, masseuse, Backbone) {
 
         'use strict';
 
         var testDom = 'testDom',
             riveted = 'riveted',
             $body = $('body'),
-            RivetView = rivetsPlugin.view,
+            RivetView = masseuse.plugins.rivets.RivetsView,
             Model = masseuse.MasseuseModel,
             should = chai.should();
 
@@ -37,6 +36,14 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'rivetsPl
                     if (rivetView) {
                         rivetView.remove();
                     }
+                });
+
+                xit('should bind the view when event afterTemplatingDone is fired', function() {
+
+                });
+
+                xit('should unbind the view when event onRemove event is fired', function() {
+
                 });
 
                 describe('Backbone Models', function() {

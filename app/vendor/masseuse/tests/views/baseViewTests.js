@@ -16,10 +16,14 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
 
             //-----------Setup-----------
             var BaseView,
-                viewInstance;
+                RivetsView,
+                viewInstance,
+                options,
+                methodSpy;
 
             beforeEach(function () {
                 BaseView = masseuse.BaseView;
+                RivetsView = masseuse.plugins.rivets.RivetsView;
                 viewInstance = new BaseView({
                     name : VIEW1_NAME
                 });
@@ -30,15 +34,54 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                 var OptionsView;
 
                 beforeEach(function() {
+                    options = {
+                        defaultKey : true,
+                        viewOptions : [
+                            'defaultKey',
+                            'passedInKey',
+                            'extraKey'
+                        ],
+                        attributes : {
+                            class : 'boom'
+                        }
+                    };
+
+                    methodSpy = sinon.spy();
+
                     OptionsView = BaseView.extend({
                         name : VIEW1_NAME,
-                        defaultOptions: {
-                            defaultKey : true,
-                            viewOptions : [
-                                'defaultKey',
-                                'passedInKey'
-                            ]
-                        }
+                        defaultOptions: options,
+                        testDone : methodSpy
+                    });
+                });
+
+                describe('options', function() {
+                    describe('bindings', function() {
+                        it('can listen to object events on things other than the view by using the bindings array',
+                            function () {
+                                options.bindings = [
+                                    ['model', 'change', 'testDone']
+                                ];
+                                options.modelData = { test : 'test' };
+                                viewInstance = new OptionsView(options);
+                                methodSpy.should.not.have.been.called;
+                                viewInstance.model.set('test', 'other');
+                                methodSpy.should.have.been.calledOnce;
+                            });
+                        it('can listen to object events on the view iteslf by using the bindings array',
+                            function (done) {
+                                options.listeners = [
+                                    ['afterTemplatingDone', 'testDone']
+                                ];
+                                options.modelData = { test : 'test' };
+                                methodSpy.should.not.have.been.called;
+                                new OptionsView(options)
+                                    .start()
+                                    .done(function() {
+                                        methodSpy.should.have.been.calledOnce;
+                                        done();
+                                    });
+                            });
                     });
                 });
 
@@ -58,6 +101,17 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                     view.defaultKey.should.equal(true);
                     view.passedInKey.should.equal(true);
                 });
+                it('a view instance is initialized with an extend of all arguments and defaultOptions', function() {
+
+                    var view = new OptionsView({
+                        passedInKey : true
+                    },{
+                        extraKey : true
+                    });
+                    view.defaultKey.should.equal(true);
+                    view.passedInKey.should.equal(true);
+                    view.extraKey.should.equal(true);
+                });
                 it('a view instance is initialized with the passed in options and ignores default options if the' +
                     ' second argument is false', function() {
                     var view = new OptionsView({
@@ -65,6 +119,31 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                     }, false);
                     _.has(view, 'defaultKey').should.be.false;
                     view.passedInKey.should.equal(true);
+                });
+                it('default options are applied to this.el', function() {
+                    var view = new OptionsView();
+                    $(view.el).attr('class').should.equal('boom');
+                });
+
+                describe('ViewContext', function() {
+                    it('ViewContext should be run on modelData for an instance of BaseView', function() {
+                        var view = new OptionsView({
+                            modelData : {
+                                name : masseuse.ViewContext('name')
+                            }
+                        });
+                        view.model.get('name').should.equal(VIEW1_NAME);
+                    });
+
+                    it('ViewContext should be run on modelData for an instance of RivetView', function() {
+                        var view = new RivetsView({
+                            name : VIEW1_NAME,
+                            modelData : {
+                                name : masseuse.ViewContext('name')
+                            }
+                        });
+                        view.model.get('name').should.equal(VIEW1_NAME);
+                    });
                 });
             });
 
@@ -409,6 +488,40 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
 
                 });
 
+            });
+
+            describe('modelData', function() {
+                var MasseuseModel,
+                    ProxyProperty,
+                    ViewContext,
+                    model;
+                beforeEach(function() {
+                    MasseuseModel = masseuse.MasseuseModel;
+                    ProxyProperty = masseuse.ProxyProperty;
+                    ViewContext = masseuse.ViewContext;
+                    model = new MasseuseModel({
+                        mark : 'twain'
+                    });
+                });
+                it('ProxyProperties can be set via modelData', function() {
+                    var view = new BaseView({
+                        modelData : {
+                            depth : ProxyProperty('mark', model)
+                        }
+                    });
+                    view.model.get('depth').should.equal('twain');
+                });
+                it('ViewContext can be used on ProxyProperties via modelData', function() {
+                    var view = new BaseView({
+                            modelData : {
+                                depth : ProxyProperty('mark', ViewContext('depthData'))
+                            },
+                            depthData : model,
+                            viewOptions : ['depthData']
+                        });
+
+                    view.model.get('depth').should.equal('twain');
+                });
             });
         });
 

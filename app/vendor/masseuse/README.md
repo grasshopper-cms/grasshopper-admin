@@ -1,22 +1,29 @@
 # masseuse [![Build Status](https://travis-ci.org/Solid-Interactive/masseuse.png?branch=bower)](https://travis-ci.org/Solid-Interactive/masseuse)
 
-Version: _1.2.1_
+Version: _1.5.2_
 
-Bower pulls from the [bower branch](https://github.com/Solid-Interactive/masseuse/tree/bower) (build badge is showing results for branch bower):
+Bower pulls from the [bower branch](https://github.com/Solid-Interactive/masseuse/tree/bower) (build badge is showing results for [bower branch](https://github.com/Solid-Interactive/masseuse/tree/bower)):
 
 https://github.com/Solid-Interactive/masseuse
 
 ## Docs & Tests
 
 * [JSDocs](http://solid-interactive.github.io/masseuse/docs/)
+    * [masseuse](http://solid-interactive.github.io/masseuse/docs/masseuse.html)
+        * [BaseView](http://solid-interactive.github.io/masseuse/docs/BaseView.html)
+        * [ComputedProperty](http://solid-interactive.github.io/masseuse/docs/ComputedProperty.html)
+        * [MasseuseModel](http://solid-interactive.github.io/masseuse/docs/MasseuseModel.html)
+        * [MasseuseRouter](http://solid-interactive.github.io/masseuse/docs/MasseuseRouter.html)
+        * [ProxyProperty](http://solid-interactive.github.io/masseuse/docs/ProxyProperty.html)
+        * [ViewContext](http://solid-interactive.github.io/masseuse/docs/ViewContext.html)
+        * utilities
+            * [channels](http://solid-interactive.github.io/masseuse/docs/channels.html)
+        * plugins
+            * rivets
+                * [RivetsView](http://solid-interactive.github.io/masseuse/docs/RivetsView.html)
+
 * [Tests - unoptimized for readability](http://solid-interactive.github.io/masseuse/tests/)
-* See the [wiki](https://github.com/Solid-Interactive/masseuse/wiki) for more detailed explanations.
-    * [BaseView](https://github.com/Solid-Interactive/masseuse/wiki/BaseView)
-    * [ComputedProperty](https://github.com/Solid-Interactive/masseuse/wiki/ComputedProperty)
-    * [MasseuseModel](https://github.com/Solid-Interactive/masseuse/wiki/MasseuseModel)
-    * [Options](https://github.com/Solid-Interactive/masseuse/wiki/Options)
-    * [ProxyProperty](https://github.com/Solid-Interactive/masseuse/wiki/ProxyProperty)
-    * [RivetView](https://github.com/Solid-Interactive/masseuse/wiki/Rivetview)
+
 
 ## Installation
 
@@ -84,30 +91,58 @@ npm install -g mocha-phantomjs phantomjs
 `grunt test` runs, opens, and watches the tests in the browser. Pull requests welcomed!
 `grunt test-cli` runs tests headless.
 
+## Utilities
+
+* grunt task called `notes:since` to show release notes since a version number (have to match versions exactly)
+
+    ```shell
+    # all release notes
+    grunt notes:since
+
+    # all release notes since 1.0.0
+    grunt notes:since:1.0.0
+
+    # all release notes since the beginning until 0.0.3
+    grunt notes:since::0.0.3
+    ```
+
 ## Release Notes
 
-* 1.2.1 - 2014-01-23 - [features](release_notes/1.2.1.md)
-* 1.2.0 - 2014-01-23 - [features](release_notes/1.2.0.md)
-* 1.1.0 - 2014-01-22 - [features](release_notes/1.1.0.md)
-* 1.0.3 - 2014-01-21 - [patches](release_notes/1.0.3.md)
-* 1.0.2 - 2014-01-20 - [patches](release_notes/1.0.2.md)
-* 1.0.1 - 2014-01-20 - [patches](release_notes/1.0.1.md)
-* 1.0.0 - 2014-01-20 - [backwards incompatibilities](release_notes/1.0.0.md)
-* 0.2.2 - 2014-01-16 - [patches](release_notes/0.2.2.md)
-* 0.2.1 - 2014-01-15 - [patches](release_notes/0.2.1.md)
-* 0.2.0 - 2014-01-14 - [features](release_notes/0.2.0.md)
-* 0.1.1 - 2014-01-09 - [patches](release_notes/0.1.1.md)
-* 0.1.0 - 2014-01-08 - [features](release_notes/0.1.0.md)
-* 0.0.3 - 2014-01-07 - [patches](release_notes/0.0.3.md)
-* 0.0.2 - 2014-01-07 - [patches](release_notes/0.0.2.md)
-* 0.0.1-alpha - 2014-01-03 - [patches](release_notes/0.0.1.md)
+* 0.0.1-alpha - 14-01-03 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/0.0.1-alpha|14-01-03.md)
+* 0.0.2 - 14-01-07 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/0.0.2|14-01-07.md)
+* 0.0.3 - 14-01-07 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/0.0.3|14-01-07.md)
+* 0.1.0 - 14-01-08 - [features](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/0.1.0|14-01-08.md)
+* 0.1.1 - 14-01-09 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/0.1.1|14-01-09.md)
+* 0.2.0 - 14-01-14 - [features](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/0.2.0|14-01-14.md)
+* 0.2.1 - 14-01-15 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/0.2.1|14-01-15.md)
+* 0.2.2 - 14-01-16 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/0.2.2|14-01-16.md)
+* 1.0.0 - 14-01-20 - [backward incompatibilities](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.0.0|14-01-20.md)
+* 1.0.1 - 14-01-20 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.0.1|14-01-20.md)
+* 1.0.2 - 14-01-20 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.0.2|14-01-20.md)
+* 1.0.3 - 14-01-21 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.0.3|14-01-21.md)
+* 1.1.0 - 14-01-22 - [features](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.1.0|14-01-22.md)
+* 1.2.0 - 14-01-23 - [features](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.2.0|14-01-23.md)
+* 1.2.1 - 14-01-23 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.2.1|14-01-23.md)
+* 1.3.0 - 14-01-24 - [features](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.3.0|14-01-24.md)
+* 1.3.1 - 14-01-24 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.3.1|14-01-24.md)
+* 1.3.2 - 14-01-24 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.3.2|14-01-24.md)
+* 1.3.3 - 14-01-28 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.3.3|14-01-28.md)
+* 1.3.4 - 14-01-29 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.3.4|14-01-29.md)
+* 1.4.0 - 14-01-30 - [features](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.4.0|14-01-30.md)
+* 1.5.0 - 14-01-31 - [features](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.5.0|14-01-31.md)
+* 1.5.1 - 14-02-03 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.5.1|14-02-03.md)
+* 1.5.2 - 14-02-03 - [patches](https://github.com/Solid-Interactive/masseuse/blob/master/release_notes/1.5.2|14-02-03.md)
+
 
 ## Contributors (`git shortlog -s -n`)
 
-* [Peter Ajtai](https://github.com/pajtai)
-* [Greg Larrenaga](https://github.com/Duder-onomy)
-* [Cooper Hilscher](https://github.com/dobbobolina)
-* [Jonathan Waltner](https://github.com/uselessinfo)
-* [Travis McHattie](https://github.com/travism)
-* [Michael Fenwick](https://github.com/MichaelFenwick)
-* [Jesse McCabe](https://github.com/thinksolid)
+* Peter Ajtai
+* Greg Larrenaga
+* Cooper Hilscher
+* Jonathan Waltner
+* Travis McHattie
+* michael.fenwick
+* Jesse McCabe
+
+
+_Compiled file. Do not modify directly. Created: 2014-02-03 04:12:43_
