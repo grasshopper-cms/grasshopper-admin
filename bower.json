@@ -4,7 +4,7 @@
     "foundation": "~5.0.2",
     "requirejs-text": "~2.0.10",
     "js-base64": "~2.1.2",
-    "masseuse": "1.5.0"
+    "masseuse": "1.5.3"
   },
   "devDependencies": {
     "mocha": "~1.12.1",
