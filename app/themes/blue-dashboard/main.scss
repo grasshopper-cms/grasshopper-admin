@@ -452,8 +452,11 @@ body, html {
 
   // Content Type Detail View
   #contentTypeDetailView {
-    .button {
-      margin-bottom: 16px;
+    .accordionHeader {
+      margin-bottom: 1px;
+    }
+    .removeFieldButton {
+      margin-bottom: 0;
     }
   }
 
