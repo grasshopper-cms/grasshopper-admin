@@ -36,33 +36,38 @@
             <h4>{{model:resources->contentType->fields | withColon}}</h4>
             <hr>
 
-            <table width="100%">
+            <table width="100%" style="margin-bottom: 0;">
                 <thead>
                     <tr>
                         <th width='400'>{{model:resources->label}}</th>
                         <th width='200'>{{model:resources->contentType->fieldType}}</th>
                         <th width='200'>{{model:resources->required}}</th>
                         <th width='200'>{{model:resources->multiple}}</th>
-                        <th width='200' style="text-align: center">{{model:resources->actions}}</th>
+                        <th width='200' style="text-align: center;">{{model:resources->actions}}</th>
                     </tr>
                 </thead>
-                <tbody>
-
-                </tbody>
             </table>
 
             <dl class="accordion" data-accordion>
                 <dd data-rv-each-field="collection:">
-                    <a data-rv-href="field.cid | prepend #" class="accordionHeader">
+                    <a data-rv-href="field.cid | prepend #" class="accordionHeader" style="padding: 0;">
                         <div class="row">
-                            <div class="small-4 columns">{{field:label}}</div>
-                            <div class="small-2 columns">{{field:type}}</div>
-                            <div class="small-2 columns">{{field:required}}</div>
-                            <div class="small-2 columns">{{field:instancing}}</div>
-                            <div class="small-2 columns text-center">
-                                <span data-rv-on-click="view.removeFieldFromCollection">
-                                    <i class="icon-trash"></i>
-                                </span>
+                            <div class="small-12 columns">
+                                <table style="margin-bottom: 0;">
+                                    <tbody>
+                                        <tr>
+                                            <td width='399'>{{field:label}}</td>
+                                            <td width='200'>{{field:type}}</td>
+                                            <td width='200'>{{field:required}}</td>
+                                            <td width='200'>{{field:instancing}}</td>
+                                            <td width='200' style="text-align: center;">
+                                                <span data-rv-on-click="view.removeFieldFromCollection">
+                                                    <i class="icon-trash"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </a>
@@ -168,7 +173,7 @@
     </div>
     <div class="row">
         <div class="large-12 columns">
-            <button id="saveContentType" class="button radius right">{{model:resources->save}}</button>
+            <button id="saveContentType" class="button tiny radius right" style="margin-top: 10px;">{{model:resources->save}}</button>
         </div>
     </div>
 </div>
