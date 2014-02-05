@@ -13,6 +13,9 @@
     </div>
     <div class="row">
         <div class="large-12 columns">
+            <h4>{{model:resources->summary | withColon}}</h4>
+            <hr>
+
             <div class="row">
                 <div class="small-2 columns">
                     <label for="title" class="right inline">{{model:resources->title | withColon}}</label>
@@ -28,7 +31,7 @@
                     <label for="helpText" class="right inline">{{model:resources->contentType->helpText | withColon}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <textarea id="helpText" data-rv-value="model:helpText"></textarea>
+                    <textarea id="helpText" data-rv-value="model:helpText" style="max-width: 100%;"></textarea>
                 </div>
             </div>
 
@@ -41,21 +44,21 @@
                 </div>
             </div>
 
-            {{model:resources->contentType->fields | withColon}}
+            <h4>{{model:resources->contentType->fields | withColon}}</h4>
             <hr>
 
             <div class="row">
                 <div class="small-4 columns">
-                    <h3>{{model:resources->label}}</h3>
+                    <h5>{{model:resources->label}}</h5>
                 </div>
                 <div class="small-2 columns">
-                    <h3>{{model:resources->contentType->fieldType}}</h3>
+                    <h5>{{model:resources->contentType->fieldType}}</h5>
                 </div>
                 <div class="small-2 columns">
-                    <h3>{{model:resources->required}}</h3>
+                    <h5>{{model:resources->required}}</h5>
                 </div>
                 <div class="small-2 columns">
-                    <h3>{{model:resources->multiple}}</h3>
+                    <h5>{{model:resources->multiple}}</h5>
                 </div>
                 <div class="small-2 columns"></div>
             </div>
@@ -68,7 +71,7 @@
                             <div class="small-2 columns">{{field:required}}</div>
                             <div class="small-2 columns">{{field:instancing}}</div>
                             <div class="small-2 columns">
-                                <button data-rv-on-click="view.removeFieldFromCollection" class="alert tiny right radius removeFieldButton">
+                                <button data-rv-on-click="view.removeFieldFromCollection" class="button alert tiny right radius removeFieldButton">
                                     {{model:resources->remove}}
                                 </button>
                             </div>
@@ -78,47 +81,58 @@
 
                         <div class="row">
                             <div class="large-12 small-centered columns">
+
                                 <div class="row">
-                                    <div class="small-6 columns">
-                                        <div class="row">
-                                            <div class="small-3 columns">
-                                                <label for="label" class="right inline">{{model:resources->label}}</label>
-                                            </div>
-                                            <div class="small-9 columns">
-                                                <input type="text" id="label" placeholder="label" data-rv-value="field:label">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="small-3 columns">
-                                                <label for="_id" class="right inline">{{model:resources->id}}</label>
-                                            </div>
-                                            <div class="small-9 columns">
-                                                <div class="row">
-                                                    <div class="small-10 columns" style="padding-right: 0;">
-                                                        <input type="text" id="_id" placeholder="_id" data-rv-value="field:_id" readonly="true">
-                                                    </div>
-                                                    <div class="small-2 columns" style="padding-left: 0;">
-                                                        <span class="postfix radius"><i class="icon-lock"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="small-2 columns">
+                                        <label for="_id" class="right inline">{{model:resources->id}}</label>
                                     </div>
-                                    <div class="small-6 columns">
+                                    <div class="small-10 columns">
                                         <div class="row">
-                                            <input data-rv-id="field.cid  | prepend required" type="checkbox" data-rv-checked="field:required">
-                                            <label data-rv-for="field.cid  | prepend required">{{model:resources->required}}</label>
-                                        </div>
-                                        <div class="row">
-                                            <input data-rv-id="field.cid  | prepend multi" type="checkbox" data-rv-checked="field:multi">
-                                            <label data-rv-for="field.cid  | prepend multi">{{model:resources->allowMultiple}}</label>
-                                        </div>
-                                        <div class="row">
-                                            <input data-rv-id="field.cid  | prepend validation" type="checkbox" data-rv-checked="field:validation">
-                                            <label data-rv-for="field.cid  | prepend validation">{{model:resources->validation}}</label>
+                                            <div class="small-11 columns" style="padding-right: 0;">
+                                                <input type="text" id="_id" placeholder="_id" data-rv-value="field:_id" readonly="true">
+                                            </div>
+                                            <div class="small-1 columns" style="padding-left: 0;">
+                                                <span class="postfix radius"><i class="icon-lock"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label for="label" class="right inline">{{model:resources->label}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input type="text" id="label" placeholder="label" data-rv-value="field:label">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend type" class="right inline">type</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <select data-rv-id="field.cid  | prepend type" data-rv-value="model:type" >
+                                            <option data-rv-each-plugin="model:plugins" data-rv-value="plugin.name">{{plugin.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend required" class="right inline">{{model:resources->required}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input data-rv-id="field.cid  | prepend required" type="checkbox" data-rv-checked="field:required">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend multi" class="right inline">{{model:resources->allowMultiple}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input data-rv-id="field.cid  | prepend multi" type="checkbox" data-rv-checked="field:multi">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -129,18 +143,18 @@
                                 </legend>
                                 <div class="row">
                                     <div class="small-3 columns">
-                                        <label for="instancing" class="right inline">{{model:resources->instancing}}</label>
+                                        <label data-rv-for="field.cid  | prepend minimum" class="right inline">{{model:resources->minimum}}</label>
                                     </div>
                                     <div class="small-9 columns">
-                                        <input id="instancing" type="number" data-rv-value="field:instancing">
+                                        <input data-rv-id="field.cid  | prepend minimum" type="number" data-rv-value="field:instancing">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="small-3 columns">
-                                        <label for="maximum" class="right inline">{{model:resources->maximumAllowed}}</label>
+                                        <label data-rv-for="field.cid  | prepend maximum" class="right inline">{{model:resources->maximum}}</label>
                                     </div>
                                     <div class="small-9 columns">
-                                        <input id="maximum" type="number" data-rv-value="field:maximum">
+                                        <input data-rv-id="field.cid  | prepend maximum" type="number" data-rv-value="field:maximum">
                                     </div>
                                 </div>
                             </fieldset>
@@ -152,14 +166,6 @@
                                     {{model:resources->options}}
                                 </legend>
                                 <div data-rv-fieldform="field"></div>
-                            </fieldset>
-                        </div>
-
-                        <div class="row" data-rv-show="field:validation">
-                            <fieldset>
-                                <legend>
-                                    {{model:resources->validation}}
-                                </legend>
                             </fieldset>
                         </div>
 
