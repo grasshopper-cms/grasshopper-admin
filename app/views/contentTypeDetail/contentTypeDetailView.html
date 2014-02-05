@@ -1,16 +1,4 @@
 <div id="contentTypeDetailView">
-    <!--<div class="row">-->
-        <!--<div class="large-12  columns">-->
-            <!--<a href="#" data-dropdown="drop" class="button tiny radius dropdown right">{{model:resources->contentType->addNewField}}</a><br>-->
-            <!--<ul id="drop" data-dropdown-content class="f-dropdown">-->
-                <!--<li data-rv-each-field="model:plugins">-->
-                    <!--<a data-rv-on-click="view.addNewFieldToContentType">-->
-                        <!--{{field.name}}-->
-                    <!--</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
     <div class="row">
         <div class="large-12 columns">
 
@@ -41,28 +29,27 @@
                     <label for="description" class="right inline">{{model:resources->contentType->description | withColon}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input type="text" id="description" data-rv-value="model:description">
+                    <textarea id="description" data-rv-value="model:description" style="max-width: 100%;"></textarea>
                 </div>
             </div>
 
             <h4>{{model:resources->contentType->fields | withColon}}</h4>
             <hr>
 
-            <div class="row">
-                <div class="small-4 columns">
-                    <h5>{{model:resources->label}}</h5>
-                </div>
-                <div class="small-2 columns">
-                    <h5>{{model:resources->contentType->fieldType}}</h5>
-                </div>
-                <div class="small-2 columns">
-                    <h5>{{model:resources->required}}</h5>
-                </div>
-                <div class="small-2 columns">
-                    <h5>{{model:resources->multiple}}</h5>
-                </div>
-                <div class="small-2 columns"></div>
-            </div>
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th width='400'>{{model:resources->label}}</th>
+                        <th width='200'>{{model:resources->contentType->fieldType}}</th>
+                        <th width='200'>{{model:resources->required}}</th>
+                        <th width='200'>{{model:resources->multiple}}</th>
+                        <th width='200' style="text-align: center">{{model:resources->actions}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
 
             <dl class="accordion" data-accordion>
                 <dd data-rv-each-field="collection:">
@@ -72,10 +59,10 @@
                             <div class="small-2 columns">{{field:type}}</div>
                             <div class="small-2 columns">{{field:required}}</div>
                             <div class="small-2 columns">{{field:instancing}}</div>
-                            <div class="small-2 columns">
-                                <button data-rv-on-click="view.removeFieldFromCollection" class="button alert tiny right radius removeFieldButton">
-                                    {{model:resources->remove}}
-                                </button>
+                            <div class="small-2 columns text-center">
+                                <span data-rv-on-click="view.removeFieldFromCollection">
+                                    <i class="icon-trash"></i>
+                                </span>
                             </div>
                         </div>
                     </a>
