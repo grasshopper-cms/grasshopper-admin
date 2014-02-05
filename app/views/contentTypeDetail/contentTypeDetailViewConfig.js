@@ -2,9 +2,9 @@
 define(['text!views/contentTypeDetail/contentTypeDetailView.html',
     'text!views/contentTypeDetail/_contentTypeDetailRow.html',
     'contentTypeDetailViewModel', 'appBinders', 'contentTypeDetailBinders',
-    'backbone', 'formatters', 'resources'],
+    'backbone', 'formatters', 'resources', 'constants'],
     function (formTemplate, rowTemplate, contentTypeDetailViewModel, appBinders, contentTypeDetailBinders,
-              Backbone, formatters, resources) {
+              Backbone, formatters, resources, constants) {
         'use strict';
 
         return {
@@ -28,6 +28,12 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                     text : resources.contentType.addNewField,
                     href : '#',
                     dropdown : true
+                }
+            ],
+            breadcrumbs : [
+                {
+                    text : resources.contentTypes,
+                    href : constants.internalRoutes.contentTypes
                 }
             ],
             permissions : ['admin', 'editor', 'reader'],

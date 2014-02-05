@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api', 'underscore', 'jquery'],
-    function (GrasshopperBaseView, contentTypeDetailViewConfig, resources, Api, _, $) {
+define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api', 'underscore', 'jquery', 'constants'],
+    function (GrasshopperBaseView, contentTypeDetailViewConfig, resources, Api, _, $, constants) {
     'use strict';
     return GrasshopperBaseView.extend({
         defaultOptions : contentTypeDetailViewConfig,
@@ -20,7 +20,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
                 .fail($deferred.reject);
         } else {
             this.collection.reset();
-            $deferred.resolve();
+            _updateMastheadBreadcrumbs.call(this, $deferred, true);
         }
     }
 
@@ -30,7 +30,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
 
     function _handleSuccessfulModelFetch($deferred) {
         this.collection.reset(this.model.get('fields'));
-        $deferred.resolve();
+        _updateMastheadBreadcrumbs.call(this, $deferred, false);
     }
 
     function prepareToDeleteContentType () {
@@ -154,6 +154,28 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
             .done(function() {
                 self.collection.remove(context.field);
             });
+    }
+
+    function _updateMastheadBreadcrumbs($deferred, isNew) {
+        var text,
+            href;
+
+        if (isNew) {
+            text = resources.newWord;
+            href = constants.internalRoutes.newContentType;
+        } else {
+            text = this.model.get('label');
+            href = constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id'));
+        }
+
+        this.breadcrumbs.push(
+            {
+                text : text,
+                href : href
+            }
+        );
+
+        $deferred.resolve();
     }
 
 });
