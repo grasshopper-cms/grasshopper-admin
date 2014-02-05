@@ -123,7 +123,8 @@ define({
             'This field will be deleted form all content of this type.',
         addOption : 'Add Option',
         helpText : 'Help Text',
-        description: 'Description'
+        description: 'Description',
+        emptyFields : 'Click "Add new field" to add your first field.'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
@@ -174,6 +175,7 @@ define({
     maximum : 'Maximum',
     menu : 'Menu',
     allowMultiple : 'Allow Multiple',
+    allowMultipleSettings : 'Allow Multiple Settings',
     multiple : 'Multiple',
     name : 'Name',
     next : 'Next',

@@ -49,7 +49,7 @@
                 <tbody data-rv-hide="collection: | collectionHasLength">
                     <tr>
                         <td colspan="5">
-                            Click 'Add new field' to add your first field.
+                            {{model:resources->contentType->emptyFields}}
                         </td>
                     </tr>
                 </tbody>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                     </a>
-                    <div data-rv-id="field.cid" class="content">
+                    <div data-rv-id="field.cid" class="content" data-rv-addclass="field:active">
 
                         <div class="row">
                             <div class="large-12 small-centered columns">
@@ -143,7 +143,7 @@
                         <div class="row" data-rv-show="field:multi">
                             <fieldset>
                                 <legend>
-                                    Multiple
+                                    {{model:resources->allowMultipleSettings}}
                                 </legend>
                                 <div class="row">
                                     <div class="small-2 columns">

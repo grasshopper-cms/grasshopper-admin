@@ -116,7 +116,10 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     }
 
     function addNewFieldToContentType(context) {
-        this.collection.add(context.field);
+        var model = context.field;
+
+        model.active = 'active';
+        this.collection.add(model);
     }
 
     function saveContentType() {
