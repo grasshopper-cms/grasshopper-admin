@@ -46,6 +46,13 @@
                         <th width='200' style="text-align: center;">{{model:resources->actions}}</th>
                     </tr>
                 </thead>
+                <tbody data-rv-hide="collection: | collectionHasLength">
+                    <tr>
+                        <td>
+                            Click 'Add new field' to add your first field.
+                        </td>
+                    </tr>
+                </tbody>
             </table>
 
             <dl class="accordion" data-accordion>
@@ -56,10 +63,10 @@
                                 <table style="margin-bottom: 0;">
                                     <tbody>
                                         <tr>
-                                            <td width='399'>{{field:label}}</td>
-                                            <td width='200'>{{field:type}}</td>
-                                            <td width='200'>{{field:required}}</td>
-                                            <td width='200'>{{field:instancing}}</td>
+                                            <td width='399'>{{field:label | existsOr --}}</td>
+                                            <td width='200'>{{field:type | existsOr --}}</td>
+                                            <td width='200'>{{field:required | existsOr --}}</td>
+                                            <td width='200'>{{field:instancing | existsOr --}}</td>
                                             <td width='200' style="text-align: center;">
                                                 <span data-rv-on-click="view.removeFieldFromCollection">
                                                     <i class="icon-trash"></i>

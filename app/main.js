@@ -166,6 +166,7 @@ require.config({
 
         // Formatters
         formatters : 'formatters',
+        contentTypeDetailFormatters : 'views/contentTypeDetail/contentTypeDetailFormatters',
 
         // Resources File
         resources : 'resources',
