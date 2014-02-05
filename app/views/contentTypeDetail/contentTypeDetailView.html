@@ -39,7 +39,7 @@
             <table width="100%" style="margin-bottom: 0;">
                 <thead>
                     <tr>
-                        <th width='400'>{{model:resources->label}}</th>
+                        <th width='400'>{{model:resources->name}}</th>
                         <th width='200'>{{model:resources->contentType->fieldType}}</th>
                         <th width='200'>{{model:resources->required}}</th>
                         <th width='200'>{{model:resources->multiple}}</th>
@@ -101,10 +101,10 @@
 
                                 <div class="row">
                                     <div class="small-2 columns">
-                                        <label for="label" class="right inline">{{model:resources->label}}</label>
+                                        <label for="label" class="right inline">{{model:resources->name}}</label>
                                     </div>
                                     <div class="small-10 columns">
-                                        <input type="text" id="label" placeholder="label" data-rv-value="field:label">
+                                        <input type="text" id="label" data-rv-placeholder="model:resources->name" data-rv-value="field:label">
                                     </div>
                                 </div>
 
