@@ -7,8 +7,8 @@ define(['text!plugins/datetime/template.html', 'plugins/datetime/model', 'text!p
             name : 'datetimePlugin',
             ModelType : datetimePluginModel,
             modelData : {
-                minimum : '1',
-                maximum : '1',
+                min : 1,
+                max : 1,
                 options : false,
                 label : '',
                 type : 'datetime',

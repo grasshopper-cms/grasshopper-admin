@@ -7,8 +7,8 @@ define(['text!plugins/password/template.html', 'plugins/password/model', 'text!p
             name : 'passwordPlugin',
             ModelType : passwordPluginModel,
             modelData : {
-                minimum : '1',
-                maximum : '1',
+                min : 1,
+                max : 1,
                 options : false,
                 label : '',
                 type : 'password',

@@ -7,8 +7,8 @@ define(['text!plugins/radio/template.html', 'plugins/radio/model', 'text!plugins
             name : 'radioPlugin',
             ModelType : radioPluginModel,
             modelData : {
-                minimum : '1',
-                maximum : '1',
+                min : 1,
+                max : 1,
                 options : false,
                 label : '',
                 type : 'radio',

@@ -7,8 +7,8 @@ define(['text!plugins/textArea/template.html', 'plugins/textArea/model', 'text!p
             name : 'textAreaPlugin',
             ModelType : textAreaPluginModel,
             modelData : {
-                minimum : '1',
-                maximum : '1',
+                min : 1,
+                max : 1,
                 options : false,
                 label : '',
                 type : 'textarea',

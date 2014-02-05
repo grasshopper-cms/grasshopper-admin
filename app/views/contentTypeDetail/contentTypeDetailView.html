@@ -66,7 +66,7 @@
                                             <td width='400'>{{field:label | existsOr --}}</td>
                                             <td width='200'>{{field:type | existsOr --}}</td>
                                             <td width='200'>{{field:required}}</td>
-                                            <td width='200'>{{field:minimum | existsOr --}}min / {{field:maximum | existsOr --}}max</td>
+                                            <td width='200'>{{field:min | existsOr --}}min / {{field:max | existsOr --}}max</td>
                                             <td width='200' style="text-align: center;">
                                                 <span data-rv-on-click="view.removeFieldFromCollection">
                                                     <i class="icon-trash"></i>
@@ -147,18 +147,18 @@
                                 </legend>
                                 <div class="row">
                                     <div class="small-2 columns">
-                                        <label data-rv-for="field.cid  | prepend minimum" class="right inline">{{model:resources->minimum}}</label>
+                                        <label data-rv-for="field.cid  | prepend min" class="right inline">{{model:resources->min}}</label>
                                     </div>
                                     <div class="small-10 columns">
-                                        <input data-rv-id="field.cid  | prepend minimum" type="number" data-rv-value="field:minimum">
+                                        <input data-rv-id="field.cid  | prepend min" type="number" data-rv-value="field:min">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="small-2 columns">
-                                        <label data-rv-for="field.cid  | prepend maximum" class="right inline">{{model:resources->maximum}}</label>
+                                        <label data-rv-for="field.cid  | prepend max" class="right inline">{{model:resources->max}}</label>
                                     </div>
                                     <div class="small-10 columns">
-                                        <input data-rv-id="field.cid  | prepend maximum" type="number" data-rv-value="field:maximum">
+                                        <input data-rv-id="field.cid  | prepend max" type="number" data-rv-value="field:max">
                                     </div>
                                 </div>
                             </fieldset>

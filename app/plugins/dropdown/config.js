@@ -8,8 +8,8 @@ define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!p
             name : 'dropdownPlugin',
             ModelType : dropdownPluginModel,
             modelData : {
-                minimum : '1',
-                maximum : '1',
+                min : 1,
+                max : 1,
                 options : true,
                 label : '',
                 type : 'dropdown',

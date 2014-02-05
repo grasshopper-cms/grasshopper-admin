@@ -7,8 +7,8 @@ define(['text!plugins/ref/template.html', 'plugins/ref/model', 'text!plugins/ref
             name : 'ref',
             ModelType : refPluginModel,
             modelData : {
-                minimum : '1',
-                maximum : '1',
+                min : 1,
+                max : 1,
                 options : false,
                 label : '',
                 type : 'ref',
