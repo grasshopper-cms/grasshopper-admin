@@ -118,20 +118,26 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     function addNewFieldToContentType(context) {
         var model = context.field;
 
+        _collapseAccordion.call(this);
         model.active = 'active';
         this.collection.add(model);
+    }
+
+    function _collapseAccordion() {
+        this.$el.find('.content').removeClass('active');
     }
 
     function saveContentType() {
         this.model.set('fields', this.collection.toJSON());
 
+        console.log(this);
         this.model.save()
             .done(_handleSuccessfulModelSave.bind(this))
             .fail(_handleFailedModelSave.bind(this));
     }
 
     function _handleSuccessfulModelSave() {
-        this.$el.find('.content').removeClass('active');
+        _collapseAccordion.call(this);
         this.displayTemporaryAlertBox(
             {
                 msg: resources.contentType.successfulSave,

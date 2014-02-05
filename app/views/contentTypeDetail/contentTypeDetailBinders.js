@@ -25,7 +25,7 @@ define(['underscore', 'masseuse',
 
                     _.each(plugin.availableProperties, function(property) {
                         if(!rivets.model.field.has(property)) {
-                            rivets.model.field.set(property, '', {silent:true});
+                            rivets.model.field.set(property, false, {silent:true});
                         }
 
                         modelData[property] = masseuse.ProxyProperty(property, model);
