@@ -19,7 +19,9 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                 'click .clickableCell' : 'handleRowClick',
                 'click #saveContentType' : 'saveContentType'
             },
-            listeners : [],
+            listeners : [
+                ['channels.views', 'mastheadDropdownClicked', 'addNewFieldToContentType']
+            ],
             rivetConfig : 'auto',
             mastheadButtons : [
                 {

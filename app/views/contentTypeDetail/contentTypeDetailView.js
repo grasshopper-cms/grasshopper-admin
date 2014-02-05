@@ -5,6 +5,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     return GrasshopperBaseView.extend({
         defaultOptions : contentTypeDetailViewConfig,
         beforeRender : beforeRender,
+        afterRender : afterRender,
         prepareToDeleteContentType : prepareToDeleteContentType,
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
@@ -21,6 +22,10 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
             this.collection.reset();
             $deferred.resolve();
         }
+    }
+
+    function afterRender() {
+        this.$el.foundation();
     }
 
     function _handleSuccessfulModelFetch($deferred) {
@@ -110,8 +115,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
         this.app.router.navigateTrigger(this.model.get('href'), {}, true);
     }
 
-    function addNewFieldToContentType(e, context) {
-        e.preventDefault();
+    function addNewFieldToContentType(context) {
         this.collection.add(context.field);
     }
 
