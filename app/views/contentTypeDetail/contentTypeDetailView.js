@@ -26,6 +26,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
 
     function afterRender() {
         this.$el.foundation();
+        this.listenTo(this.collection, 'change:type', _warnUserBeforeChangingType);
     }
 
     function _handleSuccessfulModelFetch($deferred) {
@@ -116,7 +117,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     }
 
     function addNewFieldToContentType(context) {
-        var model = context.field;
+        var model = context.field.config.modelData;
 
         _collapseAccordion.call(this);
         model.active = 'active';
@@ -185,6 +186,11 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
         );
 
         $deferred.resolve();
+    }
+
+    function _warnUserBeforeChangingType(model, newType) {
+        console.log(model);
+        console.log(newType);
     }
 
 });

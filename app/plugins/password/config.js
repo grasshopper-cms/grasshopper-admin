@@ -6,7 +6,16 @@ define(['text!plugins/password/template.html', 'plugins/password/model', 'text!p
         return {
             name : 'passwordPlugin',
             ModelType : passwordPluginModel,
-            modelData : {},
+            modelData : {
+                minimum : '1',
+                maximum : '1',
+                options : false,
+                label : '',
+                type : 'password',
+                required : false,
+                validation : false,
+                value : ''
+            },
             template : passwordPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},

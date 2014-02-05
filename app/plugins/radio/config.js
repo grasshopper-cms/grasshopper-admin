@@ -6,7 +6,16 @@ define(['text!plugins/radio/template.html', 'plugins/radio/model', 'text!plugins
         return {
             name : 'radioPlugin',
             ModelType : radioPluginModel,
-            modelData : {},
+            modelData : {
+                minimum : '1',
+                maximum : '1',
+                options : false,
+                label : '',
+                type : 'radio',
+                required : false,
+                validation : false,
+                value : ''
+            },
             template : radioPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},

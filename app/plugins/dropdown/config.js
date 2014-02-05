@@ -7,7 +7,16 @@ define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!p
         return {
             name : 'dropdownPlugin',
             ModelType : dropdownPluginModel,
-            modelData : {},
+            modelData : {
+                minimum : '1',
+                maximum : '1',
+                options : true,
+                label : '',
+                type : 'dropdown',
+                required : false,
+                validation : false,
+                value : ''
+            },
             wrapper: false,
             template : dropdownPluginTemplate,
             setupTemplate : setupTemplate,

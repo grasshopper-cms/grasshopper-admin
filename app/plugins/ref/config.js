@@ -6,7 +6,16 @@ define(['text!plugins/ref/template.html', 'plugins/ref/model', 'text!plugins/ref
         return {
             name : 'ref',
             ModelType : refPluginModel,
-            modelData : {},
+            modelData : {
+                minimum : '1',
+                maximum : '1',
+                options : false,
+                label : '',
+                type : 'ref',
+                required : false,
+                validation : false,
+                value : ''
+            },
             wrapper: false,
             template : refTemplate,
             setupTemplate : setupTemplate,

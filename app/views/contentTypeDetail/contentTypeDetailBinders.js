@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['underscore', 'masseuse',
-    'plugins', 'jquery'],
+    'plugins'],
     function (_, masseuse,
-              plugins, $) {
+              plugins) {
         'use strict';
 
         return {
@@ -15,28 +15,27 @@ define(['underscore', 'masseuse',
                     var rivets = this,
                         plugin = _.find(plugins.fields, {type : model.get('type')}),
                         ViewModule = plugin.view,
-                        configModule = plugin.config,
-                        modelData = {};
+                        configModule = plugin.config;
 
                     if (rivets.viewInstance) {
                         rivets.model.view.removeChild(this.viewInstance);
                         rivets.viewInstance.remove();
                     }
 
-                    _.each(plugin.availableProperties, function(property) {
-                        if(!rivets.model.field.has(property)) {
-                            rivets.model.field.set(property, false, {silent:true});
+                    _.each(configModule.modelData, function(value, key) {
+                        if(!model.has(key)) {
+                            model.set(key, value, {silent: true});
                         }
-
-                        modelData[property] = masseuse.ProxyProperty(property, model);
                     });
 
-                    rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
-                        modelData : modelData,
+                    rivets.viewInstance = new ViewModule(configModule, {
+                        modelData : {
+                            options : masseuse.ProxyProperty('options', model)
+                        },
                         template : configModule.setupTemplate,
                         mastheadButtons : rivets.model.view.mastheadButtons,
                         appendTo : el
-                    }));
+                    });
 
                     rivets.viewInstance.start();
                 },

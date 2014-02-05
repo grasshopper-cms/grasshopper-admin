@@ -1,13 +1,4 @@
 {
     "helpText" : "TextBox Help Text",
-    "name" : "TextBox",
-    "availableProperties" : [
-        "label",
-        "type",
-        "required",
-        "instancing",
-        "multi",
-        "validation",
-        "value"
-    ]
+    "name" : "TextBox"
 }

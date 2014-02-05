@@ -6,7 +6,16 @@ define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!p
         return {
             name : 'checkboxPlugin',
             ModelType : checkboxPluginModel,
-            modelData : {},
+            modelData : {
+                minimum : '1',
+                maximum : '1',
+                options : false,
+                label : '',
+                type : 'checkbox',
+                required : false,
+                validation : false,
+                value : ''
+            },
             template : checkboxPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},

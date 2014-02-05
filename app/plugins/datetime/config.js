@@ -6,7 +6,16 @@ define(['text!plugins/datetime/template.html', 'plugins/datetime/model', 'text!p
         return {
             name : 'datetimePlugin',
             ModelType : datetimePluginModel,
-            modelData : {},
+            modelData : {
+                minimum : '1',
+                maximum : '1',
+                options : false,
+                label : '',
+                type : 'datetime',
+                required : false,
+                validation : false,
+                value : ''
+            },
             template : datetimePluginTemplate,
             setupTemplate : setupTemplate,
             events : {},

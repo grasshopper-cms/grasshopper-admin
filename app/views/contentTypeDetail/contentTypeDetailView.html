@@ -65,8 +65,8 @@
                                         <tr>
                                             <td width='400'>{{field:label | existsOr --}}</td>
                                             <td width='200'>{{field:type | existsOr --}}</td>
-                                            <td width='200'>{{field:required | existsOr --}}</td>
-                                            <td width='200'>{{field:instancing | existsOr --}}</td>
+                                            <td width='200'>{{field:required}}</td>
+                                            <td width='200'>{{field:minimum | existsOr --}}min / {{field:maximum | existsOr --}}max</td>
                                             <td width='200' style="text-align: center;">
                                                 <span data-rv-on-click="view.removeFieldFromCollection">
                                                     <i class="icon-trash"></i>
@@ -110,11 +110,11 @@
 
                                 <div class="row">
                                     <div class="small-2 columns">
-                                        <label data-rv-for="field.cid  | prepend type" class="right inline">type</label>
+                                        <label data-rv-for="field.cid  | prepend type" class="right inline">{{model:resources->type}}</label>
                                     </div>
                                     <div class="small-10 columns">
-                                        <select data-rv-id="field.cid  | prepend type" data-rv-value="model:type" >
-                                            <option data-rv-each-plugin="model:plugins" data-rv-value="plugin.name">{{plugin.name}}</option>
+                                        <select data-rv-id="field.cid  | prepend type" data-rv-value="field:type" >
+                                            <option data-rv-each-plugin="model:plugins" data-rv-value="plugin.type" data-rv-text="plugin.name"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@
                                         <label data-rv-for="field.cid  | prepend minimum" class="right inline">{{model:resources->minimum}}</label>
                                     </div>
                                     <div class="small-10 columns">
-                                        <input data-rv-id="field.cid  | prepend minimum" type="number" data-rv-value="field:instancing">
+                                        <input data-rv-id="field.cid  | prepend minimum" type="number" data-rv-value="field:minimum">
                                     </div>
                                 </div>
                                 <div class="row">
