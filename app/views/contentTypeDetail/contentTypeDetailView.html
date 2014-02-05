@@ -1,18 +1,19 @@
 <div id="contentTypeDetailView">
-    <div class="row">
-        <div class="large-12  columns">
-            <a href="#" data-dropdown="drop" class="button tiny radius dropdown right">{{model:resources->contentType->addNewField}}</a><br>
-            <ul id="drop" data-dropdown-content class="f-dropdown">
-                <li data-rv-each-field="model:plugins">
-                    <a data-rv-on-click="view.addNewFieldToContentType">
-                        {{field.name}}
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <!--<div class="row">-->
+        <!--<div class="large-12  columns">-->
+            <!--<a href="#" data-dropdown="drop" class="button tiny radius dropdown right">{{model:resources->contentType->addNewField}}</a><br>-->
+            <!--<ul id="drop" data-dropdown-content class="f-dropdown">-->
+                <!--<li data-rv-each-field="model:plugins">-->
+                    <!--<a data-rv-on-click="view.addNewFieldToContentType">-->
+                        <!--{{field.name}}-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="row">
         <div class="large-12 columns">
+
             <h4>{{model:resources->summary | withColon}}</h4>
             <hr>
 
@@ -62,6 +63,7 @@
                 </div>
                 <div class="small-2 columns"></div>
             </div>
+
             <dl class="accordion" data-accordion>
                 <dd data-rv-each-field="collection:">
                     <a data-rv-href="field.cid | prepend #" class="accordionHeader">
@@ -97,6 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="small-2 columns">
                                         <label for="label" class="right inline">{{model:resources->label}}</label>
@@ -105,6 +108,7 @@
                                         <input type="text" id="label" placeholder="label" data-rv-value="field:label">
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="small-2 columns">
                                         <label data-rv-for="field.cid  | prepend type" class="right inline">type</label>
@@ -124,6 +128,7 @@
                                         <input data-rv-id="field.cid  | prepend required" type="checkbox" data-rv-checked="field:required">
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="small-2 columns">
                                         <label data-rv-for="field.cid  | prepend multi" class="right inline">{{model:resources->allowMultiple}}</label>
@@ -142,18 +147,18 @@
                                     Multiple
                                 </legend>
                                 <div class="row">
-                                    <div class="small-3 columns">
+                                    <div class="small-2 columns">
                                         <label data-rv-for="field.cid  | prepend minimum" class="right inline">{{model:resources->minimum}}</label>
                                     </div>
-                                    <div class="small-9 columns">
+                                    <div class="small-10 columns">
                                         <input data-rv-id="field.cid  | prepend minimum" type="number" data-rv-value="field:instancing">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="small-3 columns">
+                                    <div class="small-2 columns">
                                         <label data-rv-for="field.cid  | prepend maximum" class="right inline">{{model:resources->maximum}}</label>
                                     </div>
-                                    <div class="small-9 columns">
+                                    <div class="small-10 columns">
                                         <input data-rv-id="field.cid  | prepend maximum" type="number" data-rv-value="field:maximum">
                                     </div>
                                 </div>

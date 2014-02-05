@@ -2,9 +2,9 @@
 define(['text!views/contentTypeDetail/contentTypeDetailView.html',
     'text!views/contentTypeDetail/_contentTypeDetailRow.html',
     'contentTypeDetailViewModel', 'appBinders', 'contentTypeDetailBinders',
-    'backbone', 'formatters'],
+    'backbone', 'formatters', 'resources'],
     function (formTemplate, rowTemplate, contentTypeDetailViewModel, appBinders, contentTypeDetailBinders,
-              Backbone, formatters) {
+              Backbone, formatters, resources) {
         'use strict';
 
         return {
@@ -21,7 +21,13 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             },
             listeners : [],
             rivetConfig : 'auto',
-            mastheadButtons : [],
+            mastheadButtons : [
+                {
+                    text : resources.contentType.addNewField,
+                    href : '#',
+                    dropdown : true
+                }
+            ],
             permissions : ['admin', 'editor', 'reader'],
             rivetsBinders : [appBinders, contentTypeDetailBinders],
             rivetsFormatters : [formatters],

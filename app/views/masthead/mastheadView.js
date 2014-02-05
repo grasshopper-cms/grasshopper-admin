@@ -16,12 +16,11 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
     }
 
     function setButtons (buttonArray) {
-        //TODO: This resets the mastheadbuttons each time.
-        // I should do a check to see if anything has changed before updating it again.
         if (!buttonArray) {
             this.model.set('buttons', this.defaultMastheadButtons);
         } else {
             this.model.set('buttons', this.interpolateMastheadButtons(buttonArray));
+            this.$el.foundation();
         }
     }
 
@@ -51,11 +50,17 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
             newButton = {},
             key;
         for (key in thisButton) {
+            if( _.isBoolean(thisButton[key]) ) {
+                newButton[key] = thisButton[key];
+                continue;
+            }
+
             if (nodeId) {
                 newButton[key] = thisButton[key].replace(':id', nodeId);
             } else {
                 newButton[key] = thisButton[key].replace(':id', 0);
             }
+
         }
         return newButton;
     }

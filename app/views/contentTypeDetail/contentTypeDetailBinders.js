@@ -34,6 +34,7 @@ define(['underscore', 'masseuse',
                     rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
                         modelData : modelData,
                         template : configModule.setupTemplate,
+                        mastheadButtons : rivets.model.view.mastheadButtons,
                         appendTo : el
                     }));
 

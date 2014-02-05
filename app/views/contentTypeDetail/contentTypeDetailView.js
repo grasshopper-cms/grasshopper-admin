@@ -5,7 +5,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     return GrasshopperBaseView.extend({
         defaultOptions : contentTypeDetailViewConfig,
         beforeRender : beforeRender,
-        afterRender : afterRender,
         prepareToDeleteContentType : prepareToDeleteContentType,
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
@@ -27,10 +26,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     function _handleSuccessfulModelFetch($deferred) {
         this.collection.reset(this.model.get('fields'));
         $deferred.resolve();
-    }
-
-    function afterRender() {
-        this.$el.foundation();
     }
 
     function prepareToDeleteContentType () {
