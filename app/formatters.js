@@ -5,7 +5,11 @@ define([], function () {
      * @namespace formatters
      */
     return {
-        prepend : prepend
+        prepend : prepend,
+        asNumber : {
+            read : readAsNumber,
+            publish : publishAsNumber
+        }
     };
 
     /**
@@ -17,5 +21,13 @@ define([], function () {
 
     function prepend(value, string) {
         return string + value;
+    }
+
+    function readAsNumber(value) {
+        return value;
+    }
+
+    function publishAsNumber(value) {
+        return parseInt(value, 10);
     }
 });
