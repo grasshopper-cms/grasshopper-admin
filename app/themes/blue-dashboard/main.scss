@@ -443,10 +443,39 @@ body, html {
   // Content Type Detail View
   #contentTypeDetailView {
     .accordionHeader {
-      margin-bottom: 1px;
+      & :hover {
+        tr{
+          background-color: #F1F1F1;
+        }
+      }
     }
-    .removeFieldButton {
-      margin-bottom: 0;
+
+    .activeHeader {
+      tr{
+        background-color: #F1F1F1;
+      }
+    }
+
+    .content {
+      padding-bottom: 0;
+
+      fieldset {
+        margin-left: 18px;
+        margin-right: 18px;
+        border: 1px solid #B1B1B1;
+
+        legend {
+          background-color: inherit;
+        }
+      }
+    }
+
+    .active {
+      background-color: #EEEBEB;
+      border: solid 1px #B1B1B1;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 2px;
     }
   }
 

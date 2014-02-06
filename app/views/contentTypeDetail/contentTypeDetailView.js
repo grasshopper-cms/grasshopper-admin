@@ -27,6 +27,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     function afterRender() {
         this.$el.foundation();
         this.listenTo(this.collection, 'change:type', _warnUserBeforeChangingType);
+
+        _addClickListenersToAccordion.call(this);
     }
 
     function _handleSuccessfulModelFetch($deferred) {
@@ -125,6 +127,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     }
 
     function _collapseAccordion() {
+        this.$el.find('.accordionHeader').removeClass('activeHeader');
         this.$el.find('.content').removeClass('active');
     }
 
@@ -191,6 +194,16 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     function _warnUserBeforeChangingType(model, newType) {
         console.log(model);
         console.log(newType);
+    }
+
+    function _addClickListenersToAccordion() {
+        var self = this;
+
+        this.$el.find('.accordionHeader').on('click', function(e) {
+            self.$el.find('.accordionHeader').removeClass('activeHeader');
+            $(e.currentTarget).addClass('activeHeader');
+
+        });
     }
 
 });
