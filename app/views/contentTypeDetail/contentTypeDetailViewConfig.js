@@ -2,9 +2,11 @@
 define(['text!views/contentTypeDetail/contentTypeDetailView.html',
     'text!views/contentTypeDetail/_contentTypeDetailRow.html',
     'contentTypeDetailViewModel', 'appBinders', 'contentTypeDetailBinders',
-    'backbone', 'formatters', 'resources', 'constants', 'contentTypeDetailFormatters', 'underscore'],
+    'backbone', 'formatters', 'resources', 'constants', 'contentTypeDetailFormatters', 'underscore',
+    'pluginSetupModel'],
     function (formTemplate, rowTemplate, contentTypeDetailViewModel, appBinders, contentTypeDetailBinders,
-              Backbone, formatters, resources, constants, contentTypeDetailFormatters, _) {
+              Backbone, formatters, resources, constants, contentTypeDetailFormatters, _,
+              pluginSetupModel) {
         'use strict';
 
         return {
@@ -40,11 +42,13 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             rivetsBinders : [appBinders, contentTypeDetailBinders],
             rivetsFormatters : [formatters, contentTypeDetailFormatters],
             collection : new (Backbone.Collection.extend({
+                model : pluginSetupModel,
                 toJSON: function () {
                     var json = Backbone.Collection.prototype.toJSON.apply(this);
 
                     return _.map(json, function(obj) {
-                        return _.pick(obj, 'required', 'label', 'max', 'min', 'options', 'type', 'validation');
+                        return _.pick(obj, 'required', 'label', 'max', 'min',
+                            'options', 'type', 'validation', '_id', 'useAsLabel');
                     });
                 }
             }))([], {})

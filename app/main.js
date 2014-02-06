@@ -116,6 +116,7 @@ require.config({
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
         grasshopperModel : 'models/grasshopperModel',
+        pluginSetupModel : 'models/pluginSetupModel',
 
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',

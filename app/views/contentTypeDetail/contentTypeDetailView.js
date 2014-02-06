@@ -131,6 +131,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     function saveContentType() {
         this.model.set('fields', this.collection.toJSON());
 
+        console.log(this.model.attributes);
         this.model.save()
             .done(_handleSuccessfulModelSave.bind(this))
             .fail(_handleFailedModelSave.bind(this));

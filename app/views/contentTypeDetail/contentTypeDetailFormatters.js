@@ -6,7 +6,11 @@ define([], function () {
      */
     return {
         collectionHasLength : collectionHasLength,
-        booleanToYesNo : booleanToYesNo
+        booleanToYesNo : booleanToYesNo,
+        radioToBoolean : {
+            read : readRadioToBoolean,
+            publish : publishRadioToBoolean
+        }
     };
 
     /**
@@ -22,5 +26,19 @@ define([], function () {
 
     function booleanToYesNo(value) {
         return (value) ? 'Yes' : 'No';
+    }
+
+    function readRadioToBoolean(value) {
+        if(value) {
+            return 'on';
+        }
+        return 'off';
+    }
+
+    function publishRadioToBoolean(value) {
+        if(value === 'on') {
+            return true;
+        }
+        return false;
     }
 });

@@ -130,6 +130,15 @@
 
                                 <div class="row">
                                     <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend useAsLabel" class="right inline">Use As Label</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input data-rv-id="field.cid  | prepend useAsLabel" type="radio" name="useAsLabel" data-rv-checked="field:useAsLabel | radioToBoolean">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="small-2 columns">
                                         <label data-rv-for="field.cid  | prepend multi" class="right inline">{{model:resources->allowMultiple}}</label>
                                     </div>
                                     <div class="small-10 columns">
