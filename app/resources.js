@@ -119,8 +119,8 @@ define({
         addNewField : 'Add New Field',
         successfulSave : 'Content type successfully saved.',
         failedSave : 'Content type could not be saved.',
-        removeFieldWarning: 'Warning! If you delete this field. ' +
-            'This field will be deleted form all content of this type.',
+        removeFieldWarning: 'If you delete this field. ' +
+            'This field will be deleted from all content of this type.',
         addOption : 'Add Option',
         helpText : 'Help Text',
         description: 'Description',

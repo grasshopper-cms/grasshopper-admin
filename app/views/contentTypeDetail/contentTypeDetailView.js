@@ -46,6 +46,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
         if(associatedContent) {
             return this.displayModal(
                 {
+                    header : 'Warning!',
                     msg : resources.contentType.deletionWarningWithAssociatedContent,
                     data : associatedContent,
                     type : 'list'
@@ -54,6 +55,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
 
         return this.displayModal(
             {
+                header : 'Warning!',
                 msg : resources.contentType.deletionWarningWithoutAssociatedContent
             });
     }
@@ -162,6 +164,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     function removeFieldFromCollection(e, context) {
         var self = this;
         this.displayModal({
+            header : 'Warning!',
             msg : resources.contentType.removeFieldWarning
         })
             .done(function() {
@@ -200,9 +203,15 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
         var self = this;
 
         this.$el.find('.accordionHeader').on('click', function(e) {
-            self.$el.find('.accordionHeader').removeClass('activeHeader');
-            $(e.currentTarget).addClass('activeHeader');
+            var $currentTarget = $(e.currentTarget),
+                $accordionHeaders = self.$el.find('.accordionHeader');
 
+            if($currentTarget.hasClass('activeHeader')) {
+                $accordionHeaders.removeClass('activeHeader');
+            } else {
+                $accordionHeaders.removeClass('activeHeader');
+                $currentTarget.addClass('activeHeader');
+            }
         });
     }
 

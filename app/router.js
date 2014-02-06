@@ -300,6 +300,7 @@ define([
             var $deferred = new $.Deferred(),
                 modalView = new ModalView({
                     modelData : {
+                        header : (options.header) ? options.header : null,
                         msg : options.msg,
                         data : (options.data) ? options.data : null
                     },
