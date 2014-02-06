@@ -65,7 +65,7 @@
                                         <tr>
                                             <td width='400'>{{field:label | existsOr --}}</td>
                                             <td width='200'>{{field:type | existsOr --}}</td>
-                                            <td width='200'>{{field:required}}</td>
+                                            <td width='200'>{{field:required | booleanToYesNo}}</td>
                                             <td width='200'>{{field:min | existsOr --}}min / {{field:max | existsOr --}}max</td>
                                             <td width='200' style="text-align: center;">
                                                 <span data-rv-on-click="view.removeFieldFromCollection">

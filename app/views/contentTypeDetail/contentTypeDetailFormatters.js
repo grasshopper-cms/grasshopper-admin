@@ -5,7 +5,8 @@ define([], function () {
      * @namespace formatters
      */
     return {
-        collectionHasLength : collectionHasLength
+        collectionHasLength : collectionHasLength,
+        booleanToYesNo : booleanToYesNo
     };
 
     /**
@@ -17,5 +18,9 @@ define([], function () {
 
     function collectionHasLength(collection) {
         return (collection.length);
+    }
+
+    function booleanToYesNo(value) {
+        return (value) ? 'Yes' : 'No';
     }
 });
