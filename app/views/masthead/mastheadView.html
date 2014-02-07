@@ -4,14 +4,14 @@
             <div class="left">
                 <div class="masthead-pad">
                     <div class="masthead-text">
-                        <h3>
+                        <h4>
                             <i class="icon-file"></i>
-                    <span data-rv-each-breadcrumb="model:breadcrumbs">
-                        <span>
-                            <a data-rv-href="breadcrumb.href">{{breadcrumb.text | withForwardSlash}}</a>
-                        </span>
-                    </span>
-                        </h3>
+                            <span data-rv-each-breadcrumb="model:breadcrumbs">
+                                <span>
+                                    <a data-rv-href="breadcrumb.href">{{breadcrumb.text | withForwardSlash}}</a>
+                                </span>
+                            </span>
+                        </h4>
 
                         <p data-rv-hide="model:inRoot">
                             <span data-rv-show="model:nodesCount">{{model:nodesCount | pluralize folder | withComma}}</span>
