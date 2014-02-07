@@ -1,6 +1,8 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentTypeWorker', 'api', 'constants'],
-    function (GrasshopperBaseView, addContentViewConfig, resources, contentTypeWorker, Api, constants) {
+define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentTypeWorker',
+    'api', 'constants', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, addContentViewConfig, resources, contentTypeWorker,
+              Api, constants, breadcrumbWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -49,8 +51,6 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
                 }
             );
         }
-
-
 
         function _handleCreateContent ($deferred) {
             _getNodesContentTypes.call(this, this.model.get('node._id'))
@@ -137,7 +137,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
             Api.getContentType(this.model.get('type'))
                 .done(function(data) {
                     self.model.set('schema', data.fields);
-                    $deferred.resolve();
+                    _updateMastheadBreadcrumbs.call(self, $deferred);
                 })
                 .fail(function() {
                     $deferred.reject();
@@ -170,6 +170,10 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         function _navigateBack (trigger) {
             this.app.router.removeThisRouteFromBreadcrumb();
             this.app.router.navigateBack(trigger);
+        }
+
+        function _updateMastheadBreadcrumbs($deferred) {
+            breadcrumbWorker.contentBreadcrumb.call(this, $deferred, true);
         }
 
     });

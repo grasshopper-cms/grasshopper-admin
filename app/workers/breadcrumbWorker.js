@@ -1,21 +1,29 @@
-define(['api', 'constants', 'jquery'], function (Api, constants, $) {
+define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $, resources) {
     'use strict';
 
     return {
         contentBreadcrumb : contentBreadcrumb
     };
 
-    function contentBreadcrumb($deferred) {
+    function contentBreadcrumb($deferred, isNew) {
         var label = this.model.get('label'),
             nodeId = this.model.get('node._id'),
             self = this;
 
+        console.log(this);
         _getNodeDetailRecursively.call(this, nodeId)
             .done(function() {
-                self.breadcrumbs.push({
-                    text: label,
-                    href: constants.internalRoutes.contentDetail.replace(':id', self.model.get('_id'))
-                });
+                if(isNew) {
+                    self.breadcrumbs.push({
+                        text: resources.newWord,
+                        href: constants.internalRoutes.createContent
+                    });
+                } else {
+                    self.breadcrumbs.push({
+                        text: label,
+                        href: constants.internalRoutes.contentDetail.replace(':id', self.model.get('_id'))
+                    });
+                }
                 $deferred.resolve();
             });
     }
