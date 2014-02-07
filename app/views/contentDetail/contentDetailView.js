@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker) {
     'use strict';
     return GrasshopperBaseView.extend({
         defaultOptions : contentDetailViewConfig,
@@ -83,7 +83,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         Api.getContentType(this.model.get('type'))
             .done(function(schema) {
                 self.model.set('schema', schema);
-                $deferred.resolve();
+                _updateMastheadBreadcrumbs.call(self, $deferred);
             })
             .fail(function() {
                 self.displayAlertBox({
@@ -92,4 +92,10 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
                 $deferred.reject();
             });
     }
+
+    function _updateMastheadBreadcrumbs($deferred) {
+        breadcrumbWorker.contentBreadcrumb.call(this, $deferred);
+    }
 });
+
+

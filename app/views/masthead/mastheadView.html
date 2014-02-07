@@ -1,44 +1,46 @@
 <div class="container">
     <div class="row">
-        <div class="small-12 large-6 columns">
-            <div class="masthead-pad">
-                <div class="masthead-text">
-                    <h3>
-                        <i class="icon-file"></i>
+        <div class="small-12 columns">
+            <div class="left">
+                <div class="masthead-pad">
+                    <div class="masthead-text">
+                        <h3>
+                            <i class="icon-file"></i>
                     <span data-rv-each-breadcrumb="model:breadcrumbs">
                         <span>
                             <a data-rv-href="breadcrumb.href">{{breadcrumb.text | withForwardSlash}}</a>
                         </span>
                     </span>
-                    </h3>
+                        </h3>
 
-                    <p data-rv-hide="model:inRoot">
-                        <span data-rv-show="model:nodesCount">{{model:nodesCount | pluralize folder | withComma}}</span>
-                        <span data-rv-show="model:filesCount">{{model:filesCount | pluralize file | withComma}}</span>
-                        <span data-rv-show="model:itemsCount">{{model:itemsCount | pluralize item}}</span>
-                    </p>
+                        <p data-rv-hide="model:inRoot">
+                            <span data-rv-show="model:nodesCount">{{model:nodesCount | pluralize folder | withComma}}</span>
+                            <span data-rv-show="model:filesCount">{{model:filesCount | pluralize file | withComma}}</span>
+                            <span data-rv-show="model:itemsCount">{{model:itemsCount | pluralize item}}</span>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="small-12 large-6 columns">
-            <ul id="mastheadButtons" class="button-group radius right">
-                <li data-rv-each-button="model:buttons">
-                    <a data-rv-hide="button.dropdown" data-rv-href="button.href" class="button tiny">
-                        {{button.text}}
-                    </a>
+            <div class="right">
+                <ul id="mastheadButtons" class="button-group radius right">
+                    <li data-rv-each-button="model:buttons">
+                        <a data-rv-hide="button.dropdown" data-rv-href="button.href" class="button tiny">
+                            {{button.text}}
+                        </a>
 
-                    <a data-rv-show="button.dropdown" data-dropdown="drop" data-options="is_hover:true" class="button tiny dropdown">
-                        {{button.text}}
-                    </a>
-                    <ul data-rv-show="button.dropdown" id="drop" data-dropdown-content class="f-dropdown">
-                        <li data-rv-each-field="model:plugins">
-                            <a data-rv-on-click="view.clickMastheadDropdown">
-                                {{field.name}}
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                        <a data-rv-show="button.dropdown" data-dropdown="drop" data-options="is_hover:true" class="button tiny dropdown">
+                            {{button.text}}
+                        </a>
+                        <ul data-rv-show="button.dropdown" id="drop" data-dropdown-content class="f-dropdown">
+                            <li data-rv-each-field="model:plugins">
+                                <a data-rv-on-click="view.clickMastheadDropdown">
+                                    {{field.name}}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

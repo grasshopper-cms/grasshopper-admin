@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDetail/_contentDetailRow.html',
-    'contentDetailViewModel', 'appBinders'],
-    function (formTemplate, rowTemplate, contentDetailViewModel, appBinders) {
+    'contentDetailViewModel', 'appBinders', 'resources', 'constants'],
+    function (formTemplate, rowTemplate, contentDetailViewModel, appBinders, resources, constants) {
         'use strict';
 
         return {
@@ -19,6 +19,12 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             listeners : [],
             rivetConfig : 'auto',
             mastheadButtons : [],
+            breadcrumbs : [
+                {
+                    text : resources.home,
+                    href : constants.internalRoutes.content
+                }
+            ],
             permissions : ['admin', 'reader', 'editor'],
             rivetsBinders : [appBinders]
         };

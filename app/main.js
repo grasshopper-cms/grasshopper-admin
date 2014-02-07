@@ -147,6 +147,7 @@ require.config({
         userWorker : 'workers/userWorker',
         contentTypeWorker : 'workers/contentTypeWorker',
         assetWorker : 'workers/assetWorker',
+        breadcrumbWorker : 'workers/breadcrumbWorker',
 
         // Collections
         userCollection : 'collections/userCollection',
