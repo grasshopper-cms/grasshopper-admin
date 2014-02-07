@@ -12,21 +12,18 @@
                         <div class="small-11 columns">
                             <div data-rv-fieldtype="field"></div>
                         </div>
-                        <div class="small-1 columns" data-rv-hide="field:type | equals readonly">
-                            <!--show if the length of the collection is greater than the minimum-->
-                            <button type="button" id="removeField" class="button radius tiny" data-rv-handle_subtraction_button="collection:" data-rv-on-click="view.removeField"><i class="icon-minus"></i></button>
+                        <div class="small-1 columns" data-rv-handle_subtraction_button="collection:">
+                            <button type="button" id="removeField" class="button radius tiny" data-rv-on-click="view.removeField"><i class="icon-minus"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="row" data-rv-handle_addition_button="collection:">
                     <div class="small-11 columns"></div>
                     <div class="small-1 columns" style="padding-left: 0;">
-                        <!--show if the length of the collection is less than the maximum-->
-                        <button data-rv-hide="model:type | equals readonly" type="button" id="addField" class="button radius tiny" data-rv-on-click="view.addField"><i class="icon-plus"></i></button>
+                        <button type="button" id="addField" class="button radius tiny" data-rv-on-click="view.addField"><i class="icon-plus"></i></button>
                     </div>
                 </div>
             </div>
-
         </div>
         <hr>
     </div>
