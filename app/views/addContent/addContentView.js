@@ -24,6 +24,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function saveContent() {
+            console.log(this);
             this.model.save()
                 .done(_handleSuccessfulSave.bind(this))
                 .fail(_handleFailedSave.bind(this));
