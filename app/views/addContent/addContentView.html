@@ -1,69 +1,12 @@
 <div class="row" id="addContent">
     <div class="large-12 small-centered columns">
         <fieldset>
-            <legend><h2>{{model:resources->contentItem->createContent}}</h2></legend>
-            <div class="row">
-                <div class="large-12 small-centered columns">
-                    <div class="row">
-                        <div class="small-3 columns">
-                            <label data-rv-for="model:_id" class="right inline">{{model:resources->contentItem->label}}</label>
-                        </div>
-                        <div class="small-9 columns">
-                            <div class="row">
-                                <div class="small-11 columns">
-                                    <input type="text" data-rv-id="model:_id" placeholder="Label" data-rv-value="model:label">
-                                    <small class="error" data-rv-show="model:labelHasError">{{model:resources->contentItem-labelRequiredMessage}}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="small-3 columns">
-                            <label data-rv-for="model:_id" class="right inline">{{model:resources->contentItem->author}}</label>
-                        </div>
-                        <div class="small-9 columns">
-                            <div class="row collapse">
-                                <div class="small-10 columns">
-                                    <input type="text" data-rv-id="model:_id" data-rv-value="model:author->fullname" readonly="true">
-                                </div>
-                                <div class="small-1 columns left">
-                                    <span class="postfix radius"><i class="icon-lock"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="small-3 columns">
-                            <label data-rv-for="model:_id" class="right inline">{{model:resources->contentItem->slug}}</label>
-                        </div>
-                        <div class="small-9 columns">
-                            <div class="row collapse">
-                                <div class="small-10 columns">
-                                    <input type="text" data-rv-id="model:_id" data-rv-placeholder="model:resources->contentItem->slug" data-rv-value="model:slug" readonly="true">
-                                </div>
-                                <div class="small-1 columns left">
-                                    <span class="postfix radius"><i class="icon-lock"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="small-3 columns">
-                            <label data-rv-for="model:_id" class="right inline">{{model:resources->contentItem->status}}</label>
-                        </div>
-                        <div class="small-9 columns">
-                            <div class="row">
-                                <div class="small-11 columns">
-                                    <select data-rv-id="model:_id" data-rv-value="model:status">
-                                        <option data-rv-each-option="model:resources->contentItem->statusOptions">{{option}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
+            <legend>
+                <h3>
+                    {{model:resources->contentItem->createContent}}
+                </h3>
+            </legend>
+
             <div class="row">
                 <div class="large-12 small-centered columns">
                     <div data-rv-each-field="model:schema">
@@ -73,7 +16,7 @@
             </div>
             <div class="row">
                 <div class="large-12 small-centered columns">
-                    <button id="saveContentButton" class="button radius right">{{model:resources->save}}</button>
+                    <button id="saveContentButton" class="button small radius right">{{model:resources->save}}</button>
                 </div>
             </div>
         </fieldset>

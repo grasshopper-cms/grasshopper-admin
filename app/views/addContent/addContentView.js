@@ -124,10 +124,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _setNewContentsAuthor() {
             this.model.set('author', {
-                _id : this.app.user.get('_id'),
-                firstname : this.app.user.get('firstname'),
-                lastname : this.app.user.get('lastname'),
-                fullname : this.app.user.get('firstname') +' '+ this.app.user.get('lastname')
+                _id : this.app.user.get('_id')
             });
         }
 
