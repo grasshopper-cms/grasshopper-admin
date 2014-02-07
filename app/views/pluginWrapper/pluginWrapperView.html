@@ -1,9 +1,11 @@
 <div class="row">
     <div class="large-12 small-centered columns">
         <div class="row">
+
             <div class="small-3 columns">
                 <label data-rv-for="model:_id" class="right inline">{{model:label}}</label>
             </div>
+
             <div class="small-9 columns">
                 <div class="row" data-rv-id="model:_id" data-rv-each-field="collection:">
                     <div class="row collapse">
@@ -11,17 +13,20 @@
                             <div data-rv-fieldtype="field"></div>
                         </div>
                         <div class="small-1 columns" data-rv-hide="field:type | equals readonly">
-                            <button type="button" id="removeField" class="button radius tiny" data-rv-show="model:multi" data-rv-on-click="view.removeField"><i class="icon-minus"></i></button>
+                            <!--show if the length of the collection is greater than the minimum-->
+                            <button type="button" id="removeField" class="button radius tiny" data-rv-handle_subtraction_button="collection:" data-rv-on-click="view.removeField"><i class="icon-minus"></i></button>
                         </div>
                     </div>
                 </div>
-                <div class="row" data-rv-show="model:multi">
+                <div class="row" data-rv-handle_addition_button="collection:">
                     <div class="small-11 columns"></div>
                     <div class="small-1 columns" style="padding-left: 0;">
-                        <button data-rv-hide="model:type | equals readonly" type="button" id="addField" class="button radius tiny"><i class="icon-plus"></i></button>
+                        <!--show if the length of the collection is less than the maximum-->
+                        <button data-rv-hide="model:type | equals readonly" type="button" id="addField" class="button radius tiny" data-rv-on-click="view.addField"><i class="icon-plus"></i></button>
                     </div>
                 </div>
             </div>
+
         </div>
         <hr>
     </div>

@@ -17,19 +17,15 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'plugins', 'underscore
 
         function afterRender() {
             _handleMulti.call(this);
+            console.log(this);
         }
 
         function _getPlugin() {
-            var plugin = _.find(plugins.fields, {type : this.model.get('type')}),
-                self = this;
+            var plugin = _.find(plugins.fields, {type : this.model.get('type')});
 
-            // TODO: this can probably be some kind of extend.
-            self.model.set({
+            this.model.set({
                 ViewModule : plugin.view,
-                configModule : plugin.config,
-                pluginHelpText: plugin.helpText,
-                pluginName : plugin.name,
-                pluginId : plugin.id
+                configModule : plugin.config
             });
         }
 
@@ -56,9 +52,10 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'plugins', 'underscore
         }
 
         function _addPlugin(value) {
-            var model = _.extend({} , _.omit(this.model.attributes, ['value', 'multiCollection', 'viewId']), {
-                value : value
-            });
+            var model = {
+                value : value,
+                options : this.model.get('options')
+            };
 
             this.collection.add(model);
         }

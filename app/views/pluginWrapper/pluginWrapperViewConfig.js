@@ -12,9 +12,7 @@ define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewMod
             appendTo : '#stage',
             wrapper : false,
             template : pluginWrapperTemplate,
-            events : {
-                'click #addField' : 'addField'
-            },
+            events : {},
             rivetConfig : 'auto',
             listeners : [],
             mastheadButtons : [],

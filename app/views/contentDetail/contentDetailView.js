@@ -63,7 +63,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function saveContent() {
-        console.log('this fired');
+        console.log(this);
     }
 
     function _fetchContentDetails($deferred) {

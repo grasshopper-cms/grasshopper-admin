@@ -50,7 +50,6 @@ define(['jquery', 'underscore', 'masseuse',
                         }))([], {}),
                         appendTo : el
                     });
-//                    rivets.model.view.addChild(viewInstance);
                     rivets.viewInstance.start();
                 },
                 publish : true

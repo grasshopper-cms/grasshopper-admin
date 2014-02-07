@@ -15,32 +15,41 @@ define(['underscore', 'masseuse',
                 },
                 routine : function(el, model) {
                     var rivets = this,
-                        plugin = _.find(plugins.fields, {type : model.get('type')}),
-                        ViewModule = rivets.model.field.get('ViewModule'),
-                        configModule = rivets.model.field.get('configModule'),
-                        modelData = {};
+                        ViewModule = rivets.model.model.get('ViewModule'),
+                        configModule = rivets.model.model.get('configModule');
 
                     if (rivets.viewInstance) {
                         rivets.model.view.removeChild(this.viewInstance);
                         rivets.viewInstance.remove();
                     }
 
-                    _.each(plugin.availableProperties, function(property) {
-                        if(!rivets.model.field.has(property)) {
-                            rivets.model.field.set(property, '', {silent:true});
-                        }
-
-                        modelData[property] = masseuse.ProxyProperty(property, model);
-                    });
-
                     rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
-                        modelData : modelData,
+                        modelData : {
+                            value : masseuse.ProxyProperty('value', model),
+                            options : model.get('options')
+                        },
                         appendTo : el
                     }));
 
                     rivets.viewInstance.start();
                 },
                 publish : true
+            },
+            handle_addition_button :  function(el) {
+//                show if the length of the collection is less than the maximum
+                if(this.view.models.collection.length < this.view.models.model.get('max')) {
+                    $(el).show();
+                } else {
+                    $(el).hide();
+                }
+            },
+            handle_subtraction_button : function(el) {
+//                show if the length of the collection is greater than the minimum
+                if(this.view.models.collection.length > this.view.models.model.get('min')) {
+                    $(el).show();
+                } else {
+                    $(el).hide();
+                }
             }
         };
 
