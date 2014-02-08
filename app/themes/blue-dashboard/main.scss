@@ -85,11 +85,15 @@ body, html {
     border: 1px solid $lightGray;
     display: inline-block;
     padding: 4px 6px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     font-size: 14px;
     line-height: 20px;
     box-shadow: inset 0 1px 1px $darkAlphaGray;
     transition: border linear 0.2s, box-shadow linear 0.2s;
+  }
+
+  .inline.right{
+    margin-bottom: 8px;
   }
 
   [contenteditable="true"] {

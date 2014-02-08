@@ -8,7 +8,6 @@ define(['backbone'],
                 this.on('change:label', _generateSlug, this);
 
                 _toggleMulti.call(this, this);
-                this.on('change:multi', _toggleMulti, this);
             },
             defaults : {
                 _id : '',
