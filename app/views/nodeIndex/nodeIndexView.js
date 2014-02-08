@@ -1,17 +1,18 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'underscore',
-    'text!views/nodeDetail/_nodeDetailRow.html'],
-    function (GrasshopperBaseView, nodeIndexViewConfig, NodeDetailView, _, nodeDetailRowTemplate) {
+    'text!views/nodeDetail/_nodeDetailRow.html', 'jquery', 'resources', 'constants'],
+    function (GrasshopperBaseView, nodeIndexViewConfig, NodeDetailView, _,
+              nodeDetailRowTemplate, $, resources, constants) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions: nodeIndexViewConfig,
-            beforeRender : beforeRender,
-            appendNodeDetailRow : appendNodeDetailRow
+            beforeRender : beforeRender
         });
 
         function beforeRender ($deferred) {
-            var self = this;
+            var self = this,
+                models;
 
             if (this.nodeId) {
                 // TODO: Make this a computed property.
@@ -30,17 +31,22 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
 
             this.model.fetch()
                 .done(function () {
-                    _.each(self.model.attributes, function (node) {
-                        if (_.has(node, '_id')) {
-                            self.appendNodeDetailRow(node);
-                        }
+                    models = _.omit(self.model.attributes, 'resources');
+
+                    if(_.isEmpty(models)) {
+                        _addEmptyNodeMessage.call(self);
+                    }
+
+                    _.each(models, function (node) {
+                        _appendNodeDetailRow.call(self, node);
                     });
+
                     $deferred.resolve();
                     self.app.router.mastheadView.model.set('nodesCount', _.size(self.model.attributes) - 2);
                 });
         }
 
-        function appendNodeDetailRow (node) {
+        function _appendNodeDetailRow (node) {
             var nodeDetailView = new NodeDetailView({
                     name : 'nodeDetailRow',
                     modelData : node,
@@ -50,6 +56,16 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
                     mastheadButtons : this.mastheadButtons
                 });
             this.addChild(nodeDetailView);
+        }
+
+        function _addEmptyNodeMessage() {
+            var template = '<tr><td>[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
+
+            $('#nodeDetailRow').append(_.template(template, {
+                msg : resources.node.emptyNode,
+                linkText : resources.node.clickToAdd,
+                href : constants.internalRoutes.createContent.replace(':id', this.nodeId)
+            }));
         }
 
     });
