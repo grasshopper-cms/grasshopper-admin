@@ -6,6 +6,7 @@ define(['grasshopperBaseView'],
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
             addOptionToDropdown : addOptionToDropdown,
+            removeOptionFromDropdown : removeOptionFromDropdown,
             reduceCollection : reduceCollection
         });
 
@@ -14,22 +15,22 @@ define(['grasshopperBaseView'],
         }
 
         function addOptionToDropdown() {
-            this.collection.add({ _id: 'newoption', label: ''});
+            this.collection.add({ _id: '', label: ''});
+            this.reduceCollection();
+        }
+
+        function removeOptionFromDropdown(evt, context) {
+            console.log(context);
+            this.collection.remove(context.option);
+            this.reduceCollection();
         }
 
         function reduceCollection() {
-            var collection = [],
-                self = this;
+            var collection = [];
 
             this.collection.each(function(model) {
                 var option = model.toJSON();
-
-                if(!option.label) {
-                    self.collection.remove(model);
-                } else {
-                    option._id = option.label.replace(/ /g,'').toLowerCase();
-                    collection.push(option);
-                }
+                collection.push(option);
             });
             this.model.set('options', collection);
         }

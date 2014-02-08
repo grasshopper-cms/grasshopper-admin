@@ -205,6 +205,7 @@ define({
     upload : 'Upload',
     user_name : 'User Name',
     users : 'Users',
+    value : 'Value',
     validation : 'Validation',
     welcomeBack : 'Welcome Back',
     yes : 'Yes'
