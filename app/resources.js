@@ -107,8 +107,8 @@ define({
         editContentTypes : 'Edit allowed Content Types',
         contentTypeAdded : 'Content Type Added',
         deletionWarningWithoutAssociatedContent : 'Are you sure you want to delete this content type?',
-        deletionWarningWithAssociatedContent : 'WARNING. You have content associated with this content type. ' +
-            'If you delete this all the following content will be deleted!!',
+        deletionWarningWithAssociatedContent : 'You have :count of content associated with this content type. ' +
+            'If you confirm it will all be deleted!',
         successfullyDeletedPre : 'Content Type ',
         successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: ',

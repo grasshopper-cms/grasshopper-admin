@@ -42,14 +42,17 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
             .then(_actuallyDeleteContentType.bind(this));
     }
 
-    function _warnUserBeforeDeleting(associatedContent) {
-        if(associatedContent) {
+    function _warnUserBeforeDeleting(associatedContentCount) {
+        var inflectedMessage;
+
+        if(associatedContentCount) {
+            inflectedMessage = (associatedContentCount > 1) ? 'pieces' : 'piece';
+            inflectedMessage = associatedContentCount + ' ' + inflectedMessage;
+
             return this.displayModal(
                 {
                     header : 'Warning!',
-                    msg : resources.contentType.deletionWarningWithAssociatedContent,
-                    data : associatedContent,
-                    type : 'list'
+                    msg : resources.contentType.deletionWarningWithAssociatedContent.replace(':count', inflectedMessage)
                 });
         }
 
@@ -62,7 +65,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
 
     function _getContentTypesContent() {
         var $deferred = new $.Deferred(),
-            self = this;
+            self = this,
+            content;
 
         Api.makeQuery(
             {
@@ -74,9 +78,10 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
                 }
             })
             .done(function(results) {
-                var content = _.where(results, {type: self.model.get('_id')});
-                if(content.length > 0) {
-                    $deferred.resolve(_.pluck(content, 'label'));
+                content = _.where(results, {type: self.model.get('_id')});
+
+                if(content.length) {
+                    $deferred.resolve(content.length);
                 } else {
                     $deferred.resolve();
                 }
