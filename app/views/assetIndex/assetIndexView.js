@@ -22,7 +22,6 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
 
             this.model.fetch()
                 .done(function () {
-                    console.log(self);
                     assets = _.omit(self.model.attributes, 'resources');
 
                     if(_.isEmpty(assets)) {
