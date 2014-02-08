@@ -1,18 +1,18 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'underscore',
-    'text!views/assetDetail/_assetDetailRow.html'],
+    'text!views/assetDetail/_assetDetailRow.html', 'jquery', 'constants', 'resources'],
     function (GrasshopperBaseView, assetIndexViewConfig, AssetDetailView, _,
-              assetDetailRowTemplate) {
+              assetDetailRowTemplate, $, constants, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : assetIndexViewConfig,
-            beforeRender : beforeRender,
-            appendAssetDetailRow : appendAssetDetailRow
+            beforeRender : beforeRender
         });
 
         function beforeRender () {
-            var self = this;
+            var self = this,
+                assets;
 
             if (this.nodeId) {
                 this.model.url = this.model.url.replace(':id', this.nodeId);
@@ -22,16 +22,21 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
 
             this.model.fetch()
                 .done(function () {
-                    _.each(self.model.attributes, function (asset) {
-                        if (_.has(asset, 'url')) {
-                            self.appendAssetDetailRow(asset);
-                        }
+                    console.log(self);
+                    assets = _.omit(self.model.attributes, 'resources');
+
+                    if(_.isEmpty(assets)) {
+                        _addEmptyAssetsMessage.call(self);
+                    }
+
+                    _.each(assets, function (asset) {
+                        _appendAssetDetailRow.call(self, asset);
                     });
                     self.app.router.mastheadView.model.set('filesCount', _.size(self.model.attributes) - 2);
                 });
         }
 
-        function appendAssetDetailRow (asset) {
+        function _appendAssetDetailRow (asset) {
             var assetDetailView = new AssetDetailView({
                     name : 'assetDetailRow',
                     modelData : _.extend(asset, { nodeId : this.nodeId }),
@@ -41,5 +46,15 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
                     mastheadButtons : this.mastheadButtons
                 });
             assetDetailView.start();
+        }
+
+        function _addEmptyAssetsMessage() {
+            var template = '<tr><td>[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
+
+            $('#assetDetailRow').append(_.template(template, {
+                msg : resources.asset.emptyNode,
+                linkText : resources.asset.clickToAdd,
+                href : constants.internalRoutes.createAssets.replace(':id', this.nodeId)
+            }));
         }
     });

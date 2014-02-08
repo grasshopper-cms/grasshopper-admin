@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'underscore',
-    'text!views/nodeDetail/_nodeDetailRow.html', 'jquery', 'resources', 'constants'],
+    'text!views/nodeDetail/_nodeDetailRow.html'],
     function (GrasshopperBaseView, nodeIndexViewConfig, NodeDetailView, _,
-              nodeDetailRowTemplate, $, resources, constants) {
+              nodeDetailRowTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -33,10 +33,6 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
                 .done(function () {
                     models = _.omit(self.model.attributes, 'resources');
 
-                    if(_.isEmpty(models)) {
-                        _addEmptyNodeMessage.call(self);
-                    }
-
                     _.each(models, function (node) {
                         _appendNodeDetailRow.call(self, node);
                     });
@@ -57,15 +53,4 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
                 });
             this.addChild(nodeDetailView);
         }
-
-        function _addEmptyNodeMessage() {
-            var template = '<tr><td>[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
-
-            $('#nodeDetailRow').append(_.template(template, {
-                msg : resources.node.emptyNode,
-                linkText : resources.node.clickToAdd,
-                href : constants.internalRoutes.createContent.replace(':id', this.nodeId)
-            }));
-        }
-
     });

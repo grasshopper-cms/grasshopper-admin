@@ -76,8 +76,8 @@ define({
         enterName : 'Please enter the name of the folder: ',
         errorCreating : 'Folder could not be added.',
         editName : 'Edit Folder name:',
-        emptyNode : 'This folder does not contain and content.',
-        clickToAdd : 'Click to add one.'
+        emptyNode : 'This folder does not contain any content.',
+        clickToAdd : 'Click to add some.'
     },
     contentItem : {
         deletionWarning : 'Are you sure you want to delete this content?',
@@ -139,7 +139,9 @@ define({
         uploadAssetError : 'Upload Failed',
         dragFilesHere : 'Drag and Drop Files Here. Or Click to Select.',
         uploadInRoot : 'You cannot upload assets in the Root.',
-        uploadAssetModalMsg : 'Upload an Asset.'
+        uploadAssetModalMsg : 'Upload an Asset.',
+        emptyNode : 'This folder does not contain any files.',
+        clickToAdd : 'Click to add some.'
     },
     contentBrowse : {
         author : 'Author',

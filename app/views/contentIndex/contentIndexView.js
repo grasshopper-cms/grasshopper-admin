@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'underscore', 'contentDetailView',
-    'text!views/contentDetail/_contentDetailRow.html'],
+    'text!views/contentDetail/_contentDetailRow.html', 'jquery', 'resources'],
     function (GrasshopperBaseView, contentIndexViewConfig, Api, constants, _, ContentDetailView,
-              contentDetailRowTemplate) {
+              contentDetailRowTemplate, $, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -32,6 +32,11 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
             var self = this;
 
             this.model.set('nodeContent', data);
+
+            if(_.isEmpty(data)) {
+                _addEmptyNodeMessage.call(this);
+            }
+
             _.each(data, function (content) {
                 _appendContentDetailRow.call(self, content);
             });
@@ -56,6 +61,16 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
                     mastheadButtons : this.mastheadButtons
                 });
             this.addChild(contentDetailView);
+        }
+
+        function _addEmptyNodeMessage() {
+            var template = '<tr><td>[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
+
+            $('#contentDetailRow').append(_.template(template, {
+                msg : resources.node.emptyNode,
+                linkText : resources.node.clickToAdd,
+                href : constants.internalRoutes.createContent.replace(':id', this.nodeId)
+            }));
         }
 
     });
