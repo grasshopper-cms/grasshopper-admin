@@ -63,7 +63,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function saveContent() {
-        console.log(this);
+        this.model.save()
+            .done(function() {
+                console.log('IT WORKED');
+            })
+            .fail(function() {
+                console.log('it did not work');
+            });
     }
 
     function _fetchContentDetails($deferred) {
