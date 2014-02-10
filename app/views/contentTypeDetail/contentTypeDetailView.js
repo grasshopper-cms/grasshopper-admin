@@ -68,6 +68,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
             self = this,
             content;
 
+        // TODO: This needs to be made more specific, Only get THIS types content. not all content.
         Api.makeQuery(
             {
                 nodes : [],
