@@ -10,7 +10,6 @@ define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $,
             nodeId = this.model.get('node._id'),
             self = this;
 
-        console.log(this);
         _getNodeDetailRecursively.call(this, nodeId)
             .done(function() {
                 if(isNew) {

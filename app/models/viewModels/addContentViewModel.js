@@ -1,28 +1,40 @@
-define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers'],
-    function (Model, resources, constants, masseuse, helpers) {
+define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'underscore'],
+    function (Model, resources, constants, masseuse, helpers, _) {
     'use strict';
 
     var ComputedProperty = masseuse.ComputedProperty,
-        validation = helpers.validation;
+        validation = helpers.validation,
+        ProxyProperty = masseuse.ProxyProperty;
 
     return Model.extend({
         defaults : {
             resources : resources,
             fields : {},
             slug : new ComputedProperty(['label'], function(label) {
-                return toUnderscore(label);
+                return _toUnderscore(label);
             }, true),
-            labelHasError : new ComputedProperty(['label'], validatePresence, true)
+            label : new ComputedProperty(['schema'], _findAndSetUseAsLabel, true),
+            labelHasError : new ComputedProperty(['label'], _validatePresence, true)
 
         },
         urlRoot : constants.api.content.url
     });
 
-    function toUnderscore(string){
-        return string.trim().toLowerCase().replace(/ /g, '_');
+    function _toUnderscore(string){
+        if(string) {
+            return string.trim().toLowerCase().replace(/ /g, '_');
+        } else {
+            return '';
+        }
     }
 
-    function validatePresence(string) {
+    function _validatePresence(string) {
         return !validation.stringHasLength(string);
+    }
+
+    function _findAndSetUseAsLabel(schema) {
+        var propertyName = _.findWhere(schema, { useAsLabel : true })._id;
+
+        return new ProxyProperty('fields.' + propertyName, this);
     }
 });
