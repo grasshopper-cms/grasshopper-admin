@@ -10,7 +10,6 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             defaultOptions : contentBrowseViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
-            addChildIndexViews : addChildIndexViews,
             refreshIndexViews : refreshIndexViews,
             activateTab : activateTab
         });
@@ -19,6 +18,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             if (this.model.get('nodeId')) {
                 buildMastheadBreadcrumb.call(this)
                     .done(function () {
+                        _addChildIndexViews.call(this);
                         $deferred.resolve();
                     })
                     .fail(function () {
@@ -31,11 +31,9 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
 
         function afterRender () {
             this.$el.foundation();
-
-            this.addChildIndexViews();
         }
 
-        function addChildIndexViews () {
+        function _addChildIndexViews () {
             _addNodeIndexView.call(this);
             _addAssetIndexView.call(this);
             _addContentIndexView.call(this);
@@ -74,7 +72,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             }
         }
 
-        // TODO: Refactor this method...it is ugly.
+        // TODO: Refactor this method to use the breadcrumb worker.
         function buildMastheadBreadcrumb () {
             var self = this,
                 crumb = [],

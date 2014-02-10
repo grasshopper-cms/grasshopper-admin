@@ -13,6 +13,7 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
         function beforeRender ($deferred) {
             var self = this,
                 models;
+            console.log('this guy');
 
             if (this.nodeId) {
                 // TODO: Make this a computed property.
