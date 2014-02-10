@@ -7,7 +7,11 @@ define(['backbone'],
                 _generateSlug.call(this, this, this.get('label'));
                 this.on('change:label', _generateSlug, this);
 
-                _toggleMulti.call(this, this);
+                _toggleMultiFieldset.call(this);
+
+                _ensureMaxIsAlwaysGreaterThanOrEqualToMin.call(this);
+                this.on('change:min', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
+                this.on('change:max', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
             },
             defaults : {
                 _id : '',
@@ -23,14 +27,19 @@ define(['backbone'],
             return '';
         }
 
-        function _toggleMulti(model) {
-            var min = model.get('min'),
-                max = model.get('max');
+        function _toggleMultiFieldset() {
+            var min = this.get('min'),
+                max = this.get('max');
 
-            if (max > 1 || min > 1) {
-                model.set('multi', true);
-            } else {
-                model.set('multi', false);
+            this.set('multi', (max > 1 || min > 1));
+        }
+
+        function _ensureMaxIsAlwaysGreaterThanOrEqualToMin() {
+            var min = this.get('min'),
+                max = this.get('max');
+
+            if(max <= min) {
+                this.set('max', min);
             }
         }
     });
