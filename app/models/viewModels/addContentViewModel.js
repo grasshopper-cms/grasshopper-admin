@@ -32,6 +32,6 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
     function _findAndSetUseAsLabel(schema) {
         var propertyName = _.findWhere(schema, { useAsLabel : true })._id;
 
-        return new ProxyProperty('fields.' + propertyName, this);
+        return this.get('fields.' + propertyName);
     }
 });
