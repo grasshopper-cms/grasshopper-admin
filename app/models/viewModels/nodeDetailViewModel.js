@@ -7,9 +7,6 @@ define(['grasshopperModel', 'resources', 'masseuse', 'constants'], function (Mod
             resources : resources,
             href : new ComputedProperty(['_id'], function (id) {
                 return constants.internalRoutes.nodeDetail.replace(':id', id);
-            }),
-            id : new ComputedProperty(['_id'], function (id) {
-                return id;
             })
         },
         urlRoot : constants.api.node.url
