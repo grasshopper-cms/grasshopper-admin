@@ -5,7 +5,6 @@ define(['api', 'jquery', 'resources', 'underscore'],
 
         return {
             getAvailableContentTypes : getAvailableContentTypes,
-            addContentTypesToFolder : addContentTypesToFolder,
             getNodesContentTypes : getNodesContentTypes
         };
 
@@ -25,18 +24,6 @@ define(['api', 'jquery', 'resources', 'underscore'],
                     }
                     $deferred.resolve(data.results);
                 });
-            return $deferred.promise();
-        }
-
-        function addContentTypesToFolder (nodeId, data) {
-            var $deferred = new $.Deferred(),
-                contentTypes = _.where(data, {checked: true}),
-                contentTypeToPost = _.map(contentTypes, function(type) { return { id : type._id };});
-
-            Api.addContentTypesToNode(nodeId, contentTypeToPost)
-                .done(_resolveDeferred.bind(this, $deferred))
-                .fail(_rejectDeferred.bind(this, $deferred, 'Content Types could not be added.'));
-
             return $deferred.promise();
         }
 
