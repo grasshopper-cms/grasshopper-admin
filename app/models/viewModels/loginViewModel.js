@@ -4,18 +4,17 @@ define(['masseuse', 'validation', 'underscore'], function (masseuse, validation,
         ComputedProperty = masseuse.ComputedProperty;
 
     return Model.extend({
-        validate : validate,
+        validate : _validate,
         defaults : {
             username : '',
             password : '',
-            usernameError : new ComputedProperty(['username'], validateUserLoginAttribute, true),
-            passwordError : new ComputedProperty(['password'], validateUserLoginAttribute, true),
-            // hasError is used to great out the submit box
-            hasError : new ComputedProperty(['usernameError', 'passwordError'], checkForErrors)
+            usernameError : new ComputedProperty(['username'], _validateUserLoginAttribute, true),
+            passwordError : new ComputedProperty(['password'], _validateUserLoginAttribute, true),
+            hasError : new ComputedProperty(['usernameError', 'passwordError'], _checkForErrors)
         }
     });
 
-    function validate (attributes) {
+    function _validate (attributes) {
         var self = this,
             invalid;
 
@@ -36,11 +35,11 @@ define(['masseuse', 'validation', 'underscore'], function (masseuse, validation,
         return invalid;
     }
 
-    function validateUserLoginAttribute (attribute) {
+    function _validateUserLoginAttribute (attribute) {
         return validation.stringHasLength(attribute) ? undefined : 'Too Short.';
     }
 
-    function checkForErrors (usernameError, passwordError) {
+    function _checkForErrors (usernameError, passwordError) {
         return !!(usernameError || passwordError);
     }
 });

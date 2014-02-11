@@ -3,8 +3,7 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
     'use strict';
 
     var ComputedProperty = masseuse.ComputedProperty,
-        validation = helpers.validation,
-        ProxyProperty = masseuse.ProxyProperty;
+        validation = helpers.validation;
 
     return Model.extend({
         defaults : {

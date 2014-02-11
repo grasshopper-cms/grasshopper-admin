@@ -15,19 +15,17 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers'],
                 statusClass : new ComputedProperty(['status'], function (status) {
                     return (status != 'Live') ? 'inactive' : '';
                 }),
-                slug : new ComputedProperty(['label'], function(label) {
-                    return toUnderscore(label);
-                }, true),
-                labelHasError : new ComputedProperty(['label'], validatePresence, true)
+                slug : new ComputedProperty(['label'], _toUnderscore, true),
+                labelHasError : new ComputedProperty(['label'], _validatePresence, true)
             },
             urlRoot : constants.api.content.url
         });
 
-        function toUnderscore(string){
+        function _toUnderscore(string){
             return string.trim().toLowerCase().replace(/ /g, '_');
         }
 
-        function validatePresence(string) {
+        function _validatePresence(string) {
             return !validation.stringHasLength(string);
         }
 

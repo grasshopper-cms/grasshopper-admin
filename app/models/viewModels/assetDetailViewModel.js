@@ -1,7 +1,9 @@
 define(['grasshopperModel', 'resources', 'underscore', 'constants', 'masseuse'],
     function (Model, resources, _, constants, masseuse) {
         'use strict';
+
         var ComputedProperty = masseuse.ComputedProperty;
+
         return Model.extend({
             defaults : {
                 resources : resources,
@@ -13,10 +15,10 @@ define(['grasshopperModel', 'resources', 'underscore', 'constants', 'masseuse'],
                 }),
                 progressWidth : 0
             },
-            urlRoot : buildUrl
+            urlRoot : _buildUrl
         });
 
-        function buildUrl () {
+        function _buildUrl () {
             return constants.api.assets.url.replace(':id', this.get('nodeId'));
         }
 
