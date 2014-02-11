@@ -52,7 +52,8 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
             return this.post(constants.api.node.url, data);
         },
         addContentTypesToNode : function (nodeId, contentType) {
-            return this.post(constants.api.nodesContentTypes.url.replace(':id', nodeId), contentType);
+            return this.post(constants.api.nodesContentTypes.url.replace(':id', nodeId),
+                JSON.stringify(contentType));
         },
         renameAsset : function (url, originalName, newName) {
             return this.post(url + '/rename', {
