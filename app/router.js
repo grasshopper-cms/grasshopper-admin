@@ -213,18 +213,14 @@ define([
                     .promise();
             }
 
-            newView.start()
-                .progress(function (event) {
-                    switch (event) {
-                    case GrasshopperBaseView.beforeRenderDone:
-                        if (currentView) {
-                            currentView.remove();
-                        }
+            newView.on(GrasshopperBaseView.beforeRenderDone, function() {
+                if (currentView) {
+                    currentView.remove();
+                }
+                currentView = newView;
+            });
 
-                        currentView = newView;
-                        break;
-                    }
-                })
+            newView.start()
                 .done(function () {
                     $deferred.resolve(newView);
                 })

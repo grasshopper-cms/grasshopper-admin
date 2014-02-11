@@ -118,6 +118,13 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                     view.passedInKey.should.equal(true);
                     view.extraKey.should.equal(true);
                 });
+                it('the passed in options are not modified', function() {
+                    var options = {test:{a:1},viewOptions:['test']},
+                        view = new OptionsView(options);
+                    options.test.a.should.equal(1);
+                    view.test.a = 0;
+                    options.test.a.should.equal(1);
+                });
                 it('a view instance is initialized with the passed in options and ignores default options if the' +
                     ' second argument is false', function() {
                     var view = new OptionsView({
@@ -485,6 +492,18 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                     $('#' + testDom).html('');
                 });
 
+                describe('including an options.el and no template', function() {
+                    it('should leave the dom as is', function() {
+                        $('#' + testDom).append('<ul></ul>');
+                        view = new BaseView({
+                            el : '#' + testDom
+                        });
+                        $('#' + testDom).html().should.equal('<ul></ul>');
+                        view.start();
+                        $('#' + testDom).html().should.equal('<ul></ul>');
+                    });
+                });
+
                 describe('not including an options.el', function() {
 
 
@@ -607,6 +626,63 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                         });
 
                     view.model.get('depth').should.equal('twain');
+                });
+            });
+
+            describe('elementCache', function() {
+                var view;
+
+                beforeEach(function (done) {
+                    view = new masseuse.BaseView({
+                        tagName: 'div',
+                        template: '<div id="el"><div id="test1"></div><div id="test2"></div></div>'
+                    });
+
+                    view.start().done(function () {
+                        done();
+                    });
+                });
+
+                it('exists', function() {
+                    view.elementCache.should.be.a.function;
+                });
+
+                it('Returns a jQuery element when a selector is found in the view', function () {
+                    var el = view.elementCache('#test1');
+
+                    view.$el.children().length.should.be.greaterThan(0);
+
+                    (el instanceof $).should.be.true;
+                    el.length.should.equal(1);
+                    el[0].id.should.equal('test1');
+                });
+
+                it('Returns an empty jQuery object if the selector is not found', function () {
+                    var el = view.elementCache('#test3');
+
+                    (el instanceof $).should.be.true;
+                    el.length.should.equal(0);
+                });
+
+                it('Returns the cached version of the jQuery object if it has already been found', function () {
+                    var el = view.elementCache('#test1'),
+                        el2 = view.elementCache('#test1');
+
+                    el.should.not.equal(view.$el.find('#test1'));
+                    el.should.equal(el2);
+                });
+
+                it('Is cleared when the view is rendered', function () {
+                    var el = view.elementCache('#test1'),
+                        el2 = view.elementCache('#test1');
+
+                    el2.should.equal(el);
+
+                    view.render();
+
+                    el2 = view.elementCache('#test1');
+
+                    el2.should.not.equal(el);
                 });
             });
         });

@@ -178,7 +178,7 @@ define([
     function initialize (options) {
         var self = this;
 
-        this.elementCache = _.memoize(elementCache);
+        this.elementCache = _.memoize(elementCache.bind(this));
 
         if(options) {
             if (options.viewOptions) {
@@ -223,12 +223,7 @@ define([
      */
     function start ($parentRenderPromise) {
         var $deferred = new $.Deferred();
-
-        // ParentView calls .start() on all children
-        // ParentView doesn't render until all children have notified that they are done
-        // After rendering, the ParentView notifies all children and they continue their lifecycle
-        _.defer(lifeCycle.runAllMethods.bind(this, $deferred, $parentRenderPromise));
-
+        lifeCycle.runAllMethods.call(this, $deferred, $parentRenderPromise);
         return $deferred.promise();
     }
 
@@ -237,6 +232,8 @@ define([
      */
     function render () {
         this.appendOrInsertView(arguments[arguments.length - 1]);
+
+        this.elementCache = _.memoize(elementCache.bind(this));
 
         _(this.children).each(function(child) {
             if (child.hasStarted) {
@@ -456,7 +453,9 @@ define([
 
     function _insertView ($startDeferred) {
         var template = this.template;
-        this.$el.html(template ? template(this.dataToJSON()) : ' ');
+        if (template) {
+            this.$el.html(template(this.dataToJSON()));
+        }
         $startDeferred && $startDeferred.notify && $startDeferred.notify(AFTER_TEMPLATING_DONE);
     }
 
