@@ -6,39 +6,42 @@ define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $,
     };
 
     function contentBreadcrumb($deferred, isNew) {
-        var label = this.model.get('label'),
-            nodeId = this.model.get('node._id'),
-            self = this;
+        var nodeId = this.model.get('node._id');
 
         _getNodeDetailRecursively.call(this, nodeId)
-            .done(function() {
-                if(isNew) {
-                    self.breadcrumbs.push({
-                        text: resources.newWord,
-                        href: constants.internalRoutes.createContent
-                    });
-                } else {
-                    self.breadcrumbs.push({
-                        text: label,
-                        href: constants.internalRoutes.contentDetail.replace(':id', self.model.get('_id'))
-                    });
-                }
-                $deferred.resolve();
-            });
+            .then(_addCurrentScope.bind(this, $deferred, isNew));
     }
 
-    function _getNodeDetailRecursively(nodeId) {
-        var $deferred = new $.Deferred(),
-            self = this;
+    function _addCurrentScope($deferred, isNew) {
+        if(isNew) {
+            this.breadcrumbs.push({
+                text: resources.newWord,
+                href: constants.internalRoutes.createContent
+            });
+        } else {
+            this.breadcrumbs.push({
+                text: this.model.get('label'),
+                href: constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id'))
+            });
+        }
+        $deferred.resolve();
+    }
+
+    function _getNodeDetailRecursively(nodeId, $deferred) {
+        var self = this;
+
+        $deferred = ($deferred) ? $deferred : new $.Deferred();
 
         Api.getNodeDetail(nodeId)
             .done(function(nodeDetail) {
+
                 self.breadcrumbs.push({
                     text: nodeDetail.label,
                     href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id)
                 });
-                if(nodeDetail.ancestors.length) {
-                    _getNodeDetailRecursively.call(null, nodeDetail.ancestors[0]);
+
+                if(nodeDetail.parent !== null) {
+                    _getNodeDetailRecursively.call(self, nodeDetail.parent._id, $deferred);
                 } else {
                     $deferred.resolve();
                 }
