@@ -10,12 +10,9 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
         defaults : {
             resources : resources,
             fields : {},
-            slug : new ComputedProperty(['label'], function(label) {
-                return _toUnderscore(label);
-            }, true),
+            slug : new ComputedProperty(['label'], _toUnderscore, true),
             label : new ComputedProperty(['schema'], _findAndSetUseAsLabel, true),
             labelHasError : new ComputedProperty(['label'], _validatePresence, true)
-
         },
         urlRoot : constants.api.content.url
     });
