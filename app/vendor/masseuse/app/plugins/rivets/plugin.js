@@ -11,6 +11,11 @@ define(['underscore', './loadRivets', './binders', './formatters', './adapters']
         function setViewRiveting (options) {
             var rivetsOptions,
                 rivetedView;
+
+            if (false === options.rivetsConfig || false === options.rivetConfig) {
+                return;
+            }
+
             defaultBinders = defaultBinders || {};
             defaultAdapters = defaultAdapters || {};
             defaultFormatters = defaultFormatters || {};
@@ -35,13 +40,11 @@ define(['underscore', './loadRivets', './binders', './formatters', './adapters']
             };
 
             this.listenTo(this, 'afterTemplatingDone', function() {
-                if (options.rivetsConfig || options.rivetConfig) {
-                    rivetedView = rivetView.call(this, rivetsOptions);
-                }
+                rivetedView = rivetView.call(this, rivetsOptions);
             });
 
             this.listenTo(this, 'onRemove', function () {
-                if (null !== rivetedView) {
+                if (!rivetedView) {
                     rivetedView.unbind();
                 }
             });

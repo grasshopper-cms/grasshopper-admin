@@ -28,6 +28,7 @@ define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $,
         $deferred.resolve();
     }
 
+
     function _getNodeDetailRecursively(nodeId, $deferred, depthFromEnd) {
         var self = this;
 

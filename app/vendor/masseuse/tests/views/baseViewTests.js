@@ -83,6 +83,12 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                                     });
                             });
                     });
+                    it('options.ViewType will declare the type of the view', function() {
+                        var view = new BaseView({
+                            ViewType : RivetsView
+                        });
+                        (view instanceof RivetsView).should.be.true;
+                    });
                 });
 
                 it('a view instance can be newed up from BaseView', function() {
@@ -111,6 +117,13 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                     view.defaultKey.should.equal(true);
                     view.passedInKey.should.equal(true);
                     view.extraKey.should.equal(true);
+                });
+                it('the passed in options are not modified', function() {
+                    var options = {test:{a:1},viewOptions:['test']},
+                        view = new OptionsView(options);
+                    options.test.a.should.equal(1);
+                    view.test.a = 0;
+                    options.test.a.should.equal(1);
                 });
                 it('a view instance is initialized with the passed in options and ignores default options if the' +
                     ' second argument is false', function() {
@@ -197,6 +210,52 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                         viewInstance.addChild(childView);
 
                         viewInstance.children.length.should.equal(1);
+                    });
+
+                    it('should be able to declaratively add child views using an options object', function() {
+                        viewInstance.children.length.should.equal(0);
+
+                        viewInstance.addChild({
+                            name : CHILD_VIEW_NAME
+                        });
+
+                        viewInstance.children.length.should.equal(1);
+                        (viewInstance.children[0] instanceof BaseView).should.be.true;
+                    });
+                });
+
+                describe('addChildren method', function() {
+                    it('multiple children can be added as arguments', function() {
+                        var childView = new BaseView({
+                                name : CHILD_VIEW_NAME
+                            }),
+                            childOptions = {
+                                name : CHILD_VIEW_NAME,
+                                ViewType : RivetsView
+                            };
+
+                        viewInstance.children.length.should.equal(0);
+                        viewInstance.addChildren(childView, childOptions);
+                        viewInstance.children.length.should.equal(2);
+                        (viewInstance.children[0] instanceof BaseView).should.be.true;
+                        (viewInstance.children[1] instanceof RivetsView).should.be.true;
+                    });
+                    it('multiple children can be added as an array', function() {
+                        var childView = new BaseView({
+                                name : CHILD_VIEW_NAME
+                            }),
+                            childOptions = {
+                                name : CHILD_VIEW_NAME,
+                                ViewType : RivetsView
+                            };
+
+                        viewInstance.children.length.should.equal(0);
+                        viewInstance.addChildren([
+                            childView, childOptions
+                        ]);
+                        viewInstance.children.length.should.equal(2);
+                        (viewInstance.children[0] instanceof BaseView).should.be.true;
+                        (viewInstance.children[1] instanceof RivetsView).should.be.true;
                     });
                 });
 
@@ -381,6 +440,40 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                             });
                     });
                 });
+
+                describe('parent afterRender method', function() {
+                    var $testDom;
+
+                    beforeEach(function() {
+                        $testDom = $('<div>').appendTo('body');
+                    });
+
+                    afterEach(function() {
+                        $testDom.remove();
+                    });
+
+                    it('should be fired after child render methods are fired', function(done) {
+                        new (BaseView.extend({
+                            defaultOptions : {
+                                el : $testDom[0],
+                                template : '<ul></ul>'
+                            },
+                            beforeRender : function () {
+                                var child = new BaseView({
+                                    appendTo : 'ul',
+                                    wrapper : false,
+                                    template : '<li>test</li>'
+                                });
+                                this.addChild(child);
+                            },
+                            afterRender : function () {
+                                this.$el.html().should.equal('<ul><li>test</li></ul>');
+                                done();
+                            }
+                        }))().start();
+                    });
+                });
+
             });
 
             describe('render', function() {
@@ -397,6 +490,18 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                 afterEach(function() {
                     view.remove();
                     $('#' + testDom).html('');
+                });
+
+                describe('including an options.el and no template', function() {
+                    it('should leave the dom as is', function() {
+                        $('#' + testDom).append('<ul></ul>');
+                        view = new BaseView({
+                            el : '#' + testDom
+                        });
+                        $('#' + testDom).html().should.equal('<ul></ul>');
+                        view.start();
+                        $('#' + testDom).html().should.equal('<ul></ul>');
+                    });
                 });
 
                 describe('not including an options.el', function() {
@@ -521,6 +626,63 @@ define(['jquery', 'underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse
                         });
 
                     view.model.get('depth').should.equal('twain');
+                });
+            });
+
+            describe('elementCache', function() {
+                var view;
+
+                beforeEach(function (done) {
+                    view = new masseuse.BaseView({
+                        tagName: 'div',
+                        template: '<div id="el"><div id="test1"></div><div id="test2"></div></div>'
+                    });
+
+                    view.start().done(function () {
+                        done();
+                    });
+                });
+
+                it('exists', function() {
+                    view.elementCache.should.be.a.function;
+                });
+
+                it('Returns a jQuery element when a selector is found in the view', function () {
+                    var el = view.elementCache('#test1');
+
+                    view.$el.children().length.should.be.greaterThan(0);
+
+                    (el instanceof $).should.be.true;
+                    el.length.should.equal(1);
+                    el[0].id.should.equal('test1');
+                });
+
+                it('Returns an empty jQuery object if the selector is not found', function () {
+                    var el = view.elementCache('#test3');
+
+                    (el instanceof $).should.be.true;
+                    el.length.should.equal(0);
+                });
+
+                it('Returns the cached version of the jQuery object if it has already been found', function () {
+                    var el = view.elementCache('#test1'),
+                        el2 = view.elementCache('#test1');
+
+                    el.should.not.equal(view.$el.find('#test1'));
+                    el.should.equal(el2);
+                });
+
+                it('Is cleared when the view is rendered', function () {
+                    var el = view.elementCache('#test1'),
+                        el2 = view.elementCache('#test1');
+
+                    el2.should.equal(el);
+
+                    view.render();
+
+                    el2 = view.elementCache('#test1');
+
+                    el2.should.not.equal(el);
                 });
             });
         });

@@ -43,6 +43,15 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
         RivetView.prototype.initialize.apply(this, arguments);
     }
 
+    function _handleAfterRender() {
+        if (this.mastheadButtons) {
+            this.channels.views.trigger('updateMastheadButtons', (this.mastheadButtons));
+        }
+        if (this.breadcrumbs) {
+            this.channels.views.trigger('updateMastheadBreadcrumbs', this);
+        }
+    }
+
     function start () {
         // Checking user permissions
         if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
@@ -50,23 +59,10 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
             return;
         }
 
-        var $promise = RivetView.prototype.start.apply(this, arguments),
-            self = this;
+        this.on(RivetView.afterRenderDone, _handleAfterRender.call(this));
 
-        $promise.progress(function (event) {
-            switch (event) {
-            case RivetView.afterRenderDone:
-                if (self.mastheadButtons) {
-                    self.channels.views.trigger('updateMastheadButtons', (self.mastheadButtons));
-                }
-                if (self.breadcrumbs) {
-                    self.channels.views.trigger('updateMastheadBreadcrumbs', self);
-                }
-                break;
-            }
-        });
-
-        return $promise;
+        return RivetView.prototype.start.apply(this, arguments);
     }
+
 
 });

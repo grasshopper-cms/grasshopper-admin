@@ -60,6 +60,7 @@ define([
             remove : remove,
             children : null,
             addChild : addChild,
+            addChildren : addChildren,
             removeChild : removeChild,
             refresh : refresh,
             refreshChildren : refreshChildren,
@@ -142,7 +143,8 @@ define([
             args = Array.prototype.slice.call(arguments, 0),
             length = args.length,
             last = args[length - 1],
-            useDefaultOptions = false !== last;
+            useDefaultOptions = false !== last,
+            ViewType;
 
         // remove optional boolean indicator of wanting to use defaultOptions
         if (length && 'object' !== typeof last) {
@@ -154,6 +156,12 @@ define([
         }
 
         options = createOptions.apply(null, args);
+
+        ViewType = options.ViewType;
+        if (ViewType) {
+            delete options.ViewType;
+            return new ViewType(options);
+        }
 
         this.cid = _.uniqueId('view');
         _.extend(this, _.pick(options, viewOptions));
@@ -170,7 +178,7 @@ define([
     function initialize (options) {
         var self = this;
 
-        this.elementCache = _.memoize(elementCache);
+        this.elementCache = _.memoize(elementCache.bind(this));
 
         if(options) {
             if (options.viewOptions) {
@@ -215,12 +223,7 @@ define([
      */
     function start ($parentRenderPromise) {
         var $deferred = new $.Deferred();
-
-        // ParentView calls .start() on all children
-        // ParentView doesn't render until all children have notified that they are done
-        // After rendering, the ParentView notifies all children and they continue their lifecycle
-        _.defer(lifeCycle.runAllMethods.bind(this, $deferred, $parentRenderPromise));
-
+        lifeCycle.runAllMethods.call(this, $deferred, $parentRenderPromise);
         return $deferred.promise();
     }
 
@@ -229,6 +232,8 @@ define([
      */
     function render () {
         this.appendOrInsertView(arguments[arguments.length - 1]);
+
+        this.elementCache = _.memoize(elementCache.bind(this));
 
         _(this.children).each(function(child) {
             if (child.hasStarted) {
@@ -330,13 +335,39 @@ define([
     }
 
     /**
+     * Add multiple child views. The method receives either an array of views to be
+     * added or is called with all the views to be added.
+     * @memberof masseuse/BaseView#
+     * @method
+     * @param childView
+     */
+    function addChildren () {
+        var args = _.isArray(arguments[0]) ? arguments[0] : arguments;
+        _.each(args, this.addChild.bind(this));
+    }
+
+    /**
      * Add a child view to the array of this views child view references.
      * The child must be started later. This happens in start or manually.
+     *
+     * This method can take either a view instance or options for a view.
+     *
+     * If options for a view are passed in, then BaseView is the default ViewType. The
+     * ViewType can be declared on the `options.ViewType`.
+     *
      * @memberof masseuse/BaseView#
      * @method
      * @param childView
      */
     function addChild (childView) {
+        if (childView instanceof Backbone.View) {
+            _addChildInstance.call(this, childView);
+        } else {
+            _addChildInstance.call(this, new BaseView(childView));
+        }
+    }
+
+    function _addChildInstance (childView) {
         if (!_(this.children).contains(childView)) {
             this.children.push(childView);
             childView.parent = this;
@@ -413,12 +444,18 @@ define([
         }
 
         $startDeferred && $startDeferred.notify && $startDeferred.notify(AFTER_TEMPLATING_DONE);
-        $(this.appendTo).append(this.el);
+        if (this.parent && _.isString(this.appendTo)) {
+            this.parent.$(this.appendTo).append(this.el);
+        } else {
+            $(this.appendTo).append(this.el);
+        }
     }
 
     function _insertView ($startDeferred) {
         var template = this.template;
-        this.$el.html(template ? template(this.dataToJSON()) : ' ');
+        if (template) {
+            this.$el.html(template(this.dataToJSON()));
+        }
         $startDeferred && $startDeferred.notify && $startDeferred.notify(AFTER_TEMPLATING_DONE);
     }
 
