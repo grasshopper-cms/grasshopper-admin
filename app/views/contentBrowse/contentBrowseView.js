@@ -28,7 +28,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
 
         function _addChildIndexViews ($deferred) {
             _addNodeIndexView.call(this);
-//            _addAssetIndexView.call(this);
+            _addAssetIndexView.call(this);
 //            _addContentIndexView.call(this);
             $deferred.resolve();
         }
@@ -45,14 +45,13 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             this.addChild(nodeIndexView);
         }
 
-//        function _addAssetIndexView () {
-//            var assetIndexView = new AssetIndexView({
-//                    nodeId : this.model.get('nodeId'),
-//                    mastheadButtons : null,
-//                    el : '#assetIndex'
-//                });
-//            this.addChild(assetIndexView);
-//        }
+        function _addAssetIndexView() {
+            var assetIndexView = new AssetIndexView({
+                    nodeId : this.model.get('nodeId'),
+                    mastheadButtons : null
+                });
+            this.addChild(assetIndexView);
+        }
 
 //        function _addContentIndexView () {
 //            if (!this.model.get('nodeId')) {

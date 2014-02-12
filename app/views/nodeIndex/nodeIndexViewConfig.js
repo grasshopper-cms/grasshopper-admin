@@ -11,7 +11,7 @@ define(['text!views/nodeIndex/nodeIndexView.html', 'resources', 'nodeIndexViewMo
             rivetConfig : 'auto',
             listeners : [],
             events : {},
-            appendTo : '.content-table',
+            appendTo : '#contentBrowseTable',
             permissions : ['admin', 'reader', 'editor']
         };
     });

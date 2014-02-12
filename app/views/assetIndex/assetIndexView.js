@@ -10,10 +10,7 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
             beforeRender : beforeRender
         });
 
-        function beforeRender () {
-            var self = this,
-                assets;
-
+        function beforeRender() {
             if (this.nodeId) {
                 this.model.url = this.model.url.replace(':id', this.nodeId);
             } else {
@@ -21,18 +18,23 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
             }
 
             this.model.fetch()
-                .done(function () {
-                    assets = _.omit(self.model.attributes, 'resources');
+                .done(_doStuff.bind(this));
+        }
 
-                    if(_.isEmpty(assets)) {
-                        _addEmptyAssetsMessage.call(self);
-                    }
+        function _doStuff() {
+            var assets = _.omit(this.model.attributes, 'resources');
 
-                    _.each(assets, function (asset) {
-                        _appendAssetDetailRow.call(self, asset);
-                    });
-                    self.app.router.mastheadView.model.set('filesCount', _.size(self.model.attributes) - 2);
-                });
+            if(_.isEmpty(assets)) {
+                _addEmptyAssetsMessage.call(this);
+            }
+
+            _.each(assets, _appendAssetDetailRow.bind(this));
+
+            _updateMastheadFilesCount.call(this);
+        }
+
+        function _updateMastheadFilesCount() {
+            this.app.router.mastheadView.model.set('filesCount', _.size(this.model.attributes) - 2);
         }
 
         function _appendAssetDetailRow (asset) {
