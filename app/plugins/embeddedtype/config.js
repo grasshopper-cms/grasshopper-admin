@@ -11,7 +11,7 @@ define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
             modelData : {
                 min : 1,
                 max : 1,
-                options : false,
+                options : true,
                 label : '',
                 type : 'embeddedtype',
                 required : false,
