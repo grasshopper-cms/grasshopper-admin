@@ -1,22 +1,24 @@
 /*global define:false*/
-define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!plugins/checkbox/setupTemplate.html'],
-    function (checkboxPluginTemplate, checkboxPluginModel, setupTemplate) {
+define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
+    'text!plugins/embeddedtype/setupTemplate.html'],
+    function (embeddedtypePluginTemplate, embeddedtypePluginModel,
+              setupTemplate) {
         'use strict';
 
         return {
-            name : 'checkboxPlugin',
-            ModelType : checkboxPluginModel,
+            name : 'embeddedtypePlugin',
+            ModelType : embeddedtypePluginModel,
             modelData : {
                 min : 1,
                 max : 1,
                 options : false,
                 label : '',
-                type : 'checkbox',
+                type : 'embeddedtype',
                 required : false,
                 validation : false,
                 value : ''
             },
-            template : checkboxPluginTemplate,
+            template : embeddedtypePluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',
