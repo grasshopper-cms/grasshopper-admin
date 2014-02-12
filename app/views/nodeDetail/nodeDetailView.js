@@ -66,9 +66,14 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'resources', 'underscore'
         }
 
         function _attachContentTypesToNode(modalData) {
-            var selectedContentTypes = modalData.data;
+            var selectedContentTypes = _.where(modalData.data, {checked: true}),
+                contentTypeToPost = _.map(selectedContentTypes, function(type) {
+                    return _.pick(type, 'label', 'helpText', '_id');
+                });
 
-            contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes)
+            this.model.set('allowedTypes', contentTypeToPost);
+
+            this.model.save()
                 .done(_handleSuccessfulContentTypeAddition.bind(this))
                 .fail(_handleFailedContentTypeAddition.bind(this));
         }

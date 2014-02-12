@@ -7,18 +7,19 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
         ProxyProperty = masseuse.ProxyProperty;
 
     return Model.extend({
+        initialize : initialize,
         defaults : {
             resources : resources,
             fields : {},
-            slug : new ComputedProperty(['label'], function(label) {
-                return _toUnderscore(label);
-            }, true),
-            label : new ComputedProperty(['schema'], _findAndSetUseAsLabel, true),
+            slug : new ComputedProperty(['label'], _toUnderscore, true),
             labelHasError : new ComputedProperty(['label'], _validatePresence, true)
-
         },
         urlRoot : constants.api.content.url
     });
+
+    function initialize() {
+        this.on('change:schema', _findAndSetUseAsLabel, this);
+    }
 
     function _toUnderscore(string){
         if(string) {
@@ -32,9 +33,9 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
         return !validation.stringHasLength(string);
     }
 
-    function _findAndSetUseAsLabel(schema) {
-        var propertyName = _.findWhere(schema, { useAsLabel : true })._id;
+    function _findAndSetUseAsLabel() {
+        var propertyName = _.findWhere(this.get('schema'), { useAsLabel : true })._id;
 
-        return new ProxyProperty('fields.' + propertyName, this);
+        this.set('label', new ProxyProperty('fields.' + propertyName, this));
     }
 });

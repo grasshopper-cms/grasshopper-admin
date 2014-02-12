@@ -1,7 +1,9 @@
 define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins'],
     function (Model, resources, constants, masseuse, plugins) {
     'use strict';
+
     var ComputedProperty = masseuse.ComputedProperty;
+
     return Model.extend({
         idAttribute : '_id',
         defaults : {
