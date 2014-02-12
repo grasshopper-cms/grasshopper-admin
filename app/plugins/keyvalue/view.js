@@ -17,11 +17,10 @@ define(['grasshopperBaseView'],
                 parsedValue = JSON.parse(JSONvalue);
 
                 for(key in parsedValue) {
-                    this.model.set('objKey', key);
-                    this.model.set('objValue', parsedValue[key]);
+                    this.model.set('objKey', key, {silent : true});
+                    this.model.set('objValue', parsedValue[key], {silent : true});
                 }
             }
-
 
         }
 
@@ -33,8 +32,6 @@ define(['grasshopperBaseView'],
             newObj[key] = value;
 
             this.model.set('value', JSON.stringify(newObj));
-
-
         }
 
     });
