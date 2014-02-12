@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentTypeWorker', 'jquery'],
-    function (GrasshopperBaseView, contentTypeWorker, $) {
+define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore'],
+    function (GrasshopperBaseView, contentTypeWorker, $, _) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -9,7 +9,7 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery'],
 
         function beforeRender($deferred) {
             _getAvailableContentTypes.call(this)
-                .done($deferred.resolve);
+                .done(_setActiveContentType.bind(this, $deferred));
         }
 
         function _getAvailableContentTypes() {
@@ -18,12 +18,21 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery'],
 
             contentTypeWorker.getAvailableContentTypes()
                 .always(function(availableContentTypes) {
-                    console.log(availableContentTypes);
                     self.model.set('availableContentTypes', availableContentTypes);
                     $deferred.resolve();
                 });
 
             return $deferred.promise();
+        }
+
+        function _setActiveContentType($deferred) {
+            var activeTypeId = this.model.get('options'),
+                activeContentType;
+            if(!_.isEmpty(activeTypeId)) {
+                activeContentType = _.findWhere(this.model.get('availableContentTypes'), {_id : activeTypeId});
+                this.model.set('activeContentType', activeContentType);
+            }
+            $deferred.resolve();
         }
 
     });
