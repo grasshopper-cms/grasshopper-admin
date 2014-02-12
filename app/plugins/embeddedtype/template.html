@@ -1,5 +1,7 @@
 <div class="row">
     <div class="large-12 small-centered columns">
-        <span>{{model:activeContentType->label}}</span>
+        <div data-rv-each-field="model:activeContentType->fields">
+            <div data-rv-fieldwrapper="field"></div>
+        </div>
     </div>
 </div>

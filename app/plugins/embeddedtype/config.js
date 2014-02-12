@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
-    'text!plugins/embeddedtype/setupTemplate.html'],
+    'text!plugins/embeddedtype/setupTemplate.html', 'appBinders'],
     function (embeddedtypePluginTemplate, embeddedtypePluginModel,
-              setupTemplate) {
+              setupTemplate, appBinders) {
         'use strict';
 
         return {
@@ -24,6 +24,7 @@ define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
             rivetConfig : 'auto',
             wrapper: false,
             listeners : [],
-            mastheadButtons : []
+            mastheadButtons : [],
+            rivetsBinders : [appBinders]
         };
     });

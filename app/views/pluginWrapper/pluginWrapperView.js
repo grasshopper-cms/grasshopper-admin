@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'plugins', 'underscore'],
-    function (GrasshopperBaseView, pluginWrapperViewConfig, plugins, _) {
+define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require'],
+    function (GrasshopperBaseView, pluginWrapperViewConfig, _, require) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -11,21 +11,28 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'plugins', 'underscore
             removeField : removeField
         });
 
-        function beforeRender() {
-            _getPlugin.call(this);
+        function beforeRender($deferred) {
+            _getPlugin.call(this, $deferred);
         }
 
         function afterRender() {
             _handleMultiple.call(this);
         }
 
-        function _getPlugin() {
-            var plugin = _.find(plugins.fields, {type : this.model.get('type')});
+        function _getPlugin($deferred) {
+            var self = this;
 
-            this.model.set({
-                ViewModule : plugin.view,
-                configModule : plugin.config
+            require(['plugins'], function(plugins) {
+                var plugin = _.find(plugins.fields, {type : self.model.get('type')});
+
+                self.model.set({
+                    ViewModule : plugin.view,
+                    configModule : plugin.config
+                });
+
+                $deferred.resolve();
             });
+
         }
 
 
