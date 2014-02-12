@@ -15,28 +15,22 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         });
 
         function beforeRender ($deferred) {
-            if (this.model.get('nodeId')) {
-                buildMastheadBreadcrumb.call(this)
-                    .done(function () {
-                        _addChildIndexViews.call(this);
-                        $deferred.resolve();
-                    })
-                    .fail(function () {
-                        $deferred.reject();
-                    });
-            } else {
-                $deferred.resolve();
-            }
+            var self = this;
+
+            buildMastheadBreadcrumb.call(this)
+                .done(_addChildIndexViews.bind(self, $deferred))
+                .fail($deferred.reject);
         }
 
         function afterRender () {
             this.$el.foundation();
         }
 
-        function _addChildIndexViews () {
+        function _addChildIndexViews ($deferred) {
             _addNodeIndexView.call(this);
-            _addAssetIndexView.call(this);
-            _addContentIndexView.call(this);
+//            _addAssetIndexView.call(this);
+//            _addContentIndexView.call(this);
+            $deferred.resolve();
         }
 
         function refreshIndexViews () {
@@ -51,26 +45,28 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             this.addChild(nodeIndexView);
         }
 
-        function _addAssetIndexView () {
-            var assetIndexView = new AssetIndexView({
-                    nodeId : this.model.get('nodeId'),
-                    mastheadButtons : null
-                });
-            this.addChild(assetIndexView);
-        }
+//        function _addAssetIndexView () {
+//            var assetIndexView = new AssetIndexView({
+//                    nodeId : this.model.get('nodeId'),
+//                    mastheadButtons : null,
+//                    el : '#assetIndex'
+//                });
+//            this.addChild(assetIndexView);
+//        }
 
-        function _addContentIndexView () {
-            if (!this.model.get('nodeId')) {
-                this.model.set('inRoot', true);
-            } else {
-                this.model.set('inRoot', false);
-                var contentIndexView = new ContentIndexView({
-                        nodeId : this.model.get('nodeId'),
-                        mastheadButtons : null
-                    });
-                this.addChild(contentIndexView);
-            }
-        }
+//        function _addContentIndexView () {
+//            if (!this.model.get('nodeId')) {
+//                this.model.set('inRoot', true);
+//            } else {
+//                this.model.set('inRoot', false);
+//                var contentIndexView = new ContentIndexView({
+//                        nodeId : this.model.get('nodeId'),
+//                        mastheadButtons : null,
+//                        el : '#contentDetailRow'
+//                    });
+//                this.addChild(contentIndexView);
+//            }
+//        }
 
         // TODO: Refactor this method to use the breadcrumb worker.
         function buildMastheadBreadcrumb () {

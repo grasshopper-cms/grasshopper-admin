@@ -351,7 +351,7 @@ define([
             this.contentBrowserNodeId = nodeId;
             loadMainContent(ContentBrowseView, {
                     modelData : {
-                        nodeId : nodeId
+                        nodeId : nodeId ? nodeId : 0
                     }
                 });
         }

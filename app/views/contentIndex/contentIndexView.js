@@ -55,7 +55,7 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
             var contentDetailView = new ContentDetailView({
                     name : 'nodeDetailRow',
                     modelData : content,
-                    appendTo : '#contentDetailRow',
+                    appendTo : this.$el,
                     wrapper : false,
                     template : contentDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
