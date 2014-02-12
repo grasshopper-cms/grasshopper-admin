@@ -1,9 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexView',
-    'assetIndexView', 'underscore', 'contentIndexView',
-    'api', 'constants', 'breadcrumbWorker'],
+    'assetIndexView', 'underscore', 'contentIndexView'],
     function (GrasshopperBaseView, contentBrowseViewConfig, $, NodeIndexView, AssetIndexView,
-              _, ContentIndexView, Api, constants, breadcrumbWorker) {
+              _, ContentIndexView) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -29,7 +28,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         function _addChildIndexViews ($deferred) {
             _addNodeIndexView.call(this);
             _addAssetIndexView.call(this);
-//            _addContentIndexView.call(this);
+            _addContentIndexView.call(this);
             $deferred.resolve();
         }
 
@@ -54,22 +53,22 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             this.addChild(assetIndexView);
         }
 
-//        function _addContentIndexView () {
-//            if (!this.model.get('inRoot')) {
-//                this.model.set('inRoot', false);
-//                var contentIndexView = new ContentIndexView({
-//                        nodeId : this.model.get('nodeId'),
-//                        mastheadButtons : null,
-//                        el : '#contentDetailRow'
-//                    });
-//                this.addChild(contentIndexView);
-//            }
-//        }
+        function _addContentIndexView () {
+            if (!this.model.get('inRoot')) {
+                var contentIndexView = new ContentIndexView({
+                        nodeId : this.model.get('nodeId'),
+                        mastheadButtons : null,
+                        el : '#contentDetailRow'
+                    });
+                this.addChild(contentIndexView);
+            }
+        }
 
         function buildMastheadBreadcrumb () {
             var $deferred = new $.Deferred();
 
-            breadcrumbWorker.nodeBreadcrumb.call(this, $deferred);
+//            breadcrumbWorker.nodeBreadcrumb.call(this, $deferred);
+            $deferred.resolve();
 
             return $deferred.promise();
         }

@@ -7,11 +7,22 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
 
         return GrasshopperBaseView.extend({
             defaultOptions : contentIndexViewConfig,
-            beforeRender : beforeRender
+            beforeRender : beforeRender,
+            afterRender : afterRender
         });
 
         function beforeRender ($deferred) {
             _getContent.call(this, $deferred);
+        }
+
+        function afterRender() {
+            var nodeContent = this.model.get('nodeContent');
+
+            if(_.isEmpty(nodeContent)) {
+                _addEmptyNodeMessage.call(this);
+            }
+
+            _.each(nodeContent, _appendContentDetailRow.bind(this));
         }
 
         function _getContent($deferred) {
@@ -29,18 +40,10 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
         }
 
         function _handleSuccessfulContentQuery($deferred, data) {
-            var self = this;
-
             this.model.set('nodeContent', data);
 
-            if(_.isEmpty(data)) {
-                _addEmptyNodeMessage.call(this);
-            }
+            _updateMastheadItemsCount.call(this);
 
-            _.each(data, function (content) {
-                _appendContentDetailRow.call(self, content);
-            });
-            this.app.router.mastheadView.model.set('itemsCount', _.size(this.model.attributes.nodeContent));
             $deferred.resolve();
         }
 
@@ -53,14 +56,18 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
 
         function _appendContentDetailRow (content) {
             var contentDetailView = new ContentDetailView({
-                    name : 'nodeDetailRow',
+                    name : 'contentDetailRow',
                     modelData : content,
                     appendTo : this.$el,
                     wrapper : false,
                     template : contentDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
                 });
-            this.addChild(contentDetailView);
+            contentDetailView.start();
+        }
+
+        function _updateMastheadItemsCount() {
+            this.app.router.mastheadView.model.set('itemsCount', _.size(this.model.attributes.nodeContent));
         }
 
         function _addEmptyNodeMessage() {
