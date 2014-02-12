@@ -11,10 +11,12 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
         });
 
         function beforeRender() {
-            if (this.nodeId) {
-                this.model.url = this.model.url.replace(':id', this.nodeId);
-            } else {
+            var inRoot = this.model.get('inRoot');
+
+            if (inRoot) {
                 this.model.url = this.model.url.replace(':id', 0);
+            } else {
+                this.model.url = this.model.url.replace(':id', this.nodeId);
             }
 
             this.model.fetch()

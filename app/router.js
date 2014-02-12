@@ -348,10 +348,11 @@ define([
         }
 
         function displayContentBrowse (nodeId) {
-            this.contentBrowserNodeId = nodeId;
+            this.mastheadView.model.trigger('contentBrowseNodeId', nodeId);
             loadMainContent(ContentBrowseView, {
                     modelData : {
-                        nodeId : nodeId ? nodeId : 0
+                        nodeId : nodeId ? nodeId : 0,
+                        inRoot : !nodeId ? true : false
                     }
                 });
         }

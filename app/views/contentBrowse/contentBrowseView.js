@@ -1,9 +1,9 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexView',
     'assetIndexView', 'underscore', 'contentIndexView',
-    'api', 'constants'],
+    'api', 'constants', 'breadcrumbWorker'],
     function (GrasshopperBaseView, contentBrowseViewConfig, $, NodeIndexView, AssetIndexView,
-              _, ContentIndexView, Api, constants) {
+              _, ContentIndexView, Api, constants, breadcrumbWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -48,15 +48,14 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         function _addAssetIndexView() {
             var assetIndexView = new AssetIndexView({
                     nodeId : this.model.get('nodeId'),
+                    inRoot : this.model.get('inRoot'),
                     mastheadButtons : null
                 });
             this.addChild(assetIndexView);
         }
 
 //        function _addContentIndexView () {
-//            if (!this.model.get('nodeId')) {
-//                this.model.set('inRoot', true);
-//            } else {
+//            if (!this.model.get('inRoot')) {
 //                this.model.set('inRoot', false);
 //                var contentIndexView = new ContentIndexView({
 //                        nodeId : this.model.get('nodeId'),
@@ -67,37 +66,10 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
 //            }
 //        }
 
-        // TODO: Refactor this method to use the breadcrumb worker.
         function buildMastheadBreadcrumb () {
-            var self = this,
-                crumb = [],
-                $deferred = new $.Deferred();
+            var $deferred = new $.Deferred();
 
-            Api.getNodeDetail(this.model.get('nodeId'))
-                .done(function (data) {
-                    if (data.ancestors) {
-                        crumb.push(self.breadcrumbs);
-                        _.each(data.ancestors, function (ancestor) {
-                            crumb.push({
-                                text : ancestor.label,
-                                href : constants.internalRoutes.nodeDetail.replace(':id', ancestor._id)
-                            });
-                        });
-                    } else {
-                        crumb.push(self.options.breadcrumbs);
-                    }
-
-                    crumb.push({
-                        text : data.label,
-                        href : constants.internalRoutes.nodeDetail.replace(':id', data._id)
-                    });
-
-                    self.model.set('breadcrumbs', crumb);
-                    $deferred.resolve();
-                })
-                .fail(function () {
-                    $deferred.reject();
-                });
+            breadcrumbWorker.nodeBreadcrumb.call(this, $deferred);
 
             return $deferred.promise();
         }

@@ -1,8 +1,9 @@
-define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $, resources) {
+define(['api', 'constants', 'jquery', 'resources', 'underscore'], function (Api, constants, $, resources, _) {
     'use strict';
 
     return {
-        contentBreadcrumb : contentBreadcrumb
+        contentBreadcrumb : contentBreadcrumb,
+        nodeBreadcrumb : nodeBreadcrumb
     };
 
     function contentBreadcrumb($deferred, isNew) {
@@ -28,6 +29,17 @@ define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $,
         $deferred.resolve();
     }
 
+    function nodeBreadcrumb($deferred) {
+        var nodeId = this.model.get('nodeId'),
+            depthFromEnd = 0;
+
+        _getNodeDetailRecursively.call(this, nodeId, null, depthFromEnd)
+            .done(function() {
+                $deferred.resolve();
+            });
+    }
+
+
     function _getNodeDetailRecursively(nodeId, $deferred, depthFromEnd) {
         var self = this;
 
@@ -36,14 +48,20 @@ define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $,
         Api.getNodeDetail(nodeId)
             .done(function(nodeDetail) {
 
-                self.breadcrumbs.splice(self.breadcrumbs.length - depthFromEnd, 0 ,{
-                    text: nodeDetail.label,
-                    href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id)
-                });
+                console.log(nodeDetail);
 
-                depthFromEnd++;
+                if(!_.isEmpty(nodeDetail)) {
+                    self.breadcrumbs.splice(self.breadcrumbs.length - depthFromEnd, 0 ,{
+                        text: nodeDetail.label,
+                        href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id)
+                    });
 
-                if(nodeDetail.parent !== null) {
+                    depthFromEnd++;
+                }
+
+                if(!_.isEmpty(nodeDetail) && nodeDetail.parent !== null) {
+
+
                     _getNodeDetailRecursively.call(self, nodeDetail.parent._id, $deferred, depthFromEnd);
                 } else {
                     $deferred.resolve();
