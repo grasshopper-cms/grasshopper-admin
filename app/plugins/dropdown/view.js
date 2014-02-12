@@ -20,7 +20,6 @@ define(['grasshopperBaseView'],
         }
 
         function removeOptionFromDropdown(evt, context) {
-            console.log(context);
             this.collection.remove(context.option);
             this.reduceCollection();
         }

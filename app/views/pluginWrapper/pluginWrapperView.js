@@ -48,6 +48,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'plugins', 'underscore
                     _addPlugin.call(self, value);
                 });
             } else if(values !== undefined) { // if values exists
+                console.log('is array?');
                 _addPlugin.call(this, values);
             } else { // if values does not exist and there is a minimum
                 while(i < minimum) {
@@ -58,6 +59,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'plugins', 'underscore
         }
 
         function _addPlugin(value) {
+            console.log('add Plugin');
             var model = {
                 value : value,
                 options : this.model.get('options')
