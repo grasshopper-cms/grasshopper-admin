@@ -1,9 +1,5 @@
 define([
-    'backbone',
-    'masseuse',
-    'validation',
-    'resources',
-    'constants',
+    'backbone', 'masseuse', 'validation', 'resources', 'constants',
     'underscore', 'helpers'
 ], function (Backbone, masseuse, validation, resources, constants, _, helpers) {
 
@@ -15,7 +11,8 @@ define([
     return Model.extend({
         fetch : fetch,
         save : save,
-        destroy : destroy
+        destroy : destroy,
+        toJSON : toJSON
     });
 
     function fetch (options) {
@@ -55,5 +52,9 @@ define([
             'Authorization' : 'Token ' + LocalStorage.get('authToken')
         });
         return Backbone.Model.prototype.destroy.call(this, options);
+    }
+
+    function toJSON() {
+        return _.clone(_.omit(this.attributes, 'resources', 'contants'));
     }
 });
