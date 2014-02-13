@@ -6,11 +6,11 @@ define(['text!views/contentIndex/contentIndexView.html', 'contentIndexViewModel'
         return {
             name : 'contentIndexView',
             ModelType : contentIndexViewModel,
-            appendTo : '#contentIndex',
+            appendTo : '#contentBrowseTable',
             wrapper : false,
             template : template,
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             events : {},
             permissions : ['admin', 'reader', 'editor']
         };

@@ -1,16 +1,27 @@
 /*global define:false*/
-define(['text!plugins/readonly/template.html', 'plugins/readonly/model'],
-    function (readonlyPluginTemplate, readonlyPluginModel) {
+define(['text!plugins/readonly/template.html', 'plugins/readonly/model', 'text!plugins/readonly/setupTemplate.html'],
+    function (readonlyPluginTemplate, readonlyPluginModel, setupTemplate) {
         'use strict';
 
         return {
             name : 'readonlyPlugin',
             ModelType : readonlyPluginModel,
-            modelData : {},
+            modelData : {
+                min : 1,
+                max : 1,
+                options : false,
+                label : '',
+                type : 'readonly',
+                required : false,
+                validation : false,
+                value : ''
+            },
+            wrapper: false,
             template : readonlyPluginTemplate,
+            setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             mastheadButtons : []
         };
     });

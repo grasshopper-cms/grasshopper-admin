@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDetail/_contentDetailRow.html',
-    'contentDetailViewModel', 'binders'],
-    function (formTemplate, rowTemplate, contentDetailViewModel, binders) {
+    'contentDetailViewModel', 'appBinders', 'resources', 'constants'],
+    function (formTemplate, rowTemplate, contentDetailViewModel, appBinders, resources, constants) {
         'use strict';
 
         return {
@@ -13,12 +13,19 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             template : formTemplate,
             events : {
                 'click #deleteContent' : 'deleteContent',
-                'click .clickableCell' : 'handleRowClick'
+                'click .clickableCell' : 'handleRowClick',
+                'click #saveContentButton' : 'saveContent'
             },
-            bindings : [],
+            listeners : [],
             rivetConfig : 'auto',
             mastheadButtons : [],
+            breadcrumbs : [
+                {
+                    text : resources.home,
+                    href : constants.internalRoutes.content
+                }
+            ],
             permissions : ['admin', 'reader', 'editor'],
-            rivetsBinders : [binders]
+            rivetsBinders : [appBinders]
         };
     });

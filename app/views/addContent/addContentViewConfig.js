@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'binders'],
-    function (addContentTemplate, addContentViewModel, binders) {
+define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'appBinders', 'resources', 'constants'],
+    function (addContentTemplate, addContentViewModel, appBinders, resources, constants) {
         'use strict';
 
         return {
@@ -15,9 +15,15 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'bin
                 'blur input' : 'consoleLogIt'
             },
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             mastheadButtons : [],
+            breadcrumbs : [
+                {
+                    text : resources.contentTypes,
+                    href : constants.internalRoutes.contentTypes
+                }
+            ],
             permissions : ['admin', 'editor'],
-            rivetsBinders : [binders]
+            rivetsBinders : [appBinders]
         };
     });

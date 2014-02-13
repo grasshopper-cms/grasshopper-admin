@@ -1,9 +1,10 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone', 'require'],
-    function (GrasshopperBaseView, plugins, _, Backbone, require) {
+define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require'],
+    function (GrasshopperBaseView, pluginWrapperViewConfig, _, require) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : pluginWrapperViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
             addField : addField,
@@ -15,20 +16,23 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone', 'require'],
         }
 
         function afterRender() {
-            _handleMulti.call(this);
+            _handleMultiple.call(this);
         }
 
         function _getPlugin($deferred) {
-            var plugin = _.find(plugins.fields, {type : this.model.get('type')}),
-                self = this;
+            var self = this;
 
-            require([plugin.view, plugin.config], function(ViewModule, configModule) {
+            require(['plugins'], function(plugins) {
+                var plugin = _.find(plugins.fields, {type : self.model.get('type')});
+
                 self.model.set({
-                    ViewModule : ViewModule,
-                    configModule : configModule
+                    ViewModule : plugin.view,
+                    configModule : plugin.config
                 });
+
                 $deferred.resolve();
             });
+
         }
 
 
@@ -36,28 +40,36 @@ define(['grasshopperBaseView', 'plugins', 'underscore', 'backbone', 'require'],
             _addPlugin.call(this, undefined);
         }
 
-        function removeField() {
-            this.collection.pop();
+        function removeField(e, context) {
+            this.collection.remove(context.field);
         }
 
-        function _handleMulti() {
+        function _handleMultiple() {
             var values = this.model.get('value'),
+                minimum = this.model.get('min'),
+                i = 0,
                 self = this;
 
-            if(values && values instanceof Array) {
+            if(values && _.isArray(values)) { // If values exists and is array
                 _.each(values, function(value) {
-                    _addPlugin.call(self, value, true);
+                    _addPlugin.call(self, value);
                 });
-            } else {
-                _addPlugin.call(this, values, true);
+            } else if(values !== undefined) { // if values exists
+                _addPlugin.call(this, values);
+            } else { // if values does not exist and there is a minimum
+                while(i < minimum) {
+                    _addPlugin.call(self);
+                    i++;
+                }
             }
         }
 
-        function _addPlugin(value, silent) {
-            var model = _.extend({} , _.omit(this.model.attributes, ['value', 'multiCollection', 'viewId']), {
-                value : value
-            });
+        function _addPlugin(value) {
+            var model = {
+                value : value,
+                options : this.model.get('options')
+            };
 
-            this.collection.add(model, [{silent : (silent)}]);
+            this.collection.add(model);
         }
     });

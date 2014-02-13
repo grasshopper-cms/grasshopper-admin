@@ -1,15 +1,16 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'contentTypeWorker'],
-    function (GrasshopperBaseView, resources, _, $, Api, contentTypeWorker) {
+define(['grasshopperBaseView', 'nodeDetailViewConfig', 'resources', 'underscore', 'jquery', 'api', 'contentTypeWorker'],
+    function (GrasshopperBaseView, nodeDetailViewConfig, resources, _, $, Api, contentTypeWorker) {
         'use strict';
         return GrasshopperBaseView.extend({
-            beforeRender : beforeRender,
+            defaultOptions : nodeDetailViewConfig,
+            afterRender : afterRender,
             prepareToDeleteNode : prepareToDeleteNode,
             handleRowClick : handleRowClick,
             prepareToEditNode : prepareToEditNode
         });
 
-        function beforeRender() {
+        function afterRender() {
             if(this.model.isNew()) {
                 _saveNodeWorkflow.call(this);
             }
@@ -65,9 +66,14 @@ define(['grasshopperBaseView', 'resources', 'underscore', 'jquery', 'api', 'cont
         }
 
         function _attachContentTypesToNode(modalData) {
-            var selectedContentTypes = modalData.data;
+            var selectedContentTypes = _.where(modalData.data, {checked: true}),
+                contentTypeToPost = _.map(selectedContentTypes, function(type) {
+                    return _.pick(type, 'label', 'helpText', '_id');
+                });
 
-            contentTypeWorker.addContentTypesToFolder(this.model.get('_id'), selectedContentTypes)
+            this.model.set('allowedTypes', contentTypeToPost);
+
+            this.model.save()
                 .done(_handleSuccessfulContentTypeAddition.bind(this))
                 .fail(_handleFailedContentTypeAddition.bind(this));
         }

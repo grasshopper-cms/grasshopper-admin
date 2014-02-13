@@ -1,10 +1,13 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (GrasshopperBaseView, resources, $, Api) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker) {
     'use strict';
     return GrasshopperBaseView.extend({
+        defaultOptions : contentDetailViewConfig,
         beforeRender : beforeRender,
         deleteContent : deleteContent,
-        handleRowClick : handleRowClick
+        handleRowClick : handleRowClick,
+        saveContent : saveContent
     });
 
     function beforeRender($deferred) {
@@ -59,6 +62,16 @@ define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (Grasshop
         return false;
     }
 
+    function saveContent() {
+        this.model.save()
+            .done(function() {
+                console.log('IT WORKED');
+            })
+            .fail(function() {
+                console.log('it did not work');
+            });
+    }
+
     function _fetchContentDetails($deferred) {
         var self = this;
         this.model.fetch()
@@ -76,7 +89,7 @@ define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (Grasshop
         Api.getContentType(this.model.get('type'))
             .done(function(schema) {
                 self.model.set('schema', schema);
-                $deferred.resolve();
+                _updateMastheadBreadcrumbs.call(self, $deferred);
             })
             .fail(function() {
                 self.displayAlertBox({
@@ -85,4 +98,10 @@ define(['grasshopperBaseView', 'resources', 'jquery', 'api'], function (Grasshop
                 $deferred.reject();
             });
     }
+
+    function _updateMastheadBreadcrumbs($deferred) {
+        breadcrumbWorker.contentBreadcrumb.call(this, $deferred);
+    }
 });
+
+

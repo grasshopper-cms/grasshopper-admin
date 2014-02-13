@@ -1,5 +1,11 @@
 <div class="row">
     <div class="large-12 columns">
+        <div class="right">
+            <input type="text" id="ContentSearch" class="search" placeholder="Search"/><a href="#" style="margin-left: 4px;"><i
+                class="icon-search"></i></a>
+        </div>
+
+
         <dl class="tabs" data-tab>
             <dd class="active" id="contentTab">
                 <a href="#panel2-1">
@@ -21,12 +27,8 @@
 
         <div class="tabs-content">
             <div class="content active" id="panel2-1">
-                <input type="text" id="ContentSearch" class="search" placeholder="Search"/><a href="#"><i
-                    class="icon-search"></i></a>
 
-                <div id="nodeIndex"></div>
-                <div id="contentIndex"></div>
-                <table class="content-table">
+                <table class="content-table" id="contentBrowseTable">
                     <thead>
                     <tr>
                         <th>{{model:resources.name}}</th>
@@ -36,18 +38,10 @@
                         <th style="text-align: center">{{model:resources.actions}}</th>
                     </tr>
                     </thead>
-                    <tbody id="nodeDetailRow">
-                    <!--built Dynamically nodeDetailViewRow via nodeIndexView-->
-                    </tbody>
-                    <tbody id="contentDetailRow">
-                    <!--built Dynamically contentDetailView via contentIndexView-->
-                    </tbody>
                 </table>
+
             </div>
             <div class="content" id="panel2-2" data-rv-hide="model:inRoot">
-                <input type="text" id="FileSearch" class="search" placeholder="Search"/><a href="#"><i
-                    class="icon-search"></i></a>
-
                 <div id="assetIndex">
                     <!--Built from assetIndex-->
                 </div>

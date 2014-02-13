@@ -1,8 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView'], function (GrasshopperBaseView) {
+define(['grasshopperBaseView', 'alertBoxViewConfig'], function (GrasshopperBaseView, alertBoxViewConfig) {
     'use strict';
 
     return GrasshopperBaseView.extend({
+        defaultOptions : alertBoxViewConfig,
         afterRender : afterRender,
         closeAlertBox : closeAlertBox
     });

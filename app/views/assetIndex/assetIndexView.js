@@ -1,45 +1,63 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'assetDetailView', 'assetDetailViewConfig', 'underscore',
-    'text!views/assetDetail/_assetDetailRow.html'],
-    function (GrasshopperBaseView, AssetDetailView, assetDetailViewConfig, _, assetDetailRowTemplate) {
+define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'underscore',
+    'text!views/assetDetail/_assetDetailRow.html', 'jquery', 'constants', 'resources'],
+    function (GrasshopperBaseView, assetIndexViewConfig, AssetDetailView, _,
+              assetDetailRowTemplate, $, constants, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender : beforeRender,
-            appendAssetDetailRow : appendAssetDetailRow
+            defaultOptions : assetIndexViewConfig,
+            beforeRender : beforeRender
         });
 
-        function beforeRender () {
-            var self = this;
+        function beforeRender() {
+            var inRoot = this.model.get('inRoot');
 
-            if (this.nodeId) {
-                this.model.url = this.model.url.replace(':id', this.nodeId);
-            } else {
+            if (inRoot) {
                 this.model.url = this.model.url.replace(':id', 0);
+            } else {
+                this.model.url = this.model.url.replace(':id', this.nodeId);
             }
 
             this.model.fetch()
-                .done(function () {
-                    _.each(self.model.attributes, function (asset) {
-                        if (_.has(asset, 'url')) {
-                            self.appendAssetDetailRow(asset);
-                        }
-                    });
-                    self.app.router.mastheadView.model.set('filesCount', _.size(self.model.attributes) - 2);
-                });
+                .done(_doStuff.bind(this));
         }
 
-        function appendAssetDetailRow (asset) {
-            var assetDetailView = new AssetDetailView(_.extend({}, assetDetailViewConfig,
-                {
+        function _doStuff() {
+            var assets = _.omit(this.model.attributes, 'resources');
+
+            if(_.isEmpty(assets)) {
+                _addEmptyAssetsMessage.call(this);
+            }
+
+            _.each(assets, _appendAssetDetailRow.bind(this));
+
+            _updateMastheadFilesCount.call(this);
+        }
+
+        function _updateMastheadFilesCount() {
+            this.app.router.mastheadView.model.set('filesCount', _.size(this.model.attributes) - 2);
+        }
+
+        function _appendAssetDetailRow (asset) {
+            var assetDetailView = new AssetDetailView({
                     name : 'assetDetailRow',
                     modelData : _.extend(asset, { nodeId : this.nodeId }),
                     appendTo : '#assetDetailRow',
                     wrapper : false,
                     template : assetDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
-                }
-            ));
+                });
             assetDetailView.start();
+        }
+
+        function _addEmptyAssetsMessage() {
+            var template = '<tr><td>[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
+
+            $('#assetDetailRow').append(_.template(template, {
+                msg : resources.asset.emptyNode,
+                linkText : resources.asset.clickToAdd,
+                href : constants.internalRoutes.createAssets.replace(':id', this.nodeId)
+            }));
         }
     });

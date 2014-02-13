@@ -1,6 +1,8 @@
 /*global define:false*/
-define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewModel', 'binders'],
-    function (pluginWrapperTemplate, pluginWrapperViewModel, binders) {
+define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewModel',
+    'appBinders', 'pluginWrapperBinders', 'formatters'],
+    function (pluginWrapperTemplate, pluginWrapperViewModel,
+              appBinders, pluginWrapperBinders, formatters) {
         'use strict';
 
         return {
@@ -10,14 +12,12 @@ define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewMod
             appendTo : '#stage',
             wrapper : false,
             template : pluginWrapperTemplate,
-            events : {
-                'click #addField' : 'addField',
-                'click #removeField' : 'removeField'
-            },
+            events : {},
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
-            rivetsBinders : [binders]
+            rivetsBinders : [appBinders, pluginWrapperBinders],
+            rivetsFormatters : [formatters]
         };
     });

@@ -1,11 +1,15 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) {
+define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
+    function (GrasshopperBaseView, mastheadViewConfig, _) {
     'use strict';
     return GrasshopperBaseView.extend({
+        defaultOptions : mastheadViewConfig,
         beforeRender : beforeRender,
         setButtons : setButtons,
         setBreadcrumbs : setBreadcrumbs,
-        interpolateMastheadButtons : interpolateMastheadButtons
+        interpolateMastheadButtons : interpolateMastheadButtons,
+        clickMastheadDropdown : clickMastheadDropdown,
+        consoleLogIt : consoleLogIt
     });
 
     function beforeRender () {
@@ -14,13 +18,16 @@ define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) 
     }
 
     function setButtons (buttonArray) {
-        //TODO: This resets the mastheadbuttons each time.
-        // I should do a check to see if anything has changed before updating it again.
         if (!buttonArray) {
             this.model.set('buttons', this.defaultMastheadButtons);
         } else {
             this.model.set('buttons', this.interpolateMastheadButtons(buttonArray));
+            this.$el.foundation();
         }
+    }
+
+    function consoleLogIt() {
+        console.log(this);
     }
 
     function setBreadcrumbs (view) {
@@ -45,17 +52,29 @@ define(['grasshopperBaseView', 'underscore'], function (GrasshopperBaseView, _) 
     }
 
     function _interpolateButton(thisButton) {
-        var nodeId = this.app.router.contentBrowserNodeId,
+        var nodeId = this.model.get('nodeId'),
             newButton = {},
             key;
         for (key in thisButton) {
+            if( _.isBoolean(thisButton[key]) ) {
+                newButton[key] = thisButton[key];
+                continue;
+            }
+
             if (nodeId) {
                 newButton[key] = thisButton[key].replace(':id', nodeId);
             } else {
                 newButton[key] = thisButton[key].replace(':id', 0);
             }
+
         }
         return newButton;
+    }
+
+    function clickMastheadDropdown(e, context) {
+        this.$el.click();
+        e.preventDefault();
+        this.channels.views.trigger('mastheadDropdownClicked', context);
     }
 
 });

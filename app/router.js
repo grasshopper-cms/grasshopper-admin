@@ -2,33 +2,45 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants',
     'grasshopperBaseView',
-    'loginView', 'loginViewConfig', 'loginWorker',
-    'dashboardView', 'dashboardViewConfig',
-    'alertBoxView', 'alertBoxViewConfig',
+    'loginView', 'loginWorker',
+    'dashboardView',
+    'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
-    'userDetailView', 'userDetailViewConfig', 'userWorker', 'UserModel',
-    'headerView', 'headerViewConfig',
-    'mastheadView', 'mastheadViewConfig',
-    'usersIndexView', 'usersIndexViewConfig',
-    'addUserView', 'addUserViewConfig',
-    'contentBrowseView', 'contentBrowseViewConfig',
-    'contentDetailView', 'contentDetailViewConfig',
-    'contentTypeIndexView', 'contentTypeIndexViewConfig',
-    'contentTypeDetailView', 'contentTypeDetailViewConfig',
-    'addFolderView', 'addFolderViewConfig',
-    'addContentView', 'addContentViewConfig',
-    'addAssetsView', 'addAssetsViewConfig',
+    'userDetailView', 'userWorker', 'UserModel',
+    'headerView',
+    'mastheadView',
+    'usersIndexView',
+    'addUserView',
+    'contentBrowseView',
+    'contentDetailView',
+    'contentTypeIndexView',
+    'contentTypeDetailView',
+    'addFolderView',
+    'addContentView',
+    'addAssetsView',
     'helpers'
 ],
-    function ($, Backbone, _, masseuse, Api, constants, GrasshopperBaseView, LoginView, loginViewConfig, loginWorker,
-              DashboardView, dashboardViewConfig, AlertBoxView, alertBoxViewConfig, ModalView, modalViewConfig,
-              resources, UserDetailView, userDetailViewConfig, userWorker, UserModel, HeaderView, headerViewConfig,
-              MastheadView, mastheadViewConfig, UsersIndexView, usersIndexViewConfig, AddUserView, addUserViewConfig,
-              ContentBrowseView, contentBrowseViewConfig, ContentDetailView, contentDetailViewConfig,
-              ContentTypeIndexView, contentTypeIndexViewConfig, ContentTypeDetailView, contentTypeDetailViewConfig,
-              AddFolderView, addFolderViewConfig, AddContentView, addContentViewConfig, AddAssetsView,
-              addAssetsViewConfig, helpers) {
+    function ($, Backbone, _, masseuse, Api, constants,
+              GrasshopperBaseView,
+              LoginView, loginWorker,
+              DashboardView,
+              AlertBoxView,
+              ModalView, modalViewConfig,
+              resources,
+              UserDetailView, userWorker, UserModel,
+              HeaderView,
+              MastheadView,
+              UsersIndexView,
+              AddUserView,
+              ContentBrowseView,
+              ContentDetailView,
+              ContentTypeIndexView,
+              ContentTypeDetailView,
+              AddFolderView,
+              AddContentView,
+              AddAssetsView,
+              helpers) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
@@ -50,6 +62,7 @@ define([
                 'user/:id' : 'displayUserDetail',
                 'addUser' : 'displayAddUser',
                 'item/types' : 'displayContentTypeIndex',
+                'item/types/new' : 'displayContentTypeDetail',
                 'item/types(/:id)' : 'displayContentTypeDetail',
                 'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
@@ -193,23 +206,21 @@ define([
             var $deferred = new $.Deferred(),
                 newView = new ViewType(config);
 
+            config = config || {};
+
             if (currentView && currentView.name === config.name && !bypass) {
                 return $deferred.resolve(currentView)
                     .promise();
             }
 
-            newView.start()
-                .progress(function (event) {
-                    switch (event) {
-                    case GrasshopperBaseView.beforeRenderDone:
-                        if (currentView) {
-                            currentView.remove();
-                        }
+            newView.on(GrasshopperBaseView.beforeRenderDone, function() {
+                if (currentView) {
+                    currentView.remove();
+                }
+                currentView = newView;
+            });
 
-                        currentView = newView;
-                        break;
-                    }
-                })
+            newView.start()
                 .done(function () {
                     $deferred.resolve(newView);
                 })
@@ -221,13 +232,13 @@ define([
         }
 
         function startHeader () {
-            this.headerView = new HeaderView(_.extend({}, headerViewConfig, {
+            this.headerView = new HeaderView({
                 modelData : {
                     userModel : this.user
                 }
-            }));
+            });
             this.headerView.start();
-            this.mastheadView = new MastheadView(mastheadViewConfig);
+            this.mastheadView = new MastheadView();
             this.mastheadView.start();
         }
 
@@ -250,22 +261,25 @@ define([
         }
 
         function displayLogin () {
-            loadMainContent(LoginView, loginViewConfig, true);
+            loadMainContent(LoginView);
         }
 
         function displayApp () {
-            loadMainContent(DashboardView, dashboardViewConfig, true);
+            loadMainContent(DashboardView, {
+                modelData : {
+                    userModel : this.user
+                }
+            });
         }
 
         function displayAlertBox (options) {
-            var alertBoxView = new AlertBoxView(_.extend({}, alertBoxViewConfig,
-                {
+            var alertBoxView = new AlertBoxView({
                     modelData : {
                         msg : (options.msg),
                         status : (options.status)
                     },
                     temporary : options.temporary
-                }));
+                });
             alertBoxView.start();
         }
 
@@ -280,14 +294,15 @@ define([
 
         function displayModal (options) {
             var $deferred = new $.Deferred(),
-                modalView = new ModalView(_.extend(modalViewConfig, {
+                modalView = new ModalView({
                     modelData : {
+                        header : (options.header) ? options.header : null,
                         msg : options.msg,
                         data : (options.data) ? options.data : null
                     },
                     type : (options.type) ? options.type : null,
                     $deferred : $deferred
-                }));
+                });
             this.hideModal();
             modalView.start();
             GrasshopperBaseView.prototype.modalView = modalView;
@@ -305,82 +320,72 @@ define([
         }
 
         function displayUserDetail (id) {
-            // TODO: I think this can be refactored to take advantage of the new permissions checking system.
             // I did the role check here instead of in the config with permissions, this is because there are Admin's
             // getting their own, Admins getting others, and others getting their own.
             if (this.user.get('role') === 'admin' || this.user.get('_id') === id) {
-                loadMainContent(UserDetailView, _.extend(userDetailViewConfig,
-                    {
+                loadMainContent(UserDetailView, {
                         modelData : {
-                            id : id,
+                            _id : id,
                             userModel : this.user
                         }
-                    }));
+                    });
             } else {
                 this.navigateTrigger('home');
             }
-
         }
 
         function displayUsersIndex (pageNumber, pageLimit) {
-            loadMainContent(UsersIndexView, _.extend(usersIndexViewConfig,
-                {
+            loadMainContent(UsersIndexView, {
                     modelData : {
                         pageNumber : pageNumber,
                         pageLimit : pageLimit
                     }
-                }), true);
+                });
         }
 
         function displayAddUser () {
-            loadMainContent(AddUserView, addUserViewConfig);
+            loadMainContent(AddUserView);
         }
 
         function displayContentBrowse (nodeId) {
-            this.contentBrowserNodeId = nodeId;
-            loadMainContent(ContentBrowseView, _.extend({}, contentBrowseViewConfig,
-                {
+            this.mastheadView.model.trigger('contentBrowseNodeId', nodeId);
+            loadMainContent(ContentBrowseView, {
                     modelData : {
-                        nodeId : nodeId
+                        nodeId : nodeId ? nodeId : 0,
+                        inRoot : !nodeId ? true : false
                     }
-                }
-            ), true);
+                });
         }
 
         function displayContentDetail (id) {
-            loadMainContent(ContentDetailView, _.extend({}, contentDetailViewConfig,
-                {
+            loadMainContent(ContentDetailView, {
                     modelData : {
                         _id : id
                     }
-                }
-            ), true);
+                });
         }
 
         function displayContentTypeIndex () {
-            loadMainContent(ContentTypeIndexView, contentTypeIndexViewConfig);
+            loadMainContent(ContentTypeIndexView);
         }
 
         function displayContentTypeDetail (id) {
-            loadMainContent(ContentTypeDetailView, _.extend(contentTypeDetailViewConfig,
-                {
+            loadMainContent(ContentTypeDetailView, {
                     modelData : {
                         _id : id
                     }
-                }));
+                });
         }
 
         function displayCreateFolder (nodeId) {
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModal.call(this, nodeId);
             }
-            var addFolderView = new AddFolderView(_.extend({}, addFolderViewConfig,
-                {
+            var addFolderView = new AddFolderView({
                     modelData : {
                         nodeId : (nodeId) ? nodeId : null
                     }
-                }
-            ));
+                });
             addFolderView.start();
         }
 
@@ -388,25 +393,24 @@ define([
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModal.call(this, nodeId);
             }
-            loadMainContent(AddContentView, _.extend({}, addContentViewConfig,
-                {
+            loadMainContent(AddContentView, {
                     modelData : {
-                        nodeId : nodeId
+                        node : {
+                            _id : nodeId
+                        }
                     }
-                }));
+                });
         }
 
         function displayCreateAssets (nodeId) {
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModal.call(this, nodeId);
             }
-            var addAssetsView = new AddAssetsView(_.extend({}, addAssetsViewConfig,
-                {
+            var addAssetsView = new AddAssetsView({
                     modelData : {
                         nodeId : nodeId
                     }
-                }
-            ));
+                });
             addAssetsView.start();
         }
 

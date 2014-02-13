@@ -10,7 +10,7 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
             wrapper : false,
             template : template,
             rivetConfig : 'auto',
-            bindings : [],
+            listeners : [],
             events : {},
             mastheadButtons : [
                 {

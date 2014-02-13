@@ -1,9 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
-    function (GrasshopperBaseView, resources, contentTypeWorker, Api) {
+define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentTypeWorker',
+    'api', 'constants', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, addContentViewConfig, resources, contentTypeWorker,
+              Api, constants, breadcrumbWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
+            defaultOptions : addContentViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
             saveContent : saveContent,
@@ -11,12 +14,12 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
         });
 
         function consoleLogIt() {
-            console.log(this.model);
+            console.log(this);
         }
 
         function beforeRender ($deferred) {
             // TODO: This node ID check is done in a bunch of different Views. Move this somewhere else to DRY this up.
-            if (this.model.get('nodeId') !== '0') {
+            if (this.model.get('node._id') !== '0') {
                 _handleCreateContent.call(this, $deferred);
             } else {
                 _createContentInRoot.call(this, $deferred);
@@ -28,19 +31,33 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
         }
 
         function saveContent() {
-            console.log(this);
-            console.log(this.model.url());
             this.model.save()
-                .done(function() {
-                    console.log('it worked');
-                })
-                .fail(function() {
-                    console.log('it did not work');
-                });
+                .done(_handleSuccessfulSave.bind(this))
+                .fail(_handleFailedSave.bind(this));
+        }
+
+        function _handleSuccessfulSave() {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.nodeDetail.replace(':id', this.model.get('node._id'))
+            );
+            this.displayTemporaryAlertBox(
+                {
+                    msg : resources.contentItem.successfullyAdded,
+                    status : true
+                }
+            );
+        }
+
+        function _handleFailedSave() {
+            this.displayAlertBox(
+                {
+                    msg : resources.contentItem.failedToAdd
+                }
+            );
         }
 
         function _handleCreateContent ($deferred) {
-            _getNodesContentTypes.call(this, this.model.get('nodeId'))
+            _getNodesContentTypes.call(this, this.model.get('node._id'))
                 .done(_decideHowToHandleContentTypeSelection.bind(this, $deferred))
                 .fail(_handleFailedContentTypeRetrieval.bind(this, $deferred));
         }
@@ -89,7 +106,7 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
         }
 
         function _handleNodeWithOneContentType($deferred, contentType) {
-            this.model.set('contentTypeId', contentType._id);
+            this.model.set('type', contentType._id);
             _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
         }
@@ -104,27 +121,24 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
         }
 
         function _handleSuccessfulContentTypeSelection($deferred, selectedContentType) {
-            this.model.set('contentTypeId', selectedContentType);
+            this.model.set('type', selectedContentType);
             _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
         }
 
         function _setNewContentsAuthor() {
             this.model.set('author', {
-                _id : this.app.user.get('_id'),
-                firstname : this.app.user.get('firstname'),
-                lastname : this.app.user.get('lastname'),
-                fullname : this.app.user.get('firstname') +' '+ this.app.user.get('lastname')
+                _id : this.app.user.get('_id')
             });
         }
 
         function _getSelectedContentTypeSchema($deferred) {
             var self = this;
 
-            Api.getContentType(this.model.get('contentTypeId'))
+            Api.getContentType(this.model.get('type'))
                 .done(function(data) {
                     self.model.set('schema', data.fields);
-                    $deferred.resolve();
+                    _updateMastheadBreadcrumbs.call(self, $deferred);
                 })
                 .fail(function() {
                     $deferred.reject();
@@ -157,6 +171,10 @@ define(['grasshopperBaseView', 'resources', 'contentTypeWorker', 'api'],
         function _navigateBack (trigger) {
             this.app.router.removeThisRouteFromBreadcrumb();
             this.app.router.navigateBack(trigger);
+        }
+
+        function _updateMastheadBreadcrumbs($deferred) {
+            breadcrumbWorker.contentBreadcrumb.call(this, $deferred, true);
         }
 
     });

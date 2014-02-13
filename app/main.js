@@ -11,6 +11,9 @@ require.config({
         dropdown : {
             deps : ['foundation']
         },
+        accordion : {
+            deps : ['foundation']
+        },
         tabs : {
             deps : ['foundation']
         },
@@ -35,10 +38,6 @@ require.config({
             location : 'vendor/masseuse/app'
         },
         {
-            name : 'rivetsPlugin',
-            location : 'vendor/masseuse/app/plugins/rivets'
-        },
-        {
             name : 'helpers',
             location : 'vendor/helpers/app'
         }
@@ -61,6 +60,7 @@ require.config({
         // Foundation Dependencies
         alerts : 'vendor/foundation/js/foundation/foundation.alert',
         dropdown : 'vendor/foundation/js/foundation/foundation.dropdown',
+        accordion : 'vendor/foundation/js/foundation/foundation.accordion',
         tabs : 'vendor/foundation/js/foundation/foundation.tab',
         tooltip : 'vendor/foundation/js/foundation/foundation.tooltip',
         abide : 'vendor/foundation/js/foundation/foundation.abide',
@@ -116,6 +116,7 @@ require.config({
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/UserModel',
         grasshopperModel : 'models/grasshopperModel',
+        pluginSetupModel : 'models/pluginSetupModel',
 
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',
@@ -146,6 +147,7 @@ require.config({
         userWorker : 'workers/userWorker',
         contentTypeWorker : 'workers/contentTypeWorker',
         assetWorker : 'workers/assetWorker',
+        breadcrumbWorker : 'workers/breadcrumbWorker',
 
         // Collections
         userCollection : 'collections/userCollection',
@@ -160,10 +162,13 @@ require.config({
         plugins : 'plugins',
 
         // Binders
-        binders : 'binders',
+        appBinders : 'appBinders',
+        pluginWrapperBinders : 'views/pluginWrapper/pluginWrapperBinders',
+        contentTypeDetailBinders : 'views/contentTypeDetail/contentTypeDetailBinders',
 
         // Formatters
         formatters : 'formatters',
+        contentTypeDetailFormatters : 'views/contentTypeDetail/contentTypeDetailFormatters',
 
         // Resources File
         resources : 'resources',
@@ -179,6 +184,7 @@ require([
     'constants',
     'alerts',
     'dropdown',
+    'accordion',
     'tabs',
     'tooltip',
     'abide',

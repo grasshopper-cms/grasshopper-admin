@@ -7,7 +7,7 @@ define(['addAssetsViewModel'], function (addAssetsViewModel) {
         ModelType : addAssetsViewModel,
         modelData : {},
         rivetConfig : 'auto',
-        bindings : [],
+        listeners : [],
         events : {},
         permissions : ['admin', 'editor']
     };

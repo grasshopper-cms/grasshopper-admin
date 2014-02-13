@@ -20,11 +20,11 @@ module.exports = function (grunt) {
         'setupBowerCopy',
         'copy:build',
         'copy:vendor',
-        'buildPluginsSingleton',
+        'registerPlugins',
         'sass',
         'autoprefixer:no_dest',
         'connect:site',
-        'watch'
+        'watch:dev'
     ]);
     grunt.registerTask('testServer', 'Build and watch task', [
         'jshint',

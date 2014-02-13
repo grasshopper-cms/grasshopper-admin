@@ -44,6 +44,7 @@ define({
         newUser : '#addUser',
         contentTypes : '#item/types',
         newContentType : '#item/types/new',
+        contentTypeDetail : '#item/types/:id',
         content : '#items',
         contentDetail : '#item/:id',
         nodeDetail : '#items/nodeid/:id',

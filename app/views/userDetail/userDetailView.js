@@ -1,8 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
-    function (GrasshopperBaseView, resources, userWorker, constants) {
+define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'userWorker', 'constants'],
+    function (GrasshopperBaseView, userDetailViewConfig, resources, userWorker, constants) {
         'use strict';
         return GrasshopperBaseView.extend({
+            defaultOptions : userDetailViewConfig,
             beforeRender : beforeRender,
             updateModel : updateModel,
             toggleEnabled : toggleEnabled,
@@ -13,18 +14,17 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
 
             // It is checking to see if the current model's ID is the same as Logged in user, the API endpoints are
             // different for Admin editing their own (/user) and admin editing someone else (/users/id)
-            if (this.model.get('id') === this.app.user.get('_id')) {
+            if (this.model.get('_id') === this.app.user.get('_id')) {
                 this.model.url = constants.api.user.url;
             } else {
                 this.model.urlRoot = constants.api.users.url;
             }
 
-            // TODO: I think this can be replaced with a this.model.isNew()
-            if (!this.model.has('_id')) {
+            if (this.model.has('role')) {
+                $deferred.resolve();
+            } else {
                 this.model.fetch()
                     .done($deferred.resolve);
-            } else {
-                $deferred.resolve();
             }
         }
 
@@ -69,7 +69,6 @@ define(['grasshopperBaseView', 'resources', 'userWorker', 'constants'],
         function _updateNameInHeader (model) {
             if (this.app.user.get('_id') === model._id) {
                 this.app.user.set(model);
-//                this.model.set('userModel', model);
             }
         }
 

@@ -11,7 +11,7 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
             wrapper : false,
             template : template,
             events : {},
-            bindings : [
+            listeners : [
                 ['channels.views', 'updateMastheadButtons', 'setButtons'],
                 ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']
             ],

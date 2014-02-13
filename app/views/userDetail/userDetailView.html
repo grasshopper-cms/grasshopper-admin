@@ -2,7 +2,7 @@
     <div class="large-10 small-centered columns">
         <fieldset>
             <legend>
-                <h2>{{model:resources->userDetailHeaderText}}{{model:firstname | spaceAfter}}{{model:lastname}}</h2>
+                <h2>{{model:resources->user->userDetailHeaderText}}{{model:firstname | spaceAfter}}{{model:lastname}}</h2>
             </legend>
 
             <div class="row">
@@ -14,7 +14,7 @@
                 <div class="large-8 columns">
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="firstName" class="right inline">{{model:resources->attributeTitles->firstName |
+                            <label for="firstName" class="right inline">{{model:resources->user->attributeTitles->firstName |
                                 withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
@@ -29,7 +29,7 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="lastName" class="right inline">{{model:resources->attributeTitles->lastName |
+                            <label for="lastName" class="right inline">{{model:resources->user->attributeTitles->lastName |
                                 withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
@@ -44,7 +44,7 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="statusText" class="right inline">{{model:resources->attributeTitles->enabled |
+                            <label for="statusText" class="right inline">{{model:resources->user->attributeTitles->enabled |
                                 withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
@@ -54,12 +54,12 @@
                                         <input id="trueSwitch" name="switch-z" type="radio" value="true"
                                                data-rv-checked="model:enabled"
                                                data-rv-enabled="model:userModel->role | equals admin">
-                                        <label for="trueSwitch" onclick="">Yes</label>
+                                        <label for="trueSwitch" onclick="">{{model:resources->yes}}</label>
 
                                         <input id="falseSwitch" name="switch-z" type="radio" value="false"
                                                data-rv-checked="model:enabled"
                                                data-rv-enabled="model:userModel->role | equals admin">
-                                        <label for="falseSwitch" onclick="">No</label>
+                                        <label for="falseSwitch" onclick="">{{model:resources->no}}</label>
 
                                         <span></span>
                                     </div>
@@ -70,7 +70,7 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="role" class="right inline">{{model:resources->attributeTitles->role |
+                            <label for="role" class="right inline">{{model:resources->user->attributeTitles->role |
                                 withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
@@ -90,7 +90,7 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="email" class="right inline">{{model:resources->attributeTitles->email |
+                            <label for="email" class="right inline">{{model:resources->user->attributeTitles->email |
                                 withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
@@ -104,7 +104,7 @@
 
                     <div class="row listItem">
                         <div class="large-3 columns">
-                            <label for="login" class="right inline">{{model:resources->attributeTitles->login |
+                            <label for="login" class="right inline">{{model:resources->user->attributeTitles->login |
                                 withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
@@ -118,7 +118,7 @@
 
                     <div class="row listItem" data-rv-show="model:userModel->role | equals admin">
                         <div class="large-3 columns">
-                            <label for="password" class="right inline">{{model:resources->attributeTitles->password |
+                            <label for="password" class="right inline">{{model:resources->user->attributeTitles->password |
                                 withColon}}</label>
                         </div>
                         <div class="large-9 columns editable">
@@ -133,8 +133,7 @@
 
                     <div class="row">
                         <div class="small-12 columns">
-                            <input id="saveUser" type="submit" class="button success radius right"
-                                   data-rv-text="model:resources->save"/>
+                            <button id="saveUser" class="button radius right">{{model:resources->save}}</button>
                         </div>
                     </div>
                 </div>

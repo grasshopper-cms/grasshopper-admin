@@ -1,5 +1,5 @@
-define(['underscore', './adapter', './binders', './formatters'],
-    function(_, rivetView, defaultBinders, defaultFormatters) {
+define(['underscore', './loadRivets', './binders', './formatters', './adapters'],
+    function(_, rivetView, defaultBinders, defaultFormatters, defaultAdapters) {
         'use strict';
         return setViewRiveting;
         /**
@@ -9,25 +9,43 @@ define(['underscore', './adapter', './binders', './formatters'],
          *
          */
         function setViewRiveting (options) {
-            var rivetsOptions;
+            var rivetsOptions,
+                rivetedView;
+
+            if (false === options.rivetsConfig || false === options.rivetConfig) {
+                return;
+            }
+
             defaultBinders = defaultBinders || {};
+            defaultAdapters = defaultAdapters || {};
             defaultFormatters = defaultFormatters || {};
 
+            options.rivetsComponents =
+                [{}].concat(options.rivetsComponents || options.rivetComponents);
             options.rivetsFormatters =
                 [{}, defaultFormatters].concat(options.rivetsFormatters || options.rivetFormatters);
+            options.rivetsAdapters =
+                [{}, defaultAdapters].concat(options.rivetsAdapters || options.rivetAdapters);
             options.rivetsBinders =
                 [{}, defaultBinders].concat(options.rivetsBinders || options.rivetBinders);
 
             rivetsOptions = {
-                rivetsPrefix : options.rivetsPrefix || options.rivetPrefix || 'data-rv',
+                rivetsInstaUpdate : options.rivetsInstaUpdate,
                 rivetsDelimiters : options.rivetsDelimiters || options.rivetDelimiters || ['{{', '}}'],
+                rivetsPrefix : options.rivetsPrefix || options.rivetPrefix || 'data-rv',
+                rivetsComponents : _.extend.apply(_, options.rivetsComponents),
                 rivetsFormatters : _.extend.apply(_, options.rivetsFormatters),
+                rivetsAdapters : _.extend.apply(_, options.rivetsAdapters),
                 rivetsBinders : _.extend.apply(_, options.rivetsBinders)
             };
 
             this.listenTo(this, 'afterTemplatingDone', function() {
-                if (options.rivetsConfig || options.rivetConfig) {
-                    rivetView.call(this, rivetsOptions);
+                rivetedView = rivetView.call(this, rivetsOptions);
+            });
+
+            this.listenTo(this, 'onRemove', function () {
+                if (!rivetedView) {
+                    rivetedView.unbind();
                 }
             });
         }

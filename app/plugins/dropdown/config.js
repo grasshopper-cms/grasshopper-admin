@@ -1,16 +1,32 @@
 /*global define:false*/
-define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model'],
-    function (dropdownPluginTemplate, dropdownPluginModel) {
+define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!plugins/dropdown/setupTemplate.html',
+'backbone'],
+    function (dropdownPluginTemplate, dropdownPluginModel, setupTemplate, Backbone) {
         'use strict';
 
         return {
             name : 'dropdownPlugin',
             ModelType : dropdownPluginModel,
-            modelData : {},
+            modelData : {
+                min : 1,
+                max : 1,
+                options : true,
+                label : '',
+                type : 'dropdown',
+                required : false,
+                validation : false,
+                value : ''
+            },
+            wrapper: false,
             template : dropdownPluginTemplate,
-            events : {},
+            setupTemplate : setupTemplate,
+            events : {
+                'click #addOptionToDropdown' : 'addOptionToDropdown',
+                'blur .optionInput' : 'reduceCollection'
+            },
             rivetConfig : 'auto',
-            bindings : [],
-            mastheadButtons : []
+            listeners : [],
+            mastheadButtons : [],
+            collection : new Backbone.Collection()
         };
     });

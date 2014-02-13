@@ -5,9 +5,6 @@
 // Require.js allows us to configure shortcut alias
     require.config({
         shim : {
-            underscore : {
-                exports : '_'
-            },
             mocha : {
                 exports : 'mocha'
             },
@@ -40,10 +37,6 @@
             {
                 name : 'masseuse',
                 location : '../app'
-            },
-            {
-                name : 'rivetsPlugin',
-                location : '../app/plugins/rivets'
             }
         ]
     });
@@ -58,6 +51,9 @@
         './models/proxyPropertyTests',
         './plugins/rivets/viewTests',
         './plugins/rivets/rivetsBackBoneCollectionsTests',
+        './plugins/rivets/collectionWithMasseuseModelsTests',
+        './plugins/rivets/componentsTest',
+        './plugins/rivets/binderTests',
         './utilities/channelsTests',
         './utilities/createOptionsTests',
         './utilities/deferMethodTests',

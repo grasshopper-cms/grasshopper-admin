@@ -1,8 +1,8 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, masseuse, helpers, rivetsPlugin) {
+define(['backbone', 'masseuse'], function (Backbone, masseuse) {
     'use strict';
 
-    var RivetView = rivetsPlugin.view,
+    var RivetView = masseuse.plugins.rivets.RivetsView,
         oldSet = Backbone.Collection.prototype.set;
 
     return RivetView.extend({
@@ -43,6 +43,15 @@ define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, 
         RivetView.prototype.initialize.apply(this, arguments);
     }
 
+    function _handleAfterRender() {
+        if (this.mastheadButtons) {
+            this.channels.views.trigger('updateMastheadButtons', (this.mastheadButtons));
+        }
+        if (this.breadcrumbs) {
+            this.channels.views.trigger('updateMastheadBreadcrumbs', this);
+        }
+    }
+
     function start () {
         // Checking user permissions
         if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
@@ -50,27 +59,10 @@ define(['backbone', 'masseuse', 'helpers', 'rivetsPlugin'], function (Backbone, 
             return;
         }
 
-        var $promise = RivetView.prototype.start.apply(this, arguments),
-            self = this;
+        this.on(RivetView.afterRenderDone, _handleAfterRender.call(this));
 
-        $promise.progress(function (event) {
-            switch (event) {
-            case RivetView.afterRenderDone:
-                if (self.mastheadButtons) {
-                    self.channels.views.trigger('updateMastheadButtons', (self.mastheadButtons));
-                }
-                if (self.breadcrumbs) {
-                    self.channels.views.trigger('updateMastheadBreadcrumbs', self);
-                }
-//                if (self.rivetConfig) {
-//                    self.rivetView();
-//                    self.channels.views.trigger('rivetViewRendered');
-//                }
-                break;
-            }
-        });
-
-        return $promise;
+        return RivetView.prototype.start.apply(this, arguments);
     }
+
 
 });
