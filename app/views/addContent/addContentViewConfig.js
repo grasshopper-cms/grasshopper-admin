@@ -11,7 +11,8 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'app
             wrapper : false,
             template : addContentTemplate,
             events : {
-                'click #saveContentButton' : 'saveContent'
+                'click #saveContentButton' : 'saveContent',
+                'blur input' : 'consoleLogIt'
             },
             rivetConfig : 'auto',
             listeners : [],

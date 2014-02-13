@@ -9,8 +9,13 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
             defaultOptions : addContentViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
-            saveContent : saveContent
+            saveContent : saveContent,
+            consoleLogIt : consoleLogIt
         });
+
+        function consoleLogIt() {
+            console.log(this);
+        }
 
         function beforeRender ($deferred) {
             // TODO: This node ID check is done in a bunch of different Views. Move this somewhere else to DRY this up.
