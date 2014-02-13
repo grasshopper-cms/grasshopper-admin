@@ -1,8 +1,7 @@
-define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers'],
-    function (Model, resources, constants, masseuse, helpers) {
+define(['grasshopperModel', 'resources', 'constants', 'masseuse'],
+    function (Model, resources, constants, masseuse) {
         'use strict';
-        var ComputedProperty = masseuse.ComputedProperty,
-            validation = helpers.validation;
+        var ComputedProperty = masseuse.ComputedProperty;
 
 
         return Model.extend({
@@ -15,18 +14,13 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers'],
                 statusClass : new ComputedProperty(['status'], function (status) {
                     return (status != 'Live') ? 'inactive' : '';
                 }),
-                slug : new ComputedProperty(['label'], _toUnderscore, true),
-                labelHasError : new ComputedProperty(['label'], _validatePresence, true)
+                slug : new ComputedProperty(['label'], _toUnderscore, true)
             },
             urlRoot : constants.api.content.url
         });
 
         function _toUnderscore(string){
             return string.trim().toLowerCase().replace(/ /g, '_');
-        }
-
-        function _validatePresence(string) {
-            return !validation.stringHasLength(string);
         }
 
     });

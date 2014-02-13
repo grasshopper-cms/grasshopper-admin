@@ -33,9 +33,10 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             if(!_.isEmpty(activeTypeId)) {
                 activeContentType = _.findWhere(this.model.get('availableContentTypes'), {_id : activeTypeId});
                 this.model.set('activeContentType', activeContentType);
+
+                _proxyValues.call(this);
             }
 
-            _proxyValues.call(this);
 
             $deferred.resolve();
         }
