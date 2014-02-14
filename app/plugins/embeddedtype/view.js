@@ -67,10 +67,9 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         function _setSubLabelsForAccordions() {
             var activeContentTypeFields = this.model.get('activeContentType.fields'),
-                fieldToUseAsLabel = _.findWhere(activeContentTypeFields, {useAsLabel : true})._id,
-                labelForAccordion = this.model.get('value.' + fieldToUseAsLabel);
+                fieldToUseAsLabel = _.findWhere(activeContentTypeFields, {useAsLabel : true})._id;
 
-            this.model.set('accordionLabel', labelForAccordion);
+            this.model.set('accordionLabel', new ProxyProperty('value.' + fieldToUseAsLabel, this.model));
         }
 
     });
