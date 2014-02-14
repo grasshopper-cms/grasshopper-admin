@@ -89,15 +89,11 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function _handleNodeWithZeroContentTypes($deferred) {
-            var self = this;
             this.displayModal(
                 {
                     msg : resources.contentType.noContentTypes
                 })
-                .always(function () {
-                    $deferred.reject();
-                    _navigateBack.call(self);
-                });
+                .always(_rejectDeferredThenNavigateBack.bind(this, $deferred));
         }
 
         function _handleNodeWithOneContentType($deferred, contentType) {
@@ -128,17 +124,14 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function _getSelectedContentTypeSchema($deferred) {
-            var self = this;
-
             Api.getContentType(this.model.get('type'))
-                .done(function(data) {
-                    self.model.set('schema', data.fields);
-                    _updateMastheadBreadcrumbs.call(self, $deferred);
-                })
-                .fail(function() {
-                    $deferred.reject();
-                });
+                .done(_handleSuccessfulContentSchemaRetrieval.bind(this, $deferred))
+                .fail($deferred.reject);
+        }
 
+        function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
+            this.model.set('schema', schema.fields);
+            _updateMastheadBreadcrumbs.call(this, $deferred);
         }
 
         function _handleCanceledContentTypeSelection($deferred) {
@@ -152,15 +145,16 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function _createContentInRoot ($deferred) {
-            var self = this;
             this.displayModal(
                 {
                     msg : resources.contentType.contentInRoot
                 })
-                .always(function () {
-                    $deferred.reject();
-                    _navigateBack.call(self);
-                });
+                .always(_rejectDeferredThenNavigateBack.bind(this, $deferred));
+        }
+
+        function _rejectDeferredThenNavigateBack($deferred) {
+            $deferred.reject();
+            _navigateBack.call(this);
         }
 
         function _navigateBack (trigger) {
