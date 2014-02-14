@@ -55,6 +55,6 @@ define([
     }
 
     function toJSON() {
-        return _.clone(_.omit(this.attributes, 'resources', 'contants'));
+        return _.clone(_.omit(this.attributes, 'resources', 'contants', 'schema'));
     }
 });
