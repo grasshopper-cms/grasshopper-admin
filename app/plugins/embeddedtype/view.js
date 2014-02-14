@@ -20,41 +20,38 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
         }
 
         function _getAvailableContentTypes() {
-            var $deferred = new $.Deferred(),
-                self = this;
+            var $deferred = new $.Deferred();
 
             contentTypeWorker.getAvailableContentTypes()
-                .always(function(availableContentTypes) {
-                    self.model.set('availableContentTypes', availableContentTypes);
-                    $deferred.resolve();
-                });
+                .always(_handleSuccessfulContentTypeRetrieval.bind(this, $deferred));
 
             return $deferred.promise();
+        }
+
+        function _handleSuccessfulContentTypeRetrieval($deferred, availableContentTypes) {
+            this.model.set('availableContentTypes', availableContentTypes);
+            $deferred.resolve();
         }
 
         function _setActiveContentType($deferred) {
             var activeTypeId = this.model.get('options'),
                 activeContentType;
+
             if(!_.isEmpty(activeTypeId)) {
                 activeContentType = _.findWhere(this.model.get('availableContentTypes'), {_id : activeTypeId});
                 this.model.set('activeContentType', activeContentType);
-
                 _proxyValues.call(this);
             }
-
 
             $deferred.resolve();
         }
 
         function _proxyValues() {
             var activeContentType = this.model.get('activeContentType'),
-                property,
-                self = this;
+                property;
 
             if(!this.model.get('value')) {
-                _.each(activeContentType.fields, function(type) {
-                    self.model.set('value.'+ type._id, undefined);
-                });
+                _.each(activeContentType.fields, _setEmptyValue.bind(this));
             }
 
             for (property in this.model.get('value')) {
@@ -62,6 +59,10 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             }
 
             _setSubLabelsForAccordions.call(this);
+        }
+
+        function _setEmptyValue(type) {
+            this.model.set('value.'+ type._id, undefined);
         }
 
         function _setSubLabelsForAccordions() {
