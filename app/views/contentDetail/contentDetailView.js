@@ -63,41 +63,53 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function saveContent() {
-        console.log(this);
         this.model.save()
-            .done(function() {
-                console.log('IT WORKED');
-            })
-            .fail(function() {
-                console.log('it did not work');
-            });
+            .done(_handleSuccessfulModelSave.bind(this))
+            .fail(_handleFailedModelSave.bind(this));
+    }
+
+    function _handleSuccessfulModelSave() {
+        this.displayTemporaryAlertBox({
+            msg : resources.contentItem.successfullySaved,
+            status : true
+        });
+    }
+
+    function _handleFailedModelSave() {
+        this.displayAlertBox({
+            msg : resources.contentItem.failedToSave
+        });
     }
 
     function _fetchContentDetails($deferred) {
-        var self = this;
         this.model.fetch()
-            .done(_getContentSchema.bind(self, $deferred))
-            .fail(function() {
-                self.displayAlertBox({
-                    msg : 'Could not retrieve content.'
-                });
-                $deferred.reject();
-            });
+            .done(_getContentSchema.bind(this, $deferred))
+            .fail(_handleFailedModelFetch.bind(this, $deferred));
+    }
+
+    function _handleFailedModelFetch($deferred) {
+        this.displayAlertBox({
+            msg : resources.contentItem.failedToFetch
+        });
+        $deferred.reject();
     }
 
     function _getContentSchema($deferred) {
-        var self = this;
         Api.getContentType(this.model.get('type'))
-            .done(function(schema) {
-                self.model.set('schema', schema);
-                _updateMastheadBreadcrumbs.call(self, $deferred);
-            })
-            .fail(function() {
-                self.displayAlertBox({
-                    msg : 'Could not retrieve content type for this content.'
-                });
-                $deferred.reject();
-            });
+            .done(_handleSuccessfulContentSchemaRetrieval.bind(this, $deferred))
+            .fail(_handleFailedContentSchemaRetrieval.bind(this, $deferred));
+    }
+
+    function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
+        this.model.set('schema', schema);
+        _updateMastheadBreadcrumbs.call(this, $deferred);
+    }
+
+    function _handleFailedContentSchemaRetrieval($deferred) {
+        this.displayAlertBox({
+            msg : resources.contentItem.failedToFetchContentsContentType
+        });
+        $deferred.reject();
     }
 
     function _updateMastheadBreadcrumbs($deferred) {
