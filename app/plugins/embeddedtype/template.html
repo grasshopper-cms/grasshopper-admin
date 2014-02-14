@@ -1,7 +1,20 @@
 <div class="row">
     <div class="large-12 small-centered columns">
-        <div data-rv-each-field="model:activeContentType->fields">
-            <div data-rv-fieldwrapper="field"></div>
-        </div>
+        <dl class="accordion" data-accordion>
+            <dd>
+                <a data-rv-href="model.cid | prepend #">{{model:accordionLabel}}</a>
+
+                <div data-rv-id="model.cid" class="content">
+                    <div data-rv-each-field="model:activeContentType->fields">
+                        <div data-rv-fieldwrapper="field"></div>
+                    </div>
+                </div>
+
+            </dd>
+        </dl>
     </div>
 </div>
+
+
+
+

@@ -6,12 +6,17 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
         var ProxyProperty = masseuse.ProxyProperty;
 
         return GrasshopperBaseView.extend({
-            beforeRender : beforeRender
+            beforeRender : beforeRender,
+            afterRender : afterRender
         });
 
         function beforeRender($deferred) {
             _getAvailableContentTypes.call(this)
                 .done(_setActiveContentType.bind(this, $deferred));
+        }
+
+        function afterRender() {
+            this.$el.foundation();
         }
 
         function _getAvailableContentTypes() {
@@ -55,6 +60,16 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             for (property in this.model.get('value')) {
                 this.model.set('fields.' + property, new ProxyProperty('value.' + property, this.model));
             }
+
+            _setSubLabelsForAccordions.call(this);
+        }
+
+        function _setSubLabelsForAccordions() {
+            var activeContentTypeFields = this.model.get('activeContentType.fields'),
+                fieldToUseAsLabel = _.findWhere(activeContentTypeFields, {useAsLabel : true})._id,
+                labelForAccordion = this.model.get('value.' + fieldToUseAsLabel);
+
+            this.model.set('accordionLabel', labelForAccordion);
         }
 
     });
