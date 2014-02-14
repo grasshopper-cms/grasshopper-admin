@@ -26,6 +26,10 @@ require.config({
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
+        },
+        jstree : {
+            deps : ['jquery'],
+            exports : 'jstree'
         }
     },
     packages : [
@@ -53,6 +57,7 @@ require.config({
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
         cirque : 'vendor/cirque/jquery.cirque',
         modernizr : 'vendor/modernizr/modernizr',
+        jstree : 'vendor/jstree/dist/jstree',
 
         // Routers
         router : 'router',
@@ -148,6 +153,7 @@ require.config({
         contentTypeWorker : 'workers/contentTypeWorker',
         assetWorker : 'workers/assetWorker',
         breadcrumbWorker : 'workers/breadcrumbWorker',
+        nodeWorker : 'workers/nodeWorker',
 
         // Collections
         userCollection : 'collections/userCollection',
@@ -188,7 +194,8 @@ require([
     'tabs',
     'tooltip',
     'abide',
-    'modernizr'
+    'modernizr',
+    'jstree'
 ],
     /**
      * @param $

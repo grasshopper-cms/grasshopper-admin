@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/model',
-    'text!plugins/embeddedcontent/setupTemplate.html'],
+    'text!plugins/embeddedcontent/setupTemplate.html', 'backbone', 'plugins/embeddedcontent/nodeTreeModel'],
     function (embeddedcontentPluginTemplate, embeddedcontentPluginModel,
-              setupTemplate) {
+              setupTemplate, Backbone, nodeTreeModel) {
         'use strict';
 
         return {
@@ -25,6 +25,9 @@ define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/m
             wrapper: false,
             listeners : [],
             mastheadButtons : [],
-            rivetsBinders : []
+            rivetsBinders : [],
+            collection : new (Backbone.Collection.extend({
+                model : nodeTreeModel
+            }))([], {})
         };
     });

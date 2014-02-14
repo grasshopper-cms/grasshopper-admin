@@ -9,6 +9,9 @@ $font: 'Open Sans', arial, sans-serif;
 
 $imgPath: '/themes/blue-dashboard/img';
 
+// Import JSTree css
+@import "../../vendor/jstree/dist/themes/default/style.scss";
+
 // Import Foundation
 @import "../../vendor/foundation/scss/normalize.scss";
 @import "../../vendor/foundation/scss/foundation.scss";
