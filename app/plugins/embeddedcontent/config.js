@@ -1,8 +1,9 @@
 /*global define:false*/
 define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/model',
-    'text!plugins/embeddedcontent/setupTemplate.html', 'backbone', 'plugins/embeddedcontent/nodeTreeModel'],
+    'text!plugins/embeddedcontent/setupTemplate.html', 'backbone',
+    'plugins/embeddedcontent/embeddedcontentBinders'],
     function (embeddedcontentPluginTemplate, embeddedcontentPluginModel,
-              setupTemplate, Backbone, nodeTreeModel) {
+              setupTemplate, Backbone, embeddedcontentBinders) {
         'use strict';
 
         return {
@@ -23,11 +24,10 @@ define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/m
             events : {},
             rivetConfig : 'auto',
             wrapper: false,
-            listeners : [],
+            listeners : [
+                ['model', 'treeCreated', 'makeJsTree']
+            ],
             mastheadButtons : [],
-            rivetsBinders : [],
-            collection : new (Backbone.Collection.extend({
-                model : nodeTreeModel
-            }))([], {})
+            rivetsBinders : [embeddedcontentBinders]
         };
     });
