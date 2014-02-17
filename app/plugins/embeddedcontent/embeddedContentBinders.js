@@ -14,13 +14,14 @@ define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
                     var initialModel = {
                         _id : model.get('_id')
                     };
-
-                    _buildTree.call(null, initialModel, null, null)
+                    _buildTree(initialModel)
                         .done(function() {
                             $tree.appendTo($(el));
                             model.trigger('treeCreated');
                         })
-                        .fail(function() {});
+                        .fail(function() {
+                            console.log('fail');
+                        });
 
 
                 },
@@ -29,27 +30,33 @@ define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
         };
 
 
-        function _buildTree(model, $deferred, $thisNode) {
-            $deferred = ($deferred) ? $deferred : new $.Deferred();
+        function _buildTree(model, $thisNode) {
+
+            var $deferred = new $.Deferred();
 
             nodeWorker.getNodeForTree(model._id)
                 .done(function(children) {
-
+                    var childDeferredArray =[];
                     if(_.has(model, 'label')) {
                         $thisNode = $(_.template(liTemplate, { model: model })).appendTo($thisNode ? $thisNode : $tree);
                     } else {
                         $thisNode = $tree;
                     }
 
-                    if(!_.isEmpty(children)) {
+                    if(_.isEmpty(children)) {
+                        $deferred.resolve();
+                    } else {
                         $thisNode = $('<ul></ul>').appendTo($thisNode);
                         _.each(children, function(child) {
-                            _buildTree(child, $deferred, $thisNode);
+                            childDeferredArray.push(_buildTree(child, $thisNode));
                         });
-                        $deferred.resolve();
+                        $.when
+                            .apply($, childDeferredArray)
+                            .done($deferred.resolve.bind($deferred));
                     }
                 })
                 .fail(function() {});
+
 
             return $deferred.promise();
         }
