@@ -4,14 +4,11 @@ define(['grasshopperBaseView'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-            makeJsTree : makeJsTree
+            showNodeTree : showNodeTree
         });
 
-        function makeJsTree() {
-            var self = this;
-            setTimeout(function() {
-                self.$('#nodeTree').jstree();
-            }, 1000);
+        function showNodeTree() {
+            this.model.set('showTree', true);
         }
 
     });

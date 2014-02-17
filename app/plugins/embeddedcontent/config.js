@@ -25,7 +25,7 @@ define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/m
             rivetConfig : 'auto',
             wrapper: false,
             listeners : [
-                ['model', 'treeCreated', 'makeJsTree']
+                ['model', 'treeCreated', 'showNodeTree']
             ],
             mastheadButtons : [],
             rivetsBinders : [embeddedcontentBinders]

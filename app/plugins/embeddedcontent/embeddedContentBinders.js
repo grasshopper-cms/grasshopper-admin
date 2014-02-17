@@ -2,10 +2,6 @@
 define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
         'use strict';
 
-        var liTemplate = '<li>[[= model.label ]]</li>',
-            $tree = $( document.createDocumentFragment() );
-
-
         return {
             nodetree : {
                 bind: function() {},
@@ -14,11 +10,12 @@ define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
                     var initialModel = {
                         _id : model.get('_id')
                     };
-                    _buildTree(initialModel)
-                        .done(function() {
-                            $tree.appendTo($(el));
-                            model.trigger('treeCreated');
-                        })
+
+                    this.liTemplate = '<li>[[= model.label ]]</li>';
+                    this.$tree = $( document.createDocumentFragment());
+
+                    _buildTree.call(this, initialModel)
+                        .done(_finishThatTree.bind(this, el, model))
                         .fail(function() {
                             console.log('fail');
                         });
@@ -29,36 +26,60 @@ define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
             }
         };
 
-
         function _buildTree(model, $thisNode) {
+            var $deferred = new $.Deferred(),
+                self = this,
+                templated;
 
-            var $deferred = new $.Deferred();
-
-            nodeWorker.getNodeForTree(model._id)
+            _getNodesChildren(model._id)
                 .done(function(children) {
                     var childDeferredArray =[];
+
                     if(_.has(model, 'label')) {
-                        $thisNode = $(_.template(liTemplate, { model: model })).appendTo($thisNode ? $thisNode : $tree);
+                        templated = _.template(self.liTemplate, {
+                            model: model
+                        });
+                        $thisNode = $(templated).appendTo($thisNode ? $thisNode : self.$tree);
                     } else {
-                        $thisNode = $tree;
+                        $thisNode = self.$tree;
                     }
 
                     if(_.isEmpty(children)) {
                         $deferred.resolve();
                     } else {
-                        $thisNode = $('<ul></ul>').appendTo($thisNode);
-                        _.each(children, function(child) {
-                            childDeferredArray.push(_buildTree(child, $thisNode));
-                        });
-                        $.when
-                            .apply($, childDeferredArray)
-                            .done($deferred.resolve.bind($deferred));
+                        $thisNode = _handleNodeWithChildren
+                            .call(self, $thisNode, children, childDeferredArray, $deferred);
                     }
                 })
                 .fail(function() {});
 
-
             return $deferred.promise();
+        }
+
+        function _handleNodeWithChildren($thisNode, children, childDeferredArray, $deferred) {
+            var self = this;
+
+            $thisNode = $('<ul></ul>').appendTo($thisNode);
+
+            _.each(children, function (child) {
+                childDeferredArray.push(_buildTree.call(self, child, $thisNode));
+            });
+
+            $.when
+                .apply($, childDeferredArray)
+                .done($deferred.resolve.bind($deferred));
+
+            return $thisNode;
+        }
+
+        function _getNodesChildren(nodeId) {
+            return nodeWorker.getNodeForTree(nodeId);
+        }
+
+        function _finishThatTree(el, model) {
+            this.$tree.appendTo($(el));
+            $(el).jstree();
+            model.trigger('treeCreated');
         }
 
     });
