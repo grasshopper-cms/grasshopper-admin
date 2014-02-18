@@ -40,16 +40,15 @@ define(['grasshopperBaseView', 'jquery'],
 
         function _addContentRootNodes() {
             // loop through all of the root nodes, appending child LIs to them.
-
-//            create_node ([obj, node, pos, callback, is_loaded])
-//            create a new node (do not confuse with load_node)
-//            par - mixed the parent node
-//            node - mixed the data for the new node (a valid JSON object, or a simple string with the name)
-//            pos - mixed the index at which to insert the node, "first" and "last" are also supported, default is "last"
-//            callback - Function a function to be called once the node is created
-//            is_loaded - Boolean internal argument indicating if the parent node was succesfully loaded
-//            Returns - String the ID of the newly create node
-//            Triggers - model.jstree create_node.jstree
+            // create_node ([obj, node, pos, callback, is_loaded])
+            // create a new node (do not confuse with load_node)
+            // par - mixed the parent node
+            // node - mixed the data for the new node (a valid JSON object, or a simple string with the name)
+            // pos - mixed the index at which to insert the node, "first" and "last" are also supported, default is "last"
+            // callback - Function a function to be called once the node is created
+            // is_loaded - Boolean internal argument indicating if the parent node was succesfully loaded
+            // Returns - String the ID of the newly create node
+            // Triggers - model.jstree create_node.jstree
         }
 
     });
