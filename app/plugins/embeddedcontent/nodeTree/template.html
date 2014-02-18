@@ -1,4 +1,5 @@
 <li data-rv-jstree="model:jsTreeConfig">
     {{model:label}}
-    <span class="hidden"><i class="icon-refresh"></i></span>
+    <span data-rv-show="model:loading"><i class="icon-refresh"></i></span>
+    <ul data-rv-each-node="model:children:" data-rv-nodetree="node"></ul>
 </li>

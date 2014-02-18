@@ -4,24 +4,15 @@ define(['underscore', 'jquery', 'plugins/embeddedcontent/nodeTree/view'],
         'use strict';
 
         return {
-            nodetree : {
-                bind: function() {},
-                unbind : function() {},
-                routine : function(el, model) {
-
-                    if(_.isArray(model)) {
-                        _.each(model, _appendNodeTreeView.bind(this, el));
-                    }
-
-                },
-                publishes : true
+            nodetree :  function(el, model) {
+                _appendNodeTreeView.call(this, el, model);
             }
         };
 
         function _appendNodeTreeView(el, model) {
             var nodeTreeView = new NodeTreeView({
                 appendTo : el,
-                modelData : model.toJSON()
+                modelData : model.attributes
             });
             nodeTreeView.start();
         }

@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView'],
-    function (GrasshopperBaseView) {
+define(['grasshopperBaseView', 'jquery'],
+    function (GrasshopperBaseView, $) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -15,6 +15,10 @@ define(['grasshopperBaseView'],
 
         function afterRender() {
             this.model.set('showTree', true);
+
+            setTimeout(function() {
+                $('#nodeTree').jstree();
+            }, 2000);
         }
 
     });
