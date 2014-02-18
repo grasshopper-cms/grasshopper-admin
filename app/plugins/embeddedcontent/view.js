@@ -4,23 +4,17 @@ define(['grasshopperBaseView'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender: beforeRender
+            beforeRender: beforeRender,
+            afterRender : afterRender
         });
 
         function beforeRender($deferred) {
-            var self = this;
-
-            console.log(this);
             this.model.get('children').fetch()
-                .done(function() {
-                    console.log(self);
-                });
+                .done($deferred.resolve);
+        }
 
-            this.model.fetch()
-                .done(function(children) {
-                    self.model.get('children').reset(children);
-                    $deferred.resolve();
-                });
+        function afterRender() {
+            this.model.set('showTree', true);
         }
 
     });

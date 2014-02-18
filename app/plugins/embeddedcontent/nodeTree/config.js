@@ -1,8 +1,6 @@
 /*global define:false*/
-define(['text!plugins/embeddedcontent/nodeTree/template.html', 'plugins/embeddedcontent/nodeTree/model', 'backbone',
-    'plugins/embeddedcontent/embeddedcontentBinders'],
-    function (nodeTreeTemplate, nodeTreeModel,
-              Backbone, embeddedcontentBinders) {
+define(['text!plugins/embeddedcontent/nodeTree/template.html', 'plugins/embeddedcontent/nodeTree/model'],
+    function (nodeTreeTemplate, nodeTreeModel) {
         'use strict';
 
         return {
@@ -15,7 +13,7 @@ define(['text!plugins/embeddedcontent/nodeTree/template.html', 'plugins/embedded
             wrapper: false,
             listeners : [],
             mastheadButtons : [],
-            rivetsBinders : [embeddedcontentBinders]
+            rivetsBinders : []
         };
     });
 
