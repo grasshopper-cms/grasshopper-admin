@@ -1,64 +1,26 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'jquery', 'underscore'],
-    function (GrasshopperBaseView, $, _) {
+define(['grasshopperBaseView'],
+    function (GrasshopperBaseView) {
         'use strict';
 
         return GrasshopperBaseView.extend({
-            showNodeTree : showNodeTree
+            beforeRender: beforeRender
         });
 
-        function showNodeTree() {
-            var $nodeTree;
+        function beforeRender($deferred) {
+            var self = this;
 
-            $nodeTree = _addTreeListeners.call(this);
-            $nodeTree.jstree();
-            this.model.set('showTree', true);
-            _addContentRootNodes.call(this);
-        }
+            console.log(this);
+            this.model.get('children').fetch()
+                .done(function() {
+                    console.log(self);
+                });
 
-        function _addTreeListeners() {
-            var $nodeTree = $('#nodeTree'),
-                self = this;
-
-            $nodeTree.on('activate_node.jstree', function (e, data) {
-                $nodeTree.jstree('toggle_node', data.node.id);
-            });
-            $nodeTree.on('open_node.jstree', function (e, data) {
-                _addContentToThisNode.call(self, $nodeTree, data);
-                $nodeTree.jstree('set_icon', data.node, 'icon-folder-open');
-            });
-            $nodeTree.on('close_node.jstree', function (e, data) {
-                $nodeTree.jstree('set_icon', data.node, 'icon-folder-close');
-            });
-
-            return $nodeTree;
-        }
-
-        function _addContentToThisNode() {
-            // if this node has content in it, queryAPI,
-        }
-
-        function _toggleLoadingSpinner(node) {
-            $(node).find('span').toggle();
-        }
-
-        function _addContentRootNodes() {
-            var rootNodes = $('#nodeTree').find('li');
-
-            _.each(rootNodes, _toggleLoadingSpinner.bind(this));
-
-
-
-            // loop through all of the root nodes, appending child LIs to them.
-            // create_node ([obj, node, pos, callback, is_loaded])
-            // create a new node (do not confuse with load_node)
-            // par - mixed the parent node
-            // node - mixed the data for the new node (a valid JSON object, or a simple string with the name)
-            // pos - mixed the index at which to insert the node, "first" & "last" are also supported, default is "last"
-            // callback - Function a function to be called once the node is created
-            // is_loaded - Boolean internal argument indicating if the parent node was succesfully loaded
-            // Returns - String the ID of the newly create node
-            // Triggers - model.jstree create_node.jstree
+            this.model.fetch()
+                .done(function(children) {
+                    self.model.get('children').reset(children);
+                    $deferred.resolve();
+                });
         }
 
     });

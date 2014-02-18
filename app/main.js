@@ -156,6 +156,7 @@ require.config({
         nodeWorker : 'workers/nodeWorker',
 
         // Collections
+        grasshopperCollection : 'collections/grasshopperCollection',
         userCollection : 'collections/userCollection',
 
         // Api proxy
