@@ -31,3 +31,5 @@ define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/m
             rivetsBinders : [embeddedcontentBinders]
         };
     });
+
+

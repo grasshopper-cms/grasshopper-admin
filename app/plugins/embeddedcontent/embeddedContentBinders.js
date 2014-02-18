@@ -11,15 +11,12 @@ define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
                         _id : model.get('_id')
                     };
 
-                    this.liTemplate = '<li>[[= model.label ]]</li>';
+                    this.liTemplate = '<li data-jstree=[[= config ]]>[[= model.label ]]</li>';
                     this.$tree = $( document.createDocumentFragment());
 
                     _buildTree.call(this, initialModel)
                         .done(_finishThatTree.bind(this, el, model))
-                        .fail(function() {
-                            console.log('fail');
-                        });
-
+                        .fail();
 
                 },
                 publishes : true
@@ -37,7 +34,8 @@ define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
 
                     if(_.has(model, 'label')) {
                         templated = _.template(self.liTemplate, {
-                            model: model
+                            model: model,
+                            config : '{"icon":"icon-folder-close"}'
                         });
                         $thisNode = $(templated).appendTo($thisNode ? $thisNode : self.$tree);
                     } else {
@@ -78,7 +76,6 @@ define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
 
         function _finishThatTree(el, model) {
             this.$tree.appendTo($(el));
-            $(el).jstree();
             model.trigger('treeCreated');
         }
 
