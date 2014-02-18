@@ -1,5 +1,6 @@
 /* jshint loopfunc:true */
-define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
+define(['nodeWorker', 'underscore', 'jquery', 'text!plugins/embeddedcontent/nodeTreeLiTemplate.html'],
+    function (nodeWorker, _, $, nodeTreeLiTemplate) {
         'use strict';
 
         return {
@@ -11,7 +12,7 @@ define(['nodeWorker', 'underscore', 'jquery'], function (nodeWorker, _, $) {
                         _id : model.get('_id')
                     };
 
-                    this.liTemplate = '<li data-jstree=[[= config ]]>[[= model.label ]]</li>';
+                    this.liTemplate = nodeTreeLiTemplate;
                     this.$tree = $( document.createDocumentFragment());
 
                     _buildTree.call(this, initialModel)

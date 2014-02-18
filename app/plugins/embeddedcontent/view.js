@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'jquery'],
-    function (GrasshopperBaseView, $) {
+define(['grasshopperBaseView', 'jquery', 'underscore'],
+    function (GrasshopperBaseView, $, _) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -34,17 +34,27 @@ define(['grasshopperBaseView', 'jquery'],
             return $nodeTree;
         }
 
-        function _addContentToThisNode($nodeTree, node) {
+        function _addContentToThisNode() {
             // if this node has content in it, queryAPI,
         }
 
+        function _toggleLoadingSpinner(node) {
+            $(node).find('span').toggle();
+        }
+
         function _addContentRootNodes() {
+            var rootNodes = $('#nodeTree').find('li');
+
+            _.each(rootNodes, _toggleLoadingSpinner.bind(this));
+
+
+
             // loop through all of the root nodes, appending child LIs to them.
             // create_node ([obj, node, pos, callback, is_loaded])
             // create a new node (do not confuse with load_node)
             // par - mixed the parent node
             // node - mixed the data for the new node (a valid JSON object, or a simple string with the name)
-            // pos - mixed the index at which to insert the node, "first" and "last" are also supported, default is "last"
+            // pos - mixed the index at which to insert the node, "first" & "last" are also supported, default is "last"
             // callback - Function a function to be called once the node is created
             // is_loaded - Boolean internal argument indicating if the parent node was succesfully loaded
             // Returns - String the ID of the newly create node
