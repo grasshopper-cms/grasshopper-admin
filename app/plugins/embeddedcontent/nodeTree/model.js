@@ -1,15 +1,13 @@
-define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCollection'],
-    function (Model, resources, Backbone, constants, grasshopperCollection) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants'],
+    function (Model, resources, grasshopperCollection, constants) {
     'use strict';
 
     return Model.extend({
         initialize : initialize,
         defaults : {
             resources : resources,
-            showTree : false,
-            _id : '0'
-        },
-        urlRoot : constants.api.node.url
+            loading : false
+        }
     });
 
     function initialize() {
@@ -21,4 +19,5 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
             }
         }))());
     }
+
 });

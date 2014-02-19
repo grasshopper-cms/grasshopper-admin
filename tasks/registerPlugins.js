@@ -61,33 +61,38 @@ module.exports = function (grunt) {
         var thisField,
             readMe;
 
-        if(_.isEmpty(_.where(plugins.fields, {type: subdir}))) {
-            plugins.fields.push({
-                type: subdir,
-                id : idCounter
-            });
-            idCounter++;
+        // TODO: This is really sub optimal.
+        if(subdir.indexOf('/') === -1) {
+            if(_.isEmpty(_.where(plugins.fields, {type: subdir}))) {
+                plugins.fields.push({
+                    type: subdir,
+                    id : idCounter
+                });
+                idCounter++;
+            }
+
+            if(filename === 'view.js') {
+                thisField = _.where(plugins.fields, {type: subdir})[0];
+                thisField.view = subdir;
+                defineBlock.push(abspath.replace('app/', '').toString());
+                argumentsBlock.push(subdir + 'View');
+            }
+
+            if(filename === 'readme.json') {
+                thisField = _.where(plugins.fields, {type: subdir})[0];
+                readMe = grunt.file.readJSON(abspath);
+                thisField.helpText = readMe.helpText;
+                thisField.name = readMe.name;
+            }
+
+            if(filename === 'config.js') {
+                thisField = _.where(plugins.fields, {type: subdir})[0];
+                thisField.config = subdir;
+                defineBlock.push(abspath.replace('app/', '').toString());
+                argumentsBlock.push(subdir + 'Config');
+            }
         }
 
-        if(filename === 'view.js') {
-            thisField = _.where(plugins.fields, {type: subdir})[0];
-            thisField.view = subdir;
-            defineBlock.push(abspath.replace('app/', '').toString());
-            argumentsBlock.push(subdir + 'View');
-        }
 
-        if(filename === 'readme.json') {
-            thisField = _.where(plugins.fields, {type: subdir})[0];
-            readMe = grunt.file.readJSON(abspath);
-            thisField.helpText = readMe.helpText;
-            thisField.name = readMe.name;
-        }
-
-        if(filename === 'config.js') {
-            thisField = _.where(plugins.fields, {type: subdir})[0];
-            thisField.config = subdir;
-            defineBlock.push(abspath.replace('app/', '').toString());
-            argumentsBlock.push(subdir + 'Config');
-        }
     }
 };
