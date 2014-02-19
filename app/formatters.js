@@ -9,7 +9,8 @@ define([], function () {
         asNumber : {
             read : readAsNumber,
             publish : publishAsNumber
-        }
+        },
+        haslength : haslength
     };
 
     /**
@@ -29,5 +30,9 @@ define([], function () {
 
     function publishAsNumber(value) {
         return parseInt(value, 10);
+    }
+
+    function haslength(value) {
+        return (value.length > 0);
     }
 });

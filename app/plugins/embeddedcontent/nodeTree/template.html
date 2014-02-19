@@ -1,6 +1,6 @@
 <dd>
     <a data-rv-href="model.cid | prepend #" data-rv-text="model:label"></a>
-    <div data-rv-id="model.cid" class="content">
+    <div data-rv-show="model:children | haslength" data-rv-id="model.cid" class="content">
         <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
     </div>
 </dd>

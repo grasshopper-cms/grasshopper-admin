@@ -1,9 +1,9 @@
 /*global define:false*/
 define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/model',
     'text!plugins/embeddedcontent/setupTemplate.html', 'backbone',
-    'plugins/embeddedcontent/embeddedcontentBinders'],
+    'plugins/embeddedcontent/embeddedcontentBinders', 'formatters'],
     function (embeddedcontentPluginTemplate, embeddedcontentPluginModel,
-              setupTemplate, Backbone, embeddedcontentBinders) {
+              setupTemplate, Backbone, embeddedcontentBinders, formatters) {
         'use strict';
 
         return {
@@ -28,7 +28,8 @@ define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/m
             wrapper: false,
             listeners : [],
             mastheadButtons : [],
-            rivetsBinders : [embeddedcontentBinders]
+            rivetsBinders : [embeddedcontentBinders],
+            rivetsFormatters : [formatters]
         };
     });
 
