@@ -5,7 +5,8 @@ define(['grasshopperBaseView', 'plugins/embeddedcontent/nodeTree/config', 'under
 
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeConfig,
-            beforeRender : beforeRender
+            beforeRender : beforeRender,
+            toggleFolderOpenCloseIcon : toggleFolderOpenCloseIcon
         });
 
         function beforeRender($deferred) {
@@ -27,11 +28,11 @@ define(['grasshopperBaseView', 'plugins/embeddedcontent/nodeTree/config', 'under
         }
 
         function _toggleLoadingSpinner() {
-            if(this.model.get('loading')) {
-                this.model.set('loading', false);
-            } else {
-                this.model.set('loading', true);
-            }
+            this.model.toggle('loading');
+        }
+
+        function toggleFolderOpenCloseIcon() {
+            this.model.toggle('folderOpen');
         }
 
     });

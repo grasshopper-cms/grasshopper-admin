@@ -1,12 +1,18 @@
-define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants'],
-    function (Model, resources, grasshopperCollection, constants) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse'],
+    function (Model, resources, grasshopperCollection, constants, masseuse) {
     'use strict';
+
+    var ComputedProperty = masseuse.ComputedProperty;
 
     return Model.extend({
         initialize : initialize,
         defaults : {
             resources : resources,
-            loading : false
+            loading : false,
+            folderOpen : false,
+            folderClass : new ComputedProperty(['folderOpen'], function(folderOpen) {
+                return folderOpen ? 'icon-folder-open' : 'icon-folder-close' ;
+            })
         }
     });
 

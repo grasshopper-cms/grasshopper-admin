@@ -63,6 +63,4 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
 
         return RivetView.prototype.start.apply(this, arguments);
     }
-
-
 });

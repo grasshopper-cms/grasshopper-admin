@@ -1,5 +1,7 @@
 <dd>
-    <a data-rv-href="model.cid | prepend #" data-rv-text="model:label"></a>
+    <a data-rv-href="model.cid | prepend #" data-rv-on-click="view.toggleFolderOpenCloseIcon">
+        <span><i data-rv-addclass="model:folderClass"></i>{{model:label | spaceBefore}}</span>
+    </a>
     <div data-rv-show="model:children | haslength" data-rv-id="model.cid" class="content">
         <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
     </div>
