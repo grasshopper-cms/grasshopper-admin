@@ -119,7 +119,7 @@ require.config({
 
         // Models
         selfValidatingModel : 'models/selfValidatingModel',
-        UserModel : 'models/UserModel',
+        UserModel : 'models/userModel',
         grasshopperModel : 'models/grasshopperModel',
         pluginSetupModel : 'models/pluginSetupModel',
 

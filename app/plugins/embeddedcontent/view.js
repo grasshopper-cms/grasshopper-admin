@@ -31,6 +31,7 @@ define(['grasshopperBaseView', 'jquery', 'underscore'],
                 $nodeTree.jstree('toggle_node', data.node.id);
             });
             $nodeTree.on('open_node.jstree', function (e, data) {
+
                 $nodeTree.jstree('set_icon', data.node, 'icon-folder-open');
             });
             $nodeTree.on('close_node.jstree', function (e, data) {
