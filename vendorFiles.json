@@ -18,6 +18,5 @@
     "accordion" : "vendor/foundation/js/foundation/foundation.accordion.js",
     "tabs": "vendor/foundation/js/foundation/foundation.tab.js",
     "tooltip": "vendor/foundation/js/foundation/foundation.tooltip.js",
-    "abide": "vendor/foundation/js/foundation/foundation.abide.js",
-    "jstree" : "vendor/jstree/dist/jstree.js"
+    "abide": "vendor/foundation/js/foundation/foundation.abide.js"
 }

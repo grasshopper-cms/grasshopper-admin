@@ -21,13 +21,12 @@ define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/m
             },
             template : embeddedcontentPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
+            events : {
+                'click #nodeTree' : 'stopAccordionPropagation'
+            },
             rivetConfig : 'auto',
             wrapper: false,
-            listeners : [
-                ['model', 'treeCreated', 'showNodeTree'],
-                ['channels.views', 'childNodeAdded', 'redrawJsTree']
-            ],
+            listeners : [],
             mastheadButtons : [],
             rivetsBinders : [embeddedcontentBinders]
         };

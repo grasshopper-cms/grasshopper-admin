@@ -26,10 +26,6 @@ require.config({
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
-        },
-        jstree : {
-            deps : ['jquery'],
-            exports : 'jstree'
         }
     },
     packages : [
@@ -57,7 +53,6 @@ require.config({
         paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
         cirque : 'vendor/cirque/jquery.cirque',
         modernizr : 'vendor/modernizr/modernizr',
-        jstree : 'vendor/jstree/dist/jstree',
 
         // Routers
         router : 'router',
@@ -195,8 +190,7 @@ require([
     'tabs',
     'tooltip',
     'abide',
-    'modernizr',
-    'jstree'
+    'modernizr'
 ],
     /**
      * @param $
