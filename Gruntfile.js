@@ -14,6 +14,17 @@ module.exports = function (grunt) {
     // load grunt Config. All config can be found in tasks/options
     grunt.initConfig(_.extend(config, loadConfig('./initConfig/')));
 
+    grunt.registerTask('build', 'Build and watch task', [
+        'clean',
+        'jshint',
+        'setupBowerCopy',
+        'copy:build',
+        'copy:vendor',
+        'registerPlugins',
+        'sass',
+        'autoprefixer:no_dest'
+    ]);
+
     grunt.registerTask('server', 'Build and watch task', [
         'clean',
         'jshint',

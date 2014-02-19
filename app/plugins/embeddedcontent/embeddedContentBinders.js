@@ -1,7 +1,9 @@
 /* jshint loopfunc:true */
-define(['underscore', 'jquery', 'plugins/embeddedcontent/nodeTree/view'],
-    function (_, $, NodeTreeView) {
+define(['underscore', 'plugins/embeddedcontent/nodeTree/view', 'masseuse'],
+    function (_, NodeTreeView, masseuse) {
         'use strict';
+
+        var channels = new masseuse.utilities.channels();
 
         return {
             nodetree :  function(el, model) {
@@ -14,7 +16,8 @@ define(['underscore', 'jquery', 'plugins/embeddedcontent/nodeTree/view'],
                 appendTo : el,
                 modelData : model.attributes
             });
-            nodeTreeView.start();
+            this.model.view.addChild(nodeTreeView);
+            channels.views.trigger('childNodeAdded');
         }
 
 

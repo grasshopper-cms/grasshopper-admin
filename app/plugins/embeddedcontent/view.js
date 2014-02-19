@@ -1,11 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'jquery'],
-    function (GrasshopperBaseView, $) {
+define(['grasshopperBaseView', 'jquery', 'underscore'],
+    function (GrasshopperBaseView, $, _) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             beforeRender: beforeRender,
-            afterRender : afterRender
+            afterRender : afterRender,
+            redrawJsTree : _.debounce(redrawJsTree, 200)
         });
 
         function beforeRender($deferred) {
@@ -16,9 +17,15 @@ define(['grasshopperBaseView', 'jquery'],
         function afterRender() {
             this.model.set('showTree', true);
 
-            setTimeout(function() {
-                $('#nodeTree').jstree();
-            }, 2000);
+            $('#nodeTree').jstree();
+        }
+
+        function redrawJsTree() {
+            $('#nodeTree').jstree('redraw', 'true');
+        }
+
+        function consoleLogIt() {
+            console.log(arguments);
         }
 
     });

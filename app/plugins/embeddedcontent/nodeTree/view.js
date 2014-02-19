@@ -5,19 +5,25 @@ define(['grasshopperBaseView', 'plugins/embeddedcontent/nodeTree/config', 'under
 
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeConfig,
-            afterRender : afterRender
+            beforeRender : beforeRender
         });
 
-        function afterRender() {
+        function beforeRender($deferred) {
             if(_.isNull(this.model.get('parent'))) {
-                _fetchChildren.call(this);
+                _fetchChildren.call(this, $deferred);
+            } else {
+                $deferred.resolve();
             }
         }
 
-        function _fetchChildren() {
+        function _fetchChildren($deferred) {
+            var self = this;
             _toggleLoadingSpinner.call(this);
             this.model.get('children').fetch()
-                .done(_toggleLoadingSpinner.bind(this));
+                .done(function() {
+                    $deferred.resolve();
+                    _toggleLoadingSpinner.call(self);
+                });
         }
 
         function _toggleLoadingSpinner() {
