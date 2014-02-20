@@ -33,7 +33,7 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
             return this.request(constants.api.node.url + '/' + nodeId);
         },
         getNodesChildren : function (nodeId) {
-            return this.request(constants.api.nodes.url.replace(':id', nodeId));
+            return this.request(constants.api.nodesChildren.url.replace(':id', nodeId));
         },
         authenticateToken : function () {
             return this.request(constants.api.user.url);

@@ -26,7 +26,9 @@ define(['text!plugins/embeddedcontent/template.html', 'plugins/embeddedcontent/m
             },
             rivetConfig : 'auto',
             wrapper: false,
-            listeners : [],
+            listeners : [
+                ['channels.views', 'embeddedContentSelected', 'embeddedContentSelected']
+            ],
             mastheadButtons : [],
             rivetsBinders : [embeddedcontentBinders],
             rivetsFormatters : [formatters]

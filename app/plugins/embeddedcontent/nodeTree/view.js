@@ -1,38 +1,45 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/embeddedcontent/nodeTree/config', 'underscore'],
-    function (GrasshopperBaseView, NodeTreeConfig, _) {
+define(['grasshopperBaseView', 'plugins/embeddedcontent/nodeTree/config'],
+    function (GrasshopperBaseView, NodeTreeConfig) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeConfig,
-            beforeRender : beforeRender,
-            toggleFolderOpenCloseIcon : toggleFolderOpenCloseIcon
+            openFolder : openFolder,
+            sendSelectedContentToParent : sendSelectedContentToParent
         });
 
-        function beforeRender($deferred) {
-            if(_.isNull(this.model.get('parent'))) {
-                _fetchChildren.call(this, $deferred);
-            } else {
-                $deferred.resolve();
-            }
+        function _fetchChildNodes() {
+            return this.model.get('children').fetch();
         }
 
-        function _fetchChildren($deferred) {
-            var self = this;
-            _toggleLoadingSpinner.call(this);
-            this.model.get('children').fetch()
-                .done(function() {
-                    $deferred.resolve();
-                    _toggleLoadingSpinner.call(self);
-                });
+        function _fetchChildContent() {
+            return this.model.get('content').fetch();
         }
 
         function _toggleLoadingSpinner() {
             this.model.toggle('loading');
         }
 
-        function toggleFolderOpenCloseIcon() {
+        function openFolder() {
+            var self = this;
+
             this.model.toggle('folderOpen');
+
+            if (!this.model.get('hasFetchedContent')) {
+                _toggleLoadingSpinner.call(this);
+                _fetchChildNodes.call(this)
+                    .then(_fetchChildContent.bind(this))
+                    .then(function() {
+                        self.$el.foundation();
+                        _toggleLoadingSpinner.call(self);
+                        self.model.toggle('hasFetchedContent');
+                    });
+            }
+        }
+
+        function sendSelectedContentToParent(e, context) {
+            this.channels.views.trigger('embeddedContentSelected', context.item);
         }
 
     });

@@ -488,4 +488,25 @@ body, html {
     }
   }
 
+  #nodeTree {
+    a {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-right: 0;
+    }
+    .content {
+      padding-top: 0;
+      &.active {
+        border: none;
+      }
+
+      .nodeTreeContent {
+        padding-left: 1rem;
+        input {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
 }

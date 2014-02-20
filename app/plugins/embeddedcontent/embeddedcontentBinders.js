@@ -14,7 +14,7 @@ define(['underscore', 'plugins/embeddedcontent/nodeTree/view'],
                 appendTo : el,
                 modelData : model.attributes
             });
-            this.model.view.addChild(nodeTreeView);
+            nodeTreeView.start();
         }
 
     });

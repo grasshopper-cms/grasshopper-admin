@@ -6,7 +6,8 @@ define(['grasshopperBaseView'],
         return GrasshopperBaseView.extend({
             beforeRender: beforeRender,
             afterRender : afterRender,
-            stopAccordionPropagation : stopAccordionPropagation
+            stopAccordionPropagation : stopAccordionPropagation,
+            embeddedContentSelected : embeddedContentSelected
         });
 
         function beforeRender($deferred) {
@@ -21,5 +22,10 @@ define(['grasshopperBaseView'],
 
         function stopAccordionPropagation(e) {
             e.stopPropagation();
+        }
+
+        function embeddedContentSelected(selectedModel) {
+            this.model.set('selectedContent.label', selectedModel.get('label'));
+            this.model.set('selectedContent._id', selectedModel.get('_id'));
         }
     });
