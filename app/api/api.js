@@ -29,6 +29,9 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         getContentType : function(id) {
             return this.request(constants.api.contentTypes.url +'/'+ id);
         },
+        getContentDetail : function(id) {
+            return this.request(constants.api.content.url +'/'+ id);
+        },
         getNodeDetail : function (nodeId) {
             return this.request(constants.api.node.url + '/' + nodeId);
         },
