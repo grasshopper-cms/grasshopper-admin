@@ -1,6 +1,7 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery'],
-    function (GrasshopperBaseView, _, Api, contentTypeWorker, $) {
+define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
+    'plugins/contentreference/modal/view'],
+    function (GrasshopperBaseView, _, Api, contentTypeWorker, $, ModalView) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -96,7 +97,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
         function contentReferenceSelected(selectedModel) {
             this.model.set('selectedContent.label', selectedModel.get('label'));
-            this.model.set('selectedContent._id', selectedModel.get('_id'));
+            this.model.set('value', selectedModel.get('_id'));
         }
 
         function _getContentDetails(contentId) {
@@ -121,7 +122,15 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function fireSelectContentModal() {
-            console.log('Yeah Buddy');
+            var modalView = new ModalView({
+                    modelData : {
+                        header : 'Select Content',
+                        selectedContentId : this.model.get('value')
+                    }
+                });
+
+            modalView.model.get('children').reset(this.model.get('children').models);
+            modalView.start();
         }
 
     });
