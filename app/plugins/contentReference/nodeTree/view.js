@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/embeddedcontent/nodeTree/config'],
+define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
     function (GrasshopperBaseView, NodeTreeConfig) {
         'use strict';
 
@@ -36,10 +36,17 @@ define(['grasshopperBaseView', 'plugins/embeddedcontent/nodeTree/config'],
                         self.model.toggle('hasFetchedContent');
                     });
             }
+
+            sendSelectedNodeToParent.call(this);
         }
 
+        function sendSelectedNodeToParent() {
+            this.channels.views.trigger('contentReferenceFolderSelected', this.model);
+        }
+
+
         function sendSelectedContentToParent(e, context) {
-            this.channels.views.trigger('embeddedContentSelected', context.item);
+            this.channels.views.trigger('contentReferenceSelected', context.item);
         }
 
     });

@@ -488,6 +488,7 @@ body, html {
     }
   }
 
+  // Content Reference Plugin
   #nodeTree {
     a {
       padding-top: 0;
@@ -506,6 +507,12 @@ body, html {
           margin-bottom: 0;
         }
       }
+    }
+  }
+
+  .availableTypes {
+    input {
+      margin-bottom: 0;
     }
   }
 

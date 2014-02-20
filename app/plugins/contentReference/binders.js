@@ -1,5 +1,5 @@
 /* jshint loopfunc:true */
-define(['underscore', 'plugins/embeddedcontent/nodeTree/view'],
+define(['underscore', 'plugins/contentreference/nodeTree/view'],
     function (_, NodeTreeView) {
         'use strict';
 
