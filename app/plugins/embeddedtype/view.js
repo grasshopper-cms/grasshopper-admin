@@ -7,7 +7,8 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
-            afterRender : afterRender
+            afterRender : afterRender,
+            stopPropagation : stopPropagation
         });
 
         function beforeRender($deferred) {
@@ -70,6 +71,10 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
                 fieldToUseAsLabel = _.findWhere(activeContentTypeFields, {useAsLabel : true})._id;
 
             this.model.set('accordionLabel', new ProxyProperty('value.' + fieldToUseAsLabel, this.model));
+        }
+
+        function stopPropagation(e) {
+            e.stopPropagation();
         }
 
     });

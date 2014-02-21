@@ -18,6 +18,10 @@ $imgPath: '/themes/blue-dashboard/img';
 
 @import "header";
 
+.row {
+  max-width: 1250px;
+}
+
 body, html {
   height: 100%;
 
