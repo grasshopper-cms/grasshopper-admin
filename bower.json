@@ -1,0 +1,16 @@
+{
+  "name": "grasshopper-admin",
+  "dependencies": {
+    "foundation": "~5.0.2",
+    "requirejs-text": "~2.0.10",
+    "js-base64": "~2.1.2",
+    "masseuse": "1.9.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.12.1",
+    "chai": "~1.7.2",
+    "sinon": "~1.7.3",
+    "sinon-chai": "~2.4.0",
+    "squire": "*"
+  }
+}
