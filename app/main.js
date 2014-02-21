@@ -39,7 +39,7 @@ require.config({
         },
         {
             name : 'helpers',
-            location : 'vendor/helpers/app'
+            location : 'helpers'
         }
     ],
     paths : {
