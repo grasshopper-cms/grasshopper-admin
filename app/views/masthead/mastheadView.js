@@ -8,8 +8,7 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
         setButtons : setButtons,
         setBreadcrumbs : setBreadcrumbs,
         interpolateMastheadButtons : interpolateMastheadButtons,
-        clickMastheadDropdown : clickMastheadDropdown,
-        consoleLogIt : consoleLogIt
+        clickMastheadDropdown : clickMastheadDropdown
     });
 
     function beforeRender () {
@@ -24,10 +23,6 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
             this.model.set('buttons', this.interpolateMastheadButtons(buttonArray));
             this.$el.foundation();
         }
-    }
-
-    function consoleLogIt() {
-        console.log(this);
     }
 
     function setBreadcrumbs (view) {
