@@ -125,11 +125,12 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             var modalView = new ModalView({
                     modelData : {
                         header : 'Select Content',
-                        selectedContentId : this.model.get('value')
+                        selectedContent : this.model.get('selectedContent'),
+                        _id : this.model.get('options.defaultNode')
                     }
                 });
 
-            modalView.model.get('children').reset(this.model.get('children').models);
+//            modalView.model.get('children').reset(this.model.get('children').models);
             modalView.start();
         }
 

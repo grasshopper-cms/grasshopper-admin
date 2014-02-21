@@ -5,11 +5,17 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config'],
 
         return GrasshopperBaseView.extend({
             defaultOptions : config,
+            beforeRender : beforeRender,
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
             confirmModal : confirmModal,
             cancelModal : cancelModal
         });
+
+        function beforeRender($deferred) {
+            this.model.get('children').fetch()
+                .done($deferred.resolve);
+        }
 
         function afterRender() {
             this.$el.foundation();

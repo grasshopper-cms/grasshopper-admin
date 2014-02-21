@@ -6,6 +6,11 @@
             </div>
         </div>
         <div class="row">
+            <label>Previously Selected Content:
+                <input data-rv-value="model:selectedContent->label" type="text" readonly="true">
+            </label>
+        </div>
+        <div class="row">
             <div id="nodeTree">
                 <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
             </div>

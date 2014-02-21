@@ -5,9 +5,14 @@ define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
 
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeConfig,
+            afterRender : afterRender,
             openFolder : openFolder,
             sendSelectedContentToParent : sendSelectedContentToParent
         });
+
+        function afterRender() {
+            console.log(this);
+        }
 
         function _fetchChildNodes() {
             return this.model.get('children').fetch();
