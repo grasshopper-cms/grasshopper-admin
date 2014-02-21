@@ -12,7 +12,8 @@ define([
         fetch : fetch,
         save : save,
         destroy : destroy,
-        toJSON : toJSON
+        toJSON : toJSON,
+        toggle : toggle
     });
 
     function fetch (options) {
@@ -56,5 +57,9 @@ define([
 
     function toJSON() {
         return _.clone(_.omit(this.attributes, 'resources', 'contants', 'schema'));
+    }
+
+    function toggle(propertyName) {
+        this.set(propertyName, this.get(propertyName) ? false : true);
     }
 });

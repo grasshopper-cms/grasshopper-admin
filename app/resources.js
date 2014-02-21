@@ -208,6 +208,7 @@ define({
     users : 'Users',
     value : 'Value',
     validation : 'Validation',
+    warning : 'Warning!',
     welcomeBack : 'Welcome Back',
     yes : 'Yes'
 });

@@ -18,6 +18,10 @@ $imgPath: '/themes/blue-dashboard/img';
 
 @import "header";
 
+.row {
+  max-width: 1250px;
+}
+
 body, html {
   height: 100%;
 
@@ -31,7 +35,6 @@ body, html {
     color: inherit;
     text-rendering: optimizelegibility;
   }
-
 
   table {
     border-radius: 4px;
@@ -486,6 +489,34 @@ body, html {
   #addContent {
     #removeField {
       margin-bottom: 4px;
+    }
+  }
+
+  // Content Reference Plugin
+  #nodeTree {
+    a {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-right: 0;
+    }
+    .content {
+      padding-top: 0;
+      &.active {
+        border: none;
+      }
+
+      .nodeTreeContent {
+        padding-left: 1rem;
+        input {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .availableTypes {
+    input {
+      margin-bottom: 0;
     }
   }
 

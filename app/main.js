@@ -114,7 +114,7 @@ require.config({
 
         // Models
         selfValidatingModel : 'models/selfValidatingModel',
-        UserModel : 'models/UserModel',
+        UserModel : 'models/userModel',
         grasshopperModel : 'models/grasshopperModel',
         pluginSetupModel : 'models/pluginSetupModel',
 
@@ -148,8 +148,10 @@ require.config({
         contentTypeWorker : 'workers/contentTypeWorker',
         assetWorker : 'workers/assetWorker',
         breadcrumbWorker : 'workers/breadcrumbWorker',
+        nodeWorker : 'workers/nodeWorker',
 
         // Collections
+        grasshopperCollection : 'collections/grasshopperCollection',
         userCollection : 'collections/userCollection',
 
         // Api proxy

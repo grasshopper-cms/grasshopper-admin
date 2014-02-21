@@ -1,11 +1,11 @@
 /*global define:false*/
-define(['text!plugins/textArea/template.html', 'plugins/textArea/model', 'text!plugins/textArea/setupTemplate.html'],
-    function (textAreaPluginTemplate, textAreaPluginModel, setupTemplate) {
+define(['text!plugins/textarea/template.html', 'plugins/textarea/model', 'text!plugins/textarea/setupTemplate.html'],
+    function (textareaPluginTemplate, textareaPluginModel, setupTemplate) {
         'use strict';
 
         return {
-            name : 'textAreaPlugin',
-            ModelType : textAreaPluginModel,
+            name : 'textareaPlugin',
+            ModelType : textareaPluginModel,
             modelData : {
                 min : 1,
                 max : 1,
@@ -17,7 +17,7 @@ define(['text!plugins/textArea/template.html', 'plugins/textArea/model', 'text!p
                 value : ''
             },
             wrapper: false,
-            template : textAreaPluginTemplate,
+            template : textareaPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
             rivetConfig : 'auto',

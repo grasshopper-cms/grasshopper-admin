@@ -22,8 +22,11 @@ define({
         node : {
             url : 'http://localhost:8080/node'
         },
-        nodes : {
+        nodesChildren : {
             url : 'http://localhost:8080/node/:id/children'
+        },
+        nodesContent : {
+            url : 'http://localhost:8080/node/:id/content'
         },
         assets : {
             url : 'http://localhost:8080/node/:id/assets'

@@ -4,6 +4,6 @@ define(['grasshopperModel', 'resources', 'constants'], function (Model, resource
         defaults : {
             resources : resources
         },
-        url : constants.api.nodes.url
+        url : constants.api.nodesChildren.url
     });
 });

@@ -51,14 +51,14 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
 
             return this.displayModal(
                 {
-                    header : 'Warning!',
+                    header : resources.warning,
                     msg : resources.contentType.deletionWarningWithAssociatedContent.replace(':count', inflectedMessage)
                 });
         }
 
         return this.displayModal(
             {
-                header : 'Warning!',
+                header : resources.warning,
                 msg : resources.contentType.deletionWarningWithoutAssociatedContent
             });
     }
@@ -170,7 +170,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     function removeFieldFromCollection(e, context) {
         var self = this;
         this.displayModal({
-            header : 'Warning!',
+            header : resources.warning,
             msg : resources.contentType.removeFieldWarning
         })
             .done(function() {
