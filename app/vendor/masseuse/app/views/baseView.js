@@ -1,12 +1,14 @@
 /*global define:false*/
 define([
     'jquery', 'backbone', 'underscore', '../utilities/channels', './viewContext', './lifeCycle',
-    '../utilities/accessors', '../utilities/createOptions', '../models/masseuseModel', '../models/proxyProperty'
-], function ($, Backbone, _, Channels, ViewContext, lifeCycle, accessors, createOptions, MasseuseModel, ProxyProperty) {
+    '../utilities/accessors', '../utilities/createOptions', '../models/masseuseModel', '../models/proxyProperty',
+    '../models/observerProperty'
+], function ($, Backbone, _, Channels, ViewContext, lifeCycle, accessors, createOptions, MasseuseModel, ProxyProperty,
+    ObserverProperty) {
     'use strict';
 
     var viewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName', 'events',
-        'name', 'appendTo', 'wrapper'],
+        'name', 'appendTo', 'prependTo', 'wrapper'],
         BEFORE_RENDER_DONE = 'beforeRenderDone',
         AFTER_TEMPLATING_DONE = 'afterTemplatingDone',
         RENDER_DONE = 'renderDone',
@@ -247,7 +249,7 @@ define([
      * @param $startDeferred
      */
     function appendOrInsertView ($startDeferred) {
-        this.appendTo ? _appendTo.call(this, $startDeferred) : _insertView.call(this, $startDeferred);
+        this.appendTo || this.prependTo ? _appendTo.call(this, $startDeferred) : _insertView.call(this, $startDeferred);
     }
 
     /**
@@ -342,8 +344,13 @@ define([
      * @param childView
      */
     function addChildren () {
-        var args = _.isArray(arguments[0]) ? arguments[0] : arguments;
-        _.each(args, this.addChild.bind(this));
+        var args = _.isArray(arguments[0]) ? arguments[0] : arguments,
+            self = this,
+            children = [];
+        _.each(args, function(child) {
+            children.push(self.addChild.call(self, child));
+        });
+        return children;
     }
 
     /**
@@ -361,17 +368,19 @@ define([
      */
     function addChild (childView) {
         if (childView instanceof Backbone.View) {
-            _addChildInstance.call(this, childView);
+            return _addChildInstance.call(this, childView);
         } else {
-            _addChildInstance.call(this, new BaseView(childView));
+            return _addChildInstance.call(this, new BaseView(childView));
         }
     }
 
     function _addChildInstance (childView) {
+        var child;
         if (!_(this.children).contains(childView)) {
-            this.children.push(childView);
+            this.children.push(child = childView);
             childView.parent = this;
         }
+        return child;
     }
 
     /**
@@ -444,10 +453,19 @@ define([
         }
 
         $startDeferred && $startDeferred.notify && $startDeferred.notify(AFTER_TEMPLATING_DONE);
-        if (this.parent && _.isString(this.appendTo)) {
-            this.parent.$(this.appendTo).append(this.el);
+
+        if (this.appendTo) {
+            _addViewElement.call(this, 'appendTo');
+        } else if (this.prependTo) {
+            _addViewElement.call(this, 'prependTo');
+        }
+    }
+
+    function _addViewElement (action) {
+        if (this.parent && _.isString(this[action])) {
+            $(this.el)[action](this.parent.$(this[action]));
         } else {
-            $(this.appendTo).append(this.el);
+            $(this.el)[action]($(this[action]));
         }
     }
 
@@ -479,7 +497,7 @@ define([
                 if (datum instanceof ViewContext) {
                     modelData[key] = datum.getBoundFunction(self);
                 }
-                if (datum instanceof ProxyProperty) {
+                if (datum instanceof ProxyProperty || datum instanceof ObserverProperty) {
                     if (datum.model instanceof ViewContext) {
                         datum.model = datum.model.getBoundFunction(self);
                     }
