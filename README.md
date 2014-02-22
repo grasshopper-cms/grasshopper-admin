@@ -13,3 +13,11 @@
 11. curl -O https://gist.githubusercontent.com/Duder-onomy/9148236/raw/434461aae610825488f4c5b6ebcd1ac9d92a4a3a/configuration.json
 12. cd ../../..
 13. grunt server
+
+___
+
+If grunt-connect doesnt open one for you, make a new tab in your browser and navigate to **localhost:9001**
+
+To log in use these credentials:  
+    username: **admin**  
+    password: **TestPassword**    
