@@ -1,6 +1,6 @@
 Steps to get up and running:
 
-1. git clone
+1. git clone https://github.com/Solid-Interactive/grasshopper-admin.git
 2. cd grasshopper-admin
 3. git checkout < digdug, or current branch >
 4. git submodule init
