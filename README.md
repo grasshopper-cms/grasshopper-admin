@@ -1,4 +1,4 @@
-Steps to get up and running:
+##Steps to get up and running:
 
 1. git clone https://github.com/Solid-Interactive/grasshopper-admin.git
 2. cd grasshopper-admin
