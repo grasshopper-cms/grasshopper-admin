@@ -1,3 +1,7 @@
+![Grasshopper Logo](http://a-z-animals.com/media/animals/images/470x370/grasshopper8.jpg)
+
+___
+
 ##Steps to get up and running:
 
 1. git clone https://github.com/Solid-Interactive/grasshopper-admin.git
