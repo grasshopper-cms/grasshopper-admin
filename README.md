@@ -8,10 +8,10 @@
 6. npm install
 7. bower install
 8. bundle install
-9. grunt vagrant:install
-10. cd api/lib/config/
-11. curl -O https://gist.githubusercontent.com/Duder-onomy/9148236/raw/434461aae610825488f4c5b6ebcd1ac9d92a4a3a/configuration.json
-12. cd ../../..
+9. cd api/lib/config/
+10. curl -O https://gist.githubusercontent.com/Duder-onomy/9148236/raw/434461aae610825488f4c5b6ebcd1ac9d92a4a3a/configuration.json
+11. cd ../../..
+12. grunt vagrant:install
 13. grunt server
 
 ___
