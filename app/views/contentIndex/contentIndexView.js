@@ -68,7 +68,7 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
             $('#contentDetailRow').append(_.template(template, {
                 msg : resources.node.emptyNode,
                 linkText : resources.node.clickToAdd,
-                href : constants.internalRoutes.createContent.replace(':id', this.nodeId)
+                href : constants.internalRoutes.addContent.replace(':id', this.nodeId)
             }));
         }
 

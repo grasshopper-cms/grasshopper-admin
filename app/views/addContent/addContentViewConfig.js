@@ -1,11 +1,11 @@
 /*global define:false*/
 define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'appBinders', 'resources', 'constants'],
-    function (addContentTemplate, addContentViewModel, appBinders, resources, constants) {
+    function (addContentTemplate, addContentModel, appBinders, resources, constants) {
         'use strict';
 
         return {
-            name : 'addContentView',
-            ModelType : addContentViewModel,
+            name : 'addContent',
+            ModelType : addContentModel,
             modelData : {},
             appendTo : '#stage',
             wrapper : false,
@@ -18,8 +18,8 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'app
             mastheadButtons : [],
             breadcrumbs : [
                 {
-                    text : resources.contentTypes,
-                    href : constants.internalRoutes.contentTypes
+                    text : resources.content,
+                    href : constants.internalRoutes.content
                 }
             ],
             permissions : ['admin', 'editor'],

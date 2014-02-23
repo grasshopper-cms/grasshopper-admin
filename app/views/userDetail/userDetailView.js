@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'userWorker', 'constants'],
-    function (GrasshopperBaseView, userDetailViewConfig, resources, userWorker, constants) {
+define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker) {
         'use strict';
         return GrasshopperBaseView.extend({
             defaultOptions : userDetailViewConfig,
@@ -12,20 +12,13 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'userWorker'
 
         function beforeRender ($deferred) {
 
-            // It is checking to see if the current model's ID is the same as Logged in user, the API endpoints are
-            // different for Admin editing their own (/user) and admin editing someone else (/users/id)
-            if (this.model.get('_id') === this.app.user.get('_id')) {
-                this.model.url = constants.api.user.url;
+            if(!this.model.get('displayAsRow')) {
+                this.model.fetch()
+                    .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
             } else {
-                this.model.urlRoot = constants.api.users.url;
+                $deferred.resolve();
             }
 
-            if (this.model.has('role')) {
-                $deferred.resolve();
-            } else {
-                this.model.fetch()
-                    .done($deferred.resolve);
-            }
         }
 
         function updateModel () {
@@ -37,8 +30,7 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'userWorker'
         }
 
         function toggleEnabled () {
-            var enabled = this.model.get('enabled');
-            this.model.set('enabled', (enabled) ? false : true);
+            this.model.toggle('enabled');
             this.model.trigger('change:enabled');
             this.updateModel();
         }
@@ -70,6 +62,10 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'userWorker'
             if (this.app.user.get('_id') === model._id) {
                 this.app.user.set(model);
             }
+        }
+
+        function _updateMastheadBreadcrumbs($deferred) {
+            breadcrumbWorker.userBreadcrumb.call(this, $deferred);
         }
 
     });
