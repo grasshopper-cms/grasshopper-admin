@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'userWorker', 'constants', 'breadcrumbWorker'],
-    function (GrasshopperBaseView, userDetailViewConfig, resources, userWorker, constants, breadcrumbWorker) {
+define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker) {
         'use strict';
         return GrasshopperBaseView.extend({
             defaultOptions : userDetailViewConfig,
@@ -11,18 +11,6 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'userWorker'
         });
 
         function beforeRender ($deferred) {
-
-
-//            if (!this.model.has('label') && !this.model.isNew()) {
-//                this.model.fetch()
-//                    .done(_handleSuccessfulModelFetch.bind(this, $deferred))
-//                    .fail($deferred.reject);
-//            } else if (this.model.isNew()) {
-//                this.collection.reset();
-//                _updateMastheadBreadcrumbs.call(this, $deferred, true);
-//            } else {
-//                $deferred.resolve();
-//            }
 
             // Checking to see if the current model's ID is the same as Logged in user, the API endpoints are
             // different for Admin editing their own (/user) and admin editing someone else (/users/id)
@@ -35,12 +23,8 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'userWorker'
 
 
             if (this.model.has('role')) {
-                console.log('has a role');
-                console.log(this);
                 _updateMastheadBreadcrumbs.call(this, $deferred);
             } else {
-                console.log('does not have a roll');
-                console.log(this);
                 this.model.fetch()
                     .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
             }

@@ -1,6 +1,6 @@
 /* jshint loopfunc:true */
-define(['underscore', 'userDetailView'],
-    function (_, UserDetailView) {
+define(['userDetailView', 'userDetailViewConfig'],
+    function (UserDetailView, userDetailViewConfig) {
         'use strict';
 
         return {
@@ -10,31 +10,22 @@ define(['underscore', 'userDetailView'],
                     this.viewInstance.remove();
                 },
                 routine : function(el, model) {
+                    var rivets = this;
 
-//                    var rivets = this,
-//                        plugin = _.find(plugins.fields, {type : model.get('type')}),
-//                        ViewModule = plugin.view,
-//                        configModule = plugin.config;
-//
-//                    if (rivets.viewInstance) {
-//                        rivets.model.view.removeChild(this.viewInstance);
-//                        rivets.viewInstance.remove();
-//                    }
-//
-//                    _.each(configModule.modelData, function(value, key) {
-//                        if(!model.has(key)) {
-//                            model.set(key, value, {silent: true});
-//                        }
-//                    });
-//
+                    if (rivets.viewInstance) {
+                        rivets.model.view.removeChild(this.viewInstance);
+                        rivets.viewInstance.remove();
+                    }
+
                     rivets.viewInstance = new UserDetailView({
-                        modelData : model,
-                        template : UserDetailView.defaultOptions.rowTemplate,
+                        modelData : model.attributes,
+                        template : userDetailViewConfig.rowTemplate,
                         mastheadButtons : rivets.model.view.mastheadButtons,
                         appendTo : el
                     });
-//
+
 //                    rivets.viewInstance.start();
+                    rivets.model.view.addChild(rivets.viewInstance);
                 },
                 publishes : true
             }
