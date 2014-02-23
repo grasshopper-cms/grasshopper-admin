@@ -11,13 +11,17 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse'],
                 resources : resources,
                 roles : resources.user.roles,
                 enabled : true,
+                displayAsRow : false,
+                fullname : new ComputedProperty(['firstname', 'lastname'], function(firstname, lastname) {
+                    return firstname + ' ' + lastname;
+                }),
                 href : new ComputedProperty(['_id'], function(_id) {
                     return constants.internalRoutes.user + '/' + _id;
                 })
             },
             urlRoot : constants.api.users.url,
             url : function() {
-                if(this.get('_id') === this.get('userModel')._id) {
+                if(this.has('userModel') && this.get('_id') === this.get('userModel')._id) {
                     return constants.api.user.url; //Admin editing their own (/user)
                 } else {
                     return constants.api.users.url+ '/' +this.get('_id'); //admin editing someone else (/users/id)

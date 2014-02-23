@@ -12,11 +12,11 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
 
         function beforeRender ($deferred) {
 
-            if (this.model.has('role')) {
-                _updateMastheadBreadcrumbs.call(this, $deferred);
-            } else {
+            if(!this.model.get('displayAsRow')) {
                 this.model.fetch()
                     .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
+            } else {
+                $deferred.resolve();
             }
 
         }

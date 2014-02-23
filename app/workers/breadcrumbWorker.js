@@ -12,14 +12,25 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
     };
 
     function contentBreadcrumb($deferred, isNew) {
-        var nodeId = this.model.get('node._id');
+        var nodeId = this.model.get('node._id'),
+            self = this;
 
         _getNodeDetailRecursively.call(this, nodeId)
-            .then(_addCurrentScope.bind(this, $deferred, isNew));
+            .then(function() {
+                if(isNew) {
+                    _addIsNewScope.call(self, $deferred, nodeId);
+                } else {
+                    _addCurrentScope.call(self, $deferred);
+                }
+            });
     }
 
     function contentTypeBreadcrumb($deferred, isNew) {
-        _addCurrentScope.call(this, $deferred, isNew);
+        if (isNew) {
+            _addIsNewScope.call(this, $deferred, 'new');
+        } else {
+            _addCurrentScope.call(this, $deferred);
+        }
     }
 
     function contentBrowse($deferred) {
@@ -30,24 +41,27 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
     }
 
     function userBreadcrumb($deferred) {
-        $deferred.resolve();
-//        _addCurrentScope.call(this, $deferred, isNew);
+        this.breadcrumbs.push({
+            text: this.model.get('fullname'),
+            href: this.model.get('href')
+        });
+        _finishBreadcrumb.call(this, $deferred);
     }
 
-    function _addCurrentScope($deferred, isNew) {
-        if(isNew) {
-            this.breadcrumbs.push({
-                text: resources.newWord,
-                href: constants.internalRoutes.createContent
-            });
-        } else {
-            this.breadcrumbs.push({
-                text: this.model.get('label'),
-                href: constants.internalRoutes[this.name].replace(':id', this.model.get('_id'))
-            });
-        }
-        channels.views.trigger('updateMastheadBreadcrumbs', this);
-        $deferred.resolve();
+    function _addIsNewScope($deferred, replaced) {
+        this.breadcrumbs.push({
+            text: resources.newWord,
+            href: constants.internalRoutes[this.name].replace(':id', replaced)
+        });
+        _finishBreadcrumb.call(this, $deferred);
+    }
+
+    function _addCurrentScope($deferred) {
+        this.breadcrumbs.push({
+            text: this.model.get('label'),
+            href: constants.internalRoutes[this.name].replace(':id', this.model.get('_id'))
+        });
+        _finishBreadcrumb.call(this, $deferred);
     }
 
 
@@ -79,6 +93,11 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
             });
 
         return $deferred.promise();
+    }
+
+    function _finishBreadcrumb($deferred) {
+        channels.views.trigger('updateMastheadBreadcrumbs', this);
+        $deferred.resolve();
     }
 
 });
