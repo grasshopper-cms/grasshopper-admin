@@ -1,6 +1,6 @@
 /* jshint loopfunc:true */
-define(['userDetailView', 'userDetailViewConfig'],
-    function (UserDetailView, userDetailViewConfig) {
+define(['userDetailView', 'userDetailViewConfig', 'underscore'],
+    function (UserDetailView, userDetailViewConfig, _) {
         'use strict';
 
         return {
@@ -18,7 +18,9 @@ define(['userDetailView', 'userDetailViewConfig'],
                     }
 
                     rivets.viewInstance = new UserDetailView({
-                        modelData : model.attributes,
+                        modelData : _.extend({}, model.attributes, {
+                            displayAsRow : true
+                        }),
                         template : userDetailViewConfig.rowTemplate,
                         mastheadButtons : rivets.model.view.mastheadButtons,
                         appendTo : el

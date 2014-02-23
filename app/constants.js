@@ -56,7 +56,7 @@ define({
         logout : '#logout',
         about : '#about',
         createFolder : '#items/nodeid/:id/createFolder',
-        createContent : '#items/nodeid/:id/createContent',
+        addContent : '#items/nodeid/:id/createContent',
         createAssets : '#items/nodeid/:id/createAssets'
     },
     defaults : {
