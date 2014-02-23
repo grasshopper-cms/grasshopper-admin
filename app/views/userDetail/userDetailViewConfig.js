@@ -12,6 +12,7 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             wrapper : false,
             rivetConfig : 'auto',
             template : formTemplate,
+            rowTemplate : rowTemplate,
             events : {
                 'click #saveUser' : 'updateModel',
                 'click .toggleEnabled' : 'toggleEnabled',
@@ -21,7 +22,7 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addNewUser,
-                    href : constants.internalRoutes.newUser
+                    href : constants.internalRoutes.addUser
                 }
             ]
         };

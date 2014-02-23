@@ -18,7 +18,7 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addNewUser,
-                    href : constants.internalRoutes.newUser
+                    href : constants.internalRoutes.addUser
                 }
             ],
             breadcrumbs : [
