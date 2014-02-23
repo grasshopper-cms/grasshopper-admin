@@ -44,7 +44,7 @@ define({
     internalRoutes : {
         user : '#user',
         users : '#users',
-        newUser : '#addUser',
+        addUser : '#addUser',
         contentTypes : '#item/types',
         newContentType : '#item/types/new',
         contentTypeDetail : '#item/types/:id',

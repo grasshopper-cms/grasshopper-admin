@@ -1,19 +1,20 @@
-define(['api', 'constants', 'jquery', 'resources', 'masseuse'], function (Api, constants, $, resources, masseuse) {
+define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
+    function (Api, constants, $, resources, masseuse, _) {
     'use strict';
 
     var channels = new masseuse.utilities.channels();
 
     return {
         contentBreadcrumb : contentBreadcrumb,
-        contentTypeBreadcrumb : contentTypeBreadcrumb
-
+        contentTypeBreadcrumb : contentTypeBreadcrumb,
+        contentBrowse : contentBrowse,
+        userBreadcrumb : userBreadcrumb
     };
 
     function contentBreadcrumb($deferred, isNew) {
-        var nodeId = this.model.get('node._id'),
-            depthFromEnd = 0;
+        var nodeId = this.model.get('node._id');
 
-        _getNodeDetailRecursively.call(this, nodeId, null, depthFromEnd)
+        _getNodeDetailRecursively.call(this, nodeId)
             .then(_addCurrentScope.bind(this, $deferred, isNew));
     }
 
@@ -21,6 +22,19 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse'], function (Api, c
         _addCurrentScope.call(this, $deferred, isNew);
     }
 
+    function contentBrowse($deferred) {
+        var nodeId = this.model.get('nodeId');
+
+        _getNodeDetailRecursively.call(this, nodeId)
+            .then($deferred.resolve);
+    }
+
+    function userBreadcrumb($deferred, isNew) {
+        console.log(this);
+        $deferred.resolve();
+        console.log(isNew);
+//        _addCurrentScope.call(this, $deferred, isNew);
+    }
 
     function _addCurrentScope($deferred, isNew) {
         if(isNew) {
@@ -42,20 +56,25 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse'], function (Api, c
     function _getNodeDetailRecursively(nodeId, $deferred, depthFromEnd) {
         var self = this;
 
-        $deferred = ($deferred) ? $deferred : new $.Deferred();
+        $deferred = $deferred ? $deferred : new $.Deferred();
+        depthFromEnd = depthFromEnd ? depthFromEnd : 0;
 
         Api.getNodeDetail(nodeId)
             .done(function(nodeDetail) {
 
-                self.breadcrumbs.splice(self.breadcrumbs.length - depthFromEnd, 0 ,{
-                    text: nodeDetail.label,
-                    href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id)
-                });
+                if(!_.isEmpty(nodeDetail)) {
+                    self.breadcrumbs.splice(self.breadcrumbs.length - depthFromEnd, 0 ,{
+                        text: nodeDetail.label,
+                        href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id)
+                    });
 
-                depthFromEnd++;
+                    depthFromEnd++;
 
-                if(nodeDetail.parent !== null) {
-                    _getNodeDetailRecursively.call(self, nodeDetail.parent._id, $deferred, depthFromEnd);
+                    if(nodeDetail.parent !== null) {
+                        _getNodeDetailRecursively.call(self, nodeDetail.parent._id, $deferred, depthFromEnd);
+                    } else {
+                        $deferred.resolve();
+                    }
                 } else {
                     $deferred.resolve();
                 }
