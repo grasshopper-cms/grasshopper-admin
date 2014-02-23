@@ -6,7 +6,6 @@ _setting up a working npm - in progress_
 
 ### Release Notes
 
-* 0.0.3 - 14-02-23 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/digdug/release_notes/0.0.3_14-02-23.md)
+<%= releaseNotes.notes %>
 
-
-_Compiled file. Do not modify directly._
+<%= warning %>

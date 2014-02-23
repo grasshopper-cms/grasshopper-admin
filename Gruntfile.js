@@ -4,7 +4,9 @@ module.exports = function (grunt) {
     'use strict';
 
     var _ = grunt.util._,
-        config = {};
+        config = {
+            warning : '_Compiled file. Do not modify directly._'
+        };
 
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
