@@ -144,7 +144,6 @@ require.config({
 
         // Workers
         loginWorker : 'workers/loginWorker',
-        userWorker : 'workers/userWorker',
         contentTypeWorker : 'workers/contentTypeWorker',
         assetWorker : 'workers/assetWorker',
         breadcrumbWorker : 'workers/breadcrumbWorker',

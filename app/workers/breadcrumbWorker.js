@@ -29,10 +29,8 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
             .then($deferred.resolve);
     }
 
-    function userBreadcrumb($deferred, isNew) {
-        console.log(this);
+    function userBreadcrumb($deferred) {
         $deferred.resolve();
-        console.log(isNew);
 //        _addCurrentScope.call(this, $deferred, isNew);
     }
 
