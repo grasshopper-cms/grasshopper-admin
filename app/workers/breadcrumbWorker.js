@@ -1,8 +1,12 @@
-define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $, resources) {
+define(['api', 'constants', 'jquery', 'resources', 'masseuse'], function (Api, constants, $, resources, masseuse) {
     'use strict';
 
+    var channels = new masseuse.utilities.channels();
+
     return {
-        contentBreadcrumb : contentBreadcrumb
+        contentBreadcrumb : contentBreadcrumb,
+        contentTypeBreadcrumb : contentTypeBreadcrumb
+
     };
 
     function contentBreadcrumb($deferred, isNew) {
@@ -13,6 +17,11 @@ define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $,
             .then(_addCurrentScope.bind(this, $deferred, isNew));
     }
 
+    function contentTypeBreadcrumb($deferred, isNew) {
+        _addCurrentScope.call(this, $deferred, isNew);
+    }
+
+
     function _addCurrentScope($deferred, isNew) {
         if(isNew) {
             this.breadcrumbs.push({
@@ -22,9 +31,10 @@ define(['api', 'constants', 'jquery', 'resources'], function (Api, constants, $,
         } else {
             this.breadcrumbs.push({
                 text: this.model.get('label'),
-                href: constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id'))
+                href: constants.internalRoutes[this.name].replace(':id', this.model.get('_id'))
             });
         }
+        channels.views.trigger('updateMastheadBreadcrumbs', this);
         $deferred.resolve();
     }
 
