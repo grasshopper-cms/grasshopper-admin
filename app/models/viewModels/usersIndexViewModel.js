@@ -1,12 +1,9 @@
-define(['masseuse', 'resources', 'constants', 'grasshopperCollection'],
-    function (masseuse, resources, constants, grasshopperCollection) {
+define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', 'userDetailViewModel'],
+    function (GrasshopperModel, resources, constants, grasshopperCollection, userDetailViewModel) {
 
     'use strict';
 
-    var Model = masseuse.MasseuseModel;
-//        ComputedProperty = masseuse.ComputedProperty;
-
-    return Model.extend({
+    return GrasshopperModel.extend({
         initialize : initialize,
         defaults : {
 //            currentPage : new ComputedProperty(['users'], function (collection) {
@@ -41,10 +38,11 @@ define(['masseuse', 'resources', 'constants', 'grasshopperCollection'],
     });
 
     function initialize() {
-        Model.prototype.initialize.apply(this, arguments);
+        GrasshopperModel.prototype.initialize.apply(this, arguments);
         this.set('users', new (grasshopperCollection.extend({
+            model : userDetailViewModel,
             url : function() {
-                return constants.api.users.url
+                return constants.api.users.url;
             }
         }))());
     }

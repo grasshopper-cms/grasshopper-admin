@@ -12,16 +12,6 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
 
         function beforeRender ($deferred) {
 
-            // Checking to see if the current model's ID is the same as Logged in user, the API endpoints are
-            // different for Admin editing their own (/user) and admin editing someone else (/users/id)
-            // TODO: this can be refactored, URL's are a function, I can do the switching there.
-            if (this.model.get('_id') === this.app.user.get('_id')) {
-                this.model.url = constants.api.user.url;
-            } else {
-                this.model.urlRoot = constants.api.users.url;
-            }
-
-
             if (this.model.has('role')) {
                 _updateMastheadBreadcrumbs.call(this, $deferred);
             } else {
