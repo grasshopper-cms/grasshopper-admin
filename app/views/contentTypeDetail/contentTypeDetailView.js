@@ -1,6 +1,8 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api', 'underscore', 'jquery', 'constants'],
-    function (GrasshopperBaseView, contentTypeDetailViewConfig, resources, Api, _, $, constants) {
+define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
+    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, contentTypeDetailViewConfig,
+              resources, Api, _, $, breadcrumbWorker) {
     'use strict';
     return GrasshopperBaseView.extend({
         defaultOptions : contentTypeDetailViewConfig,
@@ -18,9 +20,11 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
             this.model.fetch()
                 .done(_handleSuccessfulModelFetch.bind(this, $deferred))
                 .fail($deferred.reject);
-        } else {
+        } else if (this.model.isNew()) {
             this.collection.reset();
             _updateMastheadBreadcrumbs.call(this, $deferred, true);
+        } else {
+            $deferred.resolve();
         }
     }
 
@@ -179,25 +183,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig', 'resources', 'api'
     }
 
     function _updateMastheadBreadcrumbs($deferred, isNew) {
-        var text,
-            href;
-
-        if (isNew) {
-            text = resources.newWord;
-            href = constants.internalRoutes.newContentType;
-        } else {
-            text = this.model.get('label');
-            href = constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id'));
-        }
-
-        this.breadcrumbs.push(
-            {
-                text : text,
-                href : href
-            }
-        );
-
-        $deferred.resolve();
+        breadcrumbWorker.contentTypeBreadcrumb.call(this, $deferred, (isNew));
     }
 
     function _warnUserBeforeChangingType(model, newType) {
