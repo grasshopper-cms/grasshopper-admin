@@ -1,12 +1,12 @@
 /*global define:false*/
 define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDetail/_contentDetailRow.html',
     'contentDetailViewModel', 'appBinders', 'resources', 'constants'],
-    function (formTemplate, rowTemplate, contentDetailViewModel, appBinders, resources, constants) {
+    function (formTemplate, rowTemplate, contentDetailModel, appBinders, resources, constants) {
         'use strict';
 
         return {
-            name : 'contentDetailView',
-            ModelType : contentDetailViewModel,
+            name : 'contentDetail',
+            ModelType : contentDetailModel,
             modelData : {},
             appendTo : '#stage',
             wrapper : false,

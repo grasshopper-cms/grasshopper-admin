@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexView',
-    'assetIndexView', 'underscore', 'contentIndexView'],
+    'assetIndexView', 'underscore', 'contentIndexView', 'breadcrumbWorker'],
     function (GrasshopperBaseView, contentBrowseViewConfig, $, NodeIndexView, AssetIndexView,
-              _, ContentIndexView) {
+              _, ContentIndexView, breadcrumbWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -14,10 +14,8 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         });
 
         function beforeRender ($deferred) {
-            var self = this;
-
             buildMastheadBreadcrumb.call(this)
-                .done(_addChildIndexViews.bind(self, $deferred))
+                .done(_addChildIndexViews.bind(this, $deferred))
                 .fail($deferred.reject);
         }
 
@@ -67,8 +65,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         function buildMastheadBreadcrumb () {
             var $deferred = new $.Deferred();
 
-//            breadcrumbWorker.nodeBreadcrumb.call(this, $deferred);
-            $deferred.resolve();
+            breadcrumbWorker.contentBrowse.call(this, $deferred);
 
             return $deferred.promise();
         }

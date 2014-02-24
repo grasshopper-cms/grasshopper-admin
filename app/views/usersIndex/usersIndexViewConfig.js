@@ -1,6 +1,8 @@
 /*global define:false*/
-define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'resources', 'constants'],
-    function (template, UsersIndexViewModel, resources, constants) {
+define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'resources', 'constants',
+    'usersIndexViewBinders'],
+    function (template, UsersIndexViewModel, resources, constants,
+              usersIndexViewBinders) {
         'use strict';
 
         return {
@@ -18,7 +20,7 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addNewUser,
-                    href : constants.internalRoutes.newUser
+                    href : constants.internalRoutes.addUser
                 }
             ],
             breadcrumbs : [
@@ -27,6 +29,7 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
                     href : constants.internalRoutes.users
                 }
             ],
+            rivetsBinders: [usersIndexViewBinders],
             permissions : ['admin']
         };
 

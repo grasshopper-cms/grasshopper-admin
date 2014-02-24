@@ -50,8 +50,8 @@ require.config({
         rivets : 'vendor/rivets/dist/rivets',
         base64 : 'vendor/js-base64/base64',
         foundation : 'vendor/foundation/js/foundation/foundation',
-        paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
-        cirque : 'vendor/cirque/jquery.cirque',
+//        paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
+//        cirque : 'vendor/cirque/jquery.cirque',
         modernizr : 'vendor/modernizr/modernizr',
 
         // Routers
@@ -144,7 +144,6 @@ require.config({
 
         // Workers
         loginWorker : 'workers/loginWorker',
-        userWorker : 'workers/userWorker',
         contentTypeWorker : 'workers/contentTypeWorker',
         assetWorker : 'workers/assetWorker',
         breadcrumbWorker : 'workers/breadcrumbWorker',
@@ -167,6 +166,7 @@ require.config({
         appBinders : 'appBinders',
         pluginWrapperBinders : 'views/pluginWrapper/pluginWrapperBinders',
         contentTypeDetailBinders : 'views/contentTypeDetail/contentTypeDetailBinders',
+        usersIndexViewBinders : 'views/usersIndex/binders',
 
         // Formatters
         formatters : 'formatters',
