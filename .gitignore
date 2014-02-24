@@ -8,3 +8,5 @@ configuration.json
 atlassian-ide-plugin.xml
 Vagrantfile
 *.log
+.sass-cache
+/build

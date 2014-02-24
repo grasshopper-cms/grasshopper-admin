@@ -26,15 +26,7 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
         }
 
         function _getContent($deferred) {
-            Api.makeQuery(
-                {
-                    nodes : this.nodeId,
-                    types : [],
-                    filters : [],
-                    options : {
-                        fake : true
-                    }
-                })
+            Api.getNodesContent(this.nodeId)
                 .done(_handleSuccessfulContentQuery.bind(this, $deferred))
                 .fail(_handleFailedContentQuery.bind(this, $deferred));
         }
@@ -76,7 +68,7 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
             $('#contentDetailRow').append(_.template(template, {
                 msg : resources.node.emptyNode,
                 linkText : resources.node.clickToAdd,
-                href : constants.internalRoutes.createContent.replace(':id', this.nodeId)
+                href : constants.internalRoutes.addContent.replace(':id', this.nodeId)
             }));
         }
 

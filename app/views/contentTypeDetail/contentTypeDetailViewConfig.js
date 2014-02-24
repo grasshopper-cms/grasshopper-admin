@@ -4,14 +4,14 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
     'contentTypeDetailViewModel', 'appBinders', 'contentTypeDetailBinders',
     'backbone', 'formatters', 'resources', 'constants', 'contentTypeDetailFormatters', 'underscore',
     'pluginSetupModel'],
-    function (formTemplate, rowTemplate, contentTypeDetailViewModel, appBinders, contentTypeDetailBinders,
+    function (formTemplate, rowTemplate, contentTypeDetailModel, appBinders, contentTypeDetailBinders,
               Backbone, formatters, resources, constants, contentTypeDetailFormatters, _,
               pluginSetupModel) {
         'use strict';
 
         return {
-            name : 'contentTypeDetailView',
-            ModelType : contentTypeDetailViewModel,
+            name : 'contentTypeDetail',
+            ModelType : contentTypeDetailModel,
             modelData : {},
             appendTo : '#stage',
             wrapper : false,

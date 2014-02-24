@@ -398,6 +398,7 @@ body, html {
     }
   }
 
+  // Content Detail View
   #contentEdit {
 
     .field-item {
@@ -413,6 +414,11 @@ body, html {
           width: 40%;
         }
       }
+    }
+
+    .accordionHeader {
+      padding-top: 7px;
+      padding-bottom: 7px;
     }
   }
 
@@ -490,6 +496,12 @@ body, html {
     #removeField {
       margin-bottom: 4px;
     }
+
+    .accordionHeader {
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+
   }
 
   // Content Reference Plugin

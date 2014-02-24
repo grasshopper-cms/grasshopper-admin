@@ -1,17 +1,18 @@
 /*global define:false*/
 define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_userDetailRow.html', 'userDetailViewModel',
     'resources', 'constants'],
-    function (formTemplate, rowTemplate, userDetailViewModel, resources, constants) {
+    function (formTemplate, rowTemplate, userDetailModel, resources, constants) {
         'use strict';
 
         return {
-            name : 'userDetailView',
+            name : 'userDetail',
             modelData : {},
-            ModelType : userDetailViewModel,
+            ModelType : userDetailModel,
             appendTo : '#stage',
             wrapper : false,
             rivetConfig : 'auto',
             template : formTemplate,
+            rowTemplate : rowTemplate,
             events : {
                 'click #saveUser' : 'updateModel',
                 'click .toggleEnabled' : 'toggleEnabled',
@@ -21,7 +22,13 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.addNewUser,
-                    href : constants.internalRoutes.newUser
+                    href : constants.internalRoutes.addUser
+                }
+            ],
+            breadcrumbs : [
+                {
+                    text : resources.users,
+                    href : constants.internalRoutes.users
                 }
             ]
         };

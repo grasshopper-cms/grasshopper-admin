@@ -42,23 +42,21 @@ define(['underscore'], function (_) {
         validateLoginAttribute : function (string) {
             return (/^[\w.\-]+$/).test(string);
         },
-        validateLuhn : function (number) {
-            var digit, n, sum, _len, _ref;
-            sum = 0;
-            _ref = number.split('').reverse().join('');
-            for (n = 0, _len = _ref.length; n < _len; n++) {
-                digit = _ref[n];
-                digit = +digit;
-                if (n % 2) {
-                    digit *= 2;
-                    if (digit < 10) {
-                        sum += digit;
-                    } else {
-                        sum += digit - 9;
-                    }
+        validateLuhn : function(number) {
+            var digits = number.toString().split(''),
+                charString = '',
+                sum = 0,
+                i;
+            for (i = 0; i < digits.length; i++) {
+                if (i % 2) {
+                    charString += '' + 2 * digits[i];
                 } else {
-                    sum += digit;
+                    charString += '' + digits[i];
                 }
+            }
+
+            for (i = 0; i < charString.length; i++) {
+                sum += parseInt(charString[i], 10);
             }
             return sum % 10 === 0;
         },

@@ -8,7 +8,8 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
             afterRender : afterRender,
-            stopPropagation : stopPropagation
+            stopPropagation : stopPropagation,
+            toggleExpandArrow : toggleExpandArrow
         });
 
         function beforeRender($deferred) {
@@ -75,6 +76,18 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         function stopPropagation(e) {
             e.stopPropagation();
+        }
+
+        function toggleExpandArrow(e) {
+            var $toToggle;
+
+            if(e.target.localName === 'i') {
+                $toToggle = $(e.target.parentElement);
+            } else {
+                $toToggle = $(e.target);
+            }
+            $toToggle.next().slideToggle('slow');
+            this.model.toggle('accordionOpen');
         }
 
     });

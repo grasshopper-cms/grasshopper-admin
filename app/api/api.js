@@ -38,6 +38,9 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         getNodesChildren : function (nodeId) {
             return this.request(constants.api.nodesChildren.url.replace(':id', nodeId));
         },
+        getNodesContent : function(nodeId) {
+            return this.request(constants.api.nodesContent.url.replace(':id', nodeId));
+        },
         authenticateToken : function () {
             return this.request(constants.api.user.url);
         },
