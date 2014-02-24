@@ -44,7 +44,7 @@ define({
     internalRoutes : {
         user : '#user',
         users : '#users',
-        newUser : '#addUser',
+        addUser : '#addUser',
         contentTypes : '#item/types',
         newContentType : '#item/types/new',
         contentTypeDetail : '#item/types/:id',
@@ -56,7 +56,7 @@ define({
         logout : '#logout',
         about : '#about',
         createFolder : '#items/nodeid/:id/createFolder',
-        createContent : '#items/nodeid/:id/createContent',
+        addContent : '#items/nodeid/:id/createContent',
         createAssets : '#items/nodeid/:id/createAssets'
     },
     defaults : {

@@ -1,9 +1,5 @@
 define([
-    'grasshopperModel',
-    'validation',
-    'masseuse',
-    'resources',
-    'constants'
+    'grasshopperModel', 'validation', 'masseuse', 'resources', 'constants'
 ], function (Model, validation, masseuse, resources, constants) {
 
     'use strict';
