@@ -1,12 +1,6 @@
-.idea/*
-/node_modules
-/dist
-/cache
-/log
-.vagrant/*
-configuration.json
-atlassian-ide-plugin.xml
-Vagrantfile
-*.log
+.DS_Store
+desktop.ini
+*node_modules*
+*npm-debug*
+build
 .sass-cache
-/build
