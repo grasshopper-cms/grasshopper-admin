@@ -1,0 +1,195 @@
+<div id="contentTypeDetailView">
+    <div class="row">
+        <div class="large-12 columns">
+
+            <h4>{{model:resources->summary | withColon}}</h4>
+            <hr>
+
+            <div class="row">
+                <div class="small-2 columns">
+                    <label for="title" class="right inline">{{model:resources->title | withColon}}</label>
+                </div>
+                <div class="small-10 columns">
+                    <input type="text" id="title" data-rv-value="model:label">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="small-2 columns">
+                    <label for="helpText" class="right inline">{{model:resources->contentType->helpText | withColon}}</label>
+                </div>
+                <div class="small-10 columns">
+                    <textarea id="helpText" data-rv-value="model:helpText" style="max-width: 100%;"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-2 columns">
+                    <label for="description" class="right inline">{{model:resources->contentType->description | withColon}}</label>
+                </div>
+                <div class="small-10 columns">
+                    <textarea id="description" data-rv-value="model:description" style="max-width: 100%;"></textarea>
+                </div>
+            </div>
+
+            <h4>{{model:resources->contentType->fields | withColon}}</h4>
+            <hr>
+
+            <table width="100%" style="margin-bottom: 0; table-layout: fixed;">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">{{model:resources->name}}</th>
+                        <th>{{model:resources->contentType->fieldType}}</th>
+                        <th>{{model:resources->required}}</th>
+                        <th>{{model:resources->multiple}}</th>
+                        <th style="text-align: center;">{{model:resources->actions}}</th>
+                    </tr>
+                </thead>
+                <tbody data-rv-hide="collection: | collectionHasLength">
+                    <tr>
+                        <td colspan="5">
+                            {{model:resources->contentType->emptyFields}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <dl class="accordion" data-accordion>
+                <dd data-rv-each-field="collection:">
+                    <a data-rv-href="field.cid | prepend #" class="accordionHeader" style="padding: 0;">
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <table style="margin-bottom: 0; table-layout: fixed;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 30%;">{{field:label | existsOr --}}</td>
+                                            <td>{{field:type | existsOr --}}</td>
+                                            <td>{{field:required | booleanToYesNo}}</td>
+                                            <td>{{field:min | existsOr --}}min / {{field:max | existsOr --}}max</td>
+                                            <td style="text-align: center;">
+                                                <span data-rv-on-click="view.removeFieldFromCollection">
+                                                    <i class="icon-trash"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </a>
+                    <div data-rv-id="field.cid" class="content" data-rv-addclass="field:active">
+
+                        <div class="row">
+                            <div class="large-12 small-centered columns">
+
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label for="_id" class="right inline">{{model:resources->id}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <div class="row">
+                                            <div class="small-11 columns" style="padding-right: 0;">
+                                                <input type="text" id="_id" placeholder="_id" data-rv-value="field:_id" readonly="true">
+                                            </div>
+                                            <div class="small-1 columns" style="padding-left: 0;">
+                                                <span class="postfix radius"><i class="icon-lock"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label for="label" class="right inline">{{model:resources->name}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input type="text" id="label" data-rv-placeholder="model:resources->name" data-rv-value="field:label">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend type" class="right inline">{{model:resources->type}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <select data-rv-id="field.cid  | prepend type" data-rv-value="field:type" >
+                                            <option data-rv-each-plugin="model:plugins" data-rv-value="plugin.type" data-rv-text="plugin.name"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend required" class="right inline">{{model:resources->required}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input data-rv-id="field.cid  | prepend required" type="checkbox" data-rv-checked="field:required">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend useAsLabel" class="right inline">Use As Label</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input data-rv-id="field.cid  | prepend useAsLabel" type="radio" name="useAsLabel" data-rv-checked="field:useAsLabel | radioToBoolean">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend multi" class="right inline">{{model:resources->allowMultiple}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input data-rv-id="field.cid  | prepend multi" type="checkbox" data-rv-checked="field:multi">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row" data-rv-show="field:multi">
+                            <fieldset>
+                                <legend>
+                                    {{model:resources->allowMultipleSettings}}
+                                </legend>
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend min" class="right inline">{{model:resources->minimum}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input data-rv-id="field.cid  | prepend min" type="number" data-rv-value="field:min | asNumber">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend max" class="right inline">{{model:resources->maximum}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input data-rv-id="field.cid  | prepend max" type="number" data-rv-value="field:max | asNumber">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row" data-rv-show="field:options">
+                            <fieldset>
+                                <legend>
+                                    {{model:resources->options}}
+                                </legend>
+                                <div data-rv-fieldform="field"></div>
+                            </fieldset>
+                        </div>
+
+                    </div>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <button id="saveContentType" class="button tiny radius right" style="margin-top: 10px;">{{model:resources->save}}</button>
+        </div>
+    </div>
+</div>
