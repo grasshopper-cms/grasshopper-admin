@@ -6,15 +6,21 @@ module.exports = function (grunt) {
     var _ = grunt.util._,
         config = {
             warning : '_Compiled file. Do not modify directly._'
-        };
+        },
+        ghaConfig = grunt.file.findup('gha.json', {nocase: true});
+
 
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.loadTasks('tasks');
 
+
     // load grunt Config. All config can be found in tasks/options
     grunt.initConfig(_.extend(config, loadConfig('./initConfig/')));
+
+    grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
+    grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
 
     grunt.registerTask('build', 'Build and watch task', [
         'clean',

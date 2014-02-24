@@ -1,3 +1,3 @@
 module.exports = {
-    build : ['build']
+    build : ['<%= buildDirectory %>']
 };

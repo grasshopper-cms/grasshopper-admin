@@ -10,3 +10,4 @@ Vagrantfile
 *.log
 .sass-cache
 /build
+.DS_Store
