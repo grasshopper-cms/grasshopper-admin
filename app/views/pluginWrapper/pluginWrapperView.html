@@ -3,11 +3,11 @@
         <div class="row">
 
             <div class="small-2 columns">
-                <label data-rv-for="model:_id" class="right inline">{{model:label}}</label>
+                <label data-rv-for="model:_id | prepend pluginWrapper" class="right inline">{{model:label}}</label>
             </div>
 
             <div class="small-10 columns">
-                <div class="row" data-rv-id="model:_id" data-rv-each-field="collection:">
+                <div class="row" data-rv-id="model:_id | prepend pluginWrapper" data-rv-each-field="collection:">
                     <div class="row collapse">
                         <div class="small-11 columns">
                             <div data-rv-fieldtype="field"></div>
