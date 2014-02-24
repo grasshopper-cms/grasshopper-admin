@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6e72ea6a-881b-41ae-8a70-1fd7ec6b7682" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/helpers/collections/paginatedCollection.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/contentTypeIndex/contentTypeIndexView.html" afterPath="$PROJECT_DIR$/app/views/contentTypeIndex/contentTypeIndexView.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/views/contentTypeIndex/contentTypeIndexView.html" afterPath="$PROJECT_DIR$/build/views/contentTypeIndex/contentTypeIndexView.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/collections/grasshopperCollection.js" afterPath="$PROJECT_DIR$/build/collections/grasshopperCollection.js" />
+    </list>
+    <ignored path="grasshopper-admin.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="grasshopper-admin" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/app/plugins/embeddedcontent/nodeTree/view.js" />
+        <option value="$PROJECT_DIR$/app/plugins/embeddedcontent/config.js" />
+        <option value="$PROJECT_DIR$/app/plugins/embeddedcontent/view.js" />
+        <option value="$PROJECT_DIR$/app/resources.js" />
+        <option value="$PROJECT_DIR$/app/views/contentTypeDetail/contentTypeDetailView.js" />
+        <option value="$PROJECT_DIR$/app/plugins/embeddedcontent/setupTemplate.html" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/embeddedcontentBinders.js" />
+        <option value="$PROJECT_DIR$/build/plugins.js" />
+        <option value="$PROJECT_DIR$/build/plugins/embeddedcontent/config.js" />
+        <option value="$PROJECT_DIR$/build/plugins/embeddedcontent/embeddedcontentBinders.js" />
+        <option value="$PROJECT_DIR$/build/plugins/embeddedcontent/nodeTree/config.js" />
+        <option value="$PROJECT_DIR$/build/plugins/embeddedcontent/nodeTree/view.js" />
+        <option value="$PROJECT_DIR$/build/plugins/embeddedcontent/view.js" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/readme.json" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/nodeTree/config.js" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/config.js" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/setupTemplate.html" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/modal/modalView.js" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/modal/model.js" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/modal/config.js" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/template.html" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/modal/template.html" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/nodeTree/template.html" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/modal/view.js" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/view.js" />
+        <option value="$PROJECT_DIR$/app/views/pluginWrapper/pluginWrapperView.html" />
+        <option value="$PROJECT_DIR$/app/plugins/textbox/model.js" />
+        <option value="$PROJECT_DIR$/app/api/api.js" />
+        <option value="$PROJECT_DIR$/app/views/contentIndex/contentIndexView.js" />
+        <option value="$PROJECT_DIR$/app/views/masthead/mastheadView.js" />
+        <option value="$PROJECT_DIR$/app/views/contentDetail/contentDetailView.html" />
+        <option value="$PROJECT_DIR$/app/helpers/utilities/validation.js" />
+        <option value="$PROJECT_DIR$/app/plugins/embeddedtype/model.js" />
+        <option value="$PROJECT_DIR$/app/themes/blue-dashboard/main.scss" />
+        <option value="$PROJECT_DIR$/app/plugins/embeddedtype/template.html" />
+        <option value="$PROJECT_DIR$/app/plugins/embeddedtype/view.js" />
+        <option value="$PROJECT_DIR$/app/plugins/contentreference/nodeTree/view.js" />
+        <option value="$PROJECT_DIR$/app/plugins/embeddedtype/config.js" />
+        <option value="$PROJECT_DIR$/bower.json" />
+        <option value="$PROJECT_DIR$/app/workers/breadcrumbWorker.js" />
+        <option value="$PROJECT_DIR$/app/views/grasshopperBaseView.js" />
+        <option value="$PROJECT_DIR$/release_notes/0.1.0_14-02-24.md" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/app/helpers/main.js" />
+        <option value="$PROJECT_DIR$/app/main.js" />
+        <option value="$PROJECT_DIR$/app/views/usersIndex/usersIndexView.js" />
+        <option value="$PROJECT_DIR$/app/models/viewModels/usersIndexViewModel.js" />
+        <option value="$PROJECT_DIR$/app/views/usersIndex/usersIndexView.html" />
+        <option value="$PROJECT_DIR$/app/collections/grasshopperCollection.js" />
+        <option value="$PROJECT_DIR$/app/views/contentTypeIndex/contentTypeIndexView.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
+    <option name="width" value="1920" />
+    <option name="height" value="1054" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Cucumber</id>
+          </State>
+          <State>
+            <id>File Watchers</id>
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>HTML</id>
+          </State>
+          <State>
+            <id>RELAX NG</id>
+          </State>
+          <State>
+            <id>XML</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grasshopper-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grasshopper-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grasshopper-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grasshopper-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grasshopper-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grasshopper-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grasshopper-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="FullScreen" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../masseuse" />
+    <property name="SearchEverywhereHistory" value="&#10;'&#10;c" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/plugins/contentreference/modal" />
+      <recent name="$PROJECT_DIR$/app/themes/blue-dashboard" />
+      <recent name="$PROJECT_DIR$/app/plugins/embeddedcontent" />
+      <recent name="$PROJECT_DIR$/app/plugins/embeddedtype" />
+      <recent name="$PROJECT_DIR$/app/plugins/keyvalue" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/models" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e72ea6a-881b-41ae-8a70-1fd7ec6b7682" name="Default" comment="" />
+      <created>1389986014044</created>
+      <updated>1389986014044</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="22" width="1920" height="1054" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27442828" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2454739" sideWeight="0.9220374" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18157615" sideWeight="0.07796258" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.487526" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27442828" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.487526" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18157615" sideWeight="0.07796258" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2342918" sideWeight="0.9220374" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="false" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="5" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/views/dashboard/dashboardView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/header/headerView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/login/loginView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modal/modalView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.9314775" vertical-offset="870" max-vertical-offset="1845" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/nodeDetail/nodeDetailView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.5535332" vertical-offset="1451" max-vertical-offset="2385" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/nodeIndex/nodeIndexView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pluginWrapper/pluginWrapperView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.28479657" vertical-offset="266" max-vertical-offset="1200" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/utilities/validation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="17" selection-start="1984" selection-end="1984" vertical-scroll-proportion="0.614561" vertical-offset="236" max-vertical-offset="1170" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/addContent/addContentView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.7184154" vertical-offset="1605" max-vertical-offset="2610" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/addContent/addContentView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/contentDetail/contentDetailView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="0" selection-start="3210" selection-end="3210" vertical-scroll-proportion="1.0714285" vertical-offset="0" max-vertical-offset="2025" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/viewModels/addUserViewModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="499" selection-end="499" vertical-scroll-proportion="0.3372591" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/viewModels/addFolderViewModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/viewModels/addContentViewModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="53" selection-start="186" selection-end="231" vertical-scroll-proportion="0.06423983" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/plugins/embeddedtype/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="3" selection-start="483" selection-end="483" vertical-scroll-proportion="0.24089935" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/themes/blue-dashboard/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="511" selection-end="511" vertical-scroll-proportion="0.4013378" vertical-offset="0" max-vertical-offset="8130">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/plugins/embeddedtype/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="752" selection-end="752" vertical-scroll-proportion="0.3791209" vertical-offset="0" max-vertical-offset="910" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/plugins/embeddedtype/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="0" selection-start="2770" selection-end="3121" vertical-scroll-proportion="0.71092075" vertical-offset="536" max-vertical-offset="1470" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/plugins/contentreference/nodeTree/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/plugins/contentreference/nodeTree/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="73" selection-start="97" selection-end="97" vertical-scroll-proportion="0.016059957" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/addFolder/addFolderViewConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/masthead/mastheadView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="16" selection-start="1732" selection-end="1732" vertical-scroll-proportion="0.8190578" vertical-offset="0" max-vertical-offset="1245" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/addContent/addContentViewConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="14" selection-start="692" selection-end="874" vertical-scroll-proportion="0.369379" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/plugins/embeddedtype/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="7" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.46573874" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/contentBrowse/contentBrowseView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.3490364" vertical-offset="326" max-vertical-offset="1260" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/vendor/masseuse/app/plugins/rivets/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="315" selection-end="315" vertical-scroll-proportion="0.26373628" vertical-offset="0" max-vertical-offset="910" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/vendor/masseuse/app/plugins/rivets/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/vendor/masseuse/app/models/masseuseModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="218" column="0" selection-start="8105" selection-end="8105" vertical-scroll-proportion="0.45396146" vertical-offset="2846" max-vertical-offset="4275" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/vendor/masseuse/app/models/computedProperty.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.26873663" vertical-offset="251" max-vertical-offset="1185" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/vendor/masseuse/app/views/lifeCycle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="52" selection-start="196" selection-end="196" vertical-scroll-proportion="0.19354838" vertical-offset="0" max-vertical-offset="1800" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/workers/breadcrumbWorker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="9" selection-start="905" selection-end="905" vertical-scroll-proportion="0.83870965" vertical-offset="0" max-vertical-offset="930" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/vendor/masseuse/app/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.67741936" vertical-offset="315" max-vertical-offset="780" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/contentTypeDetail/contentTypeDetailView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="196" column="13" selection-start="6228" selection-end="6228" vertical-scroll-proportion="0.944086" vertical-offset="2501" max-vertical-offset="3435" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/contentDetail/contentDetailView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="54" selection-start="2511" selection-end="2511" vertical-scroll-proportion="-0.32258064" vertical-offset="1425" max-vertical-offset="1890" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/grasshopperBaseView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="75" selection-start="1680" selection-end="1680" vertical-scroll-proportion="0.87096775" vertical-offset="345" max-vertical-offset="1065" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/masthead/mastheadViewConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="61" selection-start="570" selection-end="595" vertical-scroll-proportion="0.48387095" vertical-offset="0" max-vertical-offset="735" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/release_notes/0.0.3_14-02-23.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="42" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="909">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/release_notes/0.1.0_14-02-24.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="35" selection-start="46" selection-end="46" vertical-scroll-proportion="0.01650165" vertical-offset="0" max-vertical-offset="909">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="19" selection-start="285" selection-end="285" vertical-scroll-proportion="0.24671052" vertical-offset="0" max-vertical-offset="960">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="3" selection-start="214" selection-end="214" vertical-scroll-proportion="0.11217949" vertical-offset="0" max-vertical-offset="936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="9" selection-start="886" selection-end="886" vertical-scroll-proportion="0.625" vertical-offset="0" max-vertical-offset="3405">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/usersIndex/usersIndexView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="7" selection-start="472" selection-end="472" vertical-scroll-proportion="0.25641027" vertical-offset="0" max-vertical-offset="936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/viewModels/usersIndexViewModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="3" selection-start="689" selection-end="689" vertical-scroll-proportion="0.3846154" vertical-offset="0" max-vertical-offset="936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/usersIndex/usersIndexView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="10" selection-start="1219" selection-end="1219" vertical-scroll-proportion="0.50986844" vertical-offset="0" max-vertical-offset="912">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/userModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/userDetail/userDetailView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="9" selection-start="811" selection-end="811" vertical-scroll-proportion="0.33653846" vertical-offset="0" max-vertical-offset="1140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/collections/grasshopperCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.60897434" vertical-offset="0" max-vertical-offset="936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/contentTypeIndex/contentTypeIndexView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="39" selection-start="67" selection-end="67" vertical-scroll-proportion="0.032894738" vertical-offset="0" max-vertical-offset="912">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/contentBrowse/contentBrowseView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="11" selection-start="66" selection-end="66" vertical-scroll-proportion="0.08012821" vertical-offset="0" max-vertical-offset="936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
