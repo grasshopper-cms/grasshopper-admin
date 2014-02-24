@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6e72ea6a-881b-41ae-8a70-1fd7ec6b7682" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/helpers/collections/paginatedCollection.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/contentTypeIndex/contentTypeIndexView.html" afterPath="$PROJECT_DIR$/app/views/contentTypeIndex/contentTypeIndexView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/views/contentTypeIndex/contentTypeIndexView.html" afterPath="$PROJECT_DIR$/build/views/contentTypeIndex/contentTypeIndexView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/collections/grasshopperCollection.js" afterPath="$PROJECT_DIR$/build/collections/grasshopperCollection.js" />
     </list>
     <ignored path="grasshopper-admin.iws" />
     <ignored path=".idea/workspace.xml" />
