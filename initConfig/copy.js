@@ -6,14 +6,14 @@ module.exports = {
                 '!**/*.scss',
                 '**/*.html',
                 '!vendor/**'
-            ], dest : 'build'}
+            ], dest : '<%= buildDirectory %>'}
         ]
     },
     vendor : {
         files : [
             {expand : true, cwd : 'app/', src : [
                 // created dynamically
-            ], dest : 'build'}
+            ], dest : '<%= buildDirectory %>'}
         ]
     },
     deploy : {
@@ -23,14 +23,14 @@ module.exports = {
                 '!**/*.scss',
                 '!**/*.js',
                 '!vendor/**/*'
-            ], dest : 'build'}
+            ], dest : '<%= buildDirectory %>'}
         ]
     },
     redo : {
         files : [
             {expand : true, cwd : 'app/', src : [
 
-            ], dest : 'build'}
+            ], dest : '<%= buildDirectory %>'}
         ]
     },
     vagrant : {
