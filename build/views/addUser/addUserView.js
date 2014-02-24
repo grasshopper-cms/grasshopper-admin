@@ -1,12 +1,16 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'addUserViewConfig', 'resources'],
-    function (GrasshopperBaseView, resources, addUserViewConfig) {
+define(['grasshopperBaseView', 'resources', 'addUserViewConfig', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, resources, addUserViewConfig, breadcrumbWorker) {
     'use strict';
     return GrasshopperBaseView.extend({
         defaultOptions : addUserViewConfig,
+        beforeRender : beforeRender,
         saveUser : saveUser
     });
 
+    function beforeRender($deferred) {
+        _updateMastheadBreadcrumbs.call(this, $deferred);
+    }
 
     function saveUser () {
         this.model.save()
@@ -32,6 +36,10 @@ define(['grasshopperBaseView', 'addUserViewConfig', 'resources'],
                 msg : xhr.responseJSON.message
             }
         );
+    }
+
+    function _updateMastheadBreadcrumbs($deferred) {
+        breadcrumbWorker.userBreadcrumb.call(this, $deferred, true);
     }
 
 });

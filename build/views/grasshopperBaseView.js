@@ -59,8 +59,7 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
             return;
         }
 
-        this.on(RivetView.afterRenderDone, _handleAfterRender.call(this));
-
-        return RivetView.prototype.start.apply(this, arguments);
+        return RivetView.prototype.start.apply(this, arguments)
+            .done(_handleAfterRender.bind(this));
     }
 });
