@@ -127,7 +127,8 @@ define({
         addOption : 'Add Option',
         helpText : 'Help Text',
         description: 'Description',
-        emptyFields : 'Click "Add new field" to add your first field.'
+        emptyFields : 'Click "Add new field" to add your first field.',
+        useAsLabel : 'Use As Label'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
