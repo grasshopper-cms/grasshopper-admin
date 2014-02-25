@@ -1,6 +1,10 @@
-module.exports = function(grunt) {
+/*globals module:true */
+module.exports = function (grunt) {
+    'use strict';
 
-    return {
+    var buildDirectory = grunt.config.get('buildDirectory');
+
+    grunt.config('sass', {
         application : { // Get and compile application.scss
             options : {
                 style : 'compressed',
@@ -10,9 +14,11 @@ module.exports = function(grunt) {
             files : grunt.file.expandMapping(['themes/**/main.scss'], 'css', {
                 cwd: 'app/',
                 rename: function (dest, matched) {
-                    return 'build/' + matched.replace(/\.scss$/, '.css');
+                    return buildDirectory +'/'+ matched.replace(/\.scss$/, '.css');
                 }
             })
         }
-    }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-sass');
 };
