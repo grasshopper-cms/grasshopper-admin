@@ -128,9 +128,9 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" data-rv-show="field:type | equals textbox">
                                     <div class="small-2 columns">
-                                        <label data-rv-for="field.cid  | prepend useAsLabel" class="right inline">Use As Label</label>
+                                        <label data-rv-for="field.cid  | prepend useAsLabel" class="right inline">{{model:resources->contentType->useAsLabel}}</label>
                                     </div>
                                     <div class="small-10 columns">
                                         <input data-rv-id="field.cid  | prepend useAsLabel" type="radio" name="useAsLabel" data-rv-checked="field:useAsLabel | radioToBoolean">
