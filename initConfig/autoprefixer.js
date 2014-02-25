@@ -1,9 +1,14 @@
-module.exports = {
-    options : {},
-    no_dest: {
-        src: 'build/themes/blue-dashboard/main.css'
-    },
-    redo: {
-        src: 'build/themes/blue-dashboard/main.css'
-    }
+module.exports = function(grunt) {
+
+    var buildDirectory = grunt.config.get('buildDirectory');
+
+    return {
+        options : {},
+        no_dest: {
+            src: buildDirectory + '/themes/blue-dashboard/main.css'
+        },
+        redo: {
+            src: buildDirectory + '/themes/blue-dashboard/main.css'
+        }
+    };
 };

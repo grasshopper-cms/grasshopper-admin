@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+    var buildDirectory = grunt.config.get('buildDirectory');
+
     return {
         application : { // Get and compile application.scss
             options : {
@@ -10,7 +12,7 @@ module.exports = function(grunt) {
             files : grunt.file.expandMapping(['themes/**/main.scss'], 'css', {
                 cwd: 'app/',
                 rename: function (dest, matched) {
-                    return 'build/' + matched.replace(/\.scss$/, '.css');
+                    return buildDirectory +'/'+ matched.replace(/\.scss$/, '.css');
                 }
             })
         }
