@@ -1,8 +1,8 @@
 define(['grasshopperModel', 'resources', 'constants', 'masseuse'],
     function (Model, resources, constants, masseuse) {
         'use strict';
-        var ComputedProperty = masseuse.ComputedProperty;
 
+        var ComputedProperty = masseuse.ComputedProperty;
 
         return Model.extend({
             idAttribute : '_id',

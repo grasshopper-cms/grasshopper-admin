@@ -1,7 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker',
+    'underscore', 'masseuse'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker,
+              _, masseuse) {
     'use strict';
+
+    var ProxyProperty = masseuse.ProxyProperty;
+
     return GrasshopperBaseView.extend({
         defaultOptions : contentDetailViewConfig,
         beforeRender : beforeRender,
@@ -102,6 +107,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
+        _proxyUseAsLabelToLabel.call(this);
         _updateMastheadBreadcrumbs.call(this, $deferred);
     }
 
@@ -112,9 +118,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         $deferred.reject();
     }
 
+    function _proxyUseAsLabelToLabel() {
+        var useAsLabel = _.findWhere(this.model.get('schema.fields'), {useAsLabel : true});
+
+        this.model.set('label', new ProxyProperty('fields.' + useAsLabel._id, this.model));
+    }
+
     function _updateMastheadBreadcrumbs($deferred) {
         breadcrumbWorker.contentBreadcrumb.call(this, $deferred);
     }
 });
-
-
