@@ -12,5 +12,6 @@ _setting up a working npm - in progress_
 * 0.2.7 - 14-02-25 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/release_notes/0.2.7_14-02-25.md)
 * 0.3.0 - 14-02-25 - [features](https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/release_notes/0.3.0_14-02-25.md)
 * 0.3.1 - 14-02-25 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/release_notes/0.3.1_14-02-25.md)
+* 0.3.2 - 14-02-25 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/release_notes/0.3.2_14-02-25.md)
 
 
