@@ -16,7 +16,7 @@ module.exports = function (grunt) {
     ghaConfig = grunt.file.readJSON(ghaConfig);
 
     grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
-    grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
+    grunt.config.set('buildDirectory', '../../' + ghaConfig.buildDirectory);
 
     grunt.loadTasks('initConfig');
     grunt.loadTasks('tasks');
