@@ -1,8 +1,10 @@
-module.exports = function(grunt) {
+/*globals module:true */
+module.exports = function (grunt) {
+    'use strict';
 
     var buildDirectory = grunt.config.get('buildDirectory');
 
-    return {
+    grunt.config('sass', {
         application : { // Get and compile application.scss
             options : {
                 style : 'compressed',
@@ -16,5 +18,7 @@ module.exports = function(grunt) {
                 }
             })
         }
-    }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-sass');
 };
