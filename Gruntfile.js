@@ -18,9 +18,7 @@ module.exports = function (grunt) {
     grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
     grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
 
-    // load all grunt tasks
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
+    grunt.loadTasks('initConfig');
     grunt.loadTasks('tasks');
 
     // load grunt Config. All config can be found in tasks/options

@@ -1,8 +1,10 @@
-module.exports = function(grunt) {
+/*globals module:true */
+module.exports = function (grunt) {
+    'use strict';
 
     var buildDirectory = grunt.config.get('buildDirectory');
-
-    return {
+    
+    grunt.config('copy', {
         build : {
             files : [
                 {expand : true, cwd : 'app/', src : [
@@ -44,7 +46,7 @@ module.exports = function(grunt) {
                 ], dest : 'api/lib/config/configuration.json'}
             ]
         }
-    };
+    });
 
-
+    grunt.loadNpmTasks('grunt-copy');
 };
