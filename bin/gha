@@ -12,7 +12,7 @@ program
     .description('Build the grasshopper admin html, js, and css accoring to configs provided in gha.json.\n' +
         'Will look for gha.json in parent directory if not in current directory.')
     .action(function(){
-        require('grunt').cli();
+        require('grunt').cli({ gruntfile : '../grasshopper-admin/Gruntfile.js'});
     });
 
 program.parse(process.argv);
