@@ -1,2 +1,16 @@
-#!/bin/bash
-grunt build
+#!/usr/bin/env node
+'use strict';
+
+var program = require('commander'),
+    version = require('../package.json').version;
+
+program.name = 'grasshopper';
+program.version(version, '-v, --version');
+
+program
+    .command('build')
+    .description('Build the grasshopper admin html, js, and css accoring to configs provided in gha.json.\n' +
+        'Will look for gha.json in parent directory if not in current directory.')
+    .action(function(){
+        require('../node_modules/grunt/lib/grunt').cli();
+    });
