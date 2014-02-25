@@ -13,7 +13,7 @@
       "name": "Greg Larrenaga"
     }
   ],
-  "version": "0.2.4",
+  "version": "0.2.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/Solid-Interactive/grasshopper-admin.git"
@@ -35,7 +35,6 @@
     "grasshopper": "./bin/gha"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-livereload": "~0.1.2",
     "matchdep": "~0.1.2",
