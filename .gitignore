@@ -4,3 +4,5 @@ desktop.ini
 *npm-debug*
 build
 .sass-cache
+.idea
+gha.json
