@@ -31,6 +31,9 @@
     "node": "0.10.17",
     "npm": "1.3.9"
   },
+  "bin" : {
+      "grasshopper" : "./bin/gha"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-watch": "~0.4.4",
