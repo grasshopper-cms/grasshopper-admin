@@ -1,5 +1,5 @@
-/*globals module:true*/
-module.exports = function() {
+/*globals module:true */
+module.exports = function (grunt) {
     'use strict';
 
     var path = require('path'),
@@ -8,7 +8,7 @@ module.exports = function() {
             return connect.static(path.resolve(point));
         };
 
-    return {
+    grunt.config('connect', {
         site : {
             options : {
                 port : 9001,
@@ -31,5 +31,7 @@ module.exports = function() {
                 open: true
             }
         }
-    };
+    });
+
+    grunt.loadNpmTasks('grunt-connect');
 };

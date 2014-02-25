@@ -1,8 +1,12 @@
-module.exports = function(grunt) {
+/*globals module:true */
+module.exports = function (grunt) {
+    'use strict';
 
     var buildDirectory = grunt.config.get('buildDirectory');
 
-    return {
+    grunt.config('clean', {
         build : [buildDirectory]
-    }
+    });
+
+    grunt.loadNpmTasks('grunt-clean');
 };
