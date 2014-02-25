@@ -1,16 +1,16 @@
 define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'underscore'],
-    function (Model, resources, constants, masseuse, helpers, _) {
+    function (GrasshopperModel, resources, constants, masseuse, helpers, _) {
     'use strict';
 
     var ComputedProperty = masseuse.ComputedProperty,
         validation = helpers.validation,
         ProxyProperty = masseuse.ProxyProperty;
 
-    return Model.extend({
+    return GrasshopperModel.extend({
         initialize : initialize,
         defaults : {
             resources : resources,
-            fields : {},
+            fields : null,
             slug : new ComputedProperty(['label'], _toUnderscore, true),
             labelHasError : new ComputedProperty(['label'], _validatePresence, true)
         },
