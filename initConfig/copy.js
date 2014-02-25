@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     'use strict';
 
     var buildDirectory = grunt.config.get('buildDirectory');
-    
+
     grunt.config('copy', {
         build : {
             files : [
@@ -48,5 +48,5 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-copy');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 };

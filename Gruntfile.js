@@ -21,9 +21,6 @@ module.exports = function (grunt) {
     grunt.loadTasks('initConfig');
     grunt.loadTasks('tasks');
 
-    // load grunt Config. All config can be found in tasks/options
-    grunt.initConfig(_.extend(config, loadConfig('./initConfig/')));
-
     grunt.registerTask('build', 'Build and watch task', [
         'clean',
         'jshint',

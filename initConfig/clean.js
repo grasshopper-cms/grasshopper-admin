@@ -8,5 +8,5 @@ module.exports = function (grunt) {
         build : [buildDirectory]
     });
 
-    grunt.loadNpmTasks('grunt-clean');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 };
