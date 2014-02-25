@@ -11,3 +11,4 @@ Vagrantfile
 .sass-cache
 /build
 .DS_Store
+gha.json

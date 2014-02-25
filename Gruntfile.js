@@ -7,20 +7,18 @@ module.exports = function (grunt) {
         config = {
             warning : '_Compiled file. Do not modify directly._'
         },
-        ghaConfig = grunt.file.findup('gha.json', {nocase: true});
+        ghaConfig = grunt.file.readJSON(grunt.file.findup('gha.json', {nocase: true}));
 
+    grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
+    grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
 
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.loadTasks('tasks');
 
-
     // load grunt Config. All config can be found in tasks/options
     grunt.initConfig(_.extend(config, loadConfig('./initConfig/')));
-
-    grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
-    grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
 
     grunt.registerTask('build', 'Build and watch task', [
         'clean',
@@ -29,6 +27,7 @@ module.exports = function (grunt) {
         'copy:build',
         'copy:vendor',
         'registerPlugins',
+        'setBuildConfig',
         'sass',
         'autoprefixer:no_dest'
     ]);
@@ -40,6 +39,7 @@ module.exports = function (grunt) {
         'copy:build',
         'copy:vendor',
         'registerPlugins',
+        'setBuildConfig',
         'sass',
         'autoprefixer:no_dest',
         'connect:site',

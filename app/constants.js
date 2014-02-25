@@ -1,77 +1,72 @@
 /*global define*/
-define({
-    api : {
-        base : {
-            url : 'http://localhost:8080'
+define([], function() {
+    'use strict';
+
+    var apiEndpoint = '<%= apiEndpoint %>';
+
+    return {
+        api : {
+            base : {
+                url : apiEndpoint
+            },
+            login : {
+                url : apiEndpoint + '/token'
+            },
+            user : {
+                url : apiEndpoint + '/user'
+            },
+            users : {
+                url : apiEndpoint + '/users'
+            },
+            newUser : {
+                url : apiEndpoint + '/users'
+            },
+            contentTypes : {
+                url : apiEndpoint + '/contenttypes'
+            },
+            node : {
+                url : apiEndpoint + '/node'
+            },
+            nodesChildren : {
+                url : apiEndpoint + '/node/:id/children'
+            },
+            nodesContent : {
+                url : apiEndpoint + '/node/:id/content'
+            },
+            assets : {
+                url : apiEndpoint + '/node/:id/assets'
+            },
+            nodesContentTypes : {
+                url : apiEndpoint + '/node/:id/contenttype'
+            },
+            content : {
+                url : apiEndpoint + '/content'
+            },
+            contentQuery : {
+                url : apiEndpoint + '/content/query'
+            }
         },
-        login : {
-            url : 'http://localhost:8080/token'
+        internalRoutes : {
+            user : '#user',
+            users : '#users',
+            addUser : '#addUser',
+            contentTypes : '#item/types',
+            newContentType : '#item/types/new',
+            contentTypeDetail : '#item/types/:id',
+            content : '#items',
+            contentDetail : '#item/:id',
+            nodeDetail : '#items/nodeid/:id',
+            home : '#home',
+            login : '#login',
+            logout : '#logout',
+            about : '#about',
+            createFolder : '#items/nodeid/:id/createFolder',
+            addContent : '#items/nodeid/:id/createContent',
+            createAssets : '#items/nodeid/:id/createAssets'
         },
-        user : {
-            url : 'http://localhost:8080/user'
-        },
-        users : {
-            url : 'http://localhost:8080/users'
-        },
-        newUser : {
-            url : 'http://localhost:8080/users'
-        },
-        contentTypes : {
-            url : 'http://localhost:8080/contenttypes'
-        },
-        node : {
-            url : 'http://localhost:8080/node'
-        },
-        nodesChildren : {
-            url : 'http://localhost:8080/node/:id/children'
-        },
-        nodesContent : {
-            url : 'http://localhost:8080/node/:id/content'
-        },
-        assets : {
-            url : 'http://localhost:8080/node/:id/assets'
-        },
-        nodesContentTypes : {
-            url : 'http://localhost:8080/node/:id/contenttype'
-        },
-        content : {
-            url : 'http://localhost:8080/content'
-        },
-        contentQuery : {
-            url : 'http://localhost:8080/content/query'
+        defaults : {
+            theme : 'blue-dashboard'
         }
-    },
-    internalRoutes : {
-        user : '#user',
-        users : '#users',
-        addUser : '#addUser',
-        contentTypes : '#item/types',
-        newContentType : '#item/types/new',
-        contentTypeDetail : '#item/types/:id',
-        content : '#items',
-        contentDetail : '#item/:id',
-        nodeDetail : '#items/nodeid/:id',
-        home : '#home',
-        login : '#login',
-        logout : '#logout',
-        about : '#about',
-        createFolder : '#items/nodeid/:id/createFolder',
-        addContent : '#items/nodeid/:id/createContent',
-        createAssets : '#items/nodeid/:id/createAssets'
-    },
-    defaults : {
-        theme : 'blue-dashboard'
-    },
-    userCollection : {
-        pageSize : 5,
-        page : 1,
-        skipPages : 0,
-        pageLink : '#users/page/',
-        showLink : '/show/',
-        pageLimits : {
-            start : 5,
-            stop : 50,
-            step : 10
-        }
-    }
+    };
+
 });

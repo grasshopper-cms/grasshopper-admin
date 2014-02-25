@@ -4,6 +4,7 @@ module.exports = function (grunt) {
     "use strict";
 
     var _ = grunt.util._,
+        buildDirectory = grunt.config.get('buildDirectory'),
         plugins = {},
         idCounter = 1,
         defineBlock = [],
@@ -45,7 +46,7 @@ module.exports = function (grunt) {
             }
         });
 
-        grunt.file.write('build/plugins.js', templatedFile);
+        grunt.file.write(buildDirectory + '/plugins.js', templatedFile);
     });
 
     function _doCleanup() {
