@@ -156,9 +156,9 @@ body, html {
   }
 
   #modal-container {
-    display: box;
-    box-pack: center;
-    box-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     position: fixed;
     top: 0;
