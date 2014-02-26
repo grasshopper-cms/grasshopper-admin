@@ -7,7 +7,8 @@ module.exports = function (grunt) {
         config = {
             warning : '_Compiled file. Do not modify directly._'
         },
-        ghaConfig = grunt.file.findup('gha.json', {nocase: true});
+        ghaConfig = grunt.file.findup('gha.json', {nocase: true}),
+        path = require('path');
 
     if (!ghaConfig) {
         grunt.fatal('Please create a build configuration file at "gha.json"');
@@ -16,7 +17,12 @@ module.exports = function (grunt) {
     ghaConfig = grunt.file.readJSON(ghaConfig);
 
     grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
-    grunt.config.set('buildDirectory', '../../' + ghaConfig.buildDirectory);
+
+    if(_.contains(__dirname.split(path.sep), 'node_modules')) {
+        grunt.config.set('buildDirectory', '../../' + ghaConfig.buildDirectory);
+    } else {
+        grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
+    }
 
     grunt.loadTasks('initConfig');
     grunt.loadTasks('tasks');
