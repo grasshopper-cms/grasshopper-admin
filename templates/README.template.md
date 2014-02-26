@@ -1,8 +1,29 @@
 # Grasshopper Admin
 
-#### Front end for a backend for the [Grasshopper api](https://github.com/Solid-Interactive/grasshopper-api-js) - a Javascript / Data Management System
+Front end for a backend for the [Grasshopper api](https://github.com/Solid-Interactive/grasshopper-api-js) - a Javascript / Data Management System
 
-_setting up a working npm - in progress_
+### Usage
+
+1. install
+
+    ```shell
+    npm install grasshopper-admin
+    ```
+
+1. configure using `gha.json` in your project - you can set the endpoint and where the admin html, js, and css files are built
+
+    ```javascript
+    {
+        "apiEndpoint" : "http://api.so-much-data.com",
+        "buildDirectory" : "public/admin"
+    }
+    ```
+
+1. build
+
+    ```shell
+    ./node_modules/.bin/grasshopper build
+    ```
 
 ### Release Notes
 
