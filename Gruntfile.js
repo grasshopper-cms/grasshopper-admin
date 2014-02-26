@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 
     grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
 
-    if(_.contains(__dirname.split(path.sep), 'node_modules')) {
+    if(__dirname.split(path.sep).pop() === 'node_modules') {
         grunt.config.set('buildDirectory', '../../' + ghaConfig.buildDirectory);
     } else {
         grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
