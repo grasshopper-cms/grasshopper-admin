@@ -121,6 +121,15 @@
 
                                 <div class="row">
                                     <div class="small-2 columns">
+                                        <label data-rv-for="field.cid  | prepend helpText" class="right inline">{{model:resources->helpText}}</label>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <textarea data-rv-id="field.cid  | prepend helpText" data-rv-value="field:helpText" style="max-width: 100%;"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="small-2 columns">
                                         <label data-rv-for="field.cid  | prepend required" class="right inline">{{model:resources->required}}</label>
                                     </div>
                                     <div class="small-10 columns">

@@ -172,6 +172,7 @@ define({
     enabled : 'Enabled',
     falseText : 'False',
     home : 'Home',
+    helpText : 'Help Text',
     id : 'ID',
     minimum : 'Minimum',
     label : 'Label',

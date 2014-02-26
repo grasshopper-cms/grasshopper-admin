@@ -48,7 +48,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
 
                     return _.map(json, function(obj) {
                         return _.pick(obj, 'required', 'label', 'max', 'min',
-                            'options', 'type', 'validation', '_id', 'useAsLabel');
+                            'options', 'type', 'validation', '_id', 'useAsLabel', 'helpText');
                     });
                 }
             }))([], {})
