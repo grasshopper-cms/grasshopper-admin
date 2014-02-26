@@ -14,6 +14,13 @@
                     <div data-rv-show="model:showTree" id="nodeTree">
                         <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
                     </div>
+                    <ul data-rv-show="model:content | haslength" class="no-bullet nodeTreeContent">
+                        <li data-rv-each-item="model:content:">
+                            <input data-rv-id="item.cid" type="radio" name="selectedContent"
+                                   data-rv-on-click="view.sendSelectedContentToParent">
+                            <label data-rv-for="item.cid">{{item:label}}</label>
+                        </li>
+                    </ul>
                 </label>
             </div>
         </div>

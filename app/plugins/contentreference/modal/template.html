@@ -6,13 +6,27 @@
             </div>
         </div>
         <div class="row">
-            <label>Previously Selected Content:
+            <label>{{model:resources->plugins->contentReference->previouslySelectedContent | withColon}}
                 <input data-rv-value="model:selectedContent->label" type="text" readonly="true">
             </label>
         </div>
         <div class="row">
+            <div class="left">
+                {{model:resources->plugins->contentReference->currentFolder | withColon}}{{model:label}}
+            </div>
+            <div class="right">
+                Content Type:
+            </div>
+        </div>
+        <div class="row">
             <div id="nodeTree">
                 <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
+                <ul data-rv-show="model:content | haslength" class="no-bullet nodeTreeContent accordion">
+                    <li data-rv-each-item="model:content:">
+                        <input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-on-click="view.selectContent">
+                        <label data-rv-for="item.cid">{{item:label}}</label>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row">

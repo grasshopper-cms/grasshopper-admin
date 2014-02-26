@@ -155,6 +155,12 @@ define({
         size : 'Size',
         modified : 'Modified'
     },
+    plugins : {
+        contentReference : {
+            previouslySelectedContent : 'Previously Selected Content',
+            currentFolder : 'Current Folder'
+        }
+    },
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
     add : 'Add',
