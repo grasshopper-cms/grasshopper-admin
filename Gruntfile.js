@@ -3,9 +3,8 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    var _ = grunt.util._,
-        config = {
-            warning : '_Compiled file. Do not modify directly._'
+    var warning = {
+            readme : 'Compiled file. Do not modify directly.'
         },
         ghaConfig = grunt.file.findup('gha.json', {nocase: true}),
         path = require('path');
@@ -21,6 +20,7 @@ module.exports = function (grunt) {
     if(__dirname.split(path.sep).pop() === 'node_modules') {
         grunt.config.set('buildDirectory', '../../' + ghaConfig.buildDirectory);
     } else {
+        grunt.config.set('warning', warning);
         grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
     }
 
@@ -73,21 +73,4 @@ module.exports = function (grunt) {
         'usemin',
         'build_gh_pages'
     ]);
-
-    function loadConfig(files) {
-        var path = require('path'),
-            object = {};
-
-        grunt.file.recurse(files, function callback(abspath, rootdir, subdir, filename) {
-            var name = path.basename(filename, path.extname(filename)),
-                required = require(path.resolve('.', abspath));
-
-            if (_.isFunction(required)) {
-                required = required(grunt);
-            }
-            object[name] = required;
-        });
-
-        return object;
-    }
 };
