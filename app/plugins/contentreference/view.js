@@ -1,8 +1,12 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
-    'plugins/contentreference/modal/view'],
-    function (GrasshopperBaseView, _, Api, contentTypeWorker, $, ModalView) {
+    'plugins/contentreference/modal/view', 'masseuse'],
+    function (GrasshopperBaseView, _, Api, contentTypeWorker, $,
+              ModalView, masseuse) {
+
         'use strict';
+
+        var ProxyProperty = masseuse.ProxyProperty;
 
         return GrasshopperBaseView.extend({
             beforeRender: beforeRender,
@@ -122,16 +126,24 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function fireSelectContentModal() {
-            var modalView = new ModalView({
+            _startModalView.call(this)
+                .done()
+                .fail();
+        }
+
+        function _startModalView() {
+            var $deferred = new $.Deferred(),
+                modalView = new ModalView({
                     modelData : {
                         header : 'Select Content',
-                        selectedContent : this.model.get('selectedContent'),
+                        selectedContent : new ProxyProperty('selectedContent', this.model),
                         _id : this.model.get('options.defaultNode')
-                    }
+                    },
+                    $deferred : $deferred
                 });
 
-//            modalView.model.get('children').reset(this.model.get('children').models);
             modalView.start();
+            return $deferred.promise();
         }
 
     });

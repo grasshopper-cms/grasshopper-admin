@@ -4,9 +4,11 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants'],
 
         return Model.extend({
             initialize : initialize,
+            idAttribute : '_id',
             defaults : {
                 resources : resources
-            }
+            },
+            urlRoot : constants.api.node.url
         });
 
         function initialize() {
@@ -15,6 +17,12 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants'],
             this.set('children', new (grasshopperCollection.extend({
                 url : function() {
                     return constants.api.nodesChildren.url.replace(':id', self.get('_id'));
+                }
+            }))());
+
+            this.set('content', new (grasshopperCollection.extend({
+                url : function() {
+                    return constants.api.nodesContent.url.replace(':id', self.get('_id'));
                 }
             }))());
         }
