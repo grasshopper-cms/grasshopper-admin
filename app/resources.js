@@ -158,7 +158,9 @@ define({
     plugins : {
         contentReference : {
             previouslySelectedContent : 'Previously Selected Content',
-            currentFolder : 'Current Folder'
+            currentFolder : 'Current Folder',
+            selectDefaultFolderOr : 'Select Default Folder or',
+            setRootAsDefault : 'Set Root Folder as Default'
         }
     },
     // General Text (reusable) - try to keep it alphabetized
