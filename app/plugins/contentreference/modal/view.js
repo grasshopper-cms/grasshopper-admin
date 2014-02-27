@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'],
-    function (GrasshopperBaseView, config, $) {
+define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery', 'underscore'],
+    function (GrasshopperBaseView, config, $, _) {
 
         'use strict';
 
@@ -22,6 +22,7 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
         }
 
         function afterRender() {
+            _hydrateAllowedContentTypes.call(this);
             this.$el.foundation();
         }
 
@@ -39,6 +40,19 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
 
         function _toggleLoadingSpinner() {
             this.model.toggle('loading');
+        }
+
+        function _hydrateAllowedContentTypes() {
+            var allowedTypeLabels = [],
+                allowedTypes = this.model.get('allowedContentTypes'),
+                availableTypes = this.model.get('availableContentTypes');
+
+            _.each(allowedTypes, function(allowedTypeId) {
+                allowedTypeLabels.push(
+                    _.findWhere(availableTypes, { _id : allowedTypeId}).label);
+            });
+
+            this.model.set('allowedTypeLabels', allowedTypeLabels.join(', '));
         }
 
         function stopAccordionPropagation(e) {
