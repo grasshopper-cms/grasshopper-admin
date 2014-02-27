@@ -12,7 +12,9 @@ define(['underscore', 'plugins/contentreference/nodeTree/view'],
         function _appendNodeTreeView(el, model) {
             var nodeTreeView = new NodeTreeView({
                 appendTo : el,
-                modelData : model.attributes
+                modelData : _.extend({}, model.attributes, {
+                    allowedTypes : this.model.model.get('allowedContentTypes')
+                })
             });
             nodeTreeView.start();
         }
