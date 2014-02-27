@@ -8,7 +8,7 @@
         </div>
 
         <div class="row">
-            <label>{{model:resources->plugins->contentReference->previouslySelectedContent | withColon}}
+            <label>{{model:resources->plugins->contentReference->selectedContent | withColon}}
                 <input data-rv-value="model:selectedContent->label" type="text" readonly="true">
             </label>
         </div>
@@ -29,7 +29,7 @@
         <div class="row" data-rv-hide="model:loading">
             <div id="nodeTree">
                 <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
-                <ul data-rv-show="model:content | haslength" class="no-bullet nodeTreeContent accordion">
+                <ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">
                     <li data-rv-each-item="model:content:">
                         <input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-on-click="view.selectContent">
                         <label data-rv-for="item.cid">{{item:label}}</label>
