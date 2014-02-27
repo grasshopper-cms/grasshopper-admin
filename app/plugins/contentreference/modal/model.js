@@ -5,6 +5,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants'],
         return Model.extend({
             initialize : initialize,
             idAttribute : '_id',
+            loading : true,
             defaults : {
                 resources : resources
             },

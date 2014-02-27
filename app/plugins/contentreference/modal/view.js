@@ -6,7 +6,6 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
 
         return GrasshopperBaseView.extend({
             defaultOptions : config,
-            beforeRender : beforeRender,
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
             selectContent : selectContent,
@@ -14,11 +13,12 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
             cancelModal : cancelModal
         });
 
-        function beforeRender($deferred) {
+        function afterRender() {
             $.when(_fetchChildNodes.call(this),
                    _fetchChildContent.call(this),
                    _fetchCurrentNode.call(this))
-                .done($deferred.resolve);
+                .done(_toggleLoadingSpinner.bind(this));
+            this.$el.foundation();
         }
 
         function _fetchChildNodes() {
@@ -33,8 +33,8 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
             return this.model.fetch();
         }
 
-        function afterRender() {
-            this.$el.foundation();
+        function _toggleLoadingSpinner() {
+            this.model.set('loading', false);
         }
 
         function stopAccordionPropagation(e) {
