@@ -2,8 +2,15 @@
     <div class="small-6 columns">
         <div class="row">
             <div class="small-12 columns">
-                <label>Default Folder:
-                    <input type="text" data-rv-value="model:selectedNode->label" readonly="true">
+                <label>{{model:resources->plugins->contentReference->defaultFolder | withColon}}
+                    <div class="row collapse">
+                        <div class="small-11 columns">
+                            <input type="text" data-rv-value="model:selectedNode->label" readonly="true">
+                        </div>
+                        <div class="small-1 columns" style="padding-left: 0;">
+                            <span class="postfix radius"><i class="icon-lock"></i></span>
+                        </div>
+                    </div>
                 </label>
             </div>
         </div>
@@ -12,7 +19,7 @@
                 <label>
                     {{model:resources->plugins->contentReference->selectDefaultFolderOr}}
                     <span>
-                        <a data-rv-on-click="view.setRootAdDefaultNode">
+                        <a data-rv-on-click="view.setRootAsDefaultNode">
                             {{model:resources->plugins->contentReference->setRootAsDefault}}
                         </a>
                     </span>
@@ -21,13 +28,6 @@
                     <div data-rv-show="model:showTree" id="nodeTree">
                         <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
                     </div>
-                    <ul class="no-bullet nodeTreeContent">
-                        <li data-rv-each-item="model:content:">
-                            <input data-rv-id="item.cid" type="radio" name="selectedContent"
-                                   data-rv-on-click="view.sendSelectedContentToParent">
-                            <label data-rv-for="item.cid">{{item:label}}</label>
-                        </li>
-                    </ul>
                 </label>
             </div>
         </div>

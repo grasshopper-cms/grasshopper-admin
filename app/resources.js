@@ -160,7 +160,8 @@ define({
             previouslySelectedContent : 'Previously Selected Content',
             currentFolder : 'Current Folder',
             selectDefaultFolderOr : 'Select Default Folder or',
-            setRootAsDefault : 'Set Root Folder as Default'
+            setRootAsDefault : 'Set Root Folder as Default',
+            defaultFolder : 'Default Folder'
         }
     },
     // General Text (reusable) - try to keep it alphabetized

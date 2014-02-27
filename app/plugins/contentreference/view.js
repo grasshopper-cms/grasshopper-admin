@@ -15,7 +15,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             contentReferenceSelected : contentReferenceSelected,
             defaultNodeSelected : defaultNodeSelected,
             setAvailableContentTypes : setAvailableContentTypes,
-            setRootAdDefaultNode : setRootAdDefaultNode,
+            setRootAsDefaultNode : setRootAsDefaultNode,
             fireSelectContentModal : fireSelectContentModal
         });
 
@@ -51,9 +51,11 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             var $deferred = new $.Deferred(),
                 defaultNode = this.model.get('options.defaultNode');
 
-            if (defaultNode) {
+            if (defaultNode && defaultNode !== '0') { // default is not root
                 Api.getNodeDetail(defaultNode)
                     .done(_setSelectedNode.bind(this, $deferred));
+            } else if (defaultNode && defaultNode === '0') { // default is root
+                _setSelectedNode.call(this, $deferred, { label : 'Root'});
             } else {
                 $deferred.resolve();
             }
@@ -120,9 +122,10 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             this.model.set('options.allowedTypes', checkedTypes);
         }
 
-        function setRootAdDefaultNode() {
+        function setRootAsDefaultNode(e) {
             this.model.set('selectedNode.label', 'Root');
             this.model.set('options.defaultNode', '0');
+            e.preventDefault();
         }
 
         function fireSelectContentModal() {
