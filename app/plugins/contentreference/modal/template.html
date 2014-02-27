@@ -1,15 +1,18 @@
 <div id="modal-container">
     <div id="modal-contents" class="small-6">
+
         <div class="row">
             <div id="modal-text">
                 <h4>{{model:header}}</h4>
             </div>
         </div>
+
         <div class="row">
             <label>{{model:resources->plugins->contentReference->previouslySelectedContent | withColon}}
                 <input data-rv-value="model:selectedContent->label" type="text" readonly="true">
             </label>
         </div>
+
         <div class="row">
             <div class="left">
                 {{model:resources->plugins->contentReference->currentFolder | withColon}}{{model:label}}
@@ -18,7 +21,12 @@
                 Content Type:
             </div>
         </div>
-        <div class="row">
+
+        <div data-rv-show="model:loading">
+            <i class="icon-refresh icon-spin"></i>
+        </div>
+
+        <div class="row" data-rv-hide="model:loading">
             <div id="nodeTree">
                 <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
                 <ul data-rv-show="model:content | haslength" class="no-bullet nodeTreeContent accordion">
@@ -29,7 +37,8 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
+
+        <div class="row" data-rv-hide="model:loading">
             <div class="small-12 text-center">
                 <ul id="button-container" class="button-group radius">
                     <li><a id="confirm" class="button tiny">{{model:resources->confirm}}</a></li>
