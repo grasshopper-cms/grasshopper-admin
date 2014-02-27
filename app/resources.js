@@ -161,7 +161,8 @@ define({
             currentFolder : 'Current Folder',
             selectDefaultFolderOr : 'Select Default Folder or',
             setRootAsDefault : 'Set Root Folder as Default',
-            defaultFolder : 'Default Folder'
+            defaultFolder : 'Default Folder',
+            contentTypes : 'Content Types'
         }
     },
     // General Text (reusable) - try to keep it alphabetized

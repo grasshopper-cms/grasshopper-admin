@@ -140,7 +140,8 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
                     modelData : {
                         header : 'Select Content',
                         selectedContent : new ProxyProperty('selectedContent', this.model),
-                        _id : this.model.get('options.defaultNode')
+                        _id : this.model.get('options.defaultNode'),
+                        allowedContentTypes : this.model.get('options.allowedTypes')
                     },
                     $deferred : $deferred
                 });

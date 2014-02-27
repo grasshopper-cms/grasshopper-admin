@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!plugins/contentreference/nodeTree/template.html', 'plugins/contentreference/nodeTree/model',
-    'plugins/contentreference/binders'],
-    function (nodeTreeTemplate, nodeTreeModel, contentReferenceBinders) {
+    'plugins/contentreference/binders', 'plugins/contentreference/nodeTree/binders'],
+    function (nodeTreeTemplate, nodeTreeModel, contentReferenceBinders, nodeTreeBinders) {
         'use strict';
 
         return {
@@ -14,7 +14,7 @@ define(['text!plugins/contentreference/nodeTree/template.html', 'plugins/content
             wrapper: false,
             listeners : [],
             mastheadButtons : [],
-            rivetsBinders : [contentReferenceBinders]
+            rivetsBinders : [contentReferenceBinders, nodeTreeBinders]
         };
     });
 
