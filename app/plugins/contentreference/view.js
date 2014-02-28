@@ -111,8 +111,10 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function defaultNodeSelected(selectedNode) {
-            this.model.set('selectedNode.label', selectedNode.get('label'));
-            this.model.set('options.defaultNode', selectedNode.get('_id'));
+            if (this.model.get('inSetup')) {
+                this.model.set('selectedNode.label', selectedNode.get('label'));
+                this.model.set('options.defaultNode', selectedNode.get('_id'));
+            }
         }
 
         function setAvailableContentTypes() {
@@ -135,6 +137,8 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _startModalView() {
+            this.model.set('inSetup', false);
+
             var $deferred = new $.Deferred(),
                 modalView = new ModalView({
                     modelData : {
