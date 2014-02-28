@@ -7,7 +7,7 @@ define(['underscore', 'jquery'], function (_, $) {
                 var allowedTypes = this.model.view.model.get('allowedTypes'),
                     thisModelsType = model.get('type');
 
-                if (!_.contains(allowedTypes, thisModelsType)) {
+                if (!_.isEmpty(allowedTypes) && !_.contains(allowedTypes, thisModelsType)) {
                     $(el).hide();
                 }
             }
