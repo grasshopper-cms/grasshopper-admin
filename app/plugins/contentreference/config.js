@@ -30,10 +30,7 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
             },
             rivetConfig : 'auto',
             wrapper: false,
-            listeners : [
-                ['channels.views', 'contentReferenceFolderSelected', 'defaultNodeSelected']
-            ],
-            mastheadButtons : [],
+            listeners : [],
             rivetsBinders : [contentReferenceBinders],
             rivetsFormatters : [formatters]
         };

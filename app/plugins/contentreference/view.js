@@ -12,7 +12,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             beforeRender: beforeRender,
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
-            defaultNodeSelected : defaultNodeSelected,
             setAvailableContentTypes : setAvailableContentTypes,
             setRootAsDefaultNode : setRootAsDefaultNode,
             fireSelectContentModal : fireSelectContentModal
@@ -63,7 +62,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _setSelectedNode($deferred, nodeDetails) {
-            this.model.set('selectedNode.label', nodeDetails.label);
+            this.model.set('selectedNodeLabel', nodeDetails.label);
             $deferred.resolve();
         }
 
@@ -104,13 +103,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             return Api.getContentDetail(contentId);
         }
 
-        function defaultNodeSelected(selectedNode) {
-            if (this.model.get('inSetup')) {
-                this.model.set('selectedNode.label', selectedNode.get('label'));
-                this.model.set('options.defaultNode', selectedNode.get('_id'));
-            }
-        }
-
         function setAvailableContentTypes() {
             var availableTypes = this.model.get('availableTypes'),
                 checkedTypes = _.pluck(_.where(availableTypes, { checked : true }), '_id');
@@ -119,7 +111,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function setRootAsDefaultNode(e) {
-            this.model.set('selectedNode.label', 'Root');
+            this.model.set('selectedNodeLabel', 'Root');
             this.model.set('options.defaultNode', '0');
             e.preventDefault();
         }

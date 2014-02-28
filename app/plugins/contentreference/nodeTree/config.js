@@ -13,7 +13,6 @@ define(['text!plugins/contentreference/nodeTree/template.html', 'plugins/content
             rivetConfig : 'auto',
             wrapper: false,
             listeners : [],
-            mastheadButtons : [],
             rivetsBinders : [contentReferenceBinders, nodeTreeBinders]
         };
     });
