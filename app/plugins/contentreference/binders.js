@@ -17,15 +17,17 @@ define(['underscore', 'plugins/contentreference/nodeTree/view', 'masseuse'],
                 appendTo : el,
                 modelData : _.extend({}, model.attributes, {
                     allowedTypes : this.model.model.get('allowedContentTypes'),
-                    selectedContent : new ProxyProperty('selectedContent', this.model.model)
+                    selectedContent : new ProxyProperty('selectedContent', this.model.model),
+                    inSetup : this.model.model.get('inSetup')
                 })
             });
 
             if(this.model.model.get('inSetup')) {
                 nodeTreeView.model.set('selectedNode',  new ProxyProperty('options.defaultNode', this.model.model));
             }
+            this.model.view.addChild(nodeTreeView);
 
-            nodeTreeView.start();
+//            this.model.view.addChild(nodeTreeView, this.model.view.name === 'nodeTreePlugin');
         }
 
     });
