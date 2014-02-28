@@ -1,5 +1,6 @@
 define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCollection'],
     function (Model, resources, Backbone, constants, grasshopperCollection) {
+
     'use strict';
 
     return Model.extend({

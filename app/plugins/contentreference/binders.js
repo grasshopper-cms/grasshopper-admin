@@ -1,7 +1,10 @@
 /* jshint loopfunc:true */
-define(['underscore', 'plugins/contentreference/nodeTree/view'],
-    function (_, NodeTreeView) {
+define(['underscore', 'plugins/contentreference/nodeTree/view', 'masseuse'],
+    function (_, NodeTreeView, masseuse) {
+
         'use strict';
+
+        var ProxyProperty = masseuse.ProxyProperty;
 
         return {
             nodetree :  function(el, model) {
@@ -13,7 +16,8 @@ define(['underscore', 'plugins/contentreference/nodeTree/view'],
             var nodeTreeView = new NodeTreeView({
                 appendTo : el,
                 modelData : _.extend({}, model.attributes, {
-                    allowedTypes : this.model.model.get('allowedContentTypes')
+                    allowedTypes : this.model.model.get('allowedContentTypes'),
+                    selectedContent : new ProxyProperty('selectedContent', this.model.model)
                 })
             });
             nodeTreeView.start();

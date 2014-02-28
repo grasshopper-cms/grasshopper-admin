@@ -9,7 +9,7 @@
 
         <div class="row">
             <label>{{model:resources->plugins->contentReference->selectedContent | withColon}}
-                <input data-rv-value="model:selectedContent->label" type="text" readonly="true">
+                <input data-rv-value="model:selectedContentLabel" type="text" readonly="true">
             </label>
         </div>
 
@@ -34,7 +34,7 @@
 
                 <ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">
                     <li data-rv-each-item="model:content:">
-                        <input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-on-click="view.selectContent">
+                        <input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-value="item:_id" data-rv-checked="model:selectedContent">
                         <label data-rv-for="item.cid">{{item:label}}</label>
                     </li>
                 </ul>

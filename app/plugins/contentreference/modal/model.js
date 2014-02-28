@@ -35,6 +35,13 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                     return constants.api.nodesContent.url.replace(':id', self.get('_id'));
                 }
             }))());
+
+            this.on('change:selectedContent', _getContentDetails.bind(this));
+        }
+
+        function _getContentDetails() {
+            this.set('selectedContentLabel',
+                this.get('content').findWhere({ _id : this.get('selectedContent') }).get('label'));
         }
 
     });
