@@ -7,6 +7,7 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
         defaults : {
             resources : resources,
             showTree : false,
+            inSetup : true,
             _id : '0'
         },
         urlRoot : constants.api.node.url
