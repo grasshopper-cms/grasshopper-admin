@@ -11,7 +11,7 @@
         <ul data-rv-show="model:content | haslength" class="no-bullet nodeTreeContent">
             <li data-rv-each-item="model:content:" data-rv-filter-by-allowed-types="item">
                 <input data-rv-id="item.cid" type="radio" name="selectedContent"
-                       data-rv-on-click="view.sendSelectedContentToParent">
+                       data-rv-checked="model:selectedContent" data-rv-value="item:_id">
                 <label data-rv-for="item.cid">{{item:label}}</label>
             </li>
         </ul>

@@ -9,7 +9,6 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
             beforeRender : beforeRender,
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
-            selectContent : selectContent,
             confirmModal : confirmModal,
             cancelModal : cancelModal
         });
@@ -57,10 +56,6 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
 
         function stopAccordionPropagation(e) {
             e.stopPropagation();
-        }
-
-        function selectContent(e, context) {
-            this.model.set('selectedContent', context.item);
         }
 
         function confirmModal () {

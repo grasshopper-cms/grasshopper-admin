@@ -12,7 +12,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             beforeRender: beforeRender,
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
-            contentReferenceSelected : contentReferenceSelected,
             defaultNodeSelected : defaultNodeSelected,
             setAvailableContentTypes : setAvailableContentTypes,
             setRootAsDefaultNode : setRootAsDefaultNode,
@@ -42,8 +41,8 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _setSelectedContent($deferred, contentDetails) {
-            this.model.set('selectedContent.label', contentDetails.label);
-            this.model.set('selectedContent._id', contentDetails._id);
+            this.model.set('selectedContentLabel', contentDetails.label);
+            this.model.set('selectedContent', contentDetails._id);
             $deferred.resolve();
         }
 
@@ -101,11 +100,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             e.stopPropagation();
         }
 
-        function contentReferenceSelected(selectedModel) {
-            this.model.set('selectedContent.label', selectedModel.get('label'));
-            this.model.set('value', selectedModel.get('_id'));
-        }
-
         function _getContentDetails(contentId) {
             return Api.getContentDetail(contentId);
         }
@@ -132,8 +126,13 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
         function fireSelectContentModal() {
             _startModalView.call(this)
-                .done()
-                .fail();
+                .done(_contentReferenceSelected.bind(this));
+        }
+
+        function _contentReferenceSelected(modalModel) {
+            this.model.set('selectedContentLabel', modalModel.selectedContentLabel);
+            this.model.set('selectedContent', modalModel.selectedContent);
+            this.model.set('value', modalModel.selectedContent);
         }
 
         function _startModalView() {
@@ -144,6 +143,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
                     modelData : {
                         header : 'Select Content',
                         selectedContent : new ProxyProperty('selectedContent', this.model),
+                        selectedContentLabel : this.model.get('selectedContentLabel'),
                         _id : this.model.get('options.defaultNode'),
                         allowedContentTypes : this.model.get('options.allowedTypes'),
                         availableContentTypes : this.model.get('availableTypes')

@@ -5,8 +5,7 @@ define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
 
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeConfig,
-            openFolder : openFolder,
-            sendSelectedContentToParent : sendSelectedContentToParent
+            openFolder : openFolder
         });
 
         function openFolder() {
@@ -42,10 +41,6 @@ define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
 
         function _toggleLoadingSpinner() {
             this.model.toggle('loading');
-        }
-
-        function sendSelectedContentToParent(e, context) {
-            this.channels.views.trigger('contentReferenceSelected', context.item);
         }
 
     });
