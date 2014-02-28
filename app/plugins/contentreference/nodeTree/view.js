@@ -28,7 +28,7 @@ define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
         }
 
         function _sendSelectedNodeToParent() {
-            this.channels.views.trigger('contentReferenceFolderSelected', this.model);
+            this.model.set('selectedNode', this.model.get('_id'));
         }
 
         function _fetchChildNodes() {

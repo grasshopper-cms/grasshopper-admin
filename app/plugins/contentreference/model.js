@@ -22,5 +22,12 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
                 return constants.api.nodesChildren.url.replace(':id', self.get('_id'));
             }
         }))());
+
+        this.on('change:options', function() {
+            if (this.get('options.defaultNode') !== '0') {
+                this.set('selectedNodeLabel',
+                    this.get('children').findWhere( { _id : this.get('options.defaultNode') }).get('label'));
+            }
+        });
     }
 });

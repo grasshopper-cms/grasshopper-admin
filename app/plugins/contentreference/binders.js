@@ -20,6 +20,11 @@ define(['underscore', 'plugins/contentreference/nodeTree/view', 'masseuse'],
                     selectedContent : new ProxyProperty('selectedContent', this.model.model)
                 })
             });
+
+            if(this.model.model.get('inSetup')) {
+                nodeTreeView.model.set('selectedNode',  new ProxyProperty('options.defaultNode', this.model.model));
+            }
+
             nodeTreeView.start();
         }
 
