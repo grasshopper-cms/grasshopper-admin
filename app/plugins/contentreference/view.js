@@ -14,7 +14,8 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             stopAccordionPropagation : stopAccordionPropagation,
             setAvailableContentTypes : setAvailableContentTypes,
             setRootAsDefaultNode : setRootAsDefaultNode,
-            fireSelectContentModal : fireSelectContentModal
+            fireSelectContentModal : fireSelectContentModal,
+            setSelectedNode : setSelectedNode
         });
 
         function beforeRender($deferred) {
@@ -51,9 +52,9 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
             if (defaultNode && defaultNode !== '0') { // default is not root
                 Api.getNodeDetail(defaultNode)
-                    .done(_setSelectedNode.bind(this, $deferred));
+                    .done(setSelectedNode.bind(this, $deferred));
             } else if (defaultNode && defaultNode === '0') { // default is root
-                _setSelectedNode.call(this, $deferred, { label : 'Root'});
+                setSelectedNode.call(this, $deferred, { label : 'Root'});
             } else {
                 $deferred.resolve();
             }
@@ -61,9 +62,10 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             return $deferred.promise();
         }
 
-        function _setSelectedNode($deferred, nodeDetails) {
+        function setSelectedNode($deferred, nodeDetails) {
+            console.log(nodeDetails);
             this.model.set('selectedNodeLabel', nodeDetails.label);
-            $deferred.resolve();
+            $deferred && $deferred.resolve();
         }
 
         function _getAvailableContentTypes() {

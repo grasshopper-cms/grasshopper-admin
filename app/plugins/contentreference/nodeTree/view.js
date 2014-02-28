@@ -5,7 +5,8 @@ define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
 
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeConfig,
-            openFolder : openFolder
+            openFolder : openFolder,
+            setSelectedNode : setSelectedNode
         });
 
         function openFolder() {
@@ -28,7 +29,12 @@ define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
         }
 
         function _sendSelectedNodeToParent() {
+            this.parent.setSelectedNode(null, this.model.toJSON());
             this.model.set('selectedNode', this.model.get('_id'));
+        }
+
+        function setSelectedNode(doNotUse, selectedNode) {
+            this.parent.setSelectedNode(null, selectedNode);
         }
 
         function _fetchChildNodes() {
