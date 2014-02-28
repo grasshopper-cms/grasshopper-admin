@@ -51,7 +51,13 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
                     _.findWhere(availableTypes, { _id : allowedTypeId}).label);
             });
 
-            this.model.set('allowedTypeLabels', allowedTypeLabels.join(', '));
+            if(!_.isEmpty(allowedTypeLabels)) {
+                allowedTypeLabels = allowedTypeLabels.join(', ');
+            } else {
+                allowedTypeLabels = 'None';
+            }
+
+            this.model.set('allowedTypeLabels', allowedTypeLabels);
         }
 
         function stopAccordionPropagation(e) {
