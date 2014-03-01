@@ -12,6 +12,9 @@ define(['backbone'],
                 _ensureMaxIsAlwaysGreaterThanOrEqualToMin.call(this);
                 this.on('change:min', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
                 this.on('change:max', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
+                this.on('change:useAsLabel', _ensureIsRequired, this);
+                this.on('change:useAsLabel', _ensureMinMaxIsOne, this);
+                this.on('change:required', _ensureIsNotUseAsLabel, this);
             },
             defaults : {
                 _id : '',
@@ -40,6 +43,25 @@ define(['backbone'],
 
             if(max <= min) {
                 this.set('max', min);
+            }
+        }
+
+        function _ensureIsRequired() {
+            if(this.get('useAsLabel')) {
+                this.set('required', true);
+            }
+        }
+
+        function _ensureMinMaxIsOne() {
+            if(this.get('useAsLabel')) {
+                this.set('min', 1);
+                this.set('max', 1);
+            }
+        }
+
+        function _ensureIsNotUseAsLabel() {
+            if(this.get('useAsLabel')) {
+                this.set('required', true);
             }
         }
     });
