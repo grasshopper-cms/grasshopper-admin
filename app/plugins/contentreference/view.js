@@ -63,7 +63,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function setSelectedNode($deferred, nodeDetails) {
-            console.log(nodeDetails);
             this.model.set('selectedNodeLabel', nodeDetails.label);
             $deferred && $deferred.resolve();
         }

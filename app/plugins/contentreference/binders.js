@@ -26,8 +26,6 @@ define(['underscore', 'plugins/contentreference/nodeTree/view', 'masseuse'],
                 nodeTreeView.model.set('selectedNode',  new ProxyProperty('options.defaultNode', this.model.model));
             }
             this.model.view.addChild(nodeTreeView);
-
-//            this.model.view.addChild(nodeTreeView, this.model.view.name === 'nodeTreePlugin');
         }
 
     });

@@ -10,7 +10,8 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
             confirmModal : confirmModal,
-            cancelModal : cancelModal
+            cancelModal : cancelModal,
+            setSelectedNode : setSelectedNode
         });
 
         function beforeRender($deferred) {
@@ -76,6 +77,10 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
 
         function _removeModal () {
             this.remove();
+        }
+
+        function setSelectedNode() {
+            return false;
         }
 
     });
