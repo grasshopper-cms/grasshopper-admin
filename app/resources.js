@@ -162,7 +162,9 @@ define({
             selectDefaultFolderOr : 'Select Default Folder or',
             setRootAsDefault : 'Set Root Folder as Default',
             defaultFolder : 'Default Folder',
-            contentTypes : 'Content Types'
+            contentTypes : 'Content Types',
+            selectContent : 'Select Content',
+            viewSelectedContent : 'View Selected Content'
         }
     },
     // General Text (reusable) - try to keep it alphabetized
