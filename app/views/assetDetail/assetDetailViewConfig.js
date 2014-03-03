@@ -19,7 +19,6 @@ define(['text!views/assetDetail/assetDetailView.html', 'text!views/assetDetail/_
                 'click #cancelUpload' : 'cancelUpload'
             },
             listeners : [],
-            rivetConfig : 'auto',
             mastheadButtons : []
         };
     });

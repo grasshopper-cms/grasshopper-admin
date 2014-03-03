@@ -9,7 +9,6 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
             appendTo : '#stage',
             wrapper : false,
             template : template,
-            rivetConfig : 'auto',
             listeners : [],
             events : {},
             mastheadButtons : [

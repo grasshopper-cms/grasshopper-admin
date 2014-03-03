@@ -10,7 +10,6 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             ModelType : userDetailModel,
             appendTo : '#stage',
             wrapper : false,
-            rivetConfig : 'auto',
             template : formTemplate,
             rowTemplate : rowTemplate,
             events : {

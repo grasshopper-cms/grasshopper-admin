@@ -21,7 +21,6 @@ define(['text!plugins/keyvalue/template.html', 'plugins/keyvalue/model', 'text!p
             events : {
                 'blur .keyValueInput' : 'buildObj'
             },
-            rivetConfig : 'auto',
             wrapper: false,
             listeners : [],
             mastheadButtons : []
