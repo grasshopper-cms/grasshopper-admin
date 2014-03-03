@@ -10,10 +10,11 @@ define(['text!plugins/contentreference/nodeTree/template.html', 'plugins/content
             modelData : {},
             template : nodeTreeTemplate,
             events : {},
-            rivetConfig : 'auto',
             wrapper: false,
             listeners : [],
-            rivetsBinders : [contentReferenceBinders, nodeTreeBinders]
+            rivetConfig : {
+                binders : [contentReferenceBinders, nodeTreeBinders]
+            }
         };
     });
 

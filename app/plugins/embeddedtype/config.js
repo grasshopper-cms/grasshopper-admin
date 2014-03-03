@@ -21,10 +21,11 @@ define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
             template : embeddedtypePluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
-            rivetConfig : 'auto',
             wrapper: false,
             listeners : [],
             mastheadButtons : [],
-            rivetsBinders : [appBinders]
+            rivetConfig : {
+                binders : [appBinders]
+            }
         };
     });
