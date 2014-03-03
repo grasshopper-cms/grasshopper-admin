@@ -11,7 +11,6 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
             ModelType : UsersIndexViewModel,
             appendTo : '#stage',
             wrapper : false,
-            rivetConfig : 'auto',
             template : template,
             events : {
                 'change #limitDropdown' : 'changeLimit'
@@ -29,7 +28,9 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
                     href : constants.internalRoutes.users
                 }
             ],
-            rivetsBinders: [usersIndexViewBinders],
+            rivetsConfig : {
+                binders : [usersIndexViewBinders]
+            },
             permissions : ['admin']
         };
 

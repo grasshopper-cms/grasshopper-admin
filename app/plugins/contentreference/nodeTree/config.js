@@ -12,7 +12,7 @@ define(['text!plugins/contentreference/nodeTree/template.html', 'plugins/content
             events : {},
             wrapper: false,
             listeners : [],
-            rivetConfig : {
+            rivetsConfig : {
                 binders : [contentReferenceBinders, nodeTreeBinders]
             }
         };

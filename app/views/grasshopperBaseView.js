@@ -24,8 +24,6 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
                 'mastheadButtons',
                 'permissions',
                 'nodeId',
-                'rivetsBinders',
-                'rivetsFormatters',
                 'wrapper',
                 'appendTo',
                 'collection'
