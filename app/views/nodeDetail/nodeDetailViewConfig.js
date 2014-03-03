@@ -17,7 +17,6 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
                 'click .clickableCell' : 'handleRowClick'
             },
             listeners : [],
-            rivetConfig : 'auto',
             mastheadButtons : [],
             permissions : ['admin', 'reader', 'editor']
         };

@@ -20,7 +20,6 @@ define(['text!plugins/readonly/template.html', 'plugins/readonly/model', 'text!p
             template : readonlyPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
-            rivetConfig : 'auto',
             listeners : [],
             mastheadButtons : []
         };

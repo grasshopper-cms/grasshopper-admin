@@ -19,7 +19,6 @@ define(['text!plugins/radio/template.html', 'plugins/radio/model', 'text!plugins
             template : radioPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
-            rivetConfig : 'auto',
             wrapper: false,
             listeners : [],
             mastheadButtons : []

@@ -19,7 +19,6 @@ define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!p
             template : checkboxPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
-            rivetConfig : 'auto',
             wrapper: false,
             listeners : [],
             mastheadButtons : []

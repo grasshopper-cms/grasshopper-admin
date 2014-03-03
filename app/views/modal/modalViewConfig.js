@@ -8,7 +8,6 @@ define(['text!views/modal/modalView.html', 'modalViewModel'], function (template
         appendTo : '#modal',
         wrapper : false,
         template : template,
-        rivetConfig : 'auto',
         events : {
             'click #confirm' : 'confirmModal',
             'click #cancel' : 'cancelModal',

@@ -9,7 +9,6 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             appendTo : '#stage',
             wrapper : false,
             template : template,
-            rivetConfig : 'auto',
             listeners : [
                 ['channels.views', 'refreshContentBrowseView', 'refreshIndexViews'],
                 ['channels.views', 'activateTab', 'activateTab']

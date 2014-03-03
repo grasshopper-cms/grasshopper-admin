@@ -19,7 +19,6 @@ define(['text!plugins/textbox/template.html', 'plugins/textbox/model', 'text!plu
             template : textBoxPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
-            rivetConfig : 'auto',
             wrapper: false,
             listeners : [],
             mastheadButtons : []
