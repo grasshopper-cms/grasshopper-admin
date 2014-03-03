@@ -28,11 +28,12 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
                 'click #nodeTree' : 'stopAccordionPropagation',
                 'blur input' : 'setAvailableContentTypes'
             },
-            rivetConfig : 'auto',
+            rivetConfig : {
+                formatters : [formatters],
+                binders : [contentReferenceBinders]
+            },
             wrapper: false,
-            listeners : [],
-            rivetsBinders : [contentReferenceBinders],
-            rivetsFormatters : [formatters]
+            listeners : []
         };
     });
 
