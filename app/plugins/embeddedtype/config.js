@@ -24,7 +24,7 @@ define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
             wrapper: false,
             listeners : [],
             mastheadButtons : [],
-            rivetConfig : {
+            rivetsConfig : {
                 binders : [appBinders]
             }
         };

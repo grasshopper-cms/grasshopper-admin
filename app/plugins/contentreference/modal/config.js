@@ -10,7 +10,7 @@ define(['text!plugins/contentreference/modal/template.html', 'plugins/contentref
         appendTo : '#modal',
         wrapper : false,
         template : template,
-        rivetConfig : {
+        rivetsConfig : {
             binders : [contentReferenceBinders]
         },
         events : {

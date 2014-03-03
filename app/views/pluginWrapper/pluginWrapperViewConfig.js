@@ -13,11 +13,12 @@ define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewMod
             wrapper : false,
             template : pluginWrapperTemplate,
             events : {},
-            rivetConfig : 'auto',
             listeners : [],
             mastheadButtons : [],
             permissions : ['admin', 'editor'],
-            rivetsBinders : [appBinders, pluginWrapperBinders],
-            rivetsFormatters : [formatters]
+            rivetsConfig : {
+                formatters : [formatters],
+                binders : [appBinders, pluginWrapperBinders]
+            }
         };
     });
