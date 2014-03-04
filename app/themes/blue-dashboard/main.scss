@@ -22,6 +22,10 @@ $imgPath: '/themes/blue-dashboard/img';
   max-width: 1250px;
 }
 
+[draggable] {
+  user-select: none; //User cannot select text in draggable element.
+}
+
 body, html {
   height: 100%;
 
@@ -467,6 +471,14 @@ body, html {
       tr{
         background-color: #F1F1F1;
       }
+    }
+
+    .overTopHalf {
+      border-top: 2px dashed lime;
+    }
+
+    .overBottomHalf {
+      border-bottom: 2px dashed lime;
     }
 
     .content {
