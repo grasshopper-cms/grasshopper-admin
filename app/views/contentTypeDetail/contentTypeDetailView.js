@@ -12,7 +12,12 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
         saveContentType : saveContentType,
-        removeFieldFromCollection : removeFieldFromCollection
+        removeFieldFromCollection : removeFieldFromCollection,
+        handleDragStart : handleDragStart,
+        handleDragEnter : handleDragEnter,
+        handleDragOver : handleDragOver,
+        handleDrag : handleDrag,
+        handleDrop : handleDrop
     });
 
     function beforeRender ($deferred) {
@@ -72,7 +77,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
             self = this,
             content;
 
-        // TODO: This needs to be made more specific, Only get THIS types content. not ALL content.
+        // TODO: This needs to be made more specific, Only get THIS types content. Maybe just make a new enpoint
+        // GET contenttype/:id/content
         Api.makeQuery(
             {
                 nodes : [],
@@ -204,6 +210,51 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                 $currentTarget.addClass('activeHeader');
             }
         });
+    }
+
+    function handleDrag(e) {
+        $('.accordionHeader').removeClass('overTopHalf overBottomHalf').each(function() {
+            var target = $(this),
+                o = target.offset(),
+                x = e.originalEvent.pageX - o.left,
+                y = e.originalEvent.pageY - o.top;
+
+            if (x > 0 && y > 0 && x < target.width() && y < target.height()) {
+                if (y > target.height() * 0.5) {
+                    target.addClass('overBottomHalf');
+                } else {
+                    target.addClass('overTopHalf');
+                }
+            }
+        });
+    }
+
+    function handleDragStart(e) {
+        this.model.set('draggingId', e.target.getAttribute('modelid'));
+        return true;
+    }
+
+    function handleDragEnter(e) {
+        e.preventDefault();
+        return true;
+    }
+
+    function handleDragOver(e) {
+        e.preventDefault();
+    }
+
+    function handleDrop(e) {
+        console.log(this.model.get('draggingId'));
+        console.log('the one you dropped on:');
+        console.log($(e.target).closest('.draggableHeader').attr('modelid'));
+        var classList = $(e.target).closest('.accordionHeader').attr('class').split(/\s+/);
+
+        if(_.contains(classList, 'overTopHalf')) {
+            console.log('drop before');
+        } else {
+            console.log('drop after');
+        }
+        return false;
     }
 
 });
