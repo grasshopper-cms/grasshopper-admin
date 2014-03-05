@@ -45,6 +45,7 @@ require.config({
     paths : {
         // Libraries
         jquery : 'vendor/jquery/jquery',
+        jqueryui : 'vendor/jquery.ui/jquery-1.10.2.js',
         backbone : 'vendor/backbone-amd/backbone',
         text : 'vendor/requirejs-text/text',
         rivets : 'vendor/rivets/dist/rivets',
