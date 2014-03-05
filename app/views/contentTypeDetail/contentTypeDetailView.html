@@ -39,7 +39,7 @@
             <table width="100%" style="margin-bottom: 0; table-layout: fixed;">
                 <thead>
                     <tr>
-                        <th style="width: 30%;">{{model:resources->name}}</th>
+                        <th style="width: 30%;">{{model:resources->name | spaceBefore}}</th>
                         <th>{{model:resources->contentType->fieldType}}</th>
                         <th>{{model:resources->required}}</th>
                         <th>{{model:resources->multiple}}</th>
@@ -65,7 +65,7 @@
                                 <table style="margin-bottom: 0; table-layout: fixed;">
                                     <tbody>
                                         <tr>
-                                            <td style="width: 30%;">{{field:label | existsOr --}}</td>
+                                            <td style="width: 30%;"><i class="icon-sort"></i>{{field:label | existsOr -- | spaceBefore}}</td>
                                             <td>{{field:type | existsOr --}}</td>
                                             <td>{{field:required | booleanToYesNo}}</td>
                                             <td>{{field:min | existsOr --}}min / {{field:max | existsOr --}}max</td>
@@ -195,7 +195,15 @@
                         </div>
 
                     </div>
+
                 </dd>
+
+                <dd>
+                    <a class="accordionHeader last" style="padding: 0;">
+                        <div class="row draggableHeader" draggable="true" modelid="last"></div>
+                    </a>
+                </dd>
+
             </dl>
         </div>
     </div>

@@ -392,6 +392,7 @@ body, html {
       width:180px;
     }
   }
+
   // Users Detail
   #userDetail {
     #statusText {
@@ -460,9 +461,19 @@ body, html {
   // Content Type Detail View
   #contentTypeDetailView {
     .accordionHeader {
-      & :hover {
+      &:hover {
         tr{
           background-color: #F1F1F1;
+        }
+      }
+
+      &.last {
+        user-select: none;
+        cursor: default;
+        background-color: transparent;
+        height: 35px;
+        &:hover {
+          background-color: transparent;
         }
       }
     }
@@ -473,12 +484,9 @@ body, html {
       }
     }
 
-    .overTopHalf {
-      border-top: 2px dashed lime;
-    }
-
-    .overBottomHalf {
-      border-bottom: 2px dashed lime;
+    .dragOver {
+      background-color: transparent !important;
+      padding-top: 35px !important;
     }
 
     .content {
