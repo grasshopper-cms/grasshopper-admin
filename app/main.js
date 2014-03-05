@@ -26,6 +26,18 @@ require.config({
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
+        },
+        jqueryui : {
+            deps : ['jquery']
+        },
+        widgetFactory : {
+            deps : ['jqueryui']
+        },
+        mouseInteraction : {
+            deps : ['jqueryui']
+        },
+        sortable : {
+            deps : ['jqueryui', 'widgetFactory', 'mouseInteraction']
         }
     },
     packages : [
@@ -45,6 +57,7 @@ require.config({
     paths : {
         // Libraries
         jquery : 'vendor/jquery/jquery',
+        jqueryui : 'vendor/jquery.ui/ui/jquery.ui.core',
         backbone : 'vendor/backbone-amd/backbone',
         text : 'vendor/requirejs-text/text',
         rivets : 'vendor/rivets/dist/rivets',
@@ -62,6 +75,11 @@ require.config({
         tabs : 'vendor/foundation/js/foundation/foundation.tab',
         tooltip : 'vendor/foundation/js/foundation/foundation.tooltip',
         abide : 'vendor/foundation/js/foundation/foundation.abide',
+
+        // Jquery UI Dependencies
+        widgetFactory : 'vendor/jquery.ui/ui/jquery.ui.widget',
+        mouseInteraction : 'vendor/jquery.ui/ui/jquery.ui.mouse',
+        sortable : 'vendor/jquery.ui/ui/jquery.ui.sortable',
 
         // Views
         grasshopperBaseView : 'views/grasshopperBaseView',
@@ -188,7 +206,8 @@ require([
     'tabs',
     'tooltip',
     'abide',
-    'modernizr'
+    'modernizr',
+    'sortable'
 ],
     /**
      * @param $
