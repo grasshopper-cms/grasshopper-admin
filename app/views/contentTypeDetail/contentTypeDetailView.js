@@ -12,12 +12,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
         saveContentType : saveContentType,
-        removeFieldFromCollection : removeFieldFromCollection,
-        handleDragStart : handleDragStart,
-        handleDragEnter : handleDragEnter,
-        handleDragOver : handleDragOver,
-        handleDrag : handleDrag,
-        handleDrop : handleDrop
+        removeFieldFromCollection : removeFieldFromCollection
     });
 
     function beforeRender ($deferred) {
@@ -36,6 +31,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function afterRender() {
         this.$el.foundation();
         this.listenTo(this.collection, 'change:type', _warnUserBeforeChangingType);
+
+        _initializeSortableAccordions.call(this);
 
         _addClickListenersToAccordion.call(this);
     }
@@ -212,56 +209,22 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         });
     }
 
-    function handleDrag(e) {
-        $('.accordionHeader').removeClass('dragOver').each(function() {
-            var target = $(this),
-                o = target.offset(),
-                x = e.originalEvent.pageX - o.left,
-                y = e.originalEvent.pageY - o.top;
+    function _initializeSortableAccordions() {
+        var $sortable = this.$('.accordion');
+        $sortable.sortable({
+            stop : _applyCollectionSort.bind(this, $sortable)
+        });
+    }
 
-            if (x > 0 && y > 0 && x < target.width() && y < target.height()) {
-                target.addClass('dragOver');
-            }
+    function _applyCollectionSort($sortable) {
+        var fields = [],
+            self = this;
+
+        $sortable.find('.accordionHeader').each(function() {
+            fields.push(self.collection.get($(this).attr('modelid')));
         });
 
-    }
-
-    function handleDragStart(e) {
-        this.model.set('draggingId', e.target.getAttribute('modelid'));
-        return true;
-    }
-
-    function handleDragEnter(e) {
-        e.preventDefault();
-        return true;
-    }
-
-    function handleDragOver(e) {
-        e.preventDefault();
-    }
-
-    function handleDrop(e) {
-        var modelInQuestionId = this.model.get('draggingId'),
-            modelDroppedOnId = $(e.target).find('.draggableHeader').attr('modelid');
-
-        $('.accordionHeader').removeClass('dragOver');
-
-        _spliceModelIntoCollection.call(this, modelInQuestionId, modelDroppedOnId);
-        return false;
-    }
-
-    function _spliceModelIntoCollection(modelInQuestionId, modelDroppedOnId) {
-        var position,
-            modelInQuestion;
-
-        modelInQuestion = this.collection.remove(this.collection.get(modelInQuestionId));
-        if(modelDroppedOnId === 'last') {
-            position = this.collection.length;
-        } else {
-            position = this.collection.indexOf(this.collection.get(modelDroppedOnId));
-        }
-
-        this.collection.add(modelInQuestion, { at: position});
+        this.collection.reset(fields, { silent : true });
     }
 
 });
