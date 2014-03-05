@@ -3,7 +3,7 @@
     "backbone-amd" : "vendor/backbone-amd/backbone.js",
     "lodash-amd" : "vendor/lodash-amd/underscore/**",
     "jquery" : "vendor/jquery/jquery.js",
-    "jqueryui" : "vendor/jquery.ui/jquery-1.10.2.js",
+    "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core.js",
     "text" : "vendor/requirejs-text/text.js",
     "rivets" : "vendor/rivets/dist/rivets.js",
     "base64" : "vendor/js-base64/base64.js",
@@ -19,5 +19,8 @@
     "accordion" : "vendor/foundation/js/foundation/foundation.accordion.js",
     "tabs": "vendor/foundation/js/foundation/foundation.tab.js",
     "tooltip": "vendor/foundation/js/foundation/foundation.tooltip.js",
-    "abide": "vendor/foundation/js/foundation/foundation.abide.js"
+    "abide": "vendor/foundation/js/foundation/foundation.abide.js",
+    "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable.js",
+    "widgetFactory" : "vendor/jquery.ui/ui/jquery.ui.widget.js",
+    "mouseInteraction" : "vendor/jquery.ui/ui/jquery.ui.mouse.js"
 }
