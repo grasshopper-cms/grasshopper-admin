@@ -32,6 +32,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.$el.foundation();
         this.listenTo(this.collection, 'change:type', _warnUserBeforeChangingType);
 
+        _initializeSortableAccordions.call(this);
+
         _addClickListenersToAccordion.call(this);
     }
 
@@ -205,6 +207,24 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                 $currentTarget.addClass('activeHeader');
             }
         });
+    }
+
+    function _initializeSortableAccordions() {
+        var $sortable = this.$('.accordion');
+        $sortable.sortable({
+            stop : _applyCollectionSort.bind(this, $sortable)
+        });
+    }
+
+    function _applyCollectionSort($sortable) {
+        var fields = [],
+            self = this;
+
+        $sortable.find('.accordionHeader').each(function() {
+            fields.push(self.collection.get($(this).attr('modelid')));
+        });
+
+        this.collection.reset(fields, { silent : true });
     }
 
 });
