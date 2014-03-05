@@ -19,13 +19,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             events : {
                 'click #deleteContentType' : 'prepareToDeleteContentType',
                 'click .clickableCell' : 'handleRowClick',
-                'click #saveContentType' : 'saveContentType',
-                'dragstart .accordionHeader' : 'handleDragStart',
-                'drag .accordionHeader' : 'handleDrag',
-                'dragenter .accordionHeader' : 'handleDragEnter',
-                'dragover .accordionHeader' : 'handleDragOver',
-                'dragleave .accordionHeader' : 'handleDragLeave',
-                'drop .accordionHeader' : 'handleDrop'
+                'click #saveContentType' : 'saveContentType'
             },
             listeners : [
                 ['channels.views', 'mastheadDropdownClicked', 'addNewFieldToContentType']

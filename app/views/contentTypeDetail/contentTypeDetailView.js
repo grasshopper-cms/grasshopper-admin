@@ -12,12 +12,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
         saveContentType : saveContentType,
-        removeFieldFromCollection : removeFieldFromCollection,
-        handleDragStart : handleDragStart,
-        handleDragEnter : handleDragEnter,
-        handleDragOver : handleDragOver,
-        handleDrag : handleDrag,
-        handleDrop : handleDrop
+        removeFieldFromCollection : removeFieldFromCollection
     });
 
     function beforeRender ($deferred) {
@@ -210,58 +205,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                 $currentTarget.addClass('activeHeader');
             }
         });
-    }
-
-    function handleDrag(e) {
-        $('.accordionHeader').removeClass('dragOver').each(function() {
-            var target = $(this),
-                o = target.offset(),
-                x = e.originalEvent.pageX - o.left,
-                y = e.originalEvent.pageY - o.top;
-
-            if (x > 0 && y > 0 && x < target.width() && y < target.height()) {
-                target.addClass('dragOver');
-            }
-        });
-
-    }
-
-    function handleDragStart(e) {
-        this.model.set('draggingId', e.target.getAttribute('modelid'));
-        return true;
-    }
-
-    function handleDragEnter(e) {
-        e.preventDefault();
-        return true;
-    }
-
-    function handleDragOver(e) {
-        e.preventDefault();
-    }
-
-    function handleDrop(e) {
-        var modelInQuestionId = this.model.get('draggingId'),
-            modelDroppedOnId = $(e.target).find('.draggableHeader').attr('modelid');
-
-        $('.accordionHeader').removeClass('dragOver');
-
-        _spliceModelIntoCollection.call(this, modelInQuestionId, modelDroppedOnId);
-        return false;
-    }
-
-    function _spliceModelIntoCollection(modelInQuestionId, modelDroppedOnId) {
-        var position,
-            modelInQuestion;
-
-        modelInQuestion = this.collection.remove(this.collection.get(modelInQuestionId));
-        if(modelDroppedOnId === 'last') {
-            position = this.collection.length;
-        } else {
-            position = this.collection.indexOf(this.collection.get(modelDroppedOnId));
-        }
-
-        this.collection.add(modelInQuestion, { at: position});
     }
 
 });
