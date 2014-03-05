@@ -24,6 +24,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                 'drag .accordionHeader' : 'handleDrag',
                 'dragenter .accordionHeader' : 'handleDragEnter',
                 'dragover .accordionHeader' : 'handleDragOver',
+                'dragleave .accordionHeader' : 'handleDragLeave',
                 'drop .accordionHeader' : 'handleDrop'
             },
             listeners : [
