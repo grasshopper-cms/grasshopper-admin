@@ -5,10 +5,9 @@ define(['underscore', 'jquery'], function (_, $) {
         return {
             'filter-by-allowed-types' :  function(el, model) {
                 var allowedTypes = this.model.view.model.get('allowedTypes'),
-                    inSetup = this.model.model.get('inSetup'),
                     thisModelsType = model.get('type');
 
-                if (!_.isEmpty(allowedTypes) && !_.contains(allowedTypes, thisModelsType) || inSetup) {
+                if (!_.isEmpty(allowedTypes) && !_.contains(allowedTypes, thisModelsType)) {
                     $(el).hide();
                 }
             }
