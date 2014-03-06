@@ -165,6 +165,16 @@ define({
             contentTypes : 'Content Types',
             selectContent : 'Select Content',
             viewSelectedContent : 'View Selected Content'
+        },
+        fileReference : {
+            selectedFile : 'Selected File',
+            currentFolder : 'Current Folder',
+            selectDefaultFolderOr : 'Select Default Folder or',
+            setRootAsDefault : 'Set Root Folder as Default',
+            defaultFolder : 'Default Folder',
+            contentTypes : 'Content Types',
+            selectContent : 'Select Content',
+            viewSelectedContent : 'View Selected Content'
         }
     },
     // General Text (reusable) - try to keep it alphabetized
