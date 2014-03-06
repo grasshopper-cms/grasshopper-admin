@@ -26,10 +26,10 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _getSelectedFile() {
-            var fileId = this.model.get('value'),
+            var fileUrl = this.model.get('value'),
                 $deferred = new $.Deferred();
 
-            if (fileId) {
+            if (fileUrl) {
 //                _getContentDetails.call(this, fileId)
 //                    .done(_setSelectedContent.bind(this, $deferred));
             } else {

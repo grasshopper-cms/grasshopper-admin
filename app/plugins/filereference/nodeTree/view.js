@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/filereference/nodeTree/config'],
-    function (GrasshopperBaseView, NodeTreeConfig) {
+define(['grasshopperBaseView', 'plugins/filereference/nodeTree/config', 'jquery'],
+    function (GrasshopperBaseView, NodeTreeConfig, $) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -42,7 +42,16 @@ define(['grasshopperBaseView', 'plugins/filereference/nodeTree/config'],
         }
 
         function _fetchChildFiles() {
-            return this.model.get('files').fetch();
+            var $deferred = new $.Deferred();
+
+            if (this.model.get('inSetup')) {
+                $deferred.resolve();
+            } else {
+                this.model.get('files').fetch()
+                    .done($deferred.resolve);
+            }
+
+            return $deferred.promise();
         }
 
         function _toggleLoadingSpinner() {
