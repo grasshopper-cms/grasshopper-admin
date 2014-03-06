@@ -6,8 +6,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
         'use strict';
 
-//        var ProxyProperty = masseuse.ProxyProperty;
-
         return GrasshopperBaseView.extend({
             beforeRender: beforeRender,
             afterRender : afterRender,
