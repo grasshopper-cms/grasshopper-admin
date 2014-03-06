@@ -1,0 +1,49 @@
+<div id="modal-container">
+    <div id="modal-contents" class="small-6">
+
+        <div class="row">
+            <div id="modal-text">
+                <h4>{{model:header}}</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <label>{{model:resources->plugins->fileReference->selectedFile | withColon}}
+                <input data-rv-value="model:selectedContentLabel" type="text" readonly="true">
+            </label>
+        </div>
+
+        <div class="row">
+            {{model:resources->plugins->fileReference->currentFolder | withColon}}{{model:label}}
+        </div>
+
+        <div data-rv-show="model:loading">
+            <i class="icon-refresh icon-spin"></i>
+        </div>
+
+        <div class="row" data-rv-hide="model:loading">
+            <div id="nodeTree">
+
+                <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
+
+                <!--<ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">-->
+                    <!--<li data-rv-each-item="model:content:">-->
+                        <!--<input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-value="item:_id" data-rv-checked="model:selectedContent">-->
+                        <!--<label data-rv-for="item.cid">{{item:label}}</label>-->
+                    <!--</li>-->
+                <!--</ul>-->
+
+            </div>
+        </div>
+
+        <div class="row" data-rv-hide="model:loading">
+            <div class="small-12 text-center">
+                <ul id="button-container" class="button-group radius">
+                    <li><a id="confirm" class="button tiny">{{model:resources->confirm}}</a></li>
+                    <li><a id="cancel" class="button tiny">{{model:resources->cancel}}</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
