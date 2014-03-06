@@ -32,7 +32,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
             this.set('files', new (grasshopperCollection.extend({
                 url : function() {
-                    return constants.api.nodesContent.url.replace(':id', self.get('_id'));
+                    return constants.api.assets.url.replace(':id', self.get('_id'));
                 }
             }))());
 

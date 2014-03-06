@@ -16,7 +16,7 @@ define(['grasshopperBaseView', 'plugins/filereference/modal/config', 'jquery'],
 
         function beforeRender($deferred) {
             $.when(_fetchChildNodes.call(this),
-//                    _fetchChildFiles.call(this),
+                    _fetchChildFiles.call(this),
                     _fetchCurrentNode.call(this))
                 .done(_toggleLoadingSpinner.bind(this), $deferred.resolve);
         }
@@ -29,9 +29,18 @@ define(['grasshopperBaseView', 'plugins/filereference/modal/config', 'jquery'],
             return this.model.get('children').fetch();
         }
 
-//        function _fetchChildFiles() {
-//            return this.model.get('content').fetch();
-//        }
+        function _fetchChildFiles() {
+            var $deferred = new $.Deferred();
+
+            if(this.model.get('inRoot')){
+                $deferred.resolve();
+            } else {
+                this.model.get('files').fetch()
+                    .done($deferred.resolve);
+            }
+
+            return $deferred.promise();
+        }
 
         function _fetchCurrentNode() {
             return this.model.fetch();

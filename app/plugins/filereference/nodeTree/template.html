@@ -8,12 +8,13 @@
     </a>
     <div  data-rv-id="model.cid" class="content">
         <dl data-rv-show="model:children | haslength" data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
-        <!--<ul data-rv-show="model:content | haslength" class="no-bullet nodeTreeContent">-->
-            <!--<li data-rv-each-item="model:content:" data-rv-filter-by-allowed-types="item">-->
-                <!--<input data-rv-id="item.cid" type="radio" name="selectedContent"-->
-                       <!--data-rv-checked="model:selectedContent" data-rv-value="item:_id">-->
-                <!--<label data-rv-for="item.cid">{{item:label}}</label>-->
-            <!--</li>-->
-        <!--</ul>-->
+
+        <ul data-rv-show="model:files | haslength" class="no-bullet nodeTreeContent">
+            <li data-rv-each-file="model:files:">
+                <input data-rv-id="file.cid" type="radio" name="selectedContent"
+                       data-rv-checked="model:selectedFile" data-rv-value="file:_id">
+                <label data-rv-for="file.cid">{{file:fileName}}</label>
+            </li>
+        </ul>
     </div>
 </dd>

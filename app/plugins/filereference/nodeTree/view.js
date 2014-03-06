@@ -17,8 +17,9 @@ define(['grasshopperBaseView', 'plugins/filereference/nodeTree/config'],
             if (!this.model.get('hasFetchedContent')) {
                 _toggleLoadingSpinner.call(this);
                 _fetchChildNodes.call(this)
-                    .then(_fetchChildContent.bind(this))
+                    .then(_fetchChildFiles.bind(this))
                     .then(function() {
+                        console.log(self);
                         self.$el.foundation();
                         _toggleLoadingSpinner.call(self);
                         self.model.toggle('hasFetchedContent');
@@ -41,8 +42,8 @@ define(['grasshopperBaseView', 'plugins/filereference/nodeTree/config'],
             return this.model.get('children').fetch();
         }
 
-        function _fetchChildContent() {
-            return this.model.get('content').fetch();
+        function _fetchChildFiles() {
+            return this.model.get('files').fetch();
         }
 
         function _toggleLoadingSpinner() {
