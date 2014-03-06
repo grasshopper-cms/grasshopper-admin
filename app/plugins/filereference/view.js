@@ -1,12 +1,12 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
-    'plugins/filereference/modal/view', 'masseuse'],
+    'plugins/filereference/modal/view'],
     function (GrasshopperBaseView, _, Api, contentTypeWorker, $,
-              ModalView, masseuse) {
+              ModalView) {
 
         'use strict';
 
-        var ProxyProperty = masseuse.ProxyProperty;
+//        var ProxyProperty = masseuse.ProxyProperty;
 
         return GrasshopperBaseView.extend({
             beforeRender: beforeRender,
@@ -72,7 +72,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
                 modalView = new ModalView({
                     modelData : {
                         header : 'Select File',
-                        selectedFile : new ProxyProperty('selectedFile', this.model),
+                        selectedFile : this.model.get('selectedFile'),
                         _id : this.model.get('options.defaultNode')
                     },
                     $deferred : $deferred
