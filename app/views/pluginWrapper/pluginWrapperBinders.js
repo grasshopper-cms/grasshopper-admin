@@ -34,24 +34,6 @@ define(['underscore', 'masseuse',
                     rivets.viewInstance.start();
                 },
                 publish : true
-            },
-            handle_addition_button :  function(el) {
-//                show if the length of the collection is less than the maximum & never show if the type is readonly
-                if(this.view.models.collection.length < this.view.models.model.get('max')&&
-                    this.view.models.model.get('type') !== 'readonly') {
-                    $(el).show();
-                } else {
-                    $(el).hide();
-                }
-            },
-            handle_subtraction_button : function(el) {
-//                show if the length of the collection is greater than the minimum & never show if the type is readonly
-                if(this.view.models.collection.length > this.view.models.model.get('min') &&
-                    this.view.models.model.get('type') !== 'readonly') {
-                    $(el).show();
-                } else {
-                    $(el).hide();
-                }
             }
         };
 
