@@ -20,42 +20,17 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
         function beforeRender($deferred) {
             this.model.get('children').fetch()
-                .then(_getSelectedFile.bind(this))
                 .then(_getSelectedNode.bind(this))
                 .then($deferred.resolve);
         }
-
-        function _getSelectedFile() {
-            var fileUrl = this.model.get('value'),
-                $deferred = new $.Deferred();
-
-            if (fileUrl) {
-//                _getContentDetails.call(this, fileId)
-//                    .done(_setSelectedContent.bind(this, $deferred));
-            } else {
-                $deferred.resolve();
-            }
-
-            return $deferred.promise();
-        }
-
-//        function _getContentDetails(contentId) {
-//            return Api.getContentDetail(contentId);
-//        }
-
-//        function _setSelectedContent($deferred, contentDetails) {
-//            this.model.set('selectedContentLabel', contentDetails.label);
-//            this.model.set('selectedContent', contentDetails._id);
-//            $deferred.resolve();
-//        }
 
         function _getSelectedNode() {
             var $deferred = new $.Deferred(),
                 defaultNode = this.model.get('options.defaultNode');
 
             if (defaultNode && defaultNode !== '0') { // default is not root
-//                Api.getNodeDetail(defaultNode)
-//                    .done(setSelectedNode.bind(this, $deferred));
+                Api.getNodeDetail(defaultNode)
+                    .done(setSelectedNode.bind(this, $deferred));
             } else if (defaultNode && defaultNode === '0') { // default is root
                 setSelectedNode.call(this, $deferred, { label : 'Root'});
             } else {
@@ -72,7 +47,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
         function afterRender() {
             this.model.set('showTree', true);
-            console.log(this);
             this.$el.foundation();
         }
 
@@ -99,7 +73,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
                     modelData : {
                         header : 'Select File',
                         selectedFile : new ProxyProperty('selectedFile', this.model),
-                        selectedFileName : this.model.get('selectedFileName'),
                         _id : this.model.get('options.defaultNode')
                     },
                     $deferred : $deferred

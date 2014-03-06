@@ -1,5 +1,5 @@
-define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCollection', 'masseuse'],
-    function (Model, resources, Backbone, constants, grasshopperCollection, masseuse) {
+define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCollection', 'masseuse', 'underscore'],
+    function (Model, resources, Backbone, constants, grasshopperCollection, masseuse, _) {
 
     'use strict';
 
@@ -11,8 +11,11 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
             resources : resources,
             showTree : false,
             inSetup : true,
-            selectedContentHref : new ComputedProperty(['value'], function(contentId) {
-                return constants.internalRoutes.contentDetail.replace(':id', contentId);
+            selectedFileName : new ComputedProperty(['selectedFile'], function(selectedFile) {
+                return (selectedFile) ? _.last(selectedFile.split('/')) : '';
+            }),
+            selectedFile : new ComputedProperty(['value'], function(value) {
+                return value;
             }),
             _id : '0'
         },
@@ -21,7 +24,9 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
 
     function initialize() {
         var self = this;
+
         Model.prototype.initialize.apply(this, arguments);
+
         this.set('children', new (grasshopperCollection.extend({
             url : function() {
                 return constants.api.nodesChildren.url.replace(':id', self.get('_id'));

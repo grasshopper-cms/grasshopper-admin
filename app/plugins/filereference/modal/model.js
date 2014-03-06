@@ -1,5 +1,7 @@
-define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore'],
-    function (Model, resources, grasshopperCollection, constants, masseuse, _) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore',
+    'plugins/filereference/fileDetailModel'],
+    function (Model, resources, grasshopperCollection, constants, masseuse, _,
+              fileDetailModel) {
 
         'use strict';
 
@@ -13,8 +15,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 inRoot : new ComputedProperty(['_id'], function(_id) {
                     return _id === '0';
                 }),
-                label : new ComputedProperty(['_id'], function(_id) {
-                    return _id === '0' && 'Root';
+                folderLabel : new ComputedProperty(['_id', 'label'], function(_id, label) {
+                    return _id === '0' ? 'Root' : label;
                 }),
                 selectedFileName : new ComputedProperty(['selectedFile'], function(selectedFile) {
                     return (selectedFile) ? _.last(selectedFile.split('/')) : '';
@@ -26,7 +28,9 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
         function initialize() {
             var self = this;
+
             Model.prototype.initialize.apply(this, arguments);
+
             this.set('children', new (grasshopperCollection.extend({
                 url : function() {
                     return constants.api.nodesChildren.url.replace(':id', self.get('_id'));
@@ -34,6 +38,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             }))());
 
             this.set('files', new (grasshopperCollection.extend({
+                model : fileDetailModel,
                 url : function() {
                     return constants.api.assets.url.replace(':id', self.get('_id'));
                 }
