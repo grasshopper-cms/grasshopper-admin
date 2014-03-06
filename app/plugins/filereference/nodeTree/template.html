@@ -11,8 +11,8 @@
 
         <ul data-rv-show="model:files | haslength" class="no-bullet nodeTreeContent">
             <li data-rv-each-file="model:files:">
-                <input data-rv-id="file.cid" type="radio" name="selectedContent"
-                       data-rv-checked="model:selectedFile" data-rv-value="file:url">
+                <input data-rv-id="file.cid" type="radio" name="selectedFile"
+                       data-rv-value="file:url" data-rv-checked="model:selectedFile">
                 <label data-rv-for="file.cid">{{file:fileName}}</label>
             </li>
         </ul>

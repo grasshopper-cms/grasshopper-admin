@@ -14,7 +14,7 @@
         </div>
 
         <div class="row">
-            {{model:resources->plugins->fileReference->currentFolder | withColon}}{{model:label}}
+            {{model:resources->plugins->fileReference->currentFolder | withColon}}{{model:folderLabel}}
         </div>
 
         <div data-rv-show="model:loading">
@@ -28,8 +28,9 @@
 
                 <ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">
                     <li data-rv-each-file="model:files:">
-                        <input data-rv-id="file.cid" type="radio" name="selectedContent" data-rv-value="file:_id" data-rv-checked="model:selectedFile">
-                        <label data-rv-for="file.cid">{{file:label}}</label>
+                        <input data-rv-id="file.cid" type="radio" name="selectedFile"
+                               data-rv-value="file:url" data-rv-checked="model:selectedFile">
+                        <label data-rv-for="file.cid">{{file:fileName}}</label>
                     </li>
                 </ul>
 
