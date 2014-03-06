@@ -26,12 +26,12 @@
 
                 <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
 
-                <!--<ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">-->
-                    <!--<li data-rv-each-item="model:content:">-->
-                        <!--<input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-value="item:_id" data-rv-checked="model:selectedContent">-->
-                        <!--<label data-rv-for="item.cid">{{item:label}}</label>-->
-                    <!--</li>-->
-                <!--</ul>-->
+                <ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">
+                    <li data-rv-each-file="model:files:">
+                        <input data-rv-id="file.cid" type="radio" name="selectedContent" data-rv-value="file:_id" data-rv-checked="model:selectedFile">
+                        <label data-rv-for="file.cid">{{file:label}}</label>
+                    </li>
+                </ul>
 
             </div>
         </div>

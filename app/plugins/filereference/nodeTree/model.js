@@ -1,5 +1,8 @@
-define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse'],
-    function (Model, resources, grasshopperCollection, constants, masseuse) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse',
+    'plugins/filereference/fileDetailModel'],
+    function (Model, resources, grasshopperCollection, constants, masseuse,
+              fileDetailModel) {
+
     'use strict';
 
     var ComputedProperty = masseuse.ComputedProperty;
@@ -26,9 +29,10 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             }
         }))());
 
-        this.set('content', new (grasshopperCollection.extend({
+        this.set('files', new (grasshopperCollection.extend({
+            model : fileDetailModel,
             url : function() {
-                return constants.api.nodesContent.url.replace(':id', self.get('_id'));
+                return constants.api.assets.url.replace(':id', self.get('_id'));
             }
         }))());
     }
