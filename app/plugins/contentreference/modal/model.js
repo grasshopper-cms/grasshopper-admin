@@ -13,8 +13,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 inRoot : new ComputedProperty(['_id'], function(_id) {
                     return _id === '0';
                 }),
-                label : new ComputedProperty(['_id'], function(_id) {
-                    return _id === '0' && 'Root';
+                folderLabel : new ComputedProperty(['_id', 'label'], function(_id, label) {
+                    return _id === '0' ? 'Root' : label;
                 }),
                 resources : resources
             },
