@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
-    function (GrasshopperBaseView, NodeTreeConfig) {
+define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config', 'jquery'],
+    function (GrasshopperBaseView, NodeTreeConfig, $) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -42,7 +42,16 @@ define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
         }
 
         function _fetchChildContent() {
-            return this.model.get('content').fetch();
+            var $deferred = new $.Deferred();
+
+            if(this.model.get('inSetup')) {
+                $deferred.resolve();
+            } else {
+                return this.model.get('content').fetch()
+                    .done($deferred.resolve);
+            }
+
+            return $deferred.promise();
         }
 
         function _toggleLoadingSpinner() {
