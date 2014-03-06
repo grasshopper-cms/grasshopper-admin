@@ -1,5 +1,5 @@
-define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse'],
-    function (Model, resources, grasshopperCollection, constants, masseuse) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore'],
+    function (Model, resources, grasshopperCollection, constants, masseuse, _) {
 
         'use strict';
 
@@ -15,6 +15,9 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 }),
                 label : new ComputedProperty(['_id'], function(_id) {
                     return _id === '0' && 'Root';
+                }),
+                selectedFileName : new ComputedProperty(['selectedFile'], function(selectedFile) {
+                    return (selectedFile) ? _.last(selectedFile.split('/')) : '';
                 }),
                 resources : resources
             },
@@ -36,14 +39,5 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 }
             }))());
 
-            this.on('change:selectedContent', _getContentDetails.bind(this));
         }
-
-        function _getContentDetails() {
-            this.set('selectedContentLabel',
-                this.get('content').findWhere({ _id : this.get('selectedContent') }).get('label'));
-        }
-
     });
-
-

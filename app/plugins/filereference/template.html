@@ -1,6 +1,6 @@
 <div class="row">
     <div class="small-8 columns">
-        <input type="text" data-rv-value="model:selectedContentLabel" readonly="true">
+        <input type="text" data-rv-value="model:selectedFileName" readonly="true">
     </div>
     <div class="small-4 columns">
 
@@ -10,9 +10,9 @@
                     {{model:resources->plugins->fileReference->selectContent}}
                 </button>
             </li>
-            <li data-rv-show="model:selectedContentLabel">
-                <a class="button tiny" data-rv-href="model:selectedContentHref" target="_blank">
-                    {{model:resources->plugins->fileReference->viewSelectedContent}}
+            <li data-rv-show="model:selectedFileName">
+                <a class="button tiny" data-rv-on-click="view.fireFileDetailModal">
+                    {{model:resources->plugins->fileReference->viewSelectedFile}}
                 </a>
             </li>
         </ul>
