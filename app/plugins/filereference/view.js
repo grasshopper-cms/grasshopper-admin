@@ -14,7 +14,8 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             stopAccordionPropagation : stopAccordionPropagation,
             setRootAsDefaultNode : setRootAsDefaultNode,
             fireSelectFileModal : fireSelectFileModal,
-            setSelectedNode : setSelectedNode
+            setSelectedNode : setSelectedNode,
+            fireFileDetailModal : fireFileDetailModal
         });
 
         function beforeRender($deferred) {
@@ -87,7 +88,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
         function fireSelectFileModal() {
             _startModalView.call(this)
-                .done(_contentReferenceSelected.bind(this));
+                .done(_fileReferenceSelected.bind(this));
         }
 
         function _startModalView() {
@@ -98,7 +99,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
                     modelData : {
                         header : 'Select File',
                         selectedFile : new ProxyProperty('selectedFile', this.model),
-                        selectedFileLabel : this.model.get('selectedFileLabel'),
+                        selectedFileName : this.model.get('selectedFileName'),
                         _id : this.model.get('options.defaultNode')
                     },
                     $deferred : $deferred
@@ -108,10 +109,19 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             return $deferred.promise();
         }
 
-        function _contentReferenceSelected(modalModel) {
-            this.model.set('selectedFileLabel', modalModel.selectedFileLabel);
+        function _fileReferenceSelected(modalModel) {
+            this.model.set('selectedFileName', modalModel.selectedFileName);
             this.model.set('selectedFile', modalModel.selectedFile);
             this.model.set('value', modalModel.selectedFile);
+        }
+
+        function fireFileDetailModal() {
+            this.displayModal(
+                {
+                    header: this.model.get('selectedFileName'),
+                    type: 'image',
+                    data: this.model.get('selectedFile')
+                });
         }
 
     });

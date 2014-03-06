@@ -16,7 +16,7 @@ define(['underscore', 'plugins/filereference/nodeTree/view', 'masseuse'],
             var nodeTreeView = new NodeTreeView({
                 appendTo : el,
                 modelData : _.extend({}, model.attributes, {
-                    selectedContent : new ProxyProperty('selectedContent', this.model.model),
+                    selectedFile : new ProxyProperty('selectedFile', this.model.model),
                     inSetup : this.model.model.get('inSetup')
                 })
             });

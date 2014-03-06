@@ -19,7 +19,6 @@ define(['grasshopperBaseView', 'plugins/filereference/nodeTree/config'],
                 _fetchChildNodes.call(this)
                     .then(_fetchChildFiles.bind(this))
                     .then(function() {
-                        console.log(self);
                         self.$el.foundation();
                         _toggleLoadingSpinner.call(self);
                         self.model.toggle('hasFetchedContent');

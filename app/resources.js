@@ -174,7 +174,7 @@ define({
             defaultFolder : 'Default Folder',
             contentTypes : 'Content Types',
             selectContent : 'Select Content',
-            viewSelectedContent : 'View Selected Content'
+            viewSelectedFile : 'View Selected File'
         }
     },
     // General Text (reusable) - try to keep it alphabetized
