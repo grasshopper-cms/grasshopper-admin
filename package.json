@@ -67,6 +67,7 @@
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-uglify": "0.2.0",
     "grunt-contrib-concat": "~0.1.2",
-    "grunt-autoprefixer": "~0.4.0"
+    "grunt-autoprefixer": "~0.4.0",
+    "grunt-requirejs-paths": "~0.1.1"
   }
 }
