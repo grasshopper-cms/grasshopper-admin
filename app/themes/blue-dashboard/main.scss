@@ -302,33 +302,15 @@ body, html {
       margin: 85px auto 0 auto;
       border: 1px solid $lightGray;
       background: $gray;
-
       font-size:13px;
     }
 
     .login-fields input {
-      font-size: 13px;
-      padding: 11px 15px 10px 50px;
       background-color: $gray;
-      width: 322px;
-      display: block;
-      margin: 0;
-      height:auto;
     }
 
-    .login-fields label {
-      display: none;
-    }
     .login-fields .field {
       margin-bottom: 1.25em;
-    }
-
-    .login-fields .username-field {
-      background: url(#{$imgPath}/signin/user.png) no-repeat;
-    }
-
-    .login-fields .password-field {
-      background: url(#{$imgPath}/signin/password.png) no-repeat;
     }
 
     .login-extra {
