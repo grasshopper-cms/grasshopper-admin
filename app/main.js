@@ -86,6 +86,7 @@ require.config({
 
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
+        loginViewModel : 'views/login/loginViewModel',
 
         dashboardView : 'views/dashboard/dashboardView',
         dashboardViewConfig : 'views/dashboard/dashboardViewConfig',
@@ -171,7 +172,6 @@ require.config({
         pluginSetupModel : 'models/pluginSetupModel',
 
         // View Models
-        loginViewModel : 'models/viewModels/loginViewModel',
         modalViewModel : 'models/viewModels/modalViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
