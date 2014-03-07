@@ -116,6 +116,7 @@ require.config({
 
         contentTypeIndexView : 'views/contentTypeIndex/contentTypeIndexView',
         contentTypeIndexViewConfig : 'views/contentTypeIndex/contentTypeIndexViewConfig',
+        contentTypeIndexViewModel : 'views/contentTypeIndex/contentTypeIndexViewModel',
 
         contentTypeDetailView : 'views/contentTypeDetail/contentTypeDetailView',
         contentTypeDetailViewConfig : 'views/contentTypeDetail/contentTypeDetailViewConfig',
@@ -175,7 +176,6 @@ require.config({
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
         dashboardViewModel : 'models/viewModels/dashboardViewModel',
         mastheadViewModel : 'models/viewModels/mastheadViewModel',
-        contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
