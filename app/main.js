@@ -95,6 +95,7 @@ require.config({
 
         alertBoxView : 'views/alertBox/alertBoxView',
         alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
+        alertBoxViewModel : 'views/alertBox/alertBoxViewModel',
 
         modalView : 'views/modal/modalView',
         modalViewConfig : 'views/modal/modalViewConfig',
@@ -163,7 +164,6 @@ require.config({
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',
         headerViewModel : 'models/viewModels/headerViewModel',
-        alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
         modalViewModel : 'models/viewModels/modalViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
