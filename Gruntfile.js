@@ -34,6 +34,7 @@ module.exports = function (grunt) {
         'copy:build',
         'copy:vendor',
         'registerPlugins',
+        'paths',
         'setBuildConfig',
         'sass',
         'autoprefixer:no_dest'
@@ -46,6 +47,7 @@ module.exports = function (grunt) {
         'copy:build',
         'copy:vendor',
         'registerPlugins',
+        'paths',
         'setBuildConfig',
         'sass',
         'autoprefixer:no_dest',
