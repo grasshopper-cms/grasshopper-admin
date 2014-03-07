@@ -106,6 +106,7 @@ require.config({
 
         userDetailView : 'views/userDetail/userDetailView',
         userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
+        userDetailViewModel : 'views/userDetail/userDetailViewModel',
 
         usersIndexView : 'views/usersIndex/usersIndexView',
         usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
@@ -174,7 +175,6 @@ require.config({
         pluginSetupModel : 'models/pluginSetupModel',
 
         // View Models
-        userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
