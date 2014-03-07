@@ -170,15 +170,13 @@ require.config({
 
         pluginWrapperView : 'views/pluginWrapper/pluginWrapperView',
         pluginWrapperViewConfig : 'views/pluginWrapper/pluginWrapperViewConfig',
+        pluginWrapperViewModel : 'views/pluginWrapper/pluginWrapperViewModel',
 
         // Models
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/userModel',
         grasshopperModel : 'models/grasshopperModel',
         pluginSetupModel : 'models/pluginSetupModel',
-
-        // View Models
-        pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',
