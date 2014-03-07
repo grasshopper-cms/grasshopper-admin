@@ -66,12 +66,21 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         function _addPlugin(value) {
             var model = {
-                value : value,
+                value : _handleDefaultValue.call(this, value),
                 options : this.model.get('options')
             };
 
             this.collection.add(model);
             _evaluateMultiButtons.call(this);
+        }
+
+        function _handleDefaultValue(value) {
+            var defaultValue = this.model.get('defaultValue');
+            if (defaultValue && _.isUndefined(value)) {
+                return defaultValue;
+            } else {
+                return value;
+            }
         }
 
         function _evaluateMultiButtons() {
