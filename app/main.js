@@ -127,6 +127,7 @@ require.config({
 
         mastheadView : 'views/masthead/mastheadView',
         mastheadViewConfig : 'views/masthead/mastheadViewConfig',
+        mastheadViewModel : 'views/masthead/mastheadViewModel',
 
         nodeDetailView : 'views/nodeDetail/nodeDetailView',
         nodeDetailViewConfig : 'views/nodeDetail/nodeDetailViewConfig',
@@ -175,7 +176,6 @@ require.config({
         modalViewModel : 'models/viewModels/modalViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
-        mastheadViewModel : 'models/viewModels/mastheadViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
