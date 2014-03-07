@@ -32,12 +32,15 @@ define(['jquery', 'underscore', 'masseuse',
                             },
                             toJSON: function () {
                                 var json = Backbone.Collection.prototype.toJSON.apply(this),
+                                    max = rivets.model.field.max,
                                     value = _.pluck(json, 'value');
 
-                                if (value.length < 2) {
+                                if(max > 1) {
+                                    return value;
+                                } else {
                                     return value[0];
                                 }
-                                return value;
+                                
                             }
                         }))([], {}),
                         appendTo : el
