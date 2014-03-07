@@ -1,11 +1,11 @@
 /*global define:false*/
-define(['jquery', 'grasshopperBaseView', 'usersIndexViewConfig'],
-    function ($, GrasshopperBaseView, usersIndexViewConfig) {
+define(['jquery', 'grasshopperBaseView', 'userIndexViewConfig'],
+    function ($, GrasshopperBaseView, userIndexViewConfig) {
 
         'use strict';
 
         return GrasshopperBaseView.extend({
-            defaultOptions : usersIndexViewConfig,
+            defaultOptions : userIndexViewConfig,
             beforeRender : beforeRender
         });
 

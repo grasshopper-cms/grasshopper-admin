@@ -168,9 +168,9 @@ require.config({
         userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
         userDetailViewModel : 'views/userDetail/userDetailViewModel',
 
-        usersIndexView : 'views/usersIndex/usersIndexView',
-        usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
-        usersIndexViewModel : 'views/usersIndex/usersIndexViewModel',
+        userIndexView : 'views/userIndex/userIndexView',
+        userIndexViewConfig : 'views/userIndex/userIndexViewConfig',
+        userIndexViewModel : 'views/userIndex/userIndexViewModel',
 
         // Models
         selfValidatingModel : 'models/selfValidatingModel',
@@ -202,7 +202,7 @@ require.config({
         appBinders : 'appBinders',
         pluginWrapperBinders : 'views/pluginWrapper/pluginWrapperBinders',
         contentTypeDetailBinders : 'views/contentTypeDetail/contentTypeDetailBinders',
-        usersIndexViewBinders : 'views/usersIndex/binders',
+        userIndexViewBinders : 'views/userIndex/binders',
 
         // Formatters
         formatters : 'formatters',
