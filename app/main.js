@@ -139,6 +139,7 @@ require.config({
 
         assetDetailView : 'views/assetDetail/assetDetailView',
         assetDetailViewConfig : 'views/assetDetail/assetDetailViewConfig',
+        assetDetailViewModel : 'views/assetDetail/assetDetailViewModel',
 
         addFolderView : 'views/addFolder/addFolderView',
         addFolderViewConfig : 'views/addFolder/addFolderViewConfig',
@@ -177,7 +178,6 @@ require.config({
         assetIndexViewModel : 'models/viewModels/assetIndexViewModel',
         contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
         contentDetailViewModel : 'models/viewModels/contentDetailViewModel',
-        assetDetailViewModel : 'models/viewModels/assetDetailViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
         // Workers
