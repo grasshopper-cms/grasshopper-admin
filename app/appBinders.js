@@ -40,7 +40,7 @@ define(['jquery', 'underscore', 'masseuse',
                                 } else {
                                     return value[0];
                                 }
-                                
+
                             }
                         }))([], {}),
                         appendTo : el
