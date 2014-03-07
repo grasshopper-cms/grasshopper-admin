@@ -93,6 +93,7 @@ require.config({
 
         headerView : 'views/header/headerView',
         headerViewConfig : 'views/header/headerViewConfig',
+        headerViewModel : 'views/header/headerViewModel',
 
         alertBoxView : 'views/alertBox/alertBoxView',
         alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
@@ -171,7 +172,6 @@ require.config({
 
         // View Models
         loginViewModel : 'models/viewModels/loginViewModel',
-        headerViewModel : 'models/viewModels/headerViewModel',
         modalViewModel : 'models/viewModels/modalViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
