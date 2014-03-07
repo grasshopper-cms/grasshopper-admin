@@ -102,6 +102,7 @@ require.config({
 
         modalView : 'views/modal/modalView',
         modalViewConfig : 'views/modal/modalViewConfig',
+        modalViewModel : 'views/modal/modalViewModel',
 
         userDetailView : 'views/userDetail/userDetailView',
         userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
@@ -173,7 +174,6 @@ require.config({
         pluginSetupModel : 'models/pluginSetupModel',
 
         // View Models
-        modalViewModel : 'models/viewModels/modalViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
