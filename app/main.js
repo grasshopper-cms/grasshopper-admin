@@ -112,6 +112,7 @@ require.config({
 
         contentBrowseView : 'views/contentBrowse/contentBrowseView',
         contentBrowseViewConfig : 'views/contentBrowse/contentBrowseViewConfig',
+        contentBrowseViewModel : 'views/contentBrowse/contentBrowseViewModel',
 
         contentTypeIndexView : 'views/contentTypeIndex/contentTypeIndexView',
         contentTypeIndexViewConfig : 'views/contentTypeIndex/contentTypeIndexViewConfig',
@@ -173,7 +174,6 @@ require.config({
         mastheadViewModel : 'models/viewModels/mastheadViewModel',
         contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
         contentTypeDetailViewModel : 'models/viewModels/contentTypeDetailViewModel',
-        contentBrowseViewModel : 'models/viewModels/contentBrowseViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
         contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
