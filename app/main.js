@@ -138,6 +138,7 @@ require.config({
 
         nodeIndexView : 'views/nodeIndex/nodeIndexView',
         nodeIndexViewConfig : 'views/nodeIndex/nodeIndexViewConfig',
+        nodeIndexViewModel : 'views/nodeIndex/nodeIndexViewModel',
 
         assetIndexView : 'views/assetIndex/assetIndexView',
         assetIndexViewConfig : 'views/assetIndex/assetIndexViewConfig',
@@ -177,7 +178,6 @@ require.config({
         pluginSetupModel : 'models/pluginSetupModel',
 
         // View Models
-        nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
         // Workers
