@@ -119,6 +119,7 @@ require.config({
 
         contentTypeDetailView : 'views/contentTypeDetail/contentTypeDetailView',
         contentTypeDetailViewConfig : 'views/contentTypeDetail/contentTypeDetailViewConfig',
+        contentTypeDetailViewModel : 'views/contentTypeDetail/contentTypeDetailViewModel',
 
         mastheadView : 'views/masthead/mastheadView',
         mastheadViewConfig : 'views/masthead/mastheadViewConfig',
@@ -175,7 +176,6 @@ require.config({
         dashboardViewModel : 'models/viewModels/dashboardViewModel',
         mastheadViewModel : 'models/viewModels/mastheadViewModel',
         contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
-        contentTypeDetailViewModel : 'models/viewModels/contentTypeDetailViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
