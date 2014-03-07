@@ -83,48 +83,71 @@ require.config({
 
         // Views
         grasshopperBaseView : 'views/grasshopperBaseView',
+
         loginView : 'views/login/loginView',
         loginViewConfig : 'views/login/loginViewConfig',
+
         dashboardView : 'views/dashboard/dashboardView',
         dashboardViewConfig : 'views/dashboard/dashboardViewConfig',
+
         headerView : 'views/header/headerView',
         headerViewConfig : 'views/header/headerViewConfig',
+
         alertBoxView : 'views/alertBox/alertBoxView',
         alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
+
         modalView : 'views/modal/modalView',
         modalViewConfig : 'views/modal/modalViewConfig',
+
         userDetailView : 'views/userDetail/userDetailView',
         userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
+
         usersIndexView : 'views/usersIndex/usersIndexView',
         usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
+
         addUserView : 'views/addUser/addUserView',
         addUserViewConfig : 'views/addUser/addUserViewConfig',
+
         contentBrowseView : 'views/contentBrowse/contentBrowseView',
         contentBrowseViewConfig : 'views/contentBrowse/contentBrowseViewConfig',
+
         contentTypeIndexView : 'views/contentTypeIndex/contentTypeIndexView',
         contentTypeIndexViewConfig : 'views/contentTypeIndex/contentTypeIndexViewConfig',
+
         contentTypeDetailView : 'views/contentTypeDetail/contentTypeDetailView',
         contentTypeDetailViewConfig : 'views/contentTypeDetail/contentTypeDetailViewConfig',
+
         mastheadView : 'views/masthead/mastheadView',
         mastheadViewConfig : 'views/masthead/mastheadViewConfig',
+
         nodeDetailView : 'views/nodeDetail/nodeDetailView',
         nodeDetailViewConfig : 'views/nodeDetail/nodeDetailViewConfig',
+
         nodeIndexView : 'views/nodeIndex/nodeIndexView',
         nodeIndexViewConfig : 'views/nodeIndex/nodeIndexViewConfig',
+
         assetIndexView : 'views/assetIndex/assetIndexView',
         assetIndexViewConfig : 'views/assetIndex/assetIndexViewConfig',
+
         contentDetailView : 'views/contentDetail/contentDetailView',
         contentDetailViewConfig : 'views/contentDetail/contentDetailViewConfig',
+
         contentIndexView : 'views/contentIndex/contentIndexView',
         contentIndexViewConfig : 'views/contentIndex/contentIndexViewConfig',
+
         assetDetailView : 'views/assetDetail/assetDetailView',
         assetDetailViewConfig : 'views/assetDetail/assetDetailViewConfig',
+
         addFolderView : 'views/addFolder/addFolderView',
         addFolderViewConfig : 'views/addFolder/addFolderViewConfig',
+
         addContentView : 'views/addContent/addContentView',
         addContentViewConfig : 'views/addContent/addContentViewConfig',
+
         addAssetsView : 'views/addAssets/addAssetsView',
         addAssetsViewConfig : 'views/addAssets/addAssetsViewConfig',
+        addAssetsViewModel : 'views/addAssets/addAssetsViewModel',
+
         pluginWrapperView : 'views/pluginWrapper/pluginWrapperView',
         pluginWrapperViewConfig : 'views/pluginWrapper/pluginWrapperViewConfig',
 
@@ -155,7 +178,6 @@ require.config({
         assetDetailViewModel : 'models/viewModels/assetDetailViewModel',
         addFolderViewModel : 'models/viewModels/addFolderViewModel',
         addContentViewModel : 'models/viewModels/addContentViewModel',
-        addAssetsViewModel : 'models/viewModels/addAssetsViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
         // Workers
