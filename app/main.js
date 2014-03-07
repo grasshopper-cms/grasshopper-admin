@@ -139,6 +139,7 @@ require.config({
 
         contentIndexView : 'views/contentIndex/contentIndexView',
         contentIndexViewConfig : 'views/contentIndex/contentIndexViewConfig',
+        contentIndexViewModel : 'views/contentIndex/contentIndexViewModel',
 
         assetDetailView : 'views/assetDetail/assetDetailView',
         assetDetailViewConfig : 'views/assetDetail/assetDetailViewConfig',
@@ -177,7 +178,6 @@ require.config({
         contentTypeDetailViewModel : 'models/viewModels/contentTypeDetailViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
-        contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
         // Workers
