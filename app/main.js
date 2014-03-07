@@ -83,80 +83,100 @@ require.config({
 
         // Views
         grasshopperBaseView : 'views/grasshopperBaseView',
-        loginView : 'views/login/loginView',
-        loginViewConfig : 'views/login/loginViewConfig',
-        dashboardView : 'views/dashboard/dashboardView',
-        dashboardViewConfig : 'views/dashboard/dashboardViewConfig',
-        headerView : 'views/header/headerView',
-        headerViewConfig : 'views/header/headerViewConfig',
-        alertBoxView : 'views/alertBox/alertBoxView',
-        alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
-        modalView : 'views/modal/modalView',
-        modalViewConfig : 'views/modal/modalViewConfig',
-        userDetailView : 'views/userDetail/userDetailView',
-        userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
-        usersIndexView : 'views/usersIndex/usersIndexView',
-        usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
-        addUserView : 'views/addUser/addUserView',
-        addUserViewConfig : 'views/addUser/addUserViewConfig',
-        contentBrowseView : 'views/contentBrowse/contentBrowseView',
-        contentBrowseViewConfig : 'views/contentBrowse/contentBrowseViewConfig',
-        contentTypeIndexView : 'views/contentTypeIndex/contentTypeIndexView',
-        contentTypeIndexViewConfig : 'views/contentTypeIndex/contentTypeIndexViewConfig',
-        contentTypeDetailView : 'views/contentTypeDetail/contentTypeDetailView',
-        contentTypeDetailViewConfig : 'views/contentTypeDetail/contentTypeDetailViewConfig',
-        mastheadView : 'views/masthead/mastheadView',
-        mastheadViewConfig : 'views/masthead/mastheadViewConfig',
-        nodeDetailView : 'views/nodeDetail/nodeDetailView',
-        nodeDetailViewConfig : 'views/nodeDetail/nodeDetailViewConfig',
-        nodeIndexView : 'views/nodeIndex/nodeIndexView',
-        nodeIndexViewConfig : 'views/nodeIndex/nodeIndexViewConfig',
-        assetIndexView : 'views/assetIndex/assetIndexView',
-        assetIndexViewConfig : 'views/assetIndex/assetIndexViewConfig',
-        contentDetailView : 'views/contentDetail/contentDetailView',
-        contentDetailViewConfig : 'views/contentDetail/contentDetailViewConfig',
-        contentIndexView : 'views/contentIndex/contentIndexView',
-        contentIndexViewConfig : 'views/contentIndex/contentIndexViewConfig',
-        assetDetailView : 'views/assetDetail/assetDetailView',
-        assetDetailViewConfig : 'views/assetDetail/assetDetailViewConfig',
-        addFolderView : 'views/addFolder/addFolderView',
-        addFolderViewConfig : 'views/addFolder/addFolderViewConfig',
-        addContentView : 'views/addContent/addContentView',
-        addContentViewConfig : 'views/addContent/addContentViewConfig',
+
         addAssetsView : 'views/addAssets/addAssetsView',
         addAssetsViewConfig : 'views/addAssets/addAssetsViewConfig',
+        addAssetsViewModel : 'views/addAssets/addAssetsViewModel',
+
+        addContentView : 'views/addContent/addContentView',
+        addContentViewConfig : 'views/addContent/addContentViewConfig',
+        addContentViewModel : 'views/addContent/addContentViewModel',
+
+        addFolderView : 'views/addFolder/addFolderView',
+        addFolderViewConfig : 'views/addFolder/addFolderViewConfig',
+        addFolderViewModel : 'views/addFolder/addFolderViewModel',
+
+        addUserView : 'views/addUser/addUserView',
+        addUserViewConfig : 'views/addUser/addUserViewConfig',
+        addUserViewModel : 'views/addUser/addUserViewModel',
+
+        alertBoxView : 'views/alertBox/alertBoxView',
+        alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
+        alertBoxViewModel : 'views/alertBox/alertBoxViewModel',
+
+        assetDetailView : 'views/assetDetail/assetDetailView',
+        assetDetailViewConfig : 'views/assetDetail/assetDetailViewConfig',
+        assetDetailViewModel : 'views/assetDetail/assetDetailViewModel',
+
+        assetIndexView : 'views/assetIndex/assetIndexView',
+        assetIndexViewConfig : 'views/assetIndex/assetIndexViewConfig',
+        assetIndexViewModel : 'views/assetIndex/assetIndexViewModel',
+
+        contentBrowseView : 'views/contentBrowse/contentBrowseView',
+        contentBrowseViewConfig : 'views/contentBrowse/contentBrowseViewConfig',
+        contentBrowseViewModel : 'views/contentBrowse/contentBrowseViewModel',
+
+        contentDetailView : 'views/contentDetail/contentDetailView',
+        contentDetailViewConfig : 'views/contentDetail/contentDetailViewConfig',
+        contentDetailViewModel : 'views/contentDetail/contentDetailViewModel',
+
+        contentIndexView : 'views/contentIndex/contentIndexView',
+        contentIndexViewConfig : 'views/contentIndex/contentIndexViewConfig',
+        contentIndexViewModel : 'views/contentIndex/contentIndexViewModel',
+
+        contentTypeDetailView : 'views/contentTypeDetail/contentTypeDetailView',
+        contentTypeDetailViewConfig : 'views/contentTypeDetail/contentTypeDetailViewConfig',
+        contentTypeDetailViewModel : 'views/contentTypeDetail/contentTypeDetailViewModel',
+
+        contentTypeIndexView : 'views/contentTypeIndex/contentTypeIndexView',
+        contentTypeIndexViewConfig : 'views/contentTypeIndex/contentTypeIndexViewConfig',
+        contentTypeIndexViewModel : 'views/contentTypeIndex/contentTypeIndexViewModel',
+
+        dashboardView : 'views/dashboard/dashboardView',
+        dashboardViewConfig : 'views/dashboard/dashboardViewConfig',
+        dashboardViewModel : 'views/dashboard/dashboardViewModel',
+
+        headerView : 'views/header/headerView',
+        headerViewConfig : 'views/header/headerViewConfig',
+        headerViewModel : 'views/header/headerViewModel',
+
+        loginView : 'views/login/loginView',
+        loginViewConfig : 'views/login/loginViewConfig',
+        loginViewModel : 'views/login/loginViewModel',
+
+        mastheadView : 'views/masthead/mastheadView',
+        mastheadViewConfig : 'views/masthead/mastheadViewConfig',
+        mastheadViewModel : 'views/masthead/mastheadViewModel',
+
+        modalView : 'views/modal/modalView',
+        modalViewConfig : 'views/modal/modalViewConfig',
+        modalViewModel : 'views/modal/modalViewModel',
+
+        nodeDetailView : 'views/nodeDetail/nodeDetailView',
+        nodeDetailViewConfig : 'views/nodeDetail/nodeDetailViewConfig',
+        nodeDetailViewModel : 'views/nodeDetail/nodeDetailViewModel',
+
+        nodeIndexView : 'views/nodeIndex/nodeIndexView',
+        nodeIndexViewConfig : 'views/nodeIndex/nodeIndexViewConfig',
+        nodeIndexViewModel : 'views/nodeIndex/nodeIndexViewModel',
+
         pluginWrapperView : 'views/pluginWrapper/pluginWrapperView',
         pluginWrapperViewConfig : 'views/pluginWrapper/pluginWrapperViewConfig',
+        pluginWrapperViewModel : 'views/pluginWrapper/pluginWrapperViewModel',
+
+        userDetailView : 'views/userDetail/userDetailView',
+        userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
+        userDetailViewModel : 'views/userDetail/userDetailViewModel',
+
+        usersIndexView : 'views/usersIndex/usersIndexView',
+        usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
+        usersIndexViewModel : 'views/usersIndex/usersIndexViewModel',
 
         // Models
         selfValidatingModel : 'models/selfValidatingModel',
         UserModel : 'models/userModel',
         grasshopperModel : 'models/grasshopperModel',
         pluginSetupModel : 'models/pluginSetupModel',
-
-        // View Models
-        loginViewModel : 'models/viewModels/loginViewModel',
-        headerViewModel : 'models/viewModels/headerViewModel',
-        alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
-        modalViewModel : 'models/viewModels/modalViewModel',
-        userDetailViewModel : 'models/viewModels/userDetailViewModel',
-        usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
-        addUserViewModel : 'models/viewModels/addUserViewModel',
-        dashboardViewModel : 'models/viewModels/dashboardViewModel',
-        mastheadViewModel : 'models/viewModels/mastheadViewModel',
-        contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
-        contentTypeDetailViewModel : 'models/viewModels/contentTypeDetailViewModel',
-        contentBrowseViewModel : 'models/viewModels/contentBrowseViewModel',
-        nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
-        nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
-        assetIndexViewModel : 'models/viewModels/assetIndexViewModel',
-        contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
-        contentDetailViewModel : 'models/viewModels/contentDetailViewModel',
-        assetDetailViewModel : 'models/viewModels/assetDetailViewModel',
-        addFolderViewModel : 'models/viewModels/addFolderViewModel',
-        addContentViewModel : 'models/viewModels/addContentViewModel',
-        addAssetsViewModel : 'models/viewModels/addAssetsViewModel',
-        pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
         // Workers
         loginWorker : 'workers/loginWorker',
@@ -188,7 +208,7 @@ require.config({
         formatters : 'formatters',
         contentTypeDetailFormatters : 'views/contentTypeDetail/contentTypeDetailFormatters',
 
-        // Resources File
+        // Resources Files
         resources : 'resources',
         constants : 'constants'
     }
