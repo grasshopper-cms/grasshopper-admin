@@ -10,7 +10,7 @@ define([
     'userDetailView', 'UserModel',
     'headerView',
     'mastheadView',
-    'usersIndexView',
+    'userIndexView',
     'addUserView',
     'contentBrowseView',
     'contentDetailView',
@@ -31,7 +31,7 @@ define([
               UserDetailView, UserModel,
               HeaderView,
               MastheadView,
-              UsersIndexView,
+              UserIndexView,
               AddUserView,
               ContentBrowseView,
               ContentDetailView,
@@ -58,7 +58,7 @@ define([
                 'login' : 'displayLogin',
                 'logout' : 'goLogout',
                 'home' : 'displayApp',
-                'users(/page/:pageNumber/show/:pageLimit)' : 'displayUsersIndex',
+                'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
                 'addUser' : 'displayAddUser',
                 'item/types' : 'displayContentTypeIndex',
@@ -95,7 +95,7 @@ define([
             displayLogin : displayLogin,
             goLogout : goLogout,
             navigate : navigate,
-            displayUsersIndex : displayUsersIndex,
+            displayUserIndex : displayUserIndex,
             displayUserDetail : displayUserDetail,
             displayAddUser : displayAddUser,
             displayContentBrowse : displayContentBrowse,
@@ -334,8 +334,8 @@ define([
             }
         }
 
-        function displayUsersIndex (pageNumber, pageLimit) {
-            loadMainContent(UsersIndexView, {
+        function displayUserIndex (pageNumber, pageLimit) {
+            loadMainContent(UserIndexView, {
                     modelData : {
                         pageNumber : pageNumber,
                         pageLimit : pageLimit

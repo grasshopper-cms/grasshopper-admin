@@ -1,14 +1,14 @@
 /*global define:false*/
-define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'resources', 'constants',
-    'usersIndexViewBinders'],
-    function (template, UsersIndexViewModel, resources, constants,
-              usersIndexViewBinders) {
+define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resources', 'constants',
+    'userIndexViewBinders'],
+    function (template, UserIndexViewModel, resources, constants,
+              userIndexViewBinders) {
         'use strict';
 
         return {
-            name : 'usersIndexView',
+            name : 'userIndexView',
             modelData : {},
-            ModelType : UsersIndexViewModel,
+            ModelType : UserIndexViewModel,
             appendTo : '#stage',
             wrapper : false,
             template : template,
@@ -29,7 +29,7 @@ define(['text!views/usersIndex/usersIndexView.html', 'usersIndexViewModel', 'res
                 }
             ],
             rivetsConfig : {
-                binders : [usersIndexViewBinders]
+                binders : [userIndexViewBinders]
             },
             permissions : ['admin']
         };
