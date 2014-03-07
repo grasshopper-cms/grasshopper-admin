@@ -188,6 +188,7 @@ define({
     contentTypes : 'Content Types',
     currentlySignedIn : 'You are currently signed in.',
     dashboard : 'Dashboard',
+    defaultValue : 'Default Value',
     download : 'Download',
     edit : 'Edit',
     email : 'Email',
