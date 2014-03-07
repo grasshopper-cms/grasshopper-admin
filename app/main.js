@@ -130,6 +130,7 @@ require.config({
 
         assetIndexView : 'views/assetIndex/assetIndexView',
         assetIndexViewConfig : 'views/assetIndex/assetIndexViewConfig',
+        assetIndexViewModel : 'views/assetIndex/assetIndexViewModel',
 
         contentDetailView : 'views/contentDetail/contentDetailView',
         contentDetailViewConfig : 'views/contentDetail/contentDetailViewConfig',
@@ -175,7 +176,6 @@ require.config({
         contentBrowseViewModel : 'models/viewModels/contentBrowseViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
-        assetIndexViewModel : 'models/viewModels/assetIndexViewModel',
         contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
         contentDetailViewModel : 'models/viewModels/contentDetailViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
