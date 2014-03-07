@@ -89,6 +89,7 @@ require.config({
 
         dashboardView : 'views/dashboard/dashboardView',
         dashboardViewConfig : 'views/dashboard/dashboardViewConfig',
+        dashboardViewModel : 'views/dashboard/dashboardViewModel',
 
         headerView : 'views/header/headerView',
         headerViewConfig : 'views/header/headerViewConfig',
@@ -174,7 +175,6 @@ require.config({
         modalViewModel : 'models/viewModels/modalViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
-        dashboardViewModel : 'models/viewModels/dashboardViewModel',
         mastheadViewModel : 'models/viewModels/mastheadViewModel',
         nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
