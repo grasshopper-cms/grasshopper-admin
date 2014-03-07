@@ -107,6 +107,7 @@ require.config({
 
         addUserView : 'views/addUser/addUserView',
         addUserViewConfig : 'views/addUser/addUserViewConfig',
+        addUserViewModel : 'views/addUser/addUserViewModel',
 
         contentBrowseView : 'views/contentBrowse/contentBrowseView',
         contentBrowseViewConfig : 'views/contentBrowse/contentBrowseViewConfig',
@@ -140,6 +141,7 @@ require.config({
 
         addFolderView : 'views/addFolder/addFolderView',
         addFolderViewConfig : 'views/addFolder/addFolderViewConfig',
+        addFolderViewModel : 'views/addFolder/addFolderViewModel',
 
         addContentView : 'views/addContent/addContentView',
         addContentViewConfig : 'views/addContent/addContentViewConfig',
@@ -165,7 +167,6 @@ require.config({
         modalViewModel : 'models/viewModels/modalViewModel',
         userDetailViewModel : 'models/viewModels/userDetailViewModel',
         usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
-        addUserViewModel : 'models/viewModels/addUserViewModel',
         dashboardViewModel : 'models/viewModels/dashboardViewModel',
         mastheadViewModel : 'models/viewModels/mastheadViewModel',
         contentTypeIndexViewModel : 'models/viewModels/contentTypeIndexViewModel',
@@ -177,7 +178,6 @@ require.config({
         contentIndexViewModel : 'models/viewModels/contentIndexViewModel',
         contentDetailViewModel : 'models/viewModels/contentDetailViewModel',
         assetDetailViewModel : 'models/viewModels/assetDetailViewModel',
-        addFolderViewModel : 'models/viewModels/addFolderViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
         // Workers
