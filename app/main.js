@@ -134,6 +134,7 @@ require.config({
 
         nodeDetailView : 'views/nodeDetail/nodeDetailView',
         nodeDetailViewConfig : 'views/nodeDetail/nodeDetailViewConfig',
+        nodeDetailViewModel : 'views/nodeDetail/nodeDetailViewModel',
 
         nodeIndexView : 'views/nodeIndex/nodeIndexView',
         nodeIndexViewConfig : 'views/nodeIndex/nodeIndexViewConfig',
@@ -176,7 +177,6 @@ require.config({
         pluginSetupModel : 'models/pluginSetupModel',
 
         // View Models
-        nodeDetailViewModel : 'models/viewModels/nodeDetailViewModel',
         nodeIndexViewModel : 'models/viewModels/nodeIndexViewModel',
         pluginWrapperViewModel : 'models/viewModels/pluginWrapperViewModel',
 
