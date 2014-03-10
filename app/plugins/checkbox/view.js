@@ -1,13 +1,14 @@
 /*global define:false*/
-define(['grasshopperBaseView'],
-    function (GrasshopperBaseView) {
+define(['grasshopperBaseView', 'underscore'],
+    function (GrasshopperBaseView, _) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
             addOption : addOption,
             removeOption : removeOption,
-            reduceCollection : reduceCollection
+            reduceCollection : reduceCollection,
+            buildValues : buildValues
         });
 
         function beforeRender() {
@@ -32,6 +33,17 @@ define(['grasshopperBaseView'],
                 collection.push(option);
             });
             this.model.set('options', collection);
+        }
+
+        function buildValues() {
+            var options = this.model.get('options'),
+                obj = {};
+
+            _.each(options, function(option) {
+                obj[option._id] = !_.isUndefined(option.checked) ? option.checked : false;
+            });
+
+            this.model.set('value', obj);
         }
 
     });

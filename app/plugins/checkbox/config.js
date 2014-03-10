@@ -23,7 +23,8 @@ define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!p
             setupTemplate : setupTemplate,
             events : {
                 'click #addOption' : 'addOption',
-                'blur .optionInput' : 'reduceCollection'
+                'blur .optionInput' : 'reduceCollection',
+                'click .checkboxListCheckbox' : 'buildValues'
             },
             wrapper: false,
             listeners : [],
