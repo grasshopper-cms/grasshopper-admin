@@ -7,12 +7,11 @@
             </div>
         </div>
 
-        <div class="row">
-            <label>{{model:resources->plugins->contentReference->selectedContent | withColon}}
-                <input data-rv-value="model:selectedContentLabel" type="text" readonly="true">
-            </label>
+        <div class="row ">
+            {{model:resources->plugins->contentReference->selectedContent | withColon}}
+            {{model:selectedContentLabel}}
         </div>
-
+        </br>
         <div class="row">
             <div class="left">
                 {{model:resources->plugins->contentReference->currentFolder | withColon}}{{model:folderLabel}}
