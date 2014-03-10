@@ -13,13 +13,7 @@
         </div>
         </br>
         <div class="row">
-            <div class="left">
-                {{model:resources->plugins->contentReference->currentFolder | withColon}}{{model:folderLabel}}
-            </div>
-            <div class="right">
-                {{model:resources->plugins->contentReference->contentTypes | withColon}}
-                <span data-rv-text="model:allowedTypeLabels"></span>
-            </div>
+            {{model:resources->plugins->contentReference->currentFolder | withColon}}{{model:folderLabel}}
         </div>
 
         <div data-rv-show="model:loading">
