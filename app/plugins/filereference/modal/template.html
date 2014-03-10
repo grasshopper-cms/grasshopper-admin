@@ -8,11 +8,10 @@
         </div>
 
         <div class="row">
-            <label>{{model:resources->plugins->fileReference->selectedFile | withColon}}
-                <input data-rv-value="model:selectedFileName" type="text" readonly="true">
-            </label>
+            {{model:resources->plugins->fileReference->selectedFile | withColon}}
+            {{model:selectedFileName}}
         </div>
-
+        </br>
         <div class="row">
             {{model:resources->plugins->fileReference->currentFolder | withColon}}{{model:folderLabel}}
         </div>
