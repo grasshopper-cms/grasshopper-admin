@@ -38,7 +38,6 @@ define([
     }
 
     function save () {
-        // TODO: look at filmfreshModel for reference on how to support passing in objects
         var saveOptions = {headers : {
             'Authorization' : 'Token ' + LocalStorage.get('authToken')
         }};

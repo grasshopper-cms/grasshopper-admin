@@ -1,49 +1,56 @@
-module.exports = {
-    options : {
-        // Start a live reload server on the default port: 35729
-        livereload : false,
-        nospawn: true
-    },
-    build : {
+/*globals module:true */
+module.exports = function (grunt) {
+    'use strict';
+
+    grunt.config('watch', {
         options : {
             // Start a live reload server on the default port: 35729
-            livereload : true
+            livereload : false,
+            nospawn: true
         },
-        files : [
-            'build/**',
-            '!build/vendor/**'
-        ]
-    },
-    dev : {
-        options : {
-            // Start a live reload server on the default port: 35729
-            livereload : true
+        build : {
+            options : {
+                // Start a live reload server on the default port: 35729
+                livereload : true
+            },
+            files : [
+                'build/**',
+                '!build/vendor/**'
+            ]
         },
-        files : [
-            'app/**',
-            '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
-            '!app/vendor/**'
-        ],
-        tasks : [
-            'jshint', 'copy:build', 'registerPlugins'
-        ]
-    },
-    tests : {
-        options : {
-            // Start a live reload server on the default port: 35729
-            livereload : true
+        dev : {
+            options : {
+                // Start a live reload server on the default port: 35729
+                livereload : true
+            },
+            files : [
+                'app/**',
+                '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
+                '!app/vendor/**'
+            ],
+            tasks : [
+                'jshint', 'copy:build', 'registerPlugins', 'setBuildConfig'
+            ]
         },
-        files : [
-            'tests/**/*.js'
-        ]
-    },
-    sass : {
-        files : [ //watch sass files for changes.
-            'app/**/*.scss',
-            'app/*.scss'
-        ],
-        tasks : [ // array of grunt tasks to run.
-            'sass'
-        ]
-    }
+        tests : {
+            options : {
+                // Start a live reload server on the default port: 35729
+                livereload : true
+            },
+            files : [
+                'tests/**/*.js'
+            ]
+        },
+        sass : {
+            files : [ //watch sass files for changes.
+                'app/**/*.scss',
+                'app/*.scss'
+            ],
+            tasks : [ // array of grunt tasks to run.
+                'sass'
+            ]
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-watch');
 };

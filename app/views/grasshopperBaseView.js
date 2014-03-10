@@ -14,7 +14,6 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
         options.viewOptions = options.viewOptions || [];
         options.viewOptions =  options.viewOptions.concat(
             [
-                'rivetConfig',
                 '$deferred',
                 'type',
                 'temporary',
@@ -24,8 +23,6 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
                 'mastheadButtons',
                 'permissions',
                 'nodeId',
-                'rivetsBinders',
-                'rivetsFormatters',
                 'wrapper',
                 'appendTo',
                 'collection'

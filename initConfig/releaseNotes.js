@@ -1,7 +1,14 @@
-module.exports = {
-    main : {
-        src : 'templates/README.template.md',
-        dest : 'README.md',
-        baseLinkPath : 'https://github.com/Solid-Interactive/grasshopper-admin/tree/digdug/'
-    }
+/*globals module:true */
+module.exports = function (grunt) {
+    'use strict';
+
+    grunt.config('releaseNotes', {
+        main : {
+            src : 'templates/README.template.md',
+            dest : 'README.md',
+            baseLinkPath : 'https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/'
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-release-notes');
 };

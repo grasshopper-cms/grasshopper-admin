@@ -1,18 +1,21 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
-    'plugins/contentreference/modal/view'],
-    function (GrasshopperBaseView, _, Api, contentTypeWorker, $, ModalView) {
+    'plugins/contentreference/modal/view', 'masseuse'],
+    function (GrasshopperBaseView, _, Api, contentTypeWorker, $,
+              ModalView, masseuse) {
+
         'use strict';
+
+        var ProxyProperty = masseuse.ProxyProperty;
 
         return GrasshopperBaseView.extend({
             beforeRender: beforeRender,
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
-            contentReferenceSelected : contentReferenceSelected,
-            defaultNodeSelected : defaultNodeSelected,
             setAvailableContentTypes : setAvailableContentTypes,
-            setRootAdDefaultNode : setRootAdDefaultNode,
-            fireSelectContentModal : fireSelectContentModal
+            setRootAsDefaultNode : setRootAsDefaultNode,
+            fireSelectContentModal : fireSelectContentModal,
+            setSelectedNode : setSelectedNode
         });
 
         function beforeRender($deferred) {
@@ -38,8 +41,8 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _setSelectedContent($deferred, contentDetails) {
-            this.model.set('selectedContent.label', contentDetails.label);
-            this.model.set('selectedContent._id', contentDetails._id);
+            this.model.set('selectedContentLabel', contentDetails.label);
+            this.model.set('selectedContent', contentDetails._id);
             $deferred.resolve();
         }
 
@@ -47,9 +50,11 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             var $deferred = new $.Deferred(),
                 defaultNode = this.model.get('options.defaultNode');
 
-            if (defaultNode) {
+            if (defaultNode && defaultNode !== '0') { // default is not root
                 Api.getNodeDetail(defaultNode)
-                    .done(_setSelectedNode.bind(this, $deferred));
+                    .done(setSelectedNode.bind(this, $deferred));
+            } else if (defaultNode && defaultNode === '0') { // default is root
+                setSelectedNode.call(this, $deferred, { label : 'Root'});
             } else {
                 $deferred.resolve();
             }
@@ -57,9 +62,9 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             return $deferred.promise();
         }
 
-        function _setSelectedNode($deferred, nodeDetails) {
-            this.model.set('selectedNode.label', nodeDetails.label);
-            $deferred.resolve();
+        function setSelectedNode($deferred, nodeDetails) {
+            this.model.set('selectedNodeLabel', nodeDetails.label);
+            $deferred && $deferred.resolve();
         }
 
         function _getAvailableContentTypes() {
@@ -95,18 +100,8 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             e.stopPropagation();
         }
 
-        function contentReferenceSelected(selectedModel) {
-            this.model.set('selectedContent.label', selectedModel.get('label'));
-            this.model.set('value', selectedModel.get('_id'));
-        }
-
         function _getContentDetails(contentId) {
             return Api.getContentDetail(contentId);
-        }
-
-        function defaultNodeSelected(selectedNode) {
-            this.model.set('selectedNode.label', selectedNode.get('label'));
-            this.model.set('options.defaultNode', selectedNode.get('_id'));
         }
 
         function setAvailableContentTypes() {
@@ -116,22 +111,41 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             this.model.set('options.allowedTypes', checkedTypes);
         }
 
-        function setRootAdDefaultNode() {
-            this.model.set('selectedNode.label', 'Root');
+        function setRootAsDefaultNode(e) {
+            this.model.set('selectedNodeLabel', 'Root');
             this.model.set('options.defaultNode', '0');
+            e.preventDefault();
         }
 
         function fireSelectContentModal() {
-            var modalView = new ModalView({
+            _startModalView.call(this)
+                .done(_contentReferenceSelected.bind(this));
+        }
+
+        function _contentReferenceSelected(modalModel) {
+            this.model.set('selectedContentLabel', modalModel.selectedContentLabel);
+            this.model.set('selectedContent', modalModel.selectedContent);
+            this.model.set('value', modalModel.selectedContent);
+        }
+
+        function _startModalView() {
+            this.model.set('inSetup', false);
+
+            var $deferred = new $.Deferred(),
+                modalView = new ModalView({
                     modelData : {
                         header : 'Select Content',
-                        selectedContent : this.model.get('selectedContent'),
-                        _id : this.model.get('options.defaultNode')
-                    }
+                        selectedContent : new ProxyProperty('selectedContent', this.model),
+                        selectedContentLabel : this.model.get('selectedContentLabel'),
+                        _id : this.model.get('options.defaultNode'),
+                        allowedContentTypes : this.model.get('options.allowedTypes'),
+                        availableContentTypes : this.model.get('availableTypes')
+                    },
+                    $deferred : $deferred
                 });
 
-//            modalView.model.get('children').reset(this.model.get('children').models);
             modalView.start();
+            return $deferred.promise();
         }
 
     });

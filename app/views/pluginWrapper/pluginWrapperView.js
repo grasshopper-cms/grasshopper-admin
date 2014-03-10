@@ -35,13 +35,13 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         }
 
-
         function addField() {
             _addPlugin.call(this, undefined);
         }
 
         function removeField(e, context) {
             this.collection.remove(context.field);
+            _evaluateMultiButtons.call(this);
         }
 
         function _handleMultiple() {
@@ -54,7 +54,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 _.each(values, function(value) {
                     _addPlugin.call(self, value);
                 });
-            } else if(values !== undefined) { // if values exists
+            } else if(!_.isNull(values)) { // if values exists
                 _addPlugin.call(this, values);
             } else { // if values does not exist and there is a minimum
                 while(i < minimum) {
@@ -66,10 +66,33 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         function _addPlugin(value) {
             var model = {
-                value : value,
+                value : _handleDefaultValue.call(this, value),
                 options : this.model.get('options')
             };
 
             this.collection.add(model);
+            _evaluateMultiButtons.call(this);
+        }
+
+        function _handleDefaultValue(value) {
+            var defaultValue = this.model.get('defaultValue');
+            if (defaultValue && _.isUndefined(value)) {
+                return defaultValue;
+            } else {
+                return value;
+            }
+        }
+
+        function _evaluateMultiButtons() {
+            _canShowAdditionButton.call(this);
+            _canShowSubtractionButton.call(this);
+        }
+
+        function _canShowAdditionButton() {
+            this.model.set('showAdditionButton', this.collection.length < this.model.get('max'));
+        }
+
+        function _canShowSubtractionButton() {
+            this.model.set('showSubtractionButton', this.collection.length > this.model.get('min'));
         }
     });

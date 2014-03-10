@@ -13,7 +13,6 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'app
             events : {
                 'click #saveContentButton' : 'saveContent'
             },
-            rivetConfig : 'auto',
             listeners : [],
             mastheadButtons : [],
             breadcrumbs : [
@@ -23,6 +22,8 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'app
                 }
             ],
             permissions : ['admin', 'editor'],
-            rivetsBinders : [appBinders]
+            rivetsConfig : {
+                binders : [appBinders]
+            }
         };
     });

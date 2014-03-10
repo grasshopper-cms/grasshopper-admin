@@ -28,15 +28,12 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
                 'click #nodeTree' : 'stopAccordionPropagation',
                 'blur input' : 'setAvailableContentTypes'
             },
-            rivetConfig : 'auto',
+            rivetsConfig : {
+                formatters : [formatters],
+                binders : [contentReferenceBinders]
+            },
             wrapper: false,
-            listeners : [
-                ['channels.views', 'contentReferenceSelected', 'contentReferenceSelected'],
-                ['channels.views', 'contentReferenceFolderSelected', 'defaultNodeSelected']
-            ],
-            mastheadButtons : [],
-            rivetsBinders : [contentReferenceBinders],
-            rivetsFormatters : [formatters]
+            listeners : []
         };
     });
 

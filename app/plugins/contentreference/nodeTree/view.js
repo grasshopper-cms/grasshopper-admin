@@ -1,25 +1,13 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
-    function (GrasshopperBaseView, NodeTreeConfig) {
+define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config', 'jquery'],
+    function (GrasshopperBaseView, NodeTreeConfig, $) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeConfig,
             openFolder : openFolder,
-            sendSelectedContentToParent : sendSelectedContentToParent
+            setSelectedNode : setSelectedNode
         });
-
-        function _fetchChildNodes() {
-            return this.model.get('children').fetch();
-        }
-
-        function _fetchChildContent() {
-            return this.model.get('content').fetch();
-        }
-
-        function _toggleLoadingSpinner() {
-            this.model.toggle('loading');
-        }
 
         function openFolder() {
             var self = this;
@@ -37,16 +25,37 @@ define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config'],
                     });
             }
 
-            sendSelectedNodeToParent.call(this);
+            _sendSelectedNodeToParent.call(this);
         }
 
-        function sendSelectedNodeToParent() {
-            this.channels.views.trigger('contentReferenceFolderSelected', this.model);
+        function _sendSelectedNodeToParent() {
+            this.parent.setSelectedNode(null, this.model.toJSON());
+            this.model.set('selectedNode', this.model.get('_id'));
         }
 
+        function setSelectedNode(doNotUse, selectedNode) {
+            this.parent.setSelectedNode(null, selectedNode);
+        }
 
-        function sendSelectedContentToParent(e, context) {
-            this.channels.views.trigger('contentReferenceSelected', context.item);
+        function _fetchChildNodes() {
+            return this.model.get('children').fetch();
+        }
+
+        function _fetchChildContent() {
+            var $deferred = new $.Deferred();
+
+            if(this.model.get('inSetup')) {
+                $deferred.resolve();
+            } else {
+                return this.model.get('content').fetch()
+                    .done($deferred.resolve);
+            }
+
+            return $deferred.promise();
+        }
+
+        function _toggleLoadingSpinner() {
+            this.model.toggle('loading');
         }
 
     });

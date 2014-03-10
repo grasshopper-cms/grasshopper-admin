@@ -15,7 +15,6 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
                 ['channels.views', 'updateMastheadButtons', 'setButtons'],
                 ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']
             ],
-            rivetConfig : 'auto',
             defaultBreadcrumbs : [
                 {
                     text : resources.home,

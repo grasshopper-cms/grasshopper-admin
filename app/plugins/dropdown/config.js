@@ -24,7 +24,6 @@ define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!p
                 'click #addOptionToDropdown' : 'addOptionToDropdown',
                 'blur .optionInput' : 'reduceCollection'
             },
-            rivetConfig : 'auto',
             listeners : [],
             mastheadButtons : [],
             collection : new Backbone.Collection()

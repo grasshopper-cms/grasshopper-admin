@@ -127,7 +127,8 @@ define({
         addOption : 'Add Option',
         helpText : 'Help Text',
         description: 'Description',
-        emptyFields : 'Click "Add new field" to add your first field.'
+        emptyFields : 'Click "Add new field" to add your first field.',
+        useAsLabel : 'Use As Label'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
@@ -154,6 +155,28 @@ define({
         size : 'Size',
         modified : 'Modified'
     },
+    plugins : {
+        contentReference : {
+            selectedContent : 'Selected Content',
+            currentFolder : 'Current Folder',
+            selectDefaultFolderOr : 'Select Default Folder or',
+            setRootAsDefault : 'Set Root Folder as Default',
+            defaultFolder : 'Default Folder',
+            contentTypes : 'Content Types',
+            selectContent : 'Select Content',
+            viewSelectedContent : 'View Selected Content'
+        },
+        fileReference : {
+            selectedFile : 'Selected File',
+            currentFolder : 'Current Folder',
+            selectDefaultFolderOr : 'Select Default Folder or',
+            setRootAsDefault : 'Set Root Folder as Default',
+            defaultFolder : 'Default Folder',
+            contentTypes : 'Content Types',
+            selectContent : 'Select Content',
+            viewSelectedFile : 'View Selected File'
+        }
+    },
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
     add : 'Add',
@@ -165,12 +188,14 @@ define({
     contentTypes : 'Content Types',
     currentlySignedIn : 'You are currently signed in.',
     dashboard : 'Dashboard',
+    defaultValue : 'Default Value',
     download : 'Download',
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',
     falseText : 'False',
     home : 'Home',
+    helpText : 'Help Text',
     id : 'ID',
     minimum : 'Minimum',
     label : 'Label',

@@ -14,7 +14,6 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel', 'resources', 
             'click #saveUser' : 'saveUser'
         },
         listeners : [],
-        rivetConfig : 'auto',
         mastheadButtons : [],
         breadcrumbs : [
             {

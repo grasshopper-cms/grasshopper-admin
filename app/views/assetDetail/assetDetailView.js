@@ -22,7 +22,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
             e.stopPropagation();
             this.displayModal(
                 {
-                    msg: this.model.get('fileName'),
+                    header: this.model.get('fileName'),
                     type: 'image',
                     data: this.model.get('url')
                 });

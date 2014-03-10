@@ -8,7 +8,6 @@ define(['text!views/nodeIndex/nodeIndexView.html', 'resources', 'nodeIndexViewMo
             ModelType : nodeIndexViewModel,
             template : template,
             wrapper : false,
-            rivetConfig : 'auto',
             listeners : [],
             events : {},
             appendTo : '#contentBrowseTable',
