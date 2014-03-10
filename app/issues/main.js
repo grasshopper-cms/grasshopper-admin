@@ -1,5 +1,5 @@
 /*global define*/
-define(['./issues/github/github', 'jquery'], function(Github, $) {
+define(['./github/github', 'jquery'], function(Github, $) {
     'use strict';
 
     return {

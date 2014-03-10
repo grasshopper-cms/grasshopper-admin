@@ -52,6 +52,10 @@ require.config({
         {
             name : 'helpers',
             location : 'helpers'
+        },
+        {
+            name : 'issues',
+            location : 'issues'
         }
     ]
     // <%= paths %>
