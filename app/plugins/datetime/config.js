@@ -19,7 +19,6 @@ define(['text!plugins/datetime/template.html', 'plugins/datetime/model', 'text!p
             template : datetimePluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
-            rivetConfig : 'auto',
             wrapper: false,
             listeners : [],
             mastheadButtons : []

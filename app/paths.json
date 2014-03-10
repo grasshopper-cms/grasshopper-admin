@@ -1,0 +1,216 @@
+{
+    "libraries" : {
+        "jquery" : "vendor/jquery/jquery",
+        "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core",
+        "backbone" : "vendor/backbone-amd/backbone",
+        "text" : "vendor/requirejs-text/text",
+        "rivets" : "vendor/rivets/dist/rivets",
+        "base64" : "vendor/js-base64/base64",
+        "foundation" : "vendor/foundation/js/foundation/foundation",
+        "modernizr" : "vendor/modernizr/modernizr"
+    },
+
+    "routers" : {
+        "router" : "router"
+    },
+
+    "foundationDependencies" : {
+        "alerts" : "vendor/foundation/js/foundation/foundation.alert",
+        "dropdown" : "vendor/foundation/js/foundation/foundation.dropdown",
+        "accordion" : "vendor/foundation/js/foundation/foundation.accordion",
+        "tabs" : "vendor/foundation/js/foundation/foundation.tab",
+        "tooltip" : "vendor/foundation/js/foundation/foundation.tooltip",
+        "abide" : "vendor/foundation/js/foundation/foundation.abide"
+    },
+
+    "jqueryUIDependencies" : {
+        "widgetFactory" : "vendor/jquery.ui/ui/jquery.ui.widget",
+        "mouseInteraction" : "vendor/jquery.ui/ui/jquery.ui.mouse",
+        "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable"
+    },
+
+    "views" : {
+        "grasshopperBaseView" : "views/grasshopperBaseView",
+
+        "addAssetsView+" : {
+            "" : "views/addAssets/addAssetsView",
+            "Config" : "views/addAssets/addAssetsViewConfig",
+            "Model" : "views/addAssets/addAssetsViewModel"
+        },
+
+        "addContentView+" : {
+            "" : "views/addContent/addContentView",
+            "Config" : "views/addContent/addContentViewConfig",
+            "Model" : "views/addContent/addContentViewModel"
+        },
+
+        "addFolderView+" : {
+            "" : "views/addFolder/addFolderView",
+            "Config" : "views/addFolder/addFolderViewConfig",
+            "Model" : "views/addFolder/addFolderViewModel"
+        },
+
+        "addUserView+" : {
+            "" : "views/addUser/addUserView",
+            "Config" : "views/addUser/addUserViewConfig",
+            "Model" : "views/addUser/addUserViewModel"
+        },
+
+        "alertBoxView+" : {
+            "" : "views/alertBox/alertBoxView",
+            "Config" : "views/alertBox/alertBoxViewConfig",
+            "Model" : "views/alertBox/alertBoxViewModel"
+        },
+
+        "assetDetailView+" : {
+            "" : "views/assetDetail/assetDetailView",
+            "Config" : "views/assetDetail/assetDetailViewConfig",
+            "Model" : "views/assetDetail/assetDetailViewModel"
+        },
+
+        "assetIndexView+" : {
+            "" : "views/assetIndex/assetIndexView",
+            "Config" : "views/assetIndex/assetIndexViewConfig",
+            "Model" : "views/assetIndex/assetIndexViewModel"
+        },
+
+        "contentBrowseView+" : {
+            "" : "views/contentBrowse/contentBrowseView",
+            "Config" : "views/contentBrowse/contentBrowseViewConfig",
+            "Model" : "views/contentBrowse/contentBrowseViewModel"
+        },
+
+        "contentDetailView+" : {
+            "" : "views/contentDetail/contentDetailView",
+            "Config" : "views/contentDetail/contentDetailViewConfig",
+            "Model" : "views/contentDetail/contentDetailViewModel"
+        },
+
+        "contentIndexView+" : {
+            "" : "views/contentIndex/contentIndexView",
+            "Config" : "views/contentIndex/contentIndexViewConfig",
+            "Model" : "views/contentIndex/contentIndexViewModel"
+        },
+
+        "contentTypeDetailView+" : {
+            "" : "views/contentTypeDetail/contentTypeDetailView",
+            "Config" : "views/contentTypeDetail/contentTypeDetailViewConfig",
+            "Model" : "views/contentTypeDetail/contentTypeDetailViewModel"
+        },
+
+        "contentTypeIndexView+" : {
+            "" : "views/contentTypeIndex/contentTypeIndexView",
+            "Config" : "views/contentTypeIndex/contentTypeIndexViewConfig",
+            "Model" : "views/contentTypeIndex/contentTypeIndexViewModel"
+        },
+
+        "dashboardView+" : {
+            "" : "views/dashboard/dashboardView",
+            "Config" : "views/dashboard/dashboardViewConfig",
+            "Model" : "views/dashboard/dashboardViewModel"
+        },
+
+        "headerView+" : {
+            "" : "views/header/headerView",
+            "Config" : "views/header/headerViewConfig",
+            "Model" : "views/header/headerViewModel"
+        },
+
+        "loginView+" : {
+            "" : "views/login/loginView",
+            "Config" : "views/login/loginViewConfig",
+            "Model" : "views/login/loginViewModel"
+        },
+
+        "mastheadView+" : {
+            "" : "views/masthead/mastheadView",
+            "Config" : "views/masthead/mastheadViewConfig",
+            "Model" : "views/masthead/mastheadViewModel"
+        },
+
+        "modalView+" : {
+            "" : "views/modal/modalView",
+            "Config" : "views/modal/modalViewConfig",
+            "Model" : "views/modal/modalViewModel"
+        },
+
+        "nodeDetailView+" : {
+            "" : "views/nodeDetail/nodeDetailView",
+            "Config" : "views/nodeDetail/nodeDetailViewConfig",
+            "Model" : "views/nodeDetail/nodeDetailViewModel"
+        },
+
+        "nodeIndexView+" : {
+            "" : "views/nodeIndex/nodeIndexView",
+            "Config" : "views/nodeIndex/nodeIndexViewConfig",
+            "Model" : "views/nodeIndex/nodeIndexViewModel"
+        },
+
+        "pluginWrapperView+" : {
+            "" : "views/pluginWrapper/pluginWrapperView",
+            "Config" : "views/pluginWrapper/pluginWrapperViewConfig",
+            "Model" : "views/pluginWrapper/pluginWrapperViewModel"
+        },
+
+        "userDetailView+" : {
+            "" : "views/userDetail/userDetailView",
+            "Config" : "views/userDetail/userDetailViewConfig",
+            "Model" : "views/userDetail/userDetailViewModel"
+        },
+
+        "userIndexView+" : {
+            "" : "views/userIndex/userIndexView",
+            "Config" : "views/userIndex/userIndexViewConfig",
+            "Model" : "views/userIndex/userIndexViewModel"
+        }
+    },
+
+    "models" : {
+        "selfValidatingModel" : "models/selfValidatingModel",
+        "UserModel" : "models/userModel",
+        "grasshopperModel" : "models/grasshopperModel",
+        "pluginSetupModel" : "models/pluginSetupModel"
+    },
+
+    "workers" : {
+        "loginWorker" : "workers/loginWorker",
+        "contentTypeWorker" : "workers/contentTypeWorker",
+        "assetWorker" : "workers/assetWorker",
+        "breadcrumbWorker" : "workers/breadcrumbWorker",
+        "nodeWorker" : "workers/nodeWorker"
+    },
+
+    "collections" : {
+        "grasshopperCollection" : "collections/grasshopperCollection",
+        "userCollection" : "collections/userCollection"
+    },
+
+    "api" : {
+        "api" : "api/api"
+    },
+
+    "validation" : {
+        "validation" : "validation/validation"
+    },
+
+    "plugins" : {
+        "plugins" : "plugins"
+    },
+
+    "binders" : {
+        "appBinders" : "appBinders",
+        "pluginWrapperBinders" : "views/pluginWrapper/pluginWrapperBinders",
+        "contentTypeDetailBinders" : "views/contentTypeDetail/contentTypeDetailBinders",
+        "userIndexViewBinders" : "views/userIndex/binders"
+    },
+
+    "formatters" : {
+        "formatters" : "formatters",
+        "contentTypeDetailFormatters" : "views/contentTypeDetail/contentTypeDetailFormatters"
+    },
+
+    "resourceFiles" : {
+        "resources" : "resources",
+        "constants" : "constants"
+    }
+}

@@ -24,7 +24,6 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             listeners : [
                 ['channels.views', 'mastheadDropdownClicked', 'addNewFieldToContentType']
             ],
-            rivetConfig : 'auto',
             mastheadButtons : [
                 {
                     text : resources.contentType.addNewField,
@@ -39,8 +38,11 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                 }
             ],
             permissions : ['admin', 'editor', 'reader'],
-            rivetsBinders : [appBinders, contentTypeDetailBinders],
-            rivetsFormatters : [formatters, contentTypeDetailFormatters],
+            rivetsConfig : {
+                formatters : [formatters, contentTypeDetailFormatters],
+                binders : [appBinders, contentTypeDetailBinders]
+            },
+            // TODO: This should not be here.
             collection : new (Backbone.Collection.extend({
                 model : pluginSetupModel,
                 toJSON: function () {
@@ -48,7 +50,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
 
                     return _.map(json, function(obj) {
                         return _.pick(obj, 'required', 'label', 'max', 'min',
-                            'options', 'type', 'validation', '_id', 'useAsLabel');
+                            'options', 'type', 'validation', '_id', 'useAsLabel', 'helpText', 'defaultValue');
                     });
                 }
             }))([], {})

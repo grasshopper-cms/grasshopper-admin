@@ -20,14 +20,6 @@ define(['jquery', 'underscore', 'masseuse',
                         }),
                         collection : new (Backbone.Collection.extend({
                             initialize: function () {
-//
-//                            Backbone.Collection.prototype.initialize.call(this, models, options);
-//
-//                            this.listenTo(rivets.view.models.view.model, 'change', function () {
-//                                // Update the collection here with the new data from the server
-//                                this.reset(rivets.view.models.view.model.get('fields.' + field._id), {silent: true});
-//                            });
-//
                                 this.on('add remove reset change', function () {
                                     // Update the parent model value
                                     var values = this.toJSON();
@@ -40,12 +32,15 @@ define(['jquery', 'underscore', 'masseuse',
                             },
                             toJSON: function () {
                                 var json = Backbone.Collection.prototype.toJSON.apply(this),
+                                    max = rivets.model.field.max,
                                     value = _.pluck(json, 'value');
 
-                                if (value.length < 2) {
+                                if(max > 1) {
+                                    return value;
+                                } else {
                                     return value[0];
                                 }
-                                return value;
+
                             }
                         }))([], {}),
                         appendTo : el

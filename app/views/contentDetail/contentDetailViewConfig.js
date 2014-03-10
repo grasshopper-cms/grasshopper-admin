@@ -17,7 +17,6 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
                 'click #saveContentButton' : 'saveContent'
             },
             listeners : [],
-            rivetConfig : 'auto',
             mastheadButtons : [],
             breadcrumbs : [
                 {
@@ -26,6 +25,8 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
                 }
             ],
             permissions : ['admin', 'reader', 'editor'],
-            rivetsBinders : [appBinders]
+            rivetsConfig : {
+                binders : [appBinders]
+            }
         };
     });

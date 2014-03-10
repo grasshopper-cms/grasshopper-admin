@@ -17,25 +17,26 @@
 
                                     <p>Sign in using your registered account:</p>
 
-                                    <div class="field">
-                                        <label for="loginUsername">Username:</label>
-                                        <input type="text" id="loginUsername" data-rv-class-error="model:usernameError"
-                                               placeholder="User Name" data-rv-value="model:username"
-                                               class="login username-field">
 
-                                        <div data-rv-text="model:usernameError"></div>
+                                    <div class="field row collapse">
+                                        <div class="small-3 large-2 columns">
+                                            <span class="prefix"><i class="icon-user"></i></span>
+                                        </div>
+                                        <div class="small-9 large-10 columns">
+                                            <input type="text" data-rv-class-error="model:usernameError" placeholder="User Name" data-rv-value="model:username" class="login username-field">
+                                            <div data-rv-text="model:usernameError"></div>
+                                        </div>
                                     </div>
 
-                                    <div class="field">
-                                        <label for="loginPassword">Password:</label>
-                                        <input type="password" id="loginPassword"
-                                               data-rv-class-error="model:passwordError"
-                                               placeholder="Password" data-rv-value="model:password"
-                                               class="login password-field">
-
-                                        <div data-rv-text="model:passwordError"></div>
+                                    <div class="field row collapse">
+                                        <div class="small-3 large-2 columns">
+                                            <span class="prefix"><i class="icon-key"></i></span>
+                                        </div>
+                                        <div class="small-9 large-10 columns">
+                                            <input type="password" data-rv-class-error="model:passwordError" placeholder="Password" data-rv-value="model:password" class="login password-field">
+                                            <div data-rv-text="model:passwordError"></div>
+                                        </div>
                                     </div>
-                                    <!-- /password -->
 
                                 </div>
                                 <!-- /login-fields -->
@@ -44,9 +45,16 @@
                         <div class="row">
                             <div class="large-8 small-12 columns">
                             <span class="login-checkbox">
-                                <input id="Field" name="Field" type="checkbox" class="field login-checkbox"
-                                       value="First Choice" tabindex="4">
-                                <label class="choice" for="Field">Keep me signed in</label>
+                                <input id="Field"
+                                       name="Field"
+                                       type="checkbox"
+                                       class="field login-checkbox"
+                                       value="First Choice"
+                                       tabindex="4">
+                                <label class="choice"
+                                       for="Field">
+                                    Keep me signed in
+                                </label>
                             </span>
                             </div>
                             <div class="large-4 small-12 columns">

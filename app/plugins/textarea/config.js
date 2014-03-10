@@ -20,7 +20,6 @@ define(['text!plugins/textarea/template.html', 'plugins/textarea/model', 'text!p
             template : textareaPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
-            rivetConfig : 'auto',
             listeners : [],
             mastheadButtons : []
         };

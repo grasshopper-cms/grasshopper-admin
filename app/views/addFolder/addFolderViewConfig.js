@@ -6,7 +6,6 @@ define(['addFolderViewModel'], function (addFolderViewModel) {
         name : 'addFolderView',
         ModelType : addFolderViewModel,
         modelData : {},
-        rivetConfig : 'auto',
         listeners : [],
         events : {},
         permissions : ['admin', 'editor']

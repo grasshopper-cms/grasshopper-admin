@@ -3,18 +3,29 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    var _ = grunt.util._,
-        config = {
-            warning : '_Compiled file. Do not modify directly._'
-        };
+    var warning = {
+            readme : 'Compiled file. Do not modify directly.'
+        },
+        ghaConfig = grunt.file.findup('gha.json', {nocase: true}),
+        path = require('path');
 
-    // load all grunt tasks
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    if (!ghaConfig) {
+        grunt.fatal('Please create a build configuration file at "gha.json"');
+    }
 
+    ghaConfig = grunt.file.readJSON(ghaConfig);
+
+    grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
+
+    if(__dirname.split(path.sep).pop() === 'node_modules') {
+        grunt.config.set('buildDirectory', '../../' + ghaConfig.buildDirectory);
+    } else {
+        grunt.config.set('warning', warning);
+        grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
+    }
+
+    grunt.loadTasks('initConfig');
     grunt.loadTasks('tasks');
-
-    // load grunt Config. All config can be found in tasks/options
-    grunt.initConfig(_.extend(config, loadConfig('./initConfig/')));
 
     grunt.registerTask('build', 'Build and watch task', [
         'clean',
@@ -23,6 +34,8 @@ module.exports = function (grunt) {
         'copy:build',
         'copy:vendor',
         'registerPlugins',
+        'paths',
+        'setBuildConfig',
         'sass',
         'autoprefixer:no_dest'
     ]);
@@ -34,6 +47,8 @@ module.exports = function (grunt) {
         'copy:build',
         'copy:vendor',
         'registerPlugins',
+        'paths',
+        'setBuildConfig',
         'sass',
         'autoprefixer:no_dest',
         'connect:site',
@@ -60,21 +75,4 @@ module.exports = function (grunt) {
         'usemin',
         'build_gh_pages'
     ]);
-
-    function loadConfig(files) {
-        var path = require('path'),
-            object = {};
-
-        grunt.file.recurse(files, function callback(abspath, rootdir, subdir, filename) {
-            var name = path.basename(filename, path.extname(filename)),
-                required = require(path.resolve('.', abspath));
-
-            if (_.isFunction(required)) {
-                required = required(grunt);
-            }
-            object[name] = required;
-        });
-
-        return object;
-    }
 };

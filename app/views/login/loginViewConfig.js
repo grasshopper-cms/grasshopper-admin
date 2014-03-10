@@ -15,7 +15,6 @@ define(['text!views/login/loginView.html', 'loginViewModel'], function (template
             'click #loginButton' : 'login'
         },
         listeners : [
-        ],
-        rivetConfig : 'auto'
+        ]
     };
 });

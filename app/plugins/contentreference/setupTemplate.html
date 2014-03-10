@@ -2,14 +2,28 @@
     <div class="small-6 columns">
         <div class="row">
             <div class="small-12 columns">
-                <label>Default Folder:
-                    <input type="text" data-rv-value="model:selectedNode->label" readonly="true">
+                <label>{{model:resources->plugins->contentReference->defaultFolder | withColon}}
+                    <div class="row collapse">
+                        <div class="small-11 columns">
+                            <input type="text" data-rv-value="model:selectedNodeLabel" readonly="true">
+                        </div>
+                        <div class="small-1 columns" style="padding-left: 0;">
+                            <span class="postfix radius"><i class="icon-lock"></i></span>
+                        </div>
+                    </div>
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="small-12 columns">
-                <label>Select Default Folder or <span><a data-rv-on-click="view.setRootAdDefaultNode">Set Root Folder as Default</a></span>
+                <label>
+                    {{model:resources->plugins->contentReference->selectDefaultFolderOr}}
+                    <span>
+                        <a data-rv-on-click="view.setRootAsDefaultNode">
+                            {{model:resources->plugins->contentReference->setRootAsDefault}}
+                        </a>
+                    </span>
+
                     <div data-rv-hide="model:showTree"><i class="icon-refresh"></i></div>
                     <div data-rv-show="model:showTree" id="nodeTree">
                         <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>

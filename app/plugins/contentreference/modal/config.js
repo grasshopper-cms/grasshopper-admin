@@ -10,15 +10,16 @@ define(['text!plugins/contentreference/modal/template.html', 'plugins/contentref
         appendTo : '#modal',
         wrapper : false,
         template : template,
-        rivetConfig : 'auto',
+        rivetsConfig : {
+            binders : [contentReferenceBinders]
+        },
         events : {
             'click #nodeTree' : 'stopAccordionPropagation',
             'click #confirm' : 'confirmModal',
             'click #cancel' : 'cancelModal'
         },
         listeners : [],
-        mastheadButtons : [],
-        rivetsBinders : [contentReferenceBinders]
+        mastheadButtons : []
     };
 });
 

@@ -1,6 +1,7 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/contentreference/modal/config'],
-    function (GrasshopperBaseView, config) {
+define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery', 'underscore'],
+    function (GrasshopperBaseView, config, $, _) {
+
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -9,16 +10,55 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config'],
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
             confirmModal : confirmModal,
-            cancelModal : cancelModal
+            cancelModal : cancelModal,
+            setSelectedNode : setSelectedNode
         });
 
         function beforeRender($deferred) {
-            this.model.get('children').fetch()
-                .done($deferred.resolve);
+            $.when(_fetchChildNodes.call(this),
+                    _fetchChildContent.call(this),
+                    _fetchCurrentNode.call(this))
+                .done(_toggleLoadingSpinner.bind(this), $deferred.resolve);
         }
 
         function afterRender() {
+            _hydrateAllowedContentTypes.call(this);
             this.$el.foundation();
+        }
+
+        function _fetchChildNodes() {
+            return this.model.get('children').fetch();
+        }
+
+        function _fetchChildContent() {
+            return this.model.get('content').fetch();
+        }
+
+        function _fetchCurrentNode() {
+            return this.model.fetch();
+        }
+
+        function _toggleLoadingSpinner() {
+            this.model.toggle('loading');
+        }
+
+        function _hydrateAllowedContentTypes() {
+            var allowedTypeLabels = [],
+                allowedTypes = this.model.get('allowedContentTypes'),
+                availableTypes = this.model.get('availableContentTypes');
+
+            _.each(allowedTypes, function(allowedTypeId) {
+                allowedTypeLabels.push(
+                    _.findWhere(availableTypes, { _id : allowedTypeId}).label);
+            });
+
+            if(!_.isEmpty(allowedTypeLabels)) {
+                allowedTypeLabels = allowedTypeLabels.join(', ');
+            } else {
+                allowedTypeLabels = 'None';
+            }
+
+            this.model.set('allowedTypeLabels', allowedTypeLabels);
         }
 
         function stopAccordionPropagation(e) {
@@ -26,15 +66,21 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config'],
         }
 
         function confirmModal () {
+            this.$deferred.resolve(this.model.attributes);
             _removeModal.call(this);
         }
 
         function cancelModal () {
+            this.$deferred.reject();
             _removeModal.call(this);
         }
 
         function _removeModal () {
             this.remove();
+        }
+
+        function setSelectedNode() {
+            return false;
         }
 
     });
