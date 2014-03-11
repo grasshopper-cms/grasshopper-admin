@@ -11,8 +11,8 @@ define(['grasshopperBaseView', 'underscore', 'jquery'],
         function afterRender() {
             _startCkeditor.call(this)
                 .done(
-                    _setEditorValue.call(this),
-                    _setEditorEventHandling.call(this)
+                    _setEditorValue.bind(this),
+                    _setEditorEventHandling.bind(this)
                 );
         }
 
