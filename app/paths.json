@@ -7,7 +7,9 @@
         "rivets" : "vendor/rivets/dist/rivets",
         "base64" : "vendor/js-base64/base64",
         "foundation" : "vendor/foundation/js/foundation/foundation",
-        "modernizr" : "vendor/modernizr/modernizr"
+        "modernizr" : "vendor/modernizr/modernizr",
+        "ckeditor" : "vendor/ckeditor/ckeditor",
+        "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery"
     },
 
     "routers" : {
