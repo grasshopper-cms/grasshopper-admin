@@ -13,7 +13,7 @@
       "name": "Greg Larrenaga"
     }
   ],
-  "version": "0.9.1",
+  "version": "0.9.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/Solid-Interactive/grasshopper-admin.git"
@@ -69,5 +69,8 @@
     "grunt-contrib-concat": "~0.1.2",
     "grunt-autoprefixer": "~0.4.0",
     "grunt-requirejs-paths": "~0.1.1"
+  },
+  "scripts" : {
+    "postinstall" : "which bundle && bundle install"
   }
 }
