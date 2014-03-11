@@ -30,13 +30,7 @@ define(['grasshopperBaseView', 'underscore'],
         }
 
         function reduceCollection() {
-            var collection = [];
-
-            this.collection.each(function(model) {
-                var option = model.toJSON();
-                collection.push(option);
-            });
-            this.model.set('options', collection);
+            this.model.set('options', this.collection.toJSON());
         }
 
         function buildValues() {
