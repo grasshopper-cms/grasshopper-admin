@@ -12,6 +12,10 @@ define(['grasshopperBaseView', 'underscore'],
         });
 
         function beforeRender() {
+            if(!_.isUndefined(this.model.get('value'))) {
+                _hydrateOptionsWithValue.call(this);
+            }
+
             this.collection.reset(this.model.get('options'));
         }
 
@@ -44,6 +48,17 @@ define(['grasshopperBaseView', 'underscore'],
             });
 
             this.model.set('value', obj);
+        }
+
+        function _hydrateOptionsWithValue() {
+            var options = this.model.get('options'),
+                value = this.model.get('value');
+
+            _.each(options, function(option) {
+                option.checked = value[option._id];
+            });
+
+            this.model.set('options', options);
         }
 
     });
