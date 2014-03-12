@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         },
         path = require('path'),
         ghaConfig = grunt.file.findup('gha.json', {nocase: true}),
-        ghaConfigPath = path.dirname(ghaConfig) + path.sep;
+        ghaConfigPath = path.dirname(ghaConfig);
 
     if (!ghaConfig) {
         grunt.fatal('Please create a build configuration file at "gha.json"');
@@ -22,15 +22,11 @@ module.exports = function (grunt) {
     grunt.config.set('warning', warning);
     grunt.config.set('buildDirectory', ghaConfigPath + path.sep + ghaConfig.buildDirectory);
 
-    grunt.config.set('warning', warning);
-    grunt.config.set('buildDirectory', ghaConfig.buildDirectory);
-
     grunt.loadTasks('initConfig');
     grunt.loadTasks('tasks');
 
     grunt.registerTask('build', 'Build and watch task', [
         'clean',
-        'jshint',
         'setupBowerCopy',
         'copy:build',
         'copy:vendor',
