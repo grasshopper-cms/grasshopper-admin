@@ -38,6 +38,9 @@ require.config({
         },
         sortable : {
             deps : ['jqueryui', 'widgetFactory', 'mouseInteraction']
+        },
+        ckeditorAdapter : {
+            deps : ['jquery', 'ckeditor']
         }
     },
     packages : [
@@ -70,7 +73,8 @@ require([
     'tooltip',
     'abide',
     'modernizr',
-    'sortable'
+    'sortable',
+    'ckeditorAdapter' //TODO: I might not need this line.
 ],
     /**
      * @param $
