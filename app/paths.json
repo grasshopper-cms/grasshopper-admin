@@ -112,6 +112,12 @@
             "Model" : "views/dashboard/dashboardViewModel"
         },
 
+        "fileBrowserView+" : {
+            "" : "views/fileBrowser/fileBrowserView",
+            "Config" : "views/fileBrowser/fileBrowserViewConfig",
+            "Model" : "views/fileBrowser/fileBrowserViewModel"
+        },
+
         "headerView+" : {
             "" : "views/header/headerView",
             "Config" : "views/header/headerViewConfig",
@@ -179,7 +185,8 @@
         "contentTypeWorker" : "workers/contentTypeWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
-        "nodeWorker" : "workers/nodeWorker"
+        "nodeWorker" : "workers/nodeWorker",
+        "urlWorker" : "workers/urlWorker"
     },
 
     "collections" : {

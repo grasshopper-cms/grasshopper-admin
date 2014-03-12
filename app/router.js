@@ -19,6 +19,7 @@ define([
     'addFolderView',
     'addContentView',
     'addAssetsView',
+    'fileBrowserView',
     'helpers'
 ],
     function ($, Backbone, _, masseuse, Api, constants,
@@ -40,6 +41,7 @@ define([
               AddFolderView,
               AddContentView,
               AddAssetsView,
+              FileBrowserView,
               helpers) {
 
         'use strict';
@@ -69,6 +71,7 @@ define([
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
+                'filebrowser(/?:params)' : displayFileBrowser,
                 '*path' : 'goHome'
             },
 
@@ -104,7 +107,8 @@ define([
             displayContentTypeDetail : displayContentTypeDetail,
             displayCreateFolder : displayCreateFolder,
             displayCreateContent : displayCreateContent,
-            displayCreateAssets : displayCreateAssets
+            displayCreateAssets : displayCreateAssets,
+            displayFileBrowser : displayFileBrowser
         });
 
         function onRouteFail () {
@@ -412,6 +416,14 @@ define([
                     }
                 });
             addAssetsView.start();
+        }
+
+        function displayFileBrowser(params) {
+            loadMainContent(FileBrowserView, {
+                modelData : {
+                    params : params
+                }
+            });
         }
 
         return Router;
