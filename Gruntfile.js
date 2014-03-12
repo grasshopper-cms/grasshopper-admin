@@ -27,6 +27,10 @@ module.exports = function (grunt) {
     grunt.loadTasks('initConfig');
     grunt.loadTasks('tasks');
 
+    grunt.registerTask('saveData', ['clean:seedData', 'shell:mongodump', 'copy:seedDataToGh']);
+    grunt.registerTask('loadData', ['copy:seedDataToApi', 'shell:mongorestore']);
+    grunt.registerTask('mergeData', ['copy:seedDataToApi', 'shell:mongomerge']);
+
     grunt.registerTask('build', 'Build and watch task', [
         'clean',
         'jshint',
@@ -54,6 +58,7 @@ module.exports = function (grunt) {
         'connect:site',
         'watch:dev'
     ]);
+
     grunt.registerTask('testServer', 'Build and watch task', [
         'jshint',
         'copy:build',
@@ -62,6 +67,7 @@ module.exports = function (grunt) {
         'connect:tests',
         'watch'
     ]);
+
     grunt.registerTask('deploy', 'Deploy to gh-pages', [
         'clean',
         'copy:deploy',

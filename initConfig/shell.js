@@ -54,7 +54,7 @@ module.exports = function (grunt) {
                     cwd: './api'
                 }
             },
-            command : 'vagrant exec mongodump --db grasshopper --out ../tasks/seedData/mongodb/dump'
+            command : 'vagrant exec mongodump --db grasshopper --out tasks/seedData/mongodb'
         },
         'mongorestore' : {
             options : {
@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                     cwd: './api'
                 }
             },
-            command : 'vagrant exec mongorestore --drop --db grasshopper ../tasks/seedData/mongodb/dump/grasshopper'
+            command : 'vagrant exec mongorestore --drop --db grasshopper tasks/seedData/mongodb/grasshopper'
         },
         'mongomerge' : {
             options : {
@@ -76,7 +76,7 @@ module.exports = function (grunt) {
                     cwd: './api'
                 }
             },
-            command : 'vagrant exec mongorestore --db grasshopper ../tasks/seedData/mongodb/dump/grasshopper'
+            command : 'vagrant exec mongorestore --db grasshopper tasks/seedData/mongodb/grasshopper'
         }
     });
 

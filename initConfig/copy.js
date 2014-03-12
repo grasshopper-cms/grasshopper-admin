@@ -45,6 +45,26 @@ module.exports = function (grunt) {
 
                 ], dest : 'api/lib/config/configuration.json'}
             ]
+        },
+        seedDataToGh : {
+            files : [
+                {
+                    expand: true,
+                    src: 'api/tasks/seedData/mongodb/grasshopper/*',
+                    dest: 'tasks/seedData/mongodb/grasshopper/',
+                    flatten: true
+                }
+            ]
+        },
+        seedDataToApi : {
+            files : [
+                {
+                    expand: true,
+                    src: 'tasks/seedData/mongodb/grasshopper/*',
+                    dest: 'api/tasks/seedData/mongodb/grasshopper/',
+                    flatten: true
+                }
+            ]
         }
     });
 
