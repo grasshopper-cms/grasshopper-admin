@@ -5,7 +5,7 @@ module.exports = function (grunt) {
     var path = require('path'),
         lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
         folderMount = function folderMount (connect, point) {
-            return connect.static(path.resolve(point));
+            return connect.static(path.resolve(point.toString()));
         };
 
     grunt.config('connect', {
