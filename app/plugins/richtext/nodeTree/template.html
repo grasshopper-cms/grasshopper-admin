@@ -11,12 +11,17 @@
 
         <ul data-rv-show="model:files | haslength" class="no-bullet nodeTreeContent">
             <li data-rv-each-file="model:files:">
-                <input data-rv-id="file.cid" type="radio" name="selectedFile"
-                       data-rv-value="file:url" data-rv-checked="model:selectedFile">
-                <label data-rv-for="file.cid">
-                    {{file:fileName}}
-                    <img data-rv-src=file:url data-rv-alt="file:fileName">
-                </label>
+                <div class="row">
+
+                    <input data-rv-id="file.cid" type="radio" name="selectedFile"
+                           data-rv-value="file:url" data-rv-checked="model:selectedFile" class="hide">
+
+                    <label data-rv-for="file.cid">
+                        <img class="th nodeTreeThumbNail" data-rv-src=file:url data-rv-alt="file:fileName">
+                        <span style="vertical-align: middle;">{{file:fileName}}</span>
+                    </label>
+
+                </div>
             </li>
         </ul>
     </div>
