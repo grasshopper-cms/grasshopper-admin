@@ -22,7 +22,6 @@ define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
             setupTemplate : setupTemplate,
             events : {},
             wrapper: false,
-            listeners : [],
-            mastheadButtons : []
+            listeners : []
         };
     });
