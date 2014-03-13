@@ -506,8 +506,11 @@ body, html {
 
   }
 
-  // Content Reference Plugin
+  // Accordion Node Tree
   #nodeTree {
+    max-height: 700px;
+    overflow: scroll;
+
     a {
       padding-top: 0;
       padding-bottom: 0;
@@ -529,6 +532,7 @@ body, html {
     }
   }
 
+  // Content Reference Plugin
   .availableTypes {
     input {
       margin-bottom: 0;
