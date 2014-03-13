@@ -175,6 +175,9 @@ define({
             contentTypes : 'Content Types',
             selectContent : 'Select Content',
             viewSelectedFile : 'View Selected File'
+        },
+        richText : {
+            selectFile : 'Select File'
         }
     },
     // General Text (reusable) - try to keep it alphabetized
