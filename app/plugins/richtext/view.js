@@ -26,7 +26,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
             this.ckeditor = this.$('#ckeditor').ckeditor(
                 {
                     customConfig : '',
-                    filebrowserBrowseUrl : '/#filebrowser/',
+                    filebrowserBrowseUrl : 'dummylocation',
                     skin : 'moono'
                 },
                 $deferred.resolve
@@ -77,10 +77,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function _setUrlOfFile(selectedFile) {
-            var $urlInput = $('#cke_75_textInput'),
-                selectedFileUrl = selectedFile;
-
-            $urlInput.val(selectedFileUrl);
+            window.CKEDITOR.tools.callFunction(0, selectedFile);
         }
 
     });
