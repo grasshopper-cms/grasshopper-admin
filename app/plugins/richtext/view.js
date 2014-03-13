@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'jquery',
-    'plugins/richtext/fileBrowser/view'],
+    'plugins/richtext/fileBrowser/view', 'plugins/richtext/ckeditorConfig'],
     function (GrasshopperBaseView, _, $,
-              FileBrowserView) {
+              FileBrowserView, ckeditorConfig) {
 
         'use strict';
 
@@ -23,12 +23,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
 
             _overRideWindowOpen.call(this);
 
-            this.ckeditor = this.$('#ckeditor').ckeditor(
-                {
-                    customConfig : '',
-                    filebrowserBrowseUrl : 'dummylocation',
-                    skin : 'moono'
-                },
+            this.ckeditor = this.$('#ckeditor').ckeditor(ckeditorConfig,
                 $deferred.resolve
             ).editor;
 
