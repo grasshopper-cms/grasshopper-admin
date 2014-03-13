@@ -20,7 +20,10 @@
                     <li data-rv-each-file="model:files:">
                         <input data-rv-id="file.cid" type="radio" name="selectedFile"
                                data-rv-value="file:url" data-rv-checked="model:selectedFile">
-                        <label data-rv-for="file.cid">{{file:fileName}}</label>
+                        <label data-rv-for="file.cid">
+                            {{file:fileName}}
+                            <img data-rv-src=file:url data-rv-alt="file:fileName">
+                        </label>
                     </li>
                 </ul>
 
