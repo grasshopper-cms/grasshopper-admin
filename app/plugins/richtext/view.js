@@ -1,6 +1,8 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'jquery'],
-    function (GrasshopperBaseView, _, $) {
+define(['grasshopperBaseView', 'underscore', 'jquery',
+    'plugins/richtext/fileBrowser/view'],
+    function (GrasshopperBaseView, _, $,
+              FileBrowserView) {
 
         'use strict';
 
@@ -18,6 +20,8 @@ define(['grasshopperBaseView', 'underscore', 'jquery'],
 
         function _startCkeditor() {
             var $deferred = new $.Deferred();
+
+            _overRideWindowOpen.call(this);
 
             this.ckeditor = this.$('#ckeditor').ckeditor(
                 {
@@ -45,5 +49,38 @@ define(['grasshopperBaseView', 'underscore', 'jquery'],
             this.model.set('value', this.ckeditor.getData());
         }
 
+        function _overRideWindowOpen() {
+            this.oldWindowOpen = window.open;
+
+            window.open = window.opener = _startFileBrowser.bind(this);
+        }
+
+        function _startFileBrowser() {
+            _fireFileBrowserModal.call(this)
+                .done(_setUrlOfFile.bind(this));
+        }
+
+        function _fireFileBrowserModal() {
+            var $deferred = new $.Deferred(),
+                fileBrowserView = new FileBrowserView(
+                {
+                    modelData : {
+                        _id : '0'
+                    },
+                    $deferred : $deferred
+                }
+            );
+
+            fileBrowserView.start();
+
+            return $deferred.promise();
+        }
+
+        function _setUrlOfFile(selectedFile) {
+            var $urlInput = $('#cke_75_textInput'),
+                selectedFileUrl = selectedFile;
+
+            $urlInput.val(selectedFileUrl);
+        }
 
     });

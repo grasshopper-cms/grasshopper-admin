@@ -1,0 +1,20 @@
+<dd>
+    <a data-rv-href="model.cid | prepend #" data-rv-on-click="view.openFolder">
+        <span>
+            <i data-rv-addclass="model:folderClass"></i>
+            {{model:label | spaceBefore}}
+            <i data-rv-show="model:loading" class="icon-refresh icon-spin"></i>
+        </span>
+    </a>
+    <div  data-rv-id="model.cid" class="content">
+        <dl data-rv-show="model:children | haslength" data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
+
+        <ul data-rv-show="model:files | haslength" class="no-bullet nodeTreeContent">
+            <li data-rv-each-file="model:files:">
+                <input data-rv-id="file.cid" type="radio" name="selectedFile"
+                       data-rv-value="file:url" data-rv-checked="model:selectedFile">
+                <label data-rv-for="file.cid">{{file:fileName}}</label>
+            </li>
+        </ul>
+    </div>
+</dd>
