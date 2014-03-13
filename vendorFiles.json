@@ -29,5 +29,6 @@
     "ckeditor-englishLanguage" : "vendor/ckeditor/lang/en.js",
     "ckeditor-styleJavascript" : "vendor/ckeditor/styles.js",
     "ckeditor-stylsheet" : "vendor/ckeditor/contents.css",
-    "ckeditor-plugins" : "vendor/ckeditor/plugins/**"
+    "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
+    "aceCodeEditor" : "vendor/ace/lib/ace/**/*"
 }
