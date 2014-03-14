@@ -1,12 +1,13 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'jquery', 'ace'],
-    function (GrasshopperBaseView, _, $, Ace) {
+    function (GrasshopperBaseView, _, $, ace) {
 
         'use strict';
 
         return GrasshopperBaseView.extend({
             afterRender : afterRender,
-            setEditorTheme : setEditorTheme
+            setEditorTheme : setEditorTheme,
+            setEditorMode : setEditorMode
         });
 
         function afterRender() {
@@ -16,56 +17,50 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'ace'],
                 _startCodeEditor.call(this);
             }
 
-//            _startCkeditor.call(this)
-//                .done(
-//                    _setEditorValue.bind(this),
-//                    _setEditorEventHandling.bind(this)
-//                );
         }
 
-
         function _startCodeEditor() {
-            this.editor = Ace.edit('editor');
-            this.setEditorTheme();
+            var self = this;
+
+            setTimeout(function() {
+                self.editor = ace.edit('codeEditor');
+//                self.setEditorTheme();
+//                self.setEditorMode();
+                self.editor.setOptions(
+                    {
+                        maxLines : 500
+                    }
+                );
+                _setEditorEventHandling.call(self);
+                _setEditorValueFromContentValue.call(self);
+            }, 2000);
 
         }
 
         function setEditorTheme(theme) {
-            this.editor.setTheme(theme ? theme : 'ace/theme/monokai');
+            this.editor.setTheme(theme ? theme : this.model.get('defaultTheme'));
         }
 
-        function setEditorMode() {
-            editor.getSession().setMode('ace/mode/javascript');
+        function setEditorMode(mode) {
+            this.editor.getSession().setMode(mode ? mode : this.model.get('defaultMode'));
         }
 
-//        function _startCkeditor() {
-//            var $deferred = new $.Deferred();
-//
-//            this.ckeditor = this.$('#ckeditor').ckeditor(
-//                {
-//                    customConfig : '',
-//                    filebrowserBrowseUrl : '/#filebrowser/',
-//                    skin : 'moono'
-//                },
-//                $deferred.resolve
-//            ).editor;
-//
-//            return $deferred.promise();
-//        }
-//
 //        function _setEditorValue() {
 //            if(!_.isUndefined(this.model.get('value'))) {
 //                this.ckeditor.setData(this.model.get('value'));
 //            }
 //        }
-//
-//        function _setEditorEventHandling() {
-//            this.ckeditor.on('blur', _setContentValue.bind(this));
-//        }
-//
-//        function _setContentValue() {
-//            this.model.set('value', this.ckeditor.getData());
-//        }
 
+        function _setEditorEventHandling() {
+            this.editor.on('blur', _setValueFromEditor.bind(this));
+        }
+
+        function _setValueFromEditor() {
+            this.model.set('value', this.editor.getValue());
+        }
+
+        function _setEditorValueFromContentValue() {
+            this.editor.setValue('JorgenSpeeling');
+        }
 
     });

@@ -83,4 +83,25 @@ module.exports = function (grunt) {
         'usemin',
         'build_gh_pages'
     ]);
+
+    grunt.registerTask('optomortis-rex', [
+        'setupBowerCopy',
+        'copy:build',
+        'copy:vendor',
+
+        'useminPrepare',
+        'requirejs',
+//        'imagemin',
+        'concat',
+        'uglify',
+        'rev',
+        'usemin',
+
+        'registerPlugins',
+        'paths:app',
+        'setBuildConfig',
+        'sass',
+        'autoprefixer:no_dest',
+
+    ]);
 };

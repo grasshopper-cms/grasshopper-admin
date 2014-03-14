@@ -28,6 +28,7 @@ require.config({
             deps : ['jquery']
         },
         jqueryui : {
+            exports : 'jquery',
             deps : ['jquery']
         },
         widgetFactory : {
