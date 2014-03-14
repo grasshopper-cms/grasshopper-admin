@@ -5,19 +5,37 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'ace'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-            afterRender : afterRender
+            afterRender : afterRender,
+            setEditorTheme : setEditorTheme
         });
 
         function afterRender() {
-            var editor = Ace.edit('editor');
-            editor.setTheme('ace/theme/monokai');
-            editor.getSession().setMode('ace/mode/javascript');
+            if(this.model.get('inSetup')) {
+
+            } else {
+                _startCodeEditor.call(this);
+            }
 
 //            _startCkeditor.call(this)
 //                .done(
 //                    _setEditorValue.bind(this),
 //                    _setEditorEventHandling.bind(this)
 //                );
+        }
+
+
+        function _startCodeEditor() {
+            this.editor = Ace.edit('editor');
+            this.setEditorTheme();
+
+        }
+
+        function setEditorTheme(theme) {
+            this.editor.setTheme(theme ? theme : 'ace/theme/monokai');
+        }
+
+        function setEditorMode() {
+            editor.getSession().setMode('ace/mode/javascript');
         }
 
 //        function _startCkeditor() {
