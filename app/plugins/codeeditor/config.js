@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
     'text!plugins/codeeditor/setupTemplate.html'],
-    function (codeEditorPluginTemplate, codeEditorPluginModel,
+    function (template, codeEditorPluginModel,
               setupTemplate) {
         'use strict';
 
@@ -18,7 +18,7 @@ define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
                 validation : false,
                 value : ''
             },
-            template : codeEditorPluginTemplate,
+            template : template,
             setupTemplate : setupTemplate,
             events : {},
             wrapper: false,

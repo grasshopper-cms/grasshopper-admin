@@ -55,6 +55,8 @@
     "grunt-autoprefixer": "~0.4.0",
     "grunt-requirejs-paths": "~0.1.1",
     "grunt-contrib-sass": "^0.7.3",
-    "grunt-contrib-jshint": "0.2.0"
+    "grunt-contrib-jshint": "0.2.0",
+    "grunt-contrib-imagemin": "~0.5.0",
+    "grunt-rev": "~0.1.0"
   }
 }
