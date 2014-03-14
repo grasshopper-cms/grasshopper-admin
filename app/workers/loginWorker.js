@@ -99,7 +99,6 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
             var self = this;
             Api.authenticateToken(LocalStorage.get('authToken'))
                 .error(function () {
-                    console.log('verifyAuthTokenFired');
                     $deferred.reject();
                     self.goLogout();
                 });

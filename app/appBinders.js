@@ -21,7 +21,6 @@ define(['jquery', 'underscore', 'masseuse',
                         collection : new (Backbone.Collection.extend({
                             initialize: function () {
                                 this.on('add remove reset change', function () {
-                                    // Update the parent model value
                                     var values = this.toJSON();
 
                                     if (values) {

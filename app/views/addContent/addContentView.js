@@ -139,9 +139,8 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
             _navigateBack.call(this);
         }
 
-        function _handleFailedContentTypeRetrieval($deferred, xhr) {
+        function _handleFailedContentTypeRetrieval($deferred) {
             $deferred.reject();
-            console.log(xhr);
         }
 
         function _createContentInRoot ($deferred) {
