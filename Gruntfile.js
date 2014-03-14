@@ -30,7 +30,6 @@ module.exports = function (grunt) {
     grunt.registerTask('mergeData', ['copy:seedDataToApi', 'shell:mongomerge']);
 
     grunt.registerTask('build', 'Build and watch task', [
-        'clean:build',
         'setupBowerCopy',
         'copy:build',
         'copy:vendor',
