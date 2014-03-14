@@ -50,15 +50,15 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         function _proxyValues() {
             var activeContentType = this.model.get('activeContentType'),
-                property;
+                self = this;
 
             if(!this.model.get('value')) {
                 _.each(activeContentType.fields, _setEmptyValue.bind(this));
             }
 
-            for (property in this.model.get('value')) {
-                this.model.set('fields.' + property, new ProxyProperty('value.' + property, this.model));
-            }
+            _.each(activeContentType.fields, function(type) {
+                self.model.set('fields.' + type._id, new ProxyProperty('value.' + type._id, self.model));
+            });
 
             _setSubLabelsForAccordions.call(this);
         }
