@@ -1,17 +1,11 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'dashboardViewConfig', 'ace'],
-    function (GrasshopperBaseView, dashboardViewConfig, ace) {
+define(['grasshopperBaseView', 'dashboardViewConfig'],
+    function (GrasshopperBaseView, dashboardViewConfig) {
     'use strict';
 
     return GrasshopperBaseView.extend({
-        defaultOptions : dashboardViewConfig,
-        afterRender : afterRender
+        defaultOptions : dashboardViewConfig
     });
 
-    function afterRender() {
-        var editor = ace.edit('editor');
-        editor.setTheme('ace/theme/monokai');
-        editor.getSession().setMode('ace/mode/javascript');
-    }
 
 });
