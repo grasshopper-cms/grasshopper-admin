@@ -1,0 +1,8 @@
+{
+    "mocha" : "vendor/mocha/mocha",
+    "chai" : "vendor/chai/chai",
+    "sinon" : "vendor/sinon/lib/sinon",
+    "sinonSpy" : "vendor/sinon/lib/sinon/spy",
+    "sinonChai" : "vendor/sinon-chai/lib/sinon-chai",
+    "sinonCall" : "vendor/sinon/lib/sinon/call"
+}

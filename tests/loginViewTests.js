@@ -1,10 +1,8 @@
 /*global describe:false, it:false, beforeEach:false*/
-define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function (_, chai, Squire, mocha, sinon, sinonChai) {
+define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai'], function (_, chai, mocha, sinon, sinonChai) {
 
     'use strict';
-    var VIEW1_NAME = "testView1",
-        injector = new Squire(),
-        should = chai.should();
+    var should = chai.should();
 
 
     require(['sinonCall', 'sinonSpy']);
@@ -17,25 +15,14 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
 
 
         //-----------Setup-----------
-        var LoginView,
-            viewInstance;
 
-        beforeEach(function (done) {
-            injector.require(['loginView'], function (loginView) {
-                    LoginView = loginView;
-                    viewInstance = new LoginView({
-                        name : VIEW1_NAME
-                    });
-                    done();
-                },
-                function () {
-                    console.log('loginView error.')
-                });
+        beforeEach(function () {
+
         });
 
         //-----------Tests-----------
         it("should exist", function () {
-            should.exist(LoginView);
+
         });
 
         describe("properly inherits from the base view, as evidenced by", function() {

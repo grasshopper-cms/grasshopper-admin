@@ -12,6 +12,15 @@ module.exports = function (grunt) {
                 mainTemplate : 'app/main.js',
                 main : buildDirectory + '/main.js'
             }
+        },
+        tests : {
+            options : {
+                pathsJson : ['app/paths.json', 'tests/paths.json'],
+                pathsPrefix : '../app/',
+                mainTemplate : 'tests/main.template.js',
+                main : 'tests/main.js',
+                prefixComma : true
+            }
         }
     });
 

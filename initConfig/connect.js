@@ -25,10 +25,12 @@ module.exports = function (grunt) {
                 port : 9001,
                 hostname : 'localhost',
                 base : './',
+                open : {
+                    target : 'http://localhost:9001/tests/'
+                },
                 middleware : function (connect, options) {
                     return [lrSnippet, folderMount(connect, options.base)];
-                },
-                open: true
+                }
             }
         }
     });

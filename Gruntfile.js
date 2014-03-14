@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         'copy:build',
         'copy:vendor',
         'registerPlugins',
-        'paths',
+        'paths:app',
         'setBuildConfig',
         'sass',
         'autoprefixer:no_dest'
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
         'copy:build',
         'copy:vendor',
         'registerPlugins',
-        'paths',
+        'paths:app',
         'setBuildConfig',
         'sass',
         'autoprefixer:no_dest',
@@ -56,11 +56,17 @@ module.exports = function (grunt) {
         'watch:dev'
     ]);
 
-    grunt.registerTask('testServer', 'Build and watch task', [
+    grunt.registerTask('test', 'Build and watch task', [
+        'clean:build',
         'jshint',
+        'setupBowerCopy',
         'copy:build',
-        'connect:tests',
+        'copy:vendor',
+        'registerPlugins',
+        'paths:tests',
+        'setBuildConfig',
         'sass',
+        'autoprefixer:no_dest',
         'connect:tests',
         'watch'
     ]);
