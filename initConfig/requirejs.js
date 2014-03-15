@@ -6,19 +6,15 @@ module.exports = function (grunt) {
 
     grunt.config('requirejs', {
         dist: {
-            // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
             options: {
-                // `name` and `out` is set by grunt-usemin
                 baseUrl: buildDirectory,
-                optimize: 'none',
-                preserveLicenseComments: false,
-                useStrict: true,
-                wrap: true
-                //uglify2: {} // https://github.com/mishoo/UglifyJS2
+                mainConfigFile: buildDirectory + "/main.js",
+                name: "main", // assumes a production build using almond
+                out: buildDirectory + "/main.js"
             }
         }
     });
 
-    grunt.loadNpmTasks('grunt-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 };
