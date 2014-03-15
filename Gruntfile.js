@@ -101,7 +101,6 @@ module.exports = function (grunt) {
         'paths:app',
         'setBuildConfig',
         'sass',
-        'autoprefixer:no_dest',
-
+        'autoprefixer:no_dest'
     ]);
 };
