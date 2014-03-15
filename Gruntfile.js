@@ -88,6 +88,11 @@ module.exports = function (grunt) {
         'setupBowerCopy',
         'copy:build',
         'copy:vendor',
+        'registerPlugins',
+        'paths:app',
+        'setBuildConfig',
+        'sass',
+        'autoprefixer:no_dest',
 
         'useminPrepare',
         'requirejs',
@@ -95,12 +100,7 @@ module.exports = function (grunt) {
         'concat',
         'uglify',
         'rev',
-        'usemin',
+        'usemin'
 
-        'registerPlugins',
-        'paths:app',
-        'setBuildConfig',
-        'sass',
-        'autoprefixer:no_dest'
     ]);
 };
