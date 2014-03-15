@@ -29,7 +29,7 @@ module.exports = function (grunt) {
     grunt.registerTask('loadData', ['copy:seedDataToApi', 'shell:mongorestore']);
     grunt.registerTask('mergeData', ['copy:seedDataToApi', 'shell:mongomerge']);
 
-    grunt.registerTask('build', 'Build and watch task', [
+    grunt.registerTask('build-no-optimize', 'Build and watch task', [
         'setupBowerCopy',
         'copy:build',
         'copy:vendor',
@@ -84,7 +84,7 @@ module.exports = function (grunt) {
         'build_gh_pages'
     ]);
 
-    grunt.registerTask('optomortis-rex', [
+    grunt.registerTask('build', [
         'setupBowerCopy',
         'copy:build',
         'copy:vendor',
@@ -93,14 +93,6 @@ module.exports = function (grunt) {
         'setBuildConfig',
         'sass',
         'autoprefixer:no_dest',
-
-        'useminPrepare',
-        'requirejs',
-//        'imagemin',
-        'concat',
-        'uglify',
-        'rev',
-        'usemin'
-
+        'requirejs'
     ]);
 };
