@@ -12,4 +12,6 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-usemin');
+
 };
