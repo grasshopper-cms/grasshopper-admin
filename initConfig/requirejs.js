@@ -8,9 +8,11 @@ module.exports = function (grunt) {
         dist: {
             options: {
                 baseUrl: buildDirectory,
-                mainConfigFile: buildDirectory + "/main.js",
-                name: "main", // assumes a production build using almond
-                out: buildDirectory + "/main.js"
+                mainConfigFile: buildDirectory + '/main.js',
+                name: 'main',
+                out: buildDirectory + '/main.js',
+                optimize: 'uglify',
+                preserveLicenseComments: false
             }
         }
     });
