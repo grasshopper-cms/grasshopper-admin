@@ -11,7 +11,10 @@ define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
             modelData : {
                 min : 1,
                 max : 1,
-                options : false,
+                options : {
+                    theme : '',
+                    language : ''
+                },
                 label : '',
                 type : 'codeeditor',
                 required : false,
