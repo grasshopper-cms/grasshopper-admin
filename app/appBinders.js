@@ -24,7 +24,6 @@ define(['jquery', 'underscore', 'masseuse',
                                     var values = this.toJSON();
 
                                     if (values) {
-                                        // TODO: Could probably use viewInstance.model.set() here.
                                         rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
                                     }
                                 });
@@ -34,7 +33,13 @@ define(['jquery', 'underscore', 'masseuse',
                                     max = rivets.model.field.max,
                                     value = _.pluck(json, 'value');
 
-                                if(max > 1) {
+                                value = _.compact(value); // Remove All falsy values.
+
+                                if(_.isUndefined(value[0])) { // If it is an array of nothing, return false.
+                                    return false;
+                                }
+
+                                if(max > 1) { // if its max is greater than 1 allow it to be represented as an array.
                                     return value;
                                 } else {
                                     return value[0];
