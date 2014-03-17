@@ -70,20 +70,6 @@ module.exports = function (grunt) {
         'watch'
     ]);
 
-    grunt.registerTask('deploy', 'Deploy to gh-pages', [
-        'clean',
-        'copy:deploy',
-        'useminPrepare',
-        'requirejs',
-        'imagemin',
-        'concat',
-        'uglify',
-        'rev',
-        'sass',
-        'usemin',
-        'build_gh_pages'
-    ]);
-
     grunt.registerTask('build', [
         'setupBowerCopy',
         'copy:build',
