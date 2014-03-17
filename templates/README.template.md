@@ -1,6 +1,6 @@
 # Grasshopper Admin
 
-Front end for a backend for the [Grasshopper api](https://github.com/Solid-Interactive/grasshopper-api-js) - a Javascript / Data Management System
+Front end of the [Grasshopper api](https://github.com/Solid-Interactive/grasshopper-api-js) - a Javascript / Data Management System
 
 ### Usage
 
