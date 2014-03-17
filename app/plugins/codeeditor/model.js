@@ -5,7 +5,21 @@ define(['grasshopperModel', 'resources'], function (Model, resources) {
         defaults : {
             resources : resources,
             defaultTheme : 'ace/theme/monokai',
-            defaultMode : 'ace/mode/javascript'
+            defaultMode : 'ace/mode/javascript',
+            possibleThemes : [
+                'red',
+                'blue',
+                'green',
+                'black',
+                'purple'
+            ],
+            possibleLanguages : [
+                'javs',
+                'bluesld',
+                'lkdjhlkjd',
+                'euheuhe',
+                'lkjss'
+            ]
         }
     });
 
