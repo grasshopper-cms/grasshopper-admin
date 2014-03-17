@@ -56,11 +56,6 @@ require.config({
         {
             name : 'helpers',
             location : 'helpers'
-        },
-        {
-            name : 'ace',
-            main : 'ace',
-            location : 'vendor/ace/lib/ace'
         }
     ]
     // <%= paths %>

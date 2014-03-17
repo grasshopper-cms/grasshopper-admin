@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'jquery', 'ace'],
-    function (GrasshopperBaseView, _, $, ace) {
+define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
+    function (GrasshopperBaseView, _, $, require) {
 
         'use strict';
 
@@ -22,34 +22,34 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'ace'],
         function _startCodeEditor() {
             var self = this;
 
-            setTimeout(function() {
-                self.editor = ace.edit('codeEditor');
-//                self.setEditorTheme();
-//                self.setEditorMode();
+            require(['ace/editor', 'ace/virtual_renderer'], function(editor, virtualRenderer) {
+                var Editor = editor.Editor,
+                    VirtualRenderer = virtualRenderer.VirtualRenderer;
+
+                self.editor = new Editor(new VirtualRenderer(self.$('#codeEditor')[0]));
+                self.setEditorTheme();
+                self.setEditorMode();
                 self.editor.setOptions(
                     {
-                        maxLines : 500
+                        maxLines : 500,
+                        minLines : 10
                     }
                 );
+                self.editor.setShowPrintMargin(false);
+                self.editor.getSession().setUseWrapMode(true);
                 _setEditorEventHandling.call(self);
                 _setEditorValueFromContentValue.call(self);
-            }, 2000);
+            });
 
         }
 
-        function setEditorTheme(theme) {
-            this.editor.setTheme(theme ? theme : this.model.get('defaultTheme'));
+        function setEditorTheme() {
+            this.editor.setTheme(this.model.get('currentThemeLocation'));
         }
 
-        function setEditorMode(mode) {
-            this.editor.getSession().setMode(mode ? mode : this.model.get('defaultMode'));
+        function setEditorMode() {
+            this.editor.getSession().setMode(this.model.get('currentModeLocation'));
         }
-
-//        function _setEditorValue() {
-//            if(!_.isUndefined(this.model.get('value'))) {
-//                this.ckeditor.setData(this.model.get('value'));
-//            }
-//        }
 
         function _setEditorEventHandling() {
             this.editor.on('blur', _setValueFromEditor.bind(this));
@@ -60,7 +60,10 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'ace'],
         }
 
         function _setEditorValueFromContentValue() {
-            this.editor.setValue('JorgenSpeeling');
+            var value = this.model.get('value');
+            if(!_.isUndefined(value)) {
+                this.editor.setValue(value);
+            }
         }
 
     });
