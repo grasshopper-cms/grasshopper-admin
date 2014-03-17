@@ -12,8 +12,8 @@ define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
                 min : 1,
                 max : 1,
                 options : {
-                    theme : '',
-                    language : ''
+                    theme : 'light',
+                    language : 'javascript'
                 },
                 label : '',
                 type : 'codeeditor',

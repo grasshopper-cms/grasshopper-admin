@@ -7,52 +7,26 @@ define(['grasshopperModel', 'resources', 'masseuse'], function (Model, resources
     return Model.extend({
         defaults : {
             resources : resources,
-            defaultTheme : 'ace/theme/monokai',
-            defaultMode : 'ace/mode/javascript',
             possibleLanguages : [ // these live ace/mode/<name underscore>
                 'javascript',
                 'html',
-                'css'
+                'css',
+                'json',
+                'markdown'
             ],
             possibleThemes : [ // these live ace/theme/<name underscore>
-                    'ambiance',
-                    'chaos',
-                    'chrome',
-                    'clouds',
-                    'clouds midnight',
-                    'cobalt',
-                    'crimson editor',
-                    'dawn',
-                    'dreamweaver',
-                    'eclipse',
-                    'github',
-                    'idle fingers',
-                    'katzenmilch',
-                    'kr theme',
-                    'kuroir',
-                    'merbivore',
-                    'merbivore soft',
-                    'mono industrial',
-                    'monokai',
-                    'pastel on dark',
-                    'solarized dark',
-                    'solarized light',
-                    'terminal',
-                    'textmate',
-                    'tomorrow',
-                    'tomorrow night',
-                    'tomorrow night blue',
-                    'tomorrow night bright',
-                    'tomorrow night eighties',
-                    'twilight',
-                    'vibrant ink',
-                    'xcode'
+                'light', // => github
+                'dark' // => monokai
             ],
-            currentThemeLocation : new ComputedProperty(['options.theme'], function(themeName) {
-                return 'ace/theme/' + themeName.replace(' ', '_');
+            currentThemeLocation : new ComputedProperty(['options'], function(options) {
+                if(options) {
+                    return 'ace/theme/' + options.theme.replace('light', 'github').replace('dark', 'monokai');
+                }
             }),
-            currentModeLocation : new ComputedProperty(['options.language'], function(languageName) {
-                return 'ace/mode/' + languageName.replace(' ', '_');
+            currentModeLocation : new ComputedProperty(['options'], function(options) {
+                if(options) {
+                    return 'ace/mode/' + options.language.replace(' ', '_');
+                }
             })
         }
     });
