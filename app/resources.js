@@ -156,6 +156,13 @@ define({
         modified : 'Modified'
     },
     plugins : {
+        codeEditor : {
+            language : 'Language',
+            theme : 'Theme'
+        },
+        embeddedType : {
+            contentType : 'Content Type'
+        },
         contentReference : {
             selectedContent : 'Selected Content',
             currentFolder : 'Current Folder',
