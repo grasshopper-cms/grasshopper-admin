@@ -132,6 +132,7 @@
             'breadcrumbWorker' : '../app/workers/breadcrumbWorker',
             'nodeWorker' : '../app/workers/nodeWorker',
             'urlWorker' : '../app/workers/urlWorker',
+            'cleanerWorker' : '../app/workers/cleanerWorker',
             'grasshopperCollection' : '../app/collections/grasshopperCollection',
             'userCollection' : '../app/collections/userCollection',
             'api' : '../app/api/api',
