@@ -5,6 +5,7 @@ module.exports = function (grunt) {
     var buildDirectory = grunt.config.get('buildDirectory');
 
     grunt.config('clean', {
+        options: { force: true },
         build : [buildDirectory],
         seedData : ['tasks/seedData']
     });
