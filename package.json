@@ -39,7 +39,7 @@
     "grunt-contrib-connect": "~0.7.1",
     "grunt-build-gh-pages": "0.1.1",
     "grunt-prompt": "~0.1.2",
-    "grunt-release-notes": "0.1.0"
+    "grunt-release-notes": "0.1.1"
   },
   "dependencies": {
     "grunt": "~0.4.1",
