@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['text!plugins/contentreference/nodeTree/template.html', 'plugins/contentreference/nodeTree/model',
-    'plugins/contentreference/binders', 'plugins/contentreference/nodeTree/binders'],
-    function (nodeTreeTemplate, nodeTreeModel, contentReferenceBinders, nodeTreeBinders) {
+define(['text!views/nodeTree/template.html', 'nodeTreeViewModel',
+    'nodeTreeViewBinders', 'appBinders'],
+    function (nodeTreeTemplate, nodeTreeModel, appBinders, nodeTreeViewBinders) {
         'use strict';
 
         return {
@@ -13,7 +13,7 @@ define(['text!plugins/contentreference/nodeTree/template.html', 'plugins/content
             wrapper: false,
             listeners : [],
             rivetsConfig : {
-                binders : [contentReferenceBinders, nodeTreeBinders]
+                binders : [appBinders, nodeTreeViewBinders]
             }
         };
     });

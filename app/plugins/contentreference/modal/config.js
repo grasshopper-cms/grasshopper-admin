@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!plugins/contentreference/modal/template.html', 'plugins/contentreference/modal/model',
-    'plugins/contentreference/binders'],
-    function (template, modalModel, contentReferenceBinders) {
+    'appBinders'],
+    function (template, modalModel, appBinders) {
     'use strict';
 
     return {
@@ -11,7 +11,7 @@ define(['text!plugins/contentreference/modal/template.html', 'plugins/contentref
         wrapper : false,
         template : template,
         rivetsConfig : {
-            binders : [contentReferenceBinders]
+            binders : [appBinders]
         },
         events : {
             'click #nodeTree' : 'stopAccordionPropagation',

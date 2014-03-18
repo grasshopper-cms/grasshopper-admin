@@ -1,10 +1,10 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config', 'jquery'],
-    function (GrasshopperBaseView, NodeTreeConfig, $) {
+define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
+    function (GrasshopperBaseView, NodeTreeViewConfig, $) {
         'use strict';
 
         return GrasshopperBaseView.extend({
-            defaultOptions : NodeTreeConfig,
+            defaultOptions : NodeTreeViewConfig,
             afterRender : afterRender,
             openFolder : openFolder,
             setSelectedNode : setSelectedNode
