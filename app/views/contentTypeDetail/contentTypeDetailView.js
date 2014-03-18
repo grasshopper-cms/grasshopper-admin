@@ -31,18 +31,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function afterRender() {
         this.$el.foundation();
 
-        this.$('.contentTypeFieldAccordion').accordion(
-            {
-                header: 'h4',
-                autoheight: false,
-                active: false,
-                alwaysOpen: false,
-                fillspace: false,
-                collapsible: true
-                //heightStyle: 'content'   //auto, fill, content
-            }
-        );
-
         this.listenTo(this.collection, 'change:type', _warnUserBeforeChangingType);
 
         _initializeSortableAccordions.call(this);
@@ -156,7 +144,11 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function _collapseAccordion() {
         this.$el.find('.accordionHeader').removeClass('activeHeader');
-        this.$el.find('.content').removeClass('active');
+        this.$el.find('.accordionContent').hide(
+            {
+                effect : 'blind'
+            }
+        );
     }
 
     function saveContentType() {
@@ -223,17 +215,31 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _initializeSortableAccordions() {
-        var $sortable = this.$('.accordion');
-        $sortable.sortable({
-            stop : _applyCollectionSort.bind(this, $sortable)
-        });
+        var $accordion = this.$('#contentTypeFieldAccordion');
+
+        $accordion
+            .accordion(
+            {
+                header : '.accordionHeader',
+                icons : false,
+                active : false,
+                collapsible : true,
+                heightStyle : 'content'
+            })
+            .sortable(
+            {
+                handle : '.accordionHeader',
+                axis : 'y',
+                stop : _applyCollectionSort.bind(this, $accordion)
+            }
+        );
     }
 
-    function _applyCollectionSort($sortable) {
+    function _applyCollectionSort($accordion) {
         var fields = [],
             self = this;
 
-        $sortable.find('.accordionHeader').each(function() {
+        $accordion.find('.accordionHeader').each(function() {
             fields.push(self.collection.get($(this).attr('modelid')));
         });
 
