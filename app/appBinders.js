@@ -1,9 +1,12 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'backbone'],
+    'pluginWrapperView', 'backbone', 'nodeTreeView'],
     function ($, _, masseuse,
-              PluginWrapperView, Backbone) {
+              PluginWrapperView, Backbone, NodeTreeView) {
+
         'use strict';
+
+        var ProxyProperty = masseuse.ProxyProperty;
 
         return {
             fieldwrapper : {
@@ -70,8 +73,27 @@ define(['jquery', 'underscore', 'masseuse',
                     el.removeEventListener('keypress', _callback.bind(this, el), false);
                     el.removeEventListener('blur', _callback.bind(this, el), false);
                 }
+            },
+            nodetree :  function(el, model) {
+                _appendNodeTreeView.call(this, el, model);
             }
         };
+
+        function _appendNodeTreeView(el, model) {
+            var nodeTreeView = new NodeTreeView({
+                appendTo : el,
+                modelData : _.extend({}, model.attributes, {
+                    allowedTypes : this.model.model.get('allowedContentTypes'),
+                    selectedContent : new ProxyProperty('selectedContent', this.model.model),
+                    inSetup : this.model.model.get('inSetup')
+                })
+            });
+
+            if(this.model.model.get('inSetup')) {
+                nodeTreeView.model.set('selectedNode',  new ProxyProperty('options.defaultNode', this.model.model));
+            }
+            this.model.view.addChild(nodeTreeView);
+        }
 
         function _callback(el, evt) {
             // listen for the enter key or Blur to save to the model.
@@ -79,6 +101,5 @@ define(['jquery', 'underscore', 'masseuse',
                 this.view.adapters[':'].publish(
                     this.model,this.keypath.substring(this.keypath.indexOf(':')+1), el.textContent);
             }
-
         }
     });

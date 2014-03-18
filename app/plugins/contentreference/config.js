@@ -1,9 +1,9 @@
 /*global define:false*/
 define(['text!plugins/contentreference/template.html', 'plugins/contentreference/model',
     'text!plugins/contentreference/setupTemplate.html', 'backbone',
-    'plugins/contentreference/binders', 'formatters'],
+    'appBinders', 'formatters'],
     function (contentReferencePluginTemplate, contentReferencePluginModel,
-              setupTemplate, Backbone, contentReferenceBinders, formatters) {
+              setupTemplate, Backbone, appBinders, formatters) {
         'use strict';
 
         return {
@@ -30,7 +30,7 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
             },
             rivetsConfig : {
                 formatters : [formatters],
-                binders : [contentReferenceBinders]
+                binders : [appBinders]
             },
             wrapper: false,
             listeners : []
