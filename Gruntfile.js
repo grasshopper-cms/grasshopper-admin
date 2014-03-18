@@ -30,6 +30,7 @@ module.exports = function (grunt) {
     grunt.registerTask('mergeData', ['copy:seedDataToApi', 'shell:mongomerge']);
 
     grunt.registerTask('build-no-optimize', 'Build and watch task', [
+        'clean:build',
         'setupBowerCopy',
         'copy:build',
         'copy:vendor',
@@ -73,6 +74,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', ['build-no-optimize']);
 // This is commented out, since ckEditor does not work on optimized build - aliasing to non optimized for now
 //    grunt.registerTask('build', [
+//        'clean:build',
 //        'setupBowerCopy',
 //        'copy:build',
 //        'copy:vendor',
