@@ -158,7 +158,8 @@ define({
     plugins : {
         codeEditor : {
             language : 'Language',
-            theme : 'Theme'
+            theme : 'Theme',
+            loading : 'LOADING CODE EDITOR...'
         },
         embeddedType : {
             contentType : 'Content Type'
