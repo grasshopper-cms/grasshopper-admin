@@ -11,21 +11,31 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         });
 
         function afterRender() {
-            _startCkeditor.call(this)
-                .done(
-                    _setEditorValue.bind(this),
-                    _setEditorEventHandling.bind(this)
-                );
+            if(this.model.get('inSetup')) {
+
+            } else {
+                _startCkeditor.call(this)
+                    .done(
+                        _setEditorValue.bind(this),
+                        _setEditorEventHandling.bind(this)
+                    );
+            }
+
         }
 
         function _startCkeditor() {
-            var $deferred = new $.Deferred();
+            var $deferred = new $.Deferred(),
+                self = this;
 
             _overRideWindowOpen.call(this);
+            _toggleLoadingSpinner.call(this);
 
-            this.ckeditor = this.$('#ckeditor').ckeditor(ckeditorConfig,
-                $deferred.resolve
-            ).editor;
+            require(['ckeditorAdapter'], function() {
+                self.ckeditor = self.$('#ckeditor').ckeditor(ckeditorConfig,
+                    _toggleLoadingSpinner.bind(self),
+                    $deferred.resolve
+                ).editor;
+            });
 
             return $deferred.promise();
         }
@@ -48,6 +58,10 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
             this.oldWindowOpen = window.open;
 
             window.open = window.opener = _startFileBrowser.bind(this);
+        }
+
+        function _toggleLoadingSpinner() {
+            this.model.toggle('loading');
         }
 
         function _startFileBrowser() {

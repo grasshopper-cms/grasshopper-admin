@@ -74,8 +74,7 @@ require([
     'abide',
     'modernizr',
     'sortable',
-    'accordion',
-    'ckeditorAdapter' //TODO: I might not need this line.
+    'accordion'
 ],
     /**
      * @param $
