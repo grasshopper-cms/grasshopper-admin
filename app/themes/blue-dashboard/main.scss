@@ -442,23 +442,6 @@ body, html {
 
   // Content Type Detail View
   #contentTypeDetailView {
-    .accordionHeader {
-      &:hover {
-        tr{
-          background-color: #F1F1F1;
-        }
-      }
-
-      &.last {
-        user-select: none;
-        cursor: default;
-        background-color: transparent;
-        height: 35px;
-        &:hover {
-          background-color: transparent;
-        }
-      }
-    }
 
     .activeHeader {
       tr{
@@ -466,13 +449,16 @@ body, html {
       }
     }
 
-    .dragOver {
-      background-color: transparent !important;
-      padding-top: 35px !important;
-    }
-
-    .content {
+    .accordionContent {
       padding-bottom: 0;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-left: 10px;
+      background-color: #EEEBEB;
+      border: solid 1px #B1B1B1;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 2px;
 
       fieldset {
         margin-left: 18px;
@@ -485,13 +471,6 @@ body, html {
       }
     }
 
-    .active {
-      background-color: #EEEBEB;
-      border: solid 1px #B1B1B1;
-      margin-left: 10px;
-      margin-right: 10px;
-      margin-bottom: 2px;
-    }
   }
 
   #addContent {
