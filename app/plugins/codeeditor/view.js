@@ -5,9 +5,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-            afterRender : afterRender,
-            setEditorTheme : setEditorTheme,
-            setEditorMode : setEditorMode
+            afterRender : afterRender
         });
 
         function afterRender() {
@@ -22,32 +20,48 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
         function _startCodeEditor() {
             var self = this;
 
+            _toggleLoadingSpinner.call(this);
+
             require(['ace/editor', 'ace/virtual_renderer'], function(editor, virtualRenderer) {
                 var Editor = editor.Editor,
                     VirtualRenderer = virtualRenderer.VirtualRenderer;
 
                 self.editor = new Editor(new VirtualRenderer(self.$('#codeEditor')[0]));
-                self.setEditorTheme();
-                self.setEditorMode();
-                self.editor.setOptions(
-                    {
-                        maxLines : 500,
-                        minLines : 10
-                    }
-                );
-                self.editor.setShowPrintMargin(false);
-                self.editor.getSession().setUseWrapMode(true);
+
+                _setEditorLines.call(self);
+                _setEditorPrintMargin.call(self);
+                _setEditorWrapMode.call(self);
+                _setEditorTheme.call(self);
+                _setEditorMode.call(self);
                 _setEditorEventHandling.call(self);
                 _setEditorValueFromContentValue.call(self);
+                _toggleLoadingSpinner.call(self);
             });
 
         }
 
-        function setEditorTheme() {
+        function _setEditorLines() {
+            this.editor.setOptions(
+                {
+                    maxLines : 500,
+                    minLines : 10
+                }
+            );
+        }
+
+        function _setEditorPrintMargin() {
+            this.editor.setShowPrintMargin(false);
+        }
+
+        function _setEditorWrapMode() {
+            this.editor.getSession().setUseWrapMode(true);
+        }
+
+        function _setEditorTheme() {
             this.editor.setTheme(this.model.get('currentThemeLocation'));
         }
 
-        function setEditorMode() {
+        function _setEditorMode() {
             this.editor.getSession().setMode(this.model.get('currentModeLocation'));
         }
 
@@ -64,6 +78,10 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
             if(!_.isUndefined(value)) {
                 this.editor.setValue(value);
             }
+        }
+
+        function _toggleLoadingSpinner() {
+            this.model.toggle('loading');
         }
 
     });
