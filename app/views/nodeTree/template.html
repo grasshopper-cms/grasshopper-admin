@@ -12,10 +12,29 @@
         <ul data-rv-show="model:content | haslength" class="no-bullet">
 
             <li data-rv-each-item="model:content:" class="nodeTreeSubNode">
+
                 <input data-rv-id="item.cid" type="radio" name="selectedContent"
-                       data-rv-checked="model:selectedContent" data-rv-value="item:_id">
-                <label data-rv-for="item.cid">{{item:label}}</label>
+                       data-rv-checked="model:selectedContent" data-rv-value="item:_id" data-rv-hide="model:nodeTreeType | equals file">
+
+                <label data-rv-for="item.cid">
+
+                    <span data-rv-show="model:nodeTreeType | equals content">
+                        {{item:label}}
+                    </span>
+
+                    <span data-rv-show="model:nodeTreeType | equals file">
+                        <img data-rv-id="item:url" class="th nodeTreeThumbNail" data-rv-src="item:url" data-rv-alt="item:fileName">
+                        <label data-rv-for="item:url" class="right inline">
+                            {{item:fileName}}
+                        </label>
+                    </span>
+
+                </label>
+
             </li>
+
+
+
 
         </ul>
 

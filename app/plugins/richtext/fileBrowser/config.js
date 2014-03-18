@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!plugins/richtext/fileBrowser/template.html', 'plugins/richtext/fileBrowser/model',
-    'plugins/richtext/binders'],
+    'appBinders'],
     function (richTextFileBrowserPluginTemplate, richTextFileBrowserPluginModel,
-              richTextBinders) {
+              appBinders) {
 
         'use strict';
 
@@ -20,7 +20,7 @@ define(['text!plugins/richtext/fileBrowser/template.html', 'plugins/richtext/fil
             wrapper: false,
             listeners : [],
             rivetsConfig : {
-                binders : [richTextBinders]
+                binders : [appBinders]
             }
         };
     });
