@@ -46,7 +46,7 @@
             'router' : '../app/router',
             'alerts' : '../app/vendor/foundation/js/foundation/foundation.alert',
             'dropdown' : '../app/vendor/foundation/js/foundation/foundation.dropdown',
-            'accordion' : '../app/vendor/foundation/js/foundation/foundation.accordion',
+            'accordion' : '../app/vendor/jquery.ui/ui/jquery.ui.accordion',
             'tabs' : '../app/vendor/foundation/js/foundation/foundation.tab',
             'tooltip' : '../app/vendor/foundation/js/foundation/foundation.tooltip',
             'abide' : '../app/vendor/foundation/js/foundation/foundation.abide',

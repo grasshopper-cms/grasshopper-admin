@@ -30,6 +30,19 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function afterRender() {
         this.$el.foundation();
+
+        this.$('.contentTypeFieldAccordion').accordion(
+            {
+                header: 'h4',
+                autoheight: false,
+                active: false,
+                alwaysOpen: false,
+                fillspace: false,
+                collapsible: true
+                //heightStyle: 'content'   //auto, fill, content
+            }
+        );
+
         this.listenTo(this.collection, 'change:type', _warnUserBeforeChangingType);
 
         _initializeSortableAccordions.call(this);

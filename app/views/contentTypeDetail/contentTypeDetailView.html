@@ -55,15 +55,19 @@
                 </tbody>
             </table>
 
-            <dl class="accordion" data-accordion>
+                <div>
 
-                <dd data-rv-each-field="collection:">
+                </div>
 
-                    <a data-rv-href="field.cid | prepend #" class="accordionHeader" data-rv-modelid="field.cid" style="padding: 0;">
-                        <div class="row">
-                            <div class="small-12 columns">
-                                <table style="margin-bottom: 0; table-layout: fixed;">
-                                    <tbody>
+                <div data-rv-each-field="collection:" class="contentTypeFieldAccordion">
+
+                    <h4>
+
+                        <a data-rv-modelid="field.cid" style="padding: 0;">
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <table style="margin-bottom: 0; table-layout: fixed;">
+                                        <tbody>
                                         <tr>
                                             <td style="width: 30%;"><i class="icon-sort"></i>{{field:label | existsOr -- | spaceBefore}}</td>
                                             <td>{{field:type | existsOr --}}</td>
@@ -75,11 +79,13 @@
                                                 </span>
                                             </td>
                                         </tr>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+
+                    </h4>
 
                     <div data-rv-id="field.cid" class="content" data-rv-addclass="field:active">
 
@@ -205,9 +211,8 @@
 
                     </div>
 
-                </dd>
+                </div>
 
-            </dl>
         </div>
     </div>
     <div class="row">
