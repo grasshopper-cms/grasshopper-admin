@@ -1,4 +1,4 @@
-define(['grasshopperModel', 'resources', 'masseuse'], function (Model, resources, masseuse) {
+define(['grasshopperModel', 'resources', 'masseuse', 'underscore'], function (Model, resources, masseuse, _) {
 
     'use strict';
 
@@ -7,6 +7,7 @@ define(['grasshopperModel', 'resources', 'masseuse'], function (Model, resources
     return Model.extend({
         defaults : {
             resources : resources,
+            loading : false,
             possibleLanguages : [ // these live ace/mode/<name underscore>
                 'javascript',
                 'html',
@@ -19,12 +20,12 @@ define(['grasshopperModel', 'resources', 'masseuse'], function (Model, resources
                 'dark' // => monokai
             ],
             currentThemeLocation : new ComputedProperty(['options'], function(options) {
-                if(options) {
+                if(_.has(options, 'theme')) {
                     return 'ace/theme/' + options.theme.replace('light', 'github').replace('dark', 'monokai');
                 }
             }),
             currentModeLocation : new ComputedProperty(['options'], function(options) {
-                if(options) {
+                if(_.has(options, 'language')) {
                     return 'ace/mode/' + options.language.replace(' ', '_');
                 }
             })
