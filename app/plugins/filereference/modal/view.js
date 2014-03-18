@@ -35,7 +35,7 @@ define(['grasshopperBaseView', 'plugins/filereference/modal/config', 'jquery'],
             if(this.model.get('inRoot')){
                 $deferred.resolve();
             } else {
-                this.model.get('files').fetch()
+                this.model.get('content').fetch()
                     .done($deferred.resolve);
             }
 

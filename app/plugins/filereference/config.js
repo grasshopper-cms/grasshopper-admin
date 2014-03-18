@@ -1,9 +1,9 @@
 /*global define:false*/
 define(['text!plugins/filereference/template.html', 'plugins/filereference/model',
     'text!plugins/filereference/setupTemplate.html', 'backbone',
-    'plugins/filereference/binders', 'formatters'],
+    'appBinders', 'formatters'],
     function (fileReferencePluginTemplate, fileReferencePluginModel,
-              setupTemplate, Backbone, fileReferenceBinders, formatters) {
+              setupTemplate, Backbone, appBinders, formatters) {
         'use strict';
 
         return {
@@ -29,7 +29,7 @@ define(['text!plugins/filereference/template.html', 'plugins/filereference/model
             },
             rivetsConfig : {
                 formatters : [formatters],
-                binders : [fileReferenceBinders]
+                binders : [appBinders]
             },
             wrapper: false,
             listeners : []
