@@ -18,8 +18,7 @@ define(['text!plugins/contentreference/modal/template.html', 'plugins/contentref
             'click #confirm' : 'confirmModal',
             'click #cancel' : 'cancelModal'
         },
-        listeners : [],
-        mastheadButtons : []
+        listeners : []
     };
 });
 

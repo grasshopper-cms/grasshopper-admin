@@ -10,6 +10,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             idAttribute : '_id',
             defaults : {
                 loading : true,
+                nodeTreeType : 'content',
                 inRoot : new ComputedProperty(['_id'], function(_id) {
                     return _id === '0';
                 }),

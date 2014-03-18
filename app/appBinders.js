@@ -85,7 +85,8 @@ define(['jquery', 'underscore', 'masseuse',
                 modelData : _.extend({}, model.attributes, {
                     allowedTypes : this.model.model.get('allowedContentTypes'),
                     selectedContent : new ProxyProperty('selectedContent', this.model.model),
-                    inSetup : this.model.model.get('inSetup')
+                    inSetup : this.model.model.get('inSetup'),
+                    nodeTreeType : this.model.model.get('nodeTreeType')
                 })
             });
 
