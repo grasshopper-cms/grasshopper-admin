@@ -185,7 +185,8 @@ define({
             viewSelectedFile : 'View Selected File'
         },
         richText : {
-            selectFile : 'Select File'
+            selectFile : 'Select File',
+            loading : 'LOADING RICH TEXT...'
         }
     },
     // General Text (reusable) - try to keep it alphabetized
