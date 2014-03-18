@@ -29,7 +29,8 @@
     "jqueryUIDependencies" : {
         "widgetFactory" : "vendor/jquery.ui/ui/jquery.ui.widget",
         "mouseInteraction" : "vendor/jquery.ui/ui/jquery.ui.mouse",
-        "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable"
+        "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable",
+        "accordion" : "vendor/jquery.ui/ui/jquery.ui.accordion"
     },
 
     "views" : {
