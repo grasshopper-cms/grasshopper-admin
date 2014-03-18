@@ -10,7 +10,8 @@ define(['grasshopperBaseView', 'plugins/richtext/fileBrowser/config'],
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
             confirmModal : confirmModal,
-            cancelModal : cancelModal
+            cancelModal : cancelModal,
+            setSelectedNode : setSelectedNode
         });
 
         function beforeRender($deferred) {
@@ -36,7 +37,7 @@ define(['grasshopperBaseView', 'plugins/richtext/fileBrowser/config'],
         }
 
         function confirmModal () {
-            this.$deferred.resolve(this.model.get('selectedFile'));
+            this.$deferred.resolve(this.model.get('selectedContent'));
             _removeModal.call(this);
         }
 
@@ -47,6 +48,10 @@ define(['grasshopperBaseView', 'plugins/richtext/fileBrowser/config'],
 
         function _removeModal () {
             this.remove();
+        }
+
+        function setSelectedNode() {
+            return false;
         }
 
     });

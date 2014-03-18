@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/nodeTree/template.html', 'nodeTreeViewModel',
-    'nodeTreeViewBinders', 'appBinders'],
-    function (nodeTreeTemplate, nodeTreeModel, appBinders, nodeTreeViewBinders) {
+    'nodeTreeViewBinders', 'appBinders', 'formatters'],
+    function (nodeTreeTemplate, nodeTreeModel, appBinders, nodeTreeViewBinders, formatters) {
         'use strict';
 
         return {
@@ -13,6 +13,7 @@ define(['text!views/nodeTree/template.html', 'nodeTreeViewModel',
             wrapper: false,
             listeners : [],
             rivetsConfig : {
+                formatters : [formatters],
                 binders : [appBinders, nodeTreeViewBinders]
             }
         };
