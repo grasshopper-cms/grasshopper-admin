@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!plugins/richtext/fileBrowser/template.html', 'plugins/richtext/fileBrowser/model',
+define(['text!plugins/richtext/fileBrowserModal/template.html', 'plugins/richtext/fileBrowserModal/model',
     'appBinders'],
     function (richTextFileBrowserPluginTemplate, richTextFileBrowserPluginModel,
               appBinders) {

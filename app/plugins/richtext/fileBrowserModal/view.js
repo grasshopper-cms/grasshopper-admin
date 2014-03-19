@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/richtext/fileBrowser/config'],
+define(['grasshopperBaseView', 'plugins/richtext/fileBrowserModal/config'],
     function (GrasshopperBaseView, config) {
 
         'use strict';

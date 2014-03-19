@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'jquery',
-    'plugins/richtext/fileBrowser/view', 'plugins/richtext/ckeditorConfig'],
+    'plugins/richtext/fileBrowserModal/view', 'plugins/richtext/ckeditorConfig'],
     function (GrasshopperBaseView, _, $,
               FileBrowserView, ckeditorConfig) {
 
@@ -44,20 +44,16 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function _setEditorValue() {
-            console.log('setEditorValue was called');
             if(!_.isUndefined(this.model.get('value'))) {
                 this.ckeditor.setData(this.model.get('value'));
             }
         }
 
         function _setEditorEventHandling() {
-            console.log('setEditorValue event handling');
             this.ckeditor.on('change', _setContentValue.bind(this));
         }
 
         function _setContentValue() {
-            console.log('setEditorValue get value');
-            console.log(this.ckeditor.getData());
             this.model.set('value', this.ckeditor.getData());
         }
 
@@ -102,8 +98,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function _setUrlOfFile(selectedFile) {
-            window.CKEDITOR.tools.callFunction(
-                window.CKEDITOR.instances['ckeditor' + this.model.cid], selectedFile);
+            window.CKEDITOR.tools.callFunction(this.ckeditor._.filebrowserFn, selectedFile);
         }
 
     });
