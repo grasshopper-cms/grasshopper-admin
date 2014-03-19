@@ -99,7 +99,8 @@
         "contentTypeDetailView+" : {
             "" : "views/contentTypeDetail/contentTypeDetailView",
             "Config" : "views/contentTypeDetail/contentTypeDetailViewConfig",
-            "Model" : "views/contentTypeDetail/contentTypeDetailViewModel"
+            "Model" : "views/contentTypeDetail/contentTypeDetailViewModel",
+            "FieldsCollection" : "views/contentTypeDetail/contentTypeDetailViewFieldsCollection"
         },
 
         "contentTypeIndexView+" : {
