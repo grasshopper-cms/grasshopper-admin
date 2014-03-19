@@ -24,6 +24,7 @@
 
                     <span data-rv-show="model:nodeTreeType | equals file">
                         <img data-rv-id="item:url" class="th nodeTreeThumbNail" data-rv-src="item:url" data-rv-alt="item:fileName">
+
                         <label data-rv-for="item:url" class="right inline">
                             {{item:fileName}}
                         </label>
@@ -35,14 +36,16 @@
 
         </ul>
 
-        <ul data-rv-hide="model:content | haslength" class="no-bullet">
-            <li data-rv-show="model:nodeTreeType | equals content">
-                {{model:resources->nodeTree->emptyFolder->content}}
-            </li>
-            <li data-rv-show="model:nodeTreeType | equals file">
-                {{model:resources->nodeTree->emptyFolder->files}}
-            </li>
-        </ul>
+        <div data-rv-hide="model:inSetup">
+            <ul data-rv-hide="model:content | haslength" class="no-bullet">
+                <li data-rv-show="model:nodeTreeType | equals content">
+                    {{model:resources->nodeTree->emptyFolder->content}}
+                </li>
+                <li data-rv-show="model:nodeTreeType | equals file">
+                    {{model:resources->nodeTree->emptyFolder->files}}
+                </li>
+            </ul>
+        </div>
 
     </div>
 
