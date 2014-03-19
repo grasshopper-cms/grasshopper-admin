@@ -155,6 +155,12 @@ define({
         size : 'Size',
         modified : 'Modified'
     },
+    nodeTree : {
+        emptyFolder : {
+            content : 'This folder has no content.',
+            files : 'This folder has no files.'
+        }
+    },
     plugins : {
         codeEditor : {
             language : 'Language',
@@ -185,7 +191,8 @@ define({
             viewSelectedFile : 'View Selected File'
         },
         richText : {
-            selectFile : 'Select File'
+            selectFile : 'Select File',
+            loading : 'LOADING RICH TEXT...'
         }
     },
     // General Text (reusable) - try to keep it alphabetized

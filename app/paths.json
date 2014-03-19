@@ -29,7 +29,8 @@
     "jqueryUIDependencies" : {
         "widgetFactory" : "vendor/jquery.ui/ui/jquery.ui.widget",
         "mouseInteraction" : "vendor/jquery.ui/ui/jquery.ui.mouse",
-        "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable"
+        "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable",
+        "accordion" : "vendor/jquery.ui/ui/jquery.ui.accordion"
     },
 
     "views" : {
@@ -153,6 +154,13 @@
             "" : "views/nodeIndex/nodeIndexView",
             "Config" : "views/nodeIndex/nodeIndexViewConfig",
             "Model" : "views/nodeIndex/nodeIndexViewModel"
+        },
+
+        "nodeTreeView+" : {
+            "" : "views/nodeTree/nodeTreeView",
+            "Config" : "views/nodeTree/nodeTreeViewConfig",
+            "Model" : "views/nodeTree/nodeTreeViewModel",
+            "Binders" : "views/nodeTree/nodeTreeViewBinders"
         },
 
         "pluginWrapperView+" : {

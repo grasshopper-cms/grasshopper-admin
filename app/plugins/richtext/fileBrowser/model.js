@@ -7,6 +7,7 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection'],
             defaults : {
                 resources : resources,
                 showTree : false,
+                nodeTreeType : 'file',
                 header : resources.plugins.richText.selectFile
             }
         });

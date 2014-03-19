@@ -1,27 +1,30 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config', 'jquery'],
-    function (GrasshopperBaseView, NodeTreeConfig, $) {
+define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
+    function (GrasshopperBaseView, NodeTreeViewConfig, $) {
         'use strict';
 
         return GrasshopperBaseView.extend({
-            defaultOptions : NodeTreeConfig,
-            openFolder : openFolder,
+            defaultOptions : NodeTreeViewConfig,
+            afterRender : afterRender,
             setSelectedNode : setSelectedNode
         });
 
-        function openFolder() {
-            var self = this;
+        function afterRender() {
+            _initializeAccordions.call(this);
+            _buildSubNodeAccordions.call(this);
+        }
 
-            this.model.toggle('folderOpen');
+        function _openFolder() {
+            var self = this;
 
             if (!this.model.get('hasFetchedContent')) {
                 _toggleLoadingSpinner.call(this);
-                _fetchChildNodes.call(this)
-                    .then(_fetchChildContent.bind(this))
+                _fetchChildContent.call(this)
                     .then(function() {
                         self.$el.foundation();
                         _toggleLoadingSpinner.call(self);
                         self.model.toggle('hasFetchedContent');
+                        return true;
                     });
             }
 
@@ -56,6 +59,30 @@ define(['grasshopperBaseView', 'plugins/contentreference/nodeTree/config', 'jque
 
         function _toggleLoadingSpinner() {
             this.model.toggle('loading');
+        }
+
+        function _initializeAccordions() {
+            var $accordion = this.$el;
+
+            $accordion
+                .accordion(
+                {
+                    header : '#nodeTreeAccordionHeader' + this.model.cid,
+                    icons : {
+                        header : 'icon-folder-close',
+                        activeHeader : 'icon-folder-open'
+                    },
+                    active : false,
+                    collapsible : true,
+                    heightStyle : 'content',
+                    beforeActivate: _openFolder.bind(this)
+                });
+        }
+
+        function _buildSubNodeAccordions() {
+            _toggleLoadingSpinner.call(this);
+            _fetchChildNodes.call(this)
+                .done(_toggleLoadingSpinner.bind(this));
         }
 
     });
