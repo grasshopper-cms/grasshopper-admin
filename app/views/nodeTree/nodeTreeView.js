@@ -6,7 +6,6 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeViewConfig,
             afterRender : afterRender,
-            openFolder : openFolder,
             setSelectedNode : setSelectedNode
         });
 
@@ -15,7 +14,7 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
             _buildSubNodeAccordions.call(this);
         }
 
-        function openFolder() {
+        function _openFolder() {
             var self = this;
 
             if (!this.model.get('hasFetchedContent')) {
@@ -25,6 +24,7 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
                         self.$el.foundation();
                         _toggleLoadingSpinner.call(self);
                         self.model.toggle('hasFetchedContent');
+                        return true;
                     });
             }
 
@@ -62,20 +62,20 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
         }
 
         function _initializeAccordions() {
-            var self = this,
-                $accordion = self.$el;
+            var $accordion = this.$el;
 
             $accordion
                 .accordion(
                 {
-                    header : '#nodeTreeAccordionHeader' + self.model.cid,
+                    header : '#nodeTreeAccordionHeader' + this.model.cid,
                     icons : {
                         header : 'icon-folder-close',
                         activeHeader : 'icon-folder-open'
                     },
                     active : false,
                     collapsible : true,
-                    heightStyle : 'content'
+                    heightStyle : 'content',
+                    beforeActivate: _openFolder.bind(this)
                 });
         }
 

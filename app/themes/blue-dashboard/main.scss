@@ -485,28 +485,33 @@ body, html {
 
   }
 
-  // Accordion Node Tree
+  // Node Tree
   #nodeTree {
     max-height: 700px;
     overflow: scroll;
+    border: 1px solid #999;
+    padding: 5px;
+    margin-bottom: 3px;
 
-    a {
-      padding-top: 0;
-      padding-bottom: 0;
-      padding-right: 0;
+    .nodeTree {
+      padding-bottom: 5px;
     }
-    .content {
-      padding-top: 0;
-      &.active {
-        border: none;
+
+    .nodeTreeAccordionHeader {
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .nodeTreeAccordionContent {
+      margin-bottom: 0;
+      padding-left: 15px;
+      input {
+        margin-bottom: 0;
       }
 
-      .nodeTreeContent {
+      ul {
         margin-bottom: 0;
-        padding-left: 1rem;
-        input {
-          margin-bottom: 0;
-        }
       }
     }
 
