@@ -33,7 +33,6 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
             require(['ckeditorAdapter'], function() {
                 self.ckeditor = self.$('#ckeditor').ckeditor(ckeditorConfig,
                     function() {
-                        console.log('this callback fired');
                         _toggleLoadingSpinner.call(self);
                         $deferred.resolve();
                     }).editor;
@@ -43,20 +42,16 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function _setEditorValue() {
-            console.log('editor value was fired');
             if(!_.isUndefined(this.model.get('value'))) {
                 this.ckeditor.setData(this.model.get('value'));
             }
         }
 
         function _setEditorEventHandling() {
-            console.log('event handling was fired');
             this.ckeditor.on('blur', _setContentValue.bind(this));
         }
 
         function _setContentValue() {
-            console.log('this fired');
-            console.log(this.ckeditor.getData());
             this.model.set('value', this.ckeditor.getData());
         }
 
