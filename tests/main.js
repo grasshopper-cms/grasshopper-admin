@@ -87,6 +87,7 @@
             'contentTypeDetailView' : '../app/views/contentTypeDetail/contentTypeDetailView',
             'contentTypeDetailViewConfig' : '../app/views/contentTypeDetail/contentTypeDetailViewConfig',
             'contentTypeDetailViewModel' : '../app/views/contentTypeDetail/contentTypeDetailViewModel',
+            'contentTypeDetailViewFieldsCollection' : '../app/views/contentTypeDetail/contentTypeDetailViewFieldsCollection',
             'contentTypeIndexView' : '../app/views/contentTypeIndex/contentTypeIndexView',
             'contentTypeIndexViewConfig' : '../app/views/contentTypeIndex/contentTypeIndexViewConfig',
             'contentTypeIndexViewModel' : '../app/views/contentTypeIndex/contentTypeIndexViewModel',
