@@ -7,7 +7,8 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         'use strict';
 
         return GrasshopperBaseView.extend({
-            afterRender : afterRender
+            afterRender : afterRender,
+            remove : remove
         });
 
         function afterRender() {
@@ -17,7 +18,8 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
                 _startCkeditor.call(this)
                     .done(
                         _setEditorValue.bind(this),
-                        _setEditorEventHandling.bind(this)
+                        _setEditorEventHandling.bind(this),
+                        _overRideWindowOpen.bind(this)
                     );
             }
 
@@ -27,11 +29,11 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
             var $deferred = new $.Deferred(),
                 self = this;
 
-            _overRideWindowOpen.call(this);
             _toggleLoadingSpinner.call(this);
 
             require(['ckeditorAdapter'], function() {
-                self.ckeditor = self.$('#ckeditor').ckeditor(ckeditorConfig,
+
+                self.ckeditor = self.$('#ckeditor' + self.model.cid).ckeditor(ckeditorConfig,
                     function() {
                         _toggleLoadingSpinner.call(self);
                         $deferred.resolve();
@@ -42,16 +44,20 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function _setEditorValue() {
+            console.log('setEditorValue was called');
             if(!_.isUndefined(this.model.get('value'))) {
                 this.ckeditor.setData(this.model.get('value'));
             }
         }
 
         function _setEditorEventHandling() {
-            this.ckeditor.on('blur', _setContentValue.bind(this));
+            console.log('setEditorValue event handling');
+            this.ckeditor.on('change', _setContentValue.bind(this));
         }
 
         function _setContentValue() {
+            console.log('setEditorValue get value');
+            console.log(this.ckeditor.getData());
             this.model.set('value', this.ckeditor.getData());
         }
 
@@ -59,6 +65,15 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
             this.oldWindowOpen = window.open;
 
             window.open = window.opener = _startFileBrowser.bind(this);
+        }
+
+        function remove() {
+            if(!this.model.get('inSetup')) {
+                window.open = this.oldWindowOpen;
+                window.CKEDITOR.instances['ckeditor' + this.model.cid].destroy();
+            }
+
+            GrasshopperBaseView.prototype.remove.apply(this, arguments);
         }
 
         function _toggleLoadingSpinner() {
@@ -87,7 +102,8 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function _setUrlOfFile(selectedFile) {
-            window.CKEDITOR.tools.callFunction(0, selectedFile);
+            window.CKEDITOR.tools.callFunction(
+                window.CKEDITOR.instances['ckeditor' + this.model.cid], selectedFile);
         }
 
     });
