@@ -7,9 +7,7 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
-            afterRender : afterRender,
-            stopPropagation : stopPropagation,
-            toggleExpandArrow : toggleExpandArrow
+            afterRender : afterRender
         });
 
         function beforeRender($deferred) {
@@ -19,6 +17,8 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         function afterRender() {
             this.$el.foundation();
+
+            _initializeAccordions.call(this);
         }
 
         function _getAvailableContentTypes() {
@@ -74,20 +74,19 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             this.model.set('accordionLabel', new ProxyProperty('value.' + fieldToUseAsLabel, this.model));
         }
 
-        function stopPropagation(e) {
-            e.stopPropagation();
-        }
+        function _initializeAccordions() {
+            var $accordion = this.$('#embeddedTypeAccordion');
 
-        function toggleExpandArrow(e) {
-            var $toToggle;
-
-            if(e.target.localName === 'i') {
-                $toToggle = $(e.target.parentElement);
-            } else {
-                $toToggle = $(e.target);
-            }
-            $toToggle.next().slideToggle('slow');
-            this.model.toggle('accordionOpen');
+            $accordion.accordion({
+                header : '.accordionHeader',
+                icons : {
+                    header : 'icon-chevron-right',
+                    activeHeader : 'icon-chevron-down'
+                },
+                active : false,
+                collapsible : true,
+                heightStyle : 'content'
+            });
         }
 
     });

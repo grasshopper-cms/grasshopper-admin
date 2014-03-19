@@ -14,9 +14,10 @@
         <div class="row" data-rv-hide="model:loading">
             <div id="nodeTree">
 
-                <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
+                <div data-rv-each-node="model:children:" data-rv-nodetree="node"></div>
 
                 <ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">
+
                     <li data-rv-each-file="model:files:">
                         <input data-rv-id="file.cid" type="radio" name="selectedFile"
                                data-rv-value="file:url" data-rv-checked="model:selectedFile">
@@ -25,6 +26,7 @@
                             <label data-rv-for="file:url" class="right inline">{{file:fileName}}</label>
                         </label>
                     </li>
+
                 </ul>
 
             </div>

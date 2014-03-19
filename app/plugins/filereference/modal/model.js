@@ -1,5 +1,5 @@
 define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore',
-    'plugins/filereference/fileDetailModel'],
+    'views/nodeTree/nodeTreeFileDetailModel'],
     function (Model, resources, grasshopperCollection, constants, masseuse, _,
               fileDetailModel) {
 
@@ -12,14 +12,15 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             idAttribute : '_id',
             defaults : {
                 loading : true,
+                nodeTreeType : 'file',
                 inRoot : new ComputedProperty(['_id'], function(_id) {
                     return _id === '0';
                 }),
                 folderLabel : new ComputedProperty(['_id', 'label'], function(_id, label) {
                     return _id === '0' ? 'Root' : label;
                 }),
-                selectedFileName : new ComputedProperty(['selectedFile'], function(selectedFile) {
-                    return (selectedFile) ? _.last(selectedFile.split('/')) : '';
+                selectedContentName : new ComputedProperty(['selectedContent'], function(selectedContent) {
+                    return (selectedContent) ? _.last(selectedContent.split('/')) : '';
                 }),
                 resources : resources
             },
@@ -37,7 +38,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 }
             }))());
 
-            this.set('files', new (grasshopperCollection.extend({
+            this.set('content', new (grasshopperCollection.extend({
                 model : fileDetailModel,
                 url : function() {
                     return constants.api.assets.url.replace(':id', self.get('_id'));

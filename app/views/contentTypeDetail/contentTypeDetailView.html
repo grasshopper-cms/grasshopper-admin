@@ -55,33 +55,31 @@
                 </tbody>
             </table>
 
-            <dl class="accordion" data-accordion>
+            <section id="contentTypeFieldAccordion">
 
-                <dd data-rv-each-field="collection:">
+                <div data-rv-each-field="collection:">
 
-                    <a data-rv-href="field.cid | prepend #" class="accordionHeader" data-rv-modelid="field.cid" style="padding: 0;">
-                        <div class="row">
-                            <div class="small-12 columns">
-                                <table style="margin-bottom: 0; table-layout: fixed;">
-                                    <tbody>
-                                        <tr>
-                                            <td style="width: 30%;"><i class="icon-sort"></i>{{field:label | existsOr -- | spaceBefore}}</td>
-                                            <td>{{field:type | existsOr --}}</td>
-                                            <td>{{field:required | booleanToYesNo}}</td>
-                                            <td>{{field:min | existsOr --}}min / {{field:max | existsOr --}}max</td>
-                                            <td style="text-align: center;">
-                                                <span data-rv-on-click="view.removeFieldFromCollection">
-                                                    <i class="icon-trash"></i>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="row accordionHeader" data-rv-modelid="field.cid">
+                        <div class="small-12 columns">
+                            <table style="margin-bottom: 0; table-layout: fixed;">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 30%;"><i class="icon-sort"></i>{{field:label | existsOr -- | spaceBefore}}</td>
+                                        <td>{{field:type | existsOr --}}</td>
+                                        <td>{{field:required | booleanToYesNo}}</td>
+                                        <td>{{field:min | existsOr --}}min / {{field:max | existsOr --}}max</td>
+                                        <td style="text-align: center;">
+                                            <span data-rv-on-click="view.removeFieldFromCollection">
+                                                <i class="icon-trash"></i>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </a>
+                    </div>
 
-                    <div data-rv-id="field.cid" class="content" data-rv-addclass="field:active">
+                    <div data-rv-id="field.cid" class="accordionContent" data-rv-addclass="field:active">
 
                         <div class="row">
                             <div class="large-12 small-centered columns">
@@ -205,9 +203,10 @@
 
                     </div>
 
-                </dd>
+                </div>
 
-            </dl>
+            </section>
+
         </div>
     </div>
     <div class="row">
