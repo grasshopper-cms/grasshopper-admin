@@ -17,11 +17,13 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.createContent,
-                    href : constants.internalRoutes.addContent
+                    href : constants.internalRoutes.addContent,
+                    displayInRoot : false
                 },
                 {
                     text : resources.mastheadButtons.uploadFile,
-                    href : constants.internalRoutes.createAssets
+                    href : constants.internalRoutes.createAssets,
+                    displayInRoot : false
                 },
                 {
                     text : resources.mastheadButtons.createFolder,
