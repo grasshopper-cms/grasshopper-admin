@@ -13,12 +13,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         });
 
         function beforeRender ($deferred) {
-            // TODO: This node ID check is done in a bunch of different Views. Move this somewhere else to DRY this up.
-            if (this.model.get('node._id') !== '0') {
-                _handleCreateContent.call(this, $deferred);
-            } else {
-                _createContentInRoot.call(this, $deferred);
-            }
+            _handleCreateContent.call(this, $deferred);
         }
 
         function afterRender() {
@@ -141,14 +136,6 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _handleFailedContentTypeRetrieval($deferred) {
             $deferred.reject();
-        }
-
-        function _createContentInRoot ($deferred) {
-            this.displayModal(
-                {
-                    msg : resources.contentType.contentInRoot
-                })
-                .always(_rejectDeferredThenNavigateBack.bind(this, $deferred));
         }
 
         function _rejectDeferredThenNavigateBack($deferred) {

@@ -11,14 +11,7 @@ define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'assetDetail
         });
 
         function afterRender () {
-            //TODO: I am doing this node ==='0' check in three different files right now,
-            // addAssetsView, assContentView, and addFolderView.
-            // Figure out a better way. Maybe in before routing?
-            if (this.model.get('nodeId') !== '0') {
-                _handleUpload.call(this);
-            } else {
-                _uploadInRoot.call(this);
-            }
+            _handleUpload.call(this);
         }
 
         function _handleUpload () {
@@ -39,13 +32,6 @@ define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'assetDetail
                 .fail(_navigateBack.bind(this));
         }
 
-        function _uploadInRoot () {
-            this.displayModal(
-                {
-                    msg : resources.asset.uploadInRoot
-                })
-                .always(_navigateBack.bind(this));
-        }
 
         function _navigateBack (trigger) {
             this.app.router.removeThisRouteFromBreadcrumb();
