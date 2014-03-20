@@ -44,7 +44,7 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
             if(userModel.role !== 'external') {
                 this.model.clear();
                 this.app.user.set(userModel);
-                this.app.router.navigateTrigger('home');
+                this.app.router.navigateTrigger('items');
             } else {
                 this.model.clear();
                 this.app.router.navigateTrigger('logout');
