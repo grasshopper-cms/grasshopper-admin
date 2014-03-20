@@ -167,9 +167,6 @@ define({
             theme : 'Theme',
             loading : 'LOADING CODE EDITOR...'
         },
-        embeddedType : {
-            contentType : 'Content Type'
-        },
         contentReference : {
             selectedContent : 'Selected Content',
             currentFolder : 'Current Folder',
@@ -179,6 +176,12 @@ define({
             contentTypes : 'Content Types',
             selectContent : 'Select Content',
             viewSelectedContent : 'View Selected Content'
+        },
+        dropdown : {
+            selectOption : 'Please Select'
+        },
+        embeddedType : {
+            contentType : 'Content Type'
         },
         fileReference : {
             selectedFile : 'Selected File',
