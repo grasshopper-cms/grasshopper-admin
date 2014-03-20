@@ -56,7 +56,6 @@ define([], function() {
             content : '#items',
             contentDetail : '#item/:id',
             nodeDetail : '#items/nodeid/:id',
-            home : '#home',
             login : '#login',
             logout : '#logout',
             about : '#about',

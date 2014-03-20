@@ -3,7 +3,6 @@ define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants',
     'grasshopperBaseView',
     'loginView', 'loginWorker',
-    'dashboardView',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
@@ -24,7 +23,6 @@ define([
     function ($, Backbone, _, masseuse, Api, constants,
               GrasshopperBaseView,
               LoginView, loginWorker,
-              DashboardView,
               AlertBoxView,
               ModalView, modalViewConfig,
               resources,
@@ -57,7 +55,6 @@ define([
             routes : {
                 'login' : 'displayLogin',
                 'logout' : 'goLogout',
-                'home' : 'displayApp',
                 'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
                 'addUser' : 'displayAddUser',
@@ -91,7 +88,6 @@ define([
             loadMainContent : loadMainContent,
 
             goHome : goHome,
-            displayApp : displayApp,
             displayLogin : displayLogin,
             goLogout : goLogout,
             navigate : navigate,
@@ -264,14 +260,6 @@ define([
             loadMainContent(LoginView);
         }
 
-        function displayApp () {
-            loadMainContent(DashboardView, {
-                modelData : {
-                    userModel : this.user
-                }
-            });
-        }
-
         function displayAlertBox (options) {
             var alertBoxView = new AlertBoxView({
                     modelData : {
@@ -316,7 +304,7 @@ define([
         }
 
         function goHome () {
-            this.navigateTrigger('home');
+            this.navigateTrigger('items');
         }
 
         function displayUserDetail (id) {
@@ -330,7 +318,7 @@ define([
                         }
                     });
             } else {
-                this.navigateTrigger('home');
+                this.navigateTrigger('items');
             }
         }
 
@@ -352,7 +340,7 @@ define([
             loadMainContent(ContentBrowseView, {
                     modelData : {
                         nodeId : nodeId ? nodeId : 0,
-                        inRoot : !nodeId ? true : false
+                        inRoot : !nodeId
                     }
                 });
         }
