@@ -23,14 +23,6 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
             ],
             defaultMastheadButtons : [
                 {
-                    text : resources.mastheadButtons.createContent,
-                    href : '#'
-                },
-                {
-                    text : resources.mastheadButtons.uploadFile,
-                    href : '#'
-                },
-                {
                     text : resources.mastheadButtons.createFolder,
                     href : '#'
                 },

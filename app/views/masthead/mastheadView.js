@@ -20,6 +20,7 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
         if (!buttonArray) {
             this.model.set('buttons', this.defaultMastheadButtons);
         } else {
+            buttonArray = _filterButtonArrayOfDoNotDisplayInRoot.call(this, buttonArray);
             this.model.set('buttons', this.interpolateMastheadButtons(buttonArray));
             this.$el.foundation();
         }
@@ -50,6 +51,7 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
         var nodeId = this.model.get('nodeId'),
             newButton = {},
             key;
+
         for (key in thisButton) {
             if( _.isBoolean(thisButton[key]) ) {
                 newButton[key] = thisButton[key];
@@ -70,6 +72,16 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
         this.$el.click();
         e.preventDefault();
         this.channels.views.trigger('mastheadDropdownClicked', context);
+    }
+
+    function _filterButtonArrayOfDoNotDisplayInRoot(buttonArray) {
+        if(this.model.get('inRoot')) {
+            buttonArray = _.filter(buttonArray, function(button) {
+                return !_.has(button, 'displayInRoot') || button.displayInRoot !== false;
+            });
+        }
+
+        return buttonArray;
     }
 
 });

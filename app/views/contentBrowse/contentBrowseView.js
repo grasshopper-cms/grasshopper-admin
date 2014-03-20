@@ -43,12 +43,14 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         }
 
         function _addAssetIndexView() {
-            var assetIndexView = new AssetIndexView({
-                    nodeId : this.model.get('nodeId'),
-                    inRoot : this.model.get('inRoot'),
-                    mastheadButtons : null
-                });
-            this.addChild(assetIndexView);
+            if (!this.model.get('inRoot')) {
+                var assetIndexView = new AssetIndexView({
+                        nodeId : this.model.get('nodeId'),
+                        inRoot : this.model.get('inRoot'),
+                        mastheadButtons : null
+                    });
+                this.addChild(assetIndexView);
+            }
         }
 
         function _addContentIndexView () {
