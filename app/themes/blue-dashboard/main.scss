@@ -22,10 +22,6 @@ $imgPath: '/themes/blue-dashboard/img';
   max-width: 100%;
 }
 
-//[draggable] {
-//  user-select: none; //User cannot select text in draggable element.
-//}
-
 body, html {
   height: 100%;
 
@@ -67,6 +63,10 @@ body, html {
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
+  }
+
+  fieldset+legend {
+    max-width: 90%;
   }
 
   ul.folder-tree li {
