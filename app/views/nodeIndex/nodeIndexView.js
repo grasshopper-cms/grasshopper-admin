@@ -1,26 +1,24 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'underscore',
-    'text!views/nodeDetail/_nodeDetailRow.html'],
+    'text!views/nodeDetail/_nodeDetailRow.html', 'nodeWorker'],
     function (GrasshopperBaseView, nodeIndexViewConfig, NodeDetailView, _,
-              nodeDetailRowTemplate) {
+              nodeDetailRowTemplate, nodeWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions: nodeIndexViewConfig,
             beforeRender : beforeRender,
-            afterRender : afterRender
+            afterRender : afterRender,
+            updateCurrentNode : updateCurrentNode
         });
 
         function beforeRender ($deferred) {
-
-            this.model.url = this.model.url.replace(':id', this.nodeId);
-
             this.model.fetch()
                 .done(_updateMastheadNodesCount.bind(this, $deferred));
         }
 
         function afterRender() {
-            var models = _.omit(this.model.attributes, 'resources');
+            var models = _.omit(this.model.attributes, 'resources', 'nodeId');
 
             _.each(models, _appendNodeDetailRow.bind(this));
         }
@@ -40,5 +38,26 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
                     mastheadButtons : this.mastheadButtons
                 });
             nodeDetailView.start();
+        }
+
+        function updateCurrentNode(context) {
+            var type = context.dropbutton.type,
+                nodeId = this.model.get('nodeId');
+
+            switch(type) {
+
+            case 'editName':
+                nodeWorker.editName(nodeId);
+                break;
+
+            case 'editContentTypes' :
+                nodeWorker.editContentTypes(nodeId);
+                break;
+
+            case 'deleteNode' :
+                nodeWorker.deleteNode(nodeId);
+                break;
+            }
+
         }
     });

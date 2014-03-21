@@ -32,7 +32,21 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                 {
                     text : resources.mastheadButtons.actions,
                     href : '#',
-                    displayInRoot : false
+                    displayInRoot : false,
+                    dropdown : [
+                        {
+                            text : 'Edit Name',
+                            type : 'editName'
+                        },
+                        {
+                            text : 'Edit Content Types',
+                            type : 'editContentTypes'
+                        },
+                        {
+                            text : 'Delete',
+                            type : 'deleteNode'
+                        }
+                    ]
                 }
             ],
             breadcrumbs : [
