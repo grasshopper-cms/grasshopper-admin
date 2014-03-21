@@ -23,21 +23,13 @@
             </div>
             <div class="right">
                 <ul id="mastheadButtons" class="button-group radius right">
+
                     <li data-rv-each-button="model:buttons">
-                        <a data-rv-hide="button.dropdown" data-rv-href="button.href" class="button tiny">
+
+                        <a data-rv-href="button.href" class="button tiny">
                             {{button.text}}
                         </a>
 
-                        <a data-rv-show="button.dropdown" data-dropdown="drop" data-options="is_hover:true" class="button tiny dropdown">
-                            {{button.text}}
-                        </a>
-                        <ul data-rv-show="button.dropdown" id="drop" data-dropdown-content class="f-dropdown">
-                            <li data-rv-each-field="model:plugins">
-                                <a data-rv-on-click="view.clickMastheadDropdown">
-                                    {{field.name}}
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </div>

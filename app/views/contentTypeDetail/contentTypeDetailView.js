@@ -134,7 +134,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.app.router.navigateTrigger(this.model.get('href'), {}, true);
     }
 
-    function addNewFieldToContentType(context) {
+    function addNewFieldToContentType(e, context) {
         var model = context.field.config.modelData;
 
         _collapseAccordion.call(this);
