@@ -21,14 +21,11 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                 'click .clickableCell' : 'handleRowClick',
                 'click #saveContentType' : 'saveContentType'
             },
-            listeners : [
-                ['channels.views', 'mastheadDropdownClicked', 'addNewFieldToContentType']
-            ],
+            listeners : [],
             mastheadButtons : [
                 {
-                    text : resources.contentType.addNewField,
-                    href : '#',
-                    dropdown : true
+                    text : resources.mastheadButtons.addContentType,
+                    href : constants.internalRoutes.newContentType
                 }
             ],
             breadcrumbs : [

@@ -1,11 +1,9 @@
-define(['grasshopperModel', 'plugins'], function (Model, plugins) {
+define(['grasshopperModel'], function (Model) {
     'use strict';
 
     return Model.extend({
         initialize : initialize,
-        defaults : {
-            plugins : plugins.fields
-        }
+        defaults : {}
     });
 
     function initialize() {
