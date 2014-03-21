@@ -13,23 +13,24 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
         });
 
         function beforeRender ($deferred) {
-            this.model.fetch()
+            this.model.get('childNodes').fetch()
                 .done(_updateMastheadNodesCount.bind(this, $deferred));
         }
 
         function afterRender() {
-            var models = _.omit(this.model.attributes, 'resources', 'nodeId');
-
-            _.each(models, _appendNodeDetailRow.bind(this));
+            this.model.get('childNodes').each(_appendNodeDetailRow.bind(this));
         }
 
         function _updateMastheadNodesCount($deferred) {
-            this.app.router.mastheadView.model.set('nodesCount', _.size(this.model.attributes) - 2);
+//            this.app.router.mastheadView.model.set('nodesCount', _.size(this.model.attributes) - 2);
             $deferred.resolve();
         }
 
-        function _appendNodeDetailRow (node) {
-            var nodeDetailView = new NodeDetailView({
+        function _appendNodeDetailRow (model) {
+            var node = model.toJSON(),
+                nodeDetailView;
+
+            nodeDetailView = new NodeDetailView({
                     name : 'nodeDetailRow',
                     modelData : node,
                     appendTo : this.$el,
@@ -41,21 +42,20 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
         }
 
         function updateCurrentNode(context) {
-            var type = context.dropbutton.type,
-                nodeId = this.model.get('nodeId');
+            var type = context.dropbutton.type;
 
             switch(type) {
 
             case 'editName':
-                nodeWorker.editName(nodeId);
+                nodeWorker.editName.call(this);
                 break;
 
             case 'editContentTypes' :
-                nodeWorker.editContentTypes(nodeId);
+                nodeWorker.editContentTypes.call(this);
                 break;
 
             case 'deleteNode' :
-                nodeWorker.deleteNode(nodeId);
+                nodeWorker.deleteNode.call(this);
                 break;
             }
 
