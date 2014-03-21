@@ -31,7 +31,8 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                 },
                 {
                     text : resources.mastheadButtons.actions,
-                    href : '#'
+                    href : '#',
+                    displayInRoot : false
                 }
             ],
             breadcrumbs : [

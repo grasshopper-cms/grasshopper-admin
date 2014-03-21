@@ -25,10 +25,6 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
                 {
                     text : resources.mastheadButtons.createFolder,
                     href : '#'
-                },
-                {
-                    text : resources.mastheadButtons.actions,
-                    href : '#'
                 }
             ]
         };
