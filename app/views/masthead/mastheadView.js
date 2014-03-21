@@ -7,7 +7,8 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
         beforeRender : beforeRender,
         setButtons : setButtons,
         setBreadcrumbs : setBreadcrumbs,
-        interpolateMastheadButtons : interpolateMastheadButtons
+        interpolateMastheadButtons : interpolateMastheadButtons,
+        clickMastheadDropdown : clickMastheadDropdown
     });
 
     function beforeRender () {
@@ -57,6 +58,11 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
                 continue;
             }
 
+            if(key === 'dropdown' && _.isArray(thisButton[key])) {
+                newButton[key] = this.interpolateMastheadButtons(thisButton[key]);
+                continue;
+            }
+
             if (nodeId) {
                 newButton[key] = thisButton[key].replace(':id', nodeId);
             } else {
@@ -75,6 +81,12 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
         }
 
         return buttonArray;
+    }
+
+    function clickMastheadDropdown(e, context) {
+        this.$el.click();
+        e.preventDefault();
+        this.channels.views.trigger('mastheadDropdownClicked', context);
     }
 
 });

@@ -36,7 +36,9 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
 
         function _addNodeIndexView () {
             var nodeIndexView = new NodeIndexView({
-                    nodeId : this.model.get('nodeId'),
+                    modelData : {
+                        nodeId : this.model.get('nodeId')
+                    },
                     mastheadButtons : null
                 });
             this.addChild(nodeIndexView);

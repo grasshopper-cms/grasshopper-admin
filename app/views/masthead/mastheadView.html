@@ -26,9 +26,20 @@
 
                     <li data-rv-each-button="model:buttons">
 
-                        <a data-rv-href="button.href" class="button tiny">
+                        <a data-rv-unless="button.dropdown" data-rv-href="button.href" class="button tiny">
                             {{button.text}}
                         </a>
+
+                        <a data-rv-if="button.dropdown" class="button tiny dropdown" data-dropdown="drop">
+                            {{button.text}}
+                        </a>
+                        <ul data-rv-if="button.dropdown" id="drop" class="f-dropdown" data-dropdown-content>
+                            <li data-rv-each-dropbutton="button.dropdown">
+                                <a data-rv-on-click="view.clickMastheadDropdown">
+                                    {{dropbutton.text}}
+                                </a>
+                            </li>
+                        </ul>
 
                     </li>
                 </ul>
