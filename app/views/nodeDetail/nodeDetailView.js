@@ -7,7 +7,8 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'resources', 'underscore'
             afterRender : afterRender,
             prepareToDeleteNode : prepareToDeleteNode,
             handleRowClick : handleRowClick,
-            prepareToEditNode : prepareToEditNode
+            prepareToEditNode : prepareToEditNode,
+            editAllowedTypes : editAllowedTypes
         });
 
         function afterRender() {
@@ -46,6 +47,10 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'resources', 'underscore'
                     type : 'input',
                     data : this.model.get('label')
                 });
+        }
+
+        function editAllowedTypes() {
+            _saveNodeWorkflow.call(this);
         }
 
         function _saveNodeWorkflow() {
