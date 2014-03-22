@@ -11,9 +11,6 @@ require.config({
         dropdown : {
             deps : ['foundation']
         },
-        accordion : {
-            deps : ['foundation']
-        },
         tabs : {
             deps : ['foundation']
         },
@@ -28,6 +25,7 @@ require.config({
             deps : ['jquery']
         },
         jqueryui : {
+            exports : 'jquery',
             deps : ['jquery']
         },
         widgetFactory : {
@@ -38,6 +36,12 @@ require.config({
         },
         sortable : {
             deps : ['jqueryui', 'widgetFactory', 'mouseInteraction']
+        },
+        accordion : {
+            deps : ['jqueryui', 'widgetFactory']
+        },
+        ckeditorAdapter : {
+            deps : ['jquery', 'ckeditor']
         }
     },
     packages : [
@@ -65,12 +69,12 @@ require([
     'constants',
     'alerts',
     'dropdown',
-    'accordion',
     'tabs',
     'tooltip',
     'abide',
     'modernizr',
-    'sortable'
+    'sortable',
+    'accordion'
 ],
     /**
      * @param $

@@ -155,7 +155,18 @@ define({
         size : 'Size',
         modified : 'Modified'
     },
+    nodeTree : {
+        emptyFolder : {
+            content : 'This folder has no content.',
+            files : 'This folder has no files.'
+        }
+    },
     plugins : {
+        codeEditor : {
+            language : 'Language',
+            theme : 'Theme',
+            loading : 'LOADING CODE EDITOR...'
+        },
         contentReference : {
             selectedContent : 'Selected Content',
             currentFolder : 'Current Folder',
@@ -166,6 +177,12 @@ define({
             selectContent : 'Select Content',
             viewSelectedContent : 'View Selected Content'
         },
+        dropdown : {
+            selectOption : 'Please Select'
+        },
+        embeddedType : {
+            contentType : 'Content Type'
+        },
         fileReference : {
             selectedFile : 'Selected File',
             currentFolder : 'Current Folder',
@@ -175,6 +192,10 @@ define({
             contentTypes : 'Content Types',
             selectContent : 'Select Content',
             viewSelectedFile : 'View Selected File'
+        },
+        richText : {
+            selectFile : 'Select File',
+            loading : 'LOADING RICH TEXT...'
         }
     },
     // General Text (reusable) - try to keep it alphabetized

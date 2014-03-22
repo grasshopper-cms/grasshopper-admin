@@ -1,0 +1,52 @@
+<div class="nodeTree">
+
+    <div data-rv-id="model.cid | prepend nodeTreeAccordionHeader" class="nodeTreeAccordionHeader">
+        {{model:label | spaceBefore}}
+        <i data-rv-show="model:loading" class="icon-refresh icon-spin"></i>
+    </div>
+
+    <div class="nodeTreeAccordionContent">
+
+        <div data-rv-each-node="model:children:" data-rv-nodetree="node" class="nodeTreeSubNode"></div>
+
+        <ul data-rv-show="model:content | haslength" class="no-bullet">
+
+            <li data-rv-each-item="model:content:" class="nodeTreeSubNode" data-rv-filter-by-allowed-types="item">
+
+                <input data-rv-id="item.cid" type="radio" name="selectedContent"
+                       data-rv-checked="model:selectedContent" data-rv-value="item:_id" data-rv-hide="model:nodeTreeType | equals file">
+
+                <label data-rv-for="item.cid">
+
+                    <span data-rv-show="model:nodeTreeType | equals content">
+                        {{item:label}}
+                    </span>
+
+                    <span data-rv-show="model:nodeTreeType | equals file">
+                        <img data-rv-id="item:url" class="th nodeTreeThumbNail" data-rv-src="item:url" data-rv-alt="item:fileName">
+
+                        <label data-rv-for="item:url" class="right inline">
+                            {{item:fileName}}
+                        </label>
+                    </span>
+
+                </label>
+
+            </li>
+
+        </ul>
+
+        <div data-rv-hide="model:inSetup">
+            <ul data-rv-hide="model:content | haslength" class="no-bullet">
+                <li data-rv-show="model:nodeTreeType | equals content">
+                    {{model:resources->nodeTree->emptyFolder->content}}
+                </li>
+                <li data-rv-show="model:nodeTreeType | equals file">
+                    {{model:resources->nodeTree->emptyFolder->files}}
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>

@@ -2,11 +2,11 @@
 define(['text!views/contentTypeDetail/contentTypeDetailView.html',
     'text!views/contentTypeDetail/_contentTypeDetailRow.html',
     'contentTypeDetailViewModel', 'appBinders', 'contentTypeDetailBinders',
-    'backbone', 'formatters', 'resources', 'constants', 'contentTypeDetailFormatters', 'underscore',
-    'pluginSetupModel'],
+    'backbone', 'formatters', 'resources', 'constants', 'contentTypeDetailFormatters',
+    'contentTypeDetailViewFieldsCollection'],
     function (formTemplate, rowTemplate, contentTypeDetailModel, appBinders, contentTypeDetailBinders,
-              Backbone, formatters, resources, constants, contentTypeDetailFormatters, _,
-              pluginSetupModel) {
+              Backbone, formatters, resources, constants, contentTypeDetailFormatters,
+              ContentTypeDetailViewFieldsCollection) {
         'use strict';
 
         return {
@@ -21,14 +21,11 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                 'click .clickableCell' : 'handleRowClick',
                 'click #saveContentType' : 'saveContentType'
             },
-            listeners : [
-                ['channels.views', 'mastheadDropdownClicked', 'addNewFieldToContentType']
-            ],
+            listeners : [],
             mastheadButtons : [
                 {
-                    text : resources.contentType.addNewField,
-                    href : '#',
-                    dropdown : true
+                    text : resources.mastheadButtons.addContentType,
+                    href : constants.internalRoutes.newContentType
                 }
             ],
             breadcrumbs : [
@@ -42,17 +39,6 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                 formatters : [formatters, contentTypeDetailFormatters],
                 binders : [appBinders, contentTypeDetailBinders]
             },
-            // TODO: This should not be here.
-            collection : new (Backbone.Collection.extend({
-                model : pluginSetupModel,
-                toJSON: function () {
-                    var json = Backbone.Collection.prototype.toJSON.apply(this);
-
-                    return _.map(json, function(obj) {
-                        return _.pick(obj, 'required', 'label', 'max', 'min',
-                            'options', 'type', 'validation', '_id', 'useAsLabel', 'helpText', 'defaultValue');
-                    });
-                }
-            }))([], {})
+            collection : new ContentTypeDetailViewFieldsCollection()
         };
     });

@@ -17,11 +17,13 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             mastheadButtons : [
                 {
                     text : resources.mastheadButtons.createContent,
-                    href : constants.internalRoutes.addContent
+                    href : constants.internalRoutes.addContent,
+                    displayInRoot : false
                 },
                 {
                     text : resources.mastheadButtons.uploadFile,
-                    href : constants.internalRoutes.createAssets
+                    href : constants.internalRoutes.createAssets,
+                    displayInRoot : false
                 },
                 {
                     text : resources.mastheadButtons.createFolder,
@@ -29,7 +31,22 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                 },
                 {
                     text : resources.mastheadButtons.actions,
-                    href : '#'
+                    href : '#',
+                    displayInRoot : false,
+                    dropdown : [
+                        {
+                            text : 'Edit Name',
+                            type : 'editName'
+                        },
+                        {
+                            text : 'Edit Content Types',
+                            type : 'editContentTypes'
+                        },
+                        {
+                            text : 'Delete',
+                            type : 'deleteNode'
+                        }
+                    ]
                 }
             ],
             breadcrumbs : [

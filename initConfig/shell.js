@@ -40,10 +40,43 @@ module.exports = function (grunt) {
             }
         },
         test_vagrant_box : {
-            command : 'curl http://localhost:8080/token -H "Accept: application/json" -H "Acceen_US" -u "apitestuser:TestPassword"',
+            command : 'curl http://localhost:8080/token -H "Accept: application/json" -H "Acceen_US" -u "admin:TestPassword"',
             options : {
                 stdout: true
             }
+        },
+        'mongodump' : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true,
+                execOptions: {
+                    cwd: './api'
+                }
+            },
+            command : 'vagrant exec mongodump --db grasshopper --out tasks/seedData/mongodb'
+        },
+        'mongorestore' : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true,
+                execOptions: {
+                    cwd: './api'
+                }
+            },
+            command : 'vagrant exec mongorestore --drop --db grasshopper tasks/seedData/mongodb/grasshopper'
+        },
+        'mongomerge' : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true,
+                execOptions: {
+                    cwd: './api'
+                }
+            },
+            command : 'vagrant exec mongorestore --db grasshopper tasks/seedData/mongodb/grasshopper'
         }
     });
 
