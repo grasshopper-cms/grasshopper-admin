@@ -19,11 +19,7 @@ $imgPath: '/themes/blue-dashboard/img';
 @import "header";
 
 .row {
-  max-width: 1250px;
-}
-
-[draggable] {
-  user-select: none; //User cannot select text in draggable element.
+  max-width: 100%;
 }
 
 body, html {
@@ -67,6 +63,10 @@ body, html {
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
+  }
+
+  fieldset+legend {
+    max-width: 90%;
   }
 
   ul.folder-tree li {
@@ -170,7 +170,7 @@ body, html {
     background: $modal-background-color;
     height: 100%;
     width: 100%;
-    z-index: 9000;
+    z-index: 11000;
   }
 
   #modal-contents {
@@ -225,7 +225,7 @@ body, html {
   }
 
   .tooltip {
-    z-index: 10000;
+    z-index: 100000;
   }
 
   #alertBox {
@@ -442,23 +442,6 @@ body, html {
 
   // Content Type Detail View
   #contentTypeDetailView {
-    .accordionHeader {
-      &:hover {
-        tr{
-          background-color: #F1F1F1;
-        }
-      }
-
-      &.last {
-        user-select: none;
-        cursor: default;
-        background-color: transparent;
-        height: 35px;
-        &:hover {
-          background-color: transparent;
-        }
-      }
-    }
 
     .activeHeader {
       tr{
@@ -466,13 +449,16 @@ body, html {
       }
     }
 
-    .dragOver {
-      background-color: transparent !important;
-      padding-top: 35px !important;
-    }
-
-    .content {
+    .accordionContent {
       padding-bottom: 0;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-left: 10px;
+      background-color: #EEEBEB;
+      border: solid 1px #B1B1B1;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 2px;
 
       fieldset {
         margin-left: 18px;
@@ -485,13 +471,6 @@ body, html {
       }
     }
 
-    .active {
-      background-color: #EEEBEB;
-      border: solid 1px #B1B1B1;
-      margin-left: 10px;
-      margin-right: 10px;
-      margin-bottom: 2px;
-    }
   }
 
   #addContent {
@@ -506,33 +485,78 @@ body, html {
 
   }
 
-  // Content Reference Plugin
+  // Node Tree
   #nodeTree {
-    a {
-      padding-top: 0;
-      padding-bottom: 0;
-      padding-right: 0;
+    max-height: 700px;
+    overflow: scroll;
+    border: 1px solid #999;
+    padding: 5px;
+    margin-bottom: 3px;
+
+    .nodeTree {
+      padding-bottom: 5px;
     }
-    .content {
-      padding-top: 0;
-      &.active {
-        border: none;
+
+    .nodeTreeAccordionHeader {
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .nodeTreeAccordionContent {
+      margin-bottom: 0;
+      padding-left: 15px;
+      input {
+        margin-bottom: 0;
       }
 
-      .nodeTreeContent {
+      ul {
         margin-bottom: 0;
-        padding-left: 1rem;
-        input {
-          margin-bottom: 0;
-        }
       }
+    }
+
+    .nodeTreeSubNode {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
+    .nodeTreeThumbNail {
+      background-image: url('http://i293.photobucket.com/albums/mm49/oficinademultimedia/Loading_Animation.gif');
+      background-size: 10% 10%;
+      background-repeat: no-repeat;
+      min-height: 10%;
+      max-height: 20%;
+      width: 30%;
     }
   }
 
+  // Embedded Type Plugin
+  #embeddedTypeAccordion {
+    .accordionHeader {
+      background-color: #efefef;
+      padding-left: 7px;
+      padding-right: 7px;
+    }
+    .accordionContent {
+      padding-top: 20px;
+    }
+  }
+
+  // Content Reference Plugin
   .availableTypes {
     input {
       margin-bottom: 0;
     }
+  }
+
+  // Code Editor Plugin
+  .codeEditor {
+    margin-bottom: 7px;
+  }
+
+  // Rich Text Plugin
+  .richTextEditorPadding {
+    margin-bottom: 7px;
   }
 
 }

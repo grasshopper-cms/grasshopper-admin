@@ -29,7 +29,12 @@ module.exports = function (grunt) {
                 '!app/vendor/**'
             ],
             tasks : [
-                'jshint', 'copy:build', 'registerPlugins', 'setBuildConfig'
+                'jshint',
+                'setupBowerCopy',
+                'copy:build',
+                'registerPlugins',
+                'paths',
+                'setBuildConfig'
             ]
         },
         tests : {

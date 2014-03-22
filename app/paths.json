@@ -7,7 +7,10 @@
         "rivets" : "vendor/rivets/dist/rivets",
         "base64" : "vendor/js-base64/base64",
         "foundation" : "vendor/foundation/js/foundation/foundation",
-        "modernizr" : "vendor/modernizr/modernizr"
+        "modernizr" : "vendor/modernizr/modernizr",
+        "ckeditor" : "vendor/ckeditor/ckeditor",
+        "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
+        "ace" : "vendor/ace/lib/ace"
     },
 
     "routers" : {
@@ -26,7 +29,8 @@
     "jqueryUIDependencies" : {
         "widgetFactory" : "vendor/jquery.ui/ui/jquery.ui.widget",
         "mouseInteraction" : "vendor/jquery.ui/ui/jquery.ui.mouse",
-        "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable"
+        "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable",
+        "accordion" : "vendor/jquery.ui/ui/jquery.ui.accordion"
     },
 
     "views" : {
@@ -95,7 +99,8 @@
         "contentTypeDetailView+" : {
             "" : "views/contentTypeDetail/contentTypeDetailView",
             "Config" : "views/contentTypeDetail/contentTypeDetailViewConfig",
-            "Model" : "views/contentTypeDetail/contentTypeDetailViewModel"
+            "Model" : "views/contentTypeDetail/contentTypeDetailViewModel",
+            "FieldsCollection" : "views/contentTypeDetail/contentTypeDetailViewFieldsCollection"
         },
 
         "contentTypeIndexView+" : {
@@ -104,10 +109,10 @@
             "Model" : "views/contentTypeIndex/contentTypeIndexViewModel"
         },
 
-        "dashboardView+" : {
-            "" : "views/dashboard/dashboardView",
-            "Config" : "views/dashboard/dashboardViewConfig",
-            "Model" : "views/dashboard/dashboardViewModel"
+        "fileBrowserView+" : {
+            "" : "views/fileBrowser/fileBrowserView",
+            "Config" : "views/fileBrowser/fileBrowserViewConfig",
+            "Model" : "views/fileBrowser/fileBrowserViewModel"
         },
 
         "headerView+" : {
@@ -146,6 +151,13 @@
             "Model" : "views/nodeIndex/nodeIndexViewModel"
         },
 
+        "nodeTreeView+" : {
+            "" : "views/nodeTree/nodeTreeView",
+            "Config" : "views/nodeTree/nodeTreeViewConfig",
+            "Model" : "views/nodeTree/nodeTreeViewModel",
+            "Binders" : "views/nodeTree/nodeTreeViewBinders"
+        },
+
         "pluginWrapperView+" : {
             "" : "views/pluginWrapper/pluginWrapperView",
             "Config" : "views/pluginWrapper/pluginWrapperViewConfig",
@@ -177,7 +189,8 @@
         "contentTypeWorker" : "workers/contentTypeWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
-        "nodeWorker" : "workers/nodeWorker"
+        "nodeWorker" : "workers/nodeWorker",
+        "urlWorker" : "workers/urlWorker"
     },
 
     "collections" : {

@@ -14,6 +14,7 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
             events : {
                 'click #deleteNode' : 'prepareToDeleteNode',
                 'click #editNode' : 'prepareToEditNode',
+                'click #editTypes' : 'editAllowedTypes',
                 'click .clickableCell' : 'handleRowClick'
             },
             listeners : [],

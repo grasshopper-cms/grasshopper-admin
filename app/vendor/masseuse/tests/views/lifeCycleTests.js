@@ -1,4 +1,4 @@
-define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse', 'sinonSpy'],
+define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse', 'sinonSpy', 'sinonStub'],
     function (_, chai, mocha, sinon, sinonChai, masseuse) {
 
         'use strict';
@@ -72,17 +72,61 @@ define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse', 'sinonS
 
             //-----------Tests-----------
             describe('start method', function () {
+
                 it('should exist', function () {
                     should.exist(viewInstance.start);
                 });
+
                 it('should be a function', function () {
                     viewInstance.start.should.be.a('function');
                 });
+
                 it('should return a promise', function () {
                     var promise = viewInstance.start();
                     promise.should.have.property('done');
                     promise.should.not.have.property('resolve');
                 });
+
+                it('should return the same promise if called twice', function() {
+                    viewInstance.start().should.equal(viewInstance.start());
+                });
+
+                it('should not run the life cycle methods if called twice', function() {
+                    var events = [];
+                    viewInstance.start();
+
+                    viewInstance.on('all', function(event) {
+                        events.push(event);
+                    });
+
+                    viewInstance.start();
+                    events.length.should.equal(0);
+                });
+
+                it('should set the property hasStarted when startPromise is resolved', function(done) {
+                    viewInstance.start()
+                        .done(function() {
+                            viewInstance.should.have.property('hasStarted');
+                            done();
+                        });
+                });
+
+                it('should set the hasStarted property to true when startPromise is resolved', function(done) {
+                    viewInstance.start()
+                        .done(function() {
+                            viewInstance.hasStarted.should.equal(true);
+                            done();
+                        });
+                });
+
+                it('should set the property $startPromise when startPromise is resolved', function(done) {
+                    viewInstance.start()
+                        .done(function() {
+                            viewInstance.should.have.property('$startPromise');
+                            done();
+                        });
+                });
+
                 describe('promise', function () {
                     // Using done as a spy. If it is not called, the test will fail.
                     it('should be resolved after start promise is resolved', function (done) {
@@ -92,12 +136,14 @@ define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse', 'sinonS
                                 done();
                             });
                     });
+
                     it('should be resolved immediately after start is called if all implemented life cycle methods' +
                         'are synchronous', function () {
                         var $promise = viewInstance.start();
                         $promise.state().should.equal('resolved');
 
                     });
+
                     it('should be triggered with "beforeRenderDone", "renderDone", and "afterRenderDone" in sequence',
                         function () {
                             var eventSpy = sinon.spy();
@@ -108,6 +154,7 @@ define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse', 'sinonS
                             eventSpy.thirdCall.args[0].should.equal('renderDone');
                             eventSpy.getCall(3).args[0].should.equal('afterRenderDone');
                         });
+
                     it('view should have events "beforeRenderDone", "renderDone", and "afterRenderDone" in sequence',
                         function (done) {
                             var eventSpy = sinon.spy();
@@ -175,6 +222,7 @@ define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse', 'sinonS
                     });
 
                 });
+
                 describe('render method', function () {
                     it('should exist', function () {
                         should.exist(viewInstance.render);
@@ -216,6 +264,7 @@ define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse', 'sinonS
                 });
 
                 describe('remove method', function() {
+
                     it('should remove any children', function(done) {
                         var childView = new BaseView();
 
@@ -303,6 +352,58 @@ define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai', 'masseuse', 'sinonS
                                     //childRender.should.have.been.calledOnce;
                                 });
                             }
+                        });
+                });
+            });
+
+            describe('refresh method', function() {
+                it('should not return the same promise as the start method', function() {
+                    viewInstance.start().should.not.equal(viewInstance.refresh());
+                });
+
+                it('should run the life cycle methods', function() {
+                    var events = [];
+                    viewInstance.start();
+
+                    viewInstance.on('all', function(event) {
+                        events.push(event);
+                    });
+
+                    events.length.should.equal(0);
+                    viewInstance.refresh();
+                    events.should.deep
+                        .equal(['beforeRenderDone', 'afterTemplatingDone', 'renderDone', 'afterRenderDone']);
+                });
+
+                it('should have an alias of restart', function() {
+                    viewInstance.restart.should.equal(viewInstance.refresh);
+                });
+
+                it('should delete hasStarted, if allready started, ' +
+                    'from the view before calling start again', function(done) {
+
+                    var startStub;
+
+                    viewInstance.start()
+                        .done(function() {
+                            startStub = sinon.stub(viewInstance, 'start');
+                            viewInstance.refresh();
+                            viewInstance.should.not.have.property('hasStarted');
+                            done();
+                        });
+                });
+
+                it('should delete $startPromise, if already started, ' +
+                    'from the view before calling start again', function(done) {
+
+                    var startStub;
+
+                    viewInstance.start()
+                        .done(function() {
+                            startStub = sinon.stub(viewInstance, 'start');
+                            viewInstance.refresh();
+                            viewInstance.should.not.have.property('$startPromise');
+                            done();
                         });
                 });
             });

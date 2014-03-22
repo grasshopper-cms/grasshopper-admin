@@ -30,7 +30,8 @@ define(['underscore', 'masseuse',
 
                     rivets.viewInstance = new ViewModule(configModule, {
                         modelData : {
-                            options : masseuse.ProxyProperty('options', model)
+                            options : masseuse.ProxyProperty('options', model),
+                            inSetup : true
                         },
                         template : configModule.setupTemplate,
                         mastheadButtons : rivets.model.view.mastheadButtons,

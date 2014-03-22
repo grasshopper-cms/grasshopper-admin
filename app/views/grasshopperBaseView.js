@@ -52,7 +52,7 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
     function start () {
         // Checking user permissions
         if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
-            this.app.router.navigateTrigger('home');
+            this.app.router.navigateTrigger('items');
             return;
         }
 

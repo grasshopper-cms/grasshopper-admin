@@ -1,9 +1,12 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'backbone'],
+    'pluginWrapperView', 'backbone', 'nodeTreeView'],
     function ($, _, masseuse,
-              PluginWrapperView, Backbone) {
+              PluginWrapperView, Backbone, NodeTreeView) {
+
         'use strict';
+
+        var ProxyProperty = masseuse.ProxyProperty;
 
         return {
             fieldwrapper : {
@@ -21,11 +24,9 @@ define(['jquery', 'underscore', 'masseuse',
                         collection : new (Backbone.Collection.extend({
                             initialize: function () {
                                 this.on('add remove reset change', function () {
-                                    // Update the parent model value
                                     var values = this.toJSON();
 
                                     if (values) {
-                                        // TODO: Could probably use viewInstance.model.set() here.
                                         rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
                                     }
                                 });
@@ -35,7 +36,13 @@ define(['jquery', 'underscore', 'masseuse',
                                     max = rivets.model.field.max,
                                     value = _.pluck(json, 'value');
 
-                                if(max > 1) {
+                                value = _.compact(value); // Remove All falsy values.
+
+                                if(_.isUndefined(value[0])) { // If it is an array of nothing, return false.
+                                    return false;
+                                }
+
+                                if(max > 1) { // if its max is greater than 1 allow it to be represented as an array.
                                     return value;
                                 } else {
                                     return value[0];
@@ -66,8 +73,28 @@ define(['jquery', 'underscore', 'masseuse',
                     el.removeEventListener('keypress', _callback.bind(this, el), false);
                     el.removeEventListener('blur', _callback.bind(this, el), false);
                 }
+            },
+            nodetree :  function(el, model) {
+                _appendNodeTreeView.call(this, el, model);
             }
         };
+
+        function _appendNodeTreeView(el, model) {
+            var nodeTreeView = new NodeTreeView({
+                appendTo : el,
+                modelData : _.extend({}, model.attributes, {
+                    allowedTypes : this.model.model.get('allowedContentTypes'),
+                    selectedContent : new ProxyProperty('selectedContent', this.model.model),
+                    inSetup : this.model.model.get('inSetup'),
+                    nodeTreeType : this.model.model.get('nodeTreeType')
+                })
+            });
+
+            if(this.model.model.get('inSetup')) {
+                nodeTreeView.model.set('selectedNode',  new ProxyProperty('options.defaultNode', this.model.model));
+            }
+            this.model.view.addChild(nodeTreeView);
+        }
 
         function _callback(el, evt) {
             // listen for the enter key or Blur to save to the model.
@@ -75,6 +102,5 @@ define(['jquery', 'underscore', 'masseuse',
                 this.view.adapters[':'].publish(
                     this.model,this.keypath.substring(this.keypath.indexOf(':')+1), el.textContent);
             }
-
         }
     });

@@ -20,6 +20,7 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
         if (!buttonArray) {
             this.model.set('buttons', this.defaultMastheadButtons);
         } else {
+            buttonArray = _filterButtonArrayOfDoNotDisplayInRoot.call(this, buttonArray);
             this.model.set('buttons', this.interpolateMastheadButtons(buttonArray));
             this.$el.foundation();
         }
@@ -50,9 +51,15 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
         var nodeId = this.model.get('nodeId'),
             newButton = {},
             key;
+
         for (key in thisButton) {
             if( _.isBoolean(thisButton[key]) ) {
                 newButton[key] = thisButton[key];
+                continue;
+            }
+
+            if(key === 'dropdown' && _.isArray(thisButton[key])) {
+                newButton[key] = this.interpolateMastheadButtons(thisButton[key]);
                 continue;
             }
 
@@ -64,6 +71,16 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
 
         }
         return newButton;
+    }
+
+    function _filterButtonArrayOfDoNotDisplayInRoot(buttonArray) {
+        if(this.model.get('inRoot')) {
+            buttonArray = _.filter(buttonArray, function(button) {
+                return !_.has(button, 'displayInRoot') || button.displayInRoot !== false;
+            });
+        }
+
+        return buttonArray;
     }
 
     function clickMastheadDropdown(e, context) {

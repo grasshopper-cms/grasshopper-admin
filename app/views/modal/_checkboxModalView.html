@@ -7,16 +7,28 @@
             </div>
         </div>
         <div id="input-container" class="row">
+
             <div class="small-11 columns small-centered" style="width: 100%;">
+
                 <div class="row" data-rv-each-type="model:data">
+
                     <input data-rv-id="type._id" type="checkbox" data-rv-checked="type.checked">
                     <label class="inline" data-rv-for="type._id">
-                        <span data-tooltip class="has-tip" data-rv-title="type.helpText">
+
+                        <span data-rv-unless="type.helpText">
                             {{type.label}}
                         </span>
+
+                        <span data-rv-if="type.helpText" data-tooltip class="has-tip" data-rv-title="type.helpText">
+                            {{type.label}}
+                        </span>
+
                     </label>
+
                 </div>
+
             </div>
+
         </div>
         <div class="row">
             <div class="small-12 text-center">

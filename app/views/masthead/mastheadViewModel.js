@@ -1,14 +1,9 @@
-define(['grasshopperModel', 'plugins', 'masseuse'], function (Model, plugins, masseuse) {
+define(['grasshopperModel'], function (Model) {
     'use strict';
-
-    var ComputedProperty = masseuse.ComputedProperty;
 
     return Model.extend({
         initialize : initialize,
-        defaults : {
-            plugins : plugins.fields,
-            inRoot : new ComputedProperty(['nodeId'], _toggleBoolean)
-        }
+        defaults : {}
     });
 
     function initialize() {
@@ -17,10 +12,7 @@ define(['grasshopperModel', 'plugins', 'masseuse'], function (Model, plugins, ma
 
     function _setNodeId(nodeId) {
         this.set('nodeId', nodeId);
-    }
-
-    function _toggleBoolean(nodeId) {
-        return !nodeId ? true : false;
+        this.set('inRoot', !nodeId);
     }
 
 });
