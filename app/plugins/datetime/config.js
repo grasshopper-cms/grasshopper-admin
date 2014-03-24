@@ -12,6 +12,7 @@ define(['text!plugins/datetime/template.html', 'plugins/datetime/model', 'text!p
                 options : false,
                 label : '',
                 type : 'datetime',
+                dataType : 'datetime',
                 required : false,
                 validation : false,
                 value : ''
