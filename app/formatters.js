@@ -10,7 +10,9 @@ define([], function () {
             read : readAsNumber,
             publish : publishAsNumber
         },
-        haslength : haslength
+        haslength : haslength,
+        sort : sort,
+        sortBy : sortBy
     };
 
     /**
@@ -34,5 +36,31 @@ define([], function () {
 
     function haslength(value) {
         return (value.length > 0);
+    }
+
+    function sort(arr, direction) {
+        if(direction === 'desc') {
+            return arr.sort().reverse();
+        }
+        return arr.sort();
+    }
+
+    function sortBy(arr, field, direction) {
+        var reverse = (direction === 'desc'),
+            out,
+            sortFn = function(a, b) {
+                if(a[field] < b[field]) {
+                    out = -1;
+                } else if (a[field] > b[field]) {
+                    out = 1;
+                } else {
+                    out = 0;
+                }
+
+                return out * [1, -1][+!!reverse];
+            };
+
+        return arr.sort(sortFn);
+
     }
 });
