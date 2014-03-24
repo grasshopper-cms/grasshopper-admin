@@ -13,7 +13,8 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker'],
 
         function afterRender() {
             if(this.model.isNew()) {
-                this.editContentTypes();
+                this.model.save()
+                    .done(this.editContentTypes.bind(this));
             }
         }
 
