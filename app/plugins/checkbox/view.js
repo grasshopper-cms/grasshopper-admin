@@ -49,7 +49,7 @@ define(['grasshopperBaseView', 'underscore'],
                 value = this.model.get('value');
 
             _.each(options, function(option) {
-                option.checked = value[option._id];
+                option.checked = _.has(value, option._id) ? value[option._id] : value;
             });
 
             this.model.set('options', options);
