@@ -13,8 +13,8 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
             template : formTemplate,
             events : {
                 'click #deleteNode' : 'prepareToDeleteNode',
-                'click #editNode' : 'prepareToEditNode',
-                'click #editTypes' : 'editAllowedTypes',
+                'click #editNode' : 'editNodeName',
+                'click #editTypes' : 'editContentTypes',
                 'click .clickableCell' : 'handleRowClick'
             },
             listeners : [],
