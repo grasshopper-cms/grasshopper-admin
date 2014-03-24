@@ -218,6 +218,7 @@ define({
     home : 'Home',
     helpText : 'Help Text',
     id : 'ID',
+    key: 'Key',
     minimum : 'Minimum',
     label : 'Label',
     login : 'Login',
