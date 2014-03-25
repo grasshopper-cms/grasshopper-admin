@@ -2,22 +2,64 @@
 
     <div class="row">
         <div class="large-2 columns">
-            <label data-rv-for="model.cid | prepend startDate" class="right inline">Start</label>
+
+            <label data-rv-for="model.cid | prepend startDate" class="right inline">{{model:resources->plugins->editorialWindow->start}}</label>
+
         </div>
 
         <div class="large-10 columns">
-            <input data-rv-id="model.cid | prepend startDate" type="datetime-local" data-rv-value="model:validFrom">
+
+            <div class="large-7 columns">
+
+                <input data-rv-id="model.cid | prepend startDate" type="datetime-local" data-rv-value="model:value->validFrom | asEditorialDate" style="margin-bottom: 0;">
+                <small data-rv-if="model:orderError" class="error">{{model:resources->plugins->editorialWindow->startAfterEnd}}</small>
+
+            </div>
+            <div class="large-5 columns">
+
+                <button class="button tiny radius" data-rv-on-click="view.setValidFromToNow">{{model:resources->plugins->editorialWindow->setToNow}}</button>
+
+            </div>
+
         </div>
     </div>
 
     <div class="row">
         <div class="large-2 columns">
-            <label data-rv-for="model.cid | prepend endDate" class="right inline">End</label>
+
+            <label data-rv-for="model.cid | prepend endDate" class="right inline">{{model:resources->plugins->editorialWindow->end}}</label>
+
         </div>
 
         <div class="large-10 columns">
-            <input data-rv-id="model.cid | prepend endDate" type="datetime-local" data-rv-value="model:validTo">
+
+            <div class="large-7 columns">
+
+                <input data-rv-id="model.cid | prepend endDate" type="datetime-local" data-rv-value="model:value->validTo | asEditorialDate">
+
+            </div>
+
+            <div class="large-5 columns">
+
+                <ul class="button-group radius">
+
+                    <li>
+                        <button class="button tiny" data-rv-on-click="view.setValidToToNow">
+                            {{model:resources->plugins->editorialWindow->setToNow}}
+                        </button>
+                    </li>
+                    <li>
+                        <button class="button tiny" data-rv-on-click="view.setValidToNeverExpire">
+                            {{model:resources->plugins->editorialWindow->neverExpire}}
+                        </button>
+                    </li>
+
+                </ul>
+
+            </div>
+
         </div>
+
     </div>
 
 </div>

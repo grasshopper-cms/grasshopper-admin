@@ -1,32 +1,24 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore'],
-    function (GrasshopperBaseView, _) {
+define(['grasshopperBaseView', 'moment'],
+    function (GrasshopperBaseView, moment) {
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender : beforeRender
+            setValidFromToNow : setValidFromToNow,
+            setValidToToNow : setValidToToNow,
+            setValidToNeverExpire : setValidToNeverExpire
         });
 
-        function beforeRender() {
-            _splitValue.call(this);
+        function setValidFromToNow() {
+            this.model.set('value.validFrom', moment());
         }
 
-        function _splitValue() {
-            if(!_.isUndefined(this.model.get('value'))) {
-                this.model.set('validTo', this.model.get('value.validTo'));
-                this.model.set('validFrom', this.model.get('value.validFrom'));
-            } else {
-                _setToTodaysDate.call(this);
-            }
+        function setValidToToNow() {
+            this.model.set('value.validTo', moment());
         }
 
-        function _setToTodaysDate() {
-            var today = new Date();
-
-            this.model.set({
-                validFrom: today,
-                validTo: today
-            });
+        function setValidToNeverExpire() {
+            this.model.set('value.validTo', moment('December 31 3000'));
         }
 
     });
