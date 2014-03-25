@@ -9,15 +9,15 @@ define(['moment'], function (moment) {
     };
 
     function readAsEditorialDate(value) {
-        console.log('read');
-        console.log(moment(value).format('YYYY-MM-DDThh:mm:ss'));
-        return moment(value).format('YYYY-MM-DDThh:mm:ss');
+        if(value) {
+            return moment(value).format('YYYY-MM-DDThh:mm:ss');
+        }
     }
 
     function publishAsEditorialDate(value) {
-        console.log('publish');
-        console.log(moment(value).toISOString());
-        return moment(value).toISOString();
+        if(value) {
+            return moment(value).toISOString();
+        }
     }
 
 });
