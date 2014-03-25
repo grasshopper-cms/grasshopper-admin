@@ -174,6 +174,8 @@ body, html {
   }
 
   #modal-contents {
+    display: flex;
+    flex-direction: column;
     z-index: 99;
     height: auto;
     max-height: 100%;
@@ -182,13 +184,25 @@ body, html {
     padding: 1.25em;
     border: solid 1px $modal-contents-border-color;
     box-shadow: 0 0 10px $modal-background-color;
+
+    .modal-header {
+      min-height: 40px;
+    }
+
+    .modal-data {
+      overflow: scroll;
+      border: 1px solid #999;
+    }
+
     #modal-text {
       text-align: center;
     }
+
     #button-container {
       display: inline-block;
       margin-top: 10px;
     }
+
     #image-container {
       img {
         max-height: 75%;
@@ -197,12 +211,14 @@ body, html {
         margin-right: auto;
       }
     }
+
     #input-container {
       margin-top: 8px;
       input:not[type='checkbox'] {
         width: 100%;
       }
     }
+
     #dropZone {
       height: 60px;
       border: 2px dashed #bbb;
@@ -217,6 +233,7 @@ body, html {
         border-color: rgb(0, 125, 166);
       }
     }
+
     #uploadFileInput {
       visibility: hidden;
       height: 0;
@@ -488,8 +505,6 @@ body, html {
   // Node Tree
   #nodeTree {
     max-height: 700px;
-    overflow: scroll;
-    border: 1px solid #999;
     padding: 5px;
     margin-bottom: 3px;
 
