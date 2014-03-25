@@ -151,6 +151,7 @@ body, html {
     content: "";
   }
 
+  // Modal View
   #modal-container {
     display: flex;
     align-items: center;
@@ -163,73 +164,73 @@ body, html {
     height: 100%;
     width: 100%;
     z-index: 11000;
-  }
 
-  #modal-contents {
-    display: flex;
-    flex-direction: column;
-    z-index: 99;
-    height: auto;
-    max-height: 100%;
-    max-width: 100%;
-    background-color: $modal-contents-background-color;
-    padding: 1.25em;
-    border: solid 1px $modal-contents-border-color;
-    box-shadow: 0 0 10px $modal-background-color;
+    #modal-contents {
+      display: flex;
+      flex-direction: column;
+      z-index: 99;
+      height: auto;
+      max-height: 100%;
+      max-width: 100%;
+      background-color: $modal-contents-background-color;
+      padding: 1.25em;
+      border: solid 1px $modal-contents-border-color;
+      box-shadow: 0 0 10px $modal-background-color;
 
-    .modal-header {
-      min-height: 40px;
-    }
-
-    .modal-data {
-      overflow: scroll;
-      border: 1px solid #999;
-    }
-
-    #modal-text {
-      text-align: center;
-    }
-
-    #button-container {
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    #image-container {
-      img {
-        max-height: 75%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+      .modal-header {
+        min-height: 40px;
       }
-    }
 
-    #input-container {
-      margin-top: 8px;
-      input:not[type='checkbox'] {
-        width: 100%;
+      .modal-data {
+        overflow: scroll;
+        border: 1px solid #999;
       }
-    }
 
-    #dropZone {
-      height: 60px;
-      border: 2px dashed #bbb;
-      border-radius: 5px;
-      padding: 25px;
-      text-align: center;
-      color: #bbb;
-      &:hover {
-        border-color: rgb(0, 125, 166);
+      #modal-text {
+        text-align: center;
       }
-      &.active {
-        border-color: rgb(0, 125, 166);
-      }
-    }
 
-    #uploadFileInput {
-      visibility: hidden;
-      height: 0;
-      width: 0;
+      #button-container {
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      #image-container {
+        img {
+          max-height: 75%;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+      #input-container {
+        margin-top: 8px;
+        input:not[type='checkbox'] {
+          width: 100%;
+        }
+      }
+
+      #dropZone {
+        height: 60px;
+        border: 2px dashed #bbb;
+        border-radius: 5px;
+        padding: 25px;
+        text-align: center;
+        color: #bbb;
+        &:hover {
+          border-color: rgb(0, 125, 166);
+        }
+        &.active {
+          border-color: rgb(0, 125, 166);
+        }
+      }
+
+      #uploadFileInput {
+        visibility: hidden;
+        height: 0;
+        width: 0;
+      }
     }
   }
 
@@ -237,6 +238,7 @@ body, html {
     z-index: 100000;
   }
 
+  // Alertbox View
   #alertBox {
     display: flex;
     flex-direction: column;
@@ -278,7 +280,7 @@ body, html {
     }
   }
 
-
+  // Login View
   #login-page {
 
     .login-button {
@@ -331,50 +333,6 @@ body, html {
       text-shadow: 1px 1px 0px $white;
     }
 
-  }
-
-  #dashboard {
-
-    .cirque-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .cirque-track, .cirque-fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 10;
-    }
-
-    .cirque-fill {
-      z-index: 20;
-    }
-
-    .cirque-label {
-      position: relative;
-      z-index: 30;
-      color: #444;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .cirque-label.percent {
-      font-size: 15px;
-    }
-
-    .cirque-label.ratio {
-      font-size: 13px;
-    }
-
-    .stats{
-      h3 {
-        font-size:0.8em;
-        display:block;
-        width:120px;
-        text-align:center;
-      }
-    }
   }
 
   // User Index
@@ -495,49 +453,7 @@ body, html {
   }
 
   // Node Tree
-  #nodeTree {
-    max-height: 700px;
-    padding: 5px;
-    margin-bottom: 3px;
-
-    .nodeTree {
-      padding-bottom: 5px;
-    }
-
-    .nodeTreeAccordionHeader {
-      &:focus {
-        outline: none;
-      }
-    }
-
-    .nodeTreeAccordionContent {
-      margin-bottom: 0;
-      padding-left: 15px;
-      input {
-        margin-bottom: 0;
-      }
-
-      ul {
-        margin-bottom: 0;
-      }
-    }
-
-    .nodeTreeSubNode {
-      margin-top: 8px;
-      margin-right: 15px;
-      margin-left: 15px;
-      line-height: 0;
-    }
-
-    .noMarginBottom {
-      margin-bottom: 0;
-    }
-
-    .nodeTreeThumbNail {
-      max-height: 50px;
-      margin-right: 10px;
-    }
-  }
+  @import "../../views/nodeTree/style.scss";
 
   // Embedded Type Plugin
   #embeddedTypeAccordion {
@@ -564,13 +480,9 @@ body, html {
   }
 
   // Rich Text Plugin
-  .richTextEditorPadding {
-    margin-bottom: 7px;
-  }
+  @import "../../plugins/richtext/style.scss";
 
   // Checkbox Plugin
-  .checkboxMarginTop {
-    margin-top: 10px;
-  }
+  @import "../../plugins/checkbox/style.scss";
 
 }

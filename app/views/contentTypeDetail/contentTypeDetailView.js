@@ -140,6 +140,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         _collapseAccordion.call(this);
         model.active = 'active';
         this.collection.add(model);
+        _initializeSortableAccordions.call(this);
     }
 
     function _collapseAccordion() {
