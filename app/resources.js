@@ -180,6 +180,9 @@ define({
         dropdown : {
             selectOption : 'Please Select'
         },
+        editorialWindow : {
+            loading : 'Loading editorial window...'
+        },
         embeddedType : {
             contentType : 'Content Type'
         },

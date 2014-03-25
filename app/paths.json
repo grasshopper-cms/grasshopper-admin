@@ -10,7 +10,8 @@
         "modernizr" : "vendor/modernizr/modernizr",
         "ckeditor" : "vendor/ckeditor/ckeditor",
         "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
-        "ace" : "vendor/ace/lib/ace"
+        "ace" : "vendor/ace/lib/ace",
+        "moment" : "vendor/moment/moment"
     },
 
     "routers" : {

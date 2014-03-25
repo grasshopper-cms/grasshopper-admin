@@ -5,17 +5,20 @@ define(['grasshopperModel', 'resources'], function (Model, resources) {
         initialize : initialize,
         defaults : {
             resources : resources,
+            loading : false,
             validFrom : '',
             validTo : ''
         }
     });
 
     function initialize() {
-        this.on('change:validTo', function() {
-            console.log(arguments);
+        var self = this;
+
+        this.on('change:validTo', function(view, validTo) {
+            self.set('value.validTo', validTo);
         });
-        this.on('change:validFrom', function() {
-            console.log(arguments);
+        this.on('change:validFrom', function(view, validFrom) {
+            self.set('value.validFrom', validFrom);
         });
     }
 
