@@ -6,7 +6,8 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeViewConfig,
             afterRender : afterRender,
-            setSelectedNode : setSelectedNode
+            setSelectedNode : setSelectedNode,
+            addFancyHoverState : addFancyHoverState
         });
 
         function afterRender() {
@@ -83,6 +84,11 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
             _toggleLoadingSpinner.call(this);
             _fetchChildNodes.call(this)
                 .done(_toggleLoadingSpinner.bind(this));
+        }
+
+        function addFancyHoverState(e) {
+            console.log(e);
+            console.log('blahalhalhalhalh');
         }
 
     });
