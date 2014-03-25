@@ -17,7 +17,10 @@ define(['text!plugins/editorialwindow/template.html', 'plugins/editorialwindow/m
                 dataType : 'datetime',
                 required : false,
                 validation : false,
-                value : ''
+                value : {
+                    validFrom : '',
+                    validTo : ''
+                }
             },
             template : editorialWindowPluginTemplate,
             setupTemplate : setupTemplate,
