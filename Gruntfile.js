@@ -70,17 +70,17 @@ module.exports = function (grunt) {
         'watch'
     ]);
 
-    grunt.registerTask('build', ['build-no-optimize']);
+//    grunt.registerTask('build', ['build-no-optimize']);
 // This is commented out, since ckEditor does not work on optimized build - aliasing to non optimized for now
-//    grunt.registerTask('build', [
-//        'setupBowerCopy',
-//        'copy:build',
-//        'copy:vendor',
-//        'registerPlugins',
-//        'paths:app',
-//        'setBuildConfig',
-//        'sass',
-//        'autoprefixer:no_dest',
-//        'requirejs'
-//    ]);
+    grunt.registerTask('build', [
+        'setupBowerCopy',
+        'copy:build',
+        'copy:vendor',
+        'registerPlugins',
+        'paths:app',
+        'setBuildConfig',
+        'sass',
+        'autoprefixer:no_dest',
+        'requirejs'
+    ]);
 };
