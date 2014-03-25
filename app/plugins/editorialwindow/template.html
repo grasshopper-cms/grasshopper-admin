@@ -1,5 +1,23 @@
 <div class="row">
-    <div class="large-12 small-centered columns">
-        EDITORIAL WINDOW HAHAHAHAHAH
-    </dv>
+
+    <div class="row">
+        <div class="large-2 columns">
+            <label data-rv-for="model.cid | prepend startDate" class="right inline">Start</label>
+        </div>
+
+        <div class="large-10 columns">
+            <input data-rv-id="model.cid | prepend startDate" type="datetime-local" data-rv-value="model:validFrom">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-2 columns">
+            <label data-rv-for="model.cid | prepend endDate" class="right inline">End</label>
+        </div>
+
+        <div class="large-10 columns">
+            <input data-rv-id="model.cid | prepend endDate" type="datetime-local" data-rv-value="model:validTo">
+        </div>
+    </div>
+
 </div>
