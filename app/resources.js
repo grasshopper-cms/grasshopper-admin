@@ -181,7 +181,12 @@ define({
             selectOption : 'Please Select'
         },
         editorialWindow : {
-            loading : 'Loading editorial window...'
+            loading : 'Loading editorial window...',
+            startAfterEnd : 'Start date is after end date',
+            setToNow : 'Set to now',
+            start : 'Start',
+            end : 'End',
+            neverExpire : 'Never Expire'
         },
         embeddedType : {
             contentType : 'Content Type'
