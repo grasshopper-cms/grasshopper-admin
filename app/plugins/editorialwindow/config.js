@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!plugins/editorialwindow/template.html', 'plugins/editorialwindow/model',
-        'text!plugins/editorialwindow/setupTemplate.html'],
+        'text!plugins/editorialwindow/setupTemplate.html', 'plugins/editorialwindow/formatters'],
     function (editorialWindowPluginTemplate, editorialWindowPluginModel,
-              setupTemplate) {
+              setupTemplate, formatters) {
         'use strict';
 
         return {
@@ -17,13 +17,18 @@ define(['text!plugins/editorialwindow/template.html', 'plugins/editorialwindow/m
                 dataType : 'datetime',
                 required : false,
                 validation : false,
-                value : ''
+                value : {
+                    validFrom : '',
+                    validTo : ''
+                }
             },
             template : editorialWindowPluginTemplate,
             setupTemplate : setupTemplate,
             events : {},
             wrapper: false,
             listeners : [],
-            mastheadButtons : []
+            rivetsConfig : {
+                formatters : formatters
+            }
         };
     });

@@ -85,10 +85,6 @@ define({
         successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: ',
         createContent : 'New content',
-        statusOptions : [
-            'Live',
-            'Inactive'
-        ],
         readonly : 'Readonly',
         labelErrorMessage : 'Label is a required field.',
         successfullySaved : 'Content successfully saved.',
@@ -179,6 +175,14 @@ define({
         },
         dropdown : {
             selectOption : 'Please Select'
+        },
+        editorialWindow : {
+            loading : 'Loading editorial window...',
+            startAfterEnd : 'Start date is after end date',
+            setToNow : 'Set to now',
+            start : 'Start',
+            end : 'End',
+            neverExpire : 'Never Expire'
         },
         embeddedType : {
             contentType : 'Content Type'
