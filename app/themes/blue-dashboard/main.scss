@@ -516,12 +516,19 @@ body, html {
     }
 
     .nodeTreeSubNode {
-      margin-left: 15px;
+      margin-top: 8px;
       margin-right: 15px;
+      margin-left: 15px;
+      line-height: 0;
+    }
+
+    .noMarginBottom {
+      margin-bottom: 0;
     }
 
     .nodeTreeThumbNail {
       max-height: 50px;
+      margin-right: 10px;
     }
   }
 
