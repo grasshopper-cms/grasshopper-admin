@@ -6,3 +6,4 @@ build
 .idea
 gha.json
 ghapi.json
+.bundle
