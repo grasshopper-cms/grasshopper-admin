@@ -43,6 +43,7 @@
             'ckeditor' : '../app/vendor/ckeditor/ckeditor',
             'ckeditorAdapter' : '../app/vendor/ckeditor/adapters/jquery',
             'ace' : '../app/vendor/ace/lib/ace',
+            'moment' : '../app/vendor/moment/moment',
             'router' : '../app/router',
             'alerts' : '../app/vendor/foundation/js/foundation/foundation.alert',
             'dropdown' : '../app/vendor/foundation/js/foundation/foundation.dropdown',

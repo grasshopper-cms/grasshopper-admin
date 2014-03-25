@@ -1,22 +1,27 @@
 <div class="row">
 
-    <div class="row">
+    <div data-rv-if="model:loading">
+        <span>{{model:resources->plugins->editorialWindow->loading}}</span>
+        <i data-rv-if="model:loading" class="icon-refresh icon-spin"></i>
+    </div>
+
+    <div class="row" data-rv-unless="model:loading">
         <div class="large-2 columns">
             <label data-rv-for="model.cid | prepend startDate" class="right inline">Start</label>
         </div>
 
         <div class="large-10 columns">
-            <input data-rv-id="model.cid | prepend startDate" type="datetime-local" data-rv-value="model:validFrom">
+            <input data-rv-id="model.cid | prepend startDate" type="datetime-local" data-rv-value="model:validFrom | asEditorialDate">
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" data-rv-unless="model:loading">
         <div class="large-2 columns">
             <label data-rv-for="model.cid | prepend endDate" class="right inline">End</label>
         </div>
 
         <div class="large-10 columns">
-            <input data-rv-id="model.cid | prepend endDate" type="datetime-local" data-rv-value="model:validTo">
+            <input data-rv-id="model.cid | prepend endDate" type="datetime-local" data-rv-value="model:validTo | asEditorialDate">
         </div>
     </div>
 

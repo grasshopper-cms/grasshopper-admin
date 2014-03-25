@@ -30,5 +30,6 @@
     "ckeditor-styleJavascript" : "vendor/ckeditor/styles.js",
     "ckeditor-stylsheet" : "vendor/ckeditor/contents.css",
     "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
-    "aceCodeEditor" : "vendor/ace/lib/ace/**/*"
+    "aceCodeEditor" : "vendor/ace/lib/ace/**/*",
+    "moment" : "vendor/moment/moment.js"
 }
