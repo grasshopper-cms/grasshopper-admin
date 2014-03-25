@@ -85,10 +85,6 @@ define({
         successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: ',
         createContent : 'New content',
-        statusOptions : [
-            'Live',
-            'Inactive'
-        ],
         readonly : 'Readonly',
         labelErrorMessage : 'Label is a required field.',
         successfullySaved : 'Content successfully saved.',
