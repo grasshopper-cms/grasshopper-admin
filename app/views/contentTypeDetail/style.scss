@@ -1,0 +1,43 @@
+#contentTypeDetailView {
+
+  .activeHeader {
+    tr{
+      background-color: #F1F1F1;
+    }
+  }
+
+  .accordionContent {
+    padding-bottom: 0;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: #EEEBEB;
+    border: solid 1px #B1B1B1;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 2px;
+
+    fieldset {
+      margin-left: 18px;
+      margin-right: 18px;
+      border: 1px solid #B1B1B1;
+
+      legend {
+        background-color: inherit;
+      }
+    }
+  }
+
+}
+
+#addContent {
+  #removeField {
+    margin-bottom: 4px;
+  }
+
+  .accordionHeader {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+
+}
