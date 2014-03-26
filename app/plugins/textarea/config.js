@@ -12,6 +12,8 @@ define(['text!plugins/textarea/template.html', 'plugins/textarea/model', 'text!p
                 options : false,
                 label : '',
                 type : 'textarea',
+                defaultValueType : 'textarea',
+                dataComplexity : 'simple',
                 required : false,
                 validation : false,
                 value : ''

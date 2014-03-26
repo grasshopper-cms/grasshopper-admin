@@ -12,6 +12,8 @@ define(['text!plugins/password/template.html', 'plugins/password/model', 'text!p
                 options : false,
                 label : '',
                 type : 'password',
+                defaultValueType : 'text',
+                dataComplexity : 'simple',
                 required : false,
                 validation : false,
                 value : ''

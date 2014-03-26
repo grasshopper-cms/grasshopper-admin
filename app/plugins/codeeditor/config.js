@@ -17,6 +17,7 @@ define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
                 },
                 label : '',
                 type : 'codeeditor',
+                dataComplexity : 'complex',
                 required : false,
                 validation : false,
                 value : ''
