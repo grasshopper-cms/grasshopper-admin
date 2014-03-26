@@ -9,10 +9,12 @@
 
 @import "mixins";
 
+$imgPath: '/themes/blue-dashboard/img';
+
 @import "header";
 
 $font: 'Open Sans', arial, sans-serif;
-$imgPath: '/themes/blue-dashboard/img';
+
 
 .row {
   max-width: 100%;
