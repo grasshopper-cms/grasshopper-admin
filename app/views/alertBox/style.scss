@@ -1,0 +1,40 @@
+#alertBox {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  bottom: 30px;
+  width: 100%;
+}
+.alertBoxPartial {
+  height: 46px;
+  width: 100%;
+  .bad {
+    margin: auto;
+    width: 95%;
+    .error {
+      @include alert-base;
+      @include alert-style($alertColorBad);
+      .close {
+        @include alert-close;
+        color: $alertCloseColor;
+        opacity: 90;
+      }
+    }
+  }
+  .good {
+    margin: auto;
+    width: 95%;
+    .error {
+      @include alert-base;
+      @include alert-style($alertColorGood);
+      .close {
+        @include alert-close;
+        color: $alertCloseColor;
+        opacity: 90;
+      }
+    }
+  }
+}
