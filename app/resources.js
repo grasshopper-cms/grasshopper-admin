@@ -246,6 +246,7 @@ define({
     role : 'Role',
     save : 'Save',
     settings : 'Settings',
+    signIn : 'Sign In',
     siteName : 'Grasshopper',
     status : 'Status',
     summary : 'Summary',
