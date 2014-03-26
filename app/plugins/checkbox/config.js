@@ -15,7 +15,7 @@ define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!p
                 options : true,
                 label : '',
                 type : 'checkbox',
-                dataType : 'checkbox',
+                defaultValueType : 'checkbox',
                 required : false,
                 validation : false,
                 value : ''
