@@ -12,7 +12,7 @@ define(['text!plugins/date/template.html', 'plugins/date/model', 'text!plugins/d
                 options : false,
                 label : '',
                 type : 'date',
-                dataType : 'date',
+                defaultValueType : 'date',
                 required : false,
                 validation : false,
                 value : ''
