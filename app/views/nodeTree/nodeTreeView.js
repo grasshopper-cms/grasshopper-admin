@@ -70,8 +70,8 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
                 {
                     header : '#nodeTreeAccordionHeader' + this.model.cid,
                     icons : {
-                        header : 'icon-folder-close',
-                        activeHeader : 'icon-folder-open'
+                        header : 'fa fa-folder',
+                        activeHeader : 'fa fa-folder-open'
                     },
                     active : false,
                     collapsible : true,
