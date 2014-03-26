@@ -14,7 +14,7 @@ define(['text!plugins/richtext/fileBrowserModal/template.html', 'plugins/richtex
             template : richTextFileBrowserPluginTemplate,
             events : {
                 'click #nodeTree' : 'stopAccordionPropagation',
-
+                'click .selectedContentRadio' : 'confirmModal',
                 'click #confirm' : 'confirmModal',
                 'click #cancel' : 'cancelModal'
             },
