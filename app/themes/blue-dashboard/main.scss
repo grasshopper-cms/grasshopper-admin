@@ -91,19 +91,9 @@ body, html {
     transition: border linear 0.2s, box-shadow linear 0.2s;
   }
 
-  .inline.right{
-    margin-bottom: 8px;
-  }
-
-  [contenteditable="true"] {
-    padding: 10px;
-    outline: 2px dashed #CCC;
-  }
-
-  [contenteditable="true"]:hover {
-    cursor: text;
-    outline: 2px dashed #0090D2;
-  }
+//  .inline.right{
+//    margin-bottom: 8px;
+//  }
 
   $transition-speed: $switch-paddle-transition-speed;
   $transition-ease: $switch-paddle-transition-ease;
@@ -120,77 +110,22 @@ body, html {
     @include switch($transition-speed, $transition-ease, $height, $font-size, $line-height, $paddle-bg, $positive-color, $negative-color, $radius, $base-style);
   }
 
+  // VIEWS
+  @import "../../views/modal/style.scss"; // Modal View
+  @import "../../views/alertBox/style.scss"; // Alertbox View
+  @import "../../views/login/style.scss"; // Login View
+  @import "../../views/userIndex/style.scss"; // User Index
+  @import "../../views/userDetail/style.scss"; // User Detail
+  @import "../../views/contentDetail/style.scss"; // Content Detail View
+  @import "../../views/assetDetail/style.scss"; // Asset Detail View
+  @import "../../views/contentTypeDetail/style.scss"; // Content Type Detail View
+  @import "../../views/nodeTree/style.scss"; // Node Tree
 
-  .btn-primary {
-    color: $white;
-    text-shadow: 0 -1px 0 $alphaGray;
-    background-color: $mediumGreen;
-    background-image: linear-gradient(to bottom, $lightGreen, $mediumGreen);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa0c277', endColorstr='#ff7da64b', GradientType=0);
-    border-color: $mediumGreen $mediumGreen $darkGreen;
-    border-color: $lightAlphaGray $lightAlphaGray $alphaGray;
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  }
-
-  .btn-large {
-    padding: 9px 14px;
-    font-size: 16px;
-    line-height: normal;
-    border-radius: 5px;
-  }
-
-  .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    vertical-align: top;
-    border-top: 4px solid $black;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
-    content: "";
-  }
-
-  // Modal View
-  @import "../../views/modal/style.scss";
-
-  // Alertbox View
-  @import "../../views/alertBox/style.scss";
-
-  // Login View
-  @import "../../views/login/style.scss";
-
-  // User Index
-  @import "../../views/userIndex/style.scss";
-
-  // User Detail
-  @import "../../views/userDetail/style.scss";
-
-  // Content Detail View
-  @import "../../views/contentDetail/style.scss";
-
-  // Asset Detail View
-  @import "../../views/assetDetail/style.scss";
-
-  // Content Type Detail View
-  @import "../../views/contentTypeDetail/style.scss";
-
-  // Node Tree
-  @import "../../views/nodeTree/style.scss";
-
-  // Embedded Type Plugin
-  @import "../../plugins/embeddedtype/style.scss";
-
-  // Content Reference Plugin
-  @import "../../plugins/contentreference/style.scss";
-
-  // Code Editor Plugin
-  @import "../../plugins/codeeditor/style.scss";
-
-  // Rich Text Plugin
-  @import "../../plugins/richtext/style.scss";
-
-  // Checkbox Plugin
-  @import "../../plugins/checkbox/style.scss";
+  // PLUGINS
+  @import "../../plugins/embeddedtype/style.scss"; // Embedded Type Plugin
+  @import "../../plugins/contentreference/style.scss"; // Content Reference Plugin
+  @import "../../plugins/codeeditor/style.scss"; // Code Editor Plugin
+  @import "../../plugins/richtext/style.scss"; // Rich Text Plugin
+  @import "../../plugins/checkbox/style.scss"; // Checkbox Plugin
 
 }

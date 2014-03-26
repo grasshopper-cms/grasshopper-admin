@@ -10,19 +10,6 @@
                 <li><a data-rv-href="model:userModel->href"><i class="icon-user"></i><span
                         data-rv-text="model:resources->user->loggedInAs | spaceAfter"></span><span>{{model:userModel->firstname | spaceAfter}}{{model:userModel->lastname | spaceAfter}}</span></a>
                 </li>
-                <li class="dropdown">
-                    <a href="javascript:;" data-dropdown="settings-dropdown" data-options="is_hover:true">
-                        {{model:resources->settings}}
-                        <b class="caret"></b>
-                    </a>
-
-                    <ul id="settings-dropdown" data-dropdown-content class="dropdown-menu right">
-                        <li><a id="myProfileButton" data-rv-show="model:userModel->loggedIn"
-                               data-rv-href="model:userModel->urlLink">{{model:resources->edit}}
-                            {{model:resources->profile}}</a></li>
-                        <li><a data-rv-href="model:constants->internalRoutes->about">{{model:resources->site->about}}</a></li>
-                    </ul>
-                </li>
 
                 <li><a id="logOutButton" data-rv-href="model:constants->internalRoutes->logout"
                        data-rv-show="model:userModel->loggedIn">{{model:resources->log_out}}</a>
