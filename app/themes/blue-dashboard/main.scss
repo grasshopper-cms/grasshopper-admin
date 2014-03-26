@@ -1,22 +1,18 @@
 
-// Import open sans
-@import "http://fonts.googleapis.com/css?family=Open+Sans:400,600,800";
-
-//Import font-awesome
-@import "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css";
-
-$font: 'Open Sans', arial, sans-serif;
-
-$imgPath: '/themes/blue-dashboard/img';
-
 // Import Foundation
 @import "../../vendor/foundation/scss/normalize.scss";
 @import "../../vendor/foundation/scss/foundation.scss";
 
+@import "fonts";
+
 @import "colors";
+
 @import "mixins";
 
 @import "header";
+
+$font: 'Open Sans', arial, sans-serif;
+$imgPath: '/themes/blue-dashboard/img';
 
 .row {
   max-width: 100%;
