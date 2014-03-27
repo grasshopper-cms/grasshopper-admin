@@ -15,7 +15,7 @@
                             <div class="small-centered columns">
                                 <div class="login-fields">
 
-                                    <p>Sign in using your registered account:</p>
+                                    <p>{{model:resources->signInRegisteredUser}}</p>
 
 
                                     <div class="field row collapse">
@@ -57,8 +57,8 @@
     <div class="row">
         <div class="large-5 small-centered columns">
             <div class="login-extra">
-                Don't have an account? <a href="./signup.html">Sign Up</a><br>
-                Remind <a href="#">Password</a>
+                {{model:resources->dontHaveAccount}} <a href="./signup.html">{{model:resources->signUp}}</a><br>
+                {{model:resources->remind}} <a href="#">{{model:resources->password}}</a>
             </div>
         </div>
     </div>
