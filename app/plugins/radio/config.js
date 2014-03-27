@@ -12,7 +12,7 @@ define(['text!plugins/radio/template.html', 'plugins/radio/model', 'text!plugins
                 options : false,
                 label : '',
                 type : 'radio',
-                dataComplexity : 'complex',
+                dataType : 'boolean',
                 required : false,
                 validation : false,
                 value : ''

@@ -13,7 +13,7 @@ define(['text!plugins/readonly/template.html', 'plugins/readonly/model', 'text!p
                 label : '',
                 type : 'readonly',
                 defaultValueType : 'text',
-                dataComplexity : 'simple',
+                dataType : 'string',
                 required : false,
                 validation : false,
                 value : ''

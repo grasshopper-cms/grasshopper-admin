@@ -198,8 +198,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function _changeFieldPluginType(currentModel, newType) {
         var plugins = this.model.get('plugins'),
             previousType = currentModel.previousAttributes().type,
-            previousModelComplexity = _getModelDataComplexityFromPlugins.call(this, plugins, previousType),
-            currentModelComplexity = _getModelDataComplexityFromPlugins.call(this, plugins, newType);
+            previousModelComplexity = _getModelDataTypeFromPlugins.call(this, plugins, previousType),
+            currentModelComplexity = _getModelDataTypeFromPlugins.call(this, plugins, newType);
 
         if(currentModelComplexity !== previousModelComplexity) {
             _warnUserBeforeChangingComplexTypes.call(this)
@@ -208,10 +208,10 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         }
     }
 
-    function _getModelDataComplexityFromPlugins(plugins, type) {
+    function _getModelDataTypeFromPlugins(plugins, type) {
         return _.findWhere(plugins, {
             type : type
-        }).config.modelData.dataComplexity;
+        }).config.modelData.dataType;
     }
 
     function _warnUserBeforeChangingComplexTypes() {

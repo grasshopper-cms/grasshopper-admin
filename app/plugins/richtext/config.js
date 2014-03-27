@@ -12,7 +12,7 @@ define(['text!plugins/richtext/template.html', 'plugins/richtext/model', 'text!p
                 options : false,
                 label : '',
                 type : 'richtext',
-                dataComplexity : 'complex',
+                dataType : 'string',
                 required : false,
                 validation : false,
                 value : ''

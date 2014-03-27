@@ -14,7 +14,7 @@ define(['text!plugins/editorialwindow/template.html', 'plugins/editorialwindow/m
                 options : false,
                 label : '',
                 type : 'editorialwindow',
-                dataComplexity : 'complex',
+                dataType : 'date',
                 required : false,
                 validation : false,
                 value : {

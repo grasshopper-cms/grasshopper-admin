@@ -12,7 +12,7 @@ define(['text!plugins/keyvalue/template.html', 'plugins/keyvalue/model', 'text!p
                 options : false,
                 label : '',
                 type : 'keyvalue',
-                dataComplexity : 'complex',
+                dataType : 'object',
                 required : false,
                 validation : false,
                 value : ''
