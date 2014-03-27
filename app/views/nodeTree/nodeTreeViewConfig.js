@@ -9,9 +9,7 @@ define(['text!views/nodeTree/template.html', 'nodeTreeViewModel',
             ModelType : nodeTreeModel,
             modelData : {},
             template : nodeTreeTemplate,
-            events : {
-                'hover .nodeTreeSubNode' : 'addFancyHoverState'
-            },
+            events : {},
             wrapper: false,
             listeners : [],
             rivetsConfig : {

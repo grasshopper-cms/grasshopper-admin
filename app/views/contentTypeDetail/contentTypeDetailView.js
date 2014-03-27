@@ -4,6 +4,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function (GrasshopperBaseView, contentTypeDetailViewConfig,
               resources, Api, _, $, breadcrumbWorker) {
     'use strict';
+
     return GrasshopperBaseView.extend({
         defaultOptions : contentTypeDetailViewConfig,
         beforeRender : beforeRender,
@@ -31,7 +32,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function afterRender() {
         this.$el.foundation();
 
-        this.listenTo(this.collection, 'change:type', _warnUserBeforeChangingType);
+        this.listenTo(this.collection, 'change:type', _changeFieldPluginType);
 
         _initializeSortableAccordions.call(this);
 
@@ -194,9 +195,57 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         breadcrumbWorker.contentTypeBreadcrumb.call(this, $deferred, (isNew));
     }
 
-    function _warnUserBeforeChangingType(model, newType) {
-        console.log(model);
-        console.log(newType);
+    function _changeFieldPluginType(currentModel, newType) {
+        var plugins = this.model.get('plugins'),
+            previousType = currentModel.previousAttributes().type,
+            previousModelComplexity = _getModelDataComplexityFromPlugins.call(this, plugins, previousType),
+            currentModelComplexity = _getModelDataComplexityFromPlugins.call(this, plugins, newType);
+
+        if(currentModelComplexity !== previousModelComplexity) {
+            _warnUserBeforeChangingComplexTypes.call(this)
+                .done(_actuallyChangeFieldPluginType.bind(this, currentModel, newType))
+                .fail(_returnFieldPluginTypeToPreviousType.bind(this, currentModel, previousType));
+        }
+    }
+
+    function _getModelDataComplexityFromPlugins(plugins, type) {
+        return _.findWhere(plugins, {
+            type : type
+        }).config.modelData.dataComplexity;
+    }
+
+    function _warnUserBeforeChangingComplexTypes() {
+        return this.displayModal(
+            {
+                header : resources.warning,
+                msg : resources.contentType.switchingBetweenSimpleAndComplexTypesWarning
+            });
+    }
+
+    function _actuallyChangeFieldPluginType(currentModel, newType) {
+        var newTypeModel = _.findWhere(this.model.get('plugins'), { type : newType }).config.modelData;
+
+        this.collection.remove(currentModel);
+
+        _collapseAccordion.call(this);
+
+        _.extend(newTypeModel, {
+            active : 'active',
+            label : currentModel.get('label'),
+            min : currentModel.get('min'),
+            max : currentModel.get('max'),
+            multi : currentModel.get('multi'),
+            helpText : currentModel.get('helpText'),
+            required : currentModel.get('required')
+        });
+
+        this.collection.add(newTypeModel);
+
+        _initializeSortableAccordions.call(this);
+    }
+
+    function _returnFieldPluginTypeToPreviousType(currentModel, previousType) {
+        currentModel.set('type', previousType, {silent: true});
     }
 
     function _addClickListenersToAccordion() {
