@@ -1,31 +1,10 @@
-define(['grasshopperModel', 'resources'], function (Model, resources) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection'], function (Model, resources, GrasshopperCollection) {
     'use strict';
 
     return Model.extend({
         defaults : {
             resources : resources,
-            possibleFieldsToSlug : [
-                {
-                    _id : 'duder',
-                    label : 'something'
-                },
-                {
-                    _id : 'juder',
-                    label : 'galt'
-                },
-                {
-                    _id : 'greg',
-                    label : 'GREG'
-                },
-                {
-                    _id : 'aPerson',
-                    label : 'A Person'
-                },
-                {
-                    _id : 'Some Other Field',
-                    label : 'someOtherField'
-                }
-            ]
+            possibleFieldsToSlug : new GrasshopperCollection()
         }
     });
 
