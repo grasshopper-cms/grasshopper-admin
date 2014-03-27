@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="small-centered columns">
                                 <h1>
-                                    {{model:resources->signIn}}
+                                    {{model:resources->user->signIn}}
                                 </h1>
                             </div>
                         </div>
@@ -15,7 +15,7 @@
                             <div class="small-centered columns">
                                 <div class="login-fields">
 
-                                    <p>{{model:resources->signInRegisteredUser}}</p>
+                                    <p>{{model:resources->user->signInRegisteredUser}}</p>
 
 
                                     <div class="field row collapse">
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="small-12 columns">
                                 <button id="loginButton" class="button success radius right" data-rv-class-disabled="model:hasError">
-                                    {{model:resources->signIn}}
+                                    {{model:resources->user->signIn}}
                                 </button>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
     <div class="row">
         <div class="large-5 small-centered columns">
             <div class="login-extra">
-                {{model:resources->dontHaveAccount}} <a href="./signup.html">{{model:resources->signUp}}</a><br>
+                {{model:resources->user->dontHaveAccount}} <a href="./signup.html">{{model:resources->user->signUp}}</a><br>
                 {{model:resources->remind}} <a href="#">{{model:resources->password}}</a>
             </div>
         </div>

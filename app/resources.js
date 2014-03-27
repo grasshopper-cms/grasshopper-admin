@@ -27,8 +27,12 @@ define({
         }
     },
     user : {
-        userDetailHeaderText : 'Profile for: ',
+        dontHaveAccount : 'Don\'t have an account?',
         loggedInAs : 'Logged in as',
+        signIn : 'Sign In',
+        signInRegisteredUser : 'Sign in using your registered account:',
+        signUp : 'Sign Up',
+        userDetailHeaderText : 'Profile for: ',
         attributeTitles : {
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
@@ -216,7 +220,6 @@ define({
     currentlySignedIn : 'You are currently signed in.',
     dashboard : 'Dashboard',
     defaultValue : 'Default Value',
-    dontHaveAccount : 'Don\'t have an account?',
     download : 'Download',
     edit : 'Edit',
     email : 'Email',
@@ -251,9 +254,6 @@ define({
     role : 'Role',
     save : 'Save',
     settings : 'Settings',
-    signIn : 'Sign In',
-    signInRegisteredUser : 'Sign in using your registered account:',
-    signUp : 'Sign Up',
     siteName : 'Grasshopper',
     status : 'Status',
     summary : 'Summary',
