@@ -1,13 +1,13 @@
 <div>
     <div id="topbar" class="contain-to-grid sticky">
         <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
-            <i class="icon-home"></i>
+            <i class="fa fa-home"></i>
         </a>
 
         <div id="top-nav">
             <ul class="pull-right">
                 <li><img class="profile-pic" data-rv-show="model:loggedIn" src="http://placehold.it/20x20"/></li>
-                <li><a data-rv-href="model:userModel->href"><i class="icon-user"></i><span
+                <li><a data-rv-href="model:userModel->href"><i class="fa fa-user"></i><span
                         data-rv-text="model:resources->user->loggedInAs | spaceAfter"></span><span>{{model:userModel->firstname | spaceAfter}}{{model:userModel->lastname | spaceAfter}}</span></a>
                 </li>
 
@@ -28,7 +28,7 @@
                 <div class="large-12 columns">
                     <a data-rv-href="model:constants->internalRoutes->content" class="brand">{{model:resources->siteName}}</a>
                     <a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <i class="icon-reorder"></i>
+                        <i class="fa fa-reorder"></i>
                     </a>
 
                     <div class="nav-collapse">
@@ -36,21 +36,21 @@
 
                             <li data-rv-show="model:userModel->role | includes admin reader editor">
                                 <a data-rv-href="model:constants->internalRoutes->content">
-                                    <i class="icon-th"></i>
+                                    <i class="fa fa-th"></i>
                                     <span>{{model:resources->content}}</span>
                                 </a>
                             </li>
 
                             <li data-rv-show="model:userModel->role | includes admin editor">
                                 <a data-rv-href="model:constants->internalRoutes->contentTypes">
-                                    <i class="icon-cogs"></i>
+                                    <i class="fa fa-cogs"></i>
                                     <span>{{model:resources->types}}</span>
                                 </a>
                             </li>
 
                             <li data-rv-show="model:userModel->role | equals admin">
                                 <a data-rv-href="model:constants->internalRoutes->users">
-                                    <i class="icon-user"></i>
+                                    <i class="fa fa-user"></i>
                                     <span>{{model:resources->users}}</span>
                                 </a>
                             </li>
