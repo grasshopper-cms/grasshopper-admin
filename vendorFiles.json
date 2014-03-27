@@ -4,6 +4,8 @@
     "lodash-amd" : "vendor/lodash-amd/underscore/**",
     "jquery" : "vendor/jquery/jquery.js",
     "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core.js",
+    "fonts" : "vendor/fonts/**",
+    "font-awesome-fonts" : "vendor/font-awesome/fonts/**",
     "text" : "vendor/requirejs-text/text.js",
     "rivets" : "vendor/rivets/dist/rivets.js",
     "base64" : "vendor/js-base64/base64.js",

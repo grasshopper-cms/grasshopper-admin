@@ -80,8 +80,8 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             $accordion.accordion({
                 header : '.accordionHeader',
                 icons : {
-                    header : 'icon-chevron-right',
-                    activeHeader : 'icon-chevron-down'
+                    header : 'fa fa-chevron-right',
+                    activeHeader : 'fa fa-chevron-down'
                 },
                 active : false,
                 collapsible : true,
