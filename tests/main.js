@@ -129,7 +129,7 @@
             'selfValidatingModel' : '../app/models/selfValidatingModel',
             'UserModel' : '../app/models/userModel',
             'grasshopperModel' : '../app/models/grasshopperModel',
-            'pluginSetupModel' : '../app/models/pluginSetupModel',
+            'pluginSetupModel' : '../app/views/contentTypeDetail/pluginSetupModel',
             'loginWorker' : '../app/workers/loginWorker',
             'contentTypeWorker' : '../app/workers/contentTypeWorker',
             'assetWorker' : '../app/workers/assetWorker',
