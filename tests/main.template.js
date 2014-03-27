@@ -35,7 +35,8 @@
 
     require([
         'mocha',
-        './loginViewTests'
+//        './loginViewTests'
+        '../tests/plugins/slug/viewTests'
     ], function (mocha) {
         mocha.run();
     });

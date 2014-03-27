@@ -64,8 +64,6 @@ module.exports = function (grunt) {
         'registerPlugins',
         'paths:tests',
         'setBuildConfig',
-        'sass',
-        'autoprefixer:no_dest',
         'connect:tests',
         'watch'
     ]);

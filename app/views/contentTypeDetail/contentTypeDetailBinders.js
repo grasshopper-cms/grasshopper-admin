@@ -38,7 +38,7 @@ define(['underscore', 'masseuse',
                         appendTo : el
                     });
 
-                    rivets.viewInstance.start();
+                    rivets.model.view.addChild(rivets.viewInstance);
                 },
                 publishes : true
             }

@@ -160,7 +160,8 @@
 
     require([
         'mocha',
-        './loginViewTests'
+//        './loginViewTests'
+        './viewTests'
     ], function (mocha) {
         mocha.run();
     });
