@@ -14,7 +14,7 @@ define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
                 options : true,
                 label : '',
                 type : 'embeddedtype',
-                dataComplexity : 'complex',
+                dataType : 'ref',
                 required : false,
                 validation : false,
                 value : ''

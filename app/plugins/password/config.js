@@ -13,7 +13,7 @@ define(['text!plugins/password/template.html', 'plugins/password/model', 'text!p
                 label : '',
                 type : 'password',
                 defaultValueType : 'text',
-                dataComplexity : 'simple',
+                dataType : 'string',
                 required : false,
                 validation : false,
                 value : ''

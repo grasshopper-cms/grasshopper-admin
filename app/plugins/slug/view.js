@@ -8,7 +8,7 @@ define(['grasshopperBaseView'],
         });
 
         function afterRender() {
-            console.log(this);
+//            console.log(this.parent.collection.where({}));
         }
 
     });

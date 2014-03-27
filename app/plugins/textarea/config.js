@@ -13,7 +13,7 @@ define(['text!plugins/textarea/template.html', 'plugins/textarea/model', 'text!p
                 label : '',
                 type : 'textarea',
                 defaultValueType : 'textarea',
-                dataComplexity : 'simple',
+                dataType : 'string',
                 required : false,
                 validation : false,
                 value : ''
