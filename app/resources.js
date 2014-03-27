@@ -124,7 +124,9 @@ define({
         helpText : 'Help Text',
         description: 'Description',
         emptyFields : 'Click "Add new field" to add your first field.',
-        useAsLabel : 'Use As Label'
+        useAsLabel : 'Use As Label',
+        switchingBetweenSimpleAndComplexTypesWarning : 'You are switching between simple and complex data types. ' +
+            'If you confirm, your content may be corrupted!'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
