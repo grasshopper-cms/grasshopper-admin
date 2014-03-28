@@ -4,32 +4,32 @@ define(['underscore'], function (_) {
     return {
         and: and,
         booleantoenabled : booleantoenabled,
-        centsToDollars: centsToDollars,
+        centsToDollars : centsToDollars,
         asDollars : asDollars,
-        equals: equals,
-        existsOr: existsOr,
-        humanize: {
+        equals : equals,
+        existsOr : existsOr,
+        humanize : {
             read : read,
             publish : publish
         },
-        includes: includes,
-        joinWithComma: joinWithComma,
-        jsonAsString: jsonAsString,
-        limit: limit,
-        not: not,
-        or: or,
-        pluralize: pluralize,
+        includes : includes,
+        joinWithComma : joinWithComma,
+        jsonAsString : jsonAsString,
+        limit : limit,
+        not : not,
+        or : or,
+        pluralize : pluralize,
         prefix : prefix,
-        prettyDate: prettyDate,
+        prettyDate : prettyDate,
         prettyDateNoTime : prettyDateNoTime,
-        prettyFileSize: prettyFileSize,
-        secondsToTime: secondsToTime,
-        spaceBefore: spaceBefore,
-        spaceAfter: spaceAfter,
-        suffix: suffix,
+        prettyFileSize : prettyFileSize,
+        secondsToTime : secondsToTime,
+        spaceBefore : spaceBefore,
+        spaceAfter : spaceAfter,
+        suffix : suffix,
         withColon: withColon,
         withComma : withComma,
-        withForwardSlash: withForwardSlash
+        withForwardSlash : withForwardSlash
     };
 
     function withComma(value) {
@@ -117,7 +117,7 @@ define(['underscore'], function (_) {
     }
 
     function equals(value, args) {
-        return (value == args);
+        return (value === args);
     }
 
     function existsOr(value, args) {
