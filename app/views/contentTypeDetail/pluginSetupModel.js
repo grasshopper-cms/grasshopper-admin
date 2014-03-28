@@ -1,8 +1,8 @@
-define(['backbone'],
-    function (Backbone) {
+define(['grasshopperModel'],
+    function (Model) {
         'use strict';
 
-        return Backbone.Model.extend({
+        return Model.extend({
             initialize: function() {
                 _generateSlug.call(this, this, this.get('label'));
                 this.on('change:label', _generateSlug, this);

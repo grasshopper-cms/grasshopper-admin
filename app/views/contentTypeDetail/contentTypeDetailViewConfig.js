@@ -2,10 +2,10 @@
 define(['text!views/contentTypeDetail/contentTypeDetailView.html',
     'text!views/contentTypeDetail/_contentTypeDetailRow.html',
     'contentTypeDetailViewModel', 'appBinders', 'contentTypeDetailBinders',
-    'backbone', 'formatters', 'resources', 'constants', 'contentTypeDetailFormatters',
+    'formatters', 'resources', 'constants', 'contentTypeDetailFormatters',
     'contentTypeDetailViewFieldsCollection'],
     function (formTemplate, rowTemplate, contentTypeDetailModel, appBinders, contentTypeDetailBinders,
-              Backbone, formatters, resources, constants, contentTypeDetailFormatters,
+              formatters, resources, constants, contentTypeDetailFormatters,
               ContentTypeDetailViewFieldsCollection) {
         'use strict';
 
