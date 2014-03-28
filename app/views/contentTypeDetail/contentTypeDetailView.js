@@ -49,7 +49,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         var plugins = this.model.get('plugins');
 
         _.each(this.model.get('fields'), function(field) {
-            console.log(_.findWhere(plugins, { type : field.type }));
             field.dataType = _.findWhere(plugins, { type : field.type }).config.modelData.dataType;
         });
     }
