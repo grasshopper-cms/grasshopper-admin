@@ -1,21 +1,22 @@
 <div>
     <div id="topbar" class="contain-to-grid sticky">
-        <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
-            <i class="fa fa-home"></i>
-        </a>
-
         <div id="top-nav">
             <ul class="pull-right">
-                <li><img class="profile-pic" data-rv-show="model:loggedIn" src="http://placehold.it/20x20"/></li>
-                <li><a data-rv-href="model:userModel->href"><i class="fa fa-user"></i><span
-                        data-rv-text="model:resources->user->loggedInAs | spaceAfter"></span><span>{{model:userModel->firstname | spaceAfter}}{{model:userModel->lastname | spaceAfter}}</span></a>
+                <li>
+                    <a data-rv-href="model:userModel->href">
+                        <span data-rv-text="model:resources->user->loggedInAs | spaceAfter"></span>
+                        <span>{{model:userModel->firstname | spaceAfter}}{{model:userModel->lastname | spaceAfter}}</span>
+                    </a>
                 </li>
-
-                <li><a id="logOutButton" data-rv-href="model:constants->internalRoutes->logout"
-                       data-rv-show="model:userModel->loggedIn">{{model:resources->log_out}}</a>
+                <li>
+                    <a id="logOutButton" data-rv-href="model:constants->internalRoutes->logout" data-rv-show="model:userModel->loggedIn">
+                        {{model:resources->log_out}}
+                    </a>
                 </li>
-                <li><a id="logInButton" data-rv-href="model:constants->internalRoutes->login"
-                       data-rv-hide="model:userModel->loggedIn">{{model:resources->log_in}}</a>
+                <li>
+                    <a id="logInButton" data-rv-href="model:constants->internalRoutes->login" data-rv-hide="model:userModel->loggedIn">
+                        {{model:resources->log_in}}
+                    </a>
                 </li>
             </ul>
 
@@ -27,9 +28,7 @@
             <div class="row">
                 <div class="large-12 columns">
                     <a data-rv-href="model:constants->internalRoutes->content" class="brand">{{model:resources->siteName}}</a>
-                    <a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <i class="fa fa-reorder"></i>
-                    </a>
+
 
                     <div class="nav-collapse">
                         <ul id="main-nav" class="nav pull-right">
@@ -57,7 +56,7 @@
                         </ul>
 
                     </div>
-                    <!-- /.nav-collapse -->
+
                 </div>
             </div>
         </div>
