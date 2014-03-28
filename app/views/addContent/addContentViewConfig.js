@@ -13,7 +13,9 @@ define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'app
             events : {
                 'click #saveContentButton' : 'saveContent'
             },
-            listeners : [],
+            listeners : [
+                ['channels.views', 'returnFields', 'returnFields']
+            ],
             mastheadButtons : [],
             breadcrumbs : [
                 {

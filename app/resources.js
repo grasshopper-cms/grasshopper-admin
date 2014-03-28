@@ -206,6 +206,9 @@ define({
         richText : {
             selectFile : 'Select File',
             loading : 'LOADING RICH TEXT...'
+        },
+        slug : {
+            refresh : 'Refresh'
         }
     },
     // General Text (reusable) - try to keep it alphabetized
