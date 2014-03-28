@@ -67,7 +67,8 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
         function _addPlugin(value) {
             var model = {
                 value : _handleDefaultValue.call(this, value),
-                options : this.model.get('options')
+                options : this.model.get('options'),
+                fieldId : this.model.get('_id')
             };
 
             this.collection.add(model);

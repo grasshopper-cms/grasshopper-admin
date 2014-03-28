@@ -5,16 +5,13 @@ define(['grasshopperBaseView', 'underscore'],
 
         return GrasshopperBaseView.extend({
             afterRender : afterRender,
-            calculateSlug : calculateSlug,
-            askAddContentViewForFields : askAddContentViewForFields
+            calculateSlug : _.debounce(calculateSlug, 100)
         });
 
         function afterRender() {
             if(this.model.get('inSetup')) {
                 _collectAvailableSluggables.call(this);
                 _attachRefreshListenerToParentCollection.call(this);
-            } else {
-                this.channels.views.once('contentFieldsChange', calculateSlug, this);
             }
         }
 
@@ -33,13 +30,14 @@ define(['grasshopperBaseView', 'underscore'],
 
         function calculateSlug(fields) {
             var fieldId = this.model.get('options'),
-                fieldValue = fields[fieldId];
+                fieldValue = fields[fieldId],
+                newSlugValue = fields[this.model.get('fieldId')];
 
-            this.model.set('value', fieldValue);
-        }
-
-        function askAddContentViewForFields() {
-            this.channels.views.trigger('returnFields');
+            // will break the binding when slug changes first, this is intended
+            if(newSlugValue === this.model.get('oldSlugValue')) {
+                this.model.set('value', fieldValue);
+                this.model.set('oldSlugValue', newSlugValue ? newSlugValue : fieldValue);
+            }
         }
 
     });

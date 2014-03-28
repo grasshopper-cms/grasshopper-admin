@@ -9,8 +9,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
             defaultOptions : addContentViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
-            saveContent : saveContent,
-            returnFields : returnFields
+            saveContent : saveContent
         });
 
         function beforeRender ($deferred) {
@@ -159,12 +158,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
             this.model.on('change:fields', function() {
                 self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
-                self.model.off('change:fields');
             });
-        }
-
-        function returnFields() {
-            this.channels.views.trigger('sendFields', this.model.get('fields'));
         }
 
     });
