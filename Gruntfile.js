@@ -52,7 +52,7 @@ module.exports = function (grunt) {
         'sass',
         'autoprefixer:no_dest',
         'connect:site',
-        'watch:dev'
+        'watch'
     ]);
 
     grunt.registerTask('test', 'Build and watch task', [

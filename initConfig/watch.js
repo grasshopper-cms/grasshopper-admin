@@ -5,54 +5,119 @@ module.exports = function (grunt) {
     grunt.config('watch', {
         options : {
             // Start a live reload server on the default port: 35729
-            livereload : false,
-            nospawn: true
+            livereload : false
+//            nospawn: true
         },
-        build : {
+//        build : {
+//            options : {
+//                // Start a live reload server on the default port: 35729
+//                livereload : true
+//            },
+//            files : [
+//                'build/**',
+//                '!build/vendor/**'
+//            ]
+//        },
+//        dev : {
+//            options : {
+//                // Start a live reload server on the default port: 35729
+//                livereload : true
+//            },
+//            files : [
+//                'app/**',
+//                '!app/**/*.html',
+//                '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
+//                '!app/vendor/**'
+//            ],
+//            tasks : [
+//                'jshint',
+//                'setupBowerCopy',
+//                'copy:build',
+//                'registerPlugins',
+//                'paths',
+//                'setBuildConfig'
+//            ]
+//        },
+//        tests : {
+//            options : {
+//                // Start a live reload server on the default port: 35729
+//                livereload : true
+//            },
+//            files : [
+//                'tests/**/*.js'
+//            ]
+//        },
+        sass : {
             options : {
-                // Start a live reload server on the default port: 35729
                 livereload : true
             },
-            files : [
-                'build/**',
-                '!build/vendor/**'
+            files : [ //watch sass files for changes.
+                'app/**/*.scss',
+                '!app/vendor/**/*.scss'
+            ],
+            tasks : [ // array of grunt tasks to run.
+                'sass',
+                'autoprefixer:no_dest'
             ]
         },
-        dev : {
+        html : {
             options : {
-                // Start a live reload server on the default port: 35729
                 livereload : true
             },
             files : [
-                'app/**',
-                '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
-                '!app/vendor/**'
+                'app/**/*.html',
+                '!app/vendor/**/*.html'
+            ],
+            tasks : [
+                'copy:html'
+            ]
+        },
+        rootJS : {
+            options : {
+                livereload : true
+            },
+            files : [
+                'app/**/*.js',
+                '!app/views/**/*.js',
+                '!app/plugins/**/*.js',
+                '!app/vendor/**/*.js'
             ],
             tasks : [
                 'jshint',
                 'setupBowerCopy',
-                'copy:build',
-                'registerPlugins',
-                'paths',
+                'copy:rootJS',
+                'paths:app',
                 'setBuildConfig'
             ]
         },
-        tests : {
+        pluginsJS : {
             options : {
-                // Start a live reload server on the default port: 35729
                 livereload : true
             },
             files : [
-                'tests/**/*.js'
+                'app/plugins/**/*.js'
+            ],
+            tasks : [
+                'jshint',
+                'setupBowerCopy',
+                'copy:pluginsJS',
+                'paths:app',
+                'setBuildConfig'
             ]
         },
-        sass : {
-            files : [ //watch sass files for changes.
-                'app/**/*.scss',
-                'app/*.scss'
+        viewsJS : {
+            options: {
+                livereload : true
+            },
+            files : [
+                'app/views/**/*.js'
             ],
-            tasks : [ // array of grunt tasks to run.
-                'sass'
+            tasks : [
+                'jshint',
+                'setupBowerCopy',
+                'copy:viewsJS',
+                'paths:app',
+                'setBuildConfig'
             ]
         }
     });

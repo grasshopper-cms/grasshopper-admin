@@ -65,6 +65,57 @@ module.exports = function (grunt) {
                     flatten: true
                 }
             ]
+        },
+        html : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        '**/*.html',
+                        '!vendor/**/*.html'
+                    ],
+                    dest : buildDirectory
+                }
+            ]
+        },
+        rootJS : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        '**/*.js',
+                        '!vendor/**/*.js',
+                        '!plugins/**/*.js'
+                    ],
+                    dest : buildDirectory
+                }
+            ]
+        },
+        pluginsJS : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        'plugins/**/*.js'
+                    ],
+                    dest : buildDirectory
+                }
+            ]
+        },
+        viewsJS : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        'views/**/*.js'
+                    ],
+                    dest : buildDirectory
+                }
+            ]
         }
     });
 

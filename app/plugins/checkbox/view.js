@@ -54,5 +54,4 @@ define(['grasshopperBaseView', 'underscore'],
 
             this.model.set('options', options);
         }
-
     });
