@@ -1,5 +1,5 @@
-define(['grasshopperModel'],
-    function (Model) {
+define(['grasshopperModel', 'resources'],
+    function (Model, resources) {
         'use strict';
 
         return Model.extend({
@@ -19,7 +19,8 @@ define(['grasshopperModel'],
             defaults : {
                 _id : '',
                 useAsLabel : false,
-                multi : false
+                multi : false,
+                resources : resources
             }
         });
 

@@ -1,8 +1,6 @@
 /* jshint loopfunc:true */
-define(['underscore', 'masseuse',
-    'plugins'],
-    function (_, masseuse,
-              plugins) {
+define(['underscore', 'masseuse', 'plugins', 'fieldAccordionView'],
+    function (_, masseuse, plugins, FieldAccordionView) {
         'use strict';
 
         return {
@@ -41,6 +39,21 @@ define(['underscore', 'masseuse',
                     rivets.model.view.addChild(rivets.viewInstance);
                 },
                 publishes : true
+            },
+            fieldaccordion : {
+                bind : function() {},
+                unbind : function() {
+                    this.viewInstance.remove();
+                },
+                routine : function(el, model) {
+
+                    this.viewInstance = new FieldAccordionView({
+                        appendTo : el,
+                        model : model
+                    });
+
+                    this.model.view.addChild(this.viewInstance);
+                }
             }
         };
 
