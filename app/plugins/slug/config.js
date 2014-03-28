@@ -1,6 +1,7 @@
 /*global define:false*/
-define(['text!plugins/slug/template.html', 'plugins/slug/model', 'text!plugins/slug/setupTemplate.html'],
-    function (slugPluginTemplate, slugPluginModel, setupTemplate) {
+define(['text!plugins/slug/template.html', 'plugins/slug/model', 'text!plugins/slug/setupTemplate.html',
+    'plugins/slug/formatters'],
+    function (slugPluginTemplate, slugPluginModel, setupTemplate, formatters) {
         'use strict';
 
         return {
@@ -22,7 +23,12 @@ define(['text!plugins/slug/template.html', 'plugins/slug/model', 'text!plugins/s
             setupTemplate : setupTemplate,
             events : {},
             wrapper: false,
-            listeners : [],
-            mastheadButtons : []
+            listeners : [
+                ['channels.views', 'sendFields', 'calculateSlug']
+            ],
+            mastheadButtons : [],
+            rivetsConfig : {
+                formatters : [formatters]
+            }
         };
     });

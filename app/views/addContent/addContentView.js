@@ -9,7 +9,8 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
             defaultOptions : addContentViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
-            saveContent : saveContent
+            saveContent : saveContent,
+            returnFields : returnFields
         });
 
         function beforeRender ($deferred) {
@@ -17,6 +18,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function afterRender() {
+            _addListenerForModelChange.call(this);
             this.$el.foundation();
         }
 
@@ -150,6 +152,19 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _updateMastheadBreadcrumbs($deferred) {
             breadcrumbWorker.contentBreadcrumb.call(this, $deferred, true);
+        }
+
+        function _addListenerForModelChange() {
+            var self = this;
+
+            this.model.on('change:fields', function() {
+                self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
+                self.model.off('change:fields');
+            });
+        }
+
+        function returnFields() {
+            this.channels.views.trigger('sendFields', this.model.get('fields'));
         }
 
     });

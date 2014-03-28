@@ -4,12 +4,18 @@ define(['grasshopperBaseView', 'underscore'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-            afterRender : afterRender
+            afterRender : afterRender,
+            calculateSlug : calculateSlug,
+            askAddContentViewForFields : askAddContentViewForFields
         });
 
         function afterRender() {
-            _collectAvailableSluggables.call(this);
-            _attachRefreshListenerToParentCollection.call(this);
+            if(this.model.get('inSetup')) {
+                _collectAvailableSluggables.call(this);
+                _attachRefreshListenerToParentCollection.call(this);
+            } else {
+                this.channels.views.once('contentFieldsChange', calculateSlug, this);
+            }
         }
 
         function _collectAvailableSluggables() {
@@ -23,6 +29,17 @@ define(['grasshopperBaseView', 'underscore'],
 
         function _attachRefreshListenerToParentCollection() {
             this.parent.collection.on('add remove reset change', _collectAvailableSluggables.bind(this));
+        }
+
+        function calculateSlug(fields) {
+            var fieldId = this.model.get('options'),
+                fieldValue = fields[fieldId];
+
+            this.model.set('value', fieldValue);
+        }
+
+        function askAddContentViewForFields() {
+            this.channels.views.trigger('returnFields');
         }
 
     });
