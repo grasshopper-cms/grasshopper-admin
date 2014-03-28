@@ -8,45 +8,45 @@ module.exports = function (grunt) {
             livereload : false
 //            nospawn: true
         },
-//        build : {
-//            options : {
-//                // Start a live reload server on the default port: 35729
-//                livereload : true
-//            },
-//            files : [
-//                'build/**',
-//                '!build/vendor/**'
-//            ]
-//        },
-//        dev : {
-//            options : {
-//                // Start a live reload server on the default port: 35729
-//                livereload : true
-//            },
-//            files : [
-//                'app/**',
-//                '!app/**/*.html',
-//                '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
-//                '!app/vendor/**'
-//            ],
-//            tasks : [
-//                'jshint',
-//                'setupBowerCopy',
-//                'copy:build',
-//                'registerPlugins',
-//                'paths',
-//                'setBuildConfig'
-//            ]
-//        },
-//        tests : {
-//            options : {
-//                // Start a live reload server on the default port: 35729
-//                livereload : true
-//            },
-//            files : [
-//                'tests/**/*.js'
-//            ]
-//        },
+        build : {
+            options : {
+                // Start a live reload server on the default port: 35729
+                livereload : true
+            },
+            files : [
+                'build/**',
+                '!build/vendor/**'
+            ]
+        },
+        dev : {
+            options : {
+                // Start a live reload server on the default port: 35729
+                livereload : true
+            },
+            files : [
+                'app/**',
+                '!app/**/*.html',
+                '!app/**/*.scss',// Exclusion order is relevant. Exclude Sass files.
+                '!app/vendor/**'
+            ],
+            tasks : [
+                'jshint',
+                'setupBowerCopy',
+                'copy:build',
+                'registerPlugins',
+                'paths',
+                'setBuildConfig'
+            ]
+        },
+        tests : {
+            options : {
+                // Start a live reload server on the default port: 35729
+                livereload : true
+            },
+            files : [
+                'tests/**/*.js'
+            ]
+        },
         sass : {
             options : {
                 livereload : true
