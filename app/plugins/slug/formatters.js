@@ -8,7 +8,7 @@ define([], function () {
 
     function asSlug(value) {
         if(value) {
-            return value.toLowerCase().replace(/ /g, '_');
+            return value.toLowerCase().trim().replace(/[\s]+/g, '-').replace(/[^-a-zA-Z0-9._~]/g, '');
         }
     }
 });
