@@ -182,7 +182,7 @@
         "selfValidatingModel" : "models/selfValidatingModel",
         "UserModel" : "models/userModel",
         "grasshopperModel" : "models/grasshopperModel",
-        "pluginSetupModel" : "models/pluginSetupModel"
+        "pluginSetupModel" : "views/contentTypeDetail/pluginSetupModel"
     },
 
     "workers" : {

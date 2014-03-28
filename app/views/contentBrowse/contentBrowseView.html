@@ -11,7 +11,7 @@
                 <a href="#panel2-1">
                     <p class="title">
                         <i class="fa fa-list-alt"></i>
-                        {{model:resources.content | spaceBefore}}
+                        {{model:resources->content | spaceBefore}}
                     </p>
                 </a>
             </dd>
@@ -19,7 +19,7 @@
                 <a href="#panel2-2">
                     <p class="title">
                         <i class="fa fa-paper-clip"></i>
-                        {{model:resources.fileIndex.files | spaceBefore}}
+                        {{model:resources->fileIndex->files | spaceBefore}}
                     </p>
                 </a>
             </dd>
@@ -30,13 +30,11 @@
 
                 <table class="content-table" id="contentBrowseTable">
                     <thead>
-                    <tr>
-                        <th>{{model:resources.name}}</th>
-                        <th>{{model:resources.contentBrowse.author}}</th>
-                        <th>{{model:resources.status}}</th>
-                        <th>{{model:resources.contentBrowse.modified}}</th>
-                        <th style="text-align: center">{{model:resources.actions}}</th>
-                    </tr>
+                        <tr>
+                            <th>{{model:resources->label}}</th>
+                            <th>{{model:resources->contentBrowse->modified}}</th>
+                            <th style="text-align: center">{{model:resources->actions}}</th>
+                        </tr>
                     </thead>
                 </table>
 
