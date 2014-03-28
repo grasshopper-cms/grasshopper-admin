@@ -14,6 +14,7 @@ define(['text!plugins/slug/template.html', 'plugins/slug/model', 'text!plugins/s
                 label : '',
                 type : 'slug',
                 defaultValueType : 'text',
+                dataType : 'string',
                 required : false,
                 validation : false,
                 value : ''
