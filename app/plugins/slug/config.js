@@ -24,7 +24,7 @@ define(['text!plugins/slug/template.html', 'plugins/slug/model', 'text!plugins/s
             events : {},
             wrapper: false,
             listeners : [
-                ['channels.views', 'sendFields', 'calculateSlug']
+                ['channels.views', 'contentFieldsChange', 'calculateSlug']
             ],
             mastheadButtons : [],
             rivetsConfig : {
