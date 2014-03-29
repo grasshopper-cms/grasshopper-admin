@@ -40,17 +40,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _handleSuccessfulModelFetch($deferred) {
-        _hydrateFieldsWithDefaultTypeFromPlugin.call(this);
         this.collection.reset(this.model.get('fields'));
         _updateMastheadBreadcrumbs.call(this, $deferred, false);
-    }
-
-    function _hydrateFieldsWithDefaultTypeFromPlugin() {
-        var plugins = this.model.get('plugins');
-
-        _.each(this.model.get('fields'), function(field) {
-            field.dataType = _.findWhere(plugins, { type : field.type }).config.modelData.dataType;
-        });
     }
 
     function prepareToDeleteContentType () {

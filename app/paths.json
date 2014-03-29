@@ -113,7 +113,8 @@
         "fieldAccordion+" : {
             "View" : "views/contentTypeDetail/fieldAccordion/view",
             "Config" : "views/contentTypeDetail/fieldAccordion/config",
-            "Model" : "views/contentTypeDetail/fieldAccordion/model"
+            "Model" : "views/contentTypeDetail/fieldAccordion/model",
+            "Binders" : "views/contentTypeDetail/fieldAccordion/binders"
         },
 
         "fileBrowserView+" : {

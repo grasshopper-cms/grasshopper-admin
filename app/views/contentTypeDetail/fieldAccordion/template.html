@@ -1,4 +1,4 @@
-<div class="row accordionHeader" data-rv-modelid="field.cid">
+<div class="row accordionHeader" data-rv-modelid="model.cid">
     <div class="small-12 columns">
         <table style="margin-bottom: 0; table-layout: fixed;">
             <tbody>
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div data-rv-id="field.cid" class="accordionContent" data-rv-addclass="model:active">
+<div data-rv-id="model.cid" class="accordionContent" data-rv-addclass="model:active">
 
     <div class="row">
         <div class="large-12 small-centered columns">
@@ -50,10 +50,10 @@
 
             <div class="row">
                 <div class="small-2 columns">
-                    <label data-rv-for="field.cid  | prepend type" class="right inline">{{model:resources->type}}</label>
+                    <label data-rv-for="model.cid  | prepend type" class="right inline">{{model:resources->type}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <select data-rv-id="field.cid  | prepend type" data-rv-value="model:type" >
+                    <select data-rv-id="model.cid  | prepend type" data-rv-value="model:type" >
                         <option data-rv-each-plugin="model:plugins" data-rv-value="plugin.type" data-rv-text="plugin.name"></option>
                     </select>
                 </div>
@@ -61,46 +61,46 @@
 
             <div class="row">
                 <div class="small-2 columns">
-                    <label data-rv-for="field.cid  | prepend helpText" class="right inline">{{model:resources->helpText}}</label>
+                    <label data-rv-for="model.cid  | prepend helpText" class="right inline">{{model:resources->helpText}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <textarea data-rv-id="field.cid  | prepend helpText" data-rv-value="model:helpText" style="max-width: 100%;"></textarea>
+                    <textarea data-rv-id="model.cid  | prepend helpText" data-rv-value="model:helpText" style="max-width: 100%;"></textarea>
                 </div>
             </div>
 
             <div class="row" data-rv-if="model:dataType | equals string">
                 <div class="small-2 columns">
-                    <label data-rv-for="field.cid  | prepend defaultValue" class="right inline">{{model:resources->defaultValue}}</label>
+                    <label data-rv-for="model.cid  | prepend defaultValue" class="right inline">{{model:resources->defaultValue}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input data-rv-type="model:defaultValueType | existsOr text" data-rv-id="field.cid  | prepend defaultValue" data-rv-checked="model:defaultValue" data-rv-value="model:defaultValue">
+                    <input data-rv-type="model:defaultValueType | existsOr text" data-rv-id="model.cid  | prepend defaultValue" data-rv-checked="model:defaultValue" data-rv-value="model:defaultValue">
                 </div>
             </div>
 
             <div class="row">
                 <div class="small-2 columns">
-                    <label data-rv-for="field.cid  | prepend required" class="right inline">{{model:resources->required}}</label>
+                    <label data-rv-for="model.cid  | prepend required" class="right inline">{{model:resources->required}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input data-rv-id="field.cid  | prepend required" type="checkbox" data-rv-checked="model:required">
+                    <input data-rv-id="model.cid  | prepend required" type="checkbox" data-rv-checked="model:required">
                 </div>
             </div>
 
             <div class="row" data-rv-show="model:type | equals textbox">
                 <div class="small-2 columns">
-                    <label data-rv-for="field.cid  | prepend useAsLabel" class="right inline">{{model:resources->contentType->useAsLabel}}</label>
+                    <label data-rv-for="model.cid  | prepend useAsLabel" class="right inline">{{model:resources->contentType->useAsLabel}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input data-rv-id="field.cid  | prepend useAsLabel" type="radio" name="useAsLabel" data-rv-checked="model:useAsLabel | radioToBoolean">
+                    <input data-rv-id="model.cid  | prepend useAsLabel" type="radio" name="useAsLabel" data-rv-checked="model:useAsLabel | radioToBoolean">
                 </div>
             </div>
 
             <div class="row" data-rv-hide="model:useAsLabel">
                 <div class="small-2 columns">
-                    <label data-rv-for="field.cid  | prepend multi" class="right inline">{{model:resources->allowMultiple}}</label>
+                    <label data-rv-for="model.cid  | prepend multi" class="right inline">{{model:resources->allowMultiple}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input data-rv-id="field.cid  | prepend multi" type="checkbox" data-rv-checked="model:multi">
+                    <input data-rv-id="model.cid  | prepend multi" type="checkbox" data-rv-checked="model:multi">
                 </div>
             </div>
 
@@ -114,18 +114,18 @@
             </legend>
             <div class="row">
                 <div class="small-2 columns">
-                    <label data-rv-for="field.cid  | prepend min" class="right inline">{{model:resources->minimum}}</label>
+                    <label data-rv-for="model.cid  | prepend min" class="right inline">{{model:resources->minimum}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input data-rv-id="field.cid  | prepend min" type="number" data-rv-value="model:min | asNumber">
+                    <input data-rv-id="model.cid  | prepend min" type="number" data-rv-value="model:min | asNumber">
                 </div>
             </div>
             <div class="row">
                 <div class="small-2 columns">
-                    <label data-rv-for="field.cid  | prepend max" class="right inline">{{model:resources->maximum}}</label>
+                    <label data-rv-for="model.cid  | prepend max" class="right inline">{{model:resources->maximum}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input data-rv-id="field.cid  | prepend max" type="number" data-rv-value="model:max | asNumber">
+                    <input data-rv-id="model.cid  | prepend max" type="number" data-rv-value="model:max | asNumber">
                 </div>
             </div>
         </fieldset>
@@ -136,7 +136,7 @@
             <legend>
                 {{model:resources->options}}
             </legend>
-            <!--<div data-rv-fieldform="field"></div>-->
+            <div data-rv-fieldform="model"></div>
         </fieldset>
     </div>
 
