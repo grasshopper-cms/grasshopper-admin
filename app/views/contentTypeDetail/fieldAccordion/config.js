@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/contentTypeDetail/fieldAccordion/template.html'],
-    function (template) {
+define(['text!views/contentTypeDetail/fieldAccordion/template.html', 'fieldAccordionBinders'],
+    function (template, fieldAccordionBinders) {
         'use strict';
 
         return {
@@ -9,7 +9,10 @@ define(['text!views/contentTypeDetail/fieldAccordion/template.html'],
             wrapper : false,
             template : template,
             events : {},
-            listeners : []
+            listeners : [],
+            rivetsConfig : {
+                binders : [fieldAccordionBinders]
+            }
         };
 
     });

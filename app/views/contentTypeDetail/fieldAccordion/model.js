@@ -1,29 +1,38 @@
-define(['grasshopperModel', 'resources', 'plugins'],
-    function (Model, resources, plugins) {
+define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore'],
+    function (Model, resources, plugins, masseuse, _) {
         'use strict';
 
+        var ComputedProperty = masseuse.ComputedProperty;
+
         return Model.extend({
-            initialize: function() {
-                _generateSlug.call(this, this, this.get('label'));
-                this.on('change:label', _generateSlug, this);
-
-                _toggleMultiFieldset.call(this);
-
-                _ensureMaxIsAlwaysGreaterThanOrEqualToMin.call(this);
-                this.on('change:min', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
-                this.on('change:max', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
-                this.on('change:useAsLabel', _ensureIsRequired, this);
-                this.on('change:useAsLabel', _ensureMinMaxIsOne, this);
-                this.on('change:required', _ensureIsNotUseAsLabel, this);
-            },
+            initialize: initialize,
             defaults : {
                 _id : '',
                 useAsLabel : false,
                 multi : false,
                 resources : resources,
-                plugins : plugins.fields
+                plugins : plugins.fields,
+                dataType : new ComputedProperty(['type'], function(type) {
+                    if(type) {
+                        return _.findWhere(this.get('plugins'), { type : type }).config.modelData.dataType;
+                    }
+                })
             }
         });
+
+        function initialize() {
+            _generateSlug.call(this, this, this.get('label'));
+            this.on('change:label', _generateSlug, this);
+
+            _toggleMultiFieldset.call(this);
+
+            _ensureMaxIsAlwaysGreaterThanOrEqualToMin.call(this);
+            this.on('change:min', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
+            this.on('change:max', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
+            this.on('change:useAsLabel', _ensureIsRequired, this);
+            this.on('change:useAsLabel', _ensureMinMaxIsOne, this);
+            this.on('change:required', _ensureIsNotUseAsLabel, this);
+        }
 
         function _generateSlug(model, newValue) {
             if(newValue) {

@@ -16,7 +16,7 @@ define(['grasshopperBaseView', 'underscore'],
         }
 
         function _collectAvailableSluggables() {
-            var allStringFields = this.parent.collection.where({ dataType : 'string' }),
+            var allStringFields = this.parent.parent.collection.where({ dataType : 'string' }),
                 allSluggableFields = _.filter(allStringFields, function(model) {
                     return model.get('type') !== 'slug';
                 });
@@ -25,7 +25,7 @@ define(['grasshopperBaseView', 'underscore'],
         }
 
         function _attachRefreshListenerToParentCollection() {
-            this.parent.collection.on('add remove reset change', _collectAvailableSluggables.bind(this));
+            this.parent.parent.collection.on('add remove reset change', _collectAvailableSluggables.bind(this));
         }
 
         function calculateSlug(fields) {
