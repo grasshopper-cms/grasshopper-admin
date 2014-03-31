@@ -57,13 +57,18 @@ module.exports = function (grunt) {
                 }
             ]
         },
-        vagrant : {
+        vagrantConfig : {
             files : [
                 {
                     expand : true,
-                    cwd : 'api/lib/config/configuration.test.json',
-                    src : [],
-                    dest : 'api/lib/config/configuration.json'
+                    cwd : 'node_modules/grasshopper-api/lib/config/',
+                    src : [
+                        'configuration.test.json'
+                    ],
+                    dest : 'node_modules/grasshopper-api/lib/config/',
+                    rename : function(dest, srcpath) {
+                        return dest + srcpath.replace('.test', '');
+                    }
                 }
             ]
         },
