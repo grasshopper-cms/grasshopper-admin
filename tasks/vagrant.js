@@ -15,7 +15,7 @@ module.exports = function (grunt) {
                         "vagrant:run:up:--provision",
                         "vagrant:run:exec:grunt:seedDev",
                         "shell:test_vagrant_box",
-                        "copy:vagrant"
+                        "copy:vagrantConfig"
                     ],
                     help : "Install and set up vagrant box "
                 },
