@@ -9,7 +9,9 @@ define(['text!views/contentTypeDetail/fieldAccordion/template.html', 'fieldAccor
             wrapper : false,
             template : template,
             events : {},
-            listeners : [],
+            listeners : [
+                ['model', 'change:type', 'changeFieldType']
+            ],
             rivetsConfig : {
                 binders : [fieldAccordionBinders]
             }
