@@ -32,8 +32,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function afterRender() {
         this.$el.foundation();
 
-        this.listenTo(this.collection, 'change:type', _changeFieldPluginType);
-
         _initializeSortableAccordions.call(this);
 
         _addClickListenersToAccordion.call(this);
@@ -193,59 +191,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function _updateMastheadBreadcrumbs($deferred, isNew) {
         breadcrumbWorker.contentTypeBreadcrumb.call(this, $deferred, (isNew));
-    }
-
-    function _changeFieldPluginType(currentModel, newType) {
-        var plugins = this.model.get('plugins'),
-            previousType = currentModel.previousAttributes().type,
-            previousModelComplexity = _getModelDataTypeFromPlugins.call(this, plugins, previousType),
-            currentModelComplexity = _getModelDataTypeFromPlugins.call(this, plugins, newType);
-
-        if(currentModelComplexity !== previousModelComplexity) {
-            _warnUserBeforeChangingComplexTypes.call(this)
-                .done(_actuallyChangeFieldPluginType.bind(this, currentModel, newType))
-                .fail(_returnFieldPluginTypeToPreviousType.bind(this, currentModel, previousType));
-        }
-    }
-
-    function _getModelDataTypeFromPlugins(plugins, type) {
-        return _.findWhere(plugins, {
-            type : type
-        }).config.modelData.dataType;
-    }
-
-    function _warnUserBeforeChangingComplexTypes() {
-        return this.displayModal(
-            {
-                header : resources.warning,
-                msg : resources.contentType.switchingBetweenSimpleAndComplexTypesWarning
-            });
-    }
-
-    function _actuallyChangeFieldPluginType(currentModel, newType) {
-        var newTypeModel = _.findWhere(this.model.get('plugins'), { type : newType }).config.modelData;
-
-        this.collection.remove(currentModel);
-
-        _collapseAccordion.call(this);
-
-        _.extend(newTypeModel, {
-            active : 'active',
-            label : currentModel.get('label'),
-            min : currentModel.get('min'),
-            max : currentModel.get('max'),
-            multi : currentModel.get('multi'),
-            helpText : currentModel.get('helpText'),
-            required : currentModel.get('required')
-        });
-
-        this.collection.add(newTypeModel);
-
-        _initializeSortableAccordions.call(this);
-    }
-
-    function _returnFieldPluginTypeToPreviousType(currentModel, previousType) {
-        currentModel.set('type', previousType, {silent: true});
     }
 
     function _addClickListenersToAccordion() {
