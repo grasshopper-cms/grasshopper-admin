@@ -10,7 +10,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 stdout: true,
                 execOptions : {
-                    cwd : 'api'
+                    cwd : 'node_modules/grasshopper-api'
                 }
             }
         },
@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 stdout: true,
                 execOptions : {
-                    cwd : 'api'
+                    cwd : 'node_modules/grasshopper-api'
                 }
             }
         },
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 stdout: true,
                 execOptions : {
-                    cwd : 'api'
+                    cwd : 'node_modules/grasshopper-api'
                 }
             }
         },
@@ -51,7 +51,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true,
                 execOptions: {
-                    cwd: './api'
+                    cwd: 'node_modules/grasshopper-api'
                 }
             },
             command : 'vagrant exec mongodump --db grasshopper --out tasks/seedData/mongodb'
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true,
                 execOptions: {
-                    cwd: './api'
+                    cwd: 'node_modules/grasshopper-api'
                 }
             },
             command : 'vagrant exec mongorestore --drop --db grasshopper tasks/seedData/mongodb/grasshopper'
@@ -73,7 +73,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true,
                 execOptions: {
-                    cwd: './api'
+                    cwd: 'node_modules/grasshopper-api'
                 }
             },
             command : 'vagrant exec mongorestore --db grasshopper tasks/seedData/mongodb/grasshopper'

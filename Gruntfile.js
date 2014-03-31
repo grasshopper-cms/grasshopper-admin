@@ -18,16 +18,25 @@ module.exports = function (grunt) {
 
     grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
 
-
     grunt.config.set('warning', warning);
     grunt.config.set('buildDirectory', ghaConfigPath + path.sep + ghaConfig.buildDirectory);
 
     grunt.loadTasks('initConfig');
     grunt.loadTasks('tasks');
 
-    grunt.registerTask('saveData', ['clean:seedData', 'shell:mongodump', 'copy:seedDataToGh']);
-    grunt.registerTask('loadData', ['copy:seedDataToApi', 'shell:mongorestore']);
-    grunt.registerTask('mergeData', ['copy:seedDataToApi', 'shell:mongomerge']);
+    grunt.registerTask('saveData', 'Saves the current database to a local seed directory', [
+        'clean:seedData',
+        'shell:mongodump',
+        'copy:seedDataToGh'
+    ]);
+    grunt.registerTask('loadData', 'Imports the local seed directory into the database', [
+        'copy:seedDataToApi',
+        'shell:mongorestore'
+    ]);
+    grunt.registerTask('mergeData', 'Attempts to merge the local seed directory with the database', [
+        'copy:seedDataToApi',
+        'shell:mongomerge'
+    ]);
 
     grunt.registerTask('build-no-optimize', 'Build and watch task', [
         'setupBowerCopy',
@@ -70,8 +79,6 @@ module.exports = function (grunt) {
         'watch'
     ]);
 
-//    grunt.registerTask('build', ['build-no-optimize']);
-// This is commented out, since ckEditor does not work on optimized build - aliasing to non optimized for now
     grunt.registerTask('build', [
         'setupBowerCopy',
         'copy:build',
