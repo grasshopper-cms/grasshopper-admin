@@ -210,8 +210,9 @@
         "api" : "api/api"
     },
 
-    "validation" : {
-        "validation" : "validation/validation"
+    "validation+" : {
+        "" : "validation/validation",
+        "Types" : "validation/validationTypes"
     },
 
     "plugins" : {

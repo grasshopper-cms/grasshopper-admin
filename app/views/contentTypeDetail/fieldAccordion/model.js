@@ -1,5 +1,5 @@
-define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore'],
-    function (Model, resources, plugins, masseuse, _) {
+define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'validationTypes'],
+    function (Model, resources, plugins, masseuse, _, validationTypes) {
         'use strict';
 
         var ComputedProperty = masseuse.ComputedProperty;
@@ -12,6 +12,9 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore'],
                 multi : false,
                 resources : resources,
                 plugins : plugins.fields,
+                validation : [],
+                hasValidation : false,
+                validationTypes : validationTypes,
                 dataType : new ComputedProperty(['type'], function(type) {
                     if(type) {
                         return _.findWhere(this.get('plugins'), { type : type }).config.modelData.dataType;
