@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['backbone', 'pluginSetupModel', 'underscore'], function(Backbone, PluginSetupModel, _) {
+define(['backbone', 'fieldAccordionModel', 'underscore'], function(Backbone, fieldAccordionModel, _) {
     'use strict';
 
     return Backbone.Collection.extend({
-        model : PluginSetupModel,
+        model : fieldAccordionModel,
         toJSON: function () {
             var json = Backbone.Collection.prototype.toJSON.apply(this);
 
