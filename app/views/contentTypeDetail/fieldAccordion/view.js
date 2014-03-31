@@ -5,13 +5,15 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
 
         return grasshopperBaseView.extend({
             defaultOptions : fieldAccordionConfig,
-            beforeRender : beforeRender,
+            afterRender : afterRender,
             changeFieldType : changeFieldType,
             addValidationRule : addValidationRule
         });
 
-        function beforeRender() {
-//            console.log(this);
+        function afterRender() {
+            if(this.model.get('validation')) {
+                this.model.get('validationCollection').reset(this.model.get('validation'));
+            }
         }
 
         function changeFieldType(currentModel, newType) {
@@ -58,7 +60,12 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
         }
 
         function addValidationRule() {
-            this.model.get('validation').push(this.model.get('selectedValidation'));
+            var selectedValidation = this.model.get('selectedValidation');
+
+            this.model.get('validationCollection').add({
+                type : selectedValidation
+            });
+
             this.model.set('selectedValidation', null, { silent : true });
         }
 

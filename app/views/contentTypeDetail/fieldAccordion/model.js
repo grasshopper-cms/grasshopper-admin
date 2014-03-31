@@ -1,5 +1,7 @@
-define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'validationTypes'],
-    function (Model, resources, plugins, masseuse, _, validationTypes) {
+define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'validationTypes',
+        'fieldAccordionValidationCollection'],
+    function (Model, resources, plugins, masseuse, _, validationTypes,
+              FieldAccordionValidationCollection) {
         'use strict';
 
         var ComputedProperty = masseuse.ComputedProperty;
@@ -13,6 +15,7 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
                 resources : resources,
                 plugins : plugins.fields,
                 validation : [],
+                validationCollection : new FieldAccordionValidationCollection(),
                 hasValidation : false,
                 validationTypes : validationTypes,
                 dataType : new ComputedProperty(['type'], function(type) {
