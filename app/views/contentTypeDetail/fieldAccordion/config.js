@@ -10,7 +10,8 @@ define(['text!views/contentTypeDetail/fieldAccordion/template.html', 'fieldAccor
             template : template,
             events : {},
             listeners : [
-                ['model', 'change:type', 'changeFieldType']
+                ['model', 'change:type', 'changeFieldType'],
+                ['model', 'change:selectedValidation', 'addValidationRule']
             ],
             rivetsConfig : {
                 binders : [fieldAccordionBinders]

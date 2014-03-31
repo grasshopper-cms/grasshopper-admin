@@ -104,6 +104,15 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="small-2 columns">
+                    <label data-rv-for="model.cid  | prepend validation" class="right inline">Validation</label>
+                </div>
+                <div class="small-10 columns">
+                    <input data-rv-id="model.cid  | prepend validation" type="checkbox" data-rv-checked="model:hasValidation">
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -127,6 +136,35 @@
                 <div class="small-10 columns">
                     <input data-rv-id="model.cid  | prepend max" type="number" data-rv-value="model:max | asNumber">
                 </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="row" data-rv-show="model:hasValidation">
+        <fieldset>
+            <legend>
+                Validation
+            </legend>
+            <div class="row">
+
+                <div class="small-2 columns">
+                    <label data-rv-for="model.cid  | prepend possibleValidations" class="right inline">Add Validation Type:</label>
+                </div>
+                <div class="small-10 columns">
+                    <select data-rv-id="model.cid  | prepend possibleValidations" data-rv-value="model:selectedValidation" >
+                        <option data-rv-each-validationtype="model:validationTypes" data-rv-value="validationtype" data-rv-text="validationtype"></option>
+                    </select>
+                </div>
+
+                <hr>
+                    Validations template will render here with appropriate options.
+                    <ul>
+                        <li data-rv-each-validation="model:validation">
+                            {{validation}}
+                        </li>
+                    </ul>
+                <hr>
+
             </div>
         </fieldset>
     </div>
