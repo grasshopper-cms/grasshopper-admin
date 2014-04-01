@@ -12,8 +12,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         prepareToDeleteContentType : prepareToDeleteContentType,
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
-        saveContentType : saveContentType,
-        removeFieldFromCollection : removeFieldFromCollection
+        saveContentType : saveContentType
     });
 
     function beforeRender ($deferred) {
@@ -176,17 +175,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                 msg: resources.contentType.failedSave
             }
         );
-    }
-
-    function removeFieldFromCollection(e, context) {
-        var self = this;
-        this.displayModal({
-            header : resources.warning,
-            msg : resources.contentType.removeFieldWarning
-        })
-            .done(function() {
-                self.collection.remove(context.field);
-            });
     }
 
     function _updateMastheadBreadcrumbs($deferred, isNew) {

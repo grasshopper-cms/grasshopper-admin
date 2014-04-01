@@ -7,7 +7,8 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
             defaultOptions : fieldAccordionConfig,
             afterRender : afterRender,
             changeFieldType : changeFieldType,
-            addValidationRule : addValidationRule
+            addValidationRule : addValidationRule,
+            removeThisField : removeThisField
         });
 
         function afterRender() {
@@ -67,6 +68,21 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
             });
 
             this.model.set('selectedValidation', null, { silent : true });
+        }
+
+        function removeThisField(e) {
+            var self = this;
+
+            e.stopPropagation();
+
+            this.displayModal({
+                header : resources.warning,
+                msg : resources.contentType.removeFieldWarning
+            })
+                .done(function() {
+                    self.parent.collection.remove(self.model);
+                });
+
         }
 
     });

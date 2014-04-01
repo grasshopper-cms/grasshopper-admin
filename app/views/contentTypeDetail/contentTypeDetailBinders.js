@@ -11,6 +11,11 @@ define(['fieldAccordionView'],
                 },
                 routine : function(el, model) {
 
+                    if (this.viewInstance) {
+                        this.model.view.removeChild(this.viewInstance);
+                        this.viewInstance.remove();
+                    }
+
                     this.viewInstance = new FieldAccordionView({
                         appendTo : el,
                         model : model
