@@ -3,7 +3,15 @@
         <table style="margin-bottom: 0; table-layout: fixed;">
             <tbody>
                 <tr>
-                    <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:type | humanize |spaceBefore}}</td>
+                    <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:type | humanize | spaceBefore}}</td>
+                    <td>
+                        <span>
+                            Min Length: {{model:options->min}}
+                        </span>
+                        <span>
+                            Max Length: {{model:options->max}}
+                        </span>
+                    </td>
                     <td style="text-align: center;">
                             <span>
                                <i class="fa fa-trash-o"></i>
@@ -17,6 +25,31 @@
 
 <div data-rv-id="model.cid" class="accordionContent" data-rv-addclass="model:active">
 
-    BLAH BLAH BLAH HERE IS WHERE YOU MAKE SETTINGS FOR THE ALPHA TYPE
+    <div class="row">
+         <div class="small-12 large-6 columns">
+
+             <div class="small-3 columns">
+                 <label data-rv-for="model.cid | prepend min" class="right inline">MIN Length</label>
+             </div>
+
+             <div class="small-9 columns">
+                 <input type="number" data-rv-id="model.cid | prepend min" data-rv-value="model:options->min">
+             </div>
+
+         </div>
+
+        <div class="small-12 large-6 columns">
+
+            <div class="small-3 columns">
+                <label data-rv-for="model.cid | prepend max" class="right inline">MAX Length</label>
+            </div>
+
+            <div class="small-9 columns">
+                <input type="number" data-rv-id="model.cid | prepend max" data-rv-value="model:options->max">
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
