@@ -32,8 +32,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.$el.foundation();
 
         _initializeSortableAccordions.call(this);
-
-        _addClickListenersToAccordion.call(this);
     }
 
     function _handleSuccessfulModelFetch($deferred) {
@@ -142,7 +140,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _collapseAccordion() {
-        this.$el.find('.accordionHeader').removeClass('activeHeader');
         this.$el.find('.accordionContent').hide(
             {
                 effect : 'blind'
@@ -181,34 +178,10 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         breadcrumbWorker.contentTypeBreadcrumb.call(this, $deferred, (isNew));
     }
 
-    function _addClickListenersToAccordion() {
-        var self = this;
-
-        this.$el.find('.accordionHeader').on('click', function(e) {
-            var $currentTarget = $(e.currentTarget),
-                $accordionHeaders = self.$el.find('.accordionHeader');
-
-            if($currentTarget.hasClass('activeHeader')) {
-                $accordionHeaders.removeClass('activeHeader');
-            } else {
-                $accordionHeaders.removeClass('activeHeader');
-                $currentTarget.addClass('activeHeader');
-            }
-        });
-    }
-
     function _initializeSortableAccordions() {
         var $accordion = this.$('#contentTypeFieldAccordion');
 
         $accordion
-            .accordion(
-            {
-                header : '.accordionHeader',
-                icons : false,
-                active : false,
-                collapsible : true,
-                heightStyle : 'content'
-            })
             .sortable(
             {
                 handle : '.accordionHeader',

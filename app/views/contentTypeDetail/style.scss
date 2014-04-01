@@ -1,9 +1,16 @@
 #contentTypeDetailView {
 
-  .activeHeader {
-    tr{
-      background-color: #F1F1F1;
-    }
+  .accordionHeader {
+     &:hover {
+       tr{
+         background-color: #F1F1F1;
+       }
+     }
+     &.ui-accordion-header-active {
+       tr{
+         background-color: #F1F1F1;
+       }
+     }
   }
 
   .accordionContent {

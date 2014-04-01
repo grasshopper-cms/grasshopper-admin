@@ -15,6 +15,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
             if(this.model.get('validation')) {
                 this.model.get('validationCollection').reset(this.model.get('validation'));
             }
+            _initializeAccordions.call(this);
         }
 
         function changeFieldType(currentModel, newType) {
@@ -34,9 +35,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
             var newModel = _.findWhere(this.model.get('plugins'), { type : newType }).config.modelData,
                 thisModel = this.model.pick('label', 'min', 'max', 'multi', 'helpText', 'required', 'validation', '_id');
 
-            _.extend(newModel, thisModel, {
-                active : 'active'
-            });
+            _.extend(newModel, thisModel);
 
             this.parent.collection.remove(this.model);
             this.parent.collection.add(newModel);
@@ -84,5 +83,36 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                 });
 
         }
+
+        function _initializeAccordions() {
+            var $accordion = this.$el;
+
+            $accordion
+                .accordion(
+                {
+                    header : '.accordionHeader',
+                    icons : false,
+                    active : false,
+                    collapsible : true,
+                    heightStyle : 'content'
+                });
+        }
+
+//        function _addClickListenersToAccordion() {
+//            var self = this;
+//
+//            this.$el.find('.accordionHeader').on('click', function(e) {
+//                var $currentTarget = $(e.currentTarget),
+//                    $accordionHeaders = self.$el.find('.accordionHeader');
+//
+//                if($currentTarget.hasClass('activeHeader')) {
+//                    $accordionHeaders.removeClass('activeHeader');
+//                } else {
+//                    $accordionHeaders.removeClass('activeHeader');
+//                    $currentTarget.addClass('activeHeader');
+//                }
+//            });
+//        }
+
 
     });
