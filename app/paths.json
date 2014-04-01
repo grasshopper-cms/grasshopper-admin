@@ -34,6 +34,17 @@
         "accordion" : "vendor/jquery.ui/ui/jquery.ui.accordion"
     },
 
+    "validation+" : {
+        "" : "validation/validation",
+        "Types" : "validation/validationTypes",
+
+        "validationAlpha+" : {
+            "" : "validation/views/alpha/view",
+            "Config" : "validation/views/alpha/config",
+            "Model" : "validation/views/alpha/model"
+        }
+    },
+
     "views" : {
         "grasshopperBaseView" : "views/grasshopperBaseView",
 
@@ -209,11 +220,6 @@
 
     "api" : {
         "api" : "api/api"
-    },
-
-    "validation+" : {
-        "" : "validation/validation",
-        "Types" : "validation/validationTypes"
     },
 
     "plugins" : {

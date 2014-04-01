@@ -1,6 +1,6 @@
 /* jshint loopfunc:true */
-define(['underscore', 'masseuse', 'plugins'],
-    function (_, masseuse, plugins) {
+define(['underscore', 'masseuse', 'plugins', 'require'],
+    function (_, masseuse, plugins, require) {
         'use strict';
 
         return {
@@ -39,7 +39,28 @@ define(['underscore', 'masseuse', 'plugins'],
                     rivets.model.view.addChild(rivets.viewInstance);
                 },
                 publishes : true
+            },
+            validationform : {
+                bind : function() {},
+                unbind : function() {
+                    this.viewInstance.remove();
+                },
+                routine : function(el, model) {
+                    var rivets = this;
+
+                    require(['validation' + capitaliseFirstLetter(model.get('type'))], function(ValidationView) {
+                        rivets.viewInstance = new ValidationView({
+                            model : model,
+                            appendTo : el
+                        });
+                        rivets.model.view.addChild(rivets.viewInstance);
+                    });
+                }
             }
         };
+
+        function capitaliseFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
 
     });

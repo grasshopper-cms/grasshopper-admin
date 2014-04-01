@@ -1,5 +1,7 @@
-define(['text!validation/views/alpha/template.html'], function (template) {
+/*global define:false*/
+define(['text!/validation/views/alpha/template.html'], function (template) {
     'use strict';
+
     return {
         name : 'alpha',
         modelData : {
