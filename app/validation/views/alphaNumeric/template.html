@@ -1,0 +1,28 @@
+<div class="row accordionHeader">
+    <div class="small-12 columns">
+        <table style="margin-bottom: 0; table-layout: fixed;">
+            <tbody>
+            <tr>
+                <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:type | humanize | spaceBefore}}</td>
+                <td>
+                        <span>
+                            Min Length: {{model:options->min}}
+                        </span>
+                        <span>
+                            Max Length: {{model:options->max}}
+                        </span>
+                </td>
+                <td style="text-align: center;">
+                            <span>
+                               <i class="fa fa-trash-o"></i>
+                            </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div data-rv-id="model.cid" class="accordionContent" data-rv-addclass="model:active">
+
+</div>
