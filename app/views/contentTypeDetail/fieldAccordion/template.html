@@ -156,14 +156,29 @@
                     </select>
                 </div>
 
-                <hr>
-                    Validations template will render here with appropriate options.
-                    <ul>
-                        <li data-rv-each-validation="model:validationCollection:">
-                            {{validation:type}}
-                        </li>
-                    </ul>
-                <hr>
+
+
+                <table width="100%" style="margin-bottom: 0; table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Type</th>
+                            <th style="text-align: center;">{{model:resources->actions}}</th>
+                        </tr>
+                    </thead>
+                    <tbody data-rv-hide="model:validationCollection: | collectionHasLength">
+                        <tr>
+                            <td colspan="2">
+                                This field has no validations
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <section>
+
+                    <div data-rv-each-validationmodel="model:validationCollection:" data-rv-validationform="validationmodel"></div>
+
+                </section>
 
             </div>
         </fieldset>
