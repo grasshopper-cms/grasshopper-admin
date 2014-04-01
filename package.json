@@ -52,7 +52,6 @@
     "grunt-autoprefixer": "~0.4.0",
     "grunt-requirejs-paths": "~0.1.1",
     "grunt-contrib-sass": "^0.7.3",
-    "grunt-contrib-jshint": "0.2.0",
-    "grasshopper-api": "~0.9.5"
+    "grunt-contrib-jshint": "0.2.0"
   }
 }
