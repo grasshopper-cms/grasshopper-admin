@@ -48,6 +48,11 @@ define(['underscore', 'masseuse', 'plugins', 'require'],
                 routine : function(el, model) {
                     var rivets = this;
 
+                    if (this.viewInstance) {
+                        this.model.view.removeChild(this.viewInstance);
+                        this.viewInstance.remove();
+                    }
+
                     require(['validation' + capitaliseFirstLetter(model.get('type'))], function(ValidationView) {
                         rivets.viewInstance = new ValidationView({
                             model : model,
