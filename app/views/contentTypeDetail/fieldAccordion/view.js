@@ -90,7 +90,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
             $accordion
                 .accordion(
                 {
-                    header : '.accordionHeader',
+                    header : '.fieldAccordion',
                     icons : false,
                     active : false,
                     collapsible : true,

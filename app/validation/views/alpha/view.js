@@ -18,7 +18,7 @@ define(['grasshopperBaseView', 'validationAlphaConfig'],
             $accordion
                 .accordion(
                 {
-                    header : '.accordionHeader',
+                    header : '.validationAccordion',
                     icons : false,
                     active : false,
                     collapsible : true,

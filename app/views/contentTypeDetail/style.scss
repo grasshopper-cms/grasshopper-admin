@@ -1,6 +1,7 @@
 #contentTypeDetailView {
 
-  .accordionHeader {
+   .accordionHeader {
+     outline: none;
      &:hover {
        tr{
          background-color: #F1F1F1;
