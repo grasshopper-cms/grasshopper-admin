@@ -54,7 +54,12 @@
             "" : "validation/views/alphaNumeric/view",
             "Config" : "validation/views/alphaNumeric/config",
             "Model" : "validation/views/alphaNumeric/model"
+        },
 
+        "validationDatetime+" : {
+            "" : "validation/views/datetime/view",
+            "Config" : "validation/views/datetime/config",
+            "Model" : "validation/views/datetime/model"
         }
     },
 
