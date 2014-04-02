@@ -12,9 +12,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
         });
 
         function afterRender() {
-            if(this.model.get('validation')) {
-                this.model.get('validationCollection').reset(this.model.get('validation'));
-            }
+            _handleValidation.call(this);
             _initializeAccordions.call(this);
         }
 
@@ -28,6 +26,18 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                 _warnUserBeforeChangingComplexTypes.call(this)
                     .done(_actuallyChangeFieldPluginType.bind(this, newType))
                     .fail(_returnFieldPluginTypeToPreviousType.bind(this, previousType));
+            }
+        }
+
+        function _handleValidation() {
+            var validation = this.model.get('validation');
+
+            if(validation) {
+                this.model.get('validationCollection').reset(validation);
+            }
+
+            if(validation && validation.length > 0) {
+                this.model.toggle('hasValidation');
             }
         }
 
@@ -66,7 +76,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                 type : selectedValidation
             });
 
-            this.model.set('selectedValidation', null, { silent : true });
+            this.model.set('selectedValidation', resources.contentType.selectOption, { silent : true });
         }
 
         function removeThisField(e) {
@@ -90,29 +100,12 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
             $accordion
                 .accordion(
                 {
-                    header : '.accordionHeader',
+                    header : '.fieldAccordion',
                     icons : false,
                     active : false,
                     collapsible : true,
                     heightStyle : 'content'
                 });
         }
-
-//        function _addClickListenersToAccordion() {
-//            var self = this;
-//
-//            this.$el.find('.accordionHeader').on('click', function(e) {
-//                var $currentTarget = $(e.currentTarget),
-//                    $accordionHeaders = self.$el.find('.accordionHeader');
-//
-//                if($currentTarget.hasClass('activeHeader')) {
-//                    $accordionHeaders.removeClass('activeHeader');
-//                } else {
-//                    $accordionHeaders.removeClass('activeHeader');
-//                    $currentTarget.addClass('activeHeader');
-//                }
-//            });
-//        }
-
 
     });

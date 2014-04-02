@@ -184,7 +184,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         $accordion
             .sortable(
             {
-                handle : '.accordionHeader',
+                handle : '.fieldAccordion',
                 axis : 'y',
                 stop : _applyCollectionSort.bind(this, $accordion)
             }
@@ -195,7 +195,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         var fields = [],
             self = this;
 
-        $accordion.find('.accordionHeader').each(function() {
+        $accordion.find('.fieldAccordion').each(function() {
             fields.push(self.collection.get($(this).attr('modelid')));
         });
 

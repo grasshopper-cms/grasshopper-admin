@@ -53,19 +53,23 @@ define(['underscore', 'masseuse', 'plugins', 'require'],
                         this.viewInstance.remove();
                     }
 
-                    require(['validation' + capitaliseFirstLetter(model.get('type'))], function(ValidationView) {
-                        rivets.viewInstance = new ValidationView({
-                            model : model,
-                            appendTo : el
+                    if(model.get('type')) {
+                        require(['validation' + capitaliseFirstLetter(model.get('type'))], function(ValidationView) {
+                            rivets.viewInstance = new ValidationView({
+                                model : model,
+                                appendTo : el
+                            });
+                            rivets.model.view.addChild(rivets.viewInstance);
                         });
-                        rivets.model.view.addChild(rivets.viewInstance);
-                    });
+                    }
                 }
             }
         };
 
         function capitaliseFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
+            if(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
         }
 
     });

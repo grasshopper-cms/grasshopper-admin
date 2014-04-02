@@ -20,7 +20,7 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
                 type : 'contentreference',
                 dataType : 'ref',
                 required : false,
-                validation : false,
+                validation : [],
                 value : ''
             },
             template : contentReferencePluginTemplate,

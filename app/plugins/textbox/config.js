@@ -15,7 +15,7 @@ define(['text!plugins/textbox/template.html', 'plugins/textbox/model', 'text!plu
                 defaultValueType : 'text',
                 dataType : 'string',
                 required : false,
-                validation : false,
+                validation : [],
                 value : ''
             },
             template : textBoxPluginTemplate,
