@@ -4,7 +4,7 @@ define([], function () {
     return [
         'required',
         'alpha', // length, min, max
-        'alpha_numeric', // length, min, max
+        'alphaNumeric', // length, min, max
         'number', // min, max
         'email', //	foundation@zurb.com
         'url'	, //http://zurb.com
