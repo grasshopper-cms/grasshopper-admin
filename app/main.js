@@ -34,7 +34,7 @@ require.config({
         },
         mouseInteraction : {
             exports : 'jquery',
-            deps : ['jqueryui']
+            deps : ['jqueryui', 'widgetFactory']
         },
         sortable : {
             exports : 'jquery',
