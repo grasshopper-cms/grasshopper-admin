@@ -11,8 +11,6 @@
 
 $imgPath: '/themes/blue-dashboard/img';
 
-@import "header";
-
 $font: 'Open Sans', arial, sans-serif;
 
 
@@ -93,6 +91,7 @@ body, html {
   }
 
   // VIEWS
+  @import "../../views/header/style.scss"; // Header View
   @import "../../views/modal/style.scss"; // Modal View
   @import "../../views/alertBox/style.scss"; // Alertbox View
   @import "../../views/login/style.scss"; // Login View
