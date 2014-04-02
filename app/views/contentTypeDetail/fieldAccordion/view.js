@@ -76,7 +76,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                 type : selectedValidation
             });
 
-            this.model.set('selectedValidation', null, { silent : true });
+            this.model.set('selectedValidation', resources.contentType.selectOption, { silent : true });
         }
 
         function removeThisField(e) {
