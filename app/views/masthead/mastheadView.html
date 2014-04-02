@@ -6,18 +6,12 @@
                     <div class="masthead-text">
                         <h4>
                             <i class="fa fa-file"></i>
-                            <span data-rv-each-breadcrumb="model:breadcrumbs">
+                            <span data-rv-each-breadcrumb="model:breadcrumbs" class="font-18">
                                 <span>
                                     <a data-rv-href="breadcrumb.href">{{breadcrumb.text | withForwardSlash}}</a>
                                 </span>
                             </span>
                         </h4>
-
-                        <p data-rv-hide="model:inRoot">
-                            <span data-rv-show="model:nodesCount">{{model:nodesCount | pluralize folder | withComma}}</span>
-                            <span data-rv-show="model:filesCount">{{model:filesCount | pluralize file | withComma}}</span>
-                            <span data-rv-show="model:itemsCount">{{model:itemsCount | pluralize item}}</span>
-                        </p>
                     </div>
                 </div>
             </div>
