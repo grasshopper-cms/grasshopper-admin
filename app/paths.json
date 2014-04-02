@@ -42,6 +42,11 @@
             "" : "validation/views/alpha/view",
             "Config" : "validation/views/alpha/config",
             "Model" : "validation/views/alpha/model"
+        },
+        "validationNumber+" : {
+            "" : "validation/views/number/view",
+            "Config" : "validation/views/number/config",
+            "Model" : "validation/views/number/model"
         }
     },
 

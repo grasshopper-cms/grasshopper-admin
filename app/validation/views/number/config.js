@@ -5,10 +5,10 @@ define(['text!/validation/views/number/template.html'], function (template) {
     return {
         name : 'number',
         modelData : {
-            _id : 'number',
+            type : 'number',
             options : {
-                min : '',
-                max : ''
+                min : undefined,
+                max : undefined
             }
         },
         template : template,
