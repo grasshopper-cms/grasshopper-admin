@@ -13,32 +13,38 @@
             <i class="fa fa-trash"></i>
         </a>
     </td>
-    <td data-rv-show="model:fileData" colspan="2">
-        <div data-rv-hide="model:uploadError" class="progress">
-            <span id="uploadProgressMeter" class="meter" data-rv-width="model:progressWidth"></span>
-        </div>
-        <div data-rv-show="model:uploadError" id="uploadError">
-            <div class="row">
-                <div class="small-3 columns">
-                    <span>
-                        {{model:resources->asset->uploadAssetError | spaceAfter}}
-                    </span>
-                </div>
-                <div class="small-9 columns">
-                    <ul class="button-group radius">
-                        <li>
-                            <a id="retryUpload" class="button alert tiny">
-                                {{model:resources->retry}}
-                            </a>
-                        </li>
-                        <li>
-                            <a id="cancelUpload" class="button alert tiny">
-                                {{model:resources->cancel}}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+
+    <div data-rv-show="model:fileData">
+        <td data-rv-hide="model:uploadError" colspan="2">
+            <div class="progress">
+                <span id="uploadProgressMeter" class="meter" data-rv-width="model:progressWidth"></span>
             </div>
-        </div>
-    </td>
+        </td>
+
+        <td data-rv-show="model:uploadError" align="left">
+            {{model:resources->asset->uploadAssetError | spaceAfter}}
+        </td>
+
+        <td data-rv-show="model:uploadError" id="uploadError">
+
+            <ul class="button-group radius" style="display: inline-block;">
+                <li>
+                    <a id="retryUpload" class="button alert tiny">
+                        {{model:resources->retry}}
+                    </a>
+                </li>
+                <li>
+                    <a id="cancelUpload" class="button alert tiny">
+                        {{model:resources->cancel}}
+                    </a>
+                </li>
+            </ul>
+
+        </td>
+
+    </div>
+
+
+
+
 </tr>
