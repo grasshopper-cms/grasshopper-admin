@@ -61,10 +61,13 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
 
         function addValidationRule() {
             var selectedValidation = this.model.get('selectedValidation');
+            console.log('this was called');
 
             this.model.get('validationCollection').add({
                 type : selectedValidation
             });
+
+            console.log(this.model.get('validationCollection'));
 
             this.model.set('selectedValidation', null, { silent : true });
         }
@@ -97,22 +100,5 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                     heightStyle : 'content'
                 });
         }
-
-//        function _addClickListenersToAccordion() {
-//            var self = this;
-//
-//            this.$el.find('.accordionHeader').on('click', function(e) {
-//                var $currentTarget = $(e.currentTarget),
-//                    $accordionHeaders = self.$el.find('.accordionHeader');
-//
-//                if($currentTarget.hasClass('activeHeader')) {
-//                    $accordionHeaders.removeClass('activeHeader');
-//                } else {
-//                    $accordionHeaders.removeClass('activeHeader');
-//                    $currentTarget.addClass('activeHeader');
-//                }
-//            });
-//        }
-
 
     });
