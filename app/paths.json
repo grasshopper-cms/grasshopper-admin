@@ -43,10 +43,18 @@
             "Config" : "validation/views/alpha/config",
             "Model" : "validation/views/alpha/model"
         },
+
         "validationNumber+" : {
-            "" : "validation/views/number/view",
-            "Config" : "validation/views/number/config",
-            "Model" : "validation/views/number/model"
+            "": "validation/views/number/view",
+            "Config": "validation/views/number/config",
+            "Model": "validation/views/number/model"
+        },
+
+        "validationAlphaNumeric+" : {
+            "" : "validation/views/alphaNumeric/view",
+            "Config" : "validation/views/alphaNumeric/config",
+            "Model" : "validation/views/alphaNumeric/model"
+
         }
     },
 
