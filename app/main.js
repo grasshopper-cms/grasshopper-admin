@@ -29,15 +29,19 @@ require.config({
             deps : ['jquery']
         },
         widgetFactory : {
+            exports : 'jquery',
             deps : ['jqueryui']
         },
         mouseInteraction : {
+            exports : 'jquery',
             deps : ['jqueryui']
         },
         sortable : {
+            exports : 'jquery',
             deps : ['jqueryui', 'widgetFactory', 'mouseInteraction']
         },
         accordion : {
+            exports : 'jquery',
             deps : ['jqueryui', 'widgetFactory']
         },
         ckeditorAdapter : {
