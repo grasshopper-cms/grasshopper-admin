@@ -61,13 +61,10 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
 
         function addValidationRule() {
             var selectedValidation = this.model.get('selectedValidation');
-            console.log('this was called');
 
             this.model.get('validationCollection').add({
                 type : selectedValidation
             });
-
-            console.log(this.model.get('validationCollection'));
 
             this.model.set('selectedValidation', null, { silent : true });
         }
