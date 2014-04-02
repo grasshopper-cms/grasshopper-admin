@@ -48,6 +48,12 @@
             "" : "validation/views/alphaNumeric/view",
             "Config" : "validation/views/alphaNumeric/config",
             "Model" : "validation/views/alphaNumeric/model"
+        },
+
+        "validationDate+" : {
+            "" : "validation/views/date/view",
+            "Config" : "validation/views/date/config",
+            "Model" : "validation/views/date/model"
         }
     },
 
