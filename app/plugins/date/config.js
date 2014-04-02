@@ -15,7 +15,7 @@ define(['text!plugins/date/template.html', 'plugins/date/model', 'text!plugins/d
                 defaultValueType : 'date',
                 dataType : 'date',
                 required : false,
-                validation : false,
+                validation : [],
                 value : ''
             },
             template : datePluginTemplate,

@@ -19,7 +19,7 @@ define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
                 type : 'codeeditor',
                 dataType : 'code',
                 required : false,
-                validation : false,
+                validation : [],
                 value : ''
             },
             template : template,

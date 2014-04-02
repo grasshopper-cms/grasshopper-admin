@@ -16,7 +16,7 @@ define(['text!plugins/editorialwindow/template.html', 'plugins/editorialwindow/m
                 type : 'editorialwindow',
                 dataType : 'date',
                 required : false,
-                validation : false,
+                validation : [],
                 value : {
                     validFrom : '',
                     validTo : ''
