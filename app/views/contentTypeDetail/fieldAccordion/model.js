@@ -8,6 +8,7 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
 
         return Model.extend({
             initialize: initialize,
+            updateValidationRulesOnModel : updateValidationRulesOnModel,
             defaults : function() {
                 return {
                     _id : '',
@@ -41,7 +42,7 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
             this.on('change:useAsLabel', _ensureMinMaxIsOne, this);
             this.on('change:required', _ensureIsNotUseAsLabel, this);
 
-            this.get('validationCollection').on('change', _updateValidationRulesOnModel, this);
+            this.get('validationCollection').on('change', this.updateValidationRulesOnModel, this);
         }
 
         function _generateSlug(model, newValue) {
@@ -86,7 +87,7 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
             }
         }
 
-        function _updateValidationRulesOnModel() {
+        function updateValidationRulesOnModel() {
             this.set('validation', this.get('validationCollection').toJSON());
         }
     });
