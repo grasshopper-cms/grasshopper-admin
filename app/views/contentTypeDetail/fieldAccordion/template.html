@@ -152,6 +152,7 @@
                 </div>
                 <div class="small-10 columns">
                     <select data-rv-id="model.cid  | prepend possibleValidations" data-rv-value="model:selectedValidation" >
+                        <option disabled selected>{{model:resources->contentType->selectOption}}</option>
                         <option data-rv-each-validationtype="model:validationTypes" data-rv-value="validationtype" data-rv-text="validationtype"></option>
                     </select>
                 </div>
