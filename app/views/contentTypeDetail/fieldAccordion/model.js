@@ -8,21 +8,23 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
 
         return Model.extend({
             initialize: initialize,
-            defaults : {
-                _id : '',
-                useAsLabel : false,
-                multi : false,
-                resources : resources,
-                plugins : plugins.fields,
-                validation : [],
-                validationCollection : new FieldAccordionValidationCollection(),
-                hasValidation : false,
-                validationTypes : validationTypes,
-                dataType : new ComputedProperty(['type'], function(type) {
-                    if(type) {
-                        return _.findWhere(this.get('plugins'), { type : type }).config.modelData.dataType;
-                    }
-                })
+            defaults : function() {
+                return {
+                    _id : '',
+                    useAsLabel : false,
+                    multi : false,
+                    resources : resources,
+                    plugins : plugins.fields,
+                    validation : [],
+                    validationCollection : new FieldAccordionValidationCollection(),
+                    hasValidation : false,
+                    validationTypes : validationTypes,
+                    dataType : new ComputedProperty(['type'], function(type) {
+                        if(type) {
+                            return _.findWhere(this.get('plugins'), { type : type }).config.modelData.dataType;
+                        }
+                    })
+                };
             }
         });
 
@@ -38,6 +40,8 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
             this.on('change:useAsLabel', _ensureIsRequired, this);
             this.on('change:useAsLabel', _ensureMinMaxIsOne, this);
             this.on('change:required', _ensureIsNotUseAsLabel, this);
+
+            this.get('validationCollection').on('change', _updateValidationRulesOnModel, this);
         }
 
         function _generateSlug(model, newValue) {
@@ -80,5 +84,9 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
             if(this.get('useAsLabel')) {
                 this.set('required', true);
             }
+        }
+
+        function _updateValidationRulesOnModel() {
+            this.set('validation', this.get('validationCollection').toJSON());
         }
     });

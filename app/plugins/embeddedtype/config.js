@@ -16,7 +16,7 @@ define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
                 type : 'embeddedtype',
                 dataType : 'ref',
                 required : false,
-                validation : false,
+                validation : [],
                 value : ''
             },
             template : embeddedtypePluginTemplate,

@@ -20,7 +20,7 @@ define(['text!plugins/filereference/template.html', 'plugins/filereference/model
                 type : 'filereference',
                 dataType : 'ref',
                 required : false,
-                validation : false,
+                validation : [],
                 value : ''
             },
             template : fileReferencePluginTemplate,
