@@ -2,3 +2,39 @@
   font-size : 18px;
   font-weight : normal;
 }
+
+#masthead {
+  width: 100%;
+  padding: 10px 0;
+  min-height: 53px;
+  color: #333333;
+  text-shadow: 1px 1px 2px #FFF;
+
+  @include lightGradient;
+
+  h1,h2,h3,h4,h5
+  {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 13px;
+  }
+
+  .button {
+    text-shadow: none;
+    margin-bottom: 0;
+  }
+  .masthead-pad {
+    display: table;
+    width: 100%;
+
+    .masthead-text {
+      display: table-cell;
+      vertical-align: top;
+    }
+  }
+}
