@@ -112,8 +112,22 @@ module.exports = function (grunt) {
                     cwd : 'app/',
                     src : [
                         '**/*.js',
+                        '!validation/**/*.js',
+                        '!views/**/*.js',
                         '!vendor/**/*.js',
                         '!plugins/**/*.js'
+                    ],
+                    dest : buildDirectory
+                }
+            ]
+        },
+        validationJS : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        'validation/**/*.js'
                     ],
                     dest : buildDirectory
                 }

@@ -43,6 +43,7 @@ module.exports = function (grunt) {
             },
             files : [
                 'app/**/*.js',
+                '!app/validation/**/*.js',
                 '!app/views/**/*.js',
                 '!app/plugins/**/*.js',
                 '!app/vendor/**/*.js'
@@ -55,6 +56,18 @@ module.exports = function (grunt) {
                 'setBuildConfig'
             ]
         },
+        validationJS : {
+            options : {
+                livereload : true
+            },
+            files : [
+                'app/validation/**/*.js'
+            ],
+            tasks : [
+                'jshint',
+                'copy:validationJS'
+            ]
+        },
         pluginsJS : {
             options : {
                 livereload : true
@@ -64,10 +77,7 @@ module.exports = function (grunt) {
             ],
             tasks : [
                 'jshint',
-                'setupBowerCopy',
-                'copy:pluginsJS',
-                'paths:app',
-                'setBuildConfig'
+                'copy:pluginsJS'
             ]
         },
         viewsJS : {
@@ -79,10 +89,7 @@ module.exports = function (grunt) {
             ],
             tasks : [
                 'jshint',
-                'setupBowerCopy',
-                'copy:viewsJS',
-                'paths:app',
-                'setBuildConfig'
+                'copy:viewsJS'
             ]
         }
     });
