@@ -212,6 +212,9 @@ define({
             refresh : 'Refresh'
         }
     },
+    validationViews : {
+        deletionWarning : 'You are about to delete a validation field. Are you sure you want to do this?'
+    },
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
     add : 'Add',
