@@ -12,9 +12,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
         });
 
         function afterRender() {
-            if(this.model.get('validation')) {
-                this.model.get('validationCollection').reset(this.model.get('validation'));
-            }
+            _handleValidation.call(this);
             _initializeAccordions.call(this);
         }
 
@@ -28,6 +26,18 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                 _warnUserBeforeChangingComplexTypes.call(this)
                     .done(_actuallyChangeFieldPluginType.bind(this, newType))
                     .fail(_returnFieldPluginTypeToPreviousType.bind(this, previousType));
+            }
+        }
+
+        function _handleValidation() {
+            var validation = this.model.get('validation');
+
+            if(validation) {
+                this.model.get('validationCollection').reset(validation);
+            }
+
+            if(validation && validation.length > 0) {
+                this.model.toggle('hasValidation');
             }
         }
 
