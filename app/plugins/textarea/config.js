@@ -15,7 +15,7 @@ define(['text!plugins/textarea/template.html', 'plugins/textarea/model', 'text!p
                 defaultValueType : 'textarea',
                 dataType : 'string',
                 required : false,
-                validation : false,
+                validation : [],
                 value : ''
             },
             wrapper: false,
