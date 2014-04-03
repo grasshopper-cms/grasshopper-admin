@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
-    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker'],
+    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker', 'plugins'],
     function (GrasshopperBaseView, contentTypeDetailViewConfig,
-              resources, Api, _, $, breadcrumbWorker) {
+              resources, Api, _, $, breadcrumbWorker, plugins) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -21,8 +21,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                 .done(_handleSuccessfulModelFetch.bind(this, $deferred))
                 .fail($deferred.reject);
         } else if (this.model.isNew()) {
-            this.collection.reset();
-            _updateMastheadBreadcrumbs.call(this, $deferred, true);
+            _handleNewContentType.call(this, $deferred);
         } else {
             $deferred.resolve();
         }
@@ -37,6 +36,14 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function _handleSuccessfulModelFetch($deferred) {
         this.collection.reset(this.model.get('fields'));
         _updateMastheadBreadcrumbs.call(this, $deferred, false);
+    }
+
+    function _handleNewContentType($deferred) {
+        var textboxModelData = _.findWhere(plugins.fields, { type : 'textbox' }).config.modelData;
+
+        textboxModelData.label = 'Title';
+        this.collection.reset(textboxModelData);
+        _updateMastheadBreadcrumbs.call(this, $deferred, true);
     }
 
     function prepareToDeleteContentType () {
