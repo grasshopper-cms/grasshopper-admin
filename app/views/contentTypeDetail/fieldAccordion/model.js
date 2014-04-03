@@ -42,7 +42,7 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
             this.on('change:useAsLabel', _ensureMinMaxIsOne, this);
             this.on('change:required', _ensureIsNotUseAsLabel, this);
 
-            this.get('validationCollection').on('change', this.updateValidationRulesOnModel, this);
+            this.get('validationCollection').on('change add remove', this.updateValidationRulesOnModel, this);
         }
 
         function _generateSlug(model, newValue) {
