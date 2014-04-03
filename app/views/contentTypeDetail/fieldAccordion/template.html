@@ -162,25 +162,34 @@
                 <table width="100%" style="margin-bottom: 0; table-layout: fixed;">
                     <thead>
                         <tr>
-                            <th style="width: 30%;">Type</th>
-                            <th>Options</th>
+                            <th style="width: 15%;">{{model:resources->type}}</th>
+                            <th style="width: 65%;">{{model:resources->options}}</th>
                             <th style="text-align: center;">{{model:resources->actions}}</th>
                         </tr>
                     </thead>
                     <tbody data-rv-hide="model:validationCollection: | collectionHasLength">
                         <tr>
                             <td colspan="3">
-                                This field has no validations
+                                {{model:resources->contentType->thisFieldHasNoValidation}}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr data-rv-each-validationmodel="model:validationCollection:">
+                            <td style="width: 15%;">
+                                {{validationmodel:type | humanize | spaceBefore}}
+                            </td>
+                            <td data-rv-validationform="validationmodel" style="width: 65%;">
+                                <!--Built Dynamically from the validation views-->
+                            </td>
+                            <td style="text-align: center;">
+                                <span data-rv-on-click="view.removeValidationRule">
+                                   <i class="fa fa-trash-o"></i>
+                                </span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
-                <section id="validationAccordion">
-
-                    <div data-rv-each-validationmodel="model:validationCollection:" data-rv-validationform="validationmodel"></div>
-
-                </section>
 
             </div>
         </fieldset>

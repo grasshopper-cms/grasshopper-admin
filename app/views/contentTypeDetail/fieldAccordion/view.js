@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources', 'jquery'],
-    function(grasshopperBaseView, fieldAccordionConfig, _, resources, $) {
+define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'],
+    function(grasshopperBaseView, fieldAccordionConfig, _, resources) {
         'use strict';
 
         return grasshopperBaseView.extend({
@@ -8,13 +8,13 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
             afterRender : afterRender,
             changeFieldType : changeFieldType,
             addValidationRule : addValidationRule,
+            removeValidationRule : removeValidationRule,
             removeThisField : removeThisField
         });
 
         function afterRender() {
             _handleValidation.call(this);
             _initializeAccordions.call(this);
-            _initializeSortableValidationAccordions.call(this);
         }
 
         function changeFieldType(currentModel, newType) {
@@ -78,8 +78,23 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
             });
 
             this.model.set('selectedValidation', resources.contentType.selectOption, { silent : true });
+        }
 
-            _initializeSortableValidationAccordions.call(this);
+        function removeValidationRule(e, context) {
+            e.stopPropagation();
+            _warnUserBeforeDeleting.call(this)
+                .done(_actuallyRemoveValidationRule.bind(this, context));
+        }
+
+        function _warnUserBeforeDeleting() {
+            return this.displayModal({
+                header : resources.warning,
+                msg : resources.validationViews.deletionWarning
+            });
+        }
+
+        function _actuallyRemoveValidationRule(context) {
+            this.model.get('validationCollection').remove(context.validationmodel);
         }
 
         function removeThisField(e) {
@@ -109,31 +124,6 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                     collapsible : true,
                     heightStyle : 'content'
                 });
-        }
-
-        function _initializeSortableValidationAccordions() {
-            var $accordion = this.$('#validationAccordion');
-
-            $accordion.sortable(
-                {
-                    handle : '.validationAccordion',
-                    axis : 'y',
-                    stop : _applyCollectionSort.bind(this, $accordion)
-                }
-            );
-        }
-
-        function _applyCollectionSort($accordion) {
-            var fields = [],
-                self = this;
-
-            $accordion.find('.validationAccordion').each(function() {
-                fields.push(self.model.get('validationCollection').get($(this).attr('modelid')));
-            });
-
-            self.model.get('validationCollection').reset(fields, { silent : true });
-
-            self.model.updateValidationRulesOnModel();
         }
 
     });
