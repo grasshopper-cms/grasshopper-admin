@@ -1,5 +1,6 @@
 /*global define:false*/
-define(['text!/validation/views/datetime/template.html'], function (template) {
+define(['text!/validation/views/datetime/template.html', 'validationDatetimeFormatters'],
+    function (template, validationDatetimeFormatters) {
     'use strict';
 
     return {
@@ -11,6 +12,9 @@ define(['text!/validation/views/datetime/template.html'], function (template) {
         template : template,
         events : {},
         wrapper: false,
-        listeners : []
+        listeners : [],
+        rivetsConfig : {
+            formatters : [validationDatetimeFormatters]
+        }
     };
 });
