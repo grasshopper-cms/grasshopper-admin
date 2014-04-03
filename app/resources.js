@@ -244,6 +244,7 @@ define({
     login : 'Login',
     log_in : 'Log In',
     log_out : 'Log Out',
+    match : 'Match',
     maximum : 'Maximum',
     max : 'Max',
     menu : 'Menu',
