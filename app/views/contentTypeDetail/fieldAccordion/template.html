@@ -126,7 +126,7 @@
                     <label data-rv-for="model.cid  | prepend min" class="right inline">{{model:resources->minimum}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input data-rv-id="model.cid  | prepend min" type="number" data-rv-value="model:min | asNumber">
+                    <input data-rv-id="model.cid  | prepend min" min="1" type="number" data-rv-value="model:min | asNumber">
                 </div>
             </div>
             <div class="row">
@@ -134,7 +134,7 @@
                     <label data-rv-for="model.cid  | prepend max" class="right inline">{{model:resources->maximum}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input data-rv-id="model.cid  | prepend max" type="number" data-rv-value="model:max | asNumber">
+                    <input data-rv-id="model.cid  | prepend max" min="1" type="number" data-rv-value="model:max | asNumber">
                 </div>
             </div>
         </fieldset>
