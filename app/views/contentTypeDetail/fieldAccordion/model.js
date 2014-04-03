@@ -1,7 +1,7 @@
 define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'validationTypes',
-        'fieldAccordionValidationCollection'],
+        'fieldAccordionValidationCollection', 'helpers'],
     function (Model, resources, plugins, masseuse, _, validationTypes,
-              FieldAccordionValidationCollection) {
+              FieldAccordionValidationCollection, helpers) {
         'use strict';
 
         var ComputedProperty = masseuse.ComputedProperty;
@@ -88,6 +88,7 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
         }
 
         function updateValidationRulesOnModel() {
-            this.set('validation', this.get('validationCollection').toJSON());
+            this.set('validation', helpers.cleanCollection(this.get('validationCollection').toJSON()));
+            console.log(this.get('validation'));
         }
     });
