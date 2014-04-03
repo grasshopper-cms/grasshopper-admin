@@ -92,6 +92,12 @@
             "" : "validation/views/url/view",
             "Config" : "validation/views/url/config",
             "Model" : "validation/views/url/model"
+        },
+
+        "validationRequired+" : {
+            "" : "validation/views/required/view",
+            "Config" : "validation/views/required/config",
+            "Model" : "validation/views/required/model"
         }
     },
 
