@@ -5,10 +5,9 @@ define(['text!/validation/views/regex/template.html'], function (template) {
     return {
         name : 'regex',
         modelData : {
-            _id : 'regex',
+            type : 'regex',
             options : {
-                min : '',
-                max : ''
+                match : ''
             }
         },
         template : template,
