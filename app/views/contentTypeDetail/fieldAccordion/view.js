@@ -44,7 +44,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
 
         function _actuallyChangeFieldPluginType(newType) {
             var newModel = _.findWhere(this.model.get('plugins'), { type : newType }).config.modelData,
-                thisModel = this.model.pick('label', 'min', 'max', 'multi', 'helpText', 'required', 'validation', '_id');
+                thisModel = this.model.pick('label', 'min', 'max', 'multi', 'helpText', 'validation', '_id');
 
             _.extend(newModel, thisModel);
 

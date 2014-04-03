@@ -19,7 +19,6 @@ define(['text!plugins/filereference/template.html', 'plugins/filereference/model
                 label : '',
                 type : 'filereference',
                 dataType : 'ref',
-                required : false,
                 validation : [],
                 value : ''
             },

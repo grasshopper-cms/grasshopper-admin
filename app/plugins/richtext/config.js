@@ -13,7 +13,6 @@ define(['text!plugins/richtext/template.html', 'plugins/richtext/model', 'text!p
                 label : '',
                 type : 'richtext',
                 dataType : 'string',
-                required : false,
                 validation : [],
                 value : ''
             },

@@ -13,7 +13,6 @@ define(['text!plugins/keyvalue/template.html', 'plugins/keyvalue/model', 'text!p
                 label : '',
                 type : 'keyvalue',
                 dataType : 'object',
-                required : false,
                 validation : [],
                 value : ''
             },

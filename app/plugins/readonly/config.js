@@ -14,7 +14,6 @@ define(['text!plugins/readonly/template.html', 'plugins/readonly/model', 'text!p
                 type : 'readonly',
                 defaultValueType : 'text',
                 dataType : 'string',
-                required : false,
                 validation : [],
                 value : ''
             },

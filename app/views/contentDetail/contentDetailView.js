@@ -107,7 +107,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
-        _proxyUseAsLabelToLabel.call(this);
+        _proxyFirstFieldToLabel.call(this);
         _updateMastheadBreadcrumbs.call(this, $deferred);
     }
 
@@ -118,10 +118,10 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         $deferred.reject();
     }
 
-    function _proxyUseAsLabelToLabel() {
-        var useAsLabel = _.findWhere(this.model.get('schema.fields'), {useAsLabel : true});
+    function _proxyFirstFieldToLabel() {
+        var firstField = _.first(this.model.get('schema.fields'))._id;
 
-        this.model.set('label', new ProxyProperty('fields.' + useAsLabel._id, this.model));
+        this.model.set('label', new ProxyProperty('fields.' + firstField, this.model));
     }
 
     function _updateMastheadBreadcrumbs($deferred) {
