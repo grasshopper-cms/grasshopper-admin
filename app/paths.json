@@ -84,6 +84,12 @@
             "" : "validation/views/regex/view",
             "Config" : "validation/views/regex/config",
             "Model" : "validation/views/regex/model"
+        },
+
+        "validationUrl+" : {
+            "" : "validation/views/url/view",
+            "Config" : "validation/views/url/config",
+            "Model" : "validation/views/url/model"
         }
     },
 
