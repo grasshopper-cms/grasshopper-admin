@@ -1,55 +1,21 @@
-<div class="row accordionHeader validationAccordion" data-rv-modelid="model.cid">
-    <div class="small-12 columns">
-        <table style="margin-bottom: 0; table-layout: fixed;">
-            <tbody>
-                <tr>
-                    <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:type | humanize | spaceBefore}}</td>
-                    <td>
-                        <span>
-                            Min Length: {{model:options->min | existsOr --}}
-                        </span>
-                        <span>
-                            Max Length: {{model:options->max  | existsOr --}}
-                        </span>
-                    </td>
-                    <td style="text-align: center;">
-                        <span data-rv-on-click="view.deleteThisValidation">
-                           <i class="fa fa-trash-o"></i>
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div data-rv-id="model.cid" class="accordionContent" data-rv-addclass="model:active">
-
-    <div class="row">
-         <div class="small-12 large-6 columns">
-
-             <div class="small-3 columns">
-                 <label data-rv-for="model.cid | prepend min" class="right inline">MIN Length</label>
-             </div>
-
-             <div class="small-9 columns">
-                 <input type="number" min="0" data-rv-id="model.cid | prepend min" data-rv-value="model:options->min">
-             </div>
-
-         </div>
-
-        <div class="small-12 large-6 columns">
-
-            <div class="small-3 columns">
-                <label data-rv-for="model.cid | prepend max" class="right inline">MAX Length</label>
-            </div>
-
-            <div class="small-9 columns">
-                <input type="number" min="0" data-rv-id="model.cid | prepend max" data-rv-value="model:options->max">
-            </div>
-
-        </div>
-
+<div class="row">
+    <div class="small-2 columns">
+        <label data-rv-for="model.cid | prepend min" class="right inline noMarginBottom">
+            {{model:resources->minimum}}
+        </label>
     </div>
 
+    <div class="small-4 columns">
+        <input class="noMarginBottom" type="number" min="0" data-rv-id="model.cid | prepend min" data-rv-value="model:options->min">
+    </div>
+
+    <div class="small-2 columns">
+        <label data-rv-for="model.cid | prepend max" class="right inline noMarginBottom">
+            {{model:resources->maximum}}
+        </label>
+    </div>
+
+    <div class="small-4 columns">
+        <input class="noMarginBottom" type="number" min="0" data-rv-id="model.cid | prepend max" data-rv-value="model:options->max">
+    </div>
 </div>

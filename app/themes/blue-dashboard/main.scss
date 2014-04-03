@@ -75,6 +75,10 @@ body, html {
     width: 200px;
   }
 
+  .noMarginBottom {
+    margin-bottom: 0;
+  }
+
   $transition-speed: $switch-paddle-transition-speed;
   $transition-ease: $switch-paddle-transition-ease;
   $height: $switch-height-med;
