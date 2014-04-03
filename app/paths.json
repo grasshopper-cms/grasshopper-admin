@@ -45,9 +45,9 @@
         },
 
         "validationNumber+" : {
-            "": "validation/views/number/view",
-            "Config": "validation/views/number/config",
-            "Model": "validation/views/number/model"
+            "" : "validation/views/number/view",
+            "Config" : "validation/views/number/config",
+            "Model" : "validation/views/number/model"
         },
 
         "validationAlphaNumeric+" : {
@@ -57,9 +57,10 @@
         },
 
         "validationDate+" : {
-            "": "validation/views/date/view",
-            "Config": "validation/views/date/config",
-            "Model": "validation/views/date/model"
+            "" : "validation/views/date/view",
+            "Config" : "validation/views/date/config",
+            "Model" : "validation/views/date/model",
+            "Formatters" : "validation/views/date/formatters"
         },
 
         "validationDatetime+" : {
