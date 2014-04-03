@@ -16,7 +16,6 @@ define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!p
                 label : '',
                 type : 'checkbox',
                 dataType : 'boolean',
-                required : false,
                 validation : [],
                 value : ''
             },

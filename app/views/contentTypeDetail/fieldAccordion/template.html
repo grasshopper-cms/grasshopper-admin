@@ -5,7 +5,6 @@
                 <tr>
                     <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:label | existsOr -- | spaceBefore}}</td>
                     <td>{{model:type | existsOr --}}</td>
-                    <td>{{model:required | booleanToYesNo}}</td>
                     <td>{{model:min | existsOr --}}min / {{model:max | existsOr --}}max</td>
                     <td style="text-align: center;">
                         <span data-rv-on-click="view.removeThisField">
@@ -78,24 +77,6 @@
             </div>
 
             <div class="row">
-                <div class="small-2 columns">
-                    <label data-rv-for="model.cid  | prepend required" class="right inline">{{model:resources->required}}</label>
-                </div>
-                <div class="small-10 columns">
-                    <input data-rv-id="model.cid  | prepend required" type="checkbox" data-rv-checked="model:required" class="align-10px" >
-                </div>
-            </div>
-
-            <div class="row" data-rv-show="model:type | equals textbox">
-                <div class="small-2 columns">
-                    <label data-rv-for="model.cid  | prepend useAsLabel" class="right inline">{{model:resources->contentType->useAsLabel}}</label>
-                </div>
-                <div class="small-10 columns">
-                    <input data-rv-id="model.cid  | prepend useAsLabel" type="radio" name="useAsLabel" data-rv-checked="model:useAsLabel | radioToBoolean" class="align-10px">
-                </div>
-            </div>
-
-            <div class="row" data-rv-hide="model:useAsLabel">
                 <div class="small-2 columns">
                     <label data-rv-for="model.cid  | prepend multi" class="right inline">{{model:resources->allowMultiple}}</label>
                 </div>

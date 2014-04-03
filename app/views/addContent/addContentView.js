@@ -94,7 +94,6 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _handleNodeWithOneContentType($deferred, contentType) {
             this.model.set('type', contentType._id);
-            _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
         }
 
@@ -109,14 +108,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _handleSuccessfulContentTypeSelection($deferred, selectedContentType) {
             this.model.set('type', selectedContentType);
-            _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
-        }
-
-        function _setNewContentsAuthor() {
-            this.model.set('author', {
-                _id : this.app.user.get('_id')
-            });
         }
 
         function _getSelectedContentTypeSchema($deferred) {

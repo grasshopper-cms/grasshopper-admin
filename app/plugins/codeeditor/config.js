@@ -18,7 +18,6 @@ define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
                 label : '',
                 type : 'codeeditor',
                 dataType : 'code',
-                required : false,
                 validation : [],
                 value : ''
             },

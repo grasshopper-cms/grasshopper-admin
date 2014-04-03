@@ -12,7 +12,6 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
             defaults : function() {
                 return {
                     _id : '',
-                    useAsLabel : false,
                     multi : false,
                     resources : resources,
                     plugins : plugins.fields,
@@ -38,9 +37,6 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
             _ensureMaxIsAlwaysGreaterThanOrEqualToMin.call(this);
             this.on('change:min', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
             this.on('change:max', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
-            this.on('change:useAsLabel', _ensureIsRequired, this);
-            this.on('change:useAsLabel', _ensureMinMaxIsOne, this);
-            this.on('change:required', _ensureIsNotUseAsLabel, this);
 
             this.get('validationCollection').on('change add remove', this.updateValidationRulesOnModel, this);
         }
@@ -65,25 +61,6 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
 
             if(max <= min) {
                 this.set('max', min);
-            }
-        }
-
-        function _ensureIsRequired() {
-            if(this.get('useAsLabel')) {
-                this.set('required', true);
-            }
-        }
-
-        function _ensureMinMaxIsOne() {
-            if(this.get('useAsLabel')) {
-                this.set('min', 1);
-                this.set('max', 1);
-            }
-        }
-
-        function _ensureIsNotUseAsLabel() {
-            if(this.get('useAsLabel')) {
-                this.set('required', true);
             }
         }
 

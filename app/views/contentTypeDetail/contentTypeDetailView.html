@@ -61,18 +61,10 @@
                     <tr>
                         <th style="width: 30%;">{{model:resources->name | spaceBefore}}</th>
                         <th>{{model:resources->contentType->fieldType}}</th>
-                        <th>{{model:resources->required}}</th>
                         <th>{{model:resources->multiple}}</th>
                         <th style="text-align: center;">{{model:resources->actions}}</th>
                     </tr>
                 </thead>
-                <tbody data-rv-hide="collection: | collectionHasLength">
-                    <tr>
-                        <td colspan="5">
-                            {{model:resources->contentType->emptyFields}}
-                        </td>
-                    </tr>
-                </tbody>
             </table>
 
             <section id="contentTypeFieldAccordion">

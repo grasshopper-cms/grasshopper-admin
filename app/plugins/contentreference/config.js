@@ -19,7 +19,6 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
                 label : '',
                 type : 'contentreference',
                 dataType : 'ref',
-                required : false,
                 validation : [],
                 value : ''
             },
