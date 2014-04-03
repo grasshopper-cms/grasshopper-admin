@@ -70,12 +70,6 @@
             "Formatters" : "validation/views/datetime/formatters"
         },
 
-        "validationTime+" : {
-            "" : "validation/views/time/view",
-            "Config" : "validation/views/time/config",
-            "Model" : "validation/views/time/model"
-        },
-
         "validationEmail+" : {
             "" : "validation/views/email/view",
             "Config" : "validation/views/email/config",

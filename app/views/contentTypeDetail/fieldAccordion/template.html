@@ -148,7 +148,7 @@
             <div class="row">
 
                 <div class="small-2 columns">
-                    <label data-rv-for="model.cid  | prepend possibleValidations" class="right inline">Add Validation Type:</label>
+                    <label data-rv-for="model.cid  | prepend possibleValidations" class="right inline">{{model:resources->contentType->addValidationType | withColon}}</label>
                 </div>
                 <div class="small-10 columns">
                     <select data-rv-id="model.cid  | prepend possibleValidations" data-rv-value="model:selectedValidation" >

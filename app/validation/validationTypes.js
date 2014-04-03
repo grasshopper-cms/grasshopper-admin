@@ -10,7 +10,6 @@ define([], function () {
         'url'	, //http://zurb.com
         'datetime', //	YYYY-MM-DDThh:mm:ssTZD
         'date', //	YYYY-MM-DD
-        'time', //	HH:MM:SS
         'regex'
     ];
 
