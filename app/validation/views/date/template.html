@@ -6,10 +6,10 @@
                 <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:type | humanize | spaceBefore}}</td>
                 <td>
                         <span>
-                            Min Date: {{model:options->min | existsOr --}}
+                            From: {{model:options->min | existsOr --}}
                         </span>
                         <span>
-                            Max Date: {{model:options->max  | existsOr --}}
+                            To: {{model:options->max  | existsOr --}}
                         </span>
                 </td>
                 <td style="text-align: center;">
@@ -29,7 +29,7 @@
         <div class="small-12 large-6 columns">
 
             <div class="small-3 columns">
-                <label data-rv-for="model.cid | prepend min" class="right inline">MIN Date</label>
+                <label data-rv-for="model.cid | prepend min" class="right inline">From</label>
             </div>
 
             <div class="small-9 columns">
@@ -41,7 +41,7 @@
         <div class="small-12 large-6 columns">
 
             <div class="small-3 columns">
-                <label data-rv-for="model.cid | prepend max" class="right inline">MAX Date</label>
+                <label data-rv-for="model.cid | prepend max" class="right inline">To</label>
             </div>
 
             <div class="small-9 columns">
