@@ -66,6 +66,12 @@
             "" : "validation/views/datetime/view",
             "Config" : "validation/views/datetime/config",
             "Model" : "validation/views/datetime/model"
+        },
+
+        "validationTime+" : {
+            "" : "validation/views/time/view",
+            "Config" : "validation/views/time/config",
+            "Model" : "validation/views/time/model"
         }
     },
 
