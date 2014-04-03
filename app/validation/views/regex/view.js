@@ -1,11 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'validationRegexConfig'],
-    function (GrasshopperBaseView, validationRegexConfig) {
+define(['grasshopperBaseView', 'validationRegexConfig', 'resources'],
+    function (GrasshopperBaseView, validationRegexConfig, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : validationRegexConfig,
-            afterRender : afterRender
+            afterRender : afterRender,
+            deleteThisValidation : deleteThisValidation
         });
 
         function afterRender() {
@@ -18,7 +19,7 @@ define(['grasshopperBaseView', 'validationRegexConfig'],
             $accordion
                 .accordion(
                 {
-                    header : '.accordionHeader',
+                    header : '.validationAccordion',
                     icons : false,
                     active : false,
                     collapsible : true,
@@ -27,6 +28,22 @@ define(['grasshopperBaseView', 'validationRegexConfig'],
             );
         }
 
+        function deleteThisValidation(e) {
+            e.stopPropagation();
+            _warnUserBeforeDeleting.call(this)
+                .done(_actuallyDeleteThisValidation.bind(this));
+        }
+
+        function _warnUserBeforeDeleting() {
+            return this.displayModal({
+                header : resources.warning,
+                msg : resources.validationViews.deletionWarning
+            });
+        }
+
+        function _actuallyDeleteThisValidation() {
+            this.parent.model.get('validationCollection').remove(this.model);
+            this.remove();
+        }
+
     });
-
-

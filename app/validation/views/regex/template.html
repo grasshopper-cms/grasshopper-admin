@@ -1,1 +1,33 @@
-<div></div>
+<div class="row accordionHeader validationAccordion" data-rv-modelid="model.cid">
+    <div class="small-12 columns">
+        <table style="margin-bottom: 0; table-layout: fixed;">
+            <tbody>
+                <tr>
+                    <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:type | humanize | spaceBefore}}</td>
+                    <td>
+                        <span>
+                            Match: {{model:options->match | existsOr --}}
+                        </span>
+                    </td>
+                    <td style="text-align: center;">
+                        <span data-rv-on-click="view.deleteThisValidation">
+                           <i class="fa fa-trash-o"></i>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div data-rv-id="model.cid" class="row accordionContent" data-rv-addclass="model:active">
+
+    <div class="small-3 columns">
+        <label data-rv-for="model.cid | prepend match" class="right inline">Match</label>
+    </div>
+
+    <div class="small-9 columns">
+        <input type="text" data-rv-id="model.cid | prepend match" data-rv-value="model:options->match">
+    </div>
+
+</div>
