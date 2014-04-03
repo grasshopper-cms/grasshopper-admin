@@ -1,1 +1,55 @@
-<div></div>
+<div class="row accordionHeader validationAccordion">
+    <div class="small-12 columns">
+        <table style="margin-bottom: 0; table-layout: fixed;">
+            <tbody>
+            <tr>
+                <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:type | humanize | spaceBefore}}</td>
+                <td>
+                        <span>
+                            From: {{model:options->min | existsOr --}}
+                        </span>
+                        <span>
+                            To: {{model:options->max  | existsOr --}}
+                        </span>
+                </td>
+                <td style="text-align: center;">
+                        <span data-rv-on-click="view.deleteThisValidation">
+                           <i class="fa fa-trash-o"></i>
+                        </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div data-rv-id="model.cid" class="accordionContent" data-rv-addclass="model:active">
+
+    <div class="row">
+        <div class="small-12 large-6 columns">
+
+            <div class="small-3 columns">
+                <label data-rv-for="model.cid | prepend min" class="right inline">From</label>
+            </div>
+
+            <div class="small-9 columns">
+                <input type="time" data-rv-id="model.cid | prepend min" data-rv-value="model:options->min">
+            </div>
+
+        </div>
+
+        <div class="small-12 large-6 columns">
+
+            <div class="small-3 columns">
+                <label data-rv-for="model.cid | prepend max" class="right inline">To</label>
+            </div>
+
+            <div class="small-9 columns">
+                <input type="time" data-rv-id="model.cid | prepend max" data-rv-value="model:options->max">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
