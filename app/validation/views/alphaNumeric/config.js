@@ -5,11 +5,8 @@ define(['text!/validation/views/alphaNumeric/template.html'], function (template
     return {
         name : 'alphaNumeric',
         modelData : {
-            _id : 'alphaNumeric',
-            options : {
-                min : '',
-                max : ''
-            }
+            type : 'alphaNumeric',
+            options : {}
         },
         template : template,
         events : {},

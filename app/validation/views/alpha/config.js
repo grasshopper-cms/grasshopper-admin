@@ -5,11 +5,8 @@ define(['text!/validation/views/alpha/template.html'], function (template) {
     return {
         name : 'alpha',
         modelData : {
-            _id : 'alpha',
-            options : {
-                min : '',
-                max : ''
-            }
+            type : 'alpha',
+            options : {}
         },
         template : template,
         events : {},

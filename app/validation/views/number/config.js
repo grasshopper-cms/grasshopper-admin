@@ -6,10 +6,7 @@ define(['text!/validation/views/number/template.html'], function (template) {
         name : 'number',
         modelData : {
             type : 'number',
-            options : {
-                min : undefined,
-                max : undefined
-            }
+            options : {}
         },
         template : template,
         events : {},
