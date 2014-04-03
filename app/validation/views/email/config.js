@@ -5,11 +5,7 @@ define(['text!/validation/views/email/template.html'], function (template) {
     return {
         name : 'email',
         modelData : {
-            _id : 'email',
-            options : {
-                min : '',
-                max : ''
-            }
+            type : 'email'
         },
         template : template,
         events : {},

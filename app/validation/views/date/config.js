@@ -5,11 +5,8 @@ define(['text!/validation/views/date/template.html'], function (template) {
     return {
         name : 'date',
         modelData : {
-            _id : 'date',
-            options : {
-                min : '',
-                max : ''
-            }
+            type : 'date',
+            options : {}
         },
         template : template,
         events : {},

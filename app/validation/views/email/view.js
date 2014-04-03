@@ -1,32 +1,34 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'validationEmailConfig'],
-    function (GrasshopperBaseView, validationEmailConfig) {
+define(['grasshopperBaseView', 'validationEmailConfig', 'resources'],
+    function (GrasshopperBaseView, validationEmailConfig, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : validationEmailConfig,
-            afterRender : afterRender
+            afterRender : afterRender,
+            deleteThisValidation : deleteThisValidation
         });
 
         function afterRender() {
-            _initializeSortableAccordions.call(this);
+            this.parent.model.updateValidationRulesOnModel();
         }
 
-        function _initializeSortableAccordions() {
-            var $accordion = this.$el;
+        function deleteThisValidation(e) {
+            e.stopPropagation();
+            _warnUserBeforeDeleting.call(this)
+                .done(_actuallyDeleteThisValidation.bind(this));
+        }
 
-            $accordion
-                .accordion(
-                {
-                    header : '.accordionHeader',
-                    icons : false,
-                    active : false,
-                    collapsible : true,
-                    heightStyle : 'content'
-                }
-            );
+        function _warnUserBeforeDeleting() {
+            return this.displayModal({
+                header : resources.warning,
+                msg : resources.validationViews.deletionWarning
+            });
+        }
+
+        function _actuallyDeleteThisValidation() {
+            this.parent.model.get('validationCollection').remove(this.model);
+            this.remove();
         }
 
     });
-
-
