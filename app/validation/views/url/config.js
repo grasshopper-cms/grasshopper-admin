@@ -5,11 +5,8 @@ define(['text!/validation/views/url/template.html'], function (template) {
     return {
         name : 'url',
         modelData : {
-            _id : 'url',
-            options : {
-                min : '',
-                max : ''
-            }
+            type : 'url',
+            options : {}
         },
         template : template,
         events : {},
