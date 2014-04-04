@@ -66,6 +66,5 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
 
         function updateValidationRulesOnModel() {
             this.set('validation', helpers.cleanCollection(this.get('validationCollection').toJSON()));
-            console.log(this.get('validation'));
         }
     });
