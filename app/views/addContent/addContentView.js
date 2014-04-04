@@ -17,6 +17,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function afterRender() {
+            _addListenerForModelChange.call(this);
             this.$el.foundation();
         }
 
@@ -93,7 +94,6 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _handleNodeWithOneContentType($deferred, contentType) {
             this.model.set('type', contentType._id);
-            _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
         }
 
@@ -108,14 +108,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _handleSuccessfulContentTypeSelection($deferred, selectedContentType) {
             this.model.set('type', selectedContentType);
-            _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
-        }
-
-        function _setNewContentsAuthor() {
-            this.model.set('author', {
-                _id : this.app.user.get('_id')
-            });
         }
 
         function _getSelectedContentTypeSchema($deferred) {
@@ -150,6 +143,14 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _updateMastheadBreadcrumbs($deferred) {
             breadcrumbWorker.contentBreadcrumb.call(this, $deferred, true);
+        }
+
+        function _addListenerForModelChange() {
+            var self = this;
+
+            this.model.on('change:fields', function() {
+                self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
+            });
         }
 
     });

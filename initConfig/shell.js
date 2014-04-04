@@ -2,81 +2,46 @@
 module.exports = function (grunt) {
     'use strict';
 
+    var buildDirectory = grunt.config.get('buildDirectory');
+
     grunt.config('shell', {
-        install_api_node_modules : {
-            command : 'npm install',
-            options : {
-                failOnError : true,
-                stderr : true,
-                stdout: true,
-                execOptions : {
-                    cwd : 'api'
-                }
-            }
-        },
-        install_api_vagrant_plugins : {
-            command : [
-                'vagrant plugin install vagrant-exec',
-                'vagrant plugin install vagrant-vbguest'
-            ].join('&&'),
-            options : {
-                failOnError : true,
-                stderr : true,
-                stdout: true,
-                execOptions : {
-                    cwd : 'api'
-                }
-            }
-        },
-        vagrant_go : {
-            command : 'set dynamically',
-            options : {
-                failOnError : true,
-                stderr : true,
-                stdout: true,
-                execOptions : {
-                    cwd : 'api'
-                }
-            }
-        },
-        test_vagrant_box : {
-            command : 'curl http://localhost:8080/token -H "Accept: application/json" -H "Acceen_US" -u "admin:TestPassword"',
+        test_heroku_api : {
+            command : 'curl '+ buildDirectory +'/token -H "Accept: application/json" -H "Acceen_US" -u "admin:TestPassword"',
             options : {
                 stdout: true
             }
         },
-        'mongodump' : {
+        mongodump : {
             options : {
                 stdout : true,
                 stderr : true,
-                failOnError : true,
-                execOptions: {
-                    cwd: './api'
-                }
+                failOnError : true
             },
-            command : 'vagrant exec mongodump --db grasshopper --out tasks/seedData/mongodb'
+            command : 'mongodump -h ds035448.mongolab.com:35448 -d heroku_app23638163 -c users -u heroku_app23638163 -p urektptiutkj0vvhg658v7v3t4 -o tasks/seedData/mongodb'
         },
-        'mongorestore' : {
+        mongorestore : {
             options : {
                 stdout : true,
                 stderr : true,
-                failOnError : true,
-                execOptions: {
-                    cwd: './api'
-                }
+                failOnError : true
             },
-            command : 'vagrant exec mongorestore --drop --db grasshopper tasks/seedData/mongodb/grasshopper'
+            command : 'mongorestore --drop --db heroku_app23638163 --host ds035448.mongolab.com:35448 -u heroku_app23638163 -p urektptiutkj0vvhg658v7v3t4 tasks/seedData/mongodb/grasshopper'
         },
-        'mongomerge' : {
+        mongomerge : {
             options : {
                 stdout : true,
                 stderr : true,
-                failOnError : true,
-                execOptions: {
-                    cwd: './api'
-                }
+                failOnError : true
             },
-            command : 'vagrant exec mongorestore --db grasshopper tasks/seedData/mongodb/grasshopper'
+            command : 'mongorestore --db heroku_app23638163 --host ds035448.mongolab.com:35448 -u heroku_app23638163 -p urektptiutkj0vvhg658v7v3t4 tasks/seedData/mongodb/grasshopper'
+        },
+        bowerInstall : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true
+            },
+            command : 'bower install'
         }
     });
 

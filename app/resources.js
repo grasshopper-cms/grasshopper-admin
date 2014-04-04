@@ -27,8 +27,12 @@ define({
         }
     },
     user : {
-        userDetailHeaderText : 'Profile for: ',
+        dontHaveAccount : 'Don\'t have an account?',
         loggedInAs : 'Logged in as',
+        signIn : 'Sign In',
+        signInRegisteredUser : 'Sign in using your registered account:',
+        signUp : 'Sign Up',
+        userDetailHeaderText : 'Profile for: ',
         attributeTitles : {
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
@@ -85,10 +89,6 @@ define({
         successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: ',
         createContent : 'New content',
-        statusOptions : [
-            'Live',
-            'Inactive'
-        ],
         readonly : 'Readonly',
         labelErrorMessage : 'Label is a required field.',
         successfullySaved : 'Content successfully saved.',
@@ -128,7 +128,11 @@ define({
         helpText : 'Help Text',
         description: 'Description',
         emptyFields : 'Click "Add new field" to add your first field.',
-        useAsLabel : 'Use As Label'
+        switchingBetweenSimpleAndComplexTypesWarning : 'You are switching between simple and complex data types. ' +
+            'If you confirm, your content may be corrupted!',
+        selectOption : 'Please Select',
+        thisFieldHasNoValidation : 'This field has no validations',
+        addValidationType : 'Add Validation'
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
@@ -180,6 +184,14 @@ define({
         dropdown : {
             selectOption : 'Please Select'
         },
+        editorialWindow : {
+            loading : 'Loading editorial window...',
+            startAfterEnd : 'Start date is after end date',
+            setToNow : 'Set to now',
+            start : 'Start',
+            end : 'End',
+            neverExpire : 'Never Expire'
+        },
         embeddedType : {
             contentType : 'Content Type'
         },
@@ -196,7 +208,13 @@ define({
         richText : {
             selectFile : 'Select File',
             loading : 'LOADING RICH TEXT...'
+        },
+        slug : {
+            refresh : 'Refresh'
         }
+    },
+    validationViews : {
+        deletionWarning : 'You are about to delete a validation field. Are you sure you want to do this?'
     },
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
@@ -215,15 +233,20 @@ define({
     email : 'Email',
     enabled : 'Enabled',
     falseText : 'False',
+    from : 'From',
     home : 'Home',
     helpText : 'Help Text',
     id : 'ID',
+    key: 'Key',
     minimum : 'Minimum',
+    min : 'Min',
     label : 'Label',
     login : 'Login',
     log_in : 'Log In',
     log_out : 'Log Out',
+    match : 'Match',
     maximum : 'Maximum',
+    max : 'Max',
     menu : 'Menu',
     allowMultiple : 'Allow Multiple',
     allowMultipleSettings : 'Allow Multiple Settings',
@@ -233,19 +256,23 @@ define({
     newWord : 'New',
     no : 'No',
     options : 'Options',
+    password : 'Password',
     previous : 'Previous',
     profile : 'Profile',
+    remind : 'Remind',
     remove : 'Remove',
     retry : 'Retry',
     required : 'Required',
     role : 'Role',
     save : 'Save',
+    selectOption : 'Please Select',
     settings : 'Settings',
     siteName : 'Grasshopper',
     status : 'Status',
     summary : 'Summary',
     thisIsNotImplemented : 'This is not yet implemented.',
     title : 'Title',
+    to : 'To',
     trueText : 'True',
     type : 'Type',
     types : 'Types',

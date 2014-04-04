@@ -1,12 +1,10 @@
 <tr>
-    <td class="clickableCell"><i class="icon-folder-close"></i> <a data-rv-href="model:href">{{model:label |
+    <td class="clickableCell"><i class="fa fa-folder"></i> <a data-rv-href="model:href">{{model:label |
         spaceBefore}}</a></td>
-    <td class="clickableCell">{{model:author | existsOr --}}</td>
-    <td class="clickableCell">{{model:status | existsOr --}}</td>
     <td class="clickableCell">{{model:modified | existsOr --}}</td>
     <td align="center">
-        <a id="editNode"><i class="icon-edit"></i></a>
-        <a id="editTypes"><i class="icon-tasks"></i></a>
-        <a id="deleteNode"><i class="icon-trash"></i></a>
+        <a id="editNode"><i class="fa fa-edit"></i></a>
+        <a id="editTypes"><i class="fa fa-tasks"></i></a>
+        <a id="deleteNode"><i class="fa fa-trash-o"></i></a>
     </td>
 </tr>

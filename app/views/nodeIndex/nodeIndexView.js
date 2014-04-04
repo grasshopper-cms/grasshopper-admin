@@ -14,16 +14,11 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
 
         function beforeRender ($deferred) {
             this.model.get('childNodes').fetch()
-                .done(_updateMastheadNodesCount.bind(this, $deferred));
+                .done($deferred.resolve);
         }
 
         function afterRender() {
             this.model.get('childNodes').each(_appendNodeDetailRow.bind(this));
-        }
-
-        function _updateMastheadNodesCount($deferred) {
-//            this.app.router.mastheadView.model.set('nodesCount', _.size(this.model.attributes) - 2);
-            $deferred.resolve();
         }
 
         function _appendNodeDetailRow (model) {

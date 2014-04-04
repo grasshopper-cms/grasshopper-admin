@@ -18,8 +18,8 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
                 },
                 label : '',
                 type : 'contentreference',
-                required : false,
-                validation : false,
+                dataType : 'ref',
+                validation : [],
                 value : ''
             },
             template : contentReferencePluginTemplate,

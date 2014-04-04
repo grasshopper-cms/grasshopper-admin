@@ -69,7 +69,7 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         function _setSubLabelsForAccordions() {
             var activeContentTypeFields = this.model.get('activeContentType.fields'),
-                fieldToUseAsLabel = _.findWhere(activeContentTypeFields, {useAsLabel : true})._id;
+                fieldToUseAsLabel = _.first(activeContentTypeFields)._id;
 
             this.model.set('accordionLabel', new ProxyProperty('value.' + fieldToUseAsLabel, this.model));
         }
@@ -80,8 +80,8 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             $accordion.accordion({
                 header : '.accordionHeader',
                 icons : {
-                    header : 'icon-chevron-right',
-                    activeHeader : 'icon-chevron-down'
+                    header : 'fa fa-chevron-right',
+                    activeHeader : 'fa fa-chevron-down'
                 },
                 active : false,
                 collapsible : true,

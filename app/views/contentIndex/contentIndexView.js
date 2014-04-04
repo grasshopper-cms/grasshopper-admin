@@ -34,8 +34,6 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
         function _handleSuccessfulContentQuery($deferred, data) {
             this.model.set('nodeContent', data);
 
-            _updateMastheadItemsCount.call(this);
-
             $deferred.resolve();
         }
 
@@ -53,13 +51,10 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
                     appendTo : this.$el,
                     wrapper : false,
                     template : contentDetailRowTemplate,
-                    mastheadButtons : this.mastheadButtons
+                    mastheadButtons : null,
+                    breadcrumbs : null
                 });
             contentDetailView.start();
-        }
-
-        function _updateMastheadItemsCount() {
-            this.app.router.mastheadView.model.set('itemsCount', _.size(this.model.attributes.nodeContent));
         }
 
         function _addEmptyNodeMessage() {

@@ -1,4 +1,4 @@
-define(['masseuse', 'validation', 'underscore'], function (masseuse, validation, _) {
+define(['masseuse', 'validation', 'underscore', 'resources'], function (masseuse, validation, _, resources) {
     'use strict';
     var Model = masseuse.MasseuseModel,
         ComputedProperty = masseuse.ComputedProperty;
@@ -6,6 +6,7 @@ define(['masseuse', 'validation', 'underscore'], function (masseuse, validation,
     return Model.extend({
         validate : _validate,
         defaults : {
+            resources : resources,
             username : '',
             password : '',
             usernameError : new ComputedProperty(['username'], _validateUserLoginAttribute, true),
