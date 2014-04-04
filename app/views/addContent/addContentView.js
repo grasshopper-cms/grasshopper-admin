@@ -13,15 +13,11 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         });
 
         function beforeRender ($deferred) {
-            // TODO: This node ID check is done in a bunch of different Views. Move this somewhere else to DRY this up.
-            if (this.model.get('node._id') !== '0') {
-                _handleCreateContent.call(this, $deferred);
-            } else {
-                _createContentInRoot.call(this, $deferred);
-            }
+            _handleCreateContent.call(this, $deferred);
         }
 
         function afterRender() {
+            _addListenerForModelChange.call(this);
             this.$el.foundation();
         }
 
@@ -98,7 +94,6 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _handleNodeWithOneContentType($deferred, contentType) {
             this.model.set('type', contentType._id);
-            _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
         }
 
@@ -113,14 +108,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _handleSuccessfulContentTypeSelection($deferred, selectedContentType) {
             this.model.set('type', selectedContentType);
-            _setNewContentsAuthor.call(this);
             _getSelectedContentTypeSchema.call(this, $deferred);
-        }
-
-        function _setNewContentsAuthor() {
-            this.model.set('author', {
-                _id : this.app.user.get('_id')
-            });
         }
 
         function _getSelectedContentTypeSchema($deferred) {
@@ -139,17 +127,8 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
             _navigateBack.call(this);
         }
 
-        function _handleFailedContentTypeRetrieval($deferred, xhr) {
+        function _handleFailedContentTypeRetrieval($deferred) {
             $deferred.reject();
-            console.log(xhr);
-        }
-
-        function _createContentInRoot ($deferred) {
-            this.displayModal(
-                {
-                    msg : resources.contentType.contentInRoot
-                })
-                .always(_rejectDeferredThenNavigateBack.bind(this, $deferred));
         }
 
         function _rejectDeferredThenNavigateBack($deferred) {
@@ -164,6 +143,14 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _updateMastheadBreadcrumbs($deferred) {
             breadcrumbWorker.contentBreadcrumb.call(this, $deferred, true);
+        }
+
+        function _addListenerForModelChange() {
+            var self = this;
+
+            this.model.on('change:fields', function() {
+                self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
+            });
         }
 
     });

@@ -40,7 +40,6 @@ define([
     }
 
     function save () {
-        // TODO: look at filmfreshModel for reference on how to support passing in objects
         var saveOptions = {headers : {
             'Authorization' : 'Token ' + LocalStorage.get('authToken')
         }};
@@ -56,7 +55,7 @@ define([
     }
 
     function toJSON() {
-        return _.clone(_.omit(this.attributes, 'resources', 'contants', 'schema'));
+        return _.clone(_.omit(this.attributes, 'resources', 'contants', 'schema', 'plugins', 'href'));
     }
 
     function toggle(propertyName) {

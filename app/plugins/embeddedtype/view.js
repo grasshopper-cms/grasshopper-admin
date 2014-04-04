@@ -7,9 +7,7 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
-            afterRender : afterRender,
-            stopPropagation : stopPropagation,
-            toggleExpandArrow : toggleExpandArrow
+            afterRender : afterRender
         });
 
         function beforeRender($deferred) {
@@ -19,6 +17,8 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         function afterRender() {
             this.$el.foundation();
+
+            _initializeAccordions.call(this);
         }
 
         function _getAvailableContentTypes() {
@@ -50,15 +50,15 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         function _proxyValues() {
             var activeContentType = this.model.get('activeContentType'),
-                property;
+                self = this;
 
             if(!this.model.get('value')) {
                 _.each(activeContentType.fields, _setEmptyValue.bind(this));
             }
 
-            for (property in this.model.get('value')) {
-                this.model.set('fields.' + property, new ProxyProperty('value.' + property, this.model));
-            }
+            _.each(activeContentType.fields, function(type) {
+                self.model.set('fields.' + type._id, new ProxyProperty('value.' + type._id, self.model));
+            });
 
             _setSubLabelsForAccordions.call(this);
         }
@@ -69,25 +69,24 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
 
         function _setSubLabelsForAccordions() {
             var activeContentTypeFields = this.model.get('activeContentType.fields'),
-                fieldToUseAsLabel = _.findWhere(activeContentTypeFields, {useAsLabel : true})._id;
+                fieldToUseAsLabel = _.first(activeContentTypeFields)._id;
 
             this.model.set('accordionLabel', new ProxyProperty('value.' + fieldToUseAsLabel, this.model));
         }
 
-        function stopPropagation(e) {
-            e.stopPropagation();
-        }
+        function _initializeAccordions() {
+            var $accordion = this.$('#embeddedTypeAccordion');
 
-        function toggleExpandArrow(e) {
-            var $toToggle;
-
-            if(e.target.localName === 'i') {
-                $toToggle = $(e.target.parentElement);
-            } else {
-                $toToggle = $(e.target);
-            }
-            $toToggle.next().slideToggle('slow');
-            this.model.toggle('accordionOpen');
+            $accordion.accordion({
+                header : '.accordionHeader',
+                icons : {
+                    header : 'fa fa-chevron-right',
+                    activeHeader : 'fa fa-chevron-down'
+                },
+                active : false,
+                collapsible : true,
+                heightStyle : 'content'
+            });
         }
 
     });

@@ -1,13 +1,17 @@
 {
     "libraries" : {
-        "jquery" : "vendor/jquery/jquery",
+        "jquery" : "vendor/jquery/dist/jquery",
         "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core",
         "backbone" : "vendor/backbone-amd/backbone",
         "text" : "vendor/requirejs-text/text",
         "rivets" : "vendor/rivets/dist/rivets",
         "base64" : "vendor/js-base64/base64",
         "foundation" : "vendor/foundation/js/foundation/foundation",
-        "modernizr" : "vendor/modernizr/modernizr"
+        "modernizr" : "vendor/modernizr/modernizr",
+        "ckeditor" : "vendor/ckeditor/ckeditor",
+        "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
+        "ace" : "vendor/ace/lib/ace",
+        "moment" : "vendor/moment/moment"
     },
 
     "routers" : {
@@ -26,7 +30,69 @@
     "jqueryUIDependencies" : {
         "widgetFactory" : "vendor/jquery.ui/ui/jquery.ui.widget",
         "mouseInteraction" : "vendor/jquery.ui/ui/jquery.ui.mouse",
-        "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable"
+        "sortable" : "vendor/jquery.ui/ui/jquery.ui.sortable",
+        "accordion" : "vendor/jquery.ui/ui/jquery.ui.accordion"
+    },
+
+    "validation+" : {
+        "" : "validation/validation",
+        "Types" : "validation/validationTypes",
+
+        "validationAlpha+" : {
+            "" : "validation/views/alpha/view",
+            "Config" : "validation/views/alpha/config",
+            "Model" : "validation/views/alpha/model"
+        },
+
+        "validationNumber+" : {
+            "" : "validation/views/number/view",
+            "Config" : "validation/views/number/config",
+            "Model" : "validation/views/number/model"
+        },
+
+        "validationAlphaNumeric+" : {
+            "" : "validation/views/alphaNumeric/view",
+            "Config" : "validation/views/alphaNumeric/config",
+            "Model" : "validation/views/alphaNumeric/model"
+        },
+
+        "validationDate+" : {
+            "" : "validation/views/date/view",
+            "Config" : "validation/views/date/config",
+            "Model" : "validation/views/date/model",
+            "Formatters" : "validation/views/date/formatters"
+        },
+
+        "validationDatetime+" : {
+            "" : "validation/views/datetime/view",
+            "Config" : "validation/views/datetime/config",
+            "Model" : "validation/views/datetime/model",
+            "Formatters" : "validation/views/datetime/formatters"
+        },
+
+        "validationEmail+" : {
+            "" : "validation/views/email/view",
+            "Config" : "validation/views/email/config",
+            "Model" : "validation/views/email/model"
+        },
+
+        "validationRegex+" : {
+            "" : "validation/views/regex/view",
+            "Config" : "validation/views/regex/config",
+            "Model" : "validation/views/regex/model"
+        },
+
+        "validationUrl+" : {
+            "" : "validation/views/url/view",
+            "Config" : "validation/views/url/config",
+            "Model" : "validation/views/url/model"
+        },
+
+        "validationRequired+" : {
+            "" : "validation/views/required/view",
+            "Config" : "validation/views/required/config",
+            "Model" : "validation/views/required/model"
+        }
     },
 
     "views" : {
@@ -95,7 +161,8 @@
         "contentTypeDetailView+" : {
             "" : "views/contentTypeDetail/contentTypeDetailView",
             "Config" : "views/contentTypeDetail/contentTypeDetailViewConfig",
-            "Model" : "views/contentTypeDetail/contentTypeDetailViewModel"
+            "Model" : "views/contentTypeDetail/contentTypeDetailViewModel",
+            "FieldsCollection" : "views/contentTypeDetail/contentTypeDetailViewFieldsCollection"
         },
 
         "contentTypeIndexView+" : {
@@ -104,10 +171,18 @@
             "Model" : "views/contentTypeIndex/contentTypeIndexViewModel"
         },
 
-        "dashboardView+" : {
-            "" : "views/dashboard/dashboardView",
-            "Config" : "views/dashboard/dashboardViewConfig",
-            "Model" : "views/dashboard/dashboardViewModel"
+        "fieldAccordion+" : {
+            "View" : "views/contentTypeDetail/fieldAccordion/view",
+            "Config" : "views/contentTypeDetail/fieldAccordion/config",
+            "Model" : "views/contentTypeDetail/fieldAccordion/model",
+            "Binders" : "views/contentTypeDetail/fieldAccordion/binders",
+            "ValidationCollection" : "views/contentTypeDetail/fieldAccordion/validationCollection"
+        },
+
+        "fileBrowserView+" : {
+            "" : "views/fileBrowser/fileBrowserView",
+            "Config" : "views/fileBrowser/fileBrowserViewConfig",
+            "Model" : "views/fileBrowser/fileBrowserViewModel"
         },
 
         "headerView+" : {
@@ -125,7 +200,8 @@
         "mastheadView+" : {
             "" : "views/masthead/mastheadView",
             "Config" : "views/masthead/mastheadViewConfig",
-            "Model" : "views/masthead/mastheadViewModel"
+            "Model" : "views/masthead/mastheadViewModel",
+            "Binders" : "views/masthead/binders"
         },
 
         "modalView+" : {
@@ -144,6 +220,13 @@
             "" : "views/nodeIndex/nodeIndexView",
             "Config" : "views/nodeIndex/nodeIndexViewConfig",
             "Model" : "views/nodeIndex/nodeIndexViewModel"
+        },
+
+        "nodeTreeView+" : {
+            "" : "views/nodeTree/nodeTreeView",
+            "Config" : "views/nodeTree/nodeTreeViewConfig",
+            "Model" : "views/nodeTree/nodeTreeViewModel",
+            "Binders" : "views/nodeTree/nodeTreeViewBinders"
         },
 
         "pluginWrapperView+" : {
@@ -169,7 +252,7 @@
         "selfValidatingModel" : "models/selfValidatingModel",
         "UserModel" : "models/userModel",
         "grasshopperModel" : "models/grasshopperModel",
-        "pluginSetupModel" : "models/pluginSetupModel"
+        "pluginSetupModel" : "views/contentTypeDetail/pluginSetupModel"
     },
 
     "workers" : {
@@ -177,7 +260,8 @@
         "contentTypeWorker" : "workers/contentTypeWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
-        "nodeWorker" : "workers/nodeWorker"
+        "nodeWorker" : "workers/nodeWorker",
+        "urlWorker" : "workers/urlWorker"
     },
 
     "collections" : {
@@ -187,10 +271,6 @@
 
     "api" : {
         "api" : "api/api"
-    },
-
-    "validation" : {
-        "validation" : "validation/validation"
     },
 
     "plugins" : {

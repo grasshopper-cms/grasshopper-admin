@@ -8,30 +8,31 @@
         </div>
 
         <div class="row">
-            <label>{{model:resources->plugins->fileReference->selectedFile | withColon}}
-                <input data-rv-value="model:selectedFileName" type="text" readonly="true">
-            </label>
+            {{model:resources->plugins->fileReference->selectedFile | withColon}}
+            {{model:selectedContentName}}
         </div>
-
+        </br>
         <div class="row">
             {{model:resources->plugins->fileReference->currentFolder | withColon}}{{model:folderLabel}}
         </div>
 
         <div data-rv-show="model:loading">
-            <i class="icon-refresh icon-spin"></i>
+            <i class="fa fa-refresh fa fa-spin"></i>
         </div>
 
-        <div class="row" data-rv-hide="model:loading">
+        <div class="row modal-data" data-rv-hide="model:loading">
             <div id="nodeTree">
 
-                <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
+                <div data-rv-each-node="model:children:" data-rv-nodetree="node"></div>
 
                 <ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">
-                    <li data-rv-each-file="model:files:">
-                        <input data-rv-id="file.cid" type="radio" name="selectedFile"
-                               data-rv-value="file:url" data-rv-checked="model:selectedFile">
-                        <label data-rv-for="file.cid">{{file:fileName}}</label>
+
+                    <li data-rv-each-item="model:content:" class="nodeTreeSubNode">
+                        <input data-rv-id="item.cid" type="radio" name="selectedContent"
+                               data-rv-checked="model:selectedContent" data-rv-value="item:_id">
+                        <label data-rv-for="item.cid">{{item:label}}</label>
                     </li>
+
                 </ul>
 
             </div>

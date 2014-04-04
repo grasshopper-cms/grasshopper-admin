@@ -1,37 +1,31 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'underscore',
-    'text!views/nodeDetail/_nodeDetailRow.html'],
+    'text!views/nodeDetail/_nodeDetailRow.html', 'nodeWorker'],
     function (GrasshopperBaseView, nodeIndexViewConfig, NodeDetailView, _,
-              nodeDetailRowTemplate) {
+              nodeDetailRowTemplate, nodeWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions: nodeIndexViewConfig,
             beforeRender : beforeRender,
-            afterRender : afterRender
+            afterRender : afterRender,
+            updateCurrentNode : updateCurrentNode
         });
 
         function beforeRender ($deferred) {
-
-            this.model.url = this.model.url.replace(':id', this.nodeId);
-
-            this.model.fetch()
-                .done(_updateMastheadNodesCount.bind(this, $deferred));
+            this.model.get('childNodes').fetch()
+                .done($deferred.resolve);
         }
 
         function afterRender() {
-            var models = _.omit(this.model.attributes, 'resources');
-
-            _.each(models, _appendNodeDetailRow.bind(this));
+            this.model.get('childNodes').each(_appendNodeDetailRow.bind(this));
         }
 
-        function _updateMastheadNodesCount($deferred) {
-            this.app.router.mastheadView.model.set('nodesCount', _.size(this.model.attributes) - 2);
-            $deferred.resolve();
-        }
+        function _appendNodeDetailRow (model) {
+            var node = model.toJSON(),
+                nodeDetailView;
 
-        function _appendNodeDetailRow (node) {
-            var nodeDetailView = new NodeDetailView({
+            nodeDetailView = new NodeDetailView({
                     name : 'nodeDetailRow',
                     modelData : node,
                     appendTo : this.$el,
@@ -40,5 +34,25 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
                     mastheadButtons : this.mastheadButtons
                 });
             nodeDetailView.start();
+        }
+
+        function updateCurrentNode(context) {
+            var type = context.dropbutton.type;
+
+            switch(type) {
+
+            case 'editName':
+                nodeWorker.editName.call(this);
+                break;
+
+            case 'editContentTypes' :
+                nodeWorker.editContentTypes.call(this);
+                break;
+
+            case 'deleteNode' :
+                nodeWorker.deleteNode.call(this);
+                break;
+            }
+
         }
     });

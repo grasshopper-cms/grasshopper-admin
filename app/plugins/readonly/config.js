@@ -12,8 +12,9 @@ define(['text!plugins/readonly/template.html', 'plugins/readonly/model', 'text!p
                 options : false,
                 label : '',
                 type : 'readonly',
-                required : false,
-                validation : false,
+                defaultValueType : 'text',
+                dataType : 'string',
+                validation : [],
                 value : ''
             },
             wrapper: false,

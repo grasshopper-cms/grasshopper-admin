@@ -12,8 +12,9 @@ define(['text!plugins/textbox/template.html', 'plugins/textbox/model', 'text!plu
                 options : false,
                 label : '',
                 type : 'textbox',
-                required : false,
-                validation : false,
+                defaultValueType : 'text',
+                dataType : 'string',
+                validation : [],
                 value : ''
             },
             template : textBoxPluginTemplate,

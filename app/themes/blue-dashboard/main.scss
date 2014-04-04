@@ -1,29 +1,21 @@
 
-// Import open sans
-@import "http://fonts.googleapis.com/css?family=Open+Sans:400,600,800";
-
-//Import font-awesome
-@import "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css";
-
-$font: 'Open Sans', arial, sans-serif;
-
-$imgPath: '/themes/blue-dashboard/img';
-
 // Import Foundation
 @import "../../vendor/foundation/scss/normalize.scss";
 @import "../../vendor/foundation/scss/foundation.scss";
 
+@import "fonts";
+
 @import "colors";
+
 @import "mixins";
 
-@import "header";
+$imgPath: '/themes/blue-dashboard/img';
+
+$font: 'Open Sans', arial, sans-serif;
+
 
 .row {
-  max-width: 1250px;
-}
-
-[draggable] {
-  user-select: none; //User cannot select text in draggable element.
+  max-width: 100%;
 }
 
 body, html {
@@ -49,17 +41,9 @@ body, html {
     {
       @include lightGradient;
     }
-    td{
+    td {
       -webkit-user-select: none;
       user-select: none;
-    }
-    .inactive {
-      background-color: $tableInactiveRow;
-      td{
-        a{
-          color: $black;
-        }
-      }
     }
   }
 
@@ -67,6 +51,10 @@ body, html {
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
+  }
+
+  fieldset+legend {
+    max-width: 90%;
   }
 
   ul.folder-tree li {
@@ -87,30 +75,8 @@ body, html {
     width: 200px;
   }
 
-  textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    background-color: $white;
-    border: 1px solid $lightGray;
-    display: inline-block;
-    padding: 4px 6px;
-    margin-bottom: 8px;
-    font-size: 14px;
-    line-height: 20px;
-    box-shadow: inset 0 1px 1px $darkAlphaGray;
-    transition: border linear 0.2s, box-shadow linear 0.2s;
-  }
-
-  .inline.right{
-    margin-bottom: 8px;
-  }
-
-  [contenteditable="true"] {
-    padding: 10px;
-    outline: 2px dashed #CCC;
-  }
-
-  [contenteditable="true"]:hover {
-    cursor: text;
-    outline: 2px dashed #0090D2;
+  .noMarginBottom {
+    margin-bottom: 0;
   }
 
   $transition-speed: $switch-paddle-transition-speed;
@@ -128,411 +94,26 @@ body, html {
     @include switch($transition-speed, $transition-ease, $height, $font-size, $line-height, $paddle-bg, $positive-color, $negative-color, $radius, $base-style);
   }
 
+  // VIEWS
+  @import "../../views/header/style.scss"; // Header
+  @import "../../views/modal/style.scss"; // Modal
+  @import "../../views/alertBox/style.scss"; // Alertbox
+  @import "../../views/login/style.scss"; // Login
+  @import "../../views/masthead/style.scss"; // Masthead
+  @import "../../views/userIndex/style.scss"; // User Index
+  @import "../../views/userDetail/style.scss"; // User Detail
+  @import "../../views/contentDetail/style.scss"; // Content Detail
+  @import "../../views/assetDetail/style.scss"; // Asset Detail
+  @import "../../views/contentTypeDetail/style.scss"; // Content Type Detail
+  @import "../../views/contentTypeDetail/fieldAccordion/style.scss"; // Content Type Detail Field Accordion
+  @import "../../views/nodeTree/style.scss"; // Node Tree
+  @import "../../views/contentBrowse/style.scss"; // Content Browse
 
-  .btn-primary {
-    color: $white;
-    text-shadow: 0 -1px 0 $alphaGray;
-    background-color: $mediumGreen;
-    background-image: linear-gradient(to bottom, $lightGreen, $mediumGreen);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa0c277', endColorstr='#ff7da64b', GradientType=0);
-    border-color: $mediumGreen $mediumGreen $darkGreen;
-    border-color: $lightAlphaGray $lightAlphaGray $alphaGray;
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  }
-
-  .btn-large {
-    padding: 9px 14px;
-    font-size: 16px;
-    line-height: normal;
-    border-radius: 5px;
-  }
-
-  .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    vertical-align: top;
-    border-top: 4px solid $black;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
-    content: "";
-  }
-
-  #modal-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: $modal-background-color;
-    height: 100%;
-    width: 100%;
-    z-index: 9000;
-  }
-
-  #modal-contents {
-    z-index: 99;
-    height: auto;
-    max-height: 100%;
-    max-width: 100%;
-    background-color: $modal-contents-background-color;
-    padding: 1.25em;
-    border: solid 1px $modal-contents-border-color;
-    box-shadow: 0 0 10px $modal-background-color;
-    #modal-text {
-      text-align: center;
-    }
-    #button-container {
-      display: inline-block;
-      margin-top: 10px;
-    }
-    #image-container {
-      img {
-        max-height: 75%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-    #input-container {
-      margin-top: 8px;
-      input:not[type='checkbox'] {
-        width: 100%;
-      }
-    }
-    #dropZone {
-      height: 60px;
-      border: 2px dashed #bbb;
-      border-radius: 5px;
-      padding: 25px;
-      text-align: center;
-      color: #bbb;
-      &:hover {
-        border-color: rgb(0, 125, 166);
-      }
-      &.active {
-        border-color: rgb(0, 125, 166);
-      }
-    }
-    #uploadFileInput {
-      visibility: hidden;
-      height: 0;
-      width: 0;
-    }
-  }
-
-  .tooltip {
-    z-index: 10000;
-  }
-
-  #alertBox {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-items: center;
-    position: fixed;
-    bottom: 30px;
-    width: 100%;
-  }
-  .alertBoxPartial {
-    height: 46px;
-    width: 100%;
-    .bad {
-      margin: auto;
-      width: 95%;
-      .error {
-        @include alert-base;
-        @include alert-style($alertColorBad);
-        .close {
-          @include alert-close;
-          color: $alertCloseColor;
-          opacity: 90;
-        }
-      }
-    }
-    .good {
-      margin: auto;
-      width: 95%;
-      .error {
-        @include alert-base;
-        @include alert-style($alertColorGood);
-        .close {
-          @include alert-close;
-          color: $alertCloseColor;
-          opacity: 90;
-        }
-      }
-    }
-  }
-
-
-  #login-page {
-
-    .login-button {
-      @include button;
-      @include button-style($buttonOkay);
-      @include radius;
-      @include single-transition;
-      @include inset-shadow(true);
-      color: $buttonText;
-      float:right;
-    }
-
-    .loginContainer {
-      @include radius;
-      border: 1px solid $loginBorder;
-      padding: 16px 28px 23px;
-      background-color: $loginBackground;
-    }
-
-    .account-container h1 {
-      margin-bottom: .4em;
-      color: $mediumBlue;
-      font-size: 30px;
-    }
-
-    .account-container {
-      @include radius;
-      width: 380px;
-      display: block;
-      margin: 85px auto 0 auto;
-      border: 1px solid $lightGray;
-      background: $gray;
-      font-size:13px;
-    }
-
-    .login-fields input {
-      background-color: $gray;
-    }
-
-    .login-fields .field {
-      margin-bottom: 1.25em;
-    }
-
-    .login-extra {
-      display: block;
-      width: 300px;
-      margin: 1.5em auto;
-      text-align: center;
-      line-height: 19px;
-      text-shadow: 1px 1px 0px $white;
-    }
-
-  }
-
-  #dashboard {
-
-    .cirque-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .cirque-track, .cirque-fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 10;
-    }
-
-    .cirque-fill {
-      z-index: 20;
-    }
-
-    .cirque-label {
-      position: relative;
-      z-index: 30;
-      color: #444;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .cirque-label.percent {
-      font-size: 15px;
-    }
-
-    .cirque-label.ratio {
-      font-size: 13px;
-    }
-
-    .stats{
-      h3 {
-        font-size:0.8em;
-        display:block;
-        width:120px;
-        text-align:center;
-      }
-    }
-  }
-
-  // User Index
-  #userIndex {
-    #UserSearch {
-      width:180px;
-    }
-  }
-
-  // Users Detail
-  #userDetail {
-    #statusText {
-      label {
-        padding-left: 6px;
-        padding-right: 6px;
-      }
-    }
-  }
-
-  // Content Detail View
-  #contentEdit {
-
-    .field-item {
-      @include lightGradient;
-      padding: 10px 10px;
-      margin-top:15px;
-      @include radius;
-
-      .custom.dropdown {
-        width: 80%;
-
-        @media #{$small} {
-          width: 40%;
-        }
-      }
-    }
-
-    .accordionHeader {
-      padding-top: 7px;
-      padding-bottom: 7px;
-    }
-  }
-
-  .tabs {
-    border-bottom: 1px solid $tabBorderColor;
-    & dd {
-      border: 1px solid $tabBorderColor;
-    }
-    & dd.active {
-      border-bottom: 1px solid $activeTabBorderColor;
-    }
-    p{
-      margin-bottom: 0;
-    }
-  }
-  .tabs-content {
-    .content {
-      width: 100%;
-    }
-  }
-
-  // Asset Detail View
-  #uploadProgressMeter {
-
-  }
-
-  #uploadError {
-    text-align: center;
-
-    a {
-      margin-bottom: 0;
-    }
-  }
-
-  // Content Type Detail View
-  #contentTypeDetailView {
-    .accordionHeader {
-      &:hover {
-        tr{
-          background-color: #F1F1F1;
-        }
-      }
-
-      &.last {
-        user-select: none;
-        cursor: default;
-        background-color: transparent;
-        height: 35px;
-        &:hover {
-          background-color: transparent;
-        }
-      }
-    }
-
-    .activeHeader {
-      tr{
-        background-color: #F1F1F1;
-      }
-    }
-
-    .dragOver {
-      background-color: transparent !important;
-      padding-top: 35px !important;
-    }
-
-    .content {
-      padding-bottom: 0;
-
-      fieldset {
-        margin-left: 18px;
-        margin-right: 18px;
-        border: 1px solid #B1B1B1;
-
-        legend {
-          background-color: inherit;
-        }
-      }
-    }
-
-    .active {
-      background-color: #EEEBEB;
-      border: solid 1px #B1B1B1;
-      margin-left: 10px;
-      margin-right: 10px;
-      margin-bottom: 2px;
-    }
-  }
-
-  #addContent {
-    #removeField {
-      margin-bottom: 4px;
-    }
-
-    .accordionHeader {
-      padding-top: 7px;
-      padding-bottom: 7px;
-    }
-
-  }
-
-  // Content Reference Plugin
-  #nodeTree {
-    a {
-      padding-top: 0;
-      padding-bottom: 0;
-      padding-right: 0;
-    }
-    .content {
-      padding-top: 0;
-      &.active {
-        border: none;
-      }
-
-      .nodeTreeContent {
-        margin-bottom: 0;
-        padding-left: 1rem;
-        input {
-          margin-bottom: 0;
-        }
-      }
-    }
-  }
-
-  .availableTypes {
-    input {
-      margin-bottom: 0;
-    }
-  }
+  // PLUGINS
+  @import "../../plugins/embeddedtype/style.scss"; // Embedded Type Plugin
+  @import "../../plugins/contentreference/style.scss"; // Content Reference Plugin
+  @import "../../plugins/codeeditor/style.scss"; // Code Editor Plugin
+  @import "../../plugins/richtext/style.scss"; // Rich Text Plugin
+  @import "../../plugins/checkbox/style.scss"; // Checkbox Plugin
 
 }

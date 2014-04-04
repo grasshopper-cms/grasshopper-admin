@@ -26,7 +26,8 @@ define(['underscore', 'masseuse',
                     rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
                         modelData : {
                             value : masseuse.ProxyProperty('value', model),
-                            options : model.get('options')
+                            options : model.get('options'),
+                            fieldId : model.get('fieldId')
                         },
                         appendTo : el
                     }));

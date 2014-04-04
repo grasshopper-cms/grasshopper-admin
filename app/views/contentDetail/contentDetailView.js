@@ -16,11 +16,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     });
 
     function beforeRender($deferred) {
-        if(!this.model.has('label')) {
-            _fetchContentDetails.call(this, $deferred);
-        } else {
-            $deferred.resolve();
-        }
+        _fetchContentDetails.call(this, $deferred);
     }
 
     function deleteContent () {
@@ -107,8 +103,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
-        _proxyUseAsLabelToLabel.call(this);
-        _updateMastheadBreadcrumbs.call(this, $deferred);
+        _proxyFirstFieldToLabel.call(this);
+
+        if(this.name === 'contentDetailRow') {
+            $deferred.resolve();
+        } else {
+            _updateMastheadBreadcrumbs.call(this, $deferred);
+        }
     }
 
     function _handleFailedContentSchemaRetrieval($deferred) {
@@ -118,10 +119,10 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         $deferred.reject();
     }
 
-    function _proxyUseAsLabelToLabel() {
-        var useAsLabel = _.findWhere(this.model.get('schema.fields'), {useAsLabel : true});
+    function _proxyFirstFieldToLabel() {
+        var firstField = _.first(this.model.get('schema.fields'))._id;
 
-        this.model.set('label', new ProxyProperty('fields.' + useAsLabel._id, this.model));
+        this.model.set('label', new ProxyProperty('fields.' + firstField, this.model));
     }
 
     function _updateMastheadBreadcrumbs($deferred) {

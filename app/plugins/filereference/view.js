@@ -70,7 +70,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
                 modalView = new ModalView({
                     modelData : {
                         header : 'Select File',
-                        selectedFile : this.model.get('selectedFile'),
+                        selectedContent : this.model.get('selectedContent'),
                         _id : this.model.get('options.defaultNode')
                     },
                     $deferred : $deferred
@@ -81,17 +81,17 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _fileReferenceSelected(modalModel) {
-            this.model.set('selectedFileName', modalModel.selectedFileName);
-            this.model.set('selectedFile', modalModel.selectedFile);
-            this.model.set('value', modalModel.selectedFile);
+            this.model.set('selectedContentName', modalModel.selectedContentName);
+            this.model.set('selectedContent', modalModel.selectedContent);
+            this.model.set('value', modalModel.selectedContent);
         }
 
         function fireFileDetailModal() {
             this.displayModal(
                 {
-                    header: this.model.get('selectedFileName'),
+                    header: this.model.get('selectedContentName'),
                     type: 'image',
-                    data: this.model.get('selectedFile')
+                    data: this.model.get('selectedContent')
                 });
         }
 

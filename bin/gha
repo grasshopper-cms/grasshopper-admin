@@ -2,7 +2,10 @@
 'use strict';
 
 var program = require('commander'),
-    version = require('../package.json').version;
+    version = require('../package.json').version,
+    path = require('path');
+
+process.chdir(path.normalize('node_modules/grasshopper-admin'));
 
 program.name = 'grasshopper';
 program.version(version, '-v, --version');
@@ -13,10 +16,7 @@ program
         'Will look for gha.json in parent directory if not in current directory.')
     .action(function(){
         console.log(process.cwd());
-        require('grunt').cli({
-            gruntfile : 'Gruntfile.js',
-            base : 'node_modules/grasshopper-admin'
-        });
+        require('grunt').cli();
     });
 
 program.parse(process.argv);

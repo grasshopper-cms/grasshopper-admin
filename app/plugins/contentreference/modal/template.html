@@ -7,30 +7,23 @@
             </div>
         </div>
 
-        <div class="row">
-            <label>{{model:resources->plugins->contentReference->selectedContent | withColon}}
-                <input data-rv-value="model:selectedContentLabel" type="text" readonly="true">
-            </label>
+        <div class="row ">
+            {{model:resources->plugins->contentReference->selectedContent | withColon}}
+            {{model:selectedContentLabel}}
         </div>
-
+        </br>
         <div class="row">
-            <div class="left">
-                {{model:resources->plugins->contentReference->currentFolder | withColon}}{{model:folderLabel}}
-            </div>
-            <div class="right">
-                {{model:resources->plugins->contentReference->contentTypes | withColon}}
-                <span data-rv-text="model:allowedTypeLabels"></span>
-            </div>
+            {{model:resources->plugins->contentReference->currentFolder | withColon}}{{model:folderLabel}}
         </div>
 
         <div data-rv-show="model:loading">
-            <i class="icon-refresh icon-spin"></i>
+            <i class="fa fa-refresh fa fa-spin"></i>
         </div>
 
-        <div class="row" data-rv-hide="model:loading">
+        <div class="row modal-data" data-rv-hide="model:loading">
             <div id="nodeTree">
 
-                <dl data-rv-each-node="model:children:" data-rv-nodetree="node" class="accordion" data-accordion></dl>
+                <div data-rv-each-node="model:children:" data-rv-nodetree="node"></div>
 
                 <ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">
                     <li data-rv-each-item="model:content:">

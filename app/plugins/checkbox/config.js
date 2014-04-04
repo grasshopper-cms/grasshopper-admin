@@ -1,6 +1,9 @@
 /*global define:false*/
-define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!plugins/checkbox/setupTemplate.html'],
-    function (checkboxPluginTemplate, checkboxPluginModel, setupTemplate) {
+define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!plugins/checkbox/setupTemplate.html',
+    'backbone'],
+    function (checkboxPluginTemplate, checkboxPluginModel, setupTemplate,
+              Backbone) {
+
         'use strict';
 
         return {
@@ -9,18 +12,23 @@ define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!p
             modelData : {
                 min : 1,
                 max : 1,
-                options : false,
+                options : true,
                 label : '',
                 type : 'checkbox',
-                required : false,
-                validation : false,
+                dataType : 'boolean',
+                validation : [],
                 value : ''
             },
             template : checkboxPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
+            events : {
+                'click #addOption' : 'addOption',
+                'blur .optionInput' : 'reduceCollection',
+                'click .checkboxListCheckbox' : 'buildValues'
+            },
             wrapper: false,
             listeners : [],
-            mastheadButtons : []
+            mastheadButtons : [],
+            collection : new Backbone.Collection()
         };
     });

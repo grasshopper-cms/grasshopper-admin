@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!plugins/filereference/modal/template.html', 'plugins/filereference/modal/model',
-    'plugins/filereference/binders'],
-    function (template, modalModel, fileReferenceBinders) {
+    'appBinders'],
+    function (template, modalModel, appBinders) {
     'use strict';
 
     return {
@@ -11,7 +11,7 @@ define(['text!plugins/filereference/modal/template.html', 'plugins/filereference
         wrapper : false,
         template : template,
         rivetsConfig : {
-            binders : [fileReferenceBinders]
+            binders : [appBinders]
         },
         events : {
             'click #nodeTree' : 'stopAccordionPropagation',

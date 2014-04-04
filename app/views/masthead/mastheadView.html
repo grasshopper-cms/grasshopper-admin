@@ -2,42 +2,32 @@
     <div class="row">
         <div class="small-12 columns">
             <div class="left">
-                <div class="masthead-pad">
-                    <div class="masthead-text">
-                        <h4>
-                            <i class="icon-file"></i>
-                            <span data-rv-each-breadcrumb="model:breadcrumbs">
-                                <span>
-                                    <a data-rv-href="breadcrumb.href">{{breadcrumb.text | withForwardSlash}}</a>
-                                </span>
-                            </span>
-                        </h4>
-
-                        <p data-rv-hide="model:inRoot">
-                            <span data-rv-show="model:nodesCount">{{model:nodesCount | pluralize folder | withComma}}</span>
-                            <span data-rv-show="model:filesCount">{{model:filesCount | pluralize file | withComma}}</span>
-                            <span data-rv-show="model:itemsCount">{{model:itemsCount | pluralize item}}</span>
-                        </p>
-                    </div>
-                </div>
+                <h5>
+                    <i class="fa fa-file"></i>
+                    <span data-rv-breadcrumb="model:breadcrumbs"></span>
+                </h5>
             </div>
             <div class="right">
                 <ul id="mastheadButtons" class="button-group radius right">
+
                     <li data-rv-each-button="model:buttons">
-                        <a data-rv-hide="button.dropdown" data-rv-href="button.href" class="button tiny">
+
+                        <a data-rv-unless="button.dropdown" data-rv-href="button.href" class="button tiny">
                             {{button.text}}
                         </a>
 
-                        <a data-rv-show="button.dropdown" data-dropdown="drop" data-options="is_hover:true" class="button tiny dropdown">
+                        <a data-rv-if="button.dropdown" class="button tiny dropdown" data-dropdown="drop">
                             {{button.text}}
                         </a>
-                        <ul data-rv-show="button.dropdown" id="drop" data-dropdown-content class="f-dropdown">
-                            <li data-rv-each-field="model:plugins">
+
+                        <ul data-rv-if="button.dropdown" id="drop" class="f-dropdown" data-dropdown-content>
+                            <li data-rv-each-dropbutton="button.dropdown">
                                 <a data-rv-on-click="view.clickMastheadDropdown">
-                                    {{field.name}}
+                                    {{dropbutton.text}}
                                 </a>
                             </li>
                         </ul>
+
                     </li>
                 </ul>
             </div>

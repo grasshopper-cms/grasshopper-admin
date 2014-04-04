@@ -11,10 +11,11 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
             resources : resources,
             showTree : false,
             inSetup : true,
-            selectedFileName : new ComputedProperty(['selectedFile'], function(selectedFile) {
-                return (selectedFile) ? _.last(selectedFile.split('/')) : '';
+            nodeTreeType : 'file',
+            selectedContentName : new ComputedProperty(['selectedContent'], function(selectedContent) {
+                return (selectedContent) ? _.last(selectedContent.split('/')) : '';
             }),
-            selectedFile : new ComputedProperty(['value'], function(value) {
+            selectedContent : new ComputedProperty(['value'], function(value) {
                 return value;
             }),
             _id : '0'
