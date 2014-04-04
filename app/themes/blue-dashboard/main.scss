@@ -45,6 +45,7 @@ body, html {
     {
       @include lightGradient;
     }
+
     td {
       -webkit-user-select: none;
       user-select: none;
@@ -107,7 +108,9 @@ body, html {
   @import "../../views/userIndex/style.scss"; // User Index
   @import "../../views/userDetail/style.scss"; // User Detail
   @import "../../views/contentDetail/style.scss"; // Content Detail
+  @import "../../views/contentIndex/style.scss"; // Content Index
   @import "../../views/assetDetail/style.scss"; // Asset Detail
+  @import "../../views/contentTypeIndex/style.scss"; // Content Type Index
   @import "../../views/contentTypeDetail/style.scss"; // Content Type Detail
   @import "../../views/contentTypeDetail/fieldAccordion/style.scss"; // Content Type Detail Field Accordion
   @import "../../views/nodeTree/style.scss"; // Node Tree
