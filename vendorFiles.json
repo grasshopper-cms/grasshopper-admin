@@ -2,7 +2,7 @@
     "requirejs" : "vendor/requirejs/require.js",
     "backbone-amd" : "vendor/backbone-amd/backbone.js",
     "lodash-amd" : "vendor/lodash-amd/underscore/**",
-    "jquery" : "vendor/jquery/jquery.js",
+    "jquery" : "vendor/jquery/dist/jquery.js",
     "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core.js",
     "fonts" : "vendor/fonts/**",
     "font-awesome-fonts" : "vendor/font-awesome/fonts/**",
