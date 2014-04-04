@@ -32,11 +32,6 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
 
             _.each(assets, _appendAssetDetailRow.bind(this));
 
-            _updateMastheadFilesCount.call(this);
-        }
-
-        function _updateMastheadFilesCount() {
-            this.app.router.mastheadView.model.set('filesCount', _.size(this.model.attributes) - 2);
         }
 
         function _appendAssetDetailRow (asset) {

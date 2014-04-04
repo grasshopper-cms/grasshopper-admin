@@ -18,8 +18,8 @@ define(['text!plugins/filereference/template.html', 'plugins/filereference/model
                 },
                 label : '',
                 type : 'filereference',
-                required : false,
-                validation : false,
+                dataType : 'ref',
+                validation : [],
                 value : ''
             },
             template : fileReferencePluginTemplate,

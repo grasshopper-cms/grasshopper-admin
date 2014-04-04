@@ -13,8 +13,8 @@ define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!p
                 options : true,
                 label : '',
                 type : 'dropdown',
-                required : false,
-                validation : false,
+                dataType : 'dropdown',
+                validation : [],
                 value : ''
             },
             wrapper: false,

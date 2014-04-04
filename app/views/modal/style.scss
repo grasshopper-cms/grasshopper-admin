@@ -1,0 +1,85 @@
+#modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $modal-background-color;
+  height: 100%;
+  width: 100%;
+  z-index: 11000;
+
+  #modal-contents {
+    display: flex;
+    flex-direction: column;
+    z-index: 99;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    background-color: $modal-contents-background-color;
+    padding: 1.25em;
+    border: solid 1px $modal-contents-border-color;
+    box-shadow: 0 0 10px $modal-background-color;
+
+    .modal-header {
+      min-height: 40px;
+    }
+
+    .modal-data {
+      overflow: scroll;
+      border: 1px solid #999;
+    }
+
+    #modal-text {
+      text-align: center;
+    }
+
+    #button-container {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    #image-container {
+      img {
+        max-height: 75%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    #input-container {
+      margin-top: 8px;
+      input:not[type='checkbox'] {
+      width: 100%;
+    }
+    }
+
+    #dropZone {
+      height: 60px;
+      border: 2px dashed #bbb;
+      border-radius: 5px;
+      padding: 25px;
+      text-align: center;
+      color: #bbb;
+      &:hover {
+        border-color: rgb(0, 125, 166);
+      }
+      &.active {
+        border-color: rgb(0, 125, 166);
+      }
+    }
+
+    #uploadFileInput {
+      visibility: hidden;
+      height: 0;
+      width: 0;
+    }
+  }
+}
+
+.tooltip {
+  z-index: 100000;
+}

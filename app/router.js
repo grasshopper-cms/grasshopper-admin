@@ -110,16 +110,6 @@ define([
         function beforeRouting () {
             var $deferred = new $.Deferred();
 
-            if (this.mastheadView) {
-                this.mastheadView.model.set(
-                    {
-                        nodesCount : null,
-                        filesCount : null,
-                        itemsCount : null
-                    }
-                );
-            }
-
             loginWorker.userIsStillValidUser.call(this, $deferred);
 
             return $deferred.promise();

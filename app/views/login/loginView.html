@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="small-centered columns">
                                 <h1>
-                                    Sign In
+                                    {{model:resources->user->signIn}}
                                 </h1>
                             </div>
                         </div>
@@ -15,53 +15,38 @@
                             <div class="small-centered columns">
                                 <div class="login-fields">
 
-                                    <p>Sign in using your registered account:</p>
+                                    <p>{{model:resources->user->signInRegisteredUser}}</p>
 
 
                                     <div class="field row collapse">
-                                        <div class="small-3 large-2 columns">
-                                            <span class="prefix"><i class="icon-user"></i></span>
+                                        <div class="small-2 columns">
+                                            <span class="prefix"><i class="fa fa-user"></i></span>
                                         </div>
-                                        <div class="small-9 large-10 columns">
+                                        <div class="small-10 columns">
                                             <input type="text" data-rv-class-error="model:usernameError" placeholder="User Name" data-rv-value="model:username" class="login username-field">
                                             <div data-rv-text="model:usernameError"></div>
                                         </div>
                                     </div>
 
                                     <div class="field row collapse">
-                                        <div class="small-3 large-2 columns">
-                                            <span class="prefix"><i class="icon-key"></i></span>
+                                        <div class="small-2 columns">
+                                            <span class="prefix"><i class="fa fa-key"></i></span>
                                         </div>
-                                        <div class="small-9 large-10 columns">
+                                        <div class="small-10 columns">
                                             <input type="password" data-rv-class-error="model:passwordError" placeholder="Password" data-rv-value="model:password" class="login password-field">
                                             <div data-rv-text="model:passwordError"></div>
                                         </div>
                                     </div>
 
                                 </div>
-                                <!-- /login-fields -->
+
                             </div>
                         </div>
                         <div class="row">
-                            <div class="large-8 small-12 columns">
-                            <span class="login-checkbox">
-                                <input id="Field"
-                                       name="Field"
-                                       type="checkbox"
-                                       class="field login-checkbox"
-                                       value="First Choice"
-                                       tabindex="4">
-                                <label class="choice"
-                                       for="Field">
-                                    Keep me signed in
-                                </label>
-                            </span>
-                            </div>
-                            <div class="large-4 small-12 columns">
-                                <input id="loginButton" class="login-button button btn btn-primary btn-large"
-                                       type="submit"
-                                       data-rv-class-disabled="model:hasError" value="Sign In">
-                                </input>
+                            <div class="small-12 columns">
+                                <button id="loginButton" class="button success radius right" data-rv-class-disabled="model:hasError">
+                                    {{model:resources->user->signIn}}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -72,8 +57,8 @@
     <div class="row">
         <div class="large-5 small-centered columns">
             <div class="login-extra">
-                Don't have an account? <a href="./signup.html">Sign Up</a><br>
-                Remind <a href="#">Password</a>
+                {{model:resources->user->dontHaveAccount}} <a href="./signup.html">{{model:resources->user->signUp}}</a><br>
+                {{model:resources->remind}} <a href="#">{{model:resources->password}}</a>
             </div>
         </div>
     </div>

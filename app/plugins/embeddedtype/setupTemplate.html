@@ -4,6 +4,7 @@
     </div>
     <div class="small-10 columns">
         <select data-rv-value="model:options">
+            <option disabled selected>{{model:resources->selectOption}}</option>
             <option data-rv-each-option="model:availableContentTypes" data-rv-value="option._id">{{option.label}}</option>
         </select>
     </div>

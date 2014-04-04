@@ -55,7 +55,7 @@ define([
     }
 
     function toJSON() {
-        return _.clone(_.omit(this.attributes, 'resources', 'contants', 'schema'));
+        return _.clone(_.omit(this.attributes, 'resources', 'contants', 'schema', 'plugins', 'href'));
     }
 
     function toggle(propertyName) {

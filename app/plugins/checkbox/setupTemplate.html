@@ -16,7 +16,7 @@
 
                     <div class="row">
                         <div class="small-2 columns">
-                            <label class="right inline">{{model:resources->value}}</label>
+                            <label class="right inline">{{model:resources->key}}</label>
                         </div>
                         <div class="small-10 columns">
                             <input type="text" class="optionInput" placeholder="dropdown option" data-rv-value="option:_id" style="margin-bottom: 2px;">
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="small-1 columns">
-                    <button id="removeOption" data-rv-on-click="view.removeOption" class="button radius tiny"><i class="icon-minus"></i></button>
+                    <button id="removeOption" data-rv-on-click="view.removeOption" class="button radius tiny"><i class="fa fa-minus"></i></button>
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <button id="addOption" class="right tiny radius"><i class="icon-plus"></i></button>
+        <button id="addOption" class="right tiny radius"><i class="fa fa-plus"></i></button>
 
 
     </div>

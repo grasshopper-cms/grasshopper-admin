@@ -12,8 +12,8 @@ define(['text!plugins/radio/template.html', 'plugins/radio/model', 'text!plugins
                 options : false,
                 label : '',
                 type : 'radio',
-                required : false,
-                validation : false,
+                dataType : 'boolean',
+                validation : [],
                 value : ''
             },
             template : radioPluginTemplate,

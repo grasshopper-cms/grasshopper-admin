@@ -12,8 +12,8 @@ define(['text!plugins/keyvalue/template.html', 'plugins/keyvalue/model', 'text!p
                 options : false,
                 label : '',
                 type : 'keyvalue',
-                required : false,
-                validation : false,
+                dataType : 'object',
+                validation : [],
                 value : ''
             },
             template : keyvaluePluginTemplate,

@@ -12,8 +12,8 @@ define(['text!plugins/richtext/template.html', 'plugins/richtext/model', 'text!p
                 options : false,
                 label : '',
                 type : 'richtext',
-                required : false,
-                validation : false,
+                dataType : 'string',
+                validation : [],
                 value : ''
             },
             template : richTextPluginTemplate,

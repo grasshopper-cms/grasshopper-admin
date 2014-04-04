@@ -1,9 +1,10 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
-    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker'],
+    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker', 'plugins'],
     function (GrasshopperBaseView, contentTypeDetailViewConfig,
-              resources, Api, _, $, breadcrumbWorker) {
+              resources, Api, _, $, breadcrumbWorker, plugins) {
     'use strict';
+
     return GrasshopperBaseView.extend({
         defaultOptions : contentTypeDetailViewConfig,
         beforeRender : beforeRender,
@@ -11,8 +12,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         prepareToDeleteContentType : prepareToDeleteContentType,
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
-        saveContentType : saveContentType,
-        removeFieldFromCollection : removeFieldFromCollection
+        saveContentType : saveContentType
     });
 
     function beforeRender ($deferred) {
@@ -21,8 +21,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                 .done(_handleSuccessfulModelFetch.bind(this, $deferred))
                 .fail($deferred.reject);
         } else if (this.model.isNew()) {
-            this.collection.reset();
-            _updateMastheadBreadcrumbs.call(this, $deferred, true);
+            _handleNewContentType.call(this, $deferred);
         } else {
             $deferred.resolve();
         }
@@ -31,16 +30,20 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function afterRender() {
         this.$el.foundation();
 
-        this.listenTo(this.collection, 'change:type', _warnUserBeforeChangingType);
-
         _initializeSortableAccordions.call(this);
-
-        _addClickListenersToAccordion.call(this);
     }
 
     function _handleSuccessfulModelFetch($deferred) {
         this.collection.reset(this.model.get('fields'));
         _updateMastheadBreadcrumbs.call(this, $deferred, false);
+    }
+
+    function _handleNewContentType($deferred) {
+        var textboxModelData = _.clone(_.findWhere(plugins.fields, { type : 'textbox' }).config.modelData);
+
+        textboxModelData.label = 'Title';
+        this.collection.reset(textboxModelData);
+        _updateMastheadBreadcrumbs.call(this, $deferred, true);
     }
 
     function prepareToDeleteContentType () {
@@ -140,15 +143,13 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         _collapseAccordion.call(this);
         model.active = 'active';
         this.collection.add(model);
+        _initializeSortableAccordions.call(this);
     }
 
     function _collapseAccordion() {
-        this.$el.find('.accordionHeader').removeClass('activeHeader');
-        this.$el.find('.accordionContent').hide(
-            {
-                effect : 'blind'
-            }
-        );
+        this.$el.find('.ui-accordion-header-active').each(function() {
+            this.click();
+        });
     }
 
     function saveContentType() {
@@ -178,57 +179,17 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         );
     }
 
-    function removeFieldFromCollection(e, context) {
-        var self = this;
-        this.displayModal({
-            header : resources.warning,
-            msg : resources.contentType.removeFieldWarning
-        })
-            .done(function() {
-                self.collection.remove(context.field);
-            });
-    }
-
     function _updateMastheadBreadcrumbs($deferred, isNew) {
         breadcrumbWorker.contentTypeBreadcrumb.call(this, $deferred, (isNew));
-    }
-
-    function _warnUserBeforeChangingType(model, newType) {
-        console.log(model);
-        console.log(newType);
-    }
-
-    function _addClickListenersToAccordion() {
-        var self = this;
-
-        this.$el.find('.accordionHeader').on('click', function(e) {
-            var $currentTarget = $(e.currentTarget),
-                $accordionHeaders = self.$el.find('.accordionHeader');
-
-            if($currentTarget.hasClass('activeHeader')) {
-                $accordionHeaders.removeClass('activeHeader');
-            } else {
-                $accordionHeaders.removeClass('activeHeader');
-                $currentTarget.addClass('activeHeader');
-            }
-        });
     }
 
     function _initializeSortableAccordions() {
         var $accordion = this.$('#contentTypeFieldAccordion');
 
         $accordion
-            .accordion(
-            {
-                header : '.accordionHeader',
-                icons : false,
-                active : false,
-                collapsible : true,
-                heightStyle : 'content'
-            })
             .sortable(
             {
-                handle : '.accordionHeader',
+                handle : '.fieldAccordion',
                 axis : 'y',
                 stop : _applyCollectionSort.bind(this, $accordion)
             }
@@ -239,7 +200,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         var fields = [],
             self = this;
 
-        $accordion.find('.accordionHeader').each(function() {
+        $accordion.find('.fieldAccordion').each(function() {
             fields.push(self.collection.get($(this).attr('modelid')));
         });
 
