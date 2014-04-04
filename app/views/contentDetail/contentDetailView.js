@@ -16,11 +16,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     });
 
     function beforeRender($deferred) {
-        if(!this.model.has('label')) {
-            _fetchContentDetails.call(this, $deferred);
-        } else {
-            $deferred.resolve();
-        }
+        _fetchContentDetails.call(this, $deferred);
     }
 
     function deleteContent () {
@@ -108,7 +104,11 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
         _proxyFirstFieldToLabel.call(this);
-        _updateMastheadBreadcrumbs.call(this, $deferred);
+        if(this.name === 'contentDetailRow') {
+            $deferred.resolve();
+        } else {
+            _updateMastheadBreadcrumbs.call(this, $deferred);
+        }
     }
 
     function _handleFailedContentSchemaRetrieval($deferred) {
