@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources'],
-    function (template, mastheadViewModel, resources) {
+define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources', 'mastheadViewBinders'],
+    function (template, mastheadViewModel, resources, mastheadViewBinders) {
         'use strict';
 
         return {
@@ -26,6 +26,9 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
                     text : resources.mastheadButtons.createFolder,
                     href : '#'
                 }
-            ]
+            ],
+            rivetsConfig : {
+                binders : [mastheadViewBinders]
+            }
         };
     });

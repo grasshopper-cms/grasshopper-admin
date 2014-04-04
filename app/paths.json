@@ -200,7 +200,8 @@
         "mastheadView+" : {
             "" : "views/masthead/mastheadView",
             "Config" : "views/masthead/mastheadViewConfig",
-            "Model" : "views/masthead/mastheadViewModel"
+            "Model" : "views/masthead/mastheadViewModel",
+            "Binders" : "views/masthead/binders"
         },
 
         "modalView+" : {
