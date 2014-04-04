@@ -112,6 +112,9 @@ module.exports = function (grunt) {
                     cwd : 'app/',
                     src : [
                         '**/*.js',
+                        '!main.js',
+                        '!constants.js',
+                        '!plugins.js',
                         '!validation/**/*.js',
                         '!views/**/*.js',
                         '!vendor/**/*.js',

@@ -51,7 +51,8 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
                     appendTo : this.$el,
                     wrapper : false,
                     template : contentDetailRowTemplate,
-                    mastheadButtons : this.mastheadButtons
+                    mastheadButtons : null,
+                    breadcrumbs : null
                 });
             contentDetailView.start();
         }
