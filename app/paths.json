@@ -1,6 +1,6 @@
 {
     "libraries" : {
-        "jquery" : "vendor/jquery/jquery",
+        "jquery" : "vendor/jquery/dist/jquery",
         "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core",
         "backbone" : "vendor/backbone-amd/backbone",
         "text" : "vendor/requirejs-text/text",
