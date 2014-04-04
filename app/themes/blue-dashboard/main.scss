@@ -95,18 +95,19 @@ body, html {
   }
 
   // VIEWS
-  @import "../../views/header/style.scss"; // Header View
-  @import "../../views/modal/style.scss"; // Modal View
-  @import "../../views/alertBox/style.scss"; // Alertbox View
-  @import "../../views/login/style.scss"; // Login View
-  @import "../../views/masthead/style.scss"; // Masthead View
+  @import "../../views/header/style.scss"; // Header
+  @import "../../views/modal/style.scss"; // Modal
+  @import "../../views/alertBox/style.scss"; // Alertbox
+  @import "../../views/login/style.scss"; // Login
+  @import "../../views/masthead/style.scss"; // Masthead
   @import "../../views/userIndex/style.scss"; // User Index
   @import "../../views/userDetail/style.scss"; // User Detail
-  @import "../../views/contentDetail/style.scss"; // Content Detail View
-  @import "../../views/assetDetail/style.scss"; // Asset Detail View
-  @import "../../views/contentTypeDetail/style.scss"; // Content Type Detail View
-  @import "../../views/contentTypeDetail/fieldAccordion/style.scss"; // Content Type Detail Field Accordion View
+  @import "../../views/contentDetail/style.scss"; // Content Detail
+  @import "../../views/assetDetail/style.scss"; // Asset Detail
+  @import "../../views/contentTypeDetail/style.scss"; // Content Type Detail
+  @import "../../views/contentTypeDetail/fieldAccordion/style.scss"; // Content Type Detail Field Accordion
   @import "../../views/nodeTree/style.scss"; // Node Tree
+  @import "../../views/contentBrowse/style.scss"; // Content Browse
 
   // PLUGINS
   @import "../../plugins/embeddedtype/style.scss"; // Embedded Type Plugin

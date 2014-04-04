@@ -1,40 +1,12 @@
 #contentEdit {
 
-  .field-item {
-    @include lightGradient;
-    padding: 10px 10px;
-    margin-top:15px;
-    @include radius;
-
-    .custom.dropdown {
-      width: 80%;
-
-      @media #{$small} {
-        width: 40%;
-      }
-    }
+  .legendLabel {
+    font-weight: normal;
+    font-size: 2em;
   }
 
   .accordionHeader {
     padding-top: 7px;
     padding-bottom: 7px;
-  }
-}
-
-.tabs {
-  border-bottom: 1px solid $tabBorderColor;
-  & dd {
-    border: 1px solid $tabBorderColor;
-  }
-  & dd.active {
-    border-bottom: 1px solid $activeTabBorderColor;
-  }
-  p{
-    margin-bottom: 0;
-  }
-}
-.tabs-content {
-  .content {
-    width: 100%;
   }
 }
