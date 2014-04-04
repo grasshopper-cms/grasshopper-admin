@@ -7,3 +7,4 @@ build
 gha.json
 ghapi.json
 .bundle
+app/vendor

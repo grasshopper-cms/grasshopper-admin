@@ -34,6 +34,14 @@ module.exports = function (grunt) {
                 failOnError : true
             },
             command : 'mongorestore --db heroku_app23638163 --host ds035448.mongolab.com:35448 -u heroku_app23638163 -p urektptiutkj0vvhg658v7v3t4 tasks/seedData/mongodb/grasshopper'
+        },
+        bowerInstall : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true
+            },
+            command : 'bower install'
         }
     });
 
