@@ -147,11 +147,9 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _collapseAccordion() {
-        this.$el.find('.accordionContent').hide(
-            {
-                effect : 'blind'
-            }
-        );
+        this.$el.find('.ui-accordion-header-active').each(function() {
+            this.click();
+        });
     }
 
     function saveContentType() {
