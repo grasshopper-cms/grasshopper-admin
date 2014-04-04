@@ -50,10 +50,7 @@ module.exports = function (grunt) {
             ],
             tasks : [
                 'jshint',
-                'setupBowerCopy',
-                'copy:rootJS',
-                'paths:app',
-                'setBuildConfig'
+                'copy:rootJS'
             ]
         },
         validationJS : {

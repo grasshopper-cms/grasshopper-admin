@@ -104,6 +104,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
         _proxyFirstFieldToLabel.call(this);
+
         if(this.name === 'contentDetailRow') {
             $deferred.resolve();
         } else {
