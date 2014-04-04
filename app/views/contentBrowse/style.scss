@@ -1,0 +1,22 @@
+.contentBrowse {
+
+  .tabs {
+    border-bottom: 1px solid $tabBorderColor;
+    & dd {
+      border: 1px solid $tabBorderColor;
+    }
+    & dd.active {
+      border-bottom: 1px solid $activeTabBorderColor;
+    }
+    p{
+      margin-bottom: 0;
+    }
+  }
+
+  .tabs-content {
+    .content {
+      width: 100%;
+    }
+  }
+
+}
