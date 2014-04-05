@@ -24,12 +24,15 @@ define(['jquery', 'underscore', 'masseuse',
                         collection : new (Backbone.Collection.extend({
                             initialize: function () {
                                 this.on('add remove reset change', function () {
-                                    var values = this.toJSON();
-
-                                    if (values) {
-                                        rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
-                                    }
+                                    this.setValuesOnParentFieldsObject();
                                 });
+                            },
+                            setValuesOnParentFieldsObject : function() {
+                                var values = this.toJSON();
+
+                                if (values) {
+                                    rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
+                                }
                             },
                             toJSON: function () {
                                 var json = Backbone.Collection.prototype.toJSON.apply(this),
