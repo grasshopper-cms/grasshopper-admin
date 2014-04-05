@@ -8,7 +8,8 @@
 
             <div class="small-10 columns">
                 <div class="row" data-rv-id="model:_id | prepend pluginWrapper" data-rv-each-field="collection:">
-                    <div class="row collapse">
+
+                    <div data-rv-unless="model:max | isGreaterThan 1" class="row collapse">
                         <div class="small-11 columns">
                             <div data-rv-fieldtype="field"></div>
                         </div>
@@ -16,6 +17,19 @@
                             <button type="button" id="removeField" class="button radius tiny" data-rv-on-click="view.removeField" data-rv-show="model:showSubtractionButton"><i class="fa fa-minus"></i></button>
                         </div>
                     </div>
+
+                    <div data-rv-if="model:max | isGreaterThan 1" class="row collapse">
+                        <div class="small-10 columns">
+                            <div data-rv-fieldtype="field"></div>
+                        </div>
+                        <div class="small-1 columns">
+                            <button type="button" class="button radius tiny" data-rv-show="model:showSubtractionButton"><i class="fa fa-sort"></i></button>
+                        </div>
+                        <div class="small-1 columns">
+                            <button type="button" id="removeField" class="button radius tiny" data-rv-on-click="view.removeField" data-rv-show="model:showSubtractionButton"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="row" >
                     <div class="small-11 columns">

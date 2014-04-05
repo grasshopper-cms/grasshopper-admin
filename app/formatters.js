@@ -6,6 +6,7 @@ define([], function () {
      */
     return {
         prepend : prepend,
+        isGreaterThan : isGreaterThan,
         asNumber : {
             read : readAsNumber,
             publish : publishAsNumber
@@ -24,6 +25,10 @@ define([], function () {
 
     function prepend(value, string) {
         return string + value;
+    }
+
+    function isGreaterThan(value, compareTo) {
+        return value > compareTo;
     }
 
     function readAsNumber(value) {
