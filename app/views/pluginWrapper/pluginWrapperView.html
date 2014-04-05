@@ -7,31 +7,34 @@
             </div>
 
             <div class="small-10 columns">
-                <div class="row" data-rv-id="model:_id | prepend pluginWrapper" data-rv-each-field="collection:">
+                <div class="row" data-rv-id="model.cid | prepend sortableMulti">
+                    <div data-rv-id="model:_id | prepend pluginWrapper" data-rv-each-field="collection:">
 
-                    <div data-rv-unless="model:max | isGreaterThan 1" class="row collapse">
-                        <div class="small-11 columns">
-                            <div data-rv-fieldtype="field"></div>
+                        <div data-rv-unless="model:max | isGreaterThan 1" class="row collapse">
+                            <div class="small-11 columns">
+                                <div data-rv-fieldtype="field"></div>
+                            </div>
+                            <div class="small-1 columns">
+                                <button type="button" id="removeField" class="button radius tiny" data-rv-on-click="view.removeField" data-rv-show="model:showSubtractionButton"><i class="fa fa-minus"></i></button>
+                            </div>
                         </div>
-                        <div class="small-1 columns">
-                            <button type="button" id="removeField" class="button radius tiny" data-rv-on-click="view.removeField" data-rv-show="model:showSubtractionButton"><i class="fa fa-minus"></i></button>
+
+                        <div data-rv-if="model:max | isGreaterThan 1" class="row collapse sortableMulti" data-rv-modelid="field.cid">
+                            <div class="small-10 columns">
+                                <div data-rv-fieldtype="field"></div>
+                            </div>
+                            <div class="small-1 columns">
+                                <div class="button radius tiny sortableMultiHandle" data-rv-show="model:showSubtractionButton"><i class="fa fa-sort"></i></div>
+                            </div>
+                            <div class="small-1 columns">
+                                <button type="button" id="removeField" class="button radius tiny" data-rv-on-click="view.removeField" data-rv-show="model:showSubtractionButton"><i class="fa fa-minus"></i></button>
+                            </div>
                         </div>
+
                     </div>
-
-                    <div data-rv-if="model:max | isGreaterThan 1" class="row collapse">
-                        <div class="small-10 columns">
-                            <div data-rv-fieldtype="field"></div>
-                        </div>
-                        <div class="small-1 columns">
-                            <button type="button" class="button radius tiny" data-rv-show="model:showSubtractionButton"><i class="fa fa-sort"></i></button>
-                        </div>
-                        <div class="small-1 columns">
-                            <button type="button" id="removeField" class="button radius tiny" data-rv-on-click="view.removeField" data-rv-show="model:showSubtractionButton"><i class="fa fa-minus"></i></button>
-                        </div>
-                    </div>
-
                 </div>
-                <div class="row" >
+
+                <div class="row">
                     <div class="small-11 columns">
                         <blockquote data-rv-show="model:helpText" data-rv-text="model:helpText"></blockquote>
                     </div>

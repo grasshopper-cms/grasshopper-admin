@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require'],
-    function (GrasshopperBaseView, pluginWrapperViewConfig, _, require) {
+define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require', 'jquery'],
+    function (GrasshopperBaseView, pluginWrapperViewConfig, _, require, $) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -72,6 +72,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
             };
 
             this.collection.add(model);
+            _initializeSortableMulti.call(this);
             _evaluateMultiButtons.call(this);
         }
 
@@ -95,5 +96,33 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         function _canShowSubtractionButton() {
             this.model.set('showSubtractionButton', this.collection.length > this.model.get('min'));
+        }
+
+        function _initializeSortableMulti() {
+            var $sortable = this.$('#sortableMulti'+ this.model.cid);
+
+            if(this.model.get('max') > 1) {
+                $sortable
+                    .sortable(
+                    {
+                        revert : true,
+                        handle : '.sortableMultiHandle',
+                        axis : 'y',
+                        stop : _applyMultiSort.bind(this, $sortable)
+                    }
+                );
+            }
+        }
+
+        function _applyMultiSort($sortable) {
+            var fields = [],
+                self = this;
+
+            $sortable.find('.sortableMulti').each(function() {
+                fields.push(self.collection.get($(this).attr('modelid')));
+            });
+
+            this.collection.reset(fields, { silent : true });
+            this.collection.setValuesOnParentFieldsObject();
         }
     });
