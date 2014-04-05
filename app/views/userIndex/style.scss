@@ -6,8 +6,7 @@
 
 #userIndexTable {
   cursor: pointer;
-}
-
-#userIndexTable:hover {
-  background-color: #F0F3F7;
+  :hover {
+    background-color: #F0F3F7;
+  }
 }
