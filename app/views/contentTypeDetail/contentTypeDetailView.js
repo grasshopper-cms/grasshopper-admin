@@ -190,6 +190,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
             .sortable(
             {
                 handle : '.fieldAccordion',
+                revert : true,
                 axis : 'y',
                 stop : _applyCollectionSort.bind(this, $accordion)
             }
