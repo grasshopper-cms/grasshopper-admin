@@ -75,7 +75,7 @@
                                     <form class="custom">
                                         <select id="role" data-rv-enabled="model:userModel->role | equals admin"
                                                 data-rv-value="model:role | humanize">
-                                            <option data-rv-each-role="model:roles"
+                                            <option data-rv-each-role="model:resources->user->roles"
                                                     data-rv-text="role | humanize"></option>
                                         </select>
                                     </form>

@@ -11,10 +11,8 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             appendTo : '#stage',
             wrapper : false,
             template : formTemplate,
-            rowTemplate : rowTemplate,
             events : {
                 'click #saveUser' : 'updateModel',
-                'click .toggleEnabled' : 'toggleEnabled',
                 'click .clickableCell' : 'handleRowClick'
             },
             listeners : [],

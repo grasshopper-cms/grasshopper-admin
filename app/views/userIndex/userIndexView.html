@@ -8,6 +8,7 @@
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="small-12 columns">
             <table width="100%">
@@ -20,7 +21,8 @@
                     <th width='200' style='text-align: center'>{{model:resources->actions}}</th>
                 </tr>
                 </thead>
-                <tbody id="userIndexTable" data-rv-each-user="model:users:" data-rv-userrow="user">
+                <tbody id="userIndexTable">
+                    <tr data-rv-each-user="model:users:" data-rv-new-user-detail-row="user"></tr>
                 </tbody>
             </table>
         </div>
