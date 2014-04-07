@@ -202,7 +202,7 @@ define({
             setRootAsDefault : 'Set Root Folder as Default',
             defaultFolder : 'Default Folder',
             contentTypes : 'Content Types',
-            selectContent : 'Select Content',
+            selectFile : 'Select File',
             viewSelectedFile : 'View Selected File'
         },
         richText : {
