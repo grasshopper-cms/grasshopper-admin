@@ -238,7 +238,12 @@
         "userDetailView+" : {
             "" : "views/userDetail/userDetailView",
             "Config" : "views/userDetail/userDetailViewConfig",
-            "Model" : "views/userDetail/userDetailViewModel"
+            "Model" : "views/userDetail/userDetailViewModel",
+            "userDetailRow+" : {
+                "" : "views/userDetail/userDetailRow/view",
+                "Config" : "views/userDetail/userDetailRow/config",
+                "Model" : "views/userDetail/userDetailRow/model"
+            }
         },
 
         "userIndexView+" : {
@@ -280,8 +285,7 @@
     "binders" : {
         "appBinders" : "appBinders",
         "pluginWrapperBinders" : "views/pluginWrapper/pluginWrapperBinders",
-        "contentTypeDetailBinders" : "views/contentTypeDetail/contentTypeDetailBinders",
-        "userIndexViewBinders" : "views/userIndex/binders"
+        "contentTypeDetailBinders" : "views/contentTypeDetail/contentTypeDetailBinders"
     },
 
     "formatters" : {

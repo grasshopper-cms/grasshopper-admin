@@ -4,7 +4,7 @@
     "foundation": "5.0.2",
     "requirejs-text": "2.0.10",
     "js-base64": "2.1.2",
-    "masseuse": "2.0.1",
+    "masseuse": "2.1.1",
     "jquery.ui": "1.10.4",
     "ckeditor": "4",
     "ace": "1.1.3",

@@ -11,14 +11,8 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         });
 
         function beforeRender ($deferred) {
-
-            if(!this.model.get('displayAsRow')) {
-                this.model.fetch()
-                    .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
-            } else {
-                $deferred.resolve();
-            }
-
+            this.model.fetch()
+                .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
         function updateModel () {
