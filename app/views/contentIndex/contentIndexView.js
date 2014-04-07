@@ -58,7 +58,8 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
         }
 
         function _addEmptyNodeMessage() {
-            var template = '<tr><td>[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
+            var template = '<tr id="contentDetailRow">' +
+                '<td colspan="3">[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
 
             $('#contentDetailRow').append(_.template(template, {
                 msg : resources.node.emptyNode,
