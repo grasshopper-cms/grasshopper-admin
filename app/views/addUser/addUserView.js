@@ -1,7 +1,10 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'resources', 'addUserViewConfig', 'breadcrumbWorker'],
-    function (GrasshopperBaseView, resources, addUserViewConfig, breadcrumbWorker) {
+define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
+        'breadcrumbWorker', 'contentTypeWorker', 'jquery', 'underscore'],
+    function (GrasshopperBaseView, resources, addUserViewConfig,
+              breadcrumbWorker, contentTypeWorker, $, _) {
     'use strict';
+
     return GrasshopperBaseView.extend({
         defaultOptions : addUserViewConfig,
         beforeRender : beforeRender,
@@ -9,7 +12,33 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig', 'breadcrumbWork
     });
 
     function beforeRender($deferred) {
-        _updateMastheadBreadcrumbs.call(this, $deferred);
+        _getUserContentType.call(this)
+            .done(_updateMastheadBreadcrumbs.bind(this, $deferred))
+            .fail(_couldNotFindUserContentType.bind(this, $deferred));
+    }
+
+    function _getUserContentType() {
+        var $deferred = new $.Deferred(),
+            self = this;
+
+        contentTypeWorker.getUserContentType()
+            .done(function(usersContentType) {
+                if(_.isUndefined(usersContentType)) {
+                    $deferred.reject();
+                } else {
+                    self.model.set('schema', usersContentType.fields);
+                    $deferred.resolve();
+                }
+            });
+
+        return $deferred.promise();
+    }
+
+    function _couldNotFindUserContentType($deferred) {
+        this.displayAlertBox({
+            msg: 'Could not find Users content type. Please make one.'
+        });
+        $deferred.reject();
     }
 
     function saveUser () {

@@ -5,7 +5,8 @@ define(['api', 'jquery', 'resources', 'underscore'],
 
         return {
             getAvailableContentTypes : getAvailableContentTypes,
-            getNodesContentTypes : getNodesContentTypes
+            getNodesContentTypes : getNodesContentTypes,
+            getUserContentType : getUserContentType
         };
 
         function getAvailableContentTypes (previousContentTypes) {
@@ -34,6 +35,17 @@ define(['api', 'jquery', 'resources', 'underscore'],
                 .done(_resolveDeferred.bind(this, $deferred))
                 .fail(_rejectDeferred.bind(this, $deferred));
 
+            return $deferred.promise();
+        }
+
+        function getUserContentType() {
+            var $deferred = $.Deferred(),
+                userType;
+            Api.getContentTypes()
+                .done(function (data) {
+                    userType = _.findWhere(data.results, { label : 'Users' });
+                    $deferred.resolve(userType);
+                });
             return $deferred.promise();
         }
 
