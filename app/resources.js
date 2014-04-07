@@ -210,7 +210,8 @@ define({
             loading : 'LOADING RICH TEXT...'
         },
         slug : {
-            refresh : 'Refresh'
+            refresh : 'Refresh',
+            selectField : 'Select Field'
         }
     },
     validationViews : {
