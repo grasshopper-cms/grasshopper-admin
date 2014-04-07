@@ -16,18 +16,15 @@
                 <input data-rv-id="item.cid" type="radio" name="selectedContent" class="selectedContentRadio"
                        data-rv-checked="model:selectedContent" data-rv-value="item:_id" data-rv-hide="model:nodeTreeType | equals file">
 
-                <label data-rv-for="item.cid">
+                <label data-rv-for="item.cid" class="noMarginBottom">
 
                     <span data-rv-show="model:nodeTreeType | equals content">
                         {{item:label}}
                     </span>
 
                     <span data-rv-show="model:nodeTreeType | equals file">
-                        <img data-rv-id="item:url" class="th nodeTreeThumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
-
-                        <label data-rv-for="item:url" class="inline left noMarginBottom">
-                            <a>{{item:fileName}}</a>
-                        </label>
+                        <img class="th nodeTreeThumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
+                        <a>{{item:fileName}}</a>
                     </span>
 
                 </label>
