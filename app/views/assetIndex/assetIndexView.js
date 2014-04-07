@@ -38,7 +38,7 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
             var assetDetailView = new AssetDetailView({
                     name : 'assetDetailRow',
                     modelData : _.extend(asset, { nodeId : this.nodeId }),
-                    appendTo : '#assetDetailRow',
+                    appendTo : '#assetDetailTable',
                     wrapper : false,
                     template : assetDetailRowTemplate,
                     mastheadButtons : this.mastheadButtons
@@ -47,9 +47,10 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
         }
 
         function _addEmptyAssetsMessage() {
-            var template = '<tr><td>[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
+            var template = '<tr id="assetDetailRow">' +
+                '<td colspan="4">[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
 
-            $('#assetDetailRow').append(_.template(template, {
+            $('#assetDetailTable').append(_.template(template, {
                 msg : resources.asset.emptyNode,
                 linkText : resources.asset.clickToAdd,
                 href : constants.internalRoutes.createAssets.replace(':id', this.nodeId)
