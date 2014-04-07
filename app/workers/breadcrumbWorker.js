@@ -40,12 +40,16 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
             .then($deferred.resolve);
     }
 
-    function userBreadcrumb($deferred) {
-        this.breadcrumbs.push({
-            text: this.model.get('fullname'),
-            href: this.model.get('href')
-        });
-        _finishBreadcrumb.call(this, $deferred);
+    function userBreadcrumb($deferred, isNew) {
+        if(isNew) {
+            _addIsNewScope.call(this, $deferred, 'new');
+        } else {
+            this.breadcrumbs.push({
+                text: this.model.get('fullname'),
+                href: this.model.get('href')
+            });
+            _finishBreadcrumb.call(this, $deferred);
+        }
     }
 
     function _addIsNewScope($deferred, replaced) {
