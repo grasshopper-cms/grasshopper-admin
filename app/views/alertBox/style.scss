@@ -1,16 +1,19 @@
 #alertBox {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: center;
-  position: fixed;
-  bottom: 30px;
-  width: 100%;
+  display : flex;
+  flex-direction : column;
+  flex-wrap : nowrap;
+  justify-content : flex-end;
+  align-items : flex-end;
+  position : fixed;
+  bottom : 30px;
+  right : 10px;
+  width : 20%;
 }
+
 .alertBoxPartial {
   height: 46px;
   width: 100%;
+
   .bad {
     margin: auto;
     width: 95%;
@@ -24,6 +27,7 @@
       }
     }
   }
+
   .good {
     margin: auto;
     width: 95%;
@@ -37,4 +41,5 @@
       }
     }
   }
+
 }

@@ -9,6 +9,7 @@ define(['grasshopperBaseView', 'alertBoxViewConfig'], function (GrasshopperBaseV
     });
 
     function afterRender () {
+        this.$el.fadeIn();
         if(this.temporary) {
             _handleTemporaryAlertBox.call(this);
         }
@@ -22,7 +23,7 @@ define(['grasshopperBaseView', 'alertBoxViewConfig'], function (GrasshopperBaseV
     }
 
     function closeAlertBox () {
-        this.remove();
+        this.$el.fadeOut('400', this.remove.bind(this));
         return false;
     }
 
