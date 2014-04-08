@@ -10,7 +10,7 @@ define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function 
         template : template,
         events : {},
         listeners : [
-            ['channels.views', 'hideAlertBoxes', 'closeAlertBox']
+            ['channels.views', 'hideAlertBoxes', 'hideAlertsOnNavigate']
         ]
     };
 });

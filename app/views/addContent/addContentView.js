@@ -33,8 +33,9 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
             );
             this.displayTemporaryAlertBox(
                 {
-                    msg : resources.contentItem.successfullySaved,
-                    status : true
+                    header : 'Success',
+                    style : 'success',
+                    msg : resources.contentItem.successfullySaved
                 }
             );
         }
@@ -42,6 +43,8 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         function _handleFailedSave() {
             this.displayAlertBox(
                 {
+                    header : 'error',
+                    style : 'error',
                     msg : resources.contentItem.failedToSave
                 }
             );

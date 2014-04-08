@@ -30,6 +30,8 @@ define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'contentTypeDetailV
                 .fail(function (xhr) {
                     self.displayAlertBox(
                         {
+                            header : 'Error',
+                            style : 'error',
                             msg : resources.contentType.serverError + ' ' + xhr.responseJSON.message
                         }
                     );

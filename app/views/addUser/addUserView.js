@@ -34,6 +34,8 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
     function _couldNotFindUserContentType($deferred) {
         _navigateBack.call(this);
         this.displayAlertBox({
+            header : 'warning',
+            style : 'warning',
             msg : resources.user.couldNotFindUserContentType
         });
         $deferred.reject();
@@ -60,8 +62,9 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
         this.app.router.navigateTrigger('users');
         this.displayTemporaryAlertBox(
             {
-                msg : resources.user.newUserAdded,
-                status : true
+                header : 'Success',
+                style : 'success',
+                msg : resources.user.newUserAdded
             }
         );
     }
@@ -69,6 +72,8 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
     function _handleSaveError (xhr) {
         this.displayAlertBox(
             {
+                header : 'Error',
+                style : 'error',
                 msg : xhr.responseJSON.message
             }
         );
