@@ -8,9 +8,7 @@ define(['text!views/alertBox/alertBoxView.html', 'alertBoxViewModel'], function 
         appendTo : '#alertBox',
         wrapper : false,
         template : template,
-        events : {
-            'click #closeAlertBox' : 'closeAlertBox'
-        },
+        events : {},
         listeners : [
             ['channels.views', 'hideAlertBoxes', 'closeAlertBox']
         ]

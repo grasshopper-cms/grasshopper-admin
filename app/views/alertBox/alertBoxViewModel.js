@@ -1,6 +1,7 @@
-define(['backbone'], function (Backbone) {
+define(['grasshopperModel'], function (GrasshopperModel) {
     'use strict';
-    return Backbone.Model.extend({
+
+    return GrasshopperModel.extend({
         defaults : {
             error : ''
         }
