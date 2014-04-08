@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
-        'breadcrumbWorker', 'contentTypeWorker', 'jquery'],
+        'breadcrumbWorker', 'contentTypeWorker', 'jquery', 'underscore'],
     function (GrasshopperBaseView, resources, addUserViewConfig,
-              breadcrumbWorker, contentTypeWorker, $) {
+              breadcrumbWorker, contentTypeWorker, $, _) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -34,17 +34,26 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
     function _couldNotFindUserContentType($deferred) {
         _navigateBack.call(this);
         this.displayAlertBox({
-            msg: 'Could not find Users content type. Please make one.'
+            msg : resources.user.couldNotFindUserContentType
         });
         $deferred.reject();
     }
 
     function saveUser () {
+        _deNestFields.call(this); // TODO: THIS IS A HACK TO UNBLOCK KAIJA AND I!!!!
+
         this.model.save()
             .success(_handleSuccessfulSave.bind(this))
             .error(_handleSaveError.bind(this));
+    }
 
-        return false;
+    function _deNestFields() { // TODO: DELETE THIS
+        var attributes = this.model.get('fields'),
+            self = this;
+
+        _.each(attributes, function(value, key) {
+            self.model.set(key, value);
+        });
     }
 
     function _handleSuccessfulSave () {

@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/addUser/addUserView.html', 'addUserViewModel', 'resources', 'constants'],
-    function (formTemplate, addUserModel, resources, constants) {
+define(['text!views/addUser/addUserView.html', 'addUserViewModel', 'resources', 'constants', 'appBinders'],
+    function (formTemplate, addUserModel, resources, constants, appBinders) {
     'use strict';
 
     return {
@@ -10,9 +10,7 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel', 'resources', 
         appendTo : '#stage',
         wrapper : false,
         template : formTemplate,
-        events : {
-            'click #saveUser' : 'saveUser'
-        },
+        events : {},
         listeners : [],
         mastheadButtons : [],
         breadcrumbs : [
@@ -21,6 +19,9 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel', 'resources', 
                 href : constants.internalRoutes.users
             }
         ],
-        permissions : ['admin']
+        permissions : ['admin'],
+        rivetsConfig : {
+            binders : [appBinders]
+        }
     };
 });

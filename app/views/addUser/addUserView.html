@@ -1,109 +1,28 @@
 <div class="row">
-    <div class="large-10 small-centered columns">
+    <div class="small-12 columns">
 
+        <fieldset>
+            <legend>
+                <h3>
+                    {{model:resources->user->addNewUser}}
+                </h3>
+            </legend>
 
+            <div class="row">
+                <div class="large-12 small-centered columns">
+                    <div data-rv-each-field="model:schema">
+                        <div data-rv-fieldwrapper="field"></div>
+                    </div>
+                </div>
+            </div>
 
-        <!--<fieldset>-->
-            <!--<legend>-->
-                <!--<h2>{{model:resources->addNewUser}}</h2>-->
-            <!--</legend>-->
+            <div class="row">
+                <div class="large-12 small-centered columns">
+                    <button data-rv-on-click="view.saveUser" class="button small radius right">{{model:resources->save}}</button>
+                </div>
+            </div>
 
+        </fieldset>
 
-                <!--<div class="row listItem">-->
-                    <!--<div class="large-3 columns">-->
-                        <!--<label for="firstName" class="right inline">{{model:resources->user->attributeTitles->firstName-->
-                            <!--| withColon}}</label>-->
-                    <!--</div>-->
-                    <!--<div class="large-9 columns editable">-->
-                        <!--<div class="row">-->
-                            <!--<div class="large-12 columns attribute">-->
-                                <!--<input id="firstName" type="text" value="model:name" data-rv-value="model:firstname"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row listItem">-->
-                    <!--<div class="large-3 columns">-->
-                        <!--<label for="lastName" class="right inline">{{model:resources->user->attributeTitles->lastName |-->
-                            <!--withColon}}</label>-->
-                    <!--</div>-->
-                    <!--<div class="large-9 columns editable">-->
-                        <!--<div class="row">-->
-                            <!--<div class="large-12 columns attribute">-->
-                                <!--<input id="lastName" type="text" value="model:name" data-rv-value="model:lastname"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row listItem">-->
-                    <!--<div class="large-3 columns">-->
-                        <!--<label for="role" class="right inline">{{model:resources->user->attributeTitles->role |-->
-                            <!--withColon}}</label>-->
-                    <!--</div>-->
-                    <!--<div class="large-9 columns editable">-->
-                        <!--<div class="row">-->
-                            <!--<div class="large-12 columns attribute">-->
-                                <!--<select id="role" data-rv-value="model:role">-->
-                                    <!--<option data-rv-each-role="model:roles" data-rv-text="role | humanize"-->
-                                            <!--data-rv-value="role"></option>-->
-                                <!--</select>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row listItem">-->
-                    <!--<div class="large-3 columns">-->
-                        <!--<label for="email" class="right inline">{{model:resources->user->attributeTitles->email |-->
-                            <!--withColon}}</label>-->
-                    <!--</div>-->
-                    <!--<div class="large-9 columns editable">-->
-                        <!--<div class="row">-->
-                            <!--<div class="large-12 columns attribute">-->
-                                <!--<input id="email" type="text" value="model:email" data-rv-value="model:email"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row listItem">-->
-                    <!--<div class="large-3 columns">-->
-                        <!--<label for="login" class="right inline">{{model:resources->user->attributeTitles->login |-->
-                            <!--withColon}}</label>-->
-                    <!--</div>-->
-                    <!--<div class="large-9 columns editable">-->
-                        <!--<div class="row">-->
-                            <!--<div class="large-12 columns attribute">-->
-                                <!--<input id="login" type="text" value="model:login" data-rv-value="model:login"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row listItem">-->
-                    <!--<div class="large-3 columns">-->
-                        <!--<label for="password" class="right inline">{{model:resources->user->attributeTitles->password |-->
-                            <!--withColon}}</label>-->
-                    <!--</div>-->
-                    <!--<div class="large-9 columns editable">-->
-                        <!--<div class="row">-->
-                            <!--<div class="large-12 columns attribute">-->
-                                <!--<input id="password" type="password" value="model:password"-->
-                                       <!--data-rv-value="model:password"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row">-->
-                    <!--<div class="large-5 small-offset-7 columns">-->
-                        <!--<input id="saveUser" type="submit" class="button success radius"-->
-                               <!--data-rv-value="model:resources->save">-->
-                    <!--</div>-->
-                <!--</div>-->
-
-        <!--</fieldset>-->
     </div>
 </div>
