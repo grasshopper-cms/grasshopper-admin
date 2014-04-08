@@ -16,7 +16,6 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
             [
                 '$deferred',
                 'type',
-                'temporary',
                 'defaultBreadcrumbs',
                 'defaultMastheadButtons',
                 'breadcrumbs',

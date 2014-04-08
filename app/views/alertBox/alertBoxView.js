@@ -10,7 +10,7 @@ define(['grasshopperBaseView', 'alertBoxViewConfig'], function (GrasshopperBaseV
 
     function afterRender () {
         this.$el.fadeIn();
-        if(this.temporary) {
+        if(this.model.get('temporary')) {
             _handleTemporaryAlertBox.call(this);
         }
     }

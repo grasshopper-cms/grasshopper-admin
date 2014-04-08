@@ -256,11 +256,7 @@ define([
 
         function displayAlertBox (options) {
             var alertBoxView = new AlertBoxView({
-                    modelData : {
-                        msg : (options.msg),
-                        status : (options.status)
-                    },
-                    temporary : options.temporary
+                    modelData : options
                 });
             alertBoxView.start();
         }
