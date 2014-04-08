@@ -3,13 +3,7 @@ define(['grasshopperModel', 'resources', 'constants'],
         'use strict';
         return Model.extend({
             defaults : {
-                resources : resources,
-                roles : resources.user.roles,
-                firstname : '',
-                lastname : '',
-                role : 'admin',
-                email : '',
-                password : ''
+                resources : resources
             },
             url : constants.api.newUser.url
         });

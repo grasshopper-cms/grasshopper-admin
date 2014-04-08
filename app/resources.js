@@ -43,7 +43,7 @@ define({
             login : 'LOGIN',
             password : 'PASSWORD'
         },
-        roles : [
+        roles : [ //TODO: DELETE THIS!!!
             'admin',
             'reader',
             'editor',
@@ -55,7 +55,9 @@ define({
         errors : {
             403 : 'You do not have adequate permissions to view/edit this profile.'
         },
-        newUserAdded : 'New User Added'
+        newUserAdded : 'New User Added',
+        couldNotFindUserContentType : 'Could not find Users content type. Please make one.',
+        addNewUser : 'Add New User'
     },
     site : {
         about : 'About Grasshopper'
