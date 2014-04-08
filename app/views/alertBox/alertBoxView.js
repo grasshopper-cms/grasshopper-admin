@@ -5,6 +5,7 @@ define(['grasshopperBaseView', 'alertBoxViewConfig'], function (GrasshopperBaseV
     return GrasshopperBaseView.extend({
         defaultOptions : alertBoxViewConfig,
         afterRender : afterRender,
+        hideAlertsOnNavigate : hideAlertsOnNavigate,
         closeAlertBox : closeAlertBox
     });
 
@@ -20,6 +21,12 @@ define(['grasshopperBaseView', 'alertBoxViewConfig'], function (GrasshopperBaseV
         setTimeout(function() {
             self.closeAlertBox();
         }, 5000);
+    }
+
+    function hideAlertsOnNavigate() {
+        if(!this.model.get('temporary')) {
+            this.closeAlertBox();
+        }
     }
 
     function closeAlertBox () {

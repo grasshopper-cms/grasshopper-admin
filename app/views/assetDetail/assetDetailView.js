@@ -79,6 +79,8 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         function _handleDeletionError () {
             this.displayAlertBox(
                 {
+                    header : 'Error',
+                    style : 'error',
                     msg: resources.asset.errorDeleted + this.model.get('fileName')
                 }
             );
@@ -105,8 +107,9 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 .done(function() {
                     self.displayTemporaryAlertBox(
                         {
-                            msg: resources.asset.editNameSuccess,
-                            status: true
+                            header : 'Success',
+                            style : 'success',
+                            msg: resources.asset.editNameSuccess
                         }
                     );
                 });
@@ -115,6 +118,8 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         function _handleAssetRenameError() {
             this.displayTemporaryAlertBox(
                 {
+                    header : 'Error',
+                    style : 'error',
                     msg: resources.asset.editNameFail
                 }
             );
@@ -132,8 +137,9 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 });
             this.displayTemporaryAlertBox(
                 {
-                    msg: response,
-                    status: true
+                    header : 'Success',
+                    style : 'succes',
+                    msg: response
                 }
             );
         }
@@ -143,6 +149,8 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
             _handleUploadProgress.call(this, 0);
             this.displayTemporaryAlertBox(
                 {
+                    header : 'Error',
+                    style : 'error',
                     msg: resources.asset.uploadAssetError
                 }
             );

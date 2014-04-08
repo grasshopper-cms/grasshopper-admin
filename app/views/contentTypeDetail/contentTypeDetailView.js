@@ -116,9 +116,10 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function _handleSuccessfulContentTypeDeletion(model) {
         this.displayTemporaryAlertBox(
             {
+                header : 'Success',
+                style : 'success',
                 msg : resources.contentType.successfullyDeletedPre + model.get('label') +
-                    resources.contentType.successfullyDeletedPost,
-                status : true
+                    resources.contentType.successfullyDeletedPost
             }
         );
         this.remove();
@@ -127,6 +128,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function _handleFailedContentTypeDeletion(model) {
         this.displayAlertBox(
             {
+                header : 'Error',
+                style : 'error',
                 msg : resources.contentType.errorDeleted + model.get('label')
             }
         );
@@ -170,10 +173,11 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         );
     }
 
-    function _handleFailedModelSave(xhr) {
-        console.log(xhr);
+    function _handleFailedModelSave() {
         this.displayAlertBox(
             {
+                header : 'Error',
+                style : 'error',
                 msg: resources.contentType.failedSave
             }
         );

@@ -65,8 +65,9 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _handleSuccessfulNodeSave($deferred) {
             this.displayTemporaryAlertBox(
                 {
-                    msg : resources.node.successfullyUpdated,
-                    status : true
+                    header : 'Success',
+                    style : 'success',
+                    msg : resources.node.successfullyUpdated
                 }
             );
             $deferred.resolve();
@@ -110,8 +111,9 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _handleSuccessfulContentTypeAddition() {
             this.displayTemporaryAlertBox(
                 {
-                    msg : resources.contentType.contentTypeAdded,
-                    status : true
+                    header : 'Success',
+                    style : 'success',
+                    msg : resources.contentType.contentTypeAdded
                 }
             );
         }
@@ -119,6 +121,8 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _handleFailedContentTypeAddition(msg) {
             this.displayAlertBox(
                 {
+                    header : 'Error',
+                    style : 'error',
                     msg : msg
                 }
             );
@@ -142,21 +146,26 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         }
 
         function _handleSuccessfulNodeDeletion() {
+            _redirectToParent.call(this);
+
             this.displayTemporaryAlertBox(
                 {
+                    header : 'Success',
+                    style : 'success',
                     msg : resources.node.successfullyDeletedPre + this.model.get('label') +
-                        resources.node.successfullyDeletedPost,
-                    status : true
+                        resources.node.successfullyDeletedPost
                 }
             );
             this.remove();
 
-            _redirectToParent.call(this);
+
         }
 
         function _handleFailedNodeDeletion() {
             this.displayAlertBox(
                 {
+                    header : 'Error',
+                    style : 'error',
                     msg : resources.node.errorDeleted + this.model.get('label')
                 }
             );

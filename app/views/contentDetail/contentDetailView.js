@@ -42,6 +42,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function _handleFailedDeletion(model) {
         this.displayAlertBox(
             {
+                header : 'Error',
+                style : 'error',
                 msg : resources.contentItem.errorDeleted + model.get('label')
             }
         );
@@ -50,9 +52,10 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function _handleSuccessfulDeletion(model) {
         this.displayTemporaryAlertBox(
             {
+                header : 'Success',
+                style : 'success',
                 msg : resources.contentItem.successfullyDeletedPre + model.get('label') +
-                    resources.contentItem.successfullyDeletedPost,
-                status : true
+                    resources.contentItem.successfullyDeletedPost
             }
         );
         this.remove();
@@ -71,15 +74,20 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function _handleSuccessfulModelSave() {
         this.displayTemporaryAlertBox({
-            msg : resources.contentItem.successfullySaved,
-            status : true
+            header : 'Success',
+            style : 'success',
+            msg : resources.contentItem.successfullySaved
         });
     }
 
     function _handleFailedModelSave() {
-        this.displayAlertBox({
-            msg : resources.contentItem.failedToSave
-        });
+        this.displayAlertBox(
+            {
+                header : 'error',
+                style : 'error',
+                msg : resources.contentItem.failedToSave
+            }
+        );
     }
 
     function _fetchContentDetails($deferred) {
@@ -89,9 +97,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _handleFailedModelFetch($deferred) {
-        this.displayAlertBox({
-            msg : resources.contentItem.failedToFetch
-        });
+        this.displayAlertBox(
+            {
+                header : 'Error',
+                style : 'error',
+                msg : resources.contentItem.failedToFetch
+            }
+        );
         $deferred.reject();
     }
 
@@ -113,9 +125,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _handleFailedContentSchemaRetrieval($deferred) {
-        this.displayAlertBox({
-            msg : resources.contentItem.failedToFetchContentsContentType
-        });
+        this.displayAlertBox(
+            {
+                header : 'Error',
+                style : 'error',
+                msg : resources.contentItem.failedToFetchContentsContentType
+            }
+        );
         $deferred.reject();
     }
 

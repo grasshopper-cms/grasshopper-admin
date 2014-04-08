@@ -37,8 +37,9 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         function _handleSuccessfulSave (model) {
             this.displayTemporaryAlertBox(
                 {
-                    msg : resources.user.successfullyUpdated,
-                    status : true
+                    header : 'Success',
+                    style : 'success',
+                    msg : resources.user.successfullyUpdated
                 }
             );
             _updateNameInHeader.call(this, model);
@@ -47,6 +48,8 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         function _handleFailedSave (xhr) {
             this.displayAlertBox(
                 {
+                    header : 'Error',
+                    style : 'error',
                     msg : xhr.responseJSON.message
                 }
             );

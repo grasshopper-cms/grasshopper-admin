@@ -38,9 +38,13 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
         }
 
         function _handleFailedContentQuery($deferred) {
-            this.displayAlertBox({
-                msg: 'Content Could not be retrieved in this node.'
-            });
+            this.displayAlertBox(
+                {
+                    header : 'Error',
+                    style : 'error',
+                    msg: 'Content Could not be retrieved in this node.'
+                }
+            );
             $deferred.reject();
         }
 
