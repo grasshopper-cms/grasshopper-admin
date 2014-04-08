@@ -69,6 +69,8 @@ define([
                 '*path' : 'goHome'
             },
 
+            breadcrumb  : [],
+
             user : userModel,
             initialize : initialize,
             startHeader : startHeader,
@@ -109,6 +111,8 @@ define([
 
         function beforeRouting () {
             var $deferred = new $.Deferred();
+
+            $deferred.done(this.breadcrumb.push.bind(this.breadcrumb, Backbone.history.getFragment()));
 
             loginWorker.userIsStillValidUser.call(this, $deferred);
 

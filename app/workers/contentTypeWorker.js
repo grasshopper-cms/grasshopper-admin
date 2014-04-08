@@ -44,7 +44,11 @@ define(['api', 'jquery', 'resources', 'underscore'],
             Api.getContentTypes()
                 .done(function (data) {
                     userType = _.findWhere(data.results, { label : 'Users' });
-                    $deferred.resolve(userType);
+                    if(_.isUndefined(userType)) {
+                        $deferred.reject();
+                    } else {
+                        $deferred.resolve(userType);
+                    }
                 });
             return $deferred.promise();
         }

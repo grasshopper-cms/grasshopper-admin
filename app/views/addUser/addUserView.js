@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
-        'breadcrumbWorker', 'contentTypeWorker', 'jquery', 'underscore'],
+        'breadcrumbWorker', 'contentTypeWorker', 'jquery'],
     function (GrasshopperBaseView, resources, addUserViewConfig,
-              breadcrumbWorker, contentTypeWorker, $, _) {
+              breadcrumbWorker, contentTypeWorker, $) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -23,18 +23,16 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
 
         contentTypeWorker.getUserContentType()
             .done(function(usersContentType) {
-                if(_.isUndefined(usersContentType)) {
-                    $deferred.reject();
-                } else {
-                    self.model.set('schema', usersContentType.fields);
-                    $deferred.resolve();
-                }
-            });
+                self.model.set('schema', usersContentType.fields);
+                $deferred.resolve();
+            })
+            .fail($deferred.reject);
 
         return $deferred.promise();
     }
 
     function _couldNotFindUserContentType($deferred) {
+        _navigateBack.call(this);
         this.displayAlertBox({
             msg: 'Could not find Users content type. Please make one.'
         });
@@ -71,4 +69,9 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
         breadcrumbWorker.userBreadcrumb.call(this, $deferred, true);
     }
 
+    function _navigateBack (trigger) {
+        this.app.router.removeThisRouteFromBreadcrumb();
+        this.app.router.navigateBack(trigger);
+        this.remove();
+    }
 });
