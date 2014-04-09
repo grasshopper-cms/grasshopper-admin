@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!/validation/views/regex/template.html'], function (template) {
+define(['text!validation/views/regex/template.html'], function (template) {
     'use strict';
 
     return {

@@ -2,7 +2,7 @@
     <div id="modalContents">
 
         <div id="modalHeader" class="row">
-            <h4>{{model:header}}</h4>
+            {{model:header}}
         </div>
 
         <div class="row modalPadding">
@@ -41,11 +41,9 @@
         </div>
 
         <div  id="buttonContainer" class="row" data-rv-hide="model:loading">
-            <div class="small-12 text-center">
-                <ul class="button-group radius right">
-                    <li><a id="confirm" class="button tiny noMarginBottom">{{model:resources->confirm}}</a></li>
-                    <li><a id="cancel" class="button tiny noMarginBottom">{{model:resources->cancel}}</a></li>
-                </ul>
+            <div class="right">
+                <button id="confirm" class="button tiny radius noMarginBottom">{{model:resources->confirm}}</button>
+                <button id="cancel" class="button tiny radius noMarginBottom">{{model:resources->cancel}}</button>
             </div>
         </div>
 
