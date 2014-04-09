@@ -1,4 +1,4 @@
-#modal-container {
+#modalContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,37 +11,43 @@
   width: 100%;
   z-index: 11000;
 
-  #modal-contents {
+  #modalContents {
     display: flex;
     flex-direction: column;
     z-index: 99;
     height: auto;
     max-height: 100%;
-    max-width: 100%;
+    width: 35%;
     background-color: $modal-contents-background-color;
-    padding: 1.25em;
-    border: solid 1px $modal-contents-border-color;
     box-shadow: 0 0 10px $modal-background-color;
 
-    .modal-header {
+    #modalHeader {
+      padding: 1.25em;
       min-height: 40px;
-    }
-
-    .modal-data {
-      overflow: scroll;
-      border: 1px solid #999;
-    }
-
-    #modal-text {
       text-align: center;
     }
 
-    #button-container {
-      display: inline-block;
-      margin-top: 10px;
+    #modalBody {
+      padding: 0 1.25em 1.25em 1.25em;
+      overflow: scroll;
     }
 
-    #image-container {
+    .modalPadding { // utility class for things outside the inputContainer
+      padding: 0 1.25em 0 1.25em;
+    }
+
+    .inputContainer {
+      border: 1px solid #999;
+    }
+
+    #buttonContainer {
+      background-color: #f1f1f1;
+      padding: 1.25em;
+      display: inline-block;
+    }
+
+    .imageContainer { // only used by the image modal
+      border: 1px solid #999;
       img {
         max-height: 75%;
         display: block;
@@ -50,14 +56,7 @@
       }
     }
 
-    #input-container {
-      margin-top: 8px;
-      input:not[type='checkbox'] {
-      width: 100%;
-    }
-    }
-
-    #dropZone {
+    #dropZone { // only used by the upload modal
       height: 60px;
       border: 2px dashed #bbb;
       border-radius: 5px;
@@ -72,14 +71,10 @@
       }
     }
 
-    #uploadFileInput {
+    #uploadFileInput { // only used by the upload modal
       visibility: hidden;
       height: 0;
       width: 0;
     }
   }
-}
-
-.tooltip {
-  z-index: 100000;
 }

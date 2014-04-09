@@ -84,6 +84,14 @@ body, html {
     margin-bottom: 0;
   }
 
+  .noMarginTop {
+    margin-top: 0;
+  }
+
+  .tooltip {
+    z-index: 100000;
+  }
+
   $transition-speed: $switch-paddle-transition-speed;
   $transition-ease: $switch-paddle-transition-ease;
   $height: $switch-height-med;
@@ -94,10 +102,6 @@ body, html {
   $negative-color: $switch-positive-color;
   $radius: false;
   $base-style: true;
-
-  .userEnabledSwitch {
-    @include switch($transition-speed, $transition-ease, $height, $font-size, $line-height, $paddle-bg, $positive-color, $negative-color, $radius, $base-style);
-  }
 
   // VIEWS
   @import "../../views/header/style.scss"; // Header

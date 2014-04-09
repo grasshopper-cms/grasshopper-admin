@@ -18,7 +18,7 @@ define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'assetDetail
             var self = this;
             this.displayModal(
                 {
-                    msg : resources.asset.uploadAssetModalMsg,
+                    header : resources.asset.uploadAssetModalMsg,
                     type : 'upload',
                     data : {}
                 })
