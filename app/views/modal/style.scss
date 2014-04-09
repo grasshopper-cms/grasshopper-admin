@@ -32,7 +32,7 @@
     }
 
     #modalBody {
-      padding: 0 $modalPadding $modalPadding $modalPadding;
+      padding: 0 $modalPadding 0 $modalPadding;
       overflow: scroll;
     }
 
@@ -41,16 +41,15 @@
     }
 
     .inputContainer {
-      border: 1px solid #999;
+      border: 1px solid #CCC;
     }
 
     #buttonContainer {
-      background-color: #f1f1f1;
       padding: $modalPadding;
     }
 
     .imageContainer { // only used by the image modal
-      border: 1px solid #999;
+      border: 1px solid #CCC;
       img {
         max-height: 75%;
         display: block;
