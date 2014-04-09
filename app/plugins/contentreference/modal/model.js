@@ -1,5 +1,7 @@
-define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore', 'api'],
-    function (Model, resources, grasshopperCollection, constants, masseuse, _, Api) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore', 'api',
+        'plugins/contentReference/modal/contentModel'],
+    function (Model, resources, grasshopperCollection, constants, masseuse, _, Api,
+              contentReferenceModalContentModel) {
 
         'use strict';
 
@@ -32,6 +34,10 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             }))());
 
             this.set('content', new (grasshopperCollection.extend({
+                model : function(attrs, options) {
+                    return new contentReferenceModalContentModel(
+                        _.extend(attrs, { availableTypes : self.get('availableTypes') }), options);
+                },
                 url : function() {
                     return constants.api.nodesContent.url.replace(':id', self.get('_id'));
                 }

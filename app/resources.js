@@ -179,7 +179,7 @@ define({
             defaultFolder : 'Default Folder',
             contentTypes : 'Content Types',
             selectContent : 'Select Content',
-            viewSelectedContent : 'View Selected Content'
+            viewContent : 'View Content'
         },
         dropdown : {
             selectOption : 'Please Select'

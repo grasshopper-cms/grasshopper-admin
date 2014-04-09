@@ -1,7 +1,7 @@
 define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants',
-    'views/nodeTree/nodeTreeFileDetailModel'],
+    'views/nodeTree/nodeTreeFileDetailModel', 'views/nodeTree/nodeTreeContentDetailModel', 'underscore'],
     function (Model, resources, grasshopperCollection, constants,
-              nodeTreeFileDetailModel) {
+              nodeTreeFileDetailModel, nodeTreeContentDetailModel, _) {
 
     'use strict';
 
@@ -28,7 +28,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants',
                 if (self.get('nodeTreeType') === 'file') {
                     return new nodeTreeFileDetailModel(attrs, options);
                 } else {
-                    return new Model(attrs, options);
+                    return new nodeTreeContentDetailModel(
+                        _.extend(attrs, { availableTypes : self.get('availableTypes') }), options);
                 }
             },
             url : function() {
