@@ -1,5 +1,5 @@
-define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse'],
-    function (Model, resources, grasshopperCollection, constants, masseuse) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore', 'api'],
+    function (Model, resources, grasshopperCollection, constants, masseuse, _, Api) {
 
         'use strict';
 
@@ -38,11 +38,28 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             }))());
 
             this.on('change:selectedContent', _getContentDetails.bind(this));
+            this.on('change:selectedContentDetails', _getSelectedContentsContentType.bind(this));
+            this.on('change:selectedContentsContentType', _setContentLabel.bind(this));
         }
 
         function _getContentDetails() {
-            this.set('selectedContentLabel',
-                this.get('content').findWhere({ _id : this.get('selectedContent') }).get('label'));
+            var self = this;
+
+            Api.getContentDetail(this.get('selectedContent'))
+                .done(function(contentDetails) {
+                    self.set('selectedContentDetails', contentDetails);
+                });
+        }
+
+        function _getSelectedContentsContentType() {
+            this.set('selectedContentsContentType',
+                _.findWhere(this.get('availableTypes'), { _id : this.get('selectedContentDetails').type }));
+        }
+
+        function _setContentLabel() {
+            var firstFieldId = _.first(this.get('selectedContentsContentType').fields)._id;
+
+            this.set('selectedContentLabel', this.get('selectedContentDetails').fields[firstFieldId]);
         }
 
     });
