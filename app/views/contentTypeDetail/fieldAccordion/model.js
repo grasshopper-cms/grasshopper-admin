@@ -52,7 +52,7 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
             var min = this.get('min'),
                 max = this.get('max');
 
-            this.set('multi', (max > 1 || min > 1));
+            this.set('multi', (max > 1 || min !== 1));
         }
 
         function _ensureMaxIsAlwaysGreaterThanOrEqualToMin() {
