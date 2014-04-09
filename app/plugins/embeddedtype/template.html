@@ -1,7 +1,13 @@
 <div class="row">
     <div class="large-12 small-centered columns">
 
-        <div id="embeddedTypeAccordion">
+        <div data-rv-show="model:loading">
+            <div>
+                <i class="fa fa-refresh fa fa-spin"></i>
+            </div>
+        </div>
+
+        <div data-rv-hide="model:loading" id="embeddedTypeAccordion">
 
             <div class="accordionHeader">
                 {{model:accordionLabel | existsOr -- }}
