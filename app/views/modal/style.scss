@@ -11,6 +11,8 @@
   width: 100%;
   z-index: 11000;
 
+  $modalPadding : 20px;
+
   #modalContents {
     display: flex;
     flex-direction: column;
@@ -22,18 +24,20 @@
     box-shadow: 0 0 10px $modal-background-color;
 
     #modalHeader {
-      padding: 1.25em;
+      padding: $modalPadding;
       min-height: 40px;
-      text-align: center;
+      text-align: left;
+      font-weight: normal;
+      font-size: 20px;
     }
 
     #modalBody {
-      padding: 0 1.25em 1.25em 1.25em;
+      padding: 0 $modalPadding $modalPadding $modalPadding;
       overflow: scroll;
     }
 
     .modalPadding { // utility class for things outside the inputContainer
-      padding: 0 1.25em 0 1.25em;
+      padding: 0 $modalPadding 0 $modalPadding;
     }
 
     .inputContainer {
@@ -42,8 +46,7 @@
 
     #buttonContainer {
       background-color: #f1f1f1;
-      padding: 1.25em;
-      display: inline-block;
+      padding: $modalPadding;
     }
 
     .imageContainer { // only used by the image modal

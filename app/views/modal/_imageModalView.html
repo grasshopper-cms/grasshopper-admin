@@ -2,23 +2,24 @@
     <div id="modalContents">
 
         <div id="modalHeader" class="row">
-            <h4>{{model:header}}</h4>
-            <span>{{model:msg}}</span>
+            {{model:header}}
         </div>
 
-        <div id="modalBody" class="row imageContainer">
-            <img data-rv-src="model:data">
+        <div id="modalBody" class="row">
+            <img data-rv-src="model:data" class="imageContainer">
         </div>
 
         <div id="buttonContainer" class="row">
-            <div class="small-12 text-center">
-                <ul class="button-group radius right">
-                    <li><a data-rv-href="model:data" download id="confirm" class="button tiny noMarginBottom"><i
-                            class="fa fa-download-alt"></i>{{model:resources->download | spaceBefore}}</a></li>
-                    <li><a id="cancel" class="button tiny noMarginBottom">{{model:resources->close}}</a></li>
-                </ul>
+            <div class="right">
+                <a download id="confirm" data-rv-href="model:data" class="button tiny radius noMarginBottom">
+                    <i class="fa fa-download"></i>
+                    {{model:resources->download | spaceBefore}}
+                </a>
+                <button id="cancel" class="button tiny radius noMarginBottom">{{model:resources->close}}</button>
             </div>
         </div>
 
     </div>
 </div>
+
+
