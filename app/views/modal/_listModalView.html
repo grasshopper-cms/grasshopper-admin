@@ -1,12 +1,12 @@
-<div id="modal-container">
-    <div id="modal-contents">
-        <div class="row modal-header">
-            <div id="modal-text">
-                <h4>{{model:header}}</h4>
-                <span>{{model:msg}}</span>
-            </div>
+<div id="modalContainer">
+    <div id="modalContents">
+
+        <div id="modalHeader" class="row">
+            <h4>{{model:header}}</h4>
+            <span>{{model:msg}}</span>
         </div>
-        <div id="input-container" class="row modal-data">
+
+        <div id="modalBody" class="row inputContainer">
             <div class="small-4 columns small-centered">
                 <div class="row">
                     <ol>
@@ -17,14 +17,16 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+
+        <div id="buttonContainer" class="row">
             <div class="small-12 text-center">
-                <ul id="button-container" class="button-group radius">
-                    <li><a id="confirm" class="button tiny">{{model:resources->confirm}}</a></li>
-                    <li><a id="cancel" class="button tiny">{{model:resources->cancel}}</a></li>
+                <ul class="button-group radius right">
+                    <li><a id="confirm" class="button tiny noMarginBottom">{{model:resources->confirm}}</a></li>
+                    <li><a id="cancel" class="button tiny noMarginBottom">{{model:resources->cancel}}</a></li>
                 </ul>
             </div>
         </div>
+
     </div>
 </div>
 

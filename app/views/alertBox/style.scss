@@ -13,12 +13,9 @@
 .alertBoxPartial {
   min-height: 70px;
   width: 100%;
-
-
+  background-color: white;
   border-radius: 5px;
   margin-bottom: 6px;
-
-
 
   .alertImage {
     width: 20%;
@@ -30,7 +27,6 @@
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-
 
     i {
       flex: 0 1 auto;

@@ -46,7 +46,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _askUserForNewNodeName() {
             return this.displayModal(
                 {
-                    msg : resources.node.editName,
+                    header : resources.node.editName,
                     type : 'input',
                     data : this.model.get('label')
                 });
@@ -131,6 +131,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _warnUserBeforeDeleting() {
             return this.displayModal(
                 {
+                    header : resources.warning,
                     msg : resources.node.deletionWarning
                 });
         }

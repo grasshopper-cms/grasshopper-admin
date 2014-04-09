@@ -81,7 +81,7 @@ define({
         errorDeleted : 'There was an issue deleting this folder: ',
         enterName : 'Please enter the name of the folder: ',
         errorCreating : 'Folder could not be added.',
-        editName : 'Edit Folder name:',
+        editName : 'Edit folder name',
         emptyNode : 'This folder does not contain any content.',
         clickToAdd : 'Click to add some.'
     },

@@ -27,6 +27,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function _confirmDeletion() {
         return this.displayModal(
             {
+                header : resources.warning,
                 msg : resources.contentItem.deletionWarning
             });
     }
