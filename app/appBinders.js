@@ -89,7 +89,8 @@ define(['jquery', 'underscore', 'masseuse',
                     allowedTypes : this.model.model.get('allowedContentTypes'),
                     selectedContent : new ProxyProperty('selectedContent', this.model.model),
                     inSetup : this.model.model.get('inSetup'),
-                    nodeTreeType : this.model.model.get('nodeTreeType')
+                    nodeTreeType : this.model.model.get('nodeTreeType'),
+                    availableTypes : this.model.model.get('availableTypes')
                 })
             });
 
