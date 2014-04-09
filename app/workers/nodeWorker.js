@@ -89,7 +89,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _askUserWhichContentTypesToAttach(availableContentTypes) {
             return this.displayModal(
                 {
-                    msg : resources.contentType.editContentTypes,
+                    header : resources.contentType.editContentTypes,
                     type : 'checkbox',
                     data : availableContentTypes
                 });

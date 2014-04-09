@@ -103,7 +103,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         function _getSelectedContentTypeFromUser(nodeData) {
             return this.displayModal(
                 {
-                    msg : resources.contentType.selectContentType,
+                    header : resources.contentType.selectContentType,
                     data : nodeData,
                     type : 'radio'
                 });
