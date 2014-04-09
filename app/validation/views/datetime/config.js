@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!/validation/views/datetime/template.html', 'validationDatetimeFormatters'],
+define(['text!validation/views/datetime/template.html', 'validationDatetimeFormatters'],
     function (template, validationDatetimeFormatters) {
     'use strict';
 
