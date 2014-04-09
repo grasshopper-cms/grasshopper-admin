@@ -1,7 +1,7 @@
 define([
-    'backbone', 'masseuse', 'validation', 'resources', 'constants',
+    'backbone', 'masseuse', 'resources', 'constants',
     'underscore', 'helpers'
-], function (Backbone, masseuse, validation, resources, constants, _, helpers) {
+], function (Backbone, masseuse, resources, constants, _, helpers) {
 
     'use strict';
 
