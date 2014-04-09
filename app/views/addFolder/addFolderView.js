@@ -19,7 +19,7 @@ define(['grasshopperBaseView', 'addFolderViewConfig', 'resources', 'underscore',
 
             this.displayModal(
                 {
-                    msg : resources.node.enterName,
+                    header : resources.node.enterName,
                     type : 'input'
                 })
                 .done(function (modalData) {
