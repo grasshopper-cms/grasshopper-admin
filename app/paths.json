@@ -35,7 +35,7 @@
     },
 
     "validation+" : {
-        "" : "validation/validation",
+        "Library" : "validation/validationLibrary",
         "Types" : "validation/validationTypes",
 
         "validationAlpha+" : {
