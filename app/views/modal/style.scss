@@ -17,8 +17,6 @@
     display: flex;
     flex-direction: column;
     z-index: 99;
-    height: auto;
-    max-height: 100%;
     width: 35%;
     background-color: $modal-contents-background-color;
     box-shadow: 0 0 10px $modal-background-color;
@@ -33,7 +31,6 @@
 
     #modalBody {
       padding: 0 $modalPadding 0 $modalPadding;
-      overflow: scroll;
     }
 
     .modalPadding { // utility class for things outside the inputContainer
@@ -41,6 +38,8 @@
     }
 
     .inputContainer {
+      max-height: 500px;
+      overflow: scroll;
       border: 1px solid #CCC;
     }
 
@@ -49,6 +48,8 @@
     }
 
     .imageContainer { // only used by the image modal
+      max-height: 500px;
+      overflow: scroll;
       border: 1px solid #CCC;
       img {
         max-height: 75%;

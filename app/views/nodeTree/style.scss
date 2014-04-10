@@ -23,6 +23,7 @@
     ul {
       margin-bottom: 0;
     }
+
   }
 
   .nodeTreeSubNode {
@@ -37,7 +38,20 @@
   }
 
   .nodeTreeThumbNail {
-    max-height: 50px;
+    max-height: 53px;
     margin-right: 10px;
+    border: 0;
   }
+
+  .thumbnailContainer {
+    float: left;
+    width: 44px;
+    overflow: hidden;
+  }
+
+  #fileName {
+    float: right;
+    padding: 5px;
+  }
+
 }
