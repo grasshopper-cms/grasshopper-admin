@@ -167,6 +167,9 @@ define({
             files : 'This folder has no files.'
         }
     },
+    pluginWrapper : {
+        emptyFieldsMessage : 'This field is currently empty.'
+    },
     plugins : {
         codeEditor : {
             language : 'Language',

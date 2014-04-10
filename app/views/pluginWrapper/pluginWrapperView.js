@@ -57,6 +57,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
             } else if(!_.isNull(values)) { // if values exists
                 _addPlugin.call(this, values);
             } else { // if values does not exist and there is a minimum
+                _evaluateMultiButtons.call(this);
                 while(i < minimum) {
                     _addPlugin.call(self);
                     i++;
@@ -88,6 +89,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
         function _evaluateMultiButtons() {
             _canShowAdditionButton.call(this);
             _canShowSubtractionButton.call(this);
+            _canShowSortableMultiButton.call(this);
         }
 
         function _canShowAdditionButton() {
@@ -96,6 +98,10 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         function _canShowSubtractionButton() {
             this.model.set('showSubtractionButton', this.collection.length > this.model.get('min'));
+        }
+
+        function _canShowSortableMultiButton() {
+            this.model.set('showSortableButton', this.model.get('max') > 1 && this.collection.length > 1);
         }
 
         function _initializeSortableMulti() {

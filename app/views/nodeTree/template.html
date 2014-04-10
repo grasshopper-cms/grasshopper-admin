@@ -9,7 +9,7 @@
 
         <div data-rv-each-node="model:children:" data-rv-nodetree="node" class="nodeTreeSubNode"></div>
 
-        <ul data-rv-show="model:content | haslength" class="no-bullet">
+        <ul data-rv-show="model:content | hasLength" class="no-bullet">
 
             <li data-rv-each-item="model:content:" class="nodeTreeSubNode" data-rv-filter-by-allowed-types="item">
 
@@ -42,7 +42,7 @@
         </ul>
 
         <div data-rv-hide="model:inSetup">
-            <ul data-rv-hide="model:content | haslength" class="no-bullet">
+            <ul data-rv-hide="model:content | hasLength" class="no-bullet">
                 <li data-rv-show="model:nodeTreeType | equals content">
                     {{model:resources->nodeTree->emptyFolder->content}}
                 </li>
