@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'],
-    function (template, assetIndexViewModel) {
+define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel', 'assetIndexViewBinders'],
+    function (template, assetIndexViewModel, assetIndexViewBinders) {
         'use strict';
 
         return {
@@ -11,6 +11,9 @@ define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'],
             template : template,
             listeners : [],
             events : {},
-            permissions : ['admin', 'reader', 'editor']
+            permissions : ['admin', 'reader', 'editor'],
+            rivetsConfig : {
+                binders : [assetIndexViewBinders]
+            }
         };
     });

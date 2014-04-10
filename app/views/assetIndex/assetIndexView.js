@@ -1,8 +1,5 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'underscore',
-    'text!views/assetDetail/_assetDetailRow.html', 'jquery', 'constants', 'resources'],
-    function (GrasshopperBaseView, assetIndexViewConfig, AssetDetailView, _,
-              assetDetailRowTemplate, $, constants, resources) {
+define(['grasshopperBaseView', 'assetIndexViewConfig'], function (GrasshopperBaseView, assetIndexViewConfig) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -10,50 +7,20 @@ define(['grasshopperBaseView', 'assetIndexViewConfig', 'assetDetailView', 'under
             beforeRender : beforeRender
         });
 
-        function beforeRender() {
-            var inRoot = this.model.get('inRoot');
-
-            if (inRoot) {
-                this.model.url = this.model.url.replace(':id', 0);
-            } else {
-                this.model.url = this.model.url.replace(':id', this.nodeId);
-            }
-
-            this.model.fetch()
-                .done(_doStuff.bind(this));
+        function beforeRender($deferred) {
+            this.model.get('childAssets').fetch()
+                .done($deferred.resolve);
         }
 
-        function _doStuff() {
-            var assets = _.omit(this.model.attributes, 'resources');
 
-            if(_.isEmpty(assets)) {
-                _addEmptyAssetsMessage.call(this);
-            }
-
-            _.each(assets, _appendAssetDetailRow.bind(this));
-
-        }
-
-        function _appendAssetDetailRow (asset) {
-            var assetDetailView = new AssetDetailView({
-                    name : 'assetDetailRow',
-                    modelData : _.extend(asset, { nodeId : this.nodeId }),
-                    appendTo : '#assetDetailTable',
-                    wrapper : false,
-                    template : assetDetailRowTemplate,
-                    mastheadButtons : this.mastheadButtons
-                });
-            assetDetailView.start();
-        }
-
-        function _addEmptyAssetsMessage() {
-            var template = '<tr id="assetDetailRow">' +
-                '<td colspan="4">[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
-
-            $('#assetDetailTable').append(_.template(template, {
-                msg : resources.asset.emptyNode,
-                linkText : resources.asset.clickToAdd,
-                href : constants.internalRoutes.createAssets.replace(':id', this.nodeId)
-            }));
-        }
+//        function _addEmptyAssetsMessage() {
+//            var template = '<tr id="assetDetailRow">' +
+//                '<td colspan="4">[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
+//
+//            $('#assetDetailTable').append(_.template(template, {
+//                msg : resources.asset.emptyNode,
+//                linkText : resources.asset.clickToAdd,
+//                href : constants.internalRoutes.createAssets.replace(':id', this.nodeId)
+//            }));
+//        }
     });
