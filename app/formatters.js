@@ -11,7 +11,7 @@ define([], function () {
             read : readAsNumber,
             publish : publishAsNumber
         },
-        haslength : haslength,
+        hasLength : hasLength,
         sort : sort,
         sortBy : sortBy
     };
@@ -39,7 +39,7 @@ define([], function () {
         return parseInt(value, 10);
     }
 
-    function haslength(value) {
+    function hasLength(value) {
         return (value.length > 0);
     }
 
