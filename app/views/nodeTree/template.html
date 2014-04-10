@@ -18,10 +18,12 @@
 
                 <label data-rv-for="item.cid" class="noMarginBottom">
 
+                    <!--This is for showing content-->
                     <span data-rv-show="model:nodeTreeType | equals content">
                         {{item:label}}
                     </span>
 
+                    <!--This is for showing files-->
                     <span data-rv-show="model:nodeTreeType | equals file">
                         <img class="th nodeTreeThumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
                         <a>{{item:fileName}}</a>
