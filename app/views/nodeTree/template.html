@@ -25,8 +25,14 @@
 
                     <!--This is for showing files-->
                     <span data-rv-show="model:nodeTreeType | equals file">
-                        <img class="th nodeTreeThumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
-                        <a>{{item:fileName}}</a>
+                        <div class="thumbnailContainer">
+                            <img class="th nodeTreeThumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
+                        </div>
+
+                        <div id="fileName">
+                            <a>{{item:fileName}}</a>
+                        </div>
+
                     </span>
 
                 </label>
