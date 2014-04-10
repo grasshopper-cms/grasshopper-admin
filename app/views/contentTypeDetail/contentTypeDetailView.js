@@ -144,7 +144,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         var model = context.field.config.modelData;
 
         _collapseAccordion.call(this);
-        model.active = 'active';
+        model.isNew = true;
         this.collection.add(model);
         _initializeSortableAccordions.call(this);
     }

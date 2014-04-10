@@ -15,6 +15,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
         function afterRender() {
             _handleValidation.call(this);
             _initializeAccordions.call(this);
+            _handleNewFieldAccordion.call(this);
         }
 
         function changeFieldType(currentModel, newType) {
@@ -124,6 +125,12 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                     collapsible : true,
                     heightStyle : 'content'
                 });
+        }
+
+        function _handleNewFieldAccordion() {
+            if(this.model.get('isNew')) {
+                this.$el.find('.fieldAccordion').click();
+            }
         }
 
     });

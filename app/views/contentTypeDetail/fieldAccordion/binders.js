@@ -69,7 +69,7 @@ define(['underscore', 'masseuse', 'plugins', 'require', 'jquery'],
                     plugins = model.get('plugins'),
                     thisPluginName = _.findWhere(plugins, { type : type }).name;
 
-                $(el).text(thisPluginName + ' ' + model.get('resources.options'));
+                $(el).text(thisPluginName);
             }
         };
 
