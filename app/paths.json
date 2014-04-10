@@ -137,7 +137,8 @@
         "assetIndexView+" : {
             "" : "views/assetIndex/assetIndexView",
             "Config" : "views/assetIndex/assetIndexViewConfig",
-            "Model" : "views/assetIndex/assetIndexViewModel"
+            "Model" : "views/assetIndex/assetIndexViewModel",
+            "Binders" : "views/assetIndex/binders"
         },
 
         "contentBrowseView+" : {
