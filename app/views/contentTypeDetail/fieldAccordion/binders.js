@@ -1,6 +1,6 @@
 /* jshint loopfunc:true */
-define(['underscore', 'masseuse', 'plugins', 'require'],
-    function (_, masseuse, plugins, require) {
+define(['underscore', 'masseuse', 'plugins', 'require', 'jquery'],
+    function (_, masseuse, plugins, require, $) {
         'use strict';
 
         return {
@@ -63,6 +63,13 @@ define(['underscore', 'masseuse', 'plugins', 'require'],
                         });
                     }
                 }
+            },
+            'readable-type-name' : function (el, model) {
+                var type = model.get('type'),
+                    plugins = model.get('plugins'),
+                    thisPluginName = _.findWhere(plugins, { type : type }).name;
+
+                $(el).text(thisPluginName + ' ' + model.get('resources.options'));
             }
         };
 
