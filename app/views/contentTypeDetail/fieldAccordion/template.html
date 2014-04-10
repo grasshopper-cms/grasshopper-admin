@@ -4,7 +4,7 @@
             <tbody>
                 <tr>
                     <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:label | existsOr -- | spaceBefore}}</td>
-                    <td>{{model:type | existsOr --}}</td>
+                    <td data-rv-readable-type-name="model"></td>
                     <td>{{model:min}}min / {{model:max}}max</td>
                     <td style="text-align: center;">
                         <span data-rv-on-click="view.removeThisField">
@@ -178,8 +178,9 @@
 
     <div class="row" data-rv-show="model:options">
         <fieldset>
-            <legend data-rv-readable-type-name="model">
-
+            <legend>
+                <span data-rv-readable-type-name="model"></span>
+                <span>{{model:resources->options}}</span>
             </legend>
             <div data-rv-fieldform="model"></div>
         </fieldset>
