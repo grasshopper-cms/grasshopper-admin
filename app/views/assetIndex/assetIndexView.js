@@ -4,7 +4,8 @@ define(['grasshopperBaseView', 'assetIndexViewConfig'], function (GrasshopperBas
 
         return GrasshopperBaseView.extend({
             defaultOptions : assetIndexViewConfig,
-            beforeRender : beforeRender
+            beforeRender : beforeRender,
+            addNewAsset : addNewAsset
         });
 
         function beforeRender($deferred) {
@@ -12,15 +13,8 @@ define(['grasshopperBaseView', 'assetIndexViewConfig'], function (GrasshopperBas
                 .done($deferred.resolve);
         }
 
+        function addNewAsset(newAssetPayload) {
+            this.model.get('childAssets').add(newAssetPayload);
+        }
 
-//        function _addEmptyAssetsMessage() {
-//            var template = '<tr id="assetDetailRow">' +
-//                '<td colspan="4">[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
-//
-//            $('#assetDetailTable').append(_.template(template, {
-//                msg : resources.asset.emptyNode,
-//                linkText : resources.asset.clickToAdd,
-//                href : constants.internalRoutes.createAssets.replace(':id', this.nodeId)
-//            }));
-//        }
     });

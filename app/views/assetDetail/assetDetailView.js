@@ -31,6 +31,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         function prepareToDeleteAsset() {
             this.displayModal(
                 {
+                    header : resources.warning,
                     msg: resources.asset.deletionWarning
                 })
                 .done(_deleteAsset.bind(this));

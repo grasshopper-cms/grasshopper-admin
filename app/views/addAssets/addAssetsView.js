@@ -1,8 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'assetDetailView', 'assetDetailViewConfig',
-    'text!views/assetDetail/_assetDetailRow.html', 'resources'],
-    function (GrasshopperBaseView, addAssetsViewConfig, _, AssetDetailView, assetDetailViewConfig,
-              assetDetailRowTemplate, resources) {
+define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'resources'],
+    function (GrasshopperBaseView, addAssetsViewConfig, _, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -40,21 +38,14 @@ define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'assetDetail
         }
 
         function _appendAssetDetailRow (file) {
-            var assetDetailView = new AssetDetailView({
-                    name : 'assetDetailRow',
-                    modelData : {
-                        nodeId : this.model.get('nodeId'),
-                        fileName : file.name,
-                        size : file.size,
-                        lastmodified : file.lastModifiedDate,
-                        fileData : file
-                    },
-                    appendTo : '#assetDetailRow',
-                    wrapper : false,
-                    template : assetDetailRowTemplate,
-                    mastheadButtons : this.mastheadButtons
-                });
-            assetDetailView.start();
+            var payload = {
+                fileName : file.name,
+                size : file.size,
+                lastmodified : file.lastModifiedDate,
+                fileData : file
+            };
+
+            this.channels.views.trigger('assetAdded', payload);
         }
 
     });
