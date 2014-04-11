@@ -29,7 +29,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
 
         function _handleSuccessfulSave() {
             this.app.router.navigateTrigger(
-                constants.internalRoutes.nodeDetail.replace(':id', this.model.get('node._id'))
+                constants.internalRoutes.nodeDetail.replace(':id', this.model.get('meta.node'))
             );
             this.displayTemporaryAlertBox(
                 {
@@ -51,7 +51,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function _handleCreateContent ($deferred) {
-            _getNodesContentTypes.call(this, this.model.get('node._id'))
+            _getNodesContentTypes.call(this, this.model.get('meta.node'))
                 .done(_decideHowToHandleContentTypeSelection.bind(this, $deferred))
                 .fail(_handleFailedContentTypeRetrieval.bind(this, $deferred));
         }
@@ -96,7 +96,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function _handleNodeWithOneContentType($deferred, contentType) {
-            this.model.set('type', contentType._id);
+            this.model.set('meta.type', contentType._id);
             _getSelectedContentTypeSchema.call(this, $deferred);
         }
 
@@ -115,13 +115,13 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function _getSelectedContentTypeSchema($deferred) {
-            Api.getContentType(this.model.get('type'))
+            Api.getContentType(this.model.get('meta.type'))
                 .done(_handleSuccessfulContentSchemaRetrieval.bind(this, $deferred))
                 .fail($deferred.reject);
         }
 
         function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
-            this.model.set('schema', schema.fields);
+            this.model.set('schema', schema);
             _updateMastheadBreadcrumbs.call(this, $deferred);
         }
 

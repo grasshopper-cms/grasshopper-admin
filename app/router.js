@@ -373,8 +373,8 @@ define([
             }
             loadMainContent(AddContentView, {
                     modelData : {
-                        node : {
-                            _id : nodeId
+                        meta : {
+                            node : nodeId
                         }
                     }
                 });

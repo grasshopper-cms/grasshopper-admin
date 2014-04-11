@@ -1,11 +1,7 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker',
-    'underscore', 'masseuse'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker,
-              _, masseuse) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker) {
     'use strict';
-
-    var ProxyProperty = masseuse.ProxyProperty;
 
     return GrasshopperBaseView.extend({
         defaultOptions : contentDetailViewConfig,
@@ -109,14 +105,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _getContentSchema($deferred) {
-        Api.getContentType(this.model.get('type'))
+        Api.getContentType(this.model.get('meta.type'))
             .done(_handleSuccessfulContentSchemaRetrieval.bind(this, $deferred))
             .fail(_handleFailedContentSchemaRetrieval.bind(this, $deferred));
     }
 
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
-        _proxyFirstFieldToLabel.call(this);
 
         if(this.name === 'contentDetailRow') {
             $deferred.resolve();
@@ -134,12 +129,6 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             }
         );
         $deferred.reject();
-    }
-
-    function _proxyFirstFieldToLabel() {
-        var firstField = _.first(this.model.get('schema.fields'))._id;
-
-        this.model.set('label', new ProxyProperty('fields.' + firstField, this.model));
     }
 
     function _updateMastheadBreadcrumbs($deferred) {
