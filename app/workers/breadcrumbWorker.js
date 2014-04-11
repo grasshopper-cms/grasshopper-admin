@@ -12,7 +12,7 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
     };
 
     function contentBreadcrumb($deferred, isNew) {
-        var nodeId = this.model.get('node._id'),
+        var nodeId = this.model.get('meta.node'),
             self = this;
 
         _getNodeDetailRecursively.call(this, nodeId)
