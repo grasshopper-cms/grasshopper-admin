@@ -131,14 +131,17 @@
         "assetDetailView+" : {
             "" : "views/assetDetail/assetDetailView",
             "Config" : "views/assetDetail/assetDetailViewConfig",
-            "Model" : "views/assetDetail/assetDetailViewModel"
+            "Model" : "views/assetDetail/assetDetailViewModel",
+            "assetDetailRow+" : {
+                "" : "views/assetDetail/assetDetailRow/view",
+                "Config" : "views/assetDetail/assetDetailRow/config"
+            }
         },
 
         "assetIndexView+" : {
             "" : "views/assetIndex/assetIndexView",
             "Config" : "views/assetIndex/assetIndexViewConfig",
-            "Model" : "views/assetIndex/assetIndexViewModel",
-            "Binders" : "views/assetIndex/binders"
+            "Model" : "views/assetIndex/assetIndexViewModel"
         },
 
         "contentBrowseView+" : {
@@ -242,8 +245,7 @@
             "Model" : "views/userDetail/userDetailViewModel",
             "userDetailRow+" : {
                 "" : "views/userDetail/userDetailRow/view",
-                "Config" : "views/userDetail/userDetailRow/config",
-                "Model" : "views/userDetail/userDetailRow/model"
+                "Config" : "views/userDetail/userDetailRow/config"
             }
         },
 
