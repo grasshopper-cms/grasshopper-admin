@@ -110,7 +110,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         }
 
         function _handleSuccessfulContentTypeSelection($deferred, selectedContentType) {
-            this.model.set('type', selectedContentType);
+            this.model.set('meta.type', selectedContentType);
             _getSelectedContentTypeSchema.call(this, $deferred);
         }
 
