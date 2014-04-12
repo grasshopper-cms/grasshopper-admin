@@ -34,10 +34,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             }))());
 
             this.set('content', new (grasshopperCollection.extend({
-                model : function(attrs, options) {
-                    return new contentReferenceModalContentModel(
-                        _.extend(attrs, { availableTypes : self.get('availableTypes') }), options);
-                },
+                model : contentReferenceModalContentModel,
                 url : function() {
                     return constants.api.nodesContent.url.replace(':id', self.get('_id'));
                 }
