@@ -5,8 +5,11 @@ define(['grasshopperModel', 'masseuse'], function (Model, masseuse) {
 
     return Model.extend({
         defaults : {
-            label : new ComputedProperty(['fields'], function(fields) {
-                return fields[this.get('meta.fieldlabel')];
+            label : new ComputedProperty(['fields'], function() {
+                if(this.get('meta.labelfield')) {
+                    return this.get('fields.'+ [this.get('meta.labelfield')]);
+                }
+
             })
         }
     });

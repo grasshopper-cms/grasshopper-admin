@@ -13,9 +13,9 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
             selectedContentHref : new ComputedProperty(['value'], function(contentId) {
                 return constants.internalRoutes.contentDetail.replace(':id', contentId);
             }),
-            selectedContentLabel : new ComputedProperty(['contentDetails'], function(contentDetails) {
-                return this.get('fields.' + contentDetails.meta.fieldlabel);
-            }, true),
+            selectedContentLabel : new ComputedProperty(['contentDetails'], function() {
+                return this.get('contentDetails.fields.' + this.get('contentDetails.meta.labelfield'));
+            }),
             _id : '0'
         },
         urlRoot : constants.api.node.url
