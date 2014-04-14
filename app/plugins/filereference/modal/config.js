@@ -15,6 +15,7 @@ define(['text!plugins/filereference/modal/template.html', 'plugins/filereference
         },
         events : {
             'click #nodeTree' : 'stopAccordionPropagation',
+            'click .selectedContentRadio' : 'confirmModal',
             'click #confirm' : 'confirmModal',
             'click #cancel' : 'cancelModal'
         },

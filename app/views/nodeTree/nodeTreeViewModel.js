@@ -38,7 +38,6 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants',
                 } else if (self.get('nodeTreeType') === 'file') {
                     return constants.api.assets.url.replace(':id', self.get('_id'));
                 }
-
             }
         }))());
     }

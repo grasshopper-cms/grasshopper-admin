@@ -37,12 +37,14 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 model : contentReferenceModalContentModel,
                 url : function() {
                     return constants.api.nodesContent.url.replace(':id', self.get('_id'));
+                },
+                parse : function(response) {
+                    return response.results;
                 }
             }))());
 
             this.on('change:selectedContent', _getContentDetails.bind(this));
-            this.on('change:selectedContentDetails', _getSelectedContentsContentType.bind(this));
-            this.on('change:selectedContentsContentType', _setContentLabel.bind(this));
+            this.on('change:selectedContentDetails', _setContentLabel.bind(this));
         }
 
         function _getContentDetails() {
@@ -54,15 +56,9 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 });
         }
 
-        function _getSelectedContentsContentType() {
-            this.set('selectedContentsContentType',
-                _.findWhere(this.get('availableTypes'), { _id : this.get('selectedContentDetails').type }));
-        }
-
         function _setContentLabel() {
-            var firstFieldId = _.first(this.get('selectedContentsContentType').fields)._id;
-
-            this.set('selectedContentLabel', this.get('selectedContentDetails').fields[firstFieldId]);
+            this.set('selectedContentLabel',
+                this.get('selectedContentDetails.fields.'+ this.get('selectedContentDetails').meta.labelfield));
         }
 
     });

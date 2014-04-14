@@ -18,15 +18,13 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             setSelectedNode : setSelectedNode
         });
 
-        function beforeRender($deferred) {
+        function beforeRender() {
             if(this.model.get('inSetup')) {
                 this.model.get('children').fetch()
                     .then(_getSelectedNode.bind(this))
-                    .then(_getAvailableContentTypes.bind(this))
-                    .then($deferred.resolve);
+                    .then(_getAvailableContentTypes.bind(this));
             } else {
-                _getSelectedContent.call(this)
-                    .done($deferred.resolve);
+                _getSelectedContent.call(this);
             }
         }
 

@@ -32,7 +32,7 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
         }
 
         function _handleSuccessfulContentQuery($deferred, data) {
-            this.model.set('nodeContent', data);
+            this.model.set('nodeContent', data.results);
 
             $deferred.resolve();
         }
