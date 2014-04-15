@@ -3,7 +3,10 @@ module.exports = function (grunt) {
     'use strict';
 
     var buildDirectory = grunt.config.get('buildDirectory'),
-        mongo = grunt.config.get('mongo');
+        mongo = grunt.config.get('mongo'),
+        herokuApp = grunt.config.get('herokuApp'),
+        herokuKey = grunt.config.get('herokuKey');
+
 
     grunt.config('shell', {
         test_heroku_api : {
