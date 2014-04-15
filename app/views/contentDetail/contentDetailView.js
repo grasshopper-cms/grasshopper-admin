@@ -12,7 +12,12 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     });
 
     function beforeRender($deferred) {
+        var self = this;
+
         _fetchContentDetails.call(this, $deferred);
+        setInterval(function() {
+            console.log(self.model.attributes.fields);
+        }, 2000);
     }
 
     function deleteContent () {

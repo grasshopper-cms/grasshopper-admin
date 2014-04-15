@@ -49,19 +49,11 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             var activeContentType = this.model.get('activeContentType'),
                 self = this;
 
-            if(!this.model.get('value')) {
-                _.each(activeContentType.fields, _setEmptyValue.bind(this));
-            }
-
             _.each(activeContentType.fields, function(type) {
                 self.model.set('fields.' + type._id, new ProxyProperty('value.' + type._id, self.model));
             });
 
             _setSubLabelsForAccordions.call(this);
-        }
-
-        function _setEmptyValue(type) {
-            this.model.set('value.'+ type._id, undefined);
         }
 
         function _setSubLabelsForAccordions() {

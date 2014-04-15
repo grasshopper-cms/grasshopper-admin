@@ -12,10 +12,9 @@ define(['text!plugins/boolean/template.html', 'plugins/boolean/model', 'text!plu
                 options : false,
                 label : '',
                 type : 'boolean',
-                defaultValueType : 'text',
                 dataType : 'boolean',
                 validation : [],
-                value : ''
+                value : false
             },
             template : booleanPluginTemplate,
             setupTemplate : setupTemplate,

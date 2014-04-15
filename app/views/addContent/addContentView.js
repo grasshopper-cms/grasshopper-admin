@@ -19,6 +19,12 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
         function afterRender() {
             _addListenerForModelChange.call(this);
             this.$el.foundation();
+
+            var self = this;
+            setInterval(function() {
+                console.log(self.model.attributes.fields);
+            }, 2000);
+
         }
 
         function saveContent() {
