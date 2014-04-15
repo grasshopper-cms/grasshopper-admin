@@ -13,6 +13,7 @@ define(['text!plugins/textbox/template.html', 'plugins/textbox/model', 'text!plu
                 label : '',
                 type : 'textbox',
                 defaultValueType : 'text',
+                defaultValue : '',
                 dataType : 'string',
                 validation : [],
                 value : ''

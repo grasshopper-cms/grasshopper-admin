@@ -30,20 +30,16 @@ define(['jquery', 'underscore', 'masseuse',
                             setValuesOnParentFieldsObject : function() {
                                 var values = this.toJSON();
 
-                                if (values) {
+                                if (values || _.isString(values)) {
                                     rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
+                                } else {
+                                    delete rivets.model.view.model.get('fields')[rivets.model.field._id];
                                 }
                             },
                             toJSON: function () {
                                 var json = Backbone.Collection.prototype.toJSON.apply(this),
                                     max = rivets.model.field.max,
                                     value = _.pluck(json, 'value');
-
-                                value = _.compact(value); // Remove All falsy values.
-
-                                if(_.isUndefined(value[0])) { // If it is an array of nothing, return false.
-                                    return false;
-                                }
 
                                 if(max > 1) { // if its max is greater than 1 allow it to be represented as an array.
                                     return value;
