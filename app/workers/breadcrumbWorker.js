@@ -11,8 +11,9 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
         userBreadcrumb : userBreadcrumb
     };
 
-    function contentBreadcrumb($deferred, isNew) {
+    function contentBreadcrumb($deferred) {
         var nodeId = this.model.get('meta.node'),
+            isNew = this.model.get('isNew'),
             self = this;
 
         _getNodeDetailRecursively.call(this, nodeId)
