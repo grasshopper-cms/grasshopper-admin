@@ -15,7 +15,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'mongodump -h <%= mongo %> -d <%= herokuApp %> -c users -u <%= herokuApp %> -p <%= herokuKey %> -o tasks/seedData/mongodb'
+            command : grunt.template.process('mongodump -h <%= mongo %> -d <%= herokuApp %> -c users -u <%= herokuApp %> -p <%= herokuKey %> -o tasks/seedData')
         },
         mongorestore : {
             options : {
@@ -23,7 +23,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'mongorestore --drop --db <%= herokuApp %> --host <%= mongo %> -u <%= herokuApp %> -p <%= herokuKey %> tasks/seedData/mongodb/grasshopper'
+            command : grunt.template.process('mongorestore --drop --db <%= herokuApp %> --host <%= mongo %> -u <%= herokuApp %> -p <%= herokuKey %> tasks/seedData/<%= herokuApp %>')
         },
         mongomerge : {
             options : {
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'mongorestore --db <%= herokuApp %> --host <%= mongo %> -u <%= herokuApp %> -p <%= herokuKey %> tasks/seedData/mongodb/grasshopper'
+            command : grunt.template.process('mongorestore --db <%= herokuApp %> --host <%= mongo %> -u <%= herokuApp %> -p <%= herokuKey %> tasks/seedData/<%= herokuApp %>')
         },
         bowerInstall : {
             options : {
