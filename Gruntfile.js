@@ -16,13 +16,10 @@ module.exports = function (grunt) {
 
     ghaConfig = grunt.file.readJSON(ghaConfig);
 
-    grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
+    grunt.config.init(ghaConfig);
 
     grunt.config.set('warning', warning);
     grunt.config.set('buildDirectory', ghaConfigPath + path.sep + ghaConfig.buildDirectory);
-    grunt.config.set('mongo', ghaConfig.mongo);
-    grunt.config.set('herokuApp', ghaConfig.herokuApp);
-    grunt.config.set('herokuKey', ghaConfig.herokuKey);
 
     grunt.loadTasks('initConfig');
     grunt.loadTasks('tasks');

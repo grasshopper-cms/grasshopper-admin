@@ -2,18 +2,12 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory'),
-        mongo = grunt.config.get('mongo'),
-        herokuApp = grunt.config.get('herokuApp'),
-        herokuKey = grunt.config.get('herokuKey');
-
-
     grunt.config('shell', {
         test_heroku_api : {
-            command : 'curl '+ buildDirectory +'/token -H "Accept: application/json" -H "Acceen_US" -u "admin:TestPassword"',
-            options : {
-                stdout: true
-            }
+                command : grunt.template.process('curl <%= apiEndpoint %>/token -H "Accept: application/json" -H "Acceen_US" -u <%= userAdmin %>'),
+                options : {
+                    stdout: true
+                }
         },
         mongodump : {
             options : {
@@ -21,7 +15,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'mongodump -h '+ mongo +' -d '+herokuApp+' -c users -u '+herokuApp+' -p '+herokuKey+' -o tasks/seedData/mongodb'
+            command : 'mongodump -h <%= mongo %> -d <%= herokuApp %> -c users -u <%= herokuApp %> -p <%= herokuKey %> -o tasks/seedData/mongodb'
         },
         mongorestore : {
             options : {
@@ -29,7 +23,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'mongorestore --drop --db '+herokuApp+' --host '+ mongo +' -u '+herokuApp+' -p '+herokuKey+' tasks/seedData/mongodb/grasshopper'
+            command : 'mongorestore --drop --db <%= herokuApp %> --host <%= mongo %> -u <%= herokuApp %> -p <%= herokuKey %> tasks/seedData/mongodb/grasshopper'
         },
         mongomerge : {
             options : {
@@ -37,7 +31,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'mongorestore --db '+herokuApp+' --host '+ mongo +' -u '+herokuApp+' -p '+herokuKey+' tasks/seedData/mongodb/grasshopper'
+            command : 'mongorestore --db <%= herokuApp %> --host <%= mongo %> -u <%= herokuApp %> -p <%= herokuKey %> tasks/seedData/mongodb/grasshopper'
         },
         bowerInstall : {
             options : {
