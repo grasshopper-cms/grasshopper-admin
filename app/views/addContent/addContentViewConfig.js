@@ -1,29 +1,11 @@
 /*global define:false*/
-define(['text!views/addContent/addContentView.html', 'addContentViewModel', 'appBinders', 'resources', 'constants'],
-    function (addContentTemplate, addContentModel, appBinders, resources, constants) {
-        'use strict';
+define(['addContentViewModel'], function (addContentModel) {
+    'use strict';
 
-        return {
-            name : 'addContent',
-            ModelType : addContentModel,
-            modelData : {},
-            appendTo : '#stage',
-            wrapper : false,
-            template : addContentTemplate,
-            events : {
-                'click #saveContentButton' : 'saveContent'
-            },
-            listeners : [],
-            mastheadButtons : [],
-            breadcrumbs : [
-                {
-                    text : resources.content,
-                    href : constants.internalRoutes.content
-                }
-            ],
-            permissions : ['admin', 'editor'],
-            rivetsConfig : {
-                binders : [appBinders]
-            }
-        };
-    });
+    return {
+        name : 'addContent',
+        ModelType : addContentModel,
+        modelData : {},
+        permissions : ['admin', 'editor']
+    };
+});

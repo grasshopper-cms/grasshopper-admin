@@ -6,18 +6,31 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     return GrasshopperBaseView.extend({
         defaultOptions : contentDetailViewConfig,
         beforeRender : beforeRender,
+        afterRender : afterRender,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick,
         saveContent : saveContent
     });
 
     function beforeRender($deferred) {
-        var self = this;
+//        var self = this;
 
-        _fetchContentDetails.call(this, $deferred);
-        setInterval(function() {
-            console.log(self.model.attributes.fields);
-        }, 2000);
+        if(this.model.get('isNew')) {
+            console.log('YEAH BUDDY');
+            _getContentSchema.call(this, $deferred);
+        } else {
+            _fetchContentDetails.call(this)
+                .done(_getContentSchema.bind(this, $deferred))
+                .fail(_handleFailedModelFetch.bind(this, $deferred));
+        }
+
+//        setInterval(function() {
+//            console.log(self.model.attributes.fields);
+//        }, 2000);
+    }
+
+    function afterRender() {
+        _addListenerForModelChange.call(this);
     }
 
     function deleteContent () {
@@ -80,6 +93,9 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             style : 'success',
             msg : resources.contentItem.successfullySaved
         });
+//        this.app.router.navigateTrigger(
+//            constants.internalRoutes.nodeDetail.replace(':id', this.model.get('meta.node'))
+//        );
     }
 
     function _handleFailedModelSave() {
@@ -92,10 +108,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         );
     }
 
-    function _fetchContentDetails($deferred) {
-        this.model.fetch()
-            .done(_getContentSchema.bind(this, $deferred))
-            .fail(_handleFailedModelFetch.bind(this, $deferred));
+    function _fetchContentDetails() {
+        return this.model.fetch();
     }
 
     function _handleFailedModelFetch($deferred) {
@@ -138,5 +152,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function _updateMastheadBreadcrumbs($deferred) {
         breadcrumbWorker.contentBreadcrumb.call(this, $deferred);
+    }
+
+    function _addListenerForModelChange() {
+        var self = this;
+
+        this.model.on('change:fields', function() {
+            self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
+        });
     }
 });

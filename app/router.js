@@ -335,11 +335,11 @@ define([
                 });
         }
 
-        function displayContentDetail (id) {
+        function displayContentDetail (id, options) {
             loadMainContent(ContentDetailView, {
-                    modelData : {
+                    modelData : _.extend({}, options, {
                         _id : id
-                    }
+                    })
                 });
         }
 
