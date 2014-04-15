@@ -26,15 +26,12 @@ module.exports = function (grunt) {
 
     grunt.registerTask('saveData', 'Saves the current database to a local seed directory', [
         'clean:seedData',
-        'shell:mongodump',
-        'copy:seedDataToGh'
+        'shell:mongodump'
     ]);
     grunt.registerTask('loadData', 'Imports the local seed directory into the database', [
-        'copy:seedDataToApi',
         'shell:mongorestore'
     ]);
     grunt.registerTask('mergeData', 'Attempts to merge the local seed directory with the database', [
-        'copy:seedDataToApi',
         'shell:mongomerge'
     ]);
 
