@@ -55,7 +55,6 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
             this.navigateTrigger('login');
         }
 
-
         function userIsStillValidUser ($deferred) {
             var self = this,
                 token = LocalStorage.get('authToken');

@@ -15,7 +15,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : grunt.template.process('mongodump -h <%= mongo %> -d <%= herokuApp %> -c users -u <%= herokuApp %> -p <%= herokuKey %> -o tasks/seedData')
+            command : grunt.template.process('mongodump -h <%= mongo %> -d <%= herokuApp %> -u <%= herokuApp %> -p <%= herokuKey %> -o tasks/seedData')
         },
         mongorestore : {
             options : {
