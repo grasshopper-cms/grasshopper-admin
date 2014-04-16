@@ -1,1 +1,1 @@
-{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "grasshopper.content", "name" : "_id_" }, { "v" : 1, "key" : { "slug" : 1 }, "unique" : true, "ns" : "grasshopper.content", "name" : "slug_1", "background" : true, "safe" : null } ] }
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "heroku_app23638163.content", "name" : "_id_" } ] }
