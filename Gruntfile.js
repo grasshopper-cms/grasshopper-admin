@@ -35,6 +35,9 @@ module.exports = function (grunt) {
     grunt.registerTask('mergeData', 'Attempts to merge the local seed directory with the database', [
         'shell:mongomerge'
     ]);
+    grunt.registerTask('testApi', 'Test the heroku API', [
+        'shell:test_heroku_api'
+    ]);
 
     grunt.registerTask('build-no-optimize', 'Build and watch task', [
         'setupBowerCopy',
