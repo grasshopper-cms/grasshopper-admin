@@ -12,6 +12,9 @@ define([], function() {
             login : {
                 url : apiEndpoint + '/token'
             },
+            logout : {
+                url : apiEndpoint + '/token/logout'
+            },
             user : {
                 url : apiEndpoint + '/user'
             },
