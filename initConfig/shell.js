@@ -4,10 +4,10 @@ module.exports = function (grunt) {
 
     grunt.config('shell', {
         test_heroku_api : {
-                command : grunt.template.process('curl <%= apiEndpoint %>/token -H "Accept: application/json" -H "Acceen_US" -u <%= userAdmin %>'),
-                options : {
-                    stdout: true
-                }
+            command : grunt.template.process('curl <%= apiEndpoint %>/token -H "Accept: application/json" -H "Acceen_US" -u <%= userAdmin %>'),
+            options : {
+                stdout: true
+            }
         },
         mongodump : {
             options : {
