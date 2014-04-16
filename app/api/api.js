@@ -44,6 +44,9 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         authenticateToken : function () {
             return this.request(constants.api.user.url);
         },
+        removeAuthToken : function () {
+            return this.request(constants.api.logout.url);
+        },
         post : function (url, data) {
             var token = LocalStorage.get('authToken');
             return $.ajax({

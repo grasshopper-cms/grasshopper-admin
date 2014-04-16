@@ -265,6 +265,7 @@
 
     "workers" : {
         "loginWorker" : "workers/loginWorker",
+        "logoutWorker" : "workers/logoutWorker",
         "contentTypeWorker" : "workers/contentTypeWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",

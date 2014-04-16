@@ -2,7 +2,7 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants',
     'grasshopperBaseView',
-    'loginView', 'loginWorker',
+    'loginView', 'loginWorker', 'logoutWorker',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
@@ -17,12 +17,11 @@ define([
     'contentTypeDetailView',
     'addFolderView',
     'addContentView',
-    'addAssetsView',
-    'helpers'
+    'addAssetsView'
 ],
     function ($, Backbone, _, masseuse, Api, constants,
               GrasshopperBaseView,
-              LoginView, loginWorker,
+              LoginView, loginWorker, logoutWorker,
               AlertBoxView,
               ModalView, modalViewConfig,
               resources,
@@ -37,12 +36,10 @@ define([
               ContentTypeDetailView,
               AddFolderView,
               AddContentView,
-              AddAssetsView,
-              helpers) {
+              AddAssetsView) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
-            LocalStorage = helpers.localStorage,
             userModel = new UserModel(),
             currentView,
             Router;
@@ -242,12 +239,8 @@ define([
         }
 
         function goLogout () {
-            var self = this;
-            LocalStorage.remove('authToken')
-                .done(function () {
-                    self.user.clear();
-                    self.navigate('login', {trigger : true}, true);
-                });
+            logoutWorker.doLogout.call(this)
+                .done(this.navigate.bind(this, 'login', {trigger : true}, true));
         }
 
         function displayLogin () {
