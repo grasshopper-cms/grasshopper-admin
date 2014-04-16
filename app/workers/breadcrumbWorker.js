@@ -8,13 +8,16 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
         contentBreadcrumb : contentBreadcrumb,
         contentTypeBreadcrumb : contentTypeBreadcrumb,
         contentBrowse : contentBrowse,
-        userBreadcrumb : userBreadcrumb
+        userBreadcrumb : userBreadcrumb,
+        resetBreadcrumb : resetBreadcrumb
     };
 
     function contentBreadcrumb($deferred) {
         var nodeId = this.model.get('meta.node'),
             isNew = this.model.get('isNew'),
             self = this;
+
+        _setOldBreadcrumb.call(this);
 
         _getNodeDetailRecursively.call(this, nodeId)
             .then(function() {
@@ -102,7 +105,17 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
 
     function _finishBreadcrumb($deferred) {
         channels.views.trigger('updateMastheadBreadcrumbs', this);
-        $deferred.resolve();
+        $deferred && $deferred.resolve();
+    }
+
+    function _setOldBreadcrumb() {
+        if(!_.has(this, 'originalBreadcrumbs')) {
+            this.originalBreadcrumbs = _.clone(this.breadcrumbs);
+        }
+    }
+
+    function resetBreadcrumb() {
+        this.breadcrumbs = _.clone(this.originalBreadcrumbs);
     }
 
 });

@@ -24,6 +24,6 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
         });
 
         function toJSON() {
-            return cleanCollection(_.pick(this.attributes, ['fields', 'meta']));
+            return cleanCollection(_.pick(this.attributes, ['fields', 'meta', '_id']));
         }
     });

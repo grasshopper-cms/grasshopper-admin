@@ -40,8 +40,7 @@ module.exports = function (grunt) {
                 failOnError : true
             },
             command : 'bower install'
-        },
-
+        }
     });
 
     grunt.loadNpmTasks('grunt-shell');
