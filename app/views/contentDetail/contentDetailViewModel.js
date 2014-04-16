@@ -12,18 +12,22 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
                 href : new ComputedProperty(['_id'], function (id) {
                     return constants.internalRoutes.contentDetail.replace(':id', id);
                 }),
-                label : new ComputedProperty(['fields'], function() {
-                    if(this.get('isNew')) {
-                        return resources.contentItem.createContent;
-                    }
-                    return this.get('fields.' + this.get('meta.labelfield'));
-                })
+                label : ''
             },
             urlRoot : constants.api.content.url,
-            toJSON : toJSON
+            toJSON : toJSON,
+            resetContentLabel : resetContentLabel
         });
 
         function toJSON() {
             return cleanCollection(_.pick(this.attributes, ['fields', 'meta', '_id']));
+        }
+
+        function resetContentLabel() {
+            if(this.get('isNew')) {
+                this.set('label', resources.contentItem.createContent);
+            } else {
+                this.set('label', this.get('fields.' + this.get('meta.labelfield')));
+            }
         }
     });
