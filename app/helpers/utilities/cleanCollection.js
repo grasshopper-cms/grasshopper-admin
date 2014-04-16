@@ -9,7 +9,10 @@ define(['underscore'], function (_) {
                 cleanCollection(value);
             }
 
-            if(_.isUndefined(value) || _.isNull(value) || _.isEmpty(value) || _.isNaN(value)) {
+            if(_.isUndefined(value) || _.isNull(value) || _.isNaN(value)) {
+                if(_.isArray(collection)) {
+                    collection.splice(key , 1);
+                }
                 delete collection[key];
             }
         });

@@ -13,20 +13,18 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     });
 
     function beforeRender($deferred) {
-//        var self = this;
-
         if(this.model.get('isNew')) {
-            console.log('YEAH BUDDY');
             _getContentSchema.call(this, $deferred);
         } else {
-            _fetchContentDetails.call(this)
-                .done(_getContentSchema.bind(this, $deferred))
-                .fail(_handleFailedModelFetch.bind(this, $deferred));
+            if(this.name === 'contentDetailRow') {
+                _fetchContentDetails.call(this)
+                    .done($deferred.resolve);
+            } else {
+                _fetchContentDetails.call(this)
+                    .done(_getContentSchema.bind(this, $deferred))
+                    .fail(_handleFailedModelFetch.bind(this, $deferred));
+            }
         }
-
-//        setInterval(function() {
-//            console.log(self.model.attributes.fields);
-//        }, 2000);
     }
 
     function afterRender() {
@@ -93,9 +91,14 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             style : 'success',
             msg : resources.contentItem.successfullySaved
         });
-//        this.app.router.navigateTrigger(
-//            constants.internalRoutes.nodeDetail.replace(':id', this.model.get('meta.node'))
-//        );
+
+        if(this.model.get('isNew')) {
+            this.model.set('isNew', false);
+        }
+
+        this.model.trigger('change:fields');
+        breadcrumbWorker.resetBreadcrumb.call(this);
+        _updateMastheadBreadcrumbs.call(this);
     }
 
     function _handleFailedModelSave() {
@@ -132,11 +135,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
 
-        if(this.name === 'contentDetailRow') {
-            $deferred.resolve();
-        } else {
-            _updateMastheadBreadcrumbs.call(this, $deferred);
-        }
+        _updateMastheadBreadcrumbs.call(this, $deferred);
     }
 
     function _handleFailedContentSchemaRetrieval($deferred) {
