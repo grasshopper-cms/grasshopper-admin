@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -18,7 +18,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         } else {
             if(this.name === 'contentDetailRow') {
                 _fetchContentDetails.call(this)
-                    .done($deferred.resolve);
+                    .done(this.model.resetContentLabel.bind(this.model), $deferred.resolve);
             } else {
                 _fetchContentDetails.call(this)
                     .done(_getContentSchema.bind(this, $deferred))
@@ -94,10 +94,12 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
         if(this.model.get('isNew')) {
             this.model.set('isNew', false);
+            this.app.router.navigateNinja(
+                constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id')));
         }
 
-        this.model.trigger('change:fields');
         breadcrumbWorker.resetBreadcrumb.call(this);
+        this.model.resetContentLabel();
         _updateMastheadBreadcrumbs.call(this);
     }
 
@@ -128,7 +130,10 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function _getContentSchema($deferred) {
         Api.getContentType(this.model.get('meta.type'))
-            .done(_handleSuccessfulContentSchemaRetrieval.bind(this, $deferred))
+            .done(
+                this.model.resetContentLabel.bind(this.model),
+                _handleSuccessfulContentSchemaRetrieval.bind(this, $deferred)
+            )
             .fail(_handleFailedContentSchemaRetrieval.bind(this, $deferred));
     }
 
