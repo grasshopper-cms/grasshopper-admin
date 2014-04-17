@@ -126,13 +126,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _handleFailedContentTypeDeletion(model) {
-        this.displayAlertBox(
-            {
-                header : 'Error',
-                style : 'error',
-                msg : resources.contentType.errorDeleted + model.get('label')
-            }
-        );
+        this.fireErrorModal(resources.contentType.errorDeleted + model.get('label'));
     }
 
     function handleRowClick (e) {
@@ -174,13 +168,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _handleFailedModelSave() {
-        this.displayAlertBox(
-            {
-                header : 'Error',
-                style : 'error',
-                msg: resources.contentType.failedSave
-            }
-        );
+        this.fireErrorModal(resources.contentType.failedSave);
     }
 
     function _updateMastheadBreadcrumbs($deferred, isNew) {
