@@ -1,57 +1,59 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore'],
-    function (GrasshopperBaseView, _) {
+define(['grasshopperBaseView', 'underscore', 'plugins/checkbox/optionsCollection'],
+    function (GrasshopperBaseView, _, OptionsCollection) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             beforeRender : beforeRender,
+            afterRender : afterRender,
             addOption : addOption,
             removeOption : removeOption,
-            reduceCollection : reduceCollection,
-            buildValues : buildValues
+            reduceOptions : reduceOptions,
+            reduceValues : reduceValues
         });
 
-        function beforeRender() {
-            if(!_.isUndefined(this.model.get('value'))) {
-                _hydrateOptionsWithValue.call(this);
+        function beforeRender($deferred) {
+            this.collection = new OptionsCollection(this.model.get('options'));
+
+            if(this.model.get('inSetup')) {
+                _addSetupListeners.call(this);
+            } else {
+                _addNormalEventListeners.call(this);
             }
 
-            this.collection.reset(this.model.get('options'));
+            _.defer($deferred.resolve);
+        }
+
+        function afterRender() {
+            if(this.model.get('value')) {
+                this.collection.hydrateOptionsWithValues(this.model.get('value'));
+            } else {
+                this.reduceValues();
+            }
         }
 
         function addOption() {
             this.collection.add({ _id: '', label: ''});
-            this.reduceCollection();
         }
 
         function removeOption(evt, context) {
             this.collection.remove(context.option);
-            this.reduceCollection();
         }
 
-        function reduceCollection() {
-            this.model.set('options', this.collection.toJSON());
+        function reduceOptions() {
+            this.model.set('options', this.collection.reduceOptions());
         }
 
-        function buildValues() {
-            var options = this.model.get('options'),
-                obj = {};
-
-            _.each(options, function(option) {
-                obj[option._id] = !_.isUndefined(option.checked) ? option.checked : false;
-            });
-
-            this.model.set('value', obj);
+        function reduceValues() {
+            this.model.set('value', this.collection.reduceValues());
         }
 
-        function _hydrateOptionsWithValue() {
-            var options = this.model.get('options'),
-                value = this.model.get('value');
-
-            _.each(options, function(option) {
-                option.checked = _.has(value, option._id) ? value[option._id] : value;
-            });
-
-            this.model.set('options', options);
+        function _addSetupListeners() {
+            this.collection.on('all', this.reduceOptions.bind(this));
         }
+
+        function _addNormalEventListeners() {
+            this.collection.on('all', this.reduceValues.bind(this));
+        }
+
     });
