@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
-    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker', 'plugins'],
+    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker', 'plugins', 'constants'],
     function (GrasshopperBaseView, contentTypeDetailViewConfig,
-              resources, Api, _, $, breadcrumbWorker, plugins) {
+              resources, Api, _, $, breadcrumbWorker, plugins, constants) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -166,6 +166,13 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                 style : 'success'
             }
         );
+
+        this.app.router.navigateNinja(
+            constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id')));
+
+        breadcrumbWorker.resetBreadcrumb.call(this);
+        _updateMastheadBreadcrumbs.call(this);
+
     }
 
     function _handleFailedModelSave() {
