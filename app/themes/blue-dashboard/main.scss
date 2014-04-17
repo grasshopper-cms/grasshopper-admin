@@ -19,7 +19,9 @@ $font: 'Open Sans', arial, sans-serif;
 }
 
 body, html {
-  height: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  position: static;
 
   font-family: $font;
 
