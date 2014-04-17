@@ -11,7 +11,6 @@ define(['grasshopperBaseView', 'footerViewConfig', 'jquery', 'api'],
         function beforeRender($deferred) {
             _getApiVersion.call(this)
                 .done($deferred.resolve);
-            console.log(this.model.get('constants.version'));
         }
 
         function _getApiVersion() {
@@ -21,7 +20,6 @@ define(['grasshopperBaseView', 'footerViewConfig', 'jquery', 'api'],
             api.getVersion()
                 .done(function(versionDetails) {
                     self.model.set('apiVersions', versionDetails);
-                    console.log(versionDetails);
                     $deferred.resolve();
                 });
 
