@@ -2,9 +2,11 @@
 define([], function() {
     'use strict';
 
-    var apiEndpoint = '<%= apiEndpoint %>';
+    var apiEndpoint = '<%= apiEndpoint %>',
+        version = '<%= version %>';
 
     return {
+        version : version,
         api : {
             base : {
                 url : apiEndpoint
