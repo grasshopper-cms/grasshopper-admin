@@ -23,6 +23,9 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         getUsers : function () {
             return this.request(constants.api.users.url);
         },
+        getVersion : function () {
+            return this.request(constants.api.version.url);
+        },
         getContentTypes : function () {
             return this.request(constants.api.contentTypes.url);
         },
