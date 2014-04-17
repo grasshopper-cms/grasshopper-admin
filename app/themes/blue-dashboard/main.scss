@@ -71,8 +71,9 @@ body, html {
   }
 
   #stage {
+    overflow-y: scroll;
     margin-top: 1em;
-    min-height: 75%
+    min-height: 76%
   }
 
   .search {
