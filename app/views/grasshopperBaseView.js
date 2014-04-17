@@ -7,7 +7,8 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
 
     return RivetView.extend({
         initialize : initialize,
-        start : start
+        start : start,
+        fireErrorModal : fireErrorModal
     });
 
     function initialize (options) {
@@ -57,5 +58,15 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
 
         return RivetView.prototype.start.apply(this, arguments)
             .done(_handleAfterRender.bind(this));
+    }
+
+    function fireErrorModal(message) {
+        return this.displayModal(
+            {
+                header : 'Error',
+                type : 'error',
+                msg : message
+            }
+        );
     }
 });

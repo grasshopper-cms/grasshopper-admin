@@ -53,13 +53,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _handleFailedDeletion(model) {
-        this.displayAlertBox(
-            {
-                header : 'Error',
-                style : 'error',
-                msg : resources.contentItem.errorDeleted + model.get('label')
-            }
-        );
+        this.fireErrorModal(resources.contentItem.errorDeleted + model.get('label'));
     }
 
     function _handleSuccessfulDeletion(model) {
@@ -104,13 +98,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _handleFailedModelSave() {
-        this.displayAlertBox(
-            {
-                header : 'error',
-                style : 'error',
-                msg : resources.contentItem.failedToSave
-            }
-        );
+        this.fireErrorModal(resources.contentItem.failedToSave);
     }
 
     function _fetchContentDetails() {
@@ -118,13 +106,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _handleFailedModelFetch($deferred) {
-        this.displayAlertBox(
-            {
-                header : 'Error',
-                style : 'error',
-                msg : resources.contentItem.failedToFetch
-            }
-        );
+        this.fireErrorModal(resources.contentItem.failedToFetch);
         $deferred.reject();
     }
 
@@ -144,13 +126,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _handleFailedContentSchemaRetrieval($deferred) {
-        this.displayAlertBox(
-            {
-                header : 'Error',
-                style : 'error',
-                msg : resources.contentItem.failedToFetchContentsContentType
-            }
-        );
+        this.fireErrorModal(resources.contentItem.failedToFetchContentsContentType);
         $deferred.reject();
     }
 

@@ -28,13 +28,7 @@ define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'contentTypeDetailV
                     $deferred.resolve();
                 })
                 .fail(function (xhr) {
-                    self.displayAlertBox(
-                        {
-                            header : 'Error',
-                            style : 'error',
-                            msg : resources.contentType.serverError + ' ' + xhr.responseJSON.message
-                        }
-                    );
+                    self.fireErrorModal(resources.contentType.serverError + ' ' + xhr.responseJSON.message);
                 });
         }
 
