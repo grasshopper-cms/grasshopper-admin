@@ -19,9 +19,7 @@ $font: 'Open Sans', arial, sans-serif;
 }
 
 body, html {
-  height: 100vh;
-  overflow-y: scroll;
-  position: static;
+  height: 100%;
 
   font-family: $font;
 
@@ -74,7 +72,7 @@ body, html {
 
   #stage {
     margin-top: 1em;
-    margin-bottom: 8em;
+    min-height: 76%
   }
 
   .search {
