@@ -29,14 +29,14 @@ define(['grasshopperBaseView', 'underscore'],
         }
 
         function calculateSlug(fields) {
-            var fieldId = this.model.get('options'),
-                fieldValue = fields[fieldId],
-                newSlugValue = fields[this.model.get('fieldId')];
+            var fieldToSlugId = this.model.get('options'),
+                newSlugableValue = fields[fieldToSlugId],
+                currentSlugValue = fields[this.model.get('fieldId')];
 
             // will break the binding when slug changes first, this is intended
-            if(newSlugValue === this.model.get('oldSlugValue')) {
-                this.model.set('value', fieldValue);
-                this.model.set('oldSlugValue', newSlugValue ? newSlugValue : fieldValue);
+            if(currentSlugValue === this.model.get('oldSlugValue')) {
+                this.model.set('value', newSlugableValue);
+                this.model.set('oldSlugValue', newSlugableValue);
             }
         }
 
