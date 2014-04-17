@@ -125,13 +125,24 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         function _applyMultiSort($sortable) {
             var fields = [],
+                elements = {},
+                $children = $sortable.children(),
+                childLength = $children.length,
+                i,
                 self = this;
 
             $sortable.find('.sortableMulti').each(function() {
                 fields.push(self.collection.get($(this).attr('modelid')));
             });
 
-            this.collection.reset(fields, { silent : true });
-            this.collection.setValuesOnParentFieldsObject();
+            $children.each(function() {
+                elements[$(this).attr('sortIndex')] = this;
+            });
+
+            for(i = 0; i < childLength; ++i) {
+                $sortable.append(elements['sort'+ i]);
+            }
+
+            this.collection.reset(fields);
         }
     });

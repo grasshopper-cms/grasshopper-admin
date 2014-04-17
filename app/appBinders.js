@@ -23,30 +23,24 @@ define(['jquery', 'underscore', 'masseuse',
                         }),
                         collection : new (Backbone.Collection.extend({
                             initialize: function () {
-                                this.on('add remove reset change', function () {
-                                    this.setValuesOnParentFieldsObject();
+                                this.on('all', function (eventName) {
+                                    this.setValuesOnParentFieldsObject(eventName);
                                 });
                             },
                             setValuesOnParentFieldsObject : function() {
-                                var values = this.toJSON();
+                                var values = this.toJSON(),
+                                    max = rivets.model.field.max;
 
-                                if (values || _.isString(values)) {
-                                    rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
-                                } else {
-                                    delete rivets.model.view.model.get('fields')[rivets.model.field._id];
+                                if(max === 1) {
+                                    values = values[0];
                                 }
+
+                                rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
                             },
                             toJSON: function () {
-                                var json = Backbone.Collection.prototype.toJSON.apply(this),
-                                    max = rivets.model.field.max,
-                                    value = _.pluck(json, 'value');
+                                var json = Backbone.Collection.prototype.toJSON.apply(this);
 
-                                if(max > 1) { // if its max is greater than 1 allow it to be represented as an array.
-                                    return value;
-                                } else {
-                                    return value[0];
-                                }
-
+                                return _.pluck(json, 'value');
                             }
                         }))([], {}),
                         appendTo : el
