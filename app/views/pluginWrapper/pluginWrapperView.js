@@ -54,7 +54,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 _.each(values, function (value) {
                     _addPlugin.call(self, value);
                 });
-            } else if (values) { // if values exists
+            } else if (!!values || _.isString(values)) { // if values exists
                 _addPlugin.call(this, values);
             } else if (minimum === 0) { // if values does not exist and minimum is zero
                 this.collection.setValuesOnParentFieldsObject();
