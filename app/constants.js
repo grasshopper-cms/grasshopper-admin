@@ -48,7 +48,7 @@ define([], function() {
             contentQuery : {
                 url : apiEndpoint + '/content/query'
             },
-            system : {
+            version : {
                 url : apiEndpoint + '/system'
             }
         },
