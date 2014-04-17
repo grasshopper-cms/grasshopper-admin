@@ -161,8 +161,9 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         _collapseAccordion.call(this);
         this.displayTemporaryAlertBox(
             {
+                header : 'Success',
                 msg: resources.contentType.successfulSave,
-                status: true
+                style : 'success'
             }
         );
     }
