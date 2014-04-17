@@ -78,13 +78,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         }
 
         function _handleDeletionError () {
-            this.displayAlertBox(
-                {
-                    header : 'Error',
-                    style : 'error',
-                    msg: resources.asset.errorDeleted + this.model.get('fileName')
-                }
-            );
+            this.fireErrorModal(resources.asset.errorDeleted + this.model.get('fileName'));
         }
 
         function _getNewFileName() {
@@ -117,13 +111,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         }
 
         function _handleAssetRenameError() {
-            this.displayTemporaryAlertBox(
-                {
-                    header : 'Error',
-                    style : 'error',
-                    msg: resources.asset.editNameFail
-                }
-            );
+            this.fireErrorModal(resources.asset.editNameFail);
         }
 
         function _handleUploadProgress(percentDone) {
@@ -148,13 +136,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         function _handleFailedUpload() {
             this.model.set('uploadError', true);
             _handleUploadProgress.call(this, 0);
-            this.displayTemporaryAlertBox(
-                {
-                    header : 'Error',
-                    style : 'error',
-                    msg: resources.asset.uploadAssetError
-                }
-            );
+            this.fireErrorModal(resources.asset.uploadAssetError);
         }
 
     });

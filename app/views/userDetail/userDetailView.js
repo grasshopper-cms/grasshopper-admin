@@ -46,13 +46,7 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         }
 
         function _handleFailedSave (xhr) {
-            this.displayAlertBox(
-                {
-                    header : 'Error',
-                    style : 'error',
-                    msg : xhr.responseJSON.message
-                }
-            );
+            this.fireErrorModal(xhr.responseJSON.message);
         }
 
         function _updateNameInHeader (model) {

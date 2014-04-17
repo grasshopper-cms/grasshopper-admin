@@ -15,7 +15,7 @@ define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!p
                 type : 'dropdown',
                 dataType : 'dropdown',
                 validation : [],
-                value : ''
+                value : undefined
             },
             wrapper: false,
             template : dropdownPluginTemplate,

@@ -70,13 +70,7 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
     }
 
     function _handleSaveError (xhr) {
-        this.displayAlertBox(
-            {
-                header : 'Error',
-                style : 'error',
-                msg : xhr.responseJSON.message
-            }
-        );
+        this.fireErrorModal(xhr.responseJSON.message);
     }
 
     function _updateMastheadBreadcrumbs($deferred) {
