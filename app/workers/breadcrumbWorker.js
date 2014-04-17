@@ -30,6 +30,8 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
     }
 
     function contentTypeBreadcrumb($deferred, isNew) {
+        _setOldBreadcrumb.call(this);
+
         if (isNew) {
             _addIsNewScope.call(this, $deferred, 'new');
         } else {
