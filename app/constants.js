@@ -47,6 +47,9 @@ define([], function() {
             },
             contentQuery : {
                 url : apiEndpoint + '/content/query'
+            },
+            system : {
+                url : apiEndpoint + '/system'
             }
         },
         internalRoutes : {
