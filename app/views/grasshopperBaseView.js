@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['backbone', 'masseuse'], function (Backbone, masseuse) {
+define(['backbone', 'masseuse', 'resources'], function (Backbone, masseuse, resources) {
     'use strict';
 
     var RivetView = masseuse.plugins.rivets.RivetsView,
@@ -63,7 +63,7 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
     function fireErrorModal(message) {
         return this.displayModal(
             {
-                header : 'Error',
+                header : resources.error,
                 type : 'error',
                 msg : message
             }

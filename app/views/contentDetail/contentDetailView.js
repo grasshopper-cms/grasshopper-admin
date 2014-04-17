@@ -59,7 +59,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function _handleSuccessfulDeletion(model) {
         this.displayTemporaryAlertBox(
             {
-                header : 'Success',
+                header : resources.success,
                 style : 'success',
                 msg : resources.contentItem.successfullyDeletedPre + model.get('label') +
                     resources.contentItem.successfullyDeletedPost
@@ -80,11 +80,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _handleSuccessfulModelSave() {
-        this.displayTemporaryAlertBox({
-            header : 'Success',
-            style : 'success',
-            msg : resources.contentItem.successfullySaved
-        });
+        this.displayTemporaryAlertBox(
+            {
+                header : resources.success,
+                style : 'success',
+                msg : resources.contentItem.successfullySaved
+            }
+        );
 
         if(this.model.get('isNew')) {
             this.model.set('isNew', false);

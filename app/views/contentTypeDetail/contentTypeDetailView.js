@@ -116,7 +116,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function _handleSuccessfulContentTypeDeletion(model) {
         this.displayTemporaryAlertBox(
             {
-                header : 'Success',
+                header : resources.success,
                 style : 'success',
                 msg : resources.contentType.successfullyDeletedPre + model.get('label') +
                     resources.contentType.successfullyDeletedPost
@@ -161,7 +161,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         _collapseAccordion.call(this);
         this.displayTemporaryAlertBox(
             {
-                header : 'Success',
+                header : resources.success,
                 msg: resources.contentType.successfulSave,
                 style : 'success'
             }
