@@ -119,13 +119,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         }
 
         function _handleFailedContentTypeAddition(msg) {
-            this.displayAlertBox(
-                {
-                    header : 'Error',
-                    style : 'error',
-                    msg : msg
-                }
-            );
+            this.fireErrorModal(msg);
         }
 
         function _warnUserBeforeDeleting() {
@@ -163,13 +157,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         }
 
         function _handleFailedNodeDeletion() {
-            this.displayAlertBox(
-                {
-                    header : 'Error',
-                    style : 'error',
-                    msg : resources.node.errorDeleted + this.model.get('label')
-                }
-            );
+            this.fireErrorModal(resources.node.errorDeleted + this.model.get('label'));
         }
 
         function _redirectToParent() {

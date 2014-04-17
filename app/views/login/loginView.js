@@ -17,24 +17,24 @@ define(['grasshopperBaseView', 'loginViewConfig', 'loginWorker', 'jquery'],
     }
 
     function throwLoginError (xhr) {
-        this.displayAlertBox(
-            {
-                header : 'Error',
-                style : 'error',
-                msg : xhr
-            }
-        );
+        this.fireErrorModal(xhr);
     }
 
     function fireAlertBox(e) {
         var style = $(e.target).text();
-        this.displayAlertBox(
-            {
-                msg : style,
-                header : style,
-                style : style
-            }
-        );
+
+        if(style === 'error') {
+            this.fireErrorModal('Error MEssage YEAH');
+        } else {
+            this.displayAlertBox(
+                {
+                    msg : style,
+                    header : style,
+                    style : style
+                }
+            );
+        }
+
     }
 
 });

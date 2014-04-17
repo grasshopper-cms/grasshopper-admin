@@ -1,5 +1,5 @@
 define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore', 'api',
-        'plugins/contentReference/modal/contentModel'],
+        'plugins/contentreference/modal/contentModel'],
     function (Model, resources, grasshopperCollection, constants, masseuse, _, Api,
               contentReferenceModalContentModel) {
 
