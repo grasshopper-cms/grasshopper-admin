@@ -102,7 +102,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 .done(function() {
                     self.displayTemporaryAlertBox(
                         {
-                            header : 'Success',
+                            header : resources.success,
                             style : 'success',
                             msg: resources.asset.editNameSuccess
                         }
@@ -126,7 +126,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 });
             this.displayTemporaryAlertBox(
                 {
-                    header : 'Success',
+                    header : resources.success,
                     style : 'succes',
                     msg: response
                 }

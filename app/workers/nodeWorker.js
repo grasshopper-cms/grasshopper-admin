@@ -65,7 +65,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _handleSuccessfulNodeSave($deferred) {
             this.displayTemporaryAlertBox(
                 {
-                    header : 'Success',
+                    header : resources.success,
                     style : 'success',
                     msg : resources.node.successfullyUpdated
                 }
@@ -111,7 +111,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _handleSuccessfulContentTypeAddition() {
             this.displayTemporaryAlertBox(
                 {
-                    header : 'Success',
+                    header : resources.success,
                     style : 'success',
                     msg : resources.contentType.contentTypeAdded
                 }
@@ -145,7 +145,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
 
             this.displayTemporaryAlertBox(
                 {
-                    header : 'Success',
+                    header : resources.success,
                     style : 'success',
                     msg : resources.node.successfullyDeletedPre + this.model.get('label') +
                         resources.node.successfullyDeletedPost

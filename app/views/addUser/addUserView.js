@@ -62,7 +62,7 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
         this.app.router.navigateTrigger('users');
         this.displayTemporaryAlertBox(
             {
-                header : 'Success',
+                header : resources.success,
                 style : 'success',
                 msg : resources.user.newUserAdded
             }

@@ -37,7 +37,7 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         function _handleSuccessfulSave (model) {
             this.displayTemporaryAlertBox(
                 {
-                    header : 'Success',
+                    header : resources.success,
                     style : 'success',
                     msg : resources.user.successfullyUpdated
                 }
