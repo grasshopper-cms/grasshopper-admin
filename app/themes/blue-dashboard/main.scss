@@ -27,7 +27,7 @@ body, html {
     font-family: $font;
     margin: 10px 0;
     font-family: inherit;
-    font-weight: 600;
+    font-weight: normal;
     color: inherit;
     text-rendering: optimizelegibility;
   }
@@ -60,6 +60,7 @@ body, html {
 
   fieldset+legend {
     max-width: 90%;
+    font-weight: normal;
   }
 
   ul.folder-tree li {
