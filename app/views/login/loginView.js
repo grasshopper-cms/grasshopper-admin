@@ -5,8 +5,7 @@ define(['grasshopperBaseView', 'loginViewConfig', 'loginWorker'],
     return GrasshopperBaseView.extend({
         defaultOptions : loginViewConfig,
         login : login,
-        throwLoginError : throwLoginError,
-        fireAlertBox : fireAlertBox
+        throwLoginError : throwLoginError
     });
 
     function login () {
