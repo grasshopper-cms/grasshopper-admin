@@ -12,6 +12,7 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
         function afterRender() {
             _initializeAccordions.call(this);
             _buildSubNodeAccordions.call(this);
+            console.log(this.model.get('_id'));
         }
 
         function _openFolder() {

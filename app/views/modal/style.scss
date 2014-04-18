@@ -31,6 +31,7 @@
 
     #modalBody {
       padding: 0 $modalPadding 0 $modalPadding;
+      overflow: hidden;
     }
 
     .modalPadding { // utility class for things outside the inputContainer
@@ -41,6 +42,19 @@
       max-height: 500px;
       overflow: scroll;
       border: 1px solid #CCC;
+    }
+
+    ol {
+      font-size: 12px;
+      word-wrap: break-word;
+      padding-left: 0px;
+
+      li {
+        list-style-position: inside;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
 
     #buttonContainer {
