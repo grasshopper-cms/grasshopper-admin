@@ -10,7 +10,10 @@
 
                 <div class="row emptyFieldMessage" data-rv-hide="collection: | hasLength">
                     <div class="small-12 columns">
-                        <label>{{model:resources->pluginWrapper->emptyFieldsMessage}}</label>
+                        <label>
+                            {{model:label | spaceAfter}}{{model:resources->pluginWrapper->emptyFieldsMessage}}
+                            <a data-rv-on-click="view.addField">{{model:resources->pluginWrapper->clickToAdd}}</a>
+                        </label>
                     </div>
                 </div>
 

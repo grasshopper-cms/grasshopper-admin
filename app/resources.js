@@ -168,7 +168,8 @@ define({
         }
     },
     pluginWrapper : {
-        emptyFieldsMessage : 'This field is currently empty.'
+        emptyFieldsMessage : 'not set.',
+        clickToAdd : 'Click To Add.'
     },
     plugins : {
         codeEditor : {
