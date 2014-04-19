@@ -15,11 +15,13 @@ define(['jquery', 'underscore', 'masseuse',
                     this.viewInstance.remove();
                 },
                 routine : function(el) {
-                    var rivets = this;
+                    var rivets = this,
+                        parentView = this.model.view,
+                        thisField = this.model.field;
 
                     rivets.viewInstance = new PluginWrapperView({
-                        modelData : _.extend({}, rivets.model.field, {
-                            value: masseuse.ProxyProperty('fields.' + rivets.model.field._id, rivets.model.view.model)
+                        modelData : _.extend({}, thisField, {
+                            value: masseuse.ProxyProperty('fields.' + thisField._id, parentView.model)
                         }),
                         collection : new (Backbone.Collection.extend({
                             initialize: function () {
@@ -29,13 +31,13 @@ define(['jquery', 'underscore', 'masseuse',
                             },
                             setValuesOnParentFieldsObject : function() {
                                 var values = this.toJSON(),
-                                    max = rivets.model.field.max;
+                                    max = thisField.max;
 
                                 if(max === 1) {
                                     values = values[0];
                                 }
 
-                                rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
+                                parentView.model.set('fields.' + thisField._id, values);
                             },
                             toJSON: function () {
                                 var json = Backbone.Collection.prototype.toJSON.apply(this);

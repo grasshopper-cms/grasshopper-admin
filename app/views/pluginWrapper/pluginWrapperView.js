@@ -81,7 +81,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
         }
 
         function _handleDefaultValue(value) {
-            var defaultValue = this.model.get('defaultValue') || this.model.get('configModule.modelData.value');
+            var defaultValue = this.model.get('defaultValue') || this.model.get('configModule.modelData').value;
             if (_.isUndefined(value)) {
                 return defaultValue;
             } else {
