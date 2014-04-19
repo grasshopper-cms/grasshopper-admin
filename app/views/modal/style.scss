@@ -72,6 +72,17 @@
         margin-right: auto;
       }
     }
+    .imageModalUrl {
+      input {
+        width: 100%;
+      }
+      a {
+        font-size: 11px;
+        line-height: 27px;
+        height: 26px;
+      }
+
+    }
 
     #dropZone { // only used by the upload modal
       height: 60px;
