@@ -51,8 +51,12 @@
 
   #fileName {
     float: right;
+    width: 194px;
     padding: 5px;
     font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
 }
