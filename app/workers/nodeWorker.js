@@ -74,11 +74,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         }
 
         function _handleFailedNodeSave($deferred) {
-            this.displayAlertBox(
-                {
-                    msg : resources.node.errorUpdated
-                }
-            );
+            this.fireErrorModal(resources.node.errorUpdated);
             $deferred.reject();
         }
 
