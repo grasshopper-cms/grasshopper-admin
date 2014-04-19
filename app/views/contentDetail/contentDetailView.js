@@ -74,7 +74,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function saveContent() {
-        this.model.save()
+        this.model.save({ parse : false })
             .done(_handleSuccessfulModelSave.bind(this))
             .fail(_handleFailedModelSave.bind(this));
     }

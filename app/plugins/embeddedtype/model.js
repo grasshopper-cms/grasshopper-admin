@@ -3,8 +3,13 @@ define(['grasshopperModel', 'resources', 'constants'], function (Model, resource
 
     return Model.extend({
         idAttribute : 'options',
-        defaults : {
-            resources : resources
+        defaults : function() {
+            return {
+                resources : resources,
+                accordionLabel : '',
+                fields : {},
+                value : {}
+            };
         },
         urlRoot : constants.api.contentTypes.url
     });
