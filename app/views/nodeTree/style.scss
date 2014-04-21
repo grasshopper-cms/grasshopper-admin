@@ -1,6 +1,6 @@
 #nodeTree {
   max-height: 700px;
-  padding: 5px;
+  padding: 1.25em;
   margin-bottom: 3px;
 
   .nodeTree {
@@ -23,6 +23,7 @@
     ul {
       margin-bottom: 0;
     }
+
   }
 
   .nodeTreeSubNode {
@@ -37,7 +38,25 @@
   }
 
   .nodeTreeThumbNail {
-    max-height: 50px;
+    max-height: 53px;
     margin-right: 10px;
+    border: 0;
   }
+
+  .thumbnailContainer {
+    float: left;
+    width: 44px;
+    overflow: hidden;
+  }
+
+  #fileName {
+    float: right;
+    width: 194px;
+    padding: 5px;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
 }

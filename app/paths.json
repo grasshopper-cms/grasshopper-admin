@@ -35,7 +35,7 @@
     },
 
     "validation+" : {
-        "" : "validation/validation",
+        "Library" : "validation/validationLibrary",
         "Types" : "validation/validationTypes",
 
         "validationAlpha+" : {
@@ -131,7 +131,11 @@
         "assetDetailView+" : {
             "" : "views/assetDetail/assetDetailView",
             "Config" : "views/assetDetail/assetDetailViewConfig",
-            "Model" : "views/assetDetail/assetDetailViewModel"
+            "Model" : "views/assetDetail/assetDetailViewModel",
+            "assetDetailRow+" : {
+                "" : "views/assetDetail/assetDetailRow/view",
+                "Config" : "views/assetDetail/assetDetailRow/config"
+            }
         },
 
         "assetIndexView+" : {
@@ -183,6 +187,12 @@
             "" : "views/fileBrowser/fileBrowserView",
             "Config" : "views/fileBrowser/fileBrowserViewConfig",
             "Model" : "views/fileBrowser/fileBrowserViewModel"
+        },
+
+        "footerView+" : {
+            "" : "views/footer/footerView",
+            "Config" : "views/footer/footerViewConfig",
+            "Model" : "views/footer/footerViewModel"
         },
 
         "headerView+" : {
@@ -238,7 +248,11 @@
         "userDetailView+" : {
             "" : "views/userDetail/userDetailView",
             "Config" : "views/userDetail/userDetailViewConfig",
-            "Model" : "views/userDetail/userDetailViewModel"
+            "Model" : "views/userDetail/userDetailViewModel",
+            "userDetailRow+" : {
+                "" : "views/userDetail/userDetailRow/view",
+                "Config" : "views/userDetail/userDetailRow/config"
+            }
         },
 
         "userIndexView+" : {
@@ -257,6 +271,7 @@
 
     "workers" : {
         "loginWorker" : "workers/loginWorker",
+        "logoutWorker" : "workers/logoutWorker",
         "contentTypeWorker" : "workers/contentTypeWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
@@ -280,8 +295,7 @@
     "binders" : {
         "appBinders" : "appBinders",
         "pluginWrapperBinders" : "views/pluginWrapper/pluginWrapperBinders",
-        "contentTypeDetailBinders" : "views/contentTypeDetail/contentTypeDetailBinders",
-        "userIndexViewBinders" : "views/userIndex/binders"
+        "contentTypeDetailBinders" : "views/contentTypeDetail/contentTypeDetailBinders"
     },
 
     "formatters" : {

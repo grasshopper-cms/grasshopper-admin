@@ -1,1 +1,0 @@
-{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "grasshopper.users", "name" : "_id_" }, { "v" : 1, "key" : { "login" : 1 }, "unique" : true, "ns" : "grasshopper.users", "name" : "login_1", "background" : true, "safe" : null } ] }

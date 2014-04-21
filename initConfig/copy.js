@@ -72,26 +72,6 @@ module.exports = function (grunt) {
                 }
             ]
         },
-        seedDataToGh : {
-            files : [
-                {
-                    expand: true,
-                    src: 'node_modules/grasshopper-api/tasks/seedData/mongodb/grasshopper/*',
-                    dest: 'tasks/seedData/mongodb/grasshopper/',
-                    flatten: true
-                }
-            ]
-        },
-        seedDataToApi : {
-            files : [
-                {
-                    expand: true,
-                    src: 'tasks/seedData/mongodb/grasshopper/*',
-                    dest: 'node_modules/grasshopper-api/tasks/seedData/mongodb/grasshopper/',
-                    flatten: true
-                }
-            ]
-        },
         html : {
             files : [
                 {

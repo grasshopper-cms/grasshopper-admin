@@ -1,6 +1,6 @@
 define([
-    'grasshopperModel', 'validation', 'masseuse', 'resources', 'constants'
-], function (Model, validation, masseuse, resources, constants) {
+    'grasshopperModel', 'masseuse', 'resources', 'constants'
+], function (Model, masseuse, resources, constants) {
 
     'use strict';
     var ComputedProperty = masseuse.ComputedProperty;

@@ -32,15 +32,13 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
         }
 
         function _handleSuccessfulContentQuery($deferred, data) {
-            this.model.set('nodeContent', data);
+            this.model.set('nodeContent', data.results);
 
             $deferred.resolve();
         }
 
         function _handleFailedContentQuery($deferred) {
-            this.displayAlertBox({
-                msg: 'Content Could not be retrieved in this node.'
-            });
+            this.fireErrorModal('Content Could not be retrieved in this node.');
             $deferred.reject();
         }
 
@@ -58,7 +56,8 @@ define(['grasshopperBaseView', 'contentIndexViewConfig', 'api', 'constants', 'un
         }
 
         function _addEmptyNodeMessage() {
-            var template = '<tr><td>[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
+            var template = '<tr id="contentDetailRow">' +
+                '<td colspan="4">[[= msg ]] <span><a href="[[= href ]]">[[= linkText ]]</a></span></td></tr>';
 
             $('#contentDetailRow').append(_.template(template, {
                 msg : resources.node.emptyNode,

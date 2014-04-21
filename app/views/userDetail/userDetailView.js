@@ -11,14 +11,8 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         });
 
         function beforeRender ($deferred) {
-
-            if(!this.model.get('displayAsRow')) {
-                this.model.fetch()
-                    .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
-            } else {
-                $deferred.resolve();
-            }
-
+            this.model.fetch()
+                .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
         function updateModel () {
@@ -43,19 +37,16 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         function _handleSuccessfulSave (model) {
             this.displayTemporaryAlertBox(
                 {
-                    msg : resources.user.successfullyUpdated,
-                    status : true
+                    header : resources.success,
+                    style : 'success',
+                    msg : resources.user.successfullyUpdated
                 }
             );
             _updateNameInHeader.call(this, model);
         }
 
         function _handleFailedSave (xhr) {
-            this.displayAlertBox(
-                {
-                    msg : xhr.responseJSON.message
-                }
-            );
+            this.fireErrorModal(xhr.responseJSON.message);
         }
 
         function _updateNameInHeader (model) {

@@ -1,5 +1,6 @@
 <tr>
     <td class="clickableCell"><a data-rv-href="model:href">{{model:label}}</a></td>
-    <td class="clickableCell">{{model:modified | existsOr --}}</td>
+    <td class="clickableCell">{{model:meta->typelabel}}</td>
+    <td class="clickableCell">{{model:meta->lastmodified | prettyDate | existsOr --}}</td>
     <td align="center" ><a data-rv-on-click="view.deleteContent"><i class="fa fa-trash-o"></i></a></td>
 </tr>

@@ -18,12 +18,14 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             setSelectedNode : setSelectedNode
         });
 
-        function beforeRender($deferred) {
-            this.model.get('children').fetch()
-                .then(_getSelectedContent.bind(this))
-                .then(_getSelectedNode.bind(this))
-                .then(_getAvailableContentTypes.bind(this))
-                .then($deferred.resolve);
+        function beforeRender() {
+            if(this.model.get('inSetup')) {
+                this.model.get('children').fetch()
+                    .then(_getSelectedNode.bind(this))
+                    .then(_getAvailableContentTypes.bind(this));
+            } else {
+                _getSelectedContent.call(this);
+            }
         }
 
         function _getSelectedContent() {
@@ -41,8 +43,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _setSelectedContent($deferred, contentDetails) {
-            this.model.set('selectedContentLabel', contentDetails.label);
-            this.model.set('selectedContent', contentDetails._id);
+            this.model.set('contentDetails', contentDetails);
             $deferred.resolve();
         }
 

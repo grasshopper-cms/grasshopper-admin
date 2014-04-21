@@ -2,15 +2,20 @@
 define([], function() {
     'use strict';
 
-    var apiEndpoint = '<%= apiEndpoint %>';
+    var apiEndpoint = '<%= apiEndpoint %>',
+        version = '<%= version %>';
 
     return {
+        version : version,
         api : {
             base : {
                 url : apiEndpoint
             },
             login : {
                 url : apiEndpoint + '/token'
+            },
+            logout : {
+                url : apiEndpoint + '/token/logout'
             },
             user : {
                 url : apiEndpoint + '/user'
@@ -44,6 +49,9 @@ define([], function() {
             },
             contentQuery : {
                 url : apiEndpoint + '/content/query'
+            },
+            version : {
+                url : apiEndpoint + '/system'
             }
         },
         internalRoutes : {

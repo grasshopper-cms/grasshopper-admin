@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'],
-    function (template, assetIndexViewModel) {
+define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel', 'formatters', 'assetDetailRow'],
+    function (template, assetIndexViewModel, formatters, AssetDetailRow) {
         'use strict';
 
         return {
@@ -9,8 +9,16 @@ define(['text!views/assetIndex/assetIndexView.html', 'assetIndexViewModel'],
             appendTo : '#assetIndex',
             wrapper : false,
             template : template,
-            listeners : [],
+            listeners : [
+                ['channels.views', 'assetAdded', 'addNewAsset']
+            ],
             events : {},
-            permissions : ['admin', 'reader', 'editor']
+            permissions : ['admin', 'reader', 'editor'],
+            rivetsConfig : {
+                formatters : [formatters],
+                childViewBinders : {
+                    'asset-detail-row' : AssetDetailRow
+                }
+            }
         };
     });

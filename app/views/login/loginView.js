@@ -16,11 +16,7 @@ define(['grasshopperBaseView', 'loginViewConfig', 'loginWorker'],
     }
 
     function throwLoginError (xhr) {
-        this.displayAlertBox(
-            {
-                msg : xhr
-            }
-        );
+        this.fireErrorModal(xhr);
     }
 
 });

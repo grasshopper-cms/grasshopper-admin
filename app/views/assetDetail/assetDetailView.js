@@ -31,6 +31,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         function prepareToDeleteAsset() {
             this.displayModal(
                 {
+                    header : resources.warning,
                     msg: resources.asset.deletionWarning
                 })
                 .done(_deleteAsset.bind(this));
@@ -77,11 +78,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         }
 
         function _handleDeletionError () {
-            this.displayAlertBox(
-                {
-                    msg: resources.asset.errorDeleted + this.model.get('fileName')
-                }
-            );
+            this.fireErrorModal(resources.asset.errorDeleted + this.model.get('fileName'));
         }
 
         function _getNewFileName() {
@@ -105,19 +102,16 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 .done(function() {
                     self.displayTemporaryAlertBox(
                         {
-                            msg: resources.asset.editNameSuccess,
-                            status: true
+                            header : resources.success,
+                            style : 'success',
+                            msg: resources.asset.editNameSuccess
                         }
                     );
                 });
         }
 
         function _handleAssetRenameError() {
-            this.displayTemporaryAlertBox(
-                {
-                    msg: resources.asset.editNameFail
-                }
-            );
+            this.fireErrorModal(resources.asset.editNameFail);
         }
 
         function _handleUploadProgress(percentDone) {
@@ -132,8 +126,9 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 });
             this.displayTemporaryAlertBox(
                 {
-                    msg: response,
-                    status: true
+                    header : resources.success,
+                    style : 'succes',
+                    msg: response
                 }
             );
         }
@@ -141,11 +136,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         function _handleFailedUpload() {
             this.model.set('uploadError', true);
             _handleUploadProgress.call(this, 0);
-            this.displayTemporaryAlertBox(
-                {
-                    msg: resources.asset.uploadAssetError
-                }
-            );
+            this.fireErrorModal(resources.asset.uploadAssetError);
         }
 
     });

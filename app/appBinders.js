@@ -15,42 +15,34 @@ define(['jquery', 'underscore', 'masseuse',
                     this.viewInstance.remove();
                 },
                 routine : function(el) {
-                    var rivets = this;
+                    var rivets = this,
+                        parentView = this.model.view,
+                        thisField = this.model.field;
 
                     rivets.viewInstance = new PluginWrapperView({
-                        modelData : _.extend({}, rivets.model.field, {
-                            value: masseuse.ProxyProperty('fields.' + rivets.model.field._id, rivets.model.view.model)
+                        modelData : _.extend({}, thisField, {
+                            value: masseuse.ProxyProperty('fields.' + thisField._id, parentView.model)
                         }),
                         collection : new (Backbone.Collection.extend({
                             initialize: function () {
-                                this.on('add remove reset change', function () {
-                                    this.setValuesOnParentFieldsObject();
+                                this.on('all', function (eventName) {
+                                    this.setValuesOnParentFieldsObject(eventName);
                                 });
                             },
                             setValuesOnParentFieldsObject : function() {
-                                var values = this.toJSON();
+                                var values = this.toJSON(),
+                                    max = thisField.max;
 
-                                if (values) {
-                                    rivets.model.view.model.set('fields.' + rivets.model.field._id, values);
+                                if(max === 1) {
+                                    values = values[0];
                                 }
+
+                                parentView.model.set('fields.' + thisField._id, values);
                             },
                             toJSON: function () {
-                                var json = Backbone.Collection.prototype.toJSON.apply(this),
-                                    max = rivets.model.field.max,
-                                    value = _.pluck(json, 'value');
+                                var json = Backbone.Collection.prototype.toJSON.apply(this);
 
-                                value = _.compact(value); // Remove All falsy values.
-
-                                if(_.isUndefined(value[0])) { // If it is an array of nothing, return false.
-                                    return false;
-                                }
-
-                                if(max > 1) { // if its max is greater than 1 allow it to be represented as an array.
-                                    return value;
-                                } else {
-                                    return value[0];
-                                }
-
+                                return _.pluck(json, 'value');
                             }
                         }))([], {}),
                         appendTo : el

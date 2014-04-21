@@ -1,7 +1,7 @@
 define([
-    'backbone', 'masseuse', 'validation', 'resources', 'constants',
+    'backbone', 'masseuse', 'resources', 'constants',
     'underscore', 'helpers'
-], function (Backbone, masseuse, validation, resources, constants, _, helpers) {
+], function (Backbone, masseuse, resources, constants, _, helpers) {
 
     'use strict';
 
@@ -39,10 +39,12 @@ define([
         return Backbone.Model.prototype.fetch.apply(this, args);
     }
 
-    function save () {
-        var saveOptions = {headers : {
-            'Authorization' : 'Token ' + LocalStorage.get('authToken')
-        }};
+    function save (options) {
+        var saveOptions = _.extend({}, options, {
+            headers : {
+                'Authorization' : 'Token ' + LocalStorage.get('authToken')
+            }
+        });
         return Backbone.Model.prototype.save.call(this, null, saveOptions);
     }
 

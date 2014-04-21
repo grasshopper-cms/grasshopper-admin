@@ -1,24 +1,18 @@
 #masthead {
+  @include lightGradient;
   width: 100%;
   padding: 10px 0;
   min-height: 53px;
-  color: #333333;
   text-shadow: 1px 1px 2px #FFF;
 
-  @include lightGradient;
-
-  h5 {
+  #breadcrumbs {
     font-weight: normal;
-  }
-
-  p {
-    margin-bottom: 0;
-    font-size: 13px;
+    font-size: 18px;
+    margin-top: 7px;
   }
 
   .button {
     text-shadow: none;
-    margin-top: 6px;
     margin-bottom: 0;
   }
 }

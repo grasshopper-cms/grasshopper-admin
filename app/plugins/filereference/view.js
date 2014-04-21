@@ -16,10 +16,11 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             fireFileDetailModal : fireFileDetailModal
         });
 
-        function beforeRender($deferred) {
-            this.model.get('children').fetch()
-                .then(_getSelectedNode.bind(this))
-                .then($deferred.resolve);
+        function beforeRender() {
+            if(this.model.get('inSetup')) {
+                this.model.get('children').fetch()
+                    .then(_getSelectedNode.bind(this));
+            }
         }
 
         function _getSelectedNode() {

@@ -9,25 +9,30 @@
 
         <div data-rv-each-node="model:children:" data-rv-nodetree="node" class="nodeTreeSubNode"></div>
 
-        <ul data-rv-show="model:content | haslength" class="no-bullet">
+        <ul data-rv-show="model:content | hasLength" class="no-bullet">
 
             <li data-rv-each-item="model:content:" class="nodeTreeSubNode" data-rv-filter-by-allowed-types="item">
 
                 <input data-rv-id="item.cid" type="radio" name="selectedContent" class="selectedContentRadio"
                        data-rv-checked="model:selectedContent" data-rv-value="item:_id" data-rv-hide="model:nodeTreeType | equals file">
 
-                <label data-rv-for="item.cid">
+                <label data-rv-for="item.cid" class="noMarginBottom">
 
+                    <!--This is for showing content-->
                     <span data-rv-show="model:nodeTreeType | equals content">
                         {{item:label}}
                     </span>
 
+                    <!--This is for showing files-->
                     <span data-rv-show="model:nodeTreeType | equals file">
-                        <img data-rv-id="item:url" class="th nodeTreeThumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
+                        <div class="thumbnailContainer">
+                            <img class="th nodeTreeThumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
+                        </div>
 
-                        <label data-rv-for="item:url" class="inline left noMarginBottom">
+                        <div id="fileName">
                             <a>{{item:fileName}}</a>
-                        </label>
+                        </div>
+
                     </span>
 
                 </label>
@@ -37,7 +42,7 @@
         </ul>
 
         <div data-rv-hide="model:inSetup">
-            <ul data-rv-hide="model:content | haslength" class="no-bullet">
+            <ul data-rv-hide="model:content | hasLength" class="no-bullet">
                 <li data-rv-show="model:nodeTreeType | equals content">
                     {{model:resources->nodeTree->emptyFolder->content}}
                 </li>

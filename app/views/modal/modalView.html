@@ -1,18 +1,20 @@
-<div id="modal-container">
-    <div id="modal-contents" class="small-6">
-        <div class="row modal-header">
-            <div id="modal-text">
-                <h4>{{model:header}}</h4>
-                <span>{{model:msg}}</span>
+<div id="modalContainer">
+    <div id="modalContents">
+
+        <div id="modalHeader" class="row">
+            {{model:header}}
+        </div>
+
+        <div id="modalBody">
+            {{model:msg}}
+        </div>
+
+        <div id="buttonContainer" class="row">
+            <div class="right">
+                <button id="confirm" class="button tiny radius noMarginBottom">{{model:resources->confirm}}</button>
+                <button id="cancel" class="button tiny radius noMarginBottom">{{model:resources->cancel}}</button>
             </div>
         </div>
-        <div class="row">
-            <div class="small-12 text-center">
-                <ul id="button-container" class="button-group radius">
-                    <li><a id="confirm" class="button tiny">{{model:resources->confirm}}</a></li>
-                    <li><a id="cancel" class="button tiny">{{model:resources->cancel}}</a></li>
-                </ul>
-            </div>
-        </div>
+
     </div>
 </div>

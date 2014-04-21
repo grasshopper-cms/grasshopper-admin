@@ -12,7 +12,7 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             wrapper : false,
             template : formTemplate,
             events : {
-                'click .clickableCell' : 'handleRowClick'
+                'click.clickableCell' : 'handleRowClick'
             },
             listeners : [],
             mastheadButtons : [],

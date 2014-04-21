@@ -1,33 +1,32 @@
-<div id="modal-container">
-    <div id="modal-contents">
+<div id="modalContainer">
+    <div id="modalContents">
 
-        <div class="row modal-header">
-            <div id="modal-text">
-                <h4>{{model:header}}</h4>
-                <span>{{model:msg}}</span>
-            </div>
+        <div id="modalHeader" class="row">
+            {{model:header}}
         </div>
 
-        <div id="input-container" class="row modal-data">
+        <div id="modalBody" class="row">
 
-            <div class="small-11 columns small-centered">
+            <div class="small-12 columns inputContainer">
 
                 <div class="row" data-rv-each-type="model:data">
 
-                    <input data-rv-id="type._id" name="radio" type="radio" data-rv-value="type._id"
-                           data-rv-checked="model:selectedType">
+                    <div class="small-12 columns">
 
-                    <label class="inline" data-rv-for="type._id">
+                        <input data-rv-id="type._id" name="radio" type="radio" data-rv-value="type._id"
+                               data-rv-checked="model:selectedType">
 
-                        <span data-rv-unless="type.helpText">
-                            {{type.label}}
-                        </span>
+                        <label class="inline" data-rv-for="type._id">
+                            <span data-rv-unless="type.helpText">
+                                {{type.label}}
+                            </span>
 
-                        <span data-rv-if="type.helpText" data-tooltip class="has-tip" data-rv-title="type.helpText">
-                            {{type.label}}
-                        </span>
+                            <span data-rv-if="type.helpText" data-tooltip class="has-tip" data-rv-title="type.helpText">
+                                {{type.label}}
+                            </span>
+                        </label>
 
-                    </label>
+                    </div>
 
                 </div>
 
@@ -35,13 +34,12 @@
 
         </div>
 
-        <div class="row">
-            <div class="small-12 text-center">
-                <ul id="button-container" class="button-group radius">
-                    <li><a id="confirm" class="button tiny">{{model:resources->save}}</a></li>
-                    <li><a id="cancel" class="button tiny">{{model:resources->close}}</a></li>
-                </ul>
+        <div id="buttonContainer" class="row">
+            <div class="right">
+                <button id="confirm" class="button tiny radius noMarginBottom">{{model:resources->save}}</button>
+                <button id="cancel" class="button tiny radius noMarginBottom">{{model:resources->close}}</button>
             </div>
         </div>
+
     </div>
 </div>

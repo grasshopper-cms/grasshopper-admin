@@ -1,40 +1,84 @@
 #alertBox {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: center;
-  position: fixed;
-  bottom: 30px;
-  width: 100%;
+  display : flex;
+  flex-direction : column;
+  flex-wrap : nowrap;
+  justify-content : flex-end;
+  align-items : flex-end;
+  position : fixed;
+  bottom : 30px;
+  right : 10px;
+  width : 20%;
 }
+
 .alertBoxPartial {
-  height: 46px;
+  min-height: 70px;
   width: 100%;
-  .bad {
-    margin: auto;
-    width: 95%;
-    .error {
-      @include alert-base;
-      @include alert-style($alertColorBad);
-      .close {
-        @include alert-close;
-        color: $alertCloseColor;
-        opacity: 90;
-      }
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 6px;
+
+  .alertImage {
+    width: 20%;
+    float: left;
+    height: 60px;
+    font-size: 32px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      flex: 0 1 auto;
     }
   }
-  .good {
-    margin: auto;
-    width: 95%;
-    .error {
-      @include alert-base;
-      @include alert-style($alertColorGood);
-      .close {
-        @include alert-close;
-        color: $alertCloseColor;
-        opacity: 90;
-      }
+
+  .alertHeader {
+    padding-top: 8px;
+    float: right;
+    width: 80%;
+    height: 30px;
+    text-transform: uppercase;
+  }
+
+  .alertMessage {
+    float: right;
+    width: 80%;
+  }
+
+  .alertClose {
+    padding-right: 10px;
+    font-size: 28px;
+    position: absolute;
+    right: 0;
+  }
+
+  &.info {
+    border: 1px solid #316AB7;
+    .alertHeader, .alertImage, .alertClose {
+      color: #316AB7;
     }
   }
+
+  &.success {
+    border: 1px solid #43ac6a;
+    .alertHeader, .alertImage, .alertClose {
+      color: #43ac6a;
+    }
+  }
+
+  &.error {
+    border: 1px solid #AF4434;
+    .alertHeader, .alertImage, .alertClose {
+      color: #AF4434;
+    }
+  }
+
+  &.warning {
+    border: 1px solid #B69201;
+    .alertHeader, .alertImage, .alertClose {
+      color: #B69201;
+    }
+  }
+
 }

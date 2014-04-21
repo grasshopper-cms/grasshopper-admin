@@ -1,27 +1,29 @@
-<div id="modal-container">
-    <div id="modal-contents" class="small-6">
+<div id="modalContainer">
+    <div id="modalContents">
 
-        <div class="row">
-            <div id="modal-text">
-                <h4>{{model:header}}</h4>
-            </div>
+        <div id="modalHeader" class="row">
+            {{model:header}}
         </div>
 
-        <div class="row">
+        <div class="row modalPadding">
             {{model:resources->plugins->fileReference->selectedFile | withColon}}
             {{model:selectedContentName}}
         </div>
-        </br>
-        <div class="row">
+
+        <br>
+
+        <div class="row modalPadding">
             {{model:resources->plugins->fileReference->currentFolder | withColon}}{{model:folderLabel}}
         </div>
 
-        <div data-rv-show="model:loading">
-            <i class="fa fa-refresh fa fa-spin"></i>
-        </div>
+        <br>
 
-        <div class="row modal-data" data-rv-hide="model:loading">
-            <div id="nodeTree">
+        <div id="modalBody" class="row" data-rv-hide="model:loading">
+            <div id="nodeTree" class="small-12 columns inputContainer">
+
+                <div data-rv-show="model:loading">
+                    <i class="fa fa-refresh fa fa-spin"></i>
+                </div>
 
                 <div data-rv-each-node="model:children:" data-rv-nodetree="node"></div>
 
@@ -38,12 +40,10 @@
             </div>
         </div>
 
-        <div class="row" data-rv-hide="model:loading">
-            <div class="small-12 text-center">
-                <ul id="button-container" class="button-group radius">
-                    <li><a id="confirm" class="button tiny">{{model:resources->confirm}}</a></li>
-                    <li><a id="cancel" class="button tiny">{{model:resources->cancel}}</a></li>
-                </ul>
+        <div  id="buttonContainer" class="row" data-rv-hide="model:loading">
+            <div class="right">
+                <button id="confirm" class="button tiny radius noMarginBottom">{{model:resources->confirm}}</button>
+                <button id="cancel" class="button tiny radius noMarginBottom">{{model:resources->cancel}}</button>
             </div>
         </div>
 

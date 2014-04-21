@@ -50,13 +50,17 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 i = 0,
                 self = this;
 
-            if(values && _.isArray(values)) { // If values exists and is array
-                _.each(values, function(value) {
+            if (values && _.isArray(values)) { // If values exists and is array
+                _.each(values, function (value) {
                     _addPlugin.call(self, value);
                 });
-            } else if(!_.isNull(values)) { // if values exists
+            } else if (!!values || _.isString(values)) { // if values exists
                 _addPlugin.call(this, values);
+            } else if (minimum === 0) { // if values does not exist and minimum is zero
+                this.collection.setValuesOnParentFieldsObject();
+                _evaluateMultiButtons.call(this);
             } else { // if values does not exist and there is a minimum
+                _evaluateMultiButtons.call(this);
                 while(i < minimum) {
                     _addPlugin.call(self);
                     i++;
@@ -77,8 +81,8 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
         }
 
         function _handleDefaultValue(value) {
-            var defaultValue = this.model.get('defaultValue');
-            if (defaultValue && _.isUndefined(value)) {
+            var defaultValue = this.model.get('defaultValue') || this.model.get('configModule.modelData').value;
+            if (_.isUndefined(value)) {
                 return defaultValue;
             } else {
                 return value;
@@ -88,6 +92,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
         function _evaluateMultiButtons() {
             _canShowAdditionButton.call(this);
             _canShowSubtractionButton.call(this);
+            _canShowSortableMultiButton.call(this);
         }
 
         function _canShowAdditionButton() {
@@ -96,6 +101,10 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         function _canShowSubtractionButton() {
             this.model.set('showSubtractionButton', this.collection.length > this.model.get('min'));
+        }
+
+        function _canShowSortableMultiButton() {
+            this.model.set('showSortableButton', this.model.get('max') > 1 && this.collection.length > 1);
         }
 
         function _initializeSortableMulti() {
@@ -116,13 +125,24 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         function _applyMultiSort($sortable) {
             var fields = [],
+                elements = {},
+                $children = $sortable.children(),
+                childLength = $children.length,
+                i,
                 self = this;
 
             $sortable.find('.sortableMulti').each(function() {
                 fields.push(self.collection.get($(this).attr('modelid')));
             });
 
-            this.collection.reset(fields, { silent : true });
-            this.collection.setValuesOnParentFieldsObject();
+            $children.each(function() {
+                elements[$(this).attr('sortIndex')] = this;
+            });
+
+            for(i = 0; i < childLength; ++i) {
+                $sortable.append(elements['sort'+ i]);
+            }
+
+            this.collection.reset(fields);
         }
     });

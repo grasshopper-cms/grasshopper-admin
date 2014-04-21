@@ -5,11 +5,13 @@ define(['grasshopperBaseView', 'alertBoxViewConfig'], function (GrasshopperBaseV
     return GrasshopperBaseView.extend({
         defaultOptions : alertBoxViewConfig,
         afterRender : afterRender,
+        hideAlertsOnNavigate : hideAlertsOnNavigate,
         closeAlertBox : closeAlertBox
     });
 
     function afterRender () {
-        if(this.temporary) {
+        this.$el.fadeIn();
+        if(this.model.get('temporary')) {
             _handleTemporaryAlertBox.call(this);
         }
     }
@@ -21,8 +23,14 @@ define(['grasshopperBaseView', 'alertBoxViewConfig'], function (GrasshopperBaseV
         }, 5000);
     }
 
+    function hideAlertsOnNavigate() {
+        if(!this.model.get('temporary')) {
+            this.closeAlertBox();
+        }
+    }
+
     function closeAlertBox () {
-        this.remove();
+        this.$el.fadeOut('400', this.remove.bind(this));
         return false;
     }
 

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row pluginWrapper">
     <div class="large-12 small-centered columns">
         <div class="row">
 
@@ -7,10 +7,21 @@
             </div>
 
             <div class="small-10 columns">
-                <div class="row" data-rv-id="model.cid | prepend sortableMulti">
-                    <div data-rv-id="model:_id | prepend pluginWrapper" data-rv-each-field="collection:">
 
-                        <div data-rv-unless="model:max | isGreaterThan 1" class="row collapse">
+                <div class="row emptyFieldMessage" data-rv-hide="collection: | hasLength">
+                    <div class="small-12 columns">
+                        <label>
+                            {{model:label | spaceAfter}}{{model:resources->pluginWrapper->emptyFieldsMessage}}
+                            <a data-rv-on-click="view.addField">{{model:resources->pluginWrapper->clickToAdd}}</a>
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="row" data-rv-id="model.cid | prepend sortableMulti" data-rv-show="collection: | hasLength">
+                    <div data-rv-id="model:_id | prepend pluginWrapper" data-rv-each-field="collection:" data-rv-sortIndex="index | prepend sort">
+
+                        <div data-rv-unless="model:showSortableButton" class="row collapse">
                             <div class="small-11 columns">
                                 <div data-rv-fieldtype="field"></div>
                             </div>
@@ -19,11 +30,11 @@
                             </div>
                         </div>
 
-                        <div data-rv-if="model:max | isGreaterThan 1" class="row collapse sortableMulti" data-rv-modelid="field.cid">
+                        <div data-rv-if="model:showSortableButton" class="row collapse sortableMulti" data-rv-modelid="field.cid">
                             <div class="small-10 columns">
                                 <div data-rv-fieldtype="field"></div>
                             </div>
-                            <div class="small-1 columns">
+                            <div class="small-1 columns text-center">
                                 <div class="button radius tiny sortableMultiHandle" data-rv-show="model:showSubtractionButton"><i class="fa fa-sort"></i></div>
                             </div>
                             <div class="small-1 columns">

@@ -77,11 +77,13 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function _startFileBrowser() {
+            console.log('this duder');
             _fireFileBrowserModal.call(this)
                 .done(_setUrlOfFile.bind(this));
         }
 
         function _fireFileBrowserModal() {
+            console.log('it got here');
             var $deferred = new $.Deferred(),
                 fileBrowserView = new FileBrowserView(
                 {

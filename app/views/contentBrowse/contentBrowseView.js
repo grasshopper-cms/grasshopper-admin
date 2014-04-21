@@ -47,8 +47,9 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         function _addAssetIndexView() {
             if (!this.model.get('inRoot')) {
                 var assetIndexView = new AssetIndexView({
-                        nodeId : this.model.get('nodeId'),
-                        inRoot : this.model.get('inRoot'),
+                        modelData : {
+                            nodeId : (this.model.get('nodeId')) ? this.model.get('nodeId') : 0
+                        },
                         mastheadButtons : null
                     });
                 this.addChild(assetIndexView);
