@@ -22,7 +22,6 @@ define(['grasshopperBaseView', 'plugins/richtext/fileBrowserModal/config'],
 
         function afterRender() {
             this.$el.foundation();
-            console.log(this.model.attributes);
         }
 
         function _fetchChildNodes() {
