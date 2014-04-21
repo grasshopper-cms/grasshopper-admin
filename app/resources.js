@@ -274,6 +274,7 @@ define({
     required : 'Required',
     role : 'Role',
     save : 'Save',
+    saveAndClose : 'Save and Close',
     selectOption : 'Please Select',
     settings : 'Settings',
     siteName : 'Grasshopper',

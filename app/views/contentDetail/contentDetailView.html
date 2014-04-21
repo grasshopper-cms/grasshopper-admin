@@ -10,7 +10,14 @@
 
                 <div class="row">
                     <div class="large-12 small-centered columns">
-                        <button data-rv-on-click="view.saveContent" class="button small radius right">{{model:resources->save}}</button>
+                        <div class="right">
+                            <button class="button tiny radius" data-rv-on-click="view.saveContent">
+                                {{model:resources->save}}
+                            </button>
+                            <button class="button tiny radius" data-rv-on-click="view.saveAndClose">
+                                {{model:resources->saveAndClose}}
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -18,3 +25,5 @@
         </div>
     </div>
 </div>
+
+

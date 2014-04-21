@@ -9,7 +9,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         afterRender : afterRender,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick,
-        saveContent : saveContent
+        saveContent : saveContent,
+        saveAndClose : saveAndClose
     });
 
     function beforeRender($deferred) {
@@ -28,6 +29,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function afterRender() {
+        this.$el.foundation();
         _addListenerForModelChange.call(this);
     }
 
@@ -70,16 +72,23 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function handleRowClick () {
         this.app.router.navigateTrigger(this.model.get('href'));
-        return false;
     }
 
     function saveContent() {
+        _saveContentWorkflow.call(this, {});
+    }
+
+    function saveAndClose() {
+        _saveContentWorkflow.call(this, { close : true });
+    }
+
+    function _saveContentWorkflow(options) {
         this.model.save({ parse : false })
-            .done(_handleSuccessfulModelSave.bind(this))
+            .done(_handleSuccessfulModelSave.bind(this, options))
             .fail(_handleFailedModelSave.bind(this));
     }
 
-    function _handleSuccessfulModelSave() {
+    function _handleSuccessfulModelSave(options) {
         this.displayTemporaryAlertBox(
             {
                 header : resources.success,
@@ -90,13 +99,19 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
         if(this.model.get('isNew')) {
             this.model.set('isNew', false);
-            this.app.router.navigateNinja(
-                constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id')));
         }
 
-        breadcrumbWorker.resetBreadcrumb.call(this);
-        this.model.resetContentLabel();
-        _updateMastheadBreadcrumbs.call(this);
+        if(options.close) {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.nodeDetail.replace(':id', this.model.get('meta.node')));
+        } else {
+            this.app.router.navigateNinja(
+                constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id')));
+
+            breadcrumbWorker.resetBreadcrumb.call(this);
+            this.model.resetContentLabel();
+            _updateMastheadBreadcrumbs.call(this);
+        }
     }
 
     function _handleFailedModelSave() {
