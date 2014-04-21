@@ -1,9 +1,10 @@
 #footer {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
   background: #1d354d;
   width: 100%;
   padding: 7px 0;
-  min-height: 31px;
-
 
   div {
     text-align: center;
