@@ -4,8 +4,8 @@
             <tbody>
                 <tr>
                     <td style="width: 30%;"><i class="fa fa-sort"></i>{{model:label | existsOr -- | spaceBefore}}</td>
-                    <td>{{model:type | existsOr --}}</td>
-                    <td>{{model:min | existsOr --}}min / {{model:max | existsOr --}}max</td>
+                    <td data-rv-readable-type-name="model"></td>
+                    <td>{{model:min}}min / {{model:max}}max</td>
                     <td style="text-align: center;">
                         <span data-rv-on-click="view.removeThisField">
                            <i class="fa fa-trash-o"></i>
@@ -107,7 +107,7 @@
                     <label data-rv-for="model.cid  | prepend min" class="right inline">{{model:resources->minimum}}</label>
                 </div>
                 <div class="small-10 columns">
-                    <input data-rv-id="model.cid  | prepend min" min="1" type="number" data-rv-value="model:min | asNumber">
+                    <input data-rv-id="model.cid  | prepend min" min="0" type="number" data-rv-value="model:min | asNumber">
                 </div>
             </div>
             <div class="row">
@@ -179,7 +179,8 @@
     <div class="row" data-rv-show="model:options">
         <fieldset>
             <legend>
-                {{model:resources->options}}
+                <span data-rv-readable-type-name="model"></span>
+                <span>{{model:resources->options}}</span>
             </legend>
             <div data-rv-fieldform="model"></div>
         </fieldset>

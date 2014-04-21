@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_userDetailRow.html', 'userDetailViewModel',
+define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel',
     'resources', 'constants'],
-    function (formTemplate, rowTemplate, userDetailModel, resources, constants) {
+    function (formTemplate, userDetailModel, resources, constants) {
         'use strict';
 
         return {
@@ -11,10 +11,8 @@ define(['text!views/userDetail/userDetailView.html', 'text!views/userDetail/_use
             appendTo : '#stage',
             wrapper : false,
             template : formTemplate,
-            rowTemplate : rowTemplate,
             events : {
                 'click #saveUser' : 'updateModel',
-                'click .toggleEnabled' : 'toggleEnabled',
                 'click .clickableCell' : 'handleRowClick'
             },
             listeners : [],

@@ -6,16 +6,14 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
         var ProxyProperty = masseuse.ProxyProperty;
 
         return GrasshopperBaseView.extend({
-            beforeRender : beforeRender,
             afterRender : afterRender
         });
 
-        function beforeRender($deferred) {
-            _getAvailableContentTypes.call(this)
-                .done(_setActiveContentType.bind(this, $deferred));
-        }
-
         function afterRender() {
+            this.model.toggle('loading');
+            _getAvailableContentTypes.call(this)
+                .done(_setActiveContentType.bind(this));
+
             this.$el.foundation();
 
             _initializeAccordions.call(this);
@@ -35,7 +33,7 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             $deferred.resolve();
         }
 
-        function _setActiveContentType($deferred) {
+        function _setActiveContentType() {
             var activeTypeId = this.model.get('options'),
                 activeContentType;
 
@@ -44,27 +42,18 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
                 this.model.set('activeContentType', activeContentType);
                 _proxyValues.call(this);
             }
-
-            $deferred.resolve();
+            this.model.toggle('loading');
         }
 
         function _proxyValues() {
             var activeContentType = this.model.get('activeContentType'),
                 self = this;
 
-            if(!this.model.get('value')) {
-                _.each(activeContentType.fields, _setEmptyValue.bind(this));
-            }
-
             _.each(activeContentType.fields, function(type) {
                 self.model.set('fields.' + type._id, new ProxyProperty('value.' + type._id, self.model));
             });
 
             _setSubLabelsForAccordions.call(this);
-        }
-
-        function _setEmptyValue(type) {
-            this.model.set('value.'+ type._id, undefined);
         }
 
         function _setSubLabelsForAccordions() {

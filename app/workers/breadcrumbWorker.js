@@ -8,12 +8,16 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
         contentBreadcrumb : contentBreadcrumb,
         contentTypeBreadcrumb : contentTypeBreadcrumb,
         contentBrowse : contentBrowse,
-        userBreadcrumb : userBreadcrumb
+        userBreadcrumb : userBreadcrumb,
+        resetBreadcrumb : resetBreadcrumb
     };
 
-    function contentBreadcrumb($deferred, isNew) {
-        var nodeId = this.model.get('node._id'),
+    function contentBreadcrumb($deferred) {
+        var nodeId = this.model.get('meta.node'),
+            isNew = this.model.get('isNew'),
             self = this;
+
+        _setOldBreadcrumb.call(this);
 
         _getNodeDetailRecursively.call(this, nodeId)
             .then(function() {
@@ -26,6 +30,8 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
     }
 
     function contentTypeBreadcrumb($deferred, isNew) {
+        _setOldBreadcrumb.call(this);
+
         if (isNew) {
             _addIsNewScope.call(this, $deferred, 'new');
         } else {
@@ -40,12 +46,16 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
             .then($deferred.resolve);
     }
 
-    function userBreadcrumb($deferred) {
-        this.breadcrumbs.push({
-            text: this.model.get('fullname'),
-            href: this.model.get('href')
-        });
-        _finishBreadcrumb.call(this, $deferred);
+    function userBreadcrumb($deferred, isNew) {
+        if(isNew) {
+            _addIsNewScope.call(this, $deferred, 'new');
+        } else {
+            this.breadcrumbs.push({
+                text: this.model.get('fullname'),
+                href: this.model.get('href')
+            });
+            _finishBreadcrumb.call(this, $deferred);
+        }
     }
 
     function _addIsNewScope($deferred, replaced) {
@@ -97,7 +107,17 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
 
     function _finishBreadcrumb($deferred) {
         channels.views.trigger('updateMastheadBreadcrumbs', this);
-        $deferred.resolve();
+        $deferred && $deferred.resolve();
+    }
+
+    function _setOldBreadcrumb() {
+        if(!_.has(this, 'originalBreadcrumbs')) {
+            this.originalBreadcrumbs = _.clone(this.breadcrumbs);
+        }
+    }
+
+    function resetBreadcrumb() {
+        this.breadcrumbs = _.clone(this.originalBreadcrumbs);
     }
 
 });

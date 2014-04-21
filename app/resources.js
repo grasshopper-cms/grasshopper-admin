@@ -43,7 +43,7 @@ define({
             login : 'LOGIN',
             password : 'PASSWORD'
         },
-        roles : [
+        roles : [ //TODO: DELETE THIS!!!
             'admin',
             'reader',
             'editor',
@@ -55,7 +55,9 @@ define({
         errors : {
             403 : 'You do not have adequate permissions to view/edit this profile.'
         },
-        newUserAdded : 'New User Added'
+        newUserAdded : 'New User Added',
+        couldNotFindUserContentType : 'Could not find Users content type. Please make one.',
+        addNewUser : 'Add New User'
     },
     site : {
         about : 'About Grasshopper'
@@ -79,7 +81,7 @@ define({
         errorDeleted : 'There was an issue deleting this folder: ',
         enterName : 'Please enter the name of the folder: ',
         errorCreating : 'Folder could not be added.',
-        editName : 'Edit Folder name:',
+        editName : 'Edit folder name',
         emptyNode : 'This folder does not contain any content.',
         clickToAdd : 'Click to add some.'
     },
@@ -165,6 +167,10 @@ define({
             files : 'This folder has no files.'
         }
     },
+    pluginWrapper : {
+        emptyFieldsMessage : 'not set.',
+        clickToAdd : 'Click To Add.'
+    },
     plugins : {
         codeEditor : {
             language : 'Language',
@@ -202,7 +208,7 @@ define({
             setRootAsDefault : 'Set Root Folder as Default',
             defaultFolder : 'Default Folder',
             contentTypes : 'Content Types',
-            selectContent : 'Select Content',
+            selectFile : 'Select File',
             viewSelectedFile : 'View Selected File'
         },
         richText : {
@@ -210,7 +216,8 @@ define({
             loading : 'LOADING RICH TEXT...'
         },
         slug : {
-            refresh : 'Refresh'
+            refresh : 'Refresh',
+            selectField : 'Select Field'
         }
     },
     validationViews : {
@@ -232,14 +239,13 @@ define({
     edit : 'Edit',
     email : 'Email',
     enabled : 'Enabled',
+    error : 'Error',
     falseText : 'False',
     from : 'From',
     home : 'Home',
     helpText : 'Help Text',
     id : 'ID',
     key: 'Key',
-    minimum : 'Minimum',
-    min : 'Min',
     label : 'Label',
     login : 'Login',
     log_in : 'Log In',
@@ -248,6 +254,8 @@ define({
     maximum : 'Maximum',
     max : 'Max',
     menu : 'Menu',
+    minimum : 'Minimum',
+    min : 'Min',
     allowMultiple : 'Allow Multiple',
     allowMultipleSettings : 'Allow Multiple Settings',
     multiple : 'Multiple',
@@ -255,6 +263,7 @@ define({
     next : 'Next',
     newWord : 'New',
     no : 'No',
+    ok : 'Ok',
     options : 'Options',
     password : 'Password',
     previous : 'Previous',
@@ -269,6 +278,7 @@ define({
     settings : 'Settings',
     siteName : 'Grasshopper',
     status : 'Status',
+    success : 'Success',
     summary : 'Summary',
     thisIsNotImplemented : 'This is not yet implemented.',
     title : 'Title',

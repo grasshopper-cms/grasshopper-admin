@@ -2,11 +2,9 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory');
-
     grunt.config('shell', {
         test_heroku_api : {
-            command : 'curl '+ buildDirectory +'/token -H "Accept: application/json" -H "Acceen_US" -u "admin:TestPassword"',
+            command : grunt.template.process('curl <%= apiEndpoint %>/token -H "Accept: application/json" -H "Acceen_US" -u <%= userAdmin %>'),
             options : {
                 stdout: true
             }
@@ -17,7 +15,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'mongodump -h ds035448.mongolab.com:35448 -d heroku_app23638163 -c users -u heroku_app23638163 -p urektptiutkj0vvhg658v7v3t4 -o tasks/seedData/mongodb'
+            command : grunt.template.process('mongodump -h <%= mongo %> -d <%= herokuApp %> -u <%= herokuApp %> -p <%= herokuKey %> -o tasks/seedData')
         },
         mongorestore : {
             options : {
@@ -25,7 +23,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'mongorestore --drop --db heroku_app23638163 --host ds035448.mongolab.com:35448 -u heroku_app23638163 -p urektptiutkj0vvhg658v7v3t4 tasks/seedData/mongodb/grasshopper'
+            command : grunt.template.process('mongorestore --drop --db <%= herokuApp %> --host <%= mongo %> -u <%= herokuApp %> -p <%= herokuKey %> tasks/seedData/<%= herokuApp %>')
         },
         mongomerge : {
             options : {
@@ -33,7 +31,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'mongorestore --db heroku_app23638163 --host ds035448.mongolab.com:35448 -u heroku_app23638163 -p urektptiutkj0vvhg658v7v3t4 tasks/seedData/mongodb/grasshopper'
+            command : grunt.template.process('mongorestore --db <%= herokuApp %> --host <%= mongo %> -u <%= herokuApp %> -p <%= herokuKey %> tasks/seedData/<%= herokuApp %>')
         },
         bowerInstall : {
             options : {

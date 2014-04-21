@@ -1,12 +1,14 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'text!views/modal/_imageModalView.html',
+define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!views/modal/_imageModalView.html',
     'text!views/modal/_inputModalView.html', 'text!views/modal/_checkboxModalView.html',
     'text!views/modal/_uploadModalView.html', 'text!views/modal/modalView.html',
-    'text!views/modal/_radioModalView.html', 'text!views/modal/_listModalView.html'],
-    function (GrasshopperBaseView, modalViewConfig, _, imageModalTemplate,
+    'text!views/modal/_radioModalView.html', 'text!views/modal/_listModalView.html',
+    'text!views/modal/_errorModalView.html'],
+    function (GrasshopperBaseView, modalViewConfig, _, $, imageModalTemplate,
               inputModalTemplate, checkboxTemplate,
               uploadTemplate, defaultTemplate,
-              radioTemplate, listTemplate) {
+              radioTemplate, listTemplate,
+              errorTemplate) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -18,6 +20,7 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'text!views/moda
             handleFileDrop : handleFileDrop,
             handleDragOver : handleDragOver,
             handleDragLeave : handleDragLeave,
+            selectUrlText : selectUrlText,
             confirmModal : confirmModal,
             cancelModal : cancelModal
         });
@@ -41,6 +44,9 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'text!views/moda
                 break;
             case 'list':
                 options.template = listTemplate;
+                break;
+            case 'error':
+                options.template = errorTemplate;
                 break;
             default:
                 options.template = defaultTemplate;
@@ -99,6 +105,10 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'text!views/moda
 
         function handleDragLeave (e) {
             e.target.classList.remove('active');
+        }
+
+        function selectUrlText() {
+            $('#imageURL').select();
         }
 
         function confirmModal () {

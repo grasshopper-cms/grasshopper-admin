@@ -1,5 +1,7 @@
-define(['masseuse', 'validation', 'underscore', 'resources'], function (masseuse, validation, _, resources) {
+define(['masseuse', 'validationLibrary', 'underscore', 'resources'],
+    function (masseuse, validationLibrary, _, resources) {
     'use strict';
+
     var Model = masseuse.MasseuseModel,
         ComputedProperty = masseuse.ComputedProperty;
 
@@ -29,7 +31,7 @@ define(['masseuse', 'validation', 'underscore', 'resources'], function (masseuse
             self.set(attribute, value);
 
             // Validate the individual attribute
-            if (!validation.stringHasLength(value)) {
+            if (!validationLibrary.stringHasLength(value)) {
                 invalid = true;
             }
         });
@@ -37,7 +39,7 @@ define(['masseuse', 'validation', 'underscore', 'resources'], function (masseuse
     }
 
     function _validateUserLoginAttribute (attribute) {
-        return validation.stringHasLength(attribute) ? undefined : 'Too Short.';
+        return validationLibrary.stringHasLength(attribute) ? undefined : 'Too Short.';
     }
 
     function _checkForErrors (usernameError, passwordError) {

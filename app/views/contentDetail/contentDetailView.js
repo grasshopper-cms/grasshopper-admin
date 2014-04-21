@@ -1,22 +1,34 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker',
-    'underscore', 'masseuse'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker,
-              _, masseuse) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants) {
     'use strict';
-
-    var ProxyProperty = masseuse.ProxyProperty;
 
     return GrasshopperBaseView.extend({
         defaultOptions : contentDetailViewConfig,
         beforeRender : beforeRender,
+        afterRender : afterRender,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick,
         saveContent : saveContent
     });
 
     function beforeRender($deferred) {
-        _fetchContentDetails.call(this, $deferred);
+        if(this.model.get('isNew')) {
+            _getContentSchema.call(this, $deferred);
+        } else {
+            if(this.name === 'contentDetailRow') {
+                _fetchContentDetails.call(this)
+                    .done(this.model.resetContentLabel.bind(this.model), $deferred.resolve);
+            } else {
+                _fetchContentDetails.call(this)
+                    .done(_getContentSchema.bind(this, $deferred))
+                    .fail(_handleFailedModelFetch.bind(this, $deferred));
+            }
+        }
+    }
+
+    function afterRender() {
+        _addListenerForModelChange.call(this);
     }
 
     function deleteContent () {
@@ -27,6 +39,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function _confirmDeletion() {
         return this.displayModal(
             {
+                header : resources.warning,
                 msg : resources.contentItem.deletionWarning
             });
     }
@@ -40,19 +53,16 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _handleFailedDeletion(model) {
-        this.displayAlertBox(
-            {
-                msg : resources.contentItem.errorDeleted + model.get('label')
-            }
-        );
+        this.fireErrorModal(resources.contentItem.errorDeleted + model.get('label'));
     }
 
     function _handleSuccessfulDeletion(model) {
         this.displayTemporaryAlertBox(
             {
+                header : resources.success,
+                style : 'success',
                 msg : resources.contentItem.successfullyDeletedPre + model.get('label') +
-                    resources.contentItem.successfullyDeletedPost,
-                status : true
+                    resources.contentItem.successfullyDeletedPost
             }
         );
         this.remove();
@@ -64,68 +74,73 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function saveContent() {
-        this.model.save()
+        this.model.save({ parse : false })
             .done(_handleSuccessfulModelSave.bind(this))
             .fail(_handleFailedModelSave.bind(this));
     }
 
     function _handleSuccessfulModelSave() {
-        this.displayTemporaryAlertBox({
-            msg : resources.contentItem.successfullySaved,
-            status : true
-        });
+        this.displayTemporaryAlertBox(
+            {
+                header : resources.success,
+                style : 'success',
+                msg : resources.contentItem.successfullySaved
+            }
+        );
+
+        if(this.model.get('isNew')) {
+            this.model.set('isNew', false);
+            this.app.router.navigateNinja(
+                constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id')));
+        }
+
+        breadcrumbWorker.resetBreadcrumb.call(this);
+        this.model.resetContentLabel();
+        _updateMastheadBreadcrumbs.call(this);
     }
 
     function _handleFailedModelSave() {
-        this.displayAlertBox({
-            msg : resources.contentItem.failedToSave
-        });
+        this.fireErrorModal(resources.contentItem.failedToSave);
     }
 
-    function _fetchContentDetails($deferred) {
-        this.model.fetch()
-            .done(_getContentSchema.bind(this, $deferred))
-            .fail(_handleFailedModelFetch.bind(this, $deferred));
+    function _fetchContentDetails() {
+        return this.model.fetch();
     }
 
     function _handleFailedModelFetch($deferred) {
-        this.displayAlertBox({
-            msg : resources.contentItem.failedToFetch
-        });
+        this.fireErrorModal(resources.contentItem.failedToFetch);
         $deferred.reject();
     }
 
     function _getContentSchema($deferred) {
-        Api.getContentType(this.model.get('type'))
-            .done(_handleSuccessfulContentSchemaRetrieval.bind(this, $deferred))
+        Api.getContentType(this.model.get('meta.type'))
+            .done(
+                this.model.resetContentLabel.bind(this.model),
+                _handleSuccessfulContentSchemaRetrieval.bind(this, $deferred)
+            )
             .fail(_handleFailedContentSchemaRetrieval.bind(this, $deferred));
     }
 
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
-        _proxyFirstFieldToLabel.call(this);
 
-        if(this.name === 'contentDetailRow') {
-            $deferred.resolve();
-        } else {
-            _updateMastheadBreadcrumbs.call(this, $deferred);
-        }
+        _updateMastheadBreadcrumbs.call(this, $deferred);
     }
 
     function _handleFailedContentSchemaRetrieval($deferred) {
-        this.displayAlertBox({
-            msg : resources.contentItem.failedToFetchContentsContentType
-        });
+        this.fireErrorModal(resources.contentItem.failedToFetchContentsContentType);
         $deferred.reject();
-    }
-
-    function _proxyFirstFieldToLabel() {
-        var firstField = _.first(this.model.get('schema.fields'))._id;
-
-        this.model.set('label', new ProxyProperty('fields.' + firstField, this.model));
     }
 
     function _updateMastheadBreadcrumbs($deferred) {
         breadcrumbWorker.contentBreadcrumb.call(this, $deferred);
+    }
+
+    function _addListenerForModelChange() {
+        var self = this;
+
+        this.model.on('change:fields', function() {
+            self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
+        });
     }
 });

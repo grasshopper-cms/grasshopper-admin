@@ -46,7 +46,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _askUserForNewNodeName() {
             return this.displayModal(
                 {
-                    msg : resources.node.editName,
+                    header : resources.node.editName,
                     type : 'input',
                     data : this.model.get('label')
                 });
@@ -65,19 +65,16 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _handleSuccessfulNodeSave($deferred) {
             this.displayTemporaryAlertBox(
                 {
-                    msg : resources.node.successfullyUpdated,
-                    status : true
+                    header : resources.success,
+                    style : 'success',
+                    msg : resources.node.successfullyUpdated
                 }
             );
             $deferred.resolve();
         }
 
         function _handleFailedNodeSave($deferred) {
-            this.displayAlertBox(
-                {
-                    msg : resources.node.errorUpdated
-                }
-            );
+            this.fireErrorModal(resources.node.errorUpdated);
             $deferred.reject();
         }
 
@@ -88,7 +85,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _askUserWhichContentTypesToAttach(availableContentTypes) {
             return this.displayModal(
                 {
-                    msg : resources.contentType.editContentTypes,
+                    header : resources.contentType.editContentTypes,
                     type : 'checkbox',
                     data : availableContentTypes
                 });
@@ -110,23 +107,21 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _handleSuccessfulContentTypeAddition() {
             this.displayTemporaryAlertBox(
                 {
-                    msg : resources.contentType.contentTypeAdded,
-                    status : true
+                    header : resources.success,
+                    style : 'success',
+                    msg : resources.contentType.contentTypeAdded
                 }
             );
         }
 
         function _handleFailedContentTypeAddition(msg) {
-            this.displayAlertBox(
-                {
-                    msg : msg
-                }
-            );
+            this.fireErrorModal(msg);
         }
 
         function _warnUserBeforeDeleting() {
             return this.displayModal(
                 {
+                    header : resources.warning,
                     msg : resources.node.deletionWarning
                 });
         }
@@ -142,24 +137,23 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         }
 
         function _handleSuccessfulNodeDeletion() {
+            _redirectToParent.call(this);
+
             this.displayTemporaryAlertBox(
                 {
+                    header : resources.success,
+                    style : 'success',
                     msg : resources.node.successfullyDeletedPre + this.model.get('label') +
-                        resources.node.successfullyDeletedPost,
-                    status : true
+                        resources.node.successfullyDeletedPost
                 }
             );
             this.remove();
 
-            _redirectToParent.call(this);
+
         }
 
         function _handleFailedNodeDeletion() {
-            this.displayAlertBox(
-                {
-                    msg : resources.node.errorDeleted + this.model.get('label')
-                }
-            );
+            this.fireErrorModal(resources.node.errorDeleted + this.model.get('label'));
         }
 
         function _redirectToParent() {

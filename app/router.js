@@ -2,12 +2,13 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants',
     'grasshopperBaseView',
-    'loginView', 'loginWorker',
+    'loginView', 'loginWorker', 'logoutWorker',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
     'userDetailView', 'UserModel',
     'headerView',
+    'footerView',
     'mastheadView',
     'userIndexView',
     'addUserView',
@@ -17,17 +18,17 @@ define([
     'contentTypeDetailView',
     'addFolderView',
     'addContentView',
-    'addAssetsView',
-    'helpers'
+    'addAssetsView'
 ],
     function ($, Backbone, _, masseuse, Api, constants,
               GrasshopperBaseView,
-              LoginView, loginWorker,
+              LoginView, loginWorker, logoutWorker,
               AlertBoxView,
               ModalView, modalViewConfig,
               resources,
               UserDetailView, UserModel,
               HeaderView,
+              FooterView,
               MastheadView,
               UserIndexView,
               AddUserView,
@@ -37,12 +38,10 @@ define([
               ContentTypeDetailView,
               AddFolderView,
               AddContentView,
-              AddAssetsView,
-              helpers) {
+              AddAssetsView) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
-            LocalStorage = helpers.localStorage,
             userModel = new UserModel(),
             currentView,
             Router;
@@ -68,6 +67,8 @@ define([
                 'item/:id' : 'displayContentDetail',
                 '*path' : 'goHome'
             },
+
+            breadcrumb  : [],
 
             user : userModel,
             initialize : initialize,
@@ -109,6 +110,8 @@ define([
 
         function beforeRouting () {
             var $deferred = new $.Deferred();
+
+            $deferred.done(this.breadcrumb.push.bind(this.breadcrumb, Backbone.history.getFragment()));
 
             loginWorker.userIsStillValidUser.call(this, $deferred);
 
@@ -226,24 +229,25 @@ define([
             this.headerView.start();
             this.mastheadView = new MastheadView();
             this.mastheadView.start();
+
+            this.footerView = new FooterView();
+            this.footerView.start();
         }
 
         function removeHeader () {
-            if (this.headerView && this.mastheadView) {
+            if (this.headerView && this.mastheadView && this.footerView) {
                 this.headerView.remove();
                 this.mastheadView.remove();
+                this.footerView.remove();
                 this.headerView = null;
                 this.mastheadView = null;
+                this.footerView = null;
             }
         }
 
         function goLogout () {
-            var self = this;
-            LocalStorage.remove('authToken')
-                .done(function () {
-                    self.user.clear();
-                    self.navigate('login', {trigger : true}, true);
-                });
+            logoutWorker.doLogout.call(this)
+                .done(this.navigate.bind(this, 'login', {trigger : true}, true));
         }
 
         function displayLogin () {
@@ -252,11 +256,7 @@ define([
 
         function displayAlertBox (options) {
             var alertBoxView = new AlertBoxView({
-                    modelData : {
-                        msg : (options.msg),
-                        status : (options.status)
-                    },
-                    temporary : options.temporary
+                    modelData : options
                 });
             alertBoxView.start();
         }
@@ -335,11 +335,11 @@ define([
                 });
         }
 
-        function displayContentDetail (id) {
+        function displayContentDetail (id, options) {
             loadMainContent(ContentDetailView, {
-                    modelData : {
+                    modelData : _.extend({}, options, {
                         _id : id
-                    }
+                    })
                 });
         }
 
@@ -373,8 +373,8 @@ define([
             }
             loadMainContent(AddContentView, {
                     modelData : {
-                        node : {
-                            _id : nodeId
+                        meta : {
+                            node : nodeId
                         }
                     }
                 });

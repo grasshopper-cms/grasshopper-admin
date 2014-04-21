@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['backbone', 'masseuse'], function (Backbone, masseuse) {
+define(['backbone', 'masseuse', 'resources'], function (Backbone, masseuse, resources) {
     'use strict';
 
     var RivetView = masseuse.plugins.rivets.RivetsView,
@@ -7,7 +7,8 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
 
     return RivetView.extend({
         initialize : initialize,
-        start : start
+        start : start,
+        fireErrorModal : fireErrorModal
     });
 
     function initialize (options) {
@@ -16,7 +17,6 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
             [
                 '$deferred',
                 'type',
-                'temporary',
                 'defaultBreadcrumbs',
                 'defaultMastheadButtons',
                 'breadcrumbs',
@@ -58,5 +58,15 @@ define(['backbone', 'masseuse'], function (Backbone, masseuse) {
 
         return RivetView.prototype.start.apply(this, arguments)
             .done(_handleAfterRender.bind(this));
+    }
+
+    function fireErrorModal(message) {
+        return this.displayModal(
+            {
+                header : resources.error,
+                type : 'error',
+                msg : message
+            }
+        );
     }
 });

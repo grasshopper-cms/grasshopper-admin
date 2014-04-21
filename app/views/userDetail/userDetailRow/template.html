@@ -1,0 +1,19 @@
+<td class="clickableCell">
+    {{model:firstname | spaceAfter}}
+    {{model:lastname}}
+</td>
+<td class="clickableCell">{{model:login}}</td>
+<td class="clickableCell">{{model:role | humanize}}</td>
+<td class="clickableCell">{{model:email}}</td>
+<td align="center">
+    <a data-rv-href="model:href">
+        <i class="fa fa-edit"></i>
+    </a>
+    <a data-rv-show="model:enabled" data-rv-on-click="view.toggleEnabled">
+        <i class="fa fa-unlock"></i>
+    </a>
+    <a data-rv-hide="model:enabled" data-rv-on-click="view.toggleEnabled">
+        <i class="fa fa-lock"></i>
+    </a>
+</td>
+

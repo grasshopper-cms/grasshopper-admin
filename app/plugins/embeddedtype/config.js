@@ -8,15 +8,17 @@ define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
         return {
             name : 'embeddedtypePlugin',
             ModelType : embeddedtypePluginModel,
-            modelData : {
-                min : 1,
-                max : 1,
-                options : true,
-                label : '',
-                type : 'embeddedtype',
-                dataType : 'ref',
-                validation : [],
-                value : ''
+            modelData : function() {
+                return {
+                    min : 1,
+                    max : 1,
+                    options : true,
+                    label : '',
+                    type : 'embeddedtype',
+                    dataType : 'ref',
+                    validation : [],
+                    value : {}
+                };
             },
             template : embeddedtypePluginTemplate,
             setupTemplate : setupTemplate,

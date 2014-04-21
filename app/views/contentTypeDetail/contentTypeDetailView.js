@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
-    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker', 'plugins'],
+    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker', 'plugins', 'constants'],
     function (GrasshopperBaseView, contentTypeDetailViewConfig,
-              resources, Api, _, $, breadcrumbWorker, plugins) {
+              resources, Api, _, $, breadcrumbWorker, plugins, constants) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -116,20 +116,17 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function _handleSuccessfulContentTypeDeletion(model) {
         this.displayTemporaryAlertBox(
             {
+                header : resources.success,
+                style : 'success',
                 msg : resources.contentType.successfullyDeletedPre + model.get('label') +
-                    resources.contentType.successfullyDeletedPost,
-                status : true
+                    resources.contentType.successfullyDeletedPost
             }
         );
         this.remove();
     }
 
     function _handleFailedContentTypeDeletion(model) {
-        this.displayAlertBox(
-            {
-                msg : resources.contentType.errorDeleted + model.get('label')
-            }
-        );
+        this.fireErrorModal(resources.contentType.errorDeleted + model.get('label'));
     }
 
     function handleRowClick (e) {
@@ -141,7 +138,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         var model = context.field.config.modelData;
 
         _collapseAccordion.call(this);
-        model.active = 'active';
+        model.isNew = true;
         this.collection.add(model);
         _initializeSortableAccordions.call(this);
     }
@@ -164,19 +161,22 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         _collapseAccordion.call(this);
         this.displayTemporaryAlertBox(
             {
+                header : resources.success,
                 msg: resources.contentType.successfulSave,
-                status: true
+                style : 'success'
             }
         );
+
+        this.app.router.navigateNinja(
+            constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id')));
+
+        breadcrumbWorker.resetBreadcrumb.call(this);
+        _updateMastheadBreadcrumbs.call(this);
+
     }
 
-    function _handleFailedModelSave(xhr) {
-        console.log(xhr);
-        this.displayAlertBox(
-            {
-                msg: resources.contentType.failedSave
-            }
-        );
+    function _handleFailedModelSave() {
+        this.fireErrorModal(resources.contentType.failedSave);
     }
 
     function _updateMastheadBreadcrumbs($deferred, isNew) {

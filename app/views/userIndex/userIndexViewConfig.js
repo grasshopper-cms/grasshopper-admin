@@ -1,37 +1,39 @@
 /*global define:false*/
 define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resources', 'constants',
-    'userIndexViewBinders'],
+        'userDetailRow'],
     function (template, UserIndexViewModel, resources, constants,
-              userIndexViewBinders) {
+              UserDetailRow) {
         'use strict';
 
         return {
-            name : 'userIndexView',
-            modelData : {},
-            ModelType : UserIndexViewModel,
-            appendTo : '#stage',
-            wrapper : false,
-            template : template,
-            events : {
-                'change #limitDropdown' : 'changeLimit'
+            name: 'userIndexView',
+            modelData: {},
+            ModelType: UserIndexViewModel,
+            appendTo: '#stage',
+            wrapper: false,
+            template: template,
+            events: {
+                'change #limitDropdown': 'changeLimit'
             },
-            listeners : [],
-            mastheadButtons : [
+            listeners: [],
+            mastheadButtons: [
                 {
-                    text : resources.mastheadButtons.addNewUser,
-                    href : constants.internalRoutes.addUser
+                    text: resources.mastheadButtons.addNewUser,
+                    href: constants.internalRoutes.addUser
                 }
             ],
-            breadcrumbs : [
+            breadcrumbs: [
                 {
-                    text : resources.users,
-                    href : constants.internalRoutes.users
+                    text: resources.users,
+                    href: constants.internalRoutes.users
                 }
             ],
-            rivetsConfig : {
-                binders : [userIndexViewBinders]
+            rivetsConfig: {
+                childViewBinders: {
+                    'user-detail-row': UserDetailRow
+                }
             },
-            permissions : ['admin']
+            permissions: ['admin']
         };
 
     });
