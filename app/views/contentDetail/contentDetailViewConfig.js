@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDetail/_contentDetailRow.html',
-    'contentDetailViewModel', 'appBinders', 'resources', 'constants', 'actionsBarView'],
-    function (formTemplate, rowTemplate, contentDetailModel, appBinders, resources, constants, ActionsBarView) {
+    'contentDetailViewModel', 'appBinders', 'resources', 'constants'],
+    function (formTemplate, rowTemplate, contentDetailModel, appBinders, resources, constants) {
         'use strict';
 
         return {
@@ -22,10 +22,7 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             ],
             permissions : ['admin', 'reader', 'editor'],
             rivetsConfig : {
-                binders : [appBinders],
-                childViewBinders: {
-                    'actions-bar': ActionsBarView
-                }
+                binders : [appBinders]
             }
         };
     });

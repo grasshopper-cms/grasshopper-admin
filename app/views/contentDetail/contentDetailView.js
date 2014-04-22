@@ -16,13 +16,14 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function beforeRender($deferred) {
         if(this.model.get('isNew')) {
             _getContentSchema.call(this, $deferred);
+            this.startActionsBar();
         } else {
             if(this.name === 'contentDetailRow') {
                 _fetchContentDetails.call(this)
                     .done(this.model.resetContentLabel.bind(this.model), $deferred.resolve);
             } else {
                 _fetchContentDetails.call(this)
-                    .done(_getContentSchema.bind(this, $deferred))
+                    .done(this.startActionsBar.bind(this), _getContentSchema.bind(this, $deferred))
                     .fail(_handleFailedModelFetch.bind(this, $deferred));
             }
         }
@@ -158,4 +159,5 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
         });
     }
+
 });

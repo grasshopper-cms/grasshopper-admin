@@ -6,6 +6,7 @@ define(['actionsBarViewModel', 'text!views/actionsBar/template.html'], function 
         name : 'actionsBarView',
         ModelType : actionsBarViewModel,
         wrapper : false,
+        appendTo : '#actionsBar',
         template : template
     };
 });
