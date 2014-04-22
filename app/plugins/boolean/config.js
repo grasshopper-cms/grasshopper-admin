@@ -6,15 +6,17 @@ define(['text!plugins/boolean/template.html', 'plugins/boolean/model', 'text!plu
         return {
             name : 'booleanPlugin',
             ModelType : booleanPluginModel,
-            modelData : {
-                min : 1,
-                max : 1,
-                options : false,
-                label : '',
-                type : 'boolean',
-                dataType : 'boolean',
-                validation : [],
-                value : false
+            modelData : function() {
+                return {
+                    min : 1,
+                    max : 1,
+                    options : false,
+                    label : '',
+                    type : 'boolean',
+                    dataType : 'boolean',
+                    validation : [],
+                    value : false
+                };
             },
             template : booleanPluginTemplate,
             setupTemplate : setupTemplate,

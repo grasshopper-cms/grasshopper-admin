@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'resources', 'require'],
-    function (Backbone, masseuse, resources, require) {
+define(['backbone', 'masseuse', 'resources'],
+    function (Backbone, masseuse, resources) {
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
@@ -9,8 +9,7 @@ define(['backbone', 'masseuse', 'resources', 'require'],
         return RivetView.extend({
             initialize : initialize,
             start : start,
-            fireErrorModal : fireErrorModal,
-            startActionsBar : startActionsBar
+            fireErrorModal : fireErrorModal
         });
 
         function initialize (options) {
@@ -70,18 +69,6 @@ define(['backbone', 'masseuse', 'resources', 'require'],
                     msg : message
                 }
             );
-        }
-
-        function startActionsBar() {
-            var self = this;
-//            console.log(this);
-//
-            require(['actionsBarView'], function(ActionsBarView) {
-                var actionsBarViewInstance = new ActionsBarView();
-                self.addChild(actionsBarViewInstance);
-//                actionsBarViewInstance.start(); // THIS WORKS
-
-            });
         }
 
     });
