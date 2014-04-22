@@ -31,6 +31,10 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function afterRender() {
         this.$el.foundation();
         _addListenerForModelChange.call(this);
+
+        if(this.name !== 'contentDetailRow') {
+            this.startActionsBar();
+        }
     }
 
     function deleteContent () {
