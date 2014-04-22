@@ -74,10 +74,13 @@ define(['backbone', 'masseuse', 'resources', 'require'],
 
         function startActionsBar() {
             var self = this;
-
+//            console.log(this);
+//
             require(['actionsBarView'], function(ActionsBarView) {
                 var actionsBarViewInstance = new ActionsBarView();
                 self.addChild(actionsBarViewInstance);
+//                actionsBarViewInstance.start(); // THIS WORKS
+
             });
         }
 
