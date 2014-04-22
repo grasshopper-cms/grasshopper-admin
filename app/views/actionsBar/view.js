@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'actionsBarViewConfig'],
-    function (grasshopperBaseView, actionsBarViewConfig) {
+define(['grasshopperBaseView', 'actionsBarViewConfig', 'jquery'],
+    function (grasshopperBaseView, actionsBarViewConfig, $) {
         'use strict';
 
         return grasshopperBaseView.extend({
@@ -9,7 +9,9 @@ define(['grasshopperBaseView', 'actionsBarViewConfig'],
         });
 
         function afterRender() {
-            console.log(this);
+            $(window).on('scroll', function() {
+                console.log('scrolled');
+            });
         }
 
     });

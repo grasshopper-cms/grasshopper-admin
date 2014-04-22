@@ -11,8 +11,7 @@
         "ckeditor" : "vendor/ckeditor/ckeditor",
         "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
         "ace" : "vendor/ace/lib/ace",
-        "moment" : "vendor/moment/moment",
-        "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed"
+        "moment" : "vendor/moment/moment"
     },
 
     "routers" : {
