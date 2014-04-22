@@ -46,6 +46,10 @@ require.config({
         },
         ckeditorAdapter : {
             deps : ['jquery', 'ckeditor']
+        },
+        scrollToFixed : {
+            exports : 'jquery',
+            deps : ['jquery']
         }
     },
     packages : [
@@ -78,7 +82,8 @@ require([
     'abide',
     'modernizr',
     'sortable',
-    'accordion'
+    'accordion',
+    'scrollToFixed'
 ],
     /**
      * @param $
