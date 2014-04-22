@@ -135,7 +135,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function addNewFieldToContentType(e, context) {
-        var model = context.field.config.modelData;
+        var model = _.result(context.field.config, 'modelData');
 
         _collapseAccordion.call(this);
         model.isNew = true;
