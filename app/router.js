@@ -161,7 +161,6 @@ define([
             } else {
                 this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 1]);
             }
-//            _restorePreviousMastheadButtons.call(this);
         }
 
         function navigate (fragment, options, doBeforeRender) {
