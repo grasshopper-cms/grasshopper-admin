@@ -238,3 +238,25 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
 });
+
+
+//var fields = [],
+//    elements = {},
+//    $children = $sortable.children(),
+//    childLength = $children.length,
+//    i,
+//    self = this;
+//
+//$sortable.find('.sortableMulti').each(function() {
+//    fields.push(self.collection.get($(this).attr('modelid')));
+//});
+//
+//$children.each(function() {
+//    elements[$(this).attr('sortIndex')] = this;
+//});
+//
+//for(i = 0; i < childLength; ++i) {
+//    $sortable.append(elements['sort'+ i]);
+//}
+//
+//this.collection.reset(fields);

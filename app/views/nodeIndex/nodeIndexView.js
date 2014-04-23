@@ -9,7 +9,9 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
             defaultOptions: nodeIndexViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
-            updateCurrentNode : updateCurrentNode
+            editNodeName : editNodeName,
+            editNodeContentTypes : editNodeContentTypes,
+            deleteNode : deleteNode
         });
 
         function beforeRender ($deferred) {
@@ -36,23 +38,16 @@ define(['grasshopperBaseView', 'nodeIndexViewConfig', 'nodeDetailView', 'undersc
             nodeDetailView.start();
         }
 
-        function updateCurrentNode(context) {
-            var type = context.dropbutton.type;
-
-            switch(type) {
-
-            case 'editName':
-                nodeWorker.editName.call(this);
-                break;
-
-            case 'editContentTypes' :
-                nodeWorker.editContentTypes.call(this);
-                break;
-
-            case 'deleteNode' :
-                nodeWorker.deleteNode.call(this);
-                break;
-            }
-
+        function editNodeName() {
+            nodeWorker.editName.call(this);
         }
+
+        function editNodeContentTypes() {
+            nodeWorker.editContentTypes.call(this);
+        }
+
+        function deleteNode() {
+            nodeWorker.deleteNode.call(this);
+        }
+
     });

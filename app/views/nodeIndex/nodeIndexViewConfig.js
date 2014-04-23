@@ -8,9 +8,6 @@ define(['text!views/nodeIndex/nodeIndexView.html', 'resources', 'nodeIndexViewMo
             ModelType : nodeIndexViewModel,
             template : template,
             wrapper : false,
-            listeners : [
-                ['channels.views', 'mastheadDropdownClicked', 'updateCurrentNode']
-            ],
             events : {},
             appendTo : '#contentBrowseTable',
             permissions : ['admin', 'reader', 'editor']

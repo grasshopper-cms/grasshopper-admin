@@ -68,7 +68,10 @@ define({
         createFolder : 'Create Folder',
         actions : 'Actions',
         addNewUser : 'Add New User',
-        addContentType : 'New Content Type'
+        addContentType : 'New Content Type',
+        editNodeName : 'Edit Name',
+        editNodeContentTypes : 'Edit Content Types',
+        deleteNode : 'Delete'
     },
     node : {
         deletionWarning : 'Are you sure you want to delete this folder? All of its contents will also be deleted.',

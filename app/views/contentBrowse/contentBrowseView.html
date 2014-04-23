@@ -41,4 +41,54 @@
             </div>
         </div>
     </div>
+
+    <section data-rv-move-to="view.mastheadButtonsSelector">
+        <ul class="button-group radius right">
+
+            <li data-rv-unless="model:inRoot">
+                <a data-rv-on-click="view.createContent" class="button tiny">
+                    {{model:resources->mastheadButtons->createContent}}
+                </a>
+            </li>
+
+            <li data-rv-unless="model:inRoot">
+                <a data-rv-on-click="view.createAssets" class="button tiny">
+                    {{model:resources->mastheadButtons->uploadFile}}
+                </a>
+            </li>
+
+            <li>
+                <a data-rv-on-click="view.createFolder" class="button tiny">
+                    {{model:resources->mastheadButtons->createFolder}}
+                </a>
+            </li>
+
+            <li data-rv-unless="model:inRoot">
+                <a class="button tiny dropdown" id="actionsDropdown" data-dropdown="drop">
+                    {{model:resources->mastheadButtons->actions}}
+                </a>
+
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                    <li data-rv-on-click="view.editNodeName">
+                        <a>
+                            {{model:resources->mastheadButtons->editNodeName}}
+                        </a>
+                    </li>
+
+                    <li data-rv-on-click="view.editNodeContentTypes">
+                        <a>
+                            {{model:resources->mastheadButtons->editNodeContentTypes}}
+                        </a>
+                    </li>
+
+                    <li data-rv-on-click="view.deleteNode">
+                        <a>
+                            {{model:resources->mastheadButtons->deleteNode}}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </section>
 </div>
