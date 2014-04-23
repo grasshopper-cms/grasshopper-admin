@@ -1,7 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants',
-        'underscore'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants, _) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -33,7 +32,6 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function afterRender() {
         this.$el.foundation();
         _addListenerForModelChange.call(this);
-        _addMastheadListeners.call(this);
     }
 
     function deleteContent () {
@@ -162,19 +160,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         });
     }
 
-    function _addMastheadListeners() {
-        var self = this;
-
-        _.defer(function() {
-            $('#contentDetailViewSave').click(self.saveContent.bind(self));
-            $('#contentDetailViewSaveAndClose').click(self.saveAndClose.bind(self));
-        });
-    }
-
     function remove() {
         GrasshopperBaseView.prototype.remove.apply(this, arguments);
-        $('#contentDetailViewSave').off();
-        $('#contentDetailViewSaveAndClose').off();
         this.model.off('change:fields');
     }
 
