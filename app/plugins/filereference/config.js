@@ -31,8 +31,7 @@ define(['text!plugins/filereference/template.html', 'plugins/filereference/model
                 formatters : [formatters],
                 binders : [appBinders]
             },
-            wrapper: false,
-            listeners : []
+            wrapper: false
         };
     });
 

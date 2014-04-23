@@ -25,9 +25,6 @@ define(['text!plugins/checkbox/template.html', 'plugins/checkbox/model', 'text!p
                 'blur .optionInput' : 'reduceOptions',
                 'click .checkboxListCheckbox' : 'reduceValues'
             },
-            wrapper: false,
-            listeners : [],
-            mastheadButtons : []
-//            collection : new OptionsCollection()
+            wrapper: false
         };
     });

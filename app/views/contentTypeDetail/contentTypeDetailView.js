@@ -12,7 +12,9 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         prepareToDeleteContentType : prepareToDeleteContentType,
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
-        saveContentType : saveContentType
+        saveContentType : saveContentType,
+        saveAndClose : saveAndClose,
+        remove : remove
     });
 
     function beforeRender ($deferred) {
@@ -31,6 +33,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.$el.foundation();
 
         _initializeSortableAccordions.call(this);
+        _addMastheadListeners.call(this);
     }
 
     function _handleSuccessfulModelFetch($deferred) {
@@ -150,14 +153,22 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function saveContentType() {
+        _saveContentTypeWorkflow.call(this, {});
+    }
+
+    function saveAndClose() {
+        _saveContentTypeWorkflow.call(this, { close : true });
+    }
+
+    function _saveContentTypeWorkflow(options) {
         this.model.set('fields', this.collection.toJSON());
 
         this.model.save()
-            .done(_handleSuccessfulModelSave.bind(this))
+            .done(_handleSuccessfulModelSave.bind(this, options))
             .fail(_handleFailedModelSave.bind(this));
     }
 
-    function _handleSuccessfulModelSave() {
+    function _handleSuccessfulModelSave(options) {
         _collapseAccordion.call(this);
         this.displayTemporaryAlertBox(
             {
@@ -167,12 +178,15 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
             }
         );
 
-        this.app.router.navigateNinja(
-            constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id')));
+        if(options.close) {
+            this.app.router.navigateTrigger(constants.internalRoutes.contentTypes);
+        } else {
+            this.app.router.navigateNinja(
+                constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id')));
 
-        breadcrumbWorker.resetBreadcrumb.call(this);
-        _updateMastheadBreadcrumbs.call(this);
-
+            breadcrumbWorker.resetBreadcrumb.call(this);
+            _updateMastheadBreadcrumbs.call(this);
+        }
     }
 
     function _handleFailedModelSave() {
@@ -206,6 +220,21 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         });
 
         this.collection.reset(fields, { silent : true });
+    }
+
+    function _addMastheadListeners() {
+        var self = this;
+
+        _.defer(function() {
+            $('#contentTypeDetailViewSave').click(self.saveContentType.bind(self));
+            $('#contentTypeDetailViewSaveAndClose').click(self.saveAndClose.bind(self));
+        });
+    }
+
+    function remove() {
+        GrasshopperBaseView.prototype.remove.apply(this, arguments);
+        $('#contentTypeDetailViewSave').off();
+        $('#contentTypeDetailViewSaveAndClose').off();
     }
 
 });

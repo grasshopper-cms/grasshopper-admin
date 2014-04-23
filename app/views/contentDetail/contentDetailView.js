@@ -1,6 +1,7 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants',
+        'underscore'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants, _) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -10,20 +11,20 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         deleteContent : deleteContent,
         handleRowClick : handleRowClick,
         saveContent : saveContent,
-        saveAndClose : saveAndClose
+        saveAndClose : saveAndClose,
+        remove : remove
     });
 
     function beforeRender($deferred) {
         if(this.model.get('isNew')) {
             _getContentSchema.call(this, $deferred);
-            this.startActionsBar();
         } else {
             if(this.name === 'contentDetailRow') {
                 _fetchContentDetails.call(this)
                     .done(this.model.resetContentLabel.bind(this.model), $deferred.resolve);
             } else {
                 _fetchContentDetails.call(this)
-                    .done(this.startActionsBar.bind(this), _getContentSchema.bind(this, $deferred))
+                    .done(_getContentSchema.bind(this, $deferred))
                     .fail(_handleFailedModelFetch.bind(this, $deferred));
             }
         }
@@ -32,6 +33,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     function afterRender() {
         this.$el.foundation();
         _addListenerForModelChange.call(this);
+        _addMastheadListeners.call(this);
     }
 
     function deleteContent () {
@@ -158,6 +160,22 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         this.model.on('change:fields', function() {
             self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
         });
+    }
+
+    function _addMastheadListeners() {
+        var self = this;
+
+        _.defer(function() {
+            $('#contentDetailViewSave').click(self.saveContent.bind(self));
+            $('#contentDetailViewSaveAndClose').click(self.saveAndClose.bind(self));
+        });
+    }
+
+    function remove() {
+        GrasshopperBaseView.prototype.remove.apply(this, arguments);
+        $('#contentDetailViewSave').off();
+        $('#contentDetailViewSaveAndClose').off();
+        this.model.off('change:fields');
     }
 
 });

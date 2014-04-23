@@ -8,13 +8,9 @@ define(['text!views/pluginWrapper/pluginWrapperView.html', 'pluginWrapperViewMod
         return {
             name : 'pluginWrapperView',
             ModelType : pluginWrapperViewModel,
-            modelData : {},
             appendTo : '#stage',
             wrapper : false,
             template : pluginWrapperTemplate,
-            events : {},
-            listeners : [],
-            mastheadButtons : [],
             permissions : ['admin', 'editor'],
             rivetsConfig : {
                 formatters : [formatters],

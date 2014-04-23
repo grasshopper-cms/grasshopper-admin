@@ -20,9 +20,6 @@ define(['text!plugins/boolean/template.html', 'plugins/boolean/model', 'text!plu
             },
             template : booleanPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
-            wrapper: false,
-            listeners : [],
-            mastheadButtons : []
+            wrapper: false
         };
     });

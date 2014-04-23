@@ -19,8 +19,6 @@ define(['text!plugins/date/template.html', 'plugins/date/model', 'text!plugins/d
             },
             template : datePluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
-            wrapper: false,
-            listeners : []
+            wrapper: false
         };
     });

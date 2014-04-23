@@ -24,6 +24,14 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             listeners : [],
             mastheadButtons : [
                 {
+                    text : resources.save,
+                    id : 'contentTypeDetailViewSave'
+                },
+                {
+                    text : resources.saveAndClose,
+                    id : 'contentTypeDetailViewSaveAndClose'
+                },
+                {
                     text : resources.mastheadButtons.addContentType,
                     href : constants.internalRoutes.newContentType
                 }
