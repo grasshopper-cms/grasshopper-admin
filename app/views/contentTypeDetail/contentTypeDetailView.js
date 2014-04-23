@@ -14,7 +14,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         addNewFieldToContentType : addNewFieldToContentType,
         saveContentType : saveContentType,
         saveAndClose : saveAndClose,
-        remove : remove,
         newContentType : newContentType
     });
 
@@ -213,17 +212,25 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function _applyCollectionSort($accordion) {
         var fields = [],
+            elements = {},
+            $children = $accordion.children(),
+            childLength = $children.length,
+            i,
             self = this;
 
         $accordion.find('.fieldAccordion').each(function() {
             fields.push(self.collection.get($(this).attr('modelid')));
         });
 
-        this.collection.reset(fields, { silent : true });
-    }
+        $children.each(function() {
+            elements[$(this).attr('sortIndex')] = this;
+        });
 
-    function remove() {
-        GrasshopperBaseView.prototype.remove.apply(this, arguments);
+        for(i = 0; i < childLength; ++i) {
+            $accordion.append(elements['sort'+ i]);
+        }
+
+        this.collection.reset(fields);
     }
 
     function newContentType() {
@@ -231,25 +238,3 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
 });
-
-
-//var fields = [],
-//    elements = {},
-//    $children = $sortable.children(),
-//    childLength = $children.length,
-//    i,
-//    self = this;
-//
-//$sortable.find('.sortableMulti').each(function() {
-//    fields.push(self.collection.get($(this).attr('modelid')));
-//});
-//
-//$children.each(function() {
-//    elements[$(this).attr('sortIndex')] = this;
-//});
-//
-//for(i = 0; i < childLength; ++i) {
-//    $sortable.append(elements['sort'+ i]);
-//}
-//
-//this.collection.reset(fields);
