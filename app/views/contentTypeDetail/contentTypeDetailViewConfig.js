@@ -18,8 +18,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             template : formTemplate,
             events : {
                 'click #deleteContentType' : 'prepareToDeleteContentType',
-                'click .clickableCell' : 'handleRowClick',
-                'click #saveContentType' : 'saveContentType'
+                'click .clickableCell' : 'handleRowClick'
             },
             listeners : [],
             mastheadButtons : [
