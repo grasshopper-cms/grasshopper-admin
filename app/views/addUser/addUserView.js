@@ -8,7 +8,8 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
     return GrasshopperBaseView.extend({
         defaultOptions : addUserViewConfig,
         beforeRender : beforeRender,
-        saveUser : saveUser
+        saveUser : saveUser,
+        addNewUser : addNewUser
     });
 
     function beforeRender($deferred) {
@@ -81,5 +82,9 @@ define(['grasshopperBaseView', 'resources', 'addUserViewConfig',
         this.app.router.removeThisRouteFromBreadcrumb();
         this.app.router.navigateBack(trigger);
         this.remove();
+    }
+
+    function addNewUser() {
+        this.app.router.displayAddUser();
     }
 });
