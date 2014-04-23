@@ -18,9 +18,6 @@ define(['text!plugins/richtext/template.html', 'plugins/richtext/model', 'text!p
             },
             template : richTextPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
-            wrapper: false,
-            listeners : [],
-            mastheadButtons : []
+            wrapper: false
         };
     });

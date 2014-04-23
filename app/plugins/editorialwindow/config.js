@@ -23,9 +23,7 @@ define(['text!plugins/editorialwindow/template.html', 'plugins/editorialwindow/m
             },
             template : editorialWindowPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
             wrapper: false,
-            listeners : [],
             rivetsConfig : {
                 formatters : formatters
             }

@@ -1,10 +1,11 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
-    function (GrasshopperBaseView, mastheadViewConfig, _) {
+define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore', 'jquery'],
+    function (GrasshopperBaseView, mastheadViewConfig, _, $) {
     'use strict';
     return GrasshopperBaseView.extend({
         defaultOptions : mastheadViewConfig,
         beforeRender : beforeRender,
+        afterRender : afterRender,
         setButtons : setButtons,
         setBreadcrumbs : setBreadcrumbs,
         interpolateMastheadButtons : interpolateMastheadButtons,
@@ -14,6 +15,10 @@ define(['grasshopperBaseView', 'mastheadViewConfig', 'underscore'],
     function beforeRender () {
         this.setButtons();
         this.setBreadcrumbs();
+    }
+
+    function afterRender() {
+        $('#masthead').scrollToFixed();
     }
 
     function setButtons (buttonArray) {

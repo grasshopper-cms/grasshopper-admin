@@ -1,7 +1,9 @@
+$footerHeight: 60px;
+
 #footer {
   position: absolute;
   bottom: 0;
-  height: 60px;
+  height: $footerHeight;
   background: #1d354d;
   width: 100%;
   padding: 7px 0;

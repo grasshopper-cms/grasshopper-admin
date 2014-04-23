@@ -11,7 +11,8 @@
         "ckeditor" : "vendor/ckeditor/ckeditor",
         "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
         "ace" : "vendor/ace/lib/ace",
-        "moment" : "vendor/moment/moment"
+        "moment" : "vendor/moment/moment",
+        "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed"
     },
 
     "routers" : {
@@ -97,12 +98,6 @@
 
     "views" : {
         "grasshopperBaseView" : "views/grasshopperBaseView",
-
-        "actionsBarView+" : {
-            "" : "views/actionsBar/view",
-            "Config" : "views/actionsBar/config",
-            "Model" : "views/actionsBar/model"
-        },
 
         "addAssetsView+" : {
             "" : "views/addAssets/addAssetsView",

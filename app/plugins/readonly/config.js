@@ -19,9 +19,6 @@ define(['text!plugins/readonly/template.html', 'plugins/readonly/model', 'text!p
             },
             wrapper: false,
             template : readonlyPluginTemplate,
-            setupTemplate : setupTemplate,
-            events : {},
-            listeners : [],
-            mastheadButtons : []
+            setupTemplate : setupTemplate
         };
     });
