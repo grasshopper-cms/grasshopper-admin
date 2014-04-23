@@ -161,6 +161,7 @@ define([
             } else {
                 this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 1]);
             }
+//            _restorePreviousMastheadButtons.call(this);
         }
 
         function navigate (fragment, options, doBeforeRender) {
@@ -207,9 +208,8 @@ define([
                     currentView.remove();
                 }
                 currentView = newView;
+                $('#mastheadButtons').empty();
             });
-
-            $('#mastheadButtons').empty();
 
             newView.start()
                 .done(function () {
@@ -253,7 +253,7 @@ define([
         }
 
         function displayLogin () {
-            loadMainContent(LoginView);
+            this.loadMainContent(LoginView);
         }
 
         function displayAlertBox (options) {
@@ -303,7 +303,7 @@ define([
             // I did the role check here instead of in the config with permissions, this is because there are Admin's
             // getting their own, Admins getting others, and others getting their own.
             if (this.user.get('role') === 'admin' || this.user.get('_id') === id) {
-                loadMainContent(UserDetailView, {
+                this.loadMainContent(UserDetailView, {
                         modelData : {
                             _id : id,
                             userModel : this.user
@@ -315,7 +315,7 @@ define([
         }
 
         function displayUserIndex (pageNumber, pageLimit) {
-            loadMainContent(UserIndexView, {
+            this.loadMainContent(UserIndexView, {
                     modelData : {
                         pageNumber : pageNumber,
                         pageLimit : pageLimit
@@ -324,12 +324,12 @@ define([
         }
 
         function displayAddUser () {
-            loadMainContent(AddUserView);
+            this.loadMainContent(AddUserView);
         }
 
         function displayContentBrowse (nodeId) {
             this.mastheadView.model.trigger('contentBrowseNodeId', nodeId);
-            loadMainContent(ContentBrowseView, {
+            this.loadMainContent(ContentBrowseView, {
                     modelData : {
                         nodeId : nodeId ? nodeId : 0,
                         inRoot : !nodeId
@@ -338,7 +338,7 @@ define([
         }
 
         function displayContentDetail (id, options) {
-            loadMainContent(ContentDetailView, {
+            this.loadMainContent(ContentDetailView, {
                     modelData : _.extend({}, options, {
                         _id : id
                     })
@@ -346,11 +346,11 @@ define([
         }
 
         function displayContentTypeIndex () {
-            loadMainContent(ContentTypeIndexView);
+            this.loadMainContent(ContentTypeIndexView);
         }
 
         function displayContentTypeDetail (id) {
-            loadMainContent(ContentTypeDetailView, {
+            this.loadMainContent(ContentTypeDetailView, {
                     modelData : {
                         _id : id
                     }
@@ -373,7 +373,7 @@ define([
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModal.call(this, nodeId);
             }
-            loadMainContent(AddContentView, {
+            this.loadMainContent(AddContentView, {
                     modelData : {
                         meta : {
                             node : nodeId
