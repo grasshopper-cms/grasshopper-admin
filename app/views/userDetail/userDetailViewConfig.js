@@ -12,11 +12,18 @@ define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel',
             wrapper : false,
             template : formTemplate,
             events : {
-                'click #saveUser' : 'updateModel',
                 'click .clickableCell' : 'handleRowClick'
             },
             listeners : [],
             mastheadButtons : [
+                {
+                    text : resources.save,
+                    id : 'userDetailViewSave'
+                },
+                {
+                    text : resources.saveAndClose,
+                    id : 'userDetailViewSaveAndClose'
+                },
                 {
                     text : resources.mastheadButtons.addNewUser,
                     href : constants.internalRoutes.addUser
