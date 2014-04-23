@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'],
-    function(grasshopperBaseView, fieldAccordionConfig, _, resources) {
+define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources', 'jquery'],
+    function(grasshopperBaseView, fieldAccordionConfig, _, resources, $) {
         'use strict';
 
         return grasshopperBaseView.extend({
@@ -44,13 +44,22 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
         }
 
         function _actuallyChangeFieldPluginType(newType) {
-            var newModel = _.findWhere(this.model.get('plugins'), { type : newType }).config.modelData,
-                thisModel = this.model.pick('label', 'min', 'max', 'multi', 'helpText', 'validation', '_id');
+            var newModel = _.result(_.findWhere(this.model.get('plugins'), { type : newType }).config, 'modelData'),
+                thisModel = this.model.pick('label', 'min', 'max', 'multi', 'helpText', 'validation', '_id'),
+                index = this.parent.collection.indexOf(this.model),
+                self = this;
 
             _.extend(newModel, thisModel);
 
+            this.parent.collection.add(newModel, { at : index });
+
+            setTimeout(function() { // This is here because the newly added field needs to be open.
+                $('.fieldAccordion[modelid="'+ self.parent.collection.at(index).cid +'"]').click();
+            }, 100);
+
+            console.log($('.fieldAccordion[modelid="'+ this.parent.collection.at(index).cid +'"]'));
             this.parent.collection.remove(this.model);
-            this.parent.collection.add(newModel);
+
         }
 
         function _getModelDataTypeFromPlugins(plugins, type) {
