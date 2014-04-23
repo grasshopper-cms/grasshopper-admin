@@ -21,20 +21,6 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                 'click .clickableCell' : 'handleRowClick'
             },
             listeners : [],
-            mastheadButtons : [
-                {
-                    text : resources.save,
-                    id : 'contentTypeDetailViewSave'
-                },
-                {
-                    text : resources.saveAndClose,
-                    id : 'contentTypeDetailViewSaveAndClose'
-                },
-                {
-                    text : resources.mastheadButtons.addContentType,
-                    href : constants.internalRoutes.newContentType
-                }
-            ],
             breadcrumbs : [
                 {
                     text : resources.contentTypes,

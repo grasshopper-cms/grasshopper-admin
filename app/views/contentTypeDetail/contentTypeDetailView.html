@@ -79,10 +79,52 @@
     </div>
     <div class="row">
         <div class="large-12 columns">
-            <div class="right">
-                <button class="button tiny radius" data-rv-on-click="view.saveContentType" style="margin-top: 20px;">{{model:resources->save}}</button>
-                <button class="button tiny radius" data-rv-on-click="view.saveAndClose" style="margin-top: 20px;">{{model:resources->saveAndClose}}</button>
-            </div>
+            <ul class="button-group radius right">
+
+                <li>
+                    <a class="button tiny" data-rv-on-click="view.saveContentType" style="margin-top: 20px;">
+                        {{model:resources->save}}
+                    </a>
+                </li>
+
+                <li>
+                    <a class="button tiny" data-rv-on-click="view.saveAndClose" style="margin-top: 20px;">
+                        {{model:resources->saveAndClose}}
+                    </a>
+                </li>
+
+            </ul>
         </div>
     </div>
+
+
+    <section data-rv-move-to="view.mastheadButtonsSelector">
+        <div class="button-bar">
+            <ul class="button-group radius">
+
+                <li>
+                    <a data-rv-on-click="view.newContentType" class="button tiny">
+                        {{model:resources->mastheadButtons->addContentType}}
+                    </a>
+                </li>
+
+            </ul>
+
+            <ul class="button-group radius">
+
+                <li>
+                    <a data-rv-on-click="view.saveContentType" class="button tiny">
+                        {{model:resources->save}}
+                    </a>
+                </li>
+
+                <li>
+                    <a data-rv-on-click="view.saveAndClose" class="button tiny">
+                        {{model:resources->saveAndClose}}
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </section>
 </div>

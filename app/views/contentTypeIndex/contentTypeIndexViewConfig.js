@@ -1,6 +1,7 @@
 /*global define:false*/
-define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeIndexViewModel', 'resources', 'constants'],
-    function (template, contentTypeIndexViewModel, resources, constants) {
+define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeIndexViewModel', 'resources', 'constants',
+    'appBinders'],
+    function (template, contentTypeIndexViewModel, resources, constants, appBinders) {
         'use strict';
 
         return {
@@ -11,18 +12,15 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
             template : template,
             listeners : [],
             events : {},
-            mastheadButtons : [
-                {
-                    text : resources.mastheadButtons.addContentType,
-                    href : constants.internalRoutes.newContentType
-                }
-            ],
             breadcrumbs : [
                 {
                     text : resources.contentTypes,
                     href : constants.internalRoutes.contentTypes
                 }
             ],
-            permissions : ['admin', 'editor']
+            permissions : ['admin', 'editor'],
+            rivetsConfig : {
+                binders : [appBinders]
+            }
         };
     });

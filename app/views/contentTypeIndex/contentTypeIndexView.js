@@ -1,16 +1,17 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'contentTypeDetailView',
     'text!views/contentTypeDetail/_contentTypeDetailRow.html',
-    'underscore', 'resources'],
+    'underscore', 'resources', 'constants'],
     function (GrasshopperBaseView, contentTypeIndexViewConfig, ContentTypeDetailView,
               rowTemplate,
-              _, resources) {
+              _, resources, constants) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : contentTypeIndexViewConfig,
             beforeRender : beforeRender,
-            insertContentTypeDetailRow : insertContentTypeDetailRow
+            insertContentTypeDetailRow : insertContentTypeDetailRow,
+            newContentType : newContentType
         });
 
         function beforeRender ($deferred) {
@@ -43,6 +44,10 @@ define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'contentTypeDetailV
                     mastheadButtons : null
                 });
             this.addChild(contentTypeDetailView);
+        }
+
+        function newContentType() {
+            this.app.router.navigateTrigger(constants.internalRoutes.newContentType);
         }
 
     });
