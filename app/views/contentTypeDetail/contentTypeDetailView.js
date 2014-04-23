@@ -14,7 +14,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         addNewFieldToContentType : addNewFieldToContentType,
         saveContentType : saveContentType,
         saveAndClose : saveAndClose,
-        remove : remove
+        remove : remove,
+        newContentType : newContentType
     });
 
     function beforeRender ($deferred) {
@@ -33,7 +34,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.$el.foundation();
 
         _initializeSortableAccordions.call(this);
-        _addMastheadListeners.call(this);
     }
 
     function _handleSuccessfulModelFetch($deferred) {
@@ -222,19 +222,12 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.collection.reset(fields, { silent : true });
     }
 
-    function _addMastheadListeners() {
-        var self = this;
-
-        _.defer(function() {
-            $('#contentTypeDetailViewSave').click(self.saveContentType.bind(self));
-            $('#contentTypeDetailViewSaveAndClose').click(self.saveAndClose.bind(self));
-        });
-    }
-
     function remove() {
         GrasshopperBaseView.prototype.remove.apply(this, arguments);
-        $('#contentTypeDetailViewSave').off();
-        $('#contentTypeDetailViewSaveAndClose').off();
+    }
+
+    function newContentType() {
+        this.app.router.displayContentTypeDetail();
     }
 
 });
