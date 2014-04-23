@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexView',
-    'assetIndexView', 'underscore', 'contentIndexView', 'breadcrumbWorker'],
+    'assetIndexView', 'underscore', 'contentIndexView', 'breadcrumbWorker', 'constants'],
     function (GrasshopperBaseView, contentBrowseViewConfig, $, NodeIndexView, AssetIndexView,
-              _, ContentIndexView, breadcrumbWorker) {
+              _, ContentIndexView, breadcrumbWorker, constants) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -10,7 +10,13 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             beforeRender : beforeRender,
             afterRender : afterRender,
             refreshIndexViews : refreshIndexViews,
-            activateTab : activateTab
+            activateTab : activateTab,
+            createContent : createContent,
+            createAssets : createAssets,
+            createFolder : createFolder,
+            editNodeName : editNodeName,
+            editNodeContentTypes : editNodeContentTypes,
+            deleteNode : deleteNode
         });
 
         function beforeRender ($deferred) {
@@ -42,6 +48,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
                     mastheadButtons : null
                 });
             this.addChild(nodeIndexView);
+            this.nodeIndexView = nodeIndexView;
         }
 
         function _addAssetIndexView() {
@@ -78,4 +85,40 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         function activateTab (tab) {
             $('#' + tab + ' a').click();
         }
+
+        function createContent() {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.addContent.replace(':id', this.model.get('nodeId')));
+        }
+
+        function createAssets() {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.createAssets.replace(':id', this.model.get('nodeId')));
+        }
+
+        function createFolder() {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.createFolder.replace(':id', this.model.get('nodeId')));
+        }
+
+        function editNodeName() {
+            this.nodeIndexView.editNodeName();
+            _closeActionsDropdown.call();
+        }
+
+        function editNodeContentTypes() {
+            this.nodeIndexView.editNodeContentTypes();
+            _closeActionsDropdown.call();
+        }
+
+        function deleteNode() {
+            this.nodeIndexView.deleteNode();
+            _closeActionsDropdown.call();
+        }
+
+        function _closeActionsDropdown() {
+            $('#actionsDropdown').click();
+        }
+
+
     });

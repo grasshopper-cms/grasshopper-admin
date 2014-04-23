@@ -71,6 +71,10 @@ define(['jquery', 'underscore', 'masseuse',
             },
             nodetree :  function(el, model) {
                 _appendNodeTreeView.call(this, el, model);
+            },
+            'move-to' : function(el, selector) {
+                $(selector).append($(el).contents());
+                $(selector).foundation();
             }
         };
 

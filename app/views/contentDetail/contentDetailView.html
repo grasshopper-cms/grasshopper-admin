@@ -24,4 +24,22 @@
             </fieldset>
         </div>
     </div>
+
+    <section data-rv-move-to="view.mastheadButtonsSelector">
+        <ul class="button-group radius right">
+
+            <li>
+                <a data-rv-on-click="view.saveContent" class="button tiny">
+                    {{model:resources->save}}
+                </a>
+            </li>
+
+            <li>
+                <a data-rv-on-click="view.saveAndClose" class="button tiny">
+                    {{model:resources->saveAndClose}}
+                </a>
+            </li>
+
+        </ul>
+    </section>
 </div>

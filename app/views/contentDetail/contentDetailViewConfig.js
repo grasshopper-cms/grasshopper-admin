@@ -13,16 +13,6 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             template : formTemplate,
             events : {},
             listeners : [],
-            mastheadButtons : [
-                {
-                    text : resources.save,
-                    id : 'contentDetailViewSave'
-                },
-                {
-                    text : resources.saveAndClose,
-                    id : 'contentDetailViewSaveAndClose'
-                }
-            ],
             breadcrumbs : [
                 {
                     text : resources.home,

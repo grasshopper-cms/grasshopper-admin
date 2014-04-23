@@ -209,6 +209,8 @@ define([
                 currentView = newView;
             });
 
+            $('#mastheadButtons').empty();
+
             newView.start()
                 .done(function () {
                     $deferred.resolve(newView);

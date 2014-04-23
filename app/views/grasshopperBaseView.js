@@ -9,7 +9,8 @@ define(['backbone', 'masseuse', 'resources'],
         return RivetView.extend({
             initialize : initialize,
             start : start,
-            fireErrorModal : fireErrorModal
+            fireErrorModal : fireErrorModal,
+            mastheadButtonsSelector : '#mastheadButtons'
         });
 
         function initialize (options) {
@@ -42,9 +43,6 @@ define(['backbone', 'masseuse', 'resources'],
         }
 
         function _handleAfterRender() {
-            if (this.mastheadButtons) {
-                this.channels.views.trigger('updateMastheadButtons', (this.mastheadButtons));
-            }
             if (this.breadcrumbs) {
                 this.channels.views.trigger('updateMastheadBreadcrumbs', this);
             }
