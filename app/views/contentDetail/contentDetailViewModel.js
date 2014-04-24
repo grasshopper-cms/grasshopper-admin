@@ -14,7 +14,8 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
                         return constants.internalRoutes.contentDetail.replace(':id', id);
                     }),
                     label : '',
-                    fields: {}
+                    fields: {},
+                    saving: false
                 };
             },
             urlRoot : constants.api.content.url,

@@ -82,15 +82,15 @@
             <ul class="button-group radius right">
 
                 <li>
-                    <a class="button tiny" data-rv-on-click="view.saveContentType" style="margin-top: 20px;">
+                    <button class="button tiny" data-rv-on-click="view.saveContentType" data-rv-disabled="model:saving" style="margin-top: 20px;">
                         {{model:resources->save}}
-                    </a>
+                    </button>
                 </li>
 
                 <li>
-                    <a class="button tiny" data-rv-on-click="view.saveAndClose" style="margin-top: 20px;">
+                    <button class="button tiny" data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving" style="margin-top: 20px;">
                         {{model:resources->saveAndClose}}
-                    </a>
+                    </button>
                 </li>
 
             </ul>
@@ -103,9 +103,9 @@
             <ul class="button-group radius">
 
                 <li>
-                    <a data-rv-on-click="view.newContentType" class="button tiny">
+                    <button data-rv-on-click="view.newContentType" class="button tiny">
                         {{model:resources->mastheadButtons->addContentType}}
-                    </a>
+                    </button>
                 </li>
 
             </ul>
@@ -113,15 +113,15 @@
             <ul class="button-group radius">
 
                 <li>
-                    <a data-rv-on-click="view.saveContentType" class="button tiny">
+                    <button data-rv-on-click="view.saveContentType" data-rv-disabled="model:saving" class="button tiny">
                         {{model:resources->save}}
-                    </a>
+                    </button>
                 </li>
 
                 <li>
-                    <a data-rv-on-click="view.saveAndClose" class="button tiny">
+                    <button data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving" class="button tiny">
                         {{model:resources->saveAndClose}}
-                    </a>
+                    </button>
                 </li>
 
             </ul>

@@ -16,15 +16,15 @@
         <div class="large-12 small-centered columns">
             <ul class="button-group radius right">
                 <li>
-                    <a class="button tiny" data-rv-on-click="view.saveContent">
+                    <button class="button tiny" data-rv-on-click="view.saveContent" data-rv-disabled="model:saving">
                         {{model:resources->save}}
-                    </a>
+                    </button>
                 </li>
 
                 <li>
-                    <a class="button tiny" data-rv-on-click="view.saveAndClose">
+                    <button class="button tiny" data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving">
                         {{model:resources->saveAndClose}}
-                    </a>
+                    </button>
                 </li>
             </ul>
         </div>
@@ -35,15 +35,15 @@
         <ul class="button-group radius right">
 
             <li>
-                <a data-rv-on-click="view.saveContent" class="button tiny">
+                <button class="button tiny" data-rv-on-click="view.saveContent" data-rv-disabled="model:saving">
                     {{model:resources->save}}
-                </a>
+                </button>
             </li>
 
             <li>
-                <a data-rv-on-click="view.saveAndClose" class="button tiny">
+                <button data-rv-on-click="view.saveAndClose" class="button tiny" data-rv-disabled="model:saving">
                     {{model:resources->saveAndClose}}
-                </a>
+                </button>
             </li>
 
         </ul>
