@@ -12,16 +12,17 @@
         <tr>
             <td colspan="4">
                 {{model:resources->asset->emptyNode}}
-                    <span>
-                        <a data-rv-href="model:emptyAssetsLink">
-                            {{model:resources->asset->clickToAdd}}
-                        </a>
-                    </span>
+                <span>
+                    <a data-rv-href="model:emptyAssetsLink">
+                        {{model:resources->asset->clickToAdd}}
+                    </a>
+                </span>
             </td>
         </tr>
     </tbody>
 
     <tbody id="assetDetailTable" data-rv-show="model:hasAssets">
-        <tr data-rv-each-asset="model:childAssets:" data-rv-new-asset-detail-row="asset"></tr>
+        <tr data-rv-new-asset-detail-row="asset" data-rv-each-asset="model:childAssets:">
+        </tr>
     </tbody>
 </table>
