@@ -242,15 +242,17 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.collection.reset(fields);
 
         _toggleAccordionEnabledDisabled.call(this, $accordion);
+
     }
 
     function _toggleAccordionEnabledDisabled($accordion) {
         if($accordion.accordion( 'option', 'disabled' )) {
-            console.log($accordion.accordion( 'option', 'disabled' ));
-            $accordion.accordion( { disabled : false , active : false});
+            $accordion.accordion( { disabled : false});
+            $accordion.accordion( { active : false});
+            $accordion.accordion('refresh');
         } else {
-            console.log($accordion.accordion( 'option', 'disabled' ));
             $accordion.accordion( { disabled : true });
+            $accordion.accordion('refresh');
         }
     }
 
