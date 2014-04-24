@@ -146,9 +146,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _collapseAccordion() {
-        this.$el.find('.ui-accordion-header-active').each(function() {
-            this.click();
-        });
+        this.$('#contentTypeFieldAccordion').accordion({ active : false });
     }
 
     function saveContentType() {
@@ -200,11 +198,21 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         var $accordion = this.$('#contentTypeFieldAccordion');
 
         $accordion
+            .accordion(
+            {
+                header : '.accordionHeader',
+                icons : false,
+                active : false,
+                collapsible : true,
+                disabled : false,
+                heightStyle : 'content'
+            })
             .sortable(
             {
                 handle : '.fieldAccordion',
                 revert : true,
                 axis : 'y',
+                start : _toggleAccordionEnabledDisabled.bind(this, $accordion),
                 stop : _applyCollectionSort.bind(this, $accordion)
             }
         );
@@ -228,9 +236,22 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
         for(i = 0; i < childLength; ++i) {
             $accordion.append(elements['sort'+ i]);
+            $accordion.accordion('refresh');
         }
 
         this.collection.reset(fields);
+
+        _toggleAccordionEnabledDisabled.call(this, $accordion);
+    }
+
+    function _toggleAccordionEnabledDisabled($accordion) {
+        if($accordion.accordion( 'option', 'disabled' )) {
+            console.log($accordion.accordion( 'option', 'disabled' ));
+            $accordion.accordion( { disabled : false , active : false});
+        } else {
+            console.log($accordion.accordion( 'option', 'disabled' ));
+            $accordion.accordion( { disabled : true });
+        }
     }
 
     function newContentType() {
