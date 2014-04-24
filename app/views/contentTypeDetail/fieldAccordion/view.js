@@ -14,8 +14,8 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
 
         function afterRender() {
             _handleValidation.call(this);
-            _initializeAccordions.call(this);
-            _handleNewFieldAccordion.call(this);
+//            _initializeAccordions.call(this);
+//            _handleNewFieldAccordion.call(this);
         }
 
         function changeFieldType(currentModel, newType) {
@@ -28,6 +28,8 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                 _warnUserBeforeChangingComplexTypes.call(this)
                     .done(_actuallyChangeFieldPluginType.bind(this, newType))
                     .fail(_returnFieldPluginTypeToPreviousType.bind(this, previousType));
+            } else {
+                _actuallyChangeFieldPluginType.call(this, newType);
             }
         }
 
@@ -57,9 +59,7 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                 $('.fieldAccordion[modelid="'+ self.parent.collection.at(index).cid +'"]').click();
             }, 100);
 
-            console.log($('.fieldAccordion[modelid="'+ this.parent.collection.at(index).cid +'"]'));
             this.parent.collection.remove(this.model);
-
         }
 
         function _getModelDataTypeFromPlugins(plugins, type) {
@@ -122,24 +122,30 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
 
         }
 
-        function _initializeAccordions() {
-            var $accordion = this.$el;
-
-            $accordion
-                .accordion(
-                {
-                    header : '.fieldAccordion',
-                    icons : false,
-                    active : false,
-                    collapsible : true,
-                    heightStyle : 'content'
-                });
-        }
-
-        function _handleNewFieldAccordion() {
-            if(this.model.get('isNew')) {
-                this.$el.find('.fieldAccordion').click();
-            }
-        }
+//        function _initializeAccordions() {
+//            var $accordion = this.$el;
+//
+//            $accordion
+//                .accordion(
+//                {
+//                    header : '.fieldAccordion',
+//                    icons : false,
+//                    active : false,
+//                    collapsible : true,
+//                    heightStyle : 'content',
+//                    beforeActivate : function(event, ui) {
+//                        console.log(ui);
+//                        if($(ui.item).data('sorting')) {
+//                            return false;
+//                        }
+//                    }
+//                });
+//        }
+//
+//        function _handleNewFieldAccordion() {
+//            if(this.model.get('isNew')) {
+//                this.$el.find('.fieldAccordion').click();
+//            }
+//        }
 
     });
