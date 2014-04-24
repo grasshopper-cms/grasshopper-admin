@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker'],
-    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker) {
+define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker', 'jquery'],
+    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker, $) {
 
         'use strict';
 
@@ -19,7 +19,9 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
                 .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
-        function saveUser () {
+        function saveUser (e) {
+            _swapSavingTextWithSpinner.call(this, e);
+            this.model.toggle('saving');
             _updateUserWorkflow.call(this, {});
         }
 
@@ -55,6 +57,10 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
 
             if(options.close) {
                 this.app.router.navigateTrigger(constants.internalRoutes.users);
+            } else {
+                this.model.toggle('saving');
+
+                _swapSavingTextWithSpinner.call(this);
             }
 
             _updateNameInHeader.call(this, model);
@@ -76,6 +82,22 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
 
         function addNewUser() {
             this.app.router.displayAddUser();
+        }
+
+        function _swapSavingTextWithSpinner(e) {
+            var currentWidth,
+                $currentTarget;
+
+            if(e) {
+                $currentTarget = $(e.currentTarget);
+
+                this.model.set('swapElement', $currentTarget);
+                this.model.set('swapText', $currentTarget.text());
+                currentWidth = $currentTarget.width();
+                $currentTarget.empty().width(currentWidth).append('<i class="fa fa-refresh fa fa-spin"></i>');
+            } else {
+                $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
+            }
         }
 
     });

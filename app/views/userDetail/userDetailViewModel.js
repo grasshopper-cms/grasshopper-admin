@@ -1,5 +1,5 @@
-define(['grasshopperModel', 'constants', 'resources', 'masseuse'],
-    function (GrasshopperModel, constants, resources, masseuse) {
+define(['grasshopperModel', 'constants', 'resources', 'masseuse', 'underscore'],
+    function (GrasshopperModel, constants, resources, masseuse, _) {
 
         'use strict';
 
@@ -15,8 +15,10 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse'],
                 }),
                 href : new ComputedProperty(['_id'], function(_id) {
                     return constants.internalRoutes.user + '/' + _id;
-                })
+                }),
+                saving : false
             },
+            toJSON : toJSON,
             urlRoot : constants.api.users.url,
             url : function() {
                 if(this.has('userModel') && this.get('_id') === this.get('userModel')._id) {
@@ -26,4 +28,10 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse'],
                 }
             }
         });
+
+        function toJSON() {
+            var json = GrasshopperModel.prototype.toJSON.apply(this);
+
+            return _.omit(json, ['swapElement', 'swapText']);
+        }
     });

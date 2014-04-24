@@ -134,15 +134,15 @@
             <div class="small-12 columns">
                 <ul class="button-group radius right">
                     <li>
-                        <a data-rv-on-click="view.saveUser" class="button tiny">
+                        <button data-rv-on-click="view.saveUser" class="button tiny" data-rv-disabled="model:saving">
                             {{model:resources->save}}
-                        </a>
+                        </button>
                     </li>
 
                     <li>
-                        <a data-rv-on-click="view.saveAndClose" class="button tiny">
+                        <button data-rv-on-click="view.saveAndClose" class="button tiny" data-rv-disabled="model:saving">
                             {{model:resources->saveAndClose}}
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -155,9 +155,9 @@
             <ul class="button-group radius">
 
                 <li>
-                    <a data-rv-on-click="view.addNewUser" class="button tiny">
+                    <button data-rv-on-click="view.addNewUser" class="button tiny">
                         {{model:resources->mastheadButtons->addNewUser}}
-                    </a>
+                    </button>
                 </li>
 
             </ul>
@@ -165,15 +165,15 @@
             <ul class="button-group radius">
 
                 <li>
-                    <a data-rv-on-click="view.saveUser" class="button tiny">
+                    <button data-rv-on-click="view.saveUser" class="button tiny" data-rv-disabled="model:saving">
                         {{model:resources->save}}
-                    </a>
+                    </button>
                 </li>
 
                 <li>
-                    <a data-rv-on-click="view.saveAndClose" class="button tiny">
+                    <button data-rv-on-click="view.saveAndClose" class="button tiny" data-rv-disabled="model:saving">
                         {{model:resources->saveAndClose}}
-                    </a>
+                    </button>
                 </li>
 
             </ul>

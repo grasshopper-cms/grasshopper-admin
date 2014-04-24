@@ -75,7 +75,9 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         this.app.router.navigateTrigger(this.model.get('href'));
     }
 
-    function saveContent() {
+    function saveContent(e) {
+        _swapSavingTextWithSpinner.call(this, e);
+        this.model.toggle('saving');
         _saveContentWorkflow.call(this, {});
     }
 
@@ -106,6 +108,10 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             this.app.router.navigateTrigger(
                 constants.internalRoutes.nodeDetail.replace(':id', this.model.get('meta.node')));
         } else {
+            this.model.toggle('saving');
+
+            _swapSavingTextWithSpinner.call(this);
+
             this.app.router.navigateNinja(
                 constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id')));
 
@@ -158,6 +164,22 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         this.model.on('change:fields', function() {
             self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
         });
+    }
+
+    function _swapSavingTextWithSpinner(e) {
+        var currentWidth,
+            $currentTarget;
+
+        if(e) {
+            $currentTarget = $(e.currentTarget);
+
+            this.model.set('swapElement', $currentTarget);
+            this.model.set('swapText', $currentTarget.text());
+            currentWidth = $currentTarget.width();
+            $currentTarget.empty().width(currentWidth).append('<i class="fa fa-refresh fa fa-spin"></i>');
+        } else {
+            $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
+        }
     }
 
     function remove() {

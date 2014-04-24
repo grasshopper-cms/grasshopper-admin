@@ -149,7 +149,9 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.$('#contentTypeFieldAccordion').accordion({ active : false });
     }
 
-    function saveContentType() {
+    function saveContentType(e) {
+        _swapSavingTextWithSpinner.call(this, e);
+        this.model.toggle('saving');
         _saveContentTypeWorkflow.call(this, {});
     }
 
@@ -178,6 +180,10 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         if(options.close) {
             this.app.router.navigateTrigger(constants.internalRoutes.contentTypes);
         } else {
+            this.model.toggle('saving');
+
+            _swapSavingTextWithSpinner.call(this);
+
             this.app.router.navigateNinja(
                 constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id')));
 
@@ -258,6 +264,21 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function newContentType() {
         this.app.router.displayContentTypeDetail();
+    }
+
+    function _swapSavingTextWithSpinner(e) {
+        var currentWidth,
+            $currentTarget;
+
+        if(e) {
+            $currentTarget = $(e.currentTarget);
+            this.model.set('swapElement', $currentTarget);
+            this.model.set('swapText', $currentTarget.text());
+            currentWidth = $currentTarget.width();
+            $currentTarget.empty().width(currentWidth).append('<i class="fa fa-refresh fa fa-spin"></i>');
+        } else {
+            $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
+        }
     }
 
 });
