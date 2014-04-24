@@ -1,24 +1,23 @@
 $footerHeight: 60px;
 
 #footer {
-  position: absolute;
-  bottom: 0;
-  height: $footerHeight;
-  background: #1d354d;
-  width: 100%;
-  padding: 7px 0;
+  .container {
+    position: absolute;
+    bottom: 0;
+    height: $footerHeight;
+    background: #1d354d;
+    width: 100%;
+    padding: 7px 0;
 
-  div {
-    text-align: center;
-    color: #FFFFFF;
-    font-weight: 300;
-  }
+    div {
+      text-align: center;
+      color: #FFFFFF;
+      font-weight: 300;
+    }
 
-  .version {
-    padding: 2px;
-    font-size: 10px;
+    .version {
+      padding: 2px;
+      font-size: 10px;
+    }
   }
 }
-
-
-
