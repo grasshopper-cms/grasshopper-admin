@@ -14,7 +14,7 @@ define(['text!views/assetDetail/assetDetailView.html', 'assetDetailViewModel'],
                 'click .clickableCell' : 'handleRowClick',
                 'click #deleteAsset' : 'prepareToDeleteAsset',
                 'click #editAsset' : 'editAsset',
-                'click #retryUpload' : 'postNewAsset',
+//                'click #retryUpload' : 'postNewAsset',
                 'click #cancelUpload' : 'cancelUpload'
             },
             listeners : [],
