@@ -48,7 +48,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         _updateMastheadBreadcrumbs.call(this, $deferred, true);
     }
 
-    function prepareToDeleteContentType () {
+    function prepareToDeleteContentType (e) {
+        e.stopPropagation();
         _getContentTypesContent.call(this)
             .then(_warnUserBeforeDeleting.bind(this))
             .then(_actuallyDeleteContentType.bind(this));

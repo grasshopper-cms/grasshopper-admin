@@ -16,11 +16,6 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             appendTo : '#stage',
             wrapper : false,
             template : formTemplate,
-            events : {
-                'click #deleteContentType' : 'prepareToDeleteContentType',
-                'click .clickableCell' : 'handleRowClick'
-            },
-            listeners : [],
             breadcrumbs : [
                 {
                     text : resources.home,

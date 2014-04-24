@@ -1,14 +1,14 @@
-<td class="clickableCell"><a>{{model:fileName}}</a></td>
-<td class="clickableCell">{{model:size | prettyFileSize}}</td>
-<td data-rv-hide="model:fileData" class="clickableCell">{{model:lastmodified | prettyDate}}</td>
-<td data-rv-hide="model:fileData" align="center">
-    <a id="editAsset">
+<td data-rv-on-click="view.handleRowClick"><a>{{model:fileName}}</a></td>
+<td data-rv-on-click="view.handleRowClick">{{model:size | prettyFileSize}}</td>
+<td data-rv-hide="model:fileData" data-rv-on-click="view.handleRowClick">{{model:lastmodified | prettyDate}}</td>
+<td data-rv-hide="model:fileData" align="center" data-rv-on-click="view.handleRowClick">
+    <a data-rv-on-click="view.editAsset">
         <i class="fa fa-edit"></i>
     </a>
     <a data-rv-href="model:url" download>
         <i class="fa fa-download"></i>
     </a>
-    <a id="deleteAsset">
+    <a data-rv-on-click="view.prepareToDeleteAsset">
         <i class="fa fa-trash-o"></i>
     </a>
 </td>
@@ -28,12 +28,12 @@
 
     <ul class="button-group radius" style="display: inline-block;">
         <li>
-            <a id="retryUpload" class="button alert tiny">
+            <a data-rv-on-click="view.postNewAsset" class="button alert tiny">
                 {{model:resources->retry}}
             </a>
         </li>
         <li>
-            <a id="cancelUpload" class="button alert tiny">
+            <a data-rv-on-click="view.cancelUpload" class="button alert tiny">
                 {{model:resources->cancel}}
             </a>
         </li>

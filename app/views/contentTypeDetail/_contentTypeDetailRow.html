@@ -1,14 +1,14 @@
 <tr>
-    <td class="clickableCell">
+    <td data-rv-on-click="view.handleRowClick">
         <a data-rv-href="model:href">
             {{model:label}}
         </a>
     </td>
-    <td  class="actions" align="center">
+    <td data-rv-on-click="view.handleRowClick" class="actions" align="center">
         <a data-rv-href="model:href">
             <i class="fa fa-edit"></i>
         </a>
-        <a id="deleteContentType">
+        <a data-rv-on-click="view.prepareToDeleteContentType">
             <i class="fa fa-trash-o"></i>
         </a>
     </td>
