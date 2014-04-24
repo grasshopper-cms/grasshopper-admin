@@ -74,6 +74,7 @@
     }
     .imageModalUrl {
       input {
+        margin-top: $modalPadding;
         width: 100%;
       }
       a {
