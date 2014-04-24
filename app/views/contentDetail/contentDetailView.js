@@ -34,7 +34,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         _addListenerForModelChange.call(this);
     }
 
-    function deleteContent () {
+    function deleteContent (e) {
+        e.stopPropagation();
         _confirmDeletion.call(this)
             .then(_destroyThisModel.bind(this));
     }

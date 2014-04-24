@@ -27,7 +27,8 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 });
         }
 
-        function prepareToDeleteAsset() {
+        function prepareToDeleteAsset(e) {
+            e.stopPropagation();
             this.displayModal(
                 {
                     header : resources.warning,
@@ -36,8 +37,10 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 .done(_deleteAsset.bind(this));
         }
 
-        function editAsset() {
+        function editAsset(e) {
             var self = this;
+
+            e.stopPropagation();
 
             _getNewFileName.call(this)
                 .done(function(modalData) {

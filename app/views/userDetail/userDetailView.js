@@ -35,7 +35,8 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
                 .fail(_handleFailedSave.bind(this));
         }
 
-        function toggleEnabled () {
+        function toggleEnabled (e) {
+            e.stopPropagation();
             this.model.toggle('enabled');
             this.model.trigger('change:enabled');
             this.saveUser();

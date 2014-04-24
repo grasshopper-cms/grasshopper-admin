@@ -7,18 +7,9 @@ define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nod
         return {
             name : 'nodeDetailView',
             ModelType : nodeDetailViewModel,
-            modelData : {},
             appendTo : '#stage',
             wrapper : false,
             template : formTemplate,
-            events : {
-                'click #deleteNode' : 'prepareToDeleteNode',
-                'click #editNode' : 'editNodeName',
-                'click #editTypes' : 'editContentTypes',
-                'click .clickableCell' : 'handleRowClick'
-            },
-            listeners : [],
-            mastheadButtons : [],
             permissions : ['admin', 'reader', 'editor']
         };
     });

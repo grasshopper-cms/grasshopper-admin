@@ -11,10 +11,6 @@ define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel',
             appendTo : '#stage',
             wrapper : false,
             template : formTemplate,
-            events : {
-                'click .clickableCell' : 'handleRowClick'
-            },
-            listeners : [],
             breadcrumbs : [
                 {
                     text : resources.home,

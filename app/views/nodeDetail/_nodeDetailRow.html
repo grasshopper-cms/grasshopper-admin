@@ -1,11 +1,11 @@
 <tr>
-    <td class="clickableCell"><i class="fa fa-folder"></i> <a data-rv-href="model:href">{{model:label |
+    <td data-rv-on-click="view.handleRowClick"><i class="fa fa-folder"></i> <a data-rv-href="model:href">{{model:label |
         spaceBefore}}</a></td>
-    <td class="clickableCell">--</td>
-    <td class="clickableCell">{{model:modified | existsOr --}}</td>
-    <td align="center">
-        <a id="editNode"><i class="fa fa-edit"></i></a>
-        <a id="editTypes"><i class="fa fa-tasks"></i></a>
-        <a id="deleteNode"><i class="fa fa-trash-o"></i></a>
+    <td data-rv-on-click="view.handleRowClick">--</td>
+    <td data-rv-on-click="view.handleRowClick">{{model:modified | existsOr --}}</td>
+    <td data-rv-on-click="view.handleRowClick" align="center">
+        <a data-rv-on-click="view.editNodeName"><i class="fa fa-edit"></i></a>
+        <a data-rv-on-click="view.prepareToEditContentTypes"><i class="fa fa-tasks"></i></a>
+        <a data-rv-on-click="view.prepareToDeleteNode"><i class="fa fa-trash-o"></i></a>
     </td>
 </tr>
