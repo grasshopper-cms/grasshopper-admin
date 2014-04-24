@@ -37,9 +37,6 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 model : contentReferenceModalContentModel,
                 url : function() {
                     return constants.api.nodesContent.url.replace(':id', self.get('_id'));
-                },
-                parse : function(response) {
-                    return response.results;
                 }
             }))());
 
