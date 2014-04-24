@@ -1,29 +1,22 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker',
-        'jquery', 'underscore'],
-    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker,
-              $, _) {
+define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker) {
 
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : userDetailViewConfig,
             beforeRender : beforeRender,
-            afterRender : afterRender,
             saveUser : saveUser,
             saveAndClose : saveAndClose,
             toggleEnabled : toggleEnabled,
             handleRowClick : handleRowClick,
-            remove : remove
+            addNewUser : addNewUser
         });
 
         function beforeRender ($deferred) {
             this.model.fetch()
                 .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
-        }
-
-        function afterRender () {
-            _addMastheadListeners.call(this);
         }
 
         function saveUser () {
@@ -43,7 +36,7 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         function toggleEnabled () {
             this.model.toggle('enabled');
             this.model.trigger('change:enabled');
-            this.updateModel();
+            this.saveUser();
         }
 
         function handleRowClick (e) {
@@ -81,19 +74,8 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
             breadcrumbWorker.userBreadcrumb.call(this, $deferred);
         }
 
-        function _addMastheadListeners() {
-            var self = this;
-
-            _.defer(function() {
-                $('#userDetailViewSave').click(self.saveUser.bind(self));
-                $('#userDetailViewSaveAndClose').click(self.saveAndClose.bind(self));
-            });
-        }
-
-        function remove() {
-            GrasshopperBaseView.prototype.remove.apply(this, arguments);
-            $('#userDetailViewSave').off();
-            $('#userDetailViewSaveAndClose').off();
+        function addNewUser() {
+            this.app.router.displayAddUser();
         }
 
     });

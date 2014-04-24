@@ -126,17 +126,58 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="small-12 columns">
-                            <div class="right">
-                                <button data-rv-on-click="view.saveUser" class="button radius tiny">{{model:resources->save}}</button>
-                                <button data-rv-on-click="view.saveAndClose" class="button radius tiny">{{model:resources->saveAndClose}}</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </fieldset>
+
+        <div class="row">
+            <div class="small-12 columns">
+                <ul class="button-group radius right">
+                    <li>
+                        <a data-rv-on-click="view.saveUser" class="button tiny">
+                            {{model:resources->save}}
+                        </a>
+                    </li>
+
+                    <li>
+                        <a data-rv-on-click="view.saveAndClose" class="button tiny">
+                            {{model:resources->saveAndClose}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </div>
+
+    <section data-rv-move-to="view.mastheadButtonsSelector">
+        <div class="button-bar">
+            <ul class="button-group radius">
+
+                <li>
+                    <a data-rv-on-click="view.addNewUser" class="button tiny">
+                        {{model:resources->mastheadButtons->addNewUser}}
+                    </a>
+                </li>
+
+            </ul>
+
+            <ul class="button-group radius">
+
+                <li>
+                    <a data-rv-on-click="view.saveUser" class="button tiny">
+                        {{model:resources->save}}
+                    </a>
+                </li>
+
+                <li>
+                    <a data-rv-on-click="view.saveAndClose" class="button tiny">
+                        {{model:resources->saveAndClose}}
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
 </div>

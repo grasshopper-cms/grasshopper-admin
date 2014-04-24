@@ -18,6 +18,10 @@ define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resour
             listeners: [],
             breadcrumbs: [
                 {
+                    text : resources.home,
+                    href : constants.internalRoutes.content
+                },
+                {
                     text: resources.users,
                     href: constants.internalRoutes.users
                 }

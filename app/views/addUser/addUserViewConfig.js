@@ -15,6 +15,10 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel', 'resources', 
         mastheadButtons : [],
         breadcrumbs : [
             {
+                text : resources.home,
+                href : constants.internalRoutes.content
+            },
+            {
                 text : resources.users,
                 href : constants.internalRoutes.users
             }

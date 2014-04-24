@@ -14,6 +14,10 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
             events : {},
             breadcrumbs : [
                 {
+                    text : resources.home,
+                    href : constants.internalRoutes.content
+                },
+                {
                     text : resources.contentTypes,
                     href : constants.internalRoutes.contentTypes
                 }

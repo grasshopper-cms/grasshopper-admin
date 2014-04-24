@@ -23,6 +23,10 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             listeners : [],
             breadcrumbs : [
                 {
+                    text : resources.home,
+                    href : constants.internalRoutes.content
+                },
+                {
                     text : resources.contentTypes,
                     href : constants.internalRoutes.contentTypes
                 }
