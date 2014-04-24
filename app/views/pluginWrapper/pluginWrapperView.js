@@ -50,10 +50,12 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 i = 0,
                 self = this;
 
-            if (values && _.isArray(values)) { // If values exists and is array
+            if (values && _.isArray(values) && !_.isEmpty(values)) { // If values exists and is array that is not empty
                 _.each(values, function (value) {
                     _addPlugin.call(self, value);
                 });
+            } else if (values && _.isArray(values) && _.isEmpty(values)) { // If value exists and is an empty array
+                _evaluateMultiButtons.call(this);
             } else if (!!values || _.isString(values)) { // if values exists
                 _addPlugin.call(this, values);
             } else if (minimum === 0) { // if values does not exist and minimum is zero
