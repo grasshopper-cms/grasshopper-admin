@@ -85,7 +85,7 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         }
 
         function addNewUser() {
-            this.app.router.displayAddUser();
+            this.app.router.navigateTrigger(constants.internalRoutes.addUser);
         }
 
         function _swapSavingTextWithSpinner(e) {
