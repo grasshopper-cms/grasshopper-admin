@@ -243,7 +243,8 @@
         "pluginWrapperView+" : {
             "" : "views/pluginWrapper/pluginWrapperView",
             "Config" : "views/pluginWrapper/pluginWrapperViewConfig",
-            "Model" : "views/pluginWrapper/pluginWrapperViewModel"
+            "Model" : "views/pluginWrapper/pluginWrapperViewModel",
+            "Collection" : "views/pluginWrapper/pluginCollection"
         },
 
         "userDetailView+" : {
