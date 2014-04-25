@@ -267,7 +267,11 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function newContentType() {
-        this.app.router.displayContentTypeDetail();
+        if(this.model.isNew()) {
+            this.app.router.displayContentTypeDetail();
+        } else {
+            this.app.router.navigateTrigger(constants.internalRoutes.newContentType);
+        }
     }
 
     function _swapSavingTextWithSpinner(e) {

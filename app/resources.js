@@ -139,8 +139,8 @@ define({
         thisFieldHasNoValidation : 'This field has no validations',
         addValidationType : 'Add Validation',
         validation : {
-            mustHaveLabel : 'Content Type must have a label.',
-            fieldsMustHaveLabel : 'All fields must have a label.'
+            mustHaveLabel : 'Content type must have a title.',
+            fieldsMustHaveLabel : 'All fields must have a name.'
         }
     },
     asset : {
