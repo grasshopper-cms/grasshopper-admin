@@ -3,10 +3,19 @@ define([], function () {
     'use strict';
 
     return {
-        asSlug : asSlug
+        asSlug : {
+            read : readAsSlug,
+            publish : publishAsSlug
+        }
     };
 
-    function asSlug(value) {
+    function readAsSlug(value) {
+        if(value) {
+            return value.toLowerCase().trim().replace(/[\s]+/g, '-').replace(/[^-a-zA-Z0-9._~]/g, '');
+        }
+    }
+
+    function publishAsSlug(value) {
         if(value) {
             return value.toLowerCase().trim().replace(/[\s]+/g, '-').replace(/[^-a-zA-Z0-9._~]/g, '');
         }
