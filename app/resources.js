@@ -137,7 +137,11 @@ define({
             'If you confirm, your content may be corrupted!',
         selectOption : 'Please Select',
         thisFieldHasNoValidation : 'This field has no validations',
-        addValidationType : 'Add Validation'
+        addValidationType : 'Add Validation',
+        validation : {
+            mustHaveLabel : 'Content Type must have a label.',
+            fieldsMustHaveLabel : 'All fields must have a label.'
+        }
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',

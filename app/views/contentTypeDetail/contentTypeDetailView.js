@@ -194,7 +194,10 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _handleFailedModelSave() {
-        this.fireErrorModal(resources.contentType.failedSave);
+        this.model.toggle('saving');
+
+        _swapSavingTextWithSpinner.call(this);
+        this.fireErrorModal(this.model.validationError ? this.model.validationError : resources.contentType.failedSave);
     }
 
     function _updateMastheadBreadcrumbs($deferred, isNew) {
