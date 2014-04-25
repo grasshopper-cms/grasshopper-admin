@@ -35,8 +35,13 @@
 
         <div id="buttonContainer" class="row">
             <div class="right">
-                <button id="confirm" class="button tiny radius noMarginBottom">{{model:resources->confirm}}</button>
-                <button id="cancel" class="button tiny radius noMarginBottom">{{model:resources->cancel}}</button>
+                <button class="button tiny radius noMarginBottom" data-rv-on-click="view.confirmModal">
+                    {{model:resources->confirm}}
+                </button>
+
+                <button class="button tiny radius noMarginBottom" data-rv-on-click="view.cancelModal">
+                    {{model:resources->cancel}}
+                </button>
             </div>
         </div>
 

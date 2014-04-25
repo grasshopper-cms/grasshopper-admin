@@ -14,11 +14,14 @@
 
         <div id="buttonContainer" class="row">
             <div class="right">
-                <a download id="confirm" data-rv-href="model:data" class="button tiny radius noMarginBottom">
+                <a download data-rv-href="model:data" class="button tiny radius noMarginBottom" data-rv-on-click="view.confirmModal">
                     <i class="fa fa-download"></i>
                     {{model:resources->download | spaceBefore}}
                 </a>
-                <button id="cancel" class="button tiny radius noMarginBottom">{{model:resources->close}}</button>
+
+                <button class="button tiny radius noMarginBottom" data-rv-on-click="view.cancelModal">
+                    {{model:resources->close}}
+                </button>
             </div>
         </div>
 
