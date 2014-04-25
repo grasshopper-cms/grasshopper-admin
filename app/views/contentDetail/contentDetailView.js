@@ -123,6 +123,9 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _handleFailedModelSave() {
+        this.model.toggle('saving');
+
+        _swapSavingTextWithSpinner.call(this);
         this.fireErrorModal(resources.contentItem.failedToSave);
     }
 

@@ -15,6 +15,7 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'un
             saving : false
         },
         toJSON : toJSON,
+        validate : validate,
         urlRoot : constants.api.contentTypes.url
     });
 
@@ -24,4 +25,24 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'un
         return _.omit(json, ['swapElement', 'swapText']);
     }
 
+    function validate(attrs) {
+        var err;
+
+        if(_.isEmpty(attrs.label)) {
+            err = resources.contentType.validation.mustHaveLabel;
+        }
+
+        if(!err) {
+            _.each(attrs.fields, function(field) {
+                if(_.isEmpty(field.label)) {
+                    err = resources.contentType.validation.fieldsMustHaveLabel;
+                }
+            });
+        }
+
+
+        if(err) {
+            return err;
+        }
+    }
 });

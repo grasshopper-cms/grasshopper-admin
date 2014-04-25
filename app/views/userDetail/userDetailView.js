@@ -68,6 +68,9 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         }
 
         function _handleFailedSave (xhr) {
+            this.model.toggle('saving');
+
+            _swapSavingTextWithSpinner.call(this);
             this.fireErrorModal(xhr.responseJSON.message);
         }
 
