@@ -42,8 +42,10 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
     function contentBrowse($deferred) {
         var nodeId = this.model.get('nodeId');
 
+        _setOldBreadcrumb.call(this);
+
         _getNodeDetailRecursively.call(this, nodeId)
-            .then($deferred.resolve);
+            .then(_finishBreadcrumb.bind(this, $deferred));
     }
 
     function userBreadcrumb($deferred, isNew) {
@@ -73,7 +75,6 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
         });
         _finishBreadcrumb.call(this, $deferred);
     }
-
 
     function _getNodeDetailRecursively(nodeId, $deferred, depthFromEnd) {
         var self = this;

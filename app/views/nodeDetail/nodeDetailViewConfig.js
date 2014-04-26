@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['text!views/nodeDetail/nodeDetailView.html', 'text!views/nodeDetail/_nodeDetailRow.html',
+define(['text!views/nodeDetail/nodeDetailView.html',
     'nodeDetailViewModel'],
-    function (formTemplate, rowTemplate, nodeDetailViewModel) {
+    function (formTemplate, nodeDetailViewModel) {
         'use strict';
 
         return {

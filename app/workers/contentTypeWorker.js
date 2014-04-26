@@ -10,7 +10,8 @@ define(['api', 'jquery', 'resources', 'underscore'],
         };
 
         function getAvailableContentTypes (previousContentTypes) {
-            var $deferred = $.Deferred();
+            var $deferred = new $.Deferred();
+
             Api.getContentTypes()
                 .done(function (data) {
                     if (previousContentTypes) {
