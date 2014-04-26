@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'contentBrowseViewModel', 'constants',
-        'appBinders', 'nodeDetailRow'],
+        'appBinders', 'nodeDetailView'],
     function (template, resources, contentBrowseViewModel, constants,
-              appBinders, NodeDetailRow) {
+              appBinders, NodeDetailView) {
 
         'use strict';
 
@@ -28,7 +28,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             rivetsConfig : {
                 binders : [appBinders],
                 childViewBinders : {
-                    'node-detail-row': NodeDetailRow
+                    'node-detail-row': NodeDetailView
                 }
             }
         };

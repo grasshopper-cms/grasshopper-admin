@@ -225,11 +225,7 @@
         "nodeDetailView+" : {
             "" : "views/nodeDetail/nodeDetailView",
             "Config" : "views/nodeDetail/nodeDetailViewConfig",
-            "Model" : "views/nodeDetail/nodeDetailViewModel",
-            "nodeDetailRow+" : {
-                "" : "views/nodeDetail/nodeDetailRow/view",
-                "Config" : "views/nodeDetail/nodeDetailRow/config"
-            }
+            "Model" : "views/nodeDetail/nodeDetailViewModel"
         },
 
         "nodeTreeView+" : {
