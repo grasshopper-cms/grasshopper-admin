@@ -17,5 +17,9 @@
     "chai": "1.7.2",
     "sinon": "1.7.3",
     "sinon-chai": "2.4.0"
+  },
+  "resolutions": {
+    "requirejs": "2.1.11",
+    "rivets": "0.6.7"
   }
 }
