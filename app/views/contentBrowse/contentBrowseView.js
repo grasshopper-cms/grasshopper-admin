@@ -1,8 +1,8 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexView',
-    'assetIndexView', 'underscore', 'contentIndexView', 'breadcrumbWorker', 'constants'],
-    function (GrasshopperBaseView, contentBrowseViewConfig, $, NodeIndexView, AssetIndexView,
-              _, ContentIndexView, breadcrumbWorker, constants) {
+define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
+    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker'],
+    function (GrasshopperBaseView, contentBrowseViewConfig, $,
+              _, breadcrumbWorker, constants, nodeWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -14,13 +14,17 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             createContent : createContent,
             createAssets : createAssets,
             createFolder : createFolder,
+            addNewNode : addNewNode,
             editNodeName : editNodeName,
             editNodeContentTypes : editNodeContentTypes,
             deleteNode : deleteNode
         });
 
         function beforeRender ($deferred) {
-            buildMastheadBreadcrumb.call(this)
+            $.when(
+                _buildMastheadBreadcrumb.call(this),
+                this.model.fetch(),
+                this.model.get('childNodes').fetch())
                 .done(_addChildIndexViews.bind(this, $deferred))
                 .fail($deferred.reject);
         }
@@ -30,9 +34,8 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         }
 
         function _addChildIndexViews ($deferred) {
-            _addNodeIndexView.call(this);
-            _addAssetIndexView.call(this);
-            _addContentIndexView.call(this);
+//            _addAssetIndexView.call(this);
+//            _addContentIndexView.call(this);
             $deferred.resolve();
         }
 
@@ -40,41 +43,28 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             this.refreshChildren();
         }
 
-        function _addNodeIndexView () {
-            var nodeIndexView = new NodeIndexView({
-                    modelData : {
-                        nodeId : this.model.get('nodeId')
-                    },
-                    mastheadButtons : null
-                });
-            this.addChild(nodeIndexView);
-            this.nodeIndexView = nodeIndexView;
-        }
+//        function _addAssetIndexView() {
+//            if (!this.model.get('inRoot')) {
+//                var assetIndexView = new AssetIndexView({
+//                        modelData : {
+//                            nodeId : (this.model.get('nodeId')) ? this.model.get('nodeId') : 0
+//                        }
+//                    });
+//                this.addChild(assetIndexView);
+//            }
+//        }
 
-        function _addAssetIndexView() {
-            if (!this.model.get('inRoot')) {
-                var assetIndexView = new AssetIndexView({
-                        modelData : {
-                            nodeId : (this.model.get('nodeId')) ? this.model.get('nodeId') : 0
-                        },
-                        mastheadButtons : null
-                    });
-                this.addChild(assetIndexView);
-            }
-        }
+//        function _addContentIndexView () {
+//            if (!this.model.get('inRoot')) {
+//                var contentIndexView = new ContentIndexView({
+//                        nodeId : this.model.get('nodeId'),
+//                        el : '#contentDetailRow'
+//                    });
+//                this.addChild(contentIndexView);
+//            }
+//        }
 
-        function _addContentIndexView () {
-            if (!this.model.get('inRoot')) {
-                var contentIndexView = new ContentIndexView({
-                        nodeId : this.model.get('nodeId'),
-                        mastheadButtons : null,
-                        el : '#contentDetailRow'
-                    });
-                this.addChild(contentIndexView);
-            }
-        }
-
-        function buildMastheadBreadcrumb () {
+        function _buildMastheadBreadcrumb () {
             var $deferred = new $.Deferred();
 
             breadcrumbWorker.contentBrowse.call(this, $deferred);
@@ -101,24 +91,31 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
                 constants.internalRoutes.createFolder.replace(':id', this.model.get('nodeId')));
         }
 
+        function addNewNode(nodeName) {
+            this.model.get('childNodes').add({
+                label : nodeName,
+                parent : this.model.get('nodeId')
+            });
+        }
+
         function editNodeName() {
-            this.nodeIndexView.editNodeName();
+            nodeWorker.editName.call(this)
+                .done(breadcrumbWorker.resetBreadcrumb.bind(this), _buildMastheadBreadcrumb.bind(this));
             _closeActionsDropdown.call();
         }
 
         function editNodeContentTypes() {
-            this.nodeIndexView.editNodeContentTypes();
+            nodeWorker.editContentTypes.call(this);
             _closeActionsDropdown.call();
         }
 
         function deleteNode() {
-            this.nodeIndexView.deleteNode();
+            nodeWorker.deleteNode.call(this);
             _closeActionsDropdown.call();
         }
 
         function _closeActionsDropdown() {
             $('#actionsDropdown').click();
         }
-
 
     });

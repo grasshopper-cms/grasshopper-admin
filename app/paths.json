@@ -148,7 +148,8 @@
         "contentBrowseView+" : {
             "" : "views/contentBrowse/contentBrowseView",
             "Config" : "views/contentBrowse/contentBrowseViewConfig",
-            "Model" : "views/contentBrowse/contentBrowseViewModel"
+            "Model" : "views/contentBrowse/contentBrowseViewModel",
+            "ChildNodesCollection" : "views/contentBrowse/childNodesCollection"
         },
 
         "contentDetailView+" : {
@@ -224,13 +225,11 @@
         "nodeDetailView+" : {
             "" : "views/nodeDetail/nodeDetailView",
             "Config" : "views/nodeDetail/nodeDetailViewConfig",
-            "Model" : "views/nodeDetail/nodeDetailViewModel"
-        },
-
-        "nodeIndexView+" : {
-            "" : "views/nodeIndex/nodeIndexView",
-            "Config" : "views/nodeIndex/nodeIndexViewConfig",
-            "Model" : "views/nodeIndex/nodeIndexViewModel"
+            "Model" : "views/nodeDetail/nodeDetailViewModel",
+            "nodeDetailRow+" : {
+                "" : "views/nodeDetail/nodeDetailRow/view",
+                "Config" : "views/nodeDetail/nodeDetailRow/config"
+            }
         },
 
         "nodeTreeView+" : {

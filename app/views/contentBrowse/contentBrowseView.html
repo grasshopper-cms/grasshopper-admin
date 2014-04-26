@@ -22,7 +22,7 @@
         <div class="tabs-content">
             <div class="content active" id="panel2-1">
 
-                <table class="content-table" id="contentBrowseTable">
+                <table class="content-table">
                     <thead>
                         <tr>
                             <th>{{model:resources->label}}</th>
@@ -31,6 +31,9 @@
                             <th style="text-align: center; width: 10%;">{{model:resources->actions}}</th>
                         </tr>
                     </thead>
+                    <tbody id="contentBrowseTable">
+                        <tr class="nodeDetailRow" data-rv-each-node="model:childNodes:" data-rv-new-node-detail-row="node"></tr>
+                    </tbody>
                 </table>
 
             </div>
