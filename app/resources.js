@@ -85,7 +85,7 @@ define({
         enterName : 'Please enter the name of the folder: ',
         errorCreating : 'Folder could not be added.',
         editName : 'Edit folder name',
-        emptyNode : 'This folder does not contain any content.',
+        emptyNode : 'This folder does not contain any folders.',
         clickToAdd : 'Click to add some.'
     },
     contentItem : {
