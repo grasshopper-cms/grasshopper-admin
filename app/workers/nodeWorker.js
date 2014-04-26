@@ -101,7 +101,6 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
                 });
 
             this.model.set('allowedTypes', contentTypeToPost);
-            debugger;
 
             this.model.save()
                 .done(_handleSuccessfulContentTypeAddition.bind(this))
