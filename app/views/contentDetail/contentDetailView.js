@@ -19,8 +19,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             _getContentSchema.call(this, $deferred);
         } else {
             if(this.name === 'contentDetailRow') {
-                _fetchContentDetails.call(this)
-                    .done(this.model.resetContentLabel.bind(this.model), $deferred.resolve);
+                this.model.resetContentLabel.call(this.model);
+                $deferred.resolve();
             } else {
                 _fetchContentDetails.call(this)
                     .done(_getContentSchema.bind(this, $deferred))

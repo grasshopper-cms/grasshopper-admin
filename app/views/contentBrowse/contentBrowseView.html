@@ -33,7 +33,7 @@
                     </thead>
                     <tbody id="contentBrowseTable">
                         <!--Nodes Come First-->
-                        <tr data-rv-hide="model:childNodes.length | greaterThan 0">
+                        <tr data-rv-unless="model:childNodes.length | greaterThan 0">
                             <td colspan="4">
                                 {{model:resources->node->emptyNode}}
                                 <span>
@@ -47,12 +47,50 @@
                         <tr class="nodeDetailRow" data-rv-each-node="model:childNodes:" data-rv-new-node-detail-row="node"></tr>
 
                         <!--Then Content-->
+                        <tr data-rv-unless="model:childContent.length | greaterThan 0">
+                            <td colspan="4" data-rv-unless="model:inRoot">
+                                {{model:resources->node->emptyContent}}
+                                <span>
+                                    <a data-rv-on-click="view.createContent">
+                                        {{model:resources->node->clickToAdd}}
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="contentDetailRow" data-rv-each-content="model:childContent:" data-rv-new-content-detail-row="content"></tr>
                     </tbody>
                 </table>
 
             </div>
             <div class="content" id="panel2-2" data-rv-hide="model:inRoot">
                 <div id="assetIndex">
+
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>{{model:resources->fileIndex->fileName}}</th>
+                                <th>{{model:resources->fileIndex->size}}</th>
+                                <th>{{model:resources->fileIndex->modified}}</th>
+                                <th style="text-align: center; width: 15%;">{{model:resources->actions}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr data-rv-unless="model:childAssets.length | greaterThan 0">
+                                <td colspan="4">
+                                    {{model:resources->asset->emptyNode}}
+                                    <span>
+                                        <a data-rv-on-click="view.createAssets">
+                                            {{model:resources->asset->clickToAdd}}
+                                        </a>
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr data-rv-new-asset-detail-row="asset" data-rv-each-asset="model:childAssets:"></tr>
+
+                        </tbody>
+                    </table>
                     <!--Built from assetIndex-->
                 </div>
             </div>

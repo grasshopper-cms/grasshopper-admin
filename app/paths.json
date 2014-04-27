@@ -139,12 +139,6 @@
             }
         },
 
-        "assetIndexView+" : {
-            "" : "views/assetIndex/assetIndexView",
-            "Config" : "views/assetIndex/assetIndexViewConfig",
-            "Model" : "views/assetIndex/assetIndexViewModel"
-        },
-
         "contentBrowseView+" : {
             "" : "views/contentBrowse/contentBrowseView",
             "Config" : "views/contentBrowse/contentBrowseViewConfig",
@@ -155,13 +149,13 @@
         "contentDetailView+" : {
             "" : "views/contentDetail/contentDetailView",
             "Config" : "views/contentDetail/contentDetailViewConfig",
-            "Model" : "views/contentDetail/contentDetailViewModel"
-        },
+            "Model" : "views/contentDetail/contentDetailViewModel",
+            "contentDetailRowView+" : {
+                "" : "views/contentDetail/contentDetailRow/view",
+                "Config" : "views/contentDetail/contentDetailRow/config",
+                "Model" : "views/contentDetail/contentDetailRow/model"
+            }
 
-        "contentIndexView+" : {
-            "" : "views/contentIndex/contentIndexView",
-            "Config" : "views/contentIndex/contentIndexViewConfig",
-            "Model" : "views/contentIndex/contentIndexViewModel"
         },
 
         "contentTypeDetailView+" : {

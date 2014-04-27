@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'contentBrowseViewModel', 'constants',
-        'appBinders', 'nodeDetailView'],
+        'appBinders', 'nodeDetailView', 'contentDetailRowView', 'assetDetailRow'],
     function (template, resources, contentBrowseViewModel, constants,
-              appBinders, NodeDetailView) {
+              appBinders, NodeDetailView, ContentDetailRowView, AssetDetailRow) {
 
         'use strict';
 
@@ -13,9 +13,9 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             wrapper : false,
             template : template,
             listeners : [
-                ['channels.views', 'refreshContentBrowseView', 'refreshIndexViews'],
                 ['channels.views', 'activateTab', 'activateTab'],
-                ['channels.views', 'nodeAdded', 'addNewNode']
+                ['channels.views', 'nodeAdded', 'addNewNode'],
+                ['channels.views', 'assetAdded', 'addNewAsset']
             ],
             events : {},
             breadcrumbs : [
@@ -28,7 +28,9 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             rivetsConfig : {
                 binders : [appBinders],
                 childViewBinders : {
-                    'node-detail-row': NodeDetailView
+                    'node-detail-row': NodeDetailView,
+                    'content-detail-row': ContentDetailRowView,
+                    'asset-detail-row' : AssetDetailRow
                 }
             }
         };
