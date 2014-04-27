@@ -132,11 +132,7 @@
         "assetDetailView+" : {
             "" : "views/assetDetail/assetDetailView",
             "Config" : "views/assetDetail/assetDetailViewConfig",
-            "Model" : "views/assetDetail/assetDetailViewModel",
-            "assetDetailRow+" : {
-                "" : "views/assetDetail/assetDetailRow/view",
-                "Config" : "views/assetDetail/assetDetailRow/config"
-            }
+            "Model" : "views/assetDetail/assetDetailViewModel"
         },
 
         "contentBrowseView+" : {

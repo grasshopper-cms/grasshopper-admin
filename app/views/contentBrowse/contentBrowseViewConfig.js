@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'contentBrowseViewModel', 'constants',
-        'appBinders', 'nodeDetailView', 'contentDetailRowView', 'assetDetailRow'],
+        'appBinders', 'nodeDetailView', 'contentDetailRowView', 'assetDetailView'],
     function (template, resources, contentBrowseViewModel, constants,
-              appBinders, NodeDetailView, ContentDetailRowView, AssetDetailRow) {
+              appBinders, NodeDetailView, ContentDetailRowView, AssetDetailView) {
 
         'use strict';
 
@@ -30,7 +30,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                 childViewBinders : {
                     'node-detail-row': NodeDetailView,
                     'content-detail-row': ContentDetailRowView,
-                    'asset-detail-row' : AssetDetailRow
+                    'asset-detail-row' : AssetDetailView
                 }
             }
         };
