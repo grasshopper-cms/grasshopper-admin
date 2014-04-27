@@ -9,12 +9,12 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             defaultOptions : contentBrowseViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
-            refreshIndexViews : refreshIndexViews,
             activateTab : activateTab,
             createContent : createContent,
             createAssets : createAssets,
             createFolder : createFolder,
             addNewNode : addNewNode,
+            addNewAsset : addNewAsset,
             editNodeName : editNodeName,
             editNodeContentTypes : editNodeContentTypes,
             deleteNode : deleteNode
@@ -24,8 +24,9 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             $.when(
                 _buildMastheadBreadcrumb.call(this),
                 this.model.fetch(),
-                this.model.get('childNodes').fetch())
-                .done(_addChildIndexViews.bind(this, $deferred))
+                this.model.get('childNodes').fetch(),
+                this.model.get('childContent').fetch())
+                .done($deferred.resolve, _addAssetIndexView.bind(this))
                 .fail($deferred.reject);
         }
 
@@ -33,36 +34,11 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             this.$el.foundation();
         }
 
-        function _addChildIndexViews ($deferred) {
-//            _addAssetIndexView.call(this);
-//            _addContentIndexView.call(this);
-            $deferred.resolve();
+        function _addAssetIndexView() {
+            if (!this.model.get('inRoot')) {
+                this.model.get('childAssets').fetch();
+            }
         }
-
-        function refreshIndexViews () {
-            this.refreshChildren();
-        }
-
-//        function _addAssetIndexView() {
-//            if (!this.model.get('inRoot')) {
-//                var assetIndexView = new AssetIndexView({
-//                        modelData : {
-//                            nodeId : (this.model.get('nodeId')) ? this.model.get('nodeId') : 0
-//                        }
-//                    });
-//                this.addChild(assetIndexView);
-//            }
-//        }
-
-//        function _addContentIndexView () {
-//            if (!this.model.get('inRoot')) {
-//                var contentIndexView = new ContentIndexView({
-//                        nodeId : this.model.get('nodeId'),
-//                        el : '#contentDetailRow'
-//                    });
-//                this.addChild(contentIndexView);
-//            }
-//        }
 
         function _buildMastheadBreadcrumb () {
             var $deferred = new $.Deferred();
@@ -96,6 +72,10 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
                 label : nodeName,
                 parent : this.model.get('nodeId')
             });
+        }
+
+        function addNewAsset(newAssetPayload) {
+            this.model.get('childAssets').add(newAssetPayload);
         }
 
         function editNodeName() {

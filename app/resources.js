@@ -86,6 +86,7 @@ define({
         errorCreating : 'Folder could not be added.',
         editName : 'Edit folder name',
         emptyNode : 'This folder does not contain any folders.',
+        emptyContent : 'This folder does not contain any content.',
         clickToAdd : 'Click to add some.'
     },
     contentItem : {
