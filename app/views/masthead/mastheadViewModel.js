@@ -1,18 +1,8 @@
-define(['grasshopperModel'], function (Model) {
+define(['grasshopperModel'], function (GrasshopperModel) {
     'use strict';
 
-    return Model.extend({
-        initialize : initialize,
+    return GrasshopperModel.extend({
         defaults : {}
     });
-
-    function initialize() {
-        this.on('contentBrowseNodeId', _setNodeId.bind(this));
-    }
-
-    function _setNodeId(nodeId) {
-        this.set('nodeId', nodeId);
-        this.set('inRoot', !nodeId);
-    }
 
 });

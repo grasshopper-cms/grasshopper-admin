@@ -109,9 +109,14 @@ define([
         }
 
         function beforeRouting () {
-            var $deferred = new $.Deferred();
+            var $deferred = new $.Deferred(),
+                self = this;
 
-            $deferred.done(this.breadcrumb.push.bind(this.breadcrumb, Backbone.history.getFragment()));
+            $deferred.done(function() {
+                if(Backbone.history.getFragment() !== _.last(self.breadcrumb)) {
+                    self.breadcrumb.push(Backbone.history.getFragment());
+                }
+            });
 
             loginWorker.userIsStillValidUser.call(this, $deferred);
 
@@ -119,15 +124,14 @@ define([
         }
 
         function userHasBreadcrumbs () {
-            return (this.breadcrumb && this.breadcrumb.length !== 0);
+            return (this.breadcrumb && this.breadcrumb.length > 1);
         }
 
         function removeThisRouteFromBreadcrumb () {
             this.breadcrumb.pop();
         }
 
-        function _handleRoutingFromRefreshOnModal (nodeId) {
-            this.breadcrumb.push(Backbone.history.fragment);
+        function _handleRoutingFromRefreshOnModalView (nodeId) {
             if(nodeId === '0') {
                 nodeId = null;
                 this.breadcrumb.unshift(constants.internalRoutes.content.replace('#', ''));
@@ -327,7 +331,6 @@ define([
         }
 
         function displayContentBrowse (nodeId) {
-            this.mastheadView.model.trigger('contentBrowseNodeId', nodeId);
             this.loadMainContent(ContentBrowseView, {
                     modelData : {
                         nodeId : nodeId ? nodeId : '0',
@@ -358,7 +361,7 @@ define([
 
         function displayCreateFolder (nodeId) {
             if (!this.userHasBreadcrumbs()) {
-                _handleRoutingFromRefreshOnModal.call(this, nodeId);
+                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
             }
             var addFolderView = new AddFolderView({
                     modelData : {
@@ -370,7 +373,7 @@ define([
 
         function displayCreateContent (nodeId) {
             if (!this.userHasBreadcrumbs()) {
-                _handleRoutingFromRefreshOnModal.call(this, nodeId);
+                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
             }
             this.loadMainContent(AddContentView, {
                     modelData : {
@@ -383,7 +386,7 @@ define([
 
         function displayCreateAssets (nodeId) {
             if (!this.userHasBreadcrumbs()) {
-                _handleRoutingFromRefreshOnModal.call(this, nodeId);
+                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
             }
             var addAssetsView = new AddAssetsView({
                     modelData : {
