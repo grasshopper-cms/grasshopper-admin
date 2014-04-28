@@ -25,8 +25,8 @@ module.exports = function (grunt) {
     grunt.config.set('buildDirectory', ghaConfigPath + path.sep + ghaConfig.buildDirectory);
     grunt.config.set('version', version);
 
-    grunt.loadTasks('initConfig');
-    grunt.loadTasks('tasks');
+    grunt.loadTasks('grunt/initConfig');
+    grunt.loadTasks('grunt/tasks');
 
     grunt.registerTask('saveData', 'Saves the current database to a local seed directory', [
         'clean:seedData',
