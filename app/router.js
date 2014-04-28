@@ -330,7 +330,7 @@ define([
             this.mastheadView.model.trigger('contentBrowseNodeId', nodeId);
             this.loadMainContent(ContentBrowseView, {
                     modelData : {
-                        nodeId : nodeId ? nodeId : 0,
+                        nodeId : nodeId ? nodeId : '0',
                         inRoot : !nodeId
                     }
                 });
