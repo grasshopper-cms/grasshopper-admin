@@ -1,7 +1,7 @@
 
 // Import Foundation
-@import "../../vendor/foundation/scss/normalize.scss";
-@import "../../vendor/foundation/scss/foundation.scss";
+@import "../vendor/foundation/scss/normalize.scss";
+@import "../vendor/foundation/scss/foundation.scss";
 
 @import "fonts";
 
@@ -9,7 +9,7 @@
 
 @import "mixins";
 
-$imgPath: '/themes/blue-dashboard/img';
+$imgPath: '/themes/img';
 
 $font: 'Open Sans', arial, sans-serif;
 
@@ -110,29 +110,29 @@ body, html {
   $base-style: true;
 
   // VIEWS
-  @import "../../views/header/style.scss"; // Header
-  @import "../../views/footer/style.scss"; // Footer
-  @import "../../views/modal/style.scss"; // Modal
-  @import "../../views/alertBox/style.scss"; // Alertbox
-  @import "../../views/login/style.scss"; // Login
-  @import "../../views/masthead/style.scss"; // Masthead
-  @import "../../views/userIndex/style.scss"; // User Index
-  @import "../../views/userDetail/style.scss"; // User Detail
-  @import "../../views/contentDetail/style.scss"; // Content Detail
-  @import "../../views/assetDetail/style.scss"; // Asset Detail
-  @import "../../views/contentTypeIndex/style.scss"; // Content Type Index
-  @import "../../views/contentTypeDetail/style.scss"; // Content Type Detail
-  @import "../../views/contentTypeDetail/fieldAccordion/style.scss"; // Content Type Detail Field Accordion
-  @import "../../views/nodeDetail/style.scss"; // Node Detail
-  @import "../../views/nodeTree/style.scss"; // Node Tree
-  @import "../../views/contentBrowse/style.scss"; // Content Browse
-  @import "../../views/pluginWrapper/style.scss"; // Plugin Wrapper
+  @import "../views/header/style.scss"; // Header
+  @import "../views/footer/style.scss"; // Footer
+  @import "../views/modal/style.scss"; // Modal
+  @import "../views/alertBox/style.scss"; // Alertbox
+  @import "../views/login/style.scss"; // Login
+  @import "../views/masthead/style.scss"; // Masthead
+  @import "../views/userIndex/style.scss"; // User Index
+  @import "../views/userDetail/style.scss"; // User Detail
+  @import "../views/contentDetail/style.scss"; // Content Detail
+  @import "../views/assetDetail/style.scss"; // Asset Detail
+  @import "../views/contentTypeIndex/style.scss"; // Content Type Index
+  @import "../views/contentTypeDetail/style.scss"; // Content Type Detail
+  @import "../views/contentTypeDetail/fieldAccordion/style.scss"; // Content Type Detail Field Accordion
+  @import "../views/nodeDetail/style.scss"; // Node Detail
+  @import "../views/nodeTree/style.scss"; // Node Tree
+  @import "../views/contentBrowse/style.scss"; // Content Browse
+  @import "../views/pluginWrapper/style.scss"; // Plugin Wrapper
 
   // PLUGINS
-  @import "../../plugins/embeddedtype/style.scss"; // Embedded Type Plugin
-  @import "../../plugins/contentreference/style.scss"; // Content Reference Plugin
-  @import "../../plugins/codeeditor/style.scss"; // Code Editor Plugin
-  @import "../../plugins/richtext/style.scss"; // Rich Text Plugin
-  @import "../../plugins/checkbox/style.scss"; // Checkbox Plugin
+  @import "../plugins/embeddedtype/style.scss"; // Embedded Type Plugin
+  @import "../plugins/contentreference/style.scss"; // Content Reference Plugin
+  @import "../plugins/codeeditor/style.scss"; // Code Editor Plugin
+  @import "../plugins/richtext/style.scss"; // Rich Text Plugin
+  @import "../plugins/checkbox/style.scss"; // Checkbox Plugin
 
 }
