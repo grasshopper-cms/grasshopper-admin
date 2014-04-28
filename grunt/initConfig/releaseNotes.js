@@ -4,7 +4,7 @@ module.exports = function (grunt) {
 
     grunt.config('releaseNotes', {
         main : {
-            src : 'templates/README.template.md',
+            src : 'grunt/templates/README.template.md',
             dest : 'README.md',
             baseLinkPath : 'https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/'
         }
