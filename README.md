@@ -101,6 +101,7 @@ Front end of the [Grasshopper api](https://github.com/Solid-Interactive/grasshop
 * 0.23.3 - 14-04-24 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/release_notes/0.23.3_14-04-24.md)
 * 0.23.4 - 14-04-24 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/release_notes/0.23.4_14-04-24.md)
 * 0.24.0 - 14-04-28 - [features](https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/release_notes/0.24.0_14-04-28.md)
+* 0.24.1 - 14-04-28 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/excitebike/release_notes/0.24.1_14-04-28.md)
 
 
-_Compiled file. Do not modify directly. Created: 2014-04-28 03:07:50_
+_Compiled file. Do not modify directly. Created: 2014-04-28 03:24:25_
