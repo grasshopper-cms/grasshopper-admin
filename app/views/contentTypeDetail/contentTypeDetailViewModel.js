@@ -16,6 +16,7 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'un
         },
         toJSON : toJSON,
         validate : validate,
+        isFirstFieldDataTypeAString : isFirstFieldDataTypeAString,
         urlRoot : constants.api.contentTypes.url
     });
 
@@ -44,5 +45,13 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'un
         if(err) {
             return err;
         }
+    }
+
+    function isFirstFieldDataTypeAString() {
+        var firstFieldType = _.first(this.attributes.fields).type,
+            thisPluginConfig = _.findWhere(plugins.fields, { type : firstFieldType }).config,
+            modelData = _.result(thisPluginConfig, 'modelData');
+
+        return modelData.dataType === 'string';
     }
 });

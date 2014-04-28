@@ -141,7 +141,9 @@ define({
         addValidationType : 'Add Validation',
         validation : {
             mustHaveLabel : 'Content type must have a title.',
-            fieldsMustHaveLabel : 'All fields must have a name.'
+            fieldsMustHaveLabel : 'All fields must have a name.',
+            firstFieldIsNotAStringWarning : 'The first field in this content type is not a string. ' +
+                'This could cause weird behavior in your content labels.'
         }
     },
     asset : {

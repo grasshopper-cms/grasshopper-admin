@@ -179,11 +179,37 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _saveContentTypeWorkflow(options) {
+        var self = this;
+
         this.model.set('fields', this.collection.toJSON());
 
-        this.model.save()
-            .done(_handleSuccessfulModelSave.bind(this, options))
-            .fail(_handleFailedModelSave.bind(this));
+        _warnIfFirstFieldIsNotString.call(this)
+            .done(function() {
+                self.model.save()
+                    .done(_handleSuccessfulModelSave.bind(self, options))
+                    .fail(_handleFailedModelSave.bind(self));
+            })
+            .fail(function() {
+                _swapSavingTextWithSpinner.call(self);
+                self.model.toggle('saving');
+            });
+    }
+
+    function _warnIfFirstFieldIsNotString() {
+        var $deferred = new $.Deferred();
+
+        if(!this.model.isFirstFieldDataTypeAString()) {
+            this.displayModal({
+                header : resources.warning,
+                msg : resources.contentType.validation.firstFieldIsNotAStringWarning
+            })
+                .done($deferred.resolve)
+                .fail($deferred.reject);
+        } else {
+            $deferred.resolve();
+        }
+
+        return $deferred.promise();
     }
 
     function _handleSuccessfulModelSave(options) {
