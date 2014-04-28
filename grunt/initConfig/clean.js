@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     grunt.config('clean', {
         options: { force: true },
         build : [buildDirectory],
-        seedData : ['tasks/seedData']
+        seedData : ['grunt/tasks/seedData']
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');
