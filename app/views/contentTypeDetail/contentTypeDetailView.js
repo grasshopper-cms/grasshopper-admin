@@ -143,11 +143,16 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         _collapseAccordion.call(this);
         model.isNew = true;
         this.collection.add(model);
-        _initializeSortableAccordions.call(this);
+        _refreshThenOpenLastAccordion.call(this);
     }
 
     function _collapseAccordion() {
         this.$('#contentTypeFieldAccordion').accordion({ active : false });
+    }
+
+    function _refreshThenOpenLastAccordion() {
+        this.$('#contentTypeFieldAccordion').accordion('refresh').find(
+            '.accordionHeader[modelid="'+ this.collection.last().cid +'"]').click();
     }
 
     function saveContentType(e) {
