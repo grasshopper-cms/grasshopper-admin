@@ -74,7 +74,6 @@ require([
     'underscore',
     'jquery',
     'router',
-    'constants',
     'alerts',
     'dropdown',
     'tabs',
@@ -89,7 +88,7 @@ require([
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, constants) {
+        function (Backbone, _, $, Router) {
 
         'use strict';
 
@@ -102,9 +101,9 @@ require([
         // TODO: For some reason this is not needed?
         $(document).foundation();
 
-        // TODO : This should come from a build task run in Grunt
-        $('head').append('<link rel="stylesheet" type="text/css" href="themes/' +
-            constants.defaults.theme + '/main.css" />');
+//        // TODO : This should come from a build task run in Grunt
+//        $('head').append('<link rel="stylesheet" type="text/css" href="themes/' +
+//            constants.defaults.theme + '/main.css" />');
 
         new Router();
         Backbone.history.start();
