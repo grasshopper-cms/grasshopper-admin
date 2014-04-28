@@ -11,9 +11,9 @@
   }
 }
 
-#contentDetailRow {
+.contentDetailRow {
   cursor: pointer;
-  :hover {
+  &:hover {
     background-color: #F0F3F7;
   }
 }
