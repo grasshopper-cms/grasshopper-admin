@@ -14,7 +14,10 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         addNewFieldToContentType : addNewFieldToContentType,
         saveContentType : saveContentType,
         saveAndClose : saveAndClose,
-        newContentType : newContentType
+        newContentType : newContentType,
+        refreshAccordion : refreshAccordion,
+        collapseAccordion : collapseAccordion,
+        openSpecificAccordion : openSpecificAccordion
     });
 
     function beforeRender ($deferred) {
@@ -140,19 +143,29 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function addNewFieldToContentType(e, context) {
         var model = _.result(context.field.config, 'modelData');
 
-        _collapseAccordion.call(this);
+        this.collapseAccordion();
         model.isNew = true;
         this.collection.add(model);
-        _refreshThenOpenLastAccordion.call(this);
+        this.refreshAccordion();
+        _openLastAccordion.call(this);
     }
 
-    function _collapseAccordion() {
+    function collapseAccordion() {
         this.$('#contentTypeFieldAccordion').accordion({ active : false });
     }
 
-    function _refreshThenOpenLastAccordion() {
-        this.$('#contentTypeFieldAccordion').accordion('refresh').find(
+    function _openLastAccordion() {
+        this.$('#contentTypeFieldAccordion').find(
             '.accordionHeader[modelid="'+ this.collection.last().cid +'"]').click();
+    }
+
+    function refreshAccordion() {
+        this.$('#contentTypeFieldAccordion').accordion('refresh');
+    }
+
+    function openSpecificAccordion(index) {
+        this.$('#contentTypeFieldAccordion').find(
+            '.fieldAccordion[modelid="'+ this.collection.at(index).cid +'"]').click();
     }
 
     function saveContentType(e) {
@@ -174,7 +187,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _handleSuccessfulModelSave(options) {
-        _collapseAccordion.call(this);
+        this.collapseAccordion();
         this.displayTemporaryAlertBox(
             {
                 header : resources.success,
