@@ -54,6 +54,11 @@ define(['jquery', 'underscore', 'masseuse',
             'move-to' : function(el, selector) {
                 $(selector).append($(el).contents());
                 $(selector).foundation();
+            },
+            'stop-propagation' : function(el) {
+                $(el).on('click', function(e) {
+                    e.stopPropagation();
+                });
             }
         };
 
