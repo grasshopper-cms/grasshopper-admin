@@ -4,12 +4,12 @@
      outline: none;
      &:hover {
        tr{
-         background-color: #F1F1F1;
+         background-color: $accordionHeaderTableRowHover;
        }
      }
      &.ui-accordion-header-active {
        tr{
-         background-color: #F1F1F1;
+         background-color: $accordionHeaderTableRowHover;
        }
      }
   }
@@ -19,7 +19,7 @@
     padding-top: 10px;
     padding-right: 10px;
     padding-left: 10px;
-    background-color: #EEEBEB;
+    background-color: $accordionContentBackground;
     border: solid 1px #B1B1B1;
     margin-left: 10px;
     margin-right: 10px;
@@ -28,7 +28,7 @@
     fieldset {
       margin-left: 18px;
       margin-right: 18px;
-      border: 1px solid #B1B1B1;
+      border: 1px solid $fieldsetBorder;
 
       legend {
         background-color: inherit;

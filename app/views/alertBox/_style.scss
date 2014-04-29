@@ -13,7 +13,7 @@
 .alertBoxPartial {
   min-height: 70px;
   width: 100%;
-  background-color: white;
+  background-color: $alertBoxBackgroundColor;
   border-radius: 5px;
   margin-bottom: 6px;
 
@@ -54,30 +54,30 @@
   }
 
   &.info {
-    border: 1px solid #316AB7;
+    border: 1px solid $alertBoxBlue;
     .alertHeader, .alertImage, .alertClose {
-      color: #316AB7;
+      color: $alertBoxBlue;
     }
   }
 
   &.success {
-    border: 1px solid #43ac6a;
+    border: 1px solid $alertBoxGreen;
     .alertHeader, .alertImage, .alertClose {
-      color: #43ac6a;
+      color: $alertBoxGreen;
     }
   }
 
   &.error {
-    border: 1px solid #AF4434;
+    border: 1px solid $alertBoxRed;
     .alertHeader, .alertImage, .alertClose {
-      color: #AF4434;
+      color: $alertBoxRed;
     }
   }
 
   &.warning {
-    border: 1px solid #B69201;
+    border: 1px solid $alertBoxYellow;
     .alertHeader, .alertImage, .alertClose {
-      color: #B69201;
+      color: $alertBoxYellow;
     }
   }
 

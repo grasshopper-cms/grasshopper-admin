@@ -7,6 +7,6 @@
 #userIndexTable {
   cursor: pointer;
   :hover {
-    background-color: #F0F3F7;
+    background-color: $userIndexTableRowHover;
   }
 }

@@ -98,17 +98,6 @@ body, html {
     z-index: 100000;
   }
 
-  $transition-speed: $switch-paddle-transition-speed;
-  $transition-ease: $switch-paddle-transition-ease;
-  $height: $switch-height-med;
-  $font-size: $switch-font-size-med;
-  $line-height: 2.3em;
-  $paddle-bg: $switch-paddle-bg;
-  $positive-color: $switch-negative;
-  $negative-color: $switch-positive-color;
-  $radius: false;
-  $base-style: true;
-
   // VIEWS
   @import "../views/header/_style.scss"; // Header
   @import "../views/footer/_style.scss"; // Footer
