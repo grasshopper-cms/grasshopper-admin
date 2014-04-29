@@ -12,7 +12,8 @@ module.exports = function (grunt) {
                 name: 'main',
                 out: buildDirectory + '/main.js',
                 optimize: 'uglify',
-                preserveLicenseComments: false
+                preserveLicenseComments: false,
+                include: ['vendor/requirejs/require.js']
             }
         }
     });

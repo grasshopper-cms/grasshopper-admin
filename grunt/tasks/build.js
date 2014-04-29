@@ -24,6 +24,11 @@ module.exports = function (grunt) {
         'setBuildConfig',
         'sass',
         'autoprefixer:no_dest',
-        'requirejs'
+        'requirejs',
+        'replace:requirejs',
+        'useminPrepare',
+        'imagemin',
+        'rev',
+        'usemin'
     ]);
 };
