@@ -1,13 +1,14 @@
 module.exports = function (grunt) {
     'use strict';
 
+    var tempDir = '.tmp';
     grunt.config('rev', {
         dist: {
             files: {
                 src: [
-                    'build/main.js',
-                    'build/themes/main.css',
-                    'build/themes/img/{,*/}*.{png,jpg,jpeg,gif,webp}'
+                    tempDir + '/main.js',
+                    tempDir + '/themes/main.css',
+                    tempDir + '/themes/img/{,*/}*.{png,jpg,jpeg,gif,webp}'
                 ]
             }
         }
