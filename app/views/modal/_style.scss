@@ -41,7 +41,7 @@
     .inputContainer {
       max-height: 500px;
       overflow: scroll;
-      border: 1px solid #CCC;
+      border: 1px solid $modalInputContainerBorder;
     }
 
     ol {
@@ -64,7 +64,7 @@
     .imageContainer { // only used by the image modal
       max-height: 500px;
       overflow: scroll;
-      border: 1px solid #CCC;
+      border: 1px solid $modalInputContainerBorder;
       img {
         max-height: 75%;
         display: block;
@@ -87,16 +87,16 @@
 
     #dropZone { // only used by the upload modal
       height: 60px;
-      border: 2px dashed #bbb;
+      border: 2px dashed $modalDropzoneColor;
       border-radius: 5px;
       padding: 25px;
       text-align: center;
-      color: #bbb;
+      color: $modalDropzoneColor;
       &:hover {
-        border-color: rgb(0, 125, 166);
+        border-color: $modalDropzoneHover;
       }
       &.active {
-        border-color: rgb(0, 125, 166);
+        border-color: $modalDropzoneActive;
       }
     }
 

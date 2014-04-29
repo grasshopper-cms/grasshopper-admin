@@ -5,13 +5,13 @@ $footerHeight: 60px;
     position: absolute;
     bottom: 0;
     height: $footerHeight;
-    background: #1d354d;
+    background: $footerContainerBackground;
     width: 100%;
     padding: 7px 0;
 
     div {
       text-align: center;
-      color: #FFFFFF;
+      color: $footerContainerText;
       font-weight: 300;
     }
 

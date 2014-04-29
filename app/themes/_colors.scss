@@ -1,71 +1,91 @@
 //-------------  Definition  -------------
 $black: black;
-$darkGray: #333333;
-$mediumGray: #838383;
-$alphaGray: rgba(0, 0, 0, 0.25);
-$lightAlphaGray: rgba(0, 0, 0, 0.1);
-$darkAlphaGray: rgba(0, 0, 0, 0.075);
-$lightGray: lightgray;
-$mediumGray: #cccccc;
-$gray: #f8f8f8;
 $black45Percent: rgba(0,0,0,0.45);
 
-$darkGreen: #567233;
-$mediumGreen: #7da64b;
-$green: #94ba65;
-$lightGreen: #a0c277;
+$gray: #f8f8f8;
+$lightGray: lightgray;
+$darkerGray: #E4E1E1;
+$darkGray: #B1B1B1;
 
-//$darkBlue: #16283a;
-$darkBlue: red;
+$green: #43ac6a;
+
+$red : #AF4434;
+
+$yellow: #B69201;
+
 $blue: #1d354d;
+$lightBlue: #007DA6;
 $mediumBlue: #28496b;
-$lightBlue: #2790b0;
 
+$white: #FFFFFF;
+$offWhite: #f9f9f9;
+
+//-------------  Implementation  -------------
+
+// Header View
+$topBarBorderBottom: $black;
+$headerBackgroundColor : $blue;
 $menuBGBlue: #1f3852;
 $menuTopGradient: #24415f;
 $menuBottomGradient: #172b3e;
 $menuBorder: #080f15;
 $menuShadow: #325b85;
 
-
-$lightBlueText: #80a7cf;
-$lightRed: #FFCCCC;
-$red: #A00000;
-$white: #FFFFFF;
-$offWhite: #f9f9f9;
-
-//-------------  Implementation  -------------
-
-$linkImportant: $lightBlueText;
-$linkRegular: $darkBlue;
-
+// Login View
 $buttonText: $offWhite;
 $buttonOkay: $green;
-
-$alertColorBad: $red;
-$alertColorGood: $mediumGreen;
-$alertCloseColor: $offWhite;
-
-$modal-background-color: $black45Percent;
-$modal-contents-background-color: $white;
-$modal-contents-border-color: $black;
-
-$progressBar: $green;
-
-$headerBackground: $gray;
-$headerBoxShadow: $mediumBlue;
-$headerPartialBackground: $darkBlue;
-$headerTextLogo: $white;
-$headerTopBarBackground: $darkBlue;
-
 $loginBackground: $offWhite;
 $loginBorder: $lightGray;
+$accountContainerBackground : $gray;
+$loginFieldsBackground : $gray;
+$accountContainerTextColor : $mediumBlue;
 
-$gravatarBorder: $black;
+// Modal View
+$modal-background-color: $black45Percent;
+$modal-contents-background-color: $white;
+$modalInputContainerBorder: $offWhite;
+$modalDropzoneColor: $offWhite;
+$modalDropzoneHover: $lightBlue;
+$modalDropzoneActive: $lightBlue;
 
-$tableInactiveRow: $lightRed;
-
-$switch-negative: $lightRed;
-
-$tabBorderColor: $mediumGray;
+// Content Browse
+$tabBorderColor: $lightGray;
 $activeTabBorderColor: $white;
+
+// Alert Box View
+$alertBoxBackgroundColor: $white;
+$alertBoxBlue: $lightBlue;
+$alertBoxGreen: $green;
+$alertBoxRed: $red;
+$alertBoxYellow: $yellow;
+
+// Asset Detail View
+$assetDetailTableRowHover : $darkerGray;
+
+// Content Detail View
+$contentDetailTableRowHover : $darkerGray;
+
+// Content Type Detail View
+$accordionHeaderTableRowHover: $darkerGray;
+$accordionContentBackground: $lightGray;
+$accordionContentBorder: $darkGray;
+$fieldsetBorder: $darkGray;
+
+// Content Type Index View
+$contentTypeIndexTableRowHover: $darkerGray;
+
+// Footer View
+$footerContainerBackground: #1d354d;
+$footerContainerText: $white;
+
+// Masthead View
+$mastheadContainerTextShadow: $white;
+
+// Node Detail View
+$nodeDetailRowHover: $darkerGray;
+
+// Users Index View
+$userIndexTableRowHover: $darkerGray;
+
+// Embedded Type Plugin
+$accordionHeaderBackgroundColor: $darkerGray;

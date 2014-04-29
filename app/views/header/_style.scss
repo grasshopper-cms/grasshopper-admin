@@ -1,5 +1,5 @@
 #header {
-  background-color: $blue;
+  background-color: $headerBackgroundColor;
 
   .brand {
     position: relative;
@@ -114,7 +114,7 @@
     padding: 8px;
     height:35px;
     background: #16283a;
-    border-bottom: 1px solid $black;
+    border-bottom: 1px solid $topBarBorderBottom;
 
     #top-nav {
 

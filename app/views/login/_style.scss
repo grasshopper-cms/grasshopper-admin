@@ -19,7 +19,7 @@
 
   .account-container h1 {
     margin-bottom: .4em;
-    color: $mediumBlue;
+    color: $accountContainerTextColor;
     font-size: 30px;
   }
 
@@ -28,13 +28,13 @@
     width: 380px;
     display: block;
     margin: 85px auto 0 auto;
-    border: 1px solid $lightGray;
-    background: $gray;
+    border: 1px solid $loginBorder;
+    background: $accountContainerBackground;
     font-size:13px;
   }
 
   .login-fields input {
-    background-color: $gray;
+    background-color: $loginFieldsBackground;
   }
 
   .login-fields .field {
