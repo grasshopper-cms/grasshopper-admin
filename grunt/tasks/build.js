@@ -29,6 +29,8 @@ module.exports = function (grunt) {
         'useminPrepare',
         'imagemin',
         'rev',
-        'usemin'
+        'usemin',
+        'copy:final',
+        'clean:temp'
     ]);
 };
