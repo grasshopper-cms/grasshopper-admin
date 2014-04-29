@@ -54,30 +54,30 @@
   }
 
   &.info {
-    border: 1px solid $alertBoxBlue;
+    border: 1px solid $alertBoxNormal;
     .alertHeader, .alertImage, .alertClose {
-      color: $alertBoxBlue;
+      color: $alertBoxNormal;
     }
   }
 
   &.success {
-    border: 1px solid $alertBoxGreen;
+    border: 1px solid $alertBoxSuccess;
     .alertHeader, .alertImage, .alertClose {
-      color: $alertBoxGreen;
+      color: $alertBoxSuccess;
     }
   }
 
   &.error {
-    border: 1px solid $alertBoxRed;
+    border: 1px solid $alertBoxError;
     .alertHeader, .alertImage, .alertClose {
-      color: $alertBoxRed;
+      color: $alertBoxError;
     }
   }
 
   &.warning {
-    border: 1px solid $alertBoxYellow;
+    border: 1px solid $alertBoxWarning;
     .alertHeader, .alertImage, .alertClose {
-      color: $alertBoxYellow;
+      color: $alertBoxWarning;
     }
   }
 

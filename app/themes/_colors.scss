@@ -54,10 +54,10 @@ $activeTabBorderColor: $white;
 
 // Alert Box View
 $alertBoxBackgroundColor: $white;
-$alertBoxBlue: $lightBlue;
-$alertBoxGreen: $green;
-$alertBoxRed: $red;
-$alertBoxYellow: $yellow;
+$alertBoxNormal: $lightBlue;
+$alertBoxSuccess: $green;
+$alertBoxError: $red;
+$alertBoxWarning: $yellow;
 
 // Asset Detail View
 $assetDetailTableRowHover : $darkerGray;
