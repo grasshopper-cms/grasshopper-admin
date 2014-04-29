@@ -2,7 +2,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory');
+    var tempDirectory = '.tmp';
 
     grunt.config('sass', {
         application : { // Get and compile application.scss
@@ -14,7 +14,7 @@ module.exports = function (grunt) {
             files : grunt.file.expandMapping(['themes/**/main.scss'], 'css', {
                 cwd: 'app/',
                 rename: function (dest, matched) {
-                    return buildDirectory +'/'+ matched.replace(/\.scss$/, '.css');
+                    return tempDirectory +'/'+ matched.replace(/\.scss$/, '.css');
                 }
             })
         }

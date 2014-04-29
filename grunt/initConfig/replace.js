@@ -2,7 +2,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory');
+    var tempDirectory = '.tmp';
 
     grunt.config('replace', {
         requirejs: {
@@ -16,7 +16,7 @@ module.exports = function (grunt) {
                 usePrefix: false
             },
             files: [
-                {src: ['app/index.html'], dest: 'build/index.html'}
+                {src: ['app/index.html'], dest: tempDirectory + '/index.html'}
             ]
         }
     });
