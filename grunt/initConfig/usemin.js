@@ -3,10 +3,10 @@ module.exports = function (grunt) {
 
     grunt.config('usemin', {
         options: {
-            assetsDirs: ['build', 'build/themes/images']
+            assetsDirs: ['build', 'build/themes/img']
         },
         html: ['build/index.html'],
-        css: ['build/main.css']
+        css: ['build/themes/main.css']
     });
 
     grunt.loadNpmTasks('grunt-usemin');

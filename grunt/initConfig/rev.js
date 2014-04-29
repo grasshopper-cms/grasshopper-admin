@@ -6,8 +6,8 @@ module.exports = function (grunt) {
             files: {
                 src: [
                     'build/main.js',
-                    'build/main.css',
-                    'build/themes/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
+                    'build/themes/main.css',
+                    'build/themes/img/{,*/}*.{png,jpg,jpeg,gif,webp}'
                 ]
             }
         }
