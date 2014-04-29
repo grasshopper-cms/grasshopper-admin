@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     "use strict";
 
     var _ = grunt.util._,
-        buildDirectory = grunt.config.get('buildDirectory'),
+        tempDirectory = '.tmp',
         apiEndpoint = grunt.config.get('apiEndpoint'),
         version = grunt.config.get('version');
 
@@ -17,6 +17,6 @@ module.exports = function (grunt) {
                 }
             });
 
-        grunt.file.write(buildDirectory + '/constants.js', finished);
+        grunt.file.write(tempDirectory + '/constants.js', finished);
     });
 }

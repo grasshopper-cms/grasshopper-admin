@@ -1,9 +1,12 @@
 module.exports = function (grunt) {
     'use strict';
 
+    var buildDirectory = grunt.config.get('buildDirectory'),
+        tempDirectory = '.tmp';
+
     grunt.config('useminPrepare',  {
         options: {
-            dest: 'build',
+            dest: buildDirectory,
             flow : {
                 steps: {
                     js: [],
@@ -12,6 +15,6 @@ module.exports = function (grunt) {
                 post: {}
             }
         },
-        html: 'build/index.html'
+        html: tempDirectory + '/index.html'
     });
 };

@@ -2,15 +2,15 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory');
+    var tempDirectory = '.tmp';
 
     grunt.config('requirejs', {
         dist: {
             options: {
-                baseUrl: buildDirectory,
-                mainConfigFile: buildDirectory + '/main.js',
+                baseUrl: tempDirectory,
+                mainConfigFile: tempDirectory + '/main.js',
                 name: 'main',
-                out: buildDirectory + '/main.js',
+                out: tempDirectory + '/main.js',
                 optimize: 'uglify',
                 preserveLicenseComments: false,
                 include: ['vendor/requirejs/require.js']
