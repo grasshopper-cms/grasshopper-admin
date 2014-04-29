@@ -9,6 +9,8 @@
 
 @import "mixins";
 
+@import "z-index";
+
 $imgPath: '../themes/img';
 
 $font: 'Open Sans', arial, sans-serif;
@@ -95,7 +97,7 @@ body, html {
   }
 
   .tooltip {
-    z-index: 100000;
+    z-index: $tooltipZIndex;
   }
 
   // VIEWS
