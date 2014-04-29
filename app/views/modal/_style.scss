@@ -9,14 +9,14 @@
   background: $modal-background-color;
   height: 100%;
   width: 100%;
-  z-index: 11000;
+  z-index: $modalContainerZIndex;
 
   $modalPadding : 20px;
 
   #modalContents {
     display: flex;
     flex-direction: column;
-    z-index: 99;
+    z-index: $modalContentsZIndex;
     width: 35%;
     background-color: $modal-contents-background-color;
     box-shadow: 0 0 10px $modal-background-color;

@@ -97,7 +97,7 @@
 
   #headerbar {
     position: relative;
-    z-index: 91;
+    z-index: $headerBarZIndex;
     height: 80px;
     background: #1d354d;
     box-shadow: inset 0 1px 0 #28496b;
@@ -110,7 +110,7 @@
 
   #topbar {
     position: relative;
-    z-index: 101;
+    z-index: $topBarZIndex;
     padding: 8px;
     height:35px;
     background: #16283a;
