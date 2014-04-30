@@ -15,7 +15,8 @@ Front end of the [Grasshopper api](https://github.com/Solid-Interactive/grasshop
     ```javascript
     {
         "apiEndpoint" : "http://api.so-much-data.com",
-        "buildDirectory" : "public/admin"
+        "buildDirectory" : "public/admin",
+        "externalPluginsDirectory" : "externalPlugins"
     }
     ```
 
@@ -105,4 +106,4 @@ Front end of the [Grasshopper api](https://github.com/Solid-Interactive/grasshop
 * 0.24.2 - 14-04-28 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/infiltrator/release_notes/0.24.2_14-04-28.md)
 
 
-_Compiled file. Do not modify directly. Created: 2014-04-28 05:42:11_
+_Compiled file. Do not modify directly. Created: 2014-04-30 02:27:10_

@@ -15,7 +15,8 @@ Front end of the [Grasshopper api](https://github.com/Solid-Interactive/grasshop
     ```javascript
     {
         "apiEndpoint" : "http://api.so-much-data.com",
-        "buildDirectory" : "public/admin"
+        "buildDirectory" : "public/admin",
+        "externalPluginsDirectory" : "externalPlugins"
     }
     ```
 
