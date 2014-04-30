@@ -17,7 +17,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'shell:bowerInstall',
         'setupBowerCopy',
-        'copy:build',
+        'copy:temp',
+//        'copy:build',
         'copy:vendor',
         'registerPlugins',
         'paths:app',

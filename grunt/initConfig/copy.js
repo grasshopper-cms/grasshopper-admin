@@ -5,6 +5,22 @@ module.exports = function (grunt) {
     var buildDirectory = grunt.config.get('buildDirectory');
 
     grunt.config('copy', {
+        temp : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        '**',
+                        '!**/*.scss',
+                        '**/*.html',
+                        '!index.html',
+                        '!vendor/**'
+                    ],
+                    dest : '<%= tempDirectory %>'
+                }
+            ]
+        },
         build : {
             files : [
                 {
@@ -29,7 +45,7 @@ module.exports = function (grunt) {
                     src : [
                         // created dynamically
                     ],
-                    dest : buildDirectory
+                    dest : '<%= vendorDest %>'
                 }
             ]
         },

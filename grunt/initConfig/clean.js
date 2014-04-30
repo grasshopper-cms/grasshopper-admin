@@ -2,11 +2,10 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory');
-
     grunt.config('clean', {
         options: { force: true },
-        build : [buildDirectory],
+        build : ['<%= buildDirectory %>'],
+        temp : ['<%= tempDirectory %>'],
         seedData : ['grunt/tasks/seedData']
     });
 
