@@ -16,7 +16,7 @@ module.exports = function (grunt) {
                 usePrefix: false
             },
             files: [
-                {src: ['app/index.html'], dest: '<%= buildDirectory %>>/index.html'}
+                {src: ['app/index.html'], dest: '<%= buildDirectory %>/index.html'}
             ]
         }
     });
