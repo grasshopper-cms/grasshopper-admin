@@ -18,12 +18,7 @@ define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'contentTypeDetailV
             var self = this;
             this.model.fetch()
                 .done(function () {
-                    var sort = function(a, b) {
-                        if (a.label < b.label) { return -1; }
-                        if (a.label > b.label) { return  1; }
-                        return 0;
-                    };
-                    _.each(self.model.get('results').sort(sort), function (data) {
+                    _.each(self.model.get('results'), function (data) {
                         self.insertContentTypeDetailRow(data);
                     });
                     $deferred.resolve();
