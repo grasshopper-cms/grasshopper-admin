@@ -7,7 +7,6 @@ module.exports = function (grunt) {
     grunt.config('clean', {
         options: { force: true },
         build : [buildDirectory],
-        temp : '.tmp',
         seedData : ['grunt/tasks/seedData']
     });
 
