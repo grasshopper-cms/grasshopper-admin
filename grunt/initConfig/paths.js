@@ -10,7 +10,7 @@ module.exports = function (grunt) {
                 prefixComma : true,
                 pathsJson : 'app/paths.json',
                 mainTemplate : 'app/main.js',
-                main : buildDirectory + '/main.js'
+                main : '<%= tempDirectory %>/main.js'
             }
         },
         tests : {

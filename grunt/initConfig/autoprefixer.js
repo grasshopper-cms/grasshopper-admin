@@ -5,12 +5,13 @@ module.exports = function (grunt) {
     var buildDirectory = grunt.config.get('buildDirectory');
 
     grunt.config('autoprefixer', {
-        options : {},
+        options : {
+        },
         no_dest: {
             src: buildDirectory + '/themes/main.css'
         },
         redo: {
-            src: buildDirectory + '/themes//main.css'
+            src: buildDirectory + '/themes/main.css'
         }
     });
 
