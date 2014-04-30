@@ -1,11 +1,10 @@
 /*global define:false*/
-define(['text!views/contentTypeDetail/contentTypeDetailView.html'], function (template) {
+define(['text!views/contentTypeDetail/contentTypeDetailRow/template.html', 'contentTypeDetailViewConfig', 'underscore'],
+    function (template, contentTypeDetailViewConfig, _) {
         'use strict';
 
-        return {
-            name : 'contentTypeDetail',
-            ModelType : '',
-            wrapper : false,
+        return _.extend({}, contentTypeDetailViewConfig, {
+            name : 'contentTypeDetailRow',
             template : template
-        };
+        });
     });
