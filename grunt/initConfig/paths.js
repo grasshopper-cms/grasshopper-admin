@@ -2,8 +2,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    // TODO: make all usage of .tmp configurable w a default of .tmp
-    var tempDirectory = '.tmp';
+    var buildDirectory = grunt.config.get('buildDirectory');
 
     grunt.config('paths', {
         app : {
@@ -11,7 +10,7 @@ module.exports = function (grunt) {
                 prefixComma : true,
                 pathsJson : 'app/paths.json',
                 mainTemplate : 'app/main.js',
-                main : tempDirectory + '/main.js'
+                main : buildDirectory + '/main.js'
             }
         },
         tests : {
