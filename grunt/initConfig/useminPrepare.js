@@ -3,14 +3,7 @@ module.exports = function (grunt) {
 
     grunt.config('useminPrepare',  {
         options: {
-            dest: 'build',
-            flow : {
-                steps: {
-                    js: [],
-                    css: []
-                },
-                post: {}
-            }
+            dest: 'build'
         },
         html: 'build/index.html'
     });
