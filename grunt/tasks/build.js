@@ -14,11 +14,7 @@ module.exports = function (grunt) {
         'autoprefixer:no_dest'
     ]);
 
-    // TODO: css is not being minified
     grunt.registerTask('build', [
-        // TODO: remove clean build
-        'clean:build',
-        'clean:temp',
         'shell:bowerInstall',
         'setupBowerCopy',
         'copy:temp',
