@@ -23,6 +23,7 @@ module.exports = function (grunt) {
     grunt.config.set('apiEndpoint', ghaConfig.apiEndpoint);
     grunt.config.set('warning', warning);
     grunt.config.set('buildDirectory', ghaConfigPath + path.sep + ghaConfig.buildDirectory);
+    grunt.config.set('externalPluginsDirectory', ghaConfig.externalPluginsDirectory);
     grunt.config.set('version', version);
 
     grunt.loadTasks('grunt/initConfig');
