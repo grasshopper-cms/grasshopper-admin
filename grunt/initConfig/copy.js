@@ -2,8 +2,6 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory');
-
     grunt.config('copy', {
         temp : {
             files : [
@@ -27,13 +25,9 @@ module.exports = function (grunt) {
                     expand : true,
                     cwd : 'app/',
                     src : [
-                        '**',
-                        '!**/*.scss',
-                        '**/*.html',
-                        '!index.html',
-                        '!vendor/**'
+                        'themes/img/**'
                     ],
-                    dest : buildDirectory
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         },
@@ -60,7 +54,7 @@ module.exports = function (grunt) {
                         '!**/*.js',
                         '!vendor/**/*'
                     ],
-                    dest : buildDirectory
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         },
@@ -70,7 +64,7 @@ module.exports = function (grunt) {
                     expand : true,
                     cwd : 'app/',
                     src : [],
-                    dest : buildDirectory
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         },
@@ -98,7 +92,7 @@ module.exports = function (grunt) {
                         '**/*.html',
                         '!vendor/**/*.html'
                     ],
-                    dest : buildDirectory
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         },
@@ -117,7 +111,7 @@ module.exports = function (grunt) {
                         '!vendor/**/*.js',
                         '!plugins/**/*.js'
                     ],
-                    dest : buildDirectory
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         },
@@ -129,7 +123,7 @@ module.exports = function (grunt) {
                     src : [
                         'validation/**/*.js'
                     ],
-                    dest : buildDirectory
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         },
@@ -141,7 +135,7 @@ module.exports = function (grunt) {
                     src : [
                         'plugins/**/*.js'
                     ],
-                    dest : buildDirectory
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         },
@@ -153,7 +147,7 @@ module.exports = function (grunt) {
                     src : [
                         'views/**/*.js'
                     ],
-                    dest : buildDirectory
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         }

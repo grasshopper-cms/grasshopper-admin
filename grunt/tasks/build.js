@@ -14,15 +14,16 @@ module.exports = function (grunt) {
         'autoprefixer:no_dest'
     ]);
 
+    // TODO: css is not being minified
     grunt.registerTask('build', [
         'shell:bowerInstall',
         'setupBowerCopy',
         'copy:temp',
-//        'copy:build',
         'copy:vendor',
         'registerPlugins',
         'paths:app',
         'setBuildConfig',
+        'copy:build',
         'sass',
         'autoprefixer:no_dest',
         'requirejs',
@@ -30,6 +31,10 @@ module.exports = function (grunt) {
         'useminPrepare',
         'imagemin',
         'rev',
-        'usemin'
+        'cssmin',
+        'usemin',
+        'vendor:switch',
+        'copy:vendor',
+        'clean:temp'
     ]);
 };
