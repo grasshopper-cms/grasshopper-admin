@@ -1,17 +1,11 @@
+/*global module:false */
 module.exports = function (grunt) {
     'use strict';
 
     grunt.config('useminPrepare',  {
         options: {
-            dest: 'build',
-            flow : {
-                steps: {
-                    js: [],
-                    css: []
-                },
-                post: {}
-            }
+            dest: '<%= buildDirectory %>'
         },
-        html: 'build/index.html'
+        html: '<%= buildDirectory %>/index.html'
     });
 };

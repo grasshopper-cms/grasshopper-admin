@@ -6,9 +6,9 @@ module.exports = function (grunt) {
             files : [
                 {
                     expand : true,
-                    cwd : 'build/themes/images',
+                    cwd : 'build/themes/img',
                     src : '{,*/}*.{png,jpg,jpeg}',
-                    dest : 'build/themes/images'
+                    dest : 'build/themes/img'
                 }
             ]
         }

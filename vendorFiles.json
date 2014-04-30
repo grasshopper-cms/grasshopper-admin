@@ -1,4 +1,5 @@
 {
+    "almond" : "vendor/almond/almond.js",
     "requirejs" : "vendor/requirejs/require.js",
     "backbone-amd" : "vendor/backbone-amd/backbone.js",
     "lodash-amd" : "vendor/lodash-amd/underscore/**",

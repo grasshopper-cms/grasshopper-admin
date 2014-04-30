@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     grunt.config('sass', {
         application : { // Get and compile application.scss
             options : {
-                style : 'compressed',
+                style : 'expanded',
                 require : 'sass-globbing',
                 sourcemap : true
             },
@@ -21,4 +21,5 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 };
