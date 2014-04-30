@@ -2,7 +2,8 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory');
+    var buildDirectory = grunt.config.get('buildDirectory'),
+        externalPluginsDirectory = grunt.config.get('externalPluginsDirectory');
 
     grunt.config('copy', {
         build : {
@@ -27,6 +28,17 @@ module.exports = function (grunt) {
                     cwd : 'app/',
                     src : [
                         // created dynamically
+                    ],
+                    dest : buildDirectory
+                }
+            ]
+        },
+        externalPluginsToBuild : {
+            files : [
+                {
+                    expand : true,
+                    src : [
+                        externalPluginsDirectory + '/**/*'
                     ],
                     dest : buildDirectory
                 }
