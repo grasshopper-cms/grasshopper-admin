@@ -14,6 +14,9 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
     function initialize() {
         this.set('contentTypes', new (GrasshopperCollection.extend({
             model : contentTypeDetailViewModel,
+            comparator: function(model) {
+                return model.get('label').toLowerCase();
+            },
             url : function() {
                 return constants.api.contentTypes.url;
             }
