@@ -1,15 +1,12 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory'),
-        tempDirectory = '.tmp';
-
     grunt.config('usemin', {
         options: {
-            assetsDirs: [tempDirectory, 'build/themes/img']
+            assetsDirs: ['build', 'build/themes/img']
         },
-        html: [tempDirectory + '/index.html'],
-        css: [tempDirectory + '/themes/main.css']
+        html: ['build/index.html'],
+        css: ['build/themes/main.css']
     });
 
     grunt.loadNpmTasks('grunt-usemin');

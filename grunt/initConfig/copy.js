@@ -2,8 +2,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var tempDirectory = '.tmp',
-        buildDirectory = grunt.config.get('buildDirectory');
+    var buildDirectory = grunt.config.get('buildDirectory');
 
     grunt.config('copy', {
         build : {
@@ -18,7 +17,7 @@ module.exports = function (grunt) {
                         '!index.html',
                         '!vendor/**'
                     ],
-                    dest : tempDirectory
+                    dest : buildDirectory
                 }
             ]
         },
@@ -30,7 +29,7 @@ module.exports = function (grunt) {
                     src : [
                         // created dynamically
                     ],
-                    dest : tempDirectory
+                    dest : buildDirectory
                 }
             ]
         },
