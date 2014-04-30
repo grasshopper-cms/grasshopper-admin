@@ -15,6 +15,6 @@ module.exports = function (grunt) {
                 post: {}
             }
         },
-        html: tempDirectory + 'index.html'
+        html: tempDirectory + '/index.html'
     });
 };

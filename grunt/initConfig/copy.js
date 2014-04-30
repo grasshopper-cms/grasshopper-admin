@@ -6,20 +6,6 @@ module.exports = function (grunt) {
         buildDirectory = grunt.config.get('buildDirectory');
 
     grunt.config('copy', {
-        final : {
-            files : [
-                {
-                    expand : true,
-                    cwd : '.tmp/',
-                    src : [
-                        'index.html',
-                        '*.main.js',
-                        'themes/**'
-                    ],
-                    dest : buildDirectory
-                }
-            ]
-        },
         build : {
             files : [
                 {
