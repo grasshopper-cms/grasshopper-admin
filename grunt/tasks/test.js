@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     grunt.registerTask('test', 'Build and watch task', [
         'clean:build',
         'jshint',
-        'setupBowerCopy',
+        'vendor:setup:vendorFiles',
         'copy:build',
         'copy:vendor',
         'registerPlugins',

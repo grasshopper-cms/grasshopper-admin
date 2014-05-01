@@ -1,18 +1,16 @@
 module.exports = function (grunt) {
     'use strict';
 
-    grunt.config('rev', {
-        dist: {
-            files: {
-                src: [
-                    'build/main.js',
-                    'build/themes/main.css',
-                    'build/themes/img/{,*/}*.{png,jpg,jpeg,gif,webp}'
-                ]
-            }
+    grunt.config('filerev', {
+        dist : {
+            src : [
+                '<%= buildDirectory %>/main.js',
+                '<%= buildDirectory %>/themes/main.css',
+                '<%= buildDirectory %>/themes/img/{,*/}*.{png,jpg,jpeg,gif,webp}'
+            ]
         }
 
     });
 
-    grunt.loadNpmTasks('grunt-rev');
+    grunt.loadNpmTasks('grunt-filerev');
 };
