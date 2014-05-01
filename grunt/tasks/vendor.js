@@ -19,8 +19,10 @@ module.exports = function (grunt) {
             copy = grunt.config.get('copy');
 
         copy.vendor.files[0].src = [];
+        copy.vendorFilesToBuild.files[0].src = [];
         _.each(filesToCopy, function(path) {
             copy.vendor.files[0].src.push(path);
+            copy.vendorFilesToBuild.files[0].src.push(path);
         });
 
         console.log(JSON.stringify(copy));
