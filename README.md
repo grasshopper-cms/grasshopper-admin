@@ -105,6 +105,8 @@ Front end of the [Grasshopper api](https://github.com/Solid-Interactive/grasshop
 * 0.24.2 - 14-04-28 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/infiltrator/release_notes/0.24.2_14-04-28.md)
 * 0.25.0 - 14-04-30 - [features](https://github.com/Solid-Interactive/grasshopper-admin/tree/infiltrator/release_notes/0.25.0_14-04-30.md)
 * 0.25.1 - 14-04-30 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/infiltrator/release_notes/0.25.1_14-04-30.md)
+* 0.25.2 - 14-04-30 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/infiltrator/release_notes/0.25.2_14-04-30.md)
+* 0.25.3 - 14-05-01 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/infiltrator/release_notes/0.25.3_14-05-01.md)
 
 
-_Compiled file. Do not modify directly. Created: 2014-04-30 03:56:15_
+_Compiled file. Do not modify directly. Created: 2014-05-01 07:34:21_
