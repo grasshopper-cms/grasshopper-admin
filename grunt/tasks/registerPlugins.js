@@ -55,7 +55,7 @@ module.exports = function (grunt) {
         grunt.file.write(tempDirectory + '/plugins.js', templatedFile);
 
         if(fs.existsSync(externalPluginsDirectory)) {
-            grunt.task.run('copy:externalPluginsToBuild');
+            grunt.task.run('copy:externalPluginsToTemp');
         }
     });
 

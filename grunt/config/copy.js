@@ -3,6 +3,24 @@ module.exports = function (grunt) {
     'use strict';
 
     grunt.config('copy', {
+        // Dev Server related Tasks
+        appJsAndHtmlToBuild : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        '**',
+                        '!**/*.scss',
+                        '**/*.html',
+                        '!index.html',
+                        '!vendor/**'
+                    ],
+                    desk : '<%= buildDirectory %>'
+                }
+            ]
+        },
+        // Build Related Tasks
         temp : {
             files : [
                 {
@@ -19,7 +37,7 @@ module.exports = function (grunt) {
                 }
             ]
         },
-        build : {
+        scssToBuild : {
             files : [
                 {
                     expand : true,
@@ -43,7 +61,7 @@ module.exports = function (grunt) {
                 }
             ]
         },
-        externalPluginsToBuild : {
+        externalPluginsToTemp : {
             files : [
                 {
                     expand : true,
@@ -54,37 +72,7 @@ module.exports = function (grunt) {
                 }
             ]
         },
-        deploy : {
-            files : [
-                {
-                    expand : true,
-                    cwd : 'app/',
-                    src : [
-                        '**',
-                        '!**/*.scss',
-                        '!**/*.js',
-                        '!vendor/**/*'
-                    ],
-                    dest : '<%= buildDirectory %>'
-                }
-            ]
-        },
-        vagrantConfig : {
-            files : [
-                {
-                    expand : true,
-                    cwd : 'node_modules/grasshopper-api/lib/config/',
-                    src : [
-                        'configuration.test.json'
-                    ],
-                    dest : 'node_modules/grasshopper-api/lib/config/',
-                    rename : function(dest, srcpath) {
-                        return dest + srcpath.replace('.test', '');
-                    }
-                }
-            ]
-        },
-        /// Live Reload Stuff
+        /// Live Reload Tasks
         redo : {
             files : [
                 {

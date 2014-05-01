@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         'registerPlugins',
         'paths:app',
         'setBuildConfig',
-        'copy:build',
+        'copy:scssToBuild',
         'sass',
         'autoprefixer:no_dest',
         'requirejs',
