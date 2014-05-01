@@ -80,33 +80,13 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _getContentTypesContent() {
-        var $deferred = new $.Deferred(),
-            self = this,
-            content;
+        var $deferred = new $.Deferred();
 
-        // TODO: This needs to be made more specific, Only get THIS types content. Maybe just make a new enpoint
-        // GET contenttype/:id/content
-        Api.makeQuery(
-            {
-                nodes : [],
-                types : [],
-                filters : [],
-                options : {
-                    fake : true
-                }
-            })
+        Api.getContentByContentType(this.model.get('_id'))
             .done(function(results) {
-                content = _.where(results, {type: self.model.get('_id')});
-
-                if(content.length) {
-                    $deferred.resolve(content.length);
-                } else {
-                    $deferred.resolve();
-                }
+                $deferred.resolve(results.total);
             })
-            .fail(function() {
-                $deferred.reject();
-            });
+            .fail($deferred.reject);
 
         return $deferred.promise();
     }
@@ -128,7 +108,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                     resources.contentType.successfullyDeletedPost
             }
         );
-        this.remove();
     }
 
     function _handleFailedContentTypeDeletion(model) {

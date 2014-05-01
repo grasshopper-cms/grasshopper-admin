@@ -3,8 +3,10 @@ module.exports = function (grunt) {
 
     "use strict";
 
-    var _ = grunt.util._,
+    var _ = require('lodash'),
         tempDirectory = grunt.config.get('tempDirectory'),
+        fs = require('fs'),
+        externalPluginsDirectory = grunt.config.get('externalPluginsDirectory'),
         plugins = {},
         idCounter = 1,
         defineBlock = [],
@@ -29,6 +31,10 @@ module.exports = function (grunt) {
 
         grunt.file.recurse('app/plugins', buildPluginsObject);
 
+        if(fs.existsSync(externalPluginsDirectory)) {
+            grunt.file.recurse(externalPluginsDirectory, buildPluginsObject);
+        }
+
         grunt.log.writeln(['Registering Plugins:']);
 
         _.each(plugins.fields, function(plugin) {
@@ -47,6 +53,10 @@ module.exports = function (grunt) {
         });
 
         grunt.file.write(tempDirectory + '/plugins.js', templatedFile);
+
+        if(fs.existsSync(externalPluginsDirectory)) {
+            grunt.task.run('copy:externalPluginsToBuild');
+        }
     });
 
     function _doCleanup() {

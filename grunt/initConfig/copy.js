@@ -43,6 +43,17 @@ module.exports = function (grunt) {
                 }
             ]
         },
+        externalPluginsToBuild : {
+            files : [
+                {
+                    expand : true,
+                    src : [
+                        '<%= externalPluginsDirectory %>/**/*'
+                    ],
+                    dest : '<%= tempDirectory %>'
+                }
+            ]
+        },
         deploy : {
             files : [
                 {
@@ -54,16 +65,6 @@ module.exports = function (grunt) {
                         '!**/*.js',
                         '!vendor/**/*'
                     ],
-                    dest : '<%= buildDirectory %>'
-                }
-            ]
-        },
-        redo : {
-            files : [
-                {
-                    expand : true,
-                    cwd : 'app/',
-                    src : [],
                     dest : '<%= buildDirectory %>'
                 }
             ]
@@ -80,6 +81,17 @@ module.exports = function (grunt) {
                     rename : function(dest, srcpath) {
                         return dest + srcpath.replace('.test', '');
                     }
+                }
+            ]
+        },
+        /// Live Reload Stuff
+        redo : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [],
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         },
