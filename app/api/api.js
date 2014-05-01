@@ -71,6 +71,14 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 original : originalName,
                 updated : newName
             });
+        },
+        getContentByContentType : function(contentTypeId) {
+            return this.makeQuery(
+                {
+                    nodes : [],
+                    types : [contentTypeId],
+                    filters : []
+                });
         }
     };
 

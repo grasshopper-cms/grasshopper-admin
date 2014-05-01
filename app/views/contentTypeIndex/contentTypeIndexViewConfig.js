@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeIndexViewModel', 'resources', 'constants',
-    'appBinders'],
-    function (template, contentTypeIndexViewModel, resources, constants, appBinders) {
+    'appBinders', 'contentTypeDetailRow'],
+    function (template, contentTypeIndexViewModel, resources, constants, appBinders, contentTypeDetailRow) {
         'use strict';
 
         return {
@@ -24,7 +24,10 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
             ],
             permissions : ['admin', 'editor'],
             rivetsConfig : {
-                binders : [appBinders]
+                binders : [appBinders],
+                childViewBinders : {
+                    'content-type-detail-row' : contentTypeDetailRow
+                }
             }
         };
     });

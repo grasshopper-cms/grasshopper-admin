@@ -35,6 +35,15 @@ define(['underscore', 'masseuse',
                     rivets.viewInstance.start();
                 },
                 publish : true
+            },
+            'sortable-multi-columns' : function(el, showSortableMulti) {
+                var $el = $(el);
+
+                if(showSortableMulti) {
+                    $el.removeClass().addClass('small-10 columns');
+                } else {
+                    $el.removeClass().addClass('small-11 columns');
+                }
             }
         };
 

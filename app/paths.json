@@ -158,7 +158,12 @@
             "" : "views/contentTypeDetail/contentTypeDetailView",
             "Config" : "views/contentTypeDetail/contentTypeDetailViewConfig",
             "Model" : "views/contentTypeDetail/contentTypeDetailViewModel",
-            "FieldsCollection" : "views/contentTypeDetail/contentTypeDetailViewFieldsCollection"
+            "FieldsCollection" : "views/contentTypeDetail/contentTypeDetailViewFieldsCollection",
+            "contentTypeDetailRow+" : {
+                "" : "views/contentTypeDetail/contentTypeDetailRow/view",
+                "Config" : "views/contentTypeDetail/contentTypeDetailRow/config",
+                "Model" : "views/contentTypeDetail/contentTypeDetailRow/model"
+            }
         },
 
         "contentTypeIndexView+" : {

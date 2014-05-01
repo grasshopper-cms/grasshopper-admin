@@ -140,15 +140,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function _getContentSchema($deferred) {
         Api.getContentType(this.model.get('meta.type'))
-            .done(
-                this.model.resetContentLabel.bind(this.model),
-                _handleSuccessfulContentSchemaRetrieval.bind(this, $deferred)
-            )
+            .done(_handleSuccessfulContentSchemaRetrieval.bind(this, $deferred))
             .fail(_handleFailedContentSchemaRetrieval.bind(this, $deferred));
     }
 
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
+        this.model.resetContentLabel();
 
         _updateMastheadBreadcrumbs.call(this, $deferred);
     }
