@@ -153,7 +153,9 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         _saveContentTypeWorkflow.call(this, {});
     }
 
-    function saveAndClose() {
+    function saveAndClose(e) {
+        _swapSavingTextWithSpinner.call(this, e);
+        this.model.toggle('saving');
         _saveContentTypeWorkflow.call(this, { close : true });
     }
 
