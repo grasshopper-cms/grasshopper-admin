@@ -11,7 +11,7 @@ module.exports = function (grunt) {
                 out: '<%= buildDirectory%>/main.js',
                 optimize: 'uglify',
                 preserveLicenseComments: false,
-                include: ['vendor/almond/almond.js']
+                include: ['vendor/requirejs/require.js']
             }
         }
     });

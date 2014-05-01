@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'jquery',
-    'plugins/richtext/fileBrowserModal/view', 'plugins/richtext/ckeditorConfig'],
+    'plugins/richtext/fileBrowserModal/view', 'plugins/richtext/ckeditorConfig', 'require'],
     function (GrasshopperBaseView, _, $,
-              FileBrowserView, ckeditorConfig) {
+              FileBrowserView, ckeditorConfig, require) {
 
         'use strict';
 

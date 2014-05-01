@@ -45,6 +45,7 @@ require.config({
             deps : ['jqueryui', 'widgetFactory']
         },
         ckeditorAdapter : {
+            exports : 'jquery',
             deps : ['jquery', 'ckeditor']
         },
         scrollToFixed : {
