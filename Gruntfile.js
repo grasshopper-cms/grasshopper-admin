@@ -29,6 +29,6 @@ module.exports = function (grunt) {
     grunt.config.set('externalPluginsDirectory', ghaConfig.externalPluginsDirectory);
     grunt.config.set('version', version);
 
-    grunt.loadTasks('grunt/initConfig');
+    grunt.loadTasks('grunt/config');
     grunt.loadTasks('grunt/tasks');
 };
