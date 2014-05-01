@@ -119,14 +119,23 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                         revert : true,
                         handle : '.sortableMultiHandle',
                         axis : 'y',
+                        start : _fireSortStartEvent.bind(this),
                         stop : _applyMultiSort.bind(this, $sortable)
                     }
                 );
             }
         }
 
+        function _fireSortStartEvent() {
+            this.channels.views.trigger('pluginWrapperSortStart');
+        }
+
+        function _fireSortStopEvent() {
+            this.channels.views.trigger('pluginWrapperSortStop');
+        }
+
         function _applyMultiSort($sortable) {
-            var fields = [],
+            var models = [],
                 elements = {},
                 $children = $sortable.children(),
                 childLength = $children.length,
@@ -134,7 +143,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 self = this;
 
             $sortable.find('.sortableMulti').each(function() {
-                fields.push(self.collection.get($(this).attr('modelid')));
+                models.push(self.collection.get($(this).attr('modelid')));
             });
 
             $children.each(function() {
@@ -145,6 +154,8 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 $sortable.append(elements['sort'+ i]);
             }
 
-            this.collection.reset(fields);
+            this.collection.reset(models);
+
+            _fireSortStopEvent.call(this);
         }
     });
