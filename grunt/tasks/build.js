@@ -1,10 +1,10 @@
-/*global module:false, require:false*/
+/*global module:false*/
 module.exports = function (grunt) {
 
-    "use strict";
+    'use strict';
 
     grunt.registerTask('build-no-optimize', 'Build and watch task', [
-        'setupBowerCopy',
+        'vendor:setup:vendorFiles',
         'copy:build',
         'copy:vendor',
         'registerPlugins',
@@ -16,7 +16,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'shell:bowerInstall',
-        'setupBowerCopy',
+        'vendor:setup:vendorFiles',
         'copy:temp',
         'copy:vendor',
         'registerPlugins',
@@ -28,10 +28,11 @@ module.exports = function (grunt) {
         'requirejs',
         'replace:requirejs',
         'vendor:switch',
+        'vendor:setup:vendorBuilt',
         'copy:vendor',
         'useminPrepare',
         'imagemin',
-        'rev',
+        'filerev',
         'usemin',
         'clean:temp'
     ]);
