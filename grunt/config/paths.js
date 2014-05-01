@@ -2,15 +2,21 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var buildDirectory = grunt.config.get('buildDirectory');
-
     grunt.config('paths', {
-        app : {
+        toTemp : {
             options: {
                 prefixComma : true,
                 pathsJson : 'app/paths.json',
                 mainTemplate : 'app/main.js',
                 main : '<%= tempDirectory %>/main.js'
+            }
+        },
+        toBuild : {
+            options: {
+                prefixComma : true,
+                pathsJson : 'app/paths.json',
+                mainTemplate : 'app/main.js',
+                main : '<%= buildDirectory %>/main.js'
             }
         },
         tests : {

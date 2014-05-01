@@ -13,10 +13,33 @@ module.exports = function (grunt) {
                         '**',
                         '!**/*.scss',
                         '**/*.html',
-                        '!index.html',
                         '!vendor/**'
                     ],
-                    desk : '<%= buildDirectory %>'
+                    dest : '<%= buildDirectory %>'
+                }
+            ]
+        },
+        vendorFilesToBuild : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        // created dynamically
+                    ],
+                    dest : '<%= buildDirectory %>'
+                }
+            ]
+        },
+        fromTempToBuild : {
+            files : [
+                {
+                    expand : true,
+                    cwd : '<%= tempDirectory %>',
+                    src : [
+                        '**/*'
+                    ],
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         },
@@ -37,7 +60,7 @@ module.exports = function (grunt) {
                 }
             ]
         },
-        scssToBuild : {
+        imagesToBuild : {
             files : [
                 {
                     expand : true,
