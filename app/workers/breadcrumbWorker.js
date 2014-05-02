@@ -39,13 +39,13 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
         }
     }
 
-    function contentBrowse($deferred) {
+    function contentBrowse($deferred, options) {
         var nodeId = this.model.get('nodeId');
 
         _setOldBreadcrumb.call(this);
 
         _getNodeDetailRecursively.call(this, nodeId)
-            .then(_finishBreadcrumb.bind(this, $deferred));
+            .then(_finishBreadcrumb.bind(this, $deferred, options));
     }
 
     function userBreadcrumb($deferred, isNew) {
@@ -88,7 +88,8 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
                 if(!_.isEmpty(nodeDetail)) {
                     self.breadcrumbs.splice(self.breadcrumbs.length - depthFromEnd, 0 ,{
                         text: _.escape(nodeDetail.label),
-                        href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id)
+                        href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id),
+                        nodeId : nodeDetail._id
                     });
 
                     depthFromEnd++;
@@ -106,8 +107,11 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
         return $deferred.promise();
     }
 
-    function _finishBreadcrumb($deferred) {
-        channels.views.trigger('updateMastheadBreadcrumbs', this);
+    function _finishBreadcrumb($deferred, options) {
+        options = options || { trigger : true };
+        if(options.trigger) {
+            channels.views.trigger('updateMastheadBreadcrumbs', this);
+        }
         $deferred && $deferred.resolve();
     }
 

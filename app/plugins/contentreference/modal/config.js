@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!plugins/contentreference/modal/template.html', 'plugins/contentreference/modal/model',
-    'appBinders'],
-    function (template, modalModel, appBinders) {
+    'appBinders', 'resources', 'constants', 'plugins/contentreference/modal/binders'],
+    function (template, modalModel, appBinders, resources, constants, contentRefModalBinders) {
     'use strict';
 
     return {
@@ -11,15 +11,20 @@ define(['text!plugins/contentreference/modal/template.html', 'plugins/contentref
         wrapper : false,
         template : template,
         rivetsConfig : {
-            binders : [appBinders]
+            binders : [appBinders, contentRefModalBinders]
         },
+        privateBreadcrumbs : true,
+        breadcrumbs : [
+            {
+                text : resources.root,
+                nodeId : '0'
+            }
+        ],
         events : {
             'click #nodeTree' : 'stopAccordionPropagation',
             'click #confirm' : 'confirmModal',
-            'click #cancel' : 'cancelModal'
-        },
-        listeners : []
+            'click #cancel' : 'cancelModal',
+            'click .modalBreadcrumb' : 'navigateToFolder'
+        }
     };
 });
-
-

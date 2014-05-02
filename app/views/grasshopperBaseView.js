@@ -22,6 +22,7 @@ define(['backbone', 'masseuse', 'resources'],
                     'defaultBreadcrumbs',
                     'defaultMastheadButtons',
                     'breadcrumbs',
+                    'privateBreadcrumbs',
                     'mastheadButtons',
                     'permissions',
                     'nodeId',
@@ -43,7 +44,7 @@ define(['backbone', 'masseuse', 'resources'],
         }
 
         function _handleAfterRender() {
-            if (this.breadcrumbs) {
+            if (this.breadcrumbs && !this.privateBreadcrumbs) {
                 this.channels.views.trigger('updateMastheadBreadcrumbs', this);
             }
         }
