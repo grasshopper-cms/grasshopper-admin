@@ -282,6 +282,7 @@ define({
     retry : 'Retry',
     required : 'Required',
     role : 'Role',
+    root : 'Root',
     save : 'Save',
     saveAndClose : 'Save and Close',
     selectOption : 'Please Select',
