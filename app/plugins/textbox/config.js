@@ -20,9 +20,6 @@ define(['text!plugins/textbox/template.html', 'plugins/textbox/model', 'text!plu
             },
             template : textBoxPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
-            wrapper: false,
-            listeners : [],
-            mastheadButtons : []
+            wrapper: false
         };
     });

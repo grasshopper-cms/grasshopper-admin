@@ -8,8 +8,3 @@ define(['grasshopperModel', 'resources', 'constants'],
             url : constants.api.newUser.url
         });
     });
-
-
-
-
-

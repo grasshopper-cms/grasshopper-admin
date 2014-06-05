@@ -1,0 +1,16 @@
+{
+    "font-awesome-fonts" : "vendor/font-awesome/fonts/**",
+    "ckeditorSkins" : "vendor/ckeditor/skins/**",
+    "ckeditorCss" : "vendor/ckeditor/contents.css",
+    "aceCodeEditor" : "vendor/ace/lib/ace/css/**",
+    "fonts" : "vendor/fonts/**",
+
+    "ckeditor" : "vendor/ckeditor/ckeditor.js",
+    "ckeditor-jqueryAdapter" : "vendor/ckeditor/adapters/jquery.js",
+    "ckeditor-kamaSkin" : "vendor/ckeditor/skins/moono/**",
+    "ckeditor-englishLanguage" : "vendor/ckeditor/lang/en.js",
+    "ckeditor-styleJavascript" : "vendor/ckeditor/styles.js",
+    "ckeditor-stylsheet" : "vendor/ckeditor/contents.css",
+    "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
+    "aceCodeEditor" : "vendor/ace/lib/ace/**/*"
+}

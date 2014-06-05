@@ -1,8 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'addFolderViewConfig', 'resources', 'underscore',
-    'nodeDetailView', 'text!views/nodeDetail/_nodeDetailRow.html'],
-    function (GrasshopperBaseView, addFolderViewConfig, resources, _,
-              NodeDetailView, nodeDetailRowTemplate) {
+define(['grasshopperBaseView', 'addFolderViewConfig', 'resources'],
+    function (GrasshopperBaseView, addFolderViewConfig, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -23,30 +21,23 @@ define(['grasshopperBaseView', 'addFolderViewConfig', 'resources', 'underscore',
                     type : 'input'
                 })
                 .done(function (modalData) {
-                    self.channels.views.trigger('activateTab', 'contentTab');
+                    _activateContentTab.call(self);
                     _appendNodeDetailRow.call(self, modalData.data);
                 })
                 .always(_navigateBack.bind(this));
         }
 
         function _appendNodeDetailRow(nodeName) {
-            var nodeDetailView = new NodeDetailView({
-                    name : 'nodeDetailRow',
-                    modelData : {
-                        label: nodeName,
-                        parent: this.model.get('nodeId')
-                    },
-                    appendTo : '#nodeDetailRow',
-                    wrapper: false,
-                    template : nodeDetailRowTemplate,
-                    mastheadButtons : this.mastheadButtons
-                });
-            nodeDetailView.start();
+            this.channels.views.trigger('nodeAdded', nodeName);
         }
 
-        function _navigateBack (trigger) {
+        function _activateContentTab() {
+            this.channels.views.trigger('activateTab', 'contentTab');
+        }
+
+        function _navigateBack () {
             this.app.router.removeThisRouteFromBreadcrumb();
-            this.app.router.navigateBack(trigger);
+            this.app.router.navigateBack();
             this.remove();
         }
 

@@ -35,9 +35,14 @@ define(['grasshopperBaseView', 'underscore'],
 
             // will break the binding when slug changes first, this is intended
             if(currentSlugValue === this.model.get('oldSlugValue')) {
-                this.model.set('value', newSlugableValue);
-                this.model.set('oldSlugValue', newSlugableValue);
+                this.model.set('oldSlugValue', _asSlug.call(this, newSlugableValue));
+                this.model.set('value', _asSlug.call(this, newSlugableValue));
             }
+        }
+
+        function _asSlug(value) {
+            var arigatoSon = '' + value;
+            return arigatoSon.toLowerCase().trim().replace(/[\s]+/g, '-').replace(/[^-a-zA-Z0-9._~]/g, '');
         }
 
     });

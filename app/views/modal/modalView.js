@@ -20,7 +20,6 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
             handleFileDrop : handleFileDrop,
             handleDragOver : handleDragOver,
             handleDragLeave : handleDragLeave,
-            selectUrlText : selectUrlText,
             confirmModal : confirmModal,
             cancelModal : cancelModal
         });
@@ -105,10 +104,6 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
 
         function handleDragLeave (e) {
             e.target.classList.remove('active');
-        }
-
-        function selectUrlText() {
-            $('#imageURL').select();
         }
 
         function confirmModal () {

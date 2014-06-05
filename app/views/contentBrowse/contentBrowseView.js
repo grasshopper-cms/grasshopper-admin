@@ -1,21 +1,32 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexView',
-    'assetIndexView', 'underscore', 'contentIndexView', 'breadcrumbWorker'],
-    function (GrasshopperBaseView, contentBrowseViewConfig, $, NodeIndexView, AssetIndexView,
-              _, ContentIndexView, breadcrumbWorker) {
+define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
+    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker'],
+    function (GrasshopperBaseView, contentBrowseViewConfig, $,
+              _, breadcrumbWorker, constants, nodeWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : contentBrowseViewConfig,
             beforeRender : beforeRender,
             afterRender : afterRender,
-            refreshIndexViews : refreshIndexViews,
-            activateTab : activateTab
+            activateTab : activateTab,
+            createContent : createContent,
+            createAssets : createAssets,
+            createFolder : createFolder,
+            addNewNode : addNewNode,
+            addNewAsset : addNewAsset,
+            editNodeName : editNodeName,
+            editNodeContentTypes : editNodeContentTypes,
+            deleteNode : deleteNode
         });
 
         function beforeRender ($deferred) {
-            buildMastheadBreadcrumb.call(this)
-                .done(_addChildIndexViews.bind(this, $deferred))
+            $.when(
+                _buildMastheadBreadcrumb.call(this),
+                this.model.fetch(),
+                this.model.get('childNodes').fetch(),
+                this.model.get('childContent').fetch())
+                .done($deferred.resolve, _addAssetIndexView.bind(this))
                 .fail($deferred.reject);
         }
 
@@ -23,51 +34,13 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
             this.$el.foundation();
         }
 
-        function _addChildIndexViews ($deferred) {
-            _addNodeIndexView.call(this);
-            _addAssetIndexView.call(this);
-            _addContentIndexView.call(this);
-            $deferred.resolve();
-        }
-
-        function refreshIndexViews () {
-            this.refreshChildren();
-        }
-
-        function _addNodeIndexView () {
-            var nodeIndexView = new NodeIndexView({
-                    modelData : {
-                        nodeId : this.model.get('nodeId')
-                    },
-                    mastheadButtons : null
-                });
-            this.addChild(nodeIndexView);
-        }
-
         function _addAssetIndexView() {
             if (!this.model.get('inRoot')) {
-                var assetIndexView = new AssetIndexView({
-                        modelData : {
-                            nodeId : (this.model.get('nodeId')) ? this.model.get('nodeId') : 0
-                        },
-                        mastheadButtons : null
-                    });
-                this.addChild(assetIndexView);
+                this.model.get('childAssets').fetch();
             }
         }
 
-        function _addContentIndexView () {
-            if (!this.model.get('inRoot')) {
-                var contentIndexView = new ContentIndexView({
-                        nodeId : this.model.get('nodeId'),
-                        mastheadButtons : null,
-                        el : '#contentDetailRow'
-                    });
-                this.addChild(contentIndexView);
-            }
-        }
-
-        function buildMastheadBreadcrumb () {
+        function _buildMastheadBreadcrumb () {
             var $deferred = new $.Deferred();
 
             breadcrumbWorker.contentBrowse.call(this, $deferred);
@@ -78,4 +51,51 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'nodeIndexVi
         function activateTab (tab) {
             $('#' + tab + ' a').click();
         }
+
+        function createContent() {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.addContent.replace(':id', this.model.get('nodeId')));
+        }
+
+        function createAssets() {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.createAssets.replace(':id', this.model.get('nodeId')));
+        }
+
+        function createFolder() {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.createFolder.replace(':id', this.model.get('nodeId')));
+        }
+
+        function addNewNode(nodeName) {
+            this.model.get('childNodes').add({
+                label : nodeName,
+                parent : this.model.get('nodeId')
+            });
+        }
+
+        function addNewAsset(newAssetPayload) {
+            this.model.get('childAssets').add(newAssetPayload);
+        }
+
+        function editNodeName() {
+            nodeWorker.editName.call(this)
+                .done(breadcrumbWorker.resetBreadcrumb.bind(this), _buildMastheadBreadcrumb.bind(this));
+            _closeActionsDropdown.call();
+        }
+
+        function editNodeContentTypes() {
+            nodeWorker.editContentTypes.call(this);
+            _closeActionsDropdown.call();
+        }
+
+        function deleteNode() {
+            nodeWorker.deleteNode.call(this);
+            _closeActionsDropdown.call();
+        }
+
+        function _closeActionsDropdown() {
+            $('#actionsDropdown').click();
+        }
+
     });

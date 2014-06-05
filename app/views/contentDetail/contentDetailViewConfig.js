@@ -11,11 +11,8 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
             appendTo : '#stage',
             wrapper : false,
             template : formTemplate,
-            events : {
-                'click.clickableCell' : 'handleRowClick'
-            },
+            events : {},
             listeners : [],
-            mastheadButtons : [],
             breadcrumbs : [
                 {
                     text : resources.home,

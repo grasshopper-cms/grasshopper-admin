@@ -6,6 +6,7 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker'],
             defaultOptions : nodeDetailViewConfig,
             afterRender : afterRender,
             prepareToDeleteNode : prepareToDeleteNode,
+            prepareToEditContentTypes : prepareToEditContentTypes,
             handleRowClick : handleRowClick,
             editNodeName : editNodeName,
             editContentTypes : editContentTypes
@@ -14,11 +15,12 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker'],
         function afterRender() {
             if(this.model.isNew()) {
                 this.model.save()
-                    .done(this.editContentTypes.bind(this));
+                    .done(editContentTypes.bind(this));
             }
         }
 
-        function prepareToDeleteNode () {
+        function prepareToDeleteNode (e) {
+            e.stopPropagation();
             nodeWorker.deleteNode.call(this);
         }
 
@@ -27,8 +29,14 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker'],
             return false;
         }
 
-        function editNodeName() {
+        function editNodeName(e) {
+            e.stopPropagation();
             nodeWorker.editName.call(this);
+        }
+
+        function prepareToEditContentTypes(e) {
+            e.stopPropagation();
+            this.editContentTypes();
         }
 
         function editContentTypes() {

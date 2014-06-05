@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'],
-    function (GrasshopperBaseView, config, $) {
+define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery', 'breadcrumbWorker'],
+    function (GrasshopperBaseView, config, $, breadcrumbWorker) {
 
         'use strict';
 
@@ -11,10 +11,12 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
             stopAccordionPropagation : stopAccordionPropagation,
             confirmModal : confirmModal,
             cancelModal : cancelModal,
-            setSelectedNode : setSelectedNode
+            setSelectedNode : setSelectedNode,
+            navigateToFolder : navigateToFolder
         });
 
         function beforeRender($deferred) {
+            _setBreadcrumbs.call(this);
             $.when(_fetchChildNodes.call(this),
                     _fetchChildContent.call(this),
                     _fetchCurrentNode.call(this))
@@ -61,6 +63,27 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
 
         function setSelectedNode() {
             return false;
+        }
+
+        function _setBreadcrumbs() {
+            var $deferred = new $.Deferred(),
+                self = this;
+
+            $deferred.done(function() {
+                self.model.set('breadcrumbs', self.breadcrumbs);
+            });
+
+            breadcrumbWorker.contentBrowse.call(this, $deferred, { trigger : false });
+        }
+
+        function navigateToFolder(e) {
+            this.model.set('_id', $(e.target).attr('nodeId'));
+
+            breadcrumbWorker.resetBreadcrumb.call(this);
+            _setBreadcrumbs.call(this);
+            _fetchChildNodes.call(this);
+            _fetchChildContent.call(this);
+            _fetchCurrentNode.call(this);
         }
 
     });

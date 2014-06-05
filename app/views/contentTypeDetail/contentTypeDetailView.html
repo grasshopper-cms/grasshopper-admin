@@ -67,7 +67,7 @@
 
             <section id="contentTypeFieldAccordion">
 
-                <div data-rv-each-field="collection:">
+                <div data-rv-each-field="collection:" data-rv-sortIndex="index | prepend sort">
 
                     <div data-rv-fieldaccordion="field"></div>
 
@@ -79,7 +79,52 @@
     </div>
     <div class="row">
         <div class="large-12 columns">
-            <button id="saveContentType" class="button tiny radius right" style="margin-top: 10px;">{{model:resources->save}}</button>
+            <ul class="button-group radius right">
+
+                <li>
+                    <button class="button tiny" data-rv-on-click="view.saveContentType" data-rv-disabled="model:saving" style="margin-top: 20px;">
+                        {{model:resources->save}}
+                    </button>
+                </li>
+
+                <li>
+                    <button class="button tiny" data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving" style="margin-top: 20px;">
+                        {{model:resources->saveAndClose}}
+                    </button>
+                </li>
+
+            </ul>
         </div>
     </div>
+
+
+    <section data-rv-move-to="view.mastheadButtonsSelector">
+        <div class="button-bar">
+            <ul class="button-group radius">
+
+                <li>
+                    <button data-rv-on-click="view.newContentType" class="button tiny">
+                        {{model:resources->mastheadButtons->addContentType}}
+                    </button>
+                </li>
+
+            </ul>
+
+            <ul class="button-group radius">
+
+                <li>
+                    <button data-rv-on-click="view.saveContentType" data-rv-disabled="model:saving" class="button tiny">
+                        {{model:resources->save}}
+                    </button>
+                </li>
+
+                <li>
+                    <button data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving" class="button tiny">
+                        {{model:resources->saveAndClose}}
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+    </section>
 </div>

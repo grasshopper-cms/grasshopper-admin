@@ -11,7 +11,8 @@
         "ckeditor" : "vendor/ckeditor/ckeditor",
         "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
         "ace" : "vendor/ace/lib/ace",
-        "moment" : "vendor/moment/moment"
+        "moment" : "vendor/moment/moment",
+        "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed"
     },
 
     "routers" : {
@@ -131,42 +132,38 @@
         "assetDetailView+" : {
             "" : "views/assetDetail/assetDetailView",
             "Config" : "views/assetDetail/assetDetailViewConfig",
-            "Model" : "views/assetDetail/assetDetailViewModel",
-            "assetDetailRow+" : {
-                "" : "views/assetDetail/assetDetailRow/view",
-                "Config" : "views/assetDetail/assetDetailRow/config"
-            }
-        },
-
-        "assetIndexView+" : {
-            "" : "views/assetIndex/assetIndexView",
-            "Config" : "views/assetIndex/assetIndexViewConfig",
-            "Model" : "views/assetIndex/assetIndexViewModel"
+            "Model" : "views/assetDetail/assetDetailViewModel"
         },
 
         "contentBrowseView+" : {
             "" : "views/contentBrowse/contentBrowseView",
             "Config" : "views/contentBrowse/contentBrowseViewConfig",
-            "Model" : "views/contentBrowse/contentBrowseViewModel"
+            "Model" : "views/contentBrowse/contentBrowseViewModel",
+            "ChildNodesCollection" : "views/contentBrowse/childNodesCollection"
         },
 
         "contentDetailView+" : {
             "" : "views/contentDetail/contentDetailView",
             "Config" : "views/contentDetail/contentDetailViewConfig",
-            "Model" : "views/contentDetail/contentDetailViewModel"
-        },
+            "Model" : "views/contentDetail/contentDetailViewModel",
+            "contentDetailRowView+" : {
+                "" : "views/contentDetail/contentDetailRow/view",
+                "Config" : "views/contentDetail/contentDetailRow/config",
+                "Model" : "views/contentDetail/contentDetailRow/model"
+            }
 
-        "contentIndexView+" : {
-            "" : "views/contentIndex/contentIndexView",
-            "Config" : "views/contentIndex/contentIndexViewConfig",
-            "Model" : "views/contentIndex/contentIndexViewModel"
         },
 
         "contentTypeDetailView+" : {
             "" : "views/contentTypeDetail/contentTypeDetailView",
             "Config" : "views/contentTypeDetail/contentTypeDetailViewConfig",
             "Model" : "views/contentTypeDetail/contentTypeDetailViewModel",
-            "FieldsCollection" : "views/contentTypeDetail/contentTypeDetailViewFieldsCollection"
+            "FieldsCollection" : "views/contentTypeDetail/contentTypeDetailViewFieldsCollection",
+            "contentTypeDetailRow+" : {
+                "" : "views/contentTypeDetail/contentTypeDetailRow/view",
+                "Config" : "views/contentTypeDetail/contentTypeDetailRow/config",
+                "Model" : "views/contentTypeDetail/contentTypeDetailRow/model"
+            }
         },
 
         "contentTypeIndexView+" : {
@@ -226,12 +223,6 @@
             "Model" : "views/nodeDetail/nodeDetailViewModel"
         },
 
-        "nodeIndexView+" : {
-            "" : "views/nodeIndex/nodeIndexView",
-            "Config" : "views/nodeIndex/nodeIndexViewConfig",
-            "Model" : "views/nodeIndex/nodeIndexViewModel"
-        },
-
         "nodeTreeView+" : {
             "" : "views/nodeTree/nodeTreeView",
             "Config" : "views/nodeTree/nodeTreeViewConfig",
@@ -242,7 +233,8 @@
         "pluginWrapperView+" : {
             "" : "views/pluginWrapper/pluginWrapperView",
             "Config" : "views/pluginWrapper/pluginWrapperViewConfig",
-            "Model" : "views/pluginWrapper/pluginWrapperViewModel"
+            "Model" : "views/pluginWrapper/pluginWrapperViewModel",
+            "Collection" : "views/pluginWrapper/pluginCollection"
         },
 
         "userDetailView+" : {

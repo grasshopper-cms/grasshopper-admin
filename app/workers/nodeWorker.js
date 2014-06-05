@@ -20,18 +20,21 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         }
 
         function editName() {
-            var self = this;
+            var self = this,
+                $deferred = new $.Deferred();
 
             $.when(_askUserForNewNodeName.call(this), this.model.fetch())
                 .then(function(modalData) {
                     self.model.set('label', modalData.data);
-                    _saveThisNode.call(self);
+                    _saveThisNode.call(self)
+                        .done($deferred.resolve);
                 });
+
+            return $deferred.promise();
         }
 
         function editContentTypes() {
-            this.model.fetch()
-                .then(_getAvailableContentTypes.bind(this))
+            _getAvailableContentTypes.call(this)
                 .then(_askUserWhichContentTypesToAttach.bind(this))
                 .then(_attachContentTypesToNode.bind(this));
         }
@@ -147,9 +150,6 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
                         resources.node.successfullyDeletedPost
                 }
             );
-            this.remove();
-
-
         }
 
         function _handleFailedNodeDeletion() {

@@ -16,11 +16,12 @@ define(['text!plugins/richtext/template.html', 'plugins/richtext/model', 'text!p
                 validation : [],
                 value : ''
             },
+            listeners : [
+                ['channels.views', 'pluginWrapperSortStart', 'sortStart'],
+                ['channels.views', 'pluginWrapperSortStop', 'stopSort']
+            ],
             template : richTextPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
-            wrapper: false,
-            listeners : [],
-            mastheadButtons : []
+            wrapper: false
         };
     });

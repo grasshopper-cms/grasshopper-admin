@@ -14,8 +14,6 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
 
         function afterRender() {
             _handleValidation.call(this);
-            _initializeAccordions.call(this);
-            _handleNewFieldAccordion.call(this);
         }
 
         function changeFieldType(currentModel, newType) {
@@ -28,6 +26,8 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                 _warnUserBeforeChangingComplexTypes.call(this)
                     .done(_actuallyChangeFieldPluginType.bind(this, newType))
                     .fail(_returnFieldPluginTypeToPreviousType.bind(this, previousType));
+            } else {
+                _actuallyChangeFieldPluginType.call(this, newType);
             }
         }
 
@@ -44,13 +44,19 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
         }
 
         function _actuallyChangeFieldPluginType(newType) {
-            var newModel = _.findWhere(this.model.get('plugins'), { type : newType }).config.modelData,
-                thisModel = this.model.pick('label', 'min', 'max', 'multi', 'helpText', 'validation', '_id');
+            var newModel = _.result(_.findWhere(this.model.get('plugins'), { type : newType }).config, 'modelData'),
+                thisModel = this.model.pick('label', 'min', 'max', 'multi', 'helpText', 'validation', '_id'),
+                index = this.parent.collection.indexOf(this.model);
 
             _.extend(newModel, thisModel);
 
+            this.parent.collapseAccordion();
+
+            this.parent.collection.add(newModel, { at : index });
             this.parent.collection.remove(this.model);
-            this.parent.collection.add(newModel);
+
+            this.parent.refreshAccordion();
+            this.parent.openSpecificAccordion(index);
         }
 
         function _getModelDataTypeFromPlugins(plugins, type) {
@@ -111,26 +117,6 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
                     self.parent.collection.remove(self.model);
                 });
 
-        }
-
-        function _initializeAccordions() {
-            var $accordion = this.$el;
-
-            $accordion
-                .accordion(
-                {
-                    header : '.fieldAccordion',
-                    icons : false,
-                    active : false,
-                    collapsible : true,
-                    heightStyle : 'content'
-                });
-        }
-
-        function _handleNewFieldAccordion() {
-            if(this.model.get('isNew')) {
-                this.$el.find('.fieldAccordion').click();
-            }
         }
 
     });

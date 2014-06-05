@@ -19,9 +19,6 @@ define(['text!plugins/textarea/template.html', 'plugins/textarea/model', 'text!p
             },
             wrapper: false,
             template : textareaPluginTemplate,
-            setupTemplate : setupTemplate,
-            events : {},
-            listeners : [],
-            mastheadButtons : []
+            setupTemplate : setupTemplate
         };
     });

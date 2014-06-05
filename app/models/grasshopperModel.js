@@ -1,7 +1,5 @@
-define([
-    'backbone', 'masseuse', 'resources', 'constants',
-    'underscore', 'helpers'
-], function (Backbone, masseuse, resources, constants, _, helpers) {
+define(['backbone', 'masseuse', 'resources', 'constants', 'underscore', 'helpers', 'jquery'],
+    function (Backbone, masseuse, resources, constants, _, helpers, $) {
 
     'use strict';
 
@@ -40,12 +38,25 @@ define([
     }
 
     function save (options) {
-        var saveOptions = _.extend({}, options, {
-            headers : {
-                'Authorization' : 'Token ' + LocalStorage.get('authToken')
-            }
-        });
-        return Backbone.Model.prototype.save.call(this, null, saveOptions);
+        var $deferred,
+            returnedObj,
+            saveOptions = _.extend({}, options, {
+                headers : {
+                    'Authorization' : 'Token ' + LocalStorage.get('authToken')
+                }
+            });
+
+        returnedObj = Backbone.Model.prototype.save.call(this, null, saveOptions);
+
+        if(returnedObj) {
+            return returnedObj;
+        } else {
+            $deferred = new $.Deferred();
+
+            $deferred.reject();
+
+            return $deferred.promise();
+        }
     }
 
     function destroy (options) {
