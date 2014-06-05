@@ -68,7 +68,10 @@ define({
         createFolder : 'Create Folder',
         actions : 'Actions',
         addNewUser : 'Add New User',
-        addContentType : 'New Content Type'
+        addContentType : 'New Content Type',
+        editNodeName : 'Edit Name',
+        editNodeContentTypes : 'Edit Content Types',
+        deleteNode : 'Delete'
     },
     node : {
         deletionWarning : 'Are you sure you want to delete this folder? All of its contents will also be deleted.',
@@ -82,7 +85,8 @@ define({
         enterName : 'Please enter the name of the folder: ',
         errorCreating : 'Folder could not be added.',
         editName : 'Edit folder name',
-        emptyNode : 'This folder does not contain any content.',
+        emptyNode : 'This folder does not contain any folders.',
+        emptyContent : 'This folder does not contain any content.',
         clickToAdd : 'Click to add some.'
     },
     contentItem : {
@@ -90,7 +94,6 @@ define({
         successfullyDeletedPre : 'Content ',
         successfullyDeletedPost : ' was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: ',
-        createContent : 'New content',
         readonly : 'Readonly',
         labelErrorMessage : 'Label is a required field.',
         successfullySaved : 'Content successfully saved.',
@@ -134,7 +137,13 @@ define({
             'If you confirm, your content may be corrupted!',
         selectOption : 'Please Select',
         thisFieldHasNoValidation : 'This field has no validations',
-        addValidationType : 'Add Validation'
+        addValidationType : 'Add Validation',
+        validation : {
+            mustHaveLabel : 'Content type must have a title.',
+            fieldsMustHaveLabel : 'All fields must have a name.',
+            firstFieldIsNotAStringWarning : 'The first field in this content type is not a string. ' +
+                'This could cause weird behavior in your content labels.'
+        }
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
@@ -273,7 +282,9 @@ define({
     retry : 'Retry',
     required : 'Required',
     role : 'Role',
+    root : 'Root',
     save : 'Save',
+    saveAndClose : 'Save and Close',
     selectOption : 'Please Select',
     settings : 'Settings',
     siteName : 'Grasshopper',

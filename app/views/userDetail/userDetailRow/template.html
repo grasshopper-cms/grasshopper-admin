@@ -1,11 +1,11 @@
-<td class="clickableCell">
+<td data-rv-on-click="view.handleRowClick">
     {{model:firstname | spaceAfter}}
     {{model:lastname}}
 </td>
-<td class="clickableCell">{{model:login}}</td>
-<td class="clickableCell">{{model:role | humanize}}</td>
-<td class="clickableCell">{{model:email}}</td>
-<td align="center">
+<td data-rv-on-click="view.handleRowClick">{{model:login}}</td>
+<td data-rv-on-click="view.handleRowClick">{{model:role | humanize}}</td>
+<td data-rv-on-click="view.handleRowClick">{{model:email}}</td>
+<td align="center" data-rv-on-click="view.handleRowClick">
     <a data-rv-href="model:href">
         <i class="fa fa-edit"></i>
     </a>

@@ -8,13 +8,12 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
             handleRowClick : handleRowClick,
             prepareToDeleteAsset : prepareToDeleteAsset,
             editAsset : editAsset,
-            postNewAsset : postNewAsset,
             cancelUpload : cancelUpload
         });
 
         function afterRender() {
             if(this.model.has('fileData')) {
-                this.postNewAsset();
+                _postNewAsset.call(this);
             }
         }
 
@@ -28,7 +27,8 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 });
         }
 
-        function prepareToDeleteAsset() {
+        function prepareToDeleteAsset(e) {
+            e.stopPropagation();
             this.displayModal(
                 {
                     header : resources.warning,
@@ -37,8 +37,10 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 .done(_deleteAsset.bind(this));
         }
 
-        function editAsset() {
+        function editAsset(e) {
             var self = this;
+
+            e.stopPropagation();
 
             _getNewFileName.call(this)
                 .done(function(modalData) {
@@ -48,8 +50,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
                 });
         }
 
-        function postNewAsset() {
-            this.model.set('uploadError', false);
+        function _postNewAsset() {
             AssetWorker.postNewAsset(this.model.get('nodeId'), this.model.get('fileData'))
                 .done(_handleSuccessfulUpload.bind(this))
                 .fail(_handleFailedUpload.bind(this))
@@ -69,12 +70,12 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
         function _handleSuccessfulDelete () {
             this.displayTemporaryAlertBox(
                 {
+                    header : resources.success,
                     msg: resources.asset.successfullyDeletedPre + this.model.get('fileName') +
                         resources.asset.successfullyDeletedPost,
-                    status: true
+                    style : 'success'
                 }
             );
-            this.remove();
         }
 
         function _handleDeletionError () {
@@ -127,7 +128,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
             this.displayTemporaryAlertBox(
                 {
                     header : resources.success,
-                    style : 'succes',
+                    style : 'success',
                     msg: response
                 }
             );

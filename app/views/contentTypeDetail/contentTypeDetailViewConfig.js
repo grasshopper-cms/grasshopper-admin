@@ -16,19 +16,11 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             appendTo : '#stage',
             wrapper : false,
             template : formTemplate,
-            events : {
-                'click #deleteContentType' : 'prepareToDeleteContentType',
-                'click .clickableCell' : 'handleRowClick',
-                'click #saveContentType' : 'saveContentType'
-            },
-            listeners : [],
-            mastheadButtons : [
-                {
-                    text : resources.mastheadButtons.addContentType,
-                    href : constants.internalRoutes.newContentType
-                }
-            ],
             breadcrumbs : [
+                {
+                    text : resources.home,
+                    href : constants.internalRoutes.content
+                },
                 {
                     text : resources.contentTypes,
                     href : constants.internalRoutes.contentTypes

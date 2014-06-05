@@ -21,8 +21,6 @@ define(['text!plugins/keyvalue/template.html', 'plugins/keyvalue/model', 'text!p
             events : {
                 'blur .keyValueInput' : 'buildObj'
             },
-            wrapper: false,
-            listeners : [],
-            mastheadButtons : []
+            wrapper: false
         };
     });

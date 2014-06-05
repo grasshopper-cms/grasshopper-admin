@@ -8,13 +8,44 @@
                     <div data-rv-fieldwrapper="field"></div>
                 </div>
 
-                <div class="row">
-                    <div class="large-12 small-centered columns">
-                        <button data-rv-on-click="view.saveContent" class="button small radius right">{{model:resources->save}}</button>
-                    </div>
-                </div>
-
             </fieldset>
         </div>
     </div>
+
+    <div class="row">
+        <div class="large-12 small-centered columns">
+            <ul class="button-group radius right">
+                <li>
+                    <button class="button tiny" data-rv-on-click="view.saveContent" data-rv-disabled="model:saving">
+                        {{model:resources->save}}
+                    </button>
+                </li>
+
+                <li>
+                    <button class="button tiny" data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving">
+                        {{model:resources->saveAndClose}}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <section data-rv-move-to="view.mastheadButtonsSelector">
+        <ul class="button-group radius right">
+
+            <li>
+                <button class="button tiny" data-rv-on-click="view.saveContent" data-rv-disabled="model:saving">
+                    {{model:resources->save}}
+                </button>
+            </li>
+
+            <li>
+                <button data-rv-on-click="view.saveAndClose" class="button tiny" data-rv-disabled="model:saving">
+                    {{model:resources->saveAndClose}}
+                </button>
+            </li>
+
+        </ul>
+    </section>
 </div>

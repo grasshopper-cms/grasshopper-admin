@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'backbone', 'nodeTreeView'],
+    'pluginWrapperView', 'backbone', 'nodeTreeView', 'pluginWrapperViewCollection'],
     function ($, _, masseuse,
-              PluginWrapperView, Backbone, NodeTreeView) {
+              PluginWrapperView, Backbone, NodeTreeView, PluginWrapperViewCollection) {
 
         'use strict';
 
@@ -23,28 +23,7 @@ define(['jquery', 'underscore', 'masseuse',
                         modelData : _.extend({}, thisField, {
                             value: masseuse.ProxyProperty('fields.' + thisField._id, parentView.model)
                         }),
-                        collection : new (Backbone.Collection.extend({
-                            initialize: function () {
-                                this.on('all', function (eventName) {
-                                    this.setValuesOnParentFieldsObject(eventName);
-                                });
-                            },
-                            setValuesOnParentFieldsObject : function() {
-                                var values = this.toJSON(),
-                                    max = thisField.max;
-
-                                if(max === 1) {
-                                    values = values[0];
-                                }
-
-                                parentView.model.set('fields.' + thisField._id, values);
-                            },
-                            toJSON: function () {
-                                var json = Backbone.Collection.prototype.toJSON.apply(this);
-
-                                return _.pluck(json, 'value');
-                            }
-                        }))([], {}),
+                        collection : PluginWrapperViewCollection.createFromParentView(parentView, thisField),
                         appendTo : el
                     });
                     rivets.viewInstance.start();
@@ -71,6 +50,16 @@ define(['jquery', 'underscore', 'masseuse',
             },
             nodetree :  function(el, model) {
                 _appendNodeTreeView.call(this, el, model);
+            },
+            'move-to' : function(el, selector) {
+                var $selector = $(selector);
+                $selector.append($(el).contents());
+                $selector.foundation();
+            },
+            'stop-propagation' : function(el) {
+                $(el).on('click', function(e) {
+                    e.stopPropagation();
+                });
             }
         };
 

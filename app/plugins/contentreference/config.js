@@ -32,8 +32,7 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
                 formatters : [formatters],
                 binders : [appBinders]
             },
-            wrapper: false,
-            listeners : []
+            wrapper: false
         };
     });
 

@@ -23,8 +23,6 @@ define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
             },
             template : template,
             setupTemplate : setupTemplate,
-            events : {},
-            wrapper: false,
-            listeners : []
+            wrapper: false
         };
     });

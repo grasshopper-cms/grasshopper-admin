@@ -22,9 +22,7 @@ define(['text!plugins/embeddedtype/template.html', 'plugins/embeddedtype/model',
             },
             template : embeddedtypePluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
             wrapper: false,
-            listeners : [],
             rivetsConfig : {
                 binders : [appBinders]
             }

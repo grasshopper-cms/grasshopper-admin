@@ -109,9 +109,14 @@ define([
         }
 
         function beforeRouting () {
-            var $deferred = new $.Deferred();
+            var $deferred = new $.Deferred(),
+                self = this;
 
-            $deferred.done(this.breadcrumb.push.bind(this.breadcrumb, Backbone.history.getFragment()));
+            $deferred.done(function() {
+                if(Backbone.history.getFragment() !== _.last(self.breadcrumb)) {
+                    self.breadcrumb.push(Backbone.history.getFragment());
+                }
+            });
 
             loginWorker.userIsStillValidUser.call(this, $deferred);
 
@@ -119,15 +124,14 @@ define([
         }
 
         function userHasBreadcrumbs () {
-            return (this.breadcrumb && this.breadcrumb.length !== 0);
+            return (this.breadcrumb && this.breadcrumb.length > 1);
         }
 
         function removeThisRouteFromBreadcrumb () {
             this.breadcrumb.pop();
         }
 
-        function _handleRoutingFromRefreshOnModal (nodeId) {
-            this.breadcrumb.push(Backbone.history.fragment);
+        function _handleRoutingFromRefreshOnModalView (nodeId) {
             if(nodeId === '0') {
                 nodeId = null;
                 this.breadcrumb.unshift(constants.internalRoutes.content.replace('#', ''));
@@ -207,6 +211,7 @@ define([
                     currentView.remove();
                 }
                 currentView = newView;
+                $('#mastheadButtons').empty();
             });
 
             newView.start()
@@ -251,7 +256,7 @@ define([
         }
 
         function displayLogin () {
-            loadMainContent(LoginView);
+            this.loadMainContent(LoginView);
         }
 
         function displayAlertBox (options) {
@@ -301,7 +306,7 @@ define([
             // I did the role check here instead of in the config with permissions, this is because there are Admin's
             // getting their own, Admins getting others, and others getting their own.
             if (this.user.get('role') === 'admin' || this.user.get('_id') === id) {
-                loadMainContent(UserDetailView, {
+                this.loadMainContent(UserDetailView, {
                         modelData : {
                             _id : id,
                             userModel : this.user
@@ -313,7 +318,7 @@ define([
         }
 
         function displayUserIndex (pageNumber, pageLimit) {
-            loadMainContent(UserIndexView, {
+            this.loadMainContent(UserIndexView, {
                     modelData : {
                         pageNumber : pageNumber,
                         pageLimit : pageLimit
@@ -322,21 +327,20 @@ define([
         }
 
         function displayAddUser () {
-            loadMainContent(AddUserView);
+            this.loadMainContent(AddUserView);
         }
 
         function displayContentBrowse (nodeId) {
-            this.mastheadView.model.trigger('contentBrowseNodeId', nodeId);
-            loadMainContent(ContentBrowseView, {
+            this.loadMainContent(ContentBrowseView, {
                     modelData : {
-                        nodeId : nodeId ? nodeId : 0,
+                        nodeId : nodeId ? nodeId : '0',
                         inRoot : !nodeId
                     }
                 });
         }
 
         function displayContentDetail (id, options) {
-            loadMainContent(ContentDetailView, {
+            this.loadMainContent(ContentDetailView, {
                     modelData : _.extend({}, options, {
                         _id : id
                     })
@@ -344,11 +348,11 @@ define([
         }
 
         function displayContentTypeIndex () {
-            loadMainContent(ContentTypeIndexView);
+            this.loadMainContent(ContentTypeIndexView);
         }
 
         function displayContentTypeDetail (id) {
-            loadMainContent(ContentTypeDetailView, {
+            this.loadMainContent(ContentTypeDetailView, {
                     modelData : {
                         _id : id
                     }
@@ -357,7 +361,7 @@ define([
 
         function displayCreateFolder (nodeId) {
             if (!this.userHasBreadcrumbs()) {
-                _handleRoutingFromRefreshOnModal.call(this, nodeId);
+                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
             }
             var addFolderView = new AddFolderView({
                     modelData : {
@@ -369,9 +373,9 @@ define([
 
         function displayCreateContent (nodeId) {
             if (!this.userHasBreadcrumbs()) {
-                _handleRoutingFromRefreshOnModal.call(this, nodeId);
+                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
             }
-            loadMainContent(AddContentView, {
+            this.loadMainContent(AddContentView, {
                     modelData : {
                         meta : {
                             node : nodeId
@@ -382,7 +386,7 @@ define([
 
         function displayCreateAssets (nodeId) {
             if (!this.userHasBreadcrumbs()) {
-                _handleRoutingFromRefreshOnModal.call(this, nodeId);
+                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
             }
             var addAssetsView = new AddAssetsView({
                     modelData : {

@@ -50,10 +50,12 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 i = 0,
                 self = this;
 
-            if (values && _.isArray(values)) { // If values exists and is array
+            if (values && _.isArray(values) && !_.isEmpty(values)) { // If values exists and is array that is not empty
                 _.each(values, function (value) {
                     _addPlugin.call(self, value);
                 });
+            } else if (values && _.isArray(values) && _.isEmpty(values)) { // If value exists and is an empty array
+                _evaluateMultiButtons.call(this);
             } else if (!!values || _.isString(values)) { // if values exists
                 _addPlugin.call(this, values);
             } else if (minimum === 0) { // if values does not exist and minimum is zero
@@ -117,32 +119,41 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                         revert : true,
                         handle : '.sortableMultiHandle',
                         axis : 'y',
+                        start : _fireSortStartEvent.bind(this),
                         stop : _applyMultiSort.bind(this, $sortable)
                     }
                 );
             }
         }
 
+        function _fireSortStartEvent() {
+            this.channels.views.trigger('pluginWrapperSortStart');
+        }
+
+        function _fireSortStopEvent() {
+            this.channels.views.trigger('pluginWrapperSortStop');
+        }
+
         function _applyMultiSort($sortable) {
-            var fields = [],
+            var models = [],
                 elements = {},
                 $children = $sortable.children(),
                 childLength = $children.length,
-                i,
                 self = this;
 
-            $sortable.find('.sortableMulti').each(function() {
-                fields.push(self.collection.get($(this).attr('modelid')));
-            });
-
             $children.each(function() {
-                elements[$(this).attr('sortIndex')] = this;
+                var thisModelsId = $(this).children('.sortableMulti').attr('modelid');
+                models.push(self.collection.get(thisModelsId)); // Create an array of models in the sorted order
+
+                elements[$(this).attr('sortIndex')] = this; // create an object of elements in sorted order
             });
 
-            for(i = 0; i < childLength; ++i) {
-                $sortable.append(elements['sort'+ i]);
-            }
+            _.times(childLength, function(index) {
+                $sortable.append(elements['sort'+ index]); // Append the Elements to the parent in sorted order
+            });
 
-            this.collection.reset(fields);
+            this.collection.reset(models); // reset the model's collection in sorted order
+
+            _fireSortStopEvent.call(this);
         }
     });

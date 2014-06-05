@@ -39,11 +39,13 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
         }
     }
 
-    function contentBrowse($deferred) {
+    function contentBrowse($deferred, options) {
         var nodeId = this.model.get('nodeId');
 
+        _setOldBreadcrumb.call(this);
+
         _getNodeDetailRecursively.call(this, nodeId)
-            .then($deferred.resolve);
+            .then(_finishBreadcrumb.bind(this, $deferred, options));
     }
 
     function userBreadcrumb($deferred, isNew) {
@@ -51,7 +53,7 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
             _addIsNewScope.call(this, $deferred, 'new');
         } else {
             this.breadcrumbs.push({
-                text: this.model.get('fullname'),
+                text: _.escape(this.model.get('fullname')),
                 href: this.model.get('href')
             });
             _finishBreadcrumb.call(this, $deferred);
@@ -68,12 +70,11 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
 
     function _addCurrentScope($deferred) {
         this.breadcrumbs.push({
-            text: this.model.get('label'),
+            text: _.escape(this.model.get('label')),
             href: constants.internalRoutes[this.name].replace(':id', this.model.get('_id'))
         });
         _finishBreadcrumb.call(this, $deferred);
     }
-
 
     function _getNodeDetailRecursively(nodeId, $deferred, depthFromEnd) {
         var self = this;
@@ -86,8 +87,9 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
 
                 if(!_.isEmpty(nodeDetail)) {
                     self.breadcrumbs.splice(self.breadcrumbs.length - depthFromEnd, 0 ,{
-                        text: nodeDetail.label,
-                        href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id)
+                        text: _.escape(nodeDetail.label),
+                        href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id),
+                        nodeId : nodeDetail._id
                     });
 
                     depthFromEnd++;
@@ -105,8 +107,11 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
         return $deferred.promise();
     }
 
-    function _finishBreadcrumb($deferred) {
-        channels.views.trigger('updateMastheadBreadcrumbs', this);
+    function _finishBreadcrumb($deferred, options) {
+        options = options || { trigger : true };
+        if(options.trigger) {
+            channels.views.trigger('updateMastheadBreadcrumbs', this);
+        }
         $deferred && $deferred.resolve();
     }
 

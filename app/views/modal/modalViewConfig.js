@@ -1,5 +1,7 @@
 /*global define:false*/
-define(['text!views/modal/modalView.html', 'modalViewModel'], function (template, modalViewModel) {
+define(['text!views/modal/modalView.html', 'modalViewModel', 'formatters'],
+    function (template, modalViewModel, appFormatters) {
+
     'use strict';
 
     return {
@@ -9,13 +11,11 @@ define(['text!views/modal/modalView.html', 'modalViewModel'], function (template
         wrapper : false,
         template : template,
         events : {
-            'click #confirm' : 'confirmModal',
-            'click #cancel' : 'cancelModal',
-            'click #dropZone' : 'fireClickOnUploadFileInput',
-            'change #uploadFileInput' : 'handleFileSelect',
-            'dragover #dropZone' : 'handleDragOver',
-            'drop #dropZone' : 'handleFileDrop',
-            'dragleave #dropZone' : 'handleDragLeave'
+            'change #uploadFileInput' : 'handleFileSelect'
+        },
+        rivetsConfig : {
+            formatters : [appFormatters],
+            instaUpdate : true
         }
     };
 });

@@ -14,7 +14,8 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
                         return constants.internalRoutes.contentDetail.replace(':id', id);
                     }),
                     label : '',
-                    fields: {}
+                    fields: {},
+                    saving: false
                 };
             },
             urlRoot : constants.api.content.url,
@@ -38,7 +39,7 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
 
         function resetContentLabel() {
             if(this.get('isNew')) {
-                this.set('label', resources.contentItem.createContent);
+                this.set('label', resources.newWord +' '+ this.get('schema.label'));
             } else {
                 this.set('label', this.get('fields.' + this.get('meta.labelfield')));
             }

@@ -9,7 +9,9 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         afterRender : afterRender,
         deleteContent : deleteContent,
         handleRowClick : handleRowClick,
-        saveContent : saveContent
+        saveContent : saveContent,
+        saveAndClose : saveAndClose,
+        remove : remove
     });
 
     function beforeRender($deferred) {
@@ -17,8 +19,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             _getContentSchema.call(this, $deferred);
         } else {
             if(this.name === 'contentDetailRow') {
-                _fetchContentDetails.call(this)
-                    .done(this.model.resetContentLabel.bind(this.model), $deferred.resolve);
+                this.model.resetContentLabel.call(this.model);
+                $deferred.resolve();
             } else {
                 _fetchContentDetails.call(this)
                     .done(_getContentSchema.bind(this, $deferred))
@@ -28,10 +30,12 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function afterRender() {
+        this.$el.foundation();
         _addListenerForModelChange.call(this);
     }
 
-    function deleteContent () {
+    function deleteContent (e) {
+        e.stopPropagation();
         _confirmDeletion.call(this)
             .then(_destroyThisModel.bind(this));
     }
@@ -70,16 +74,25 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function handleRowClick () {
         this.app.router.navigateTrigger(this.model.get('href'));
-        return false;
     }
 
-    function saveContent() {
+    function saveContent(e) {
+        _swapSavingTextWithSpinner.call(this, e);
+        this.model.toggle('saving');
+        _saveContentWorkflow.call(this, {});
+    }
+
+    function saveAndClose() {
+        _saveContentWorkflow.call(this, { close : true });
+    }
+
+    function _saveContentWorkflow(options) {
         this.model.save({ parse : false })
-            .done(_handleSuccessfulModelSave.bind(this))
+            .done(_handleSuccessfulModelSave.bind(this, options))
             .fail(_handleFailedModelSave.bind(this));
     }
 
-    function _handleSuccessfulModelSave() {
+    function _handleSuccessfulModelSave(options) {
         this.displayTemporaryAlertBox(
             {
                 header : resources.success,
@@ -90,16 +103,29 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
         if(this.model.get('isNew')) {
             this.model.set('isNew', false);
-            this.app.router.navigateNinja(
-                constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id')));
         }
 
-        breadcrumbWorker.resetBreadcrumb.call(this);
-        this.model.resetContentLabel();
-        _updateMastheadBreadcrumbs.call(this);
+        if(options.close) {
+            this.app.router.navigateTrigger(
+                constants.internalRoutes.nodeDetail.replace(':id', this.model.get('meta.node')));
+        } else {
+            this.model.toggle('saving');
+
+            _swapSavingTextWithSpinner.call(this);
+
+            this.app.router.navigateNinja(
+                constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id')));
+
+            breadcrumbWorker.resetBreadcrumb.call(this);
+            this.model.resetContentLabel();
+            _updateMastheadBreadcrumbs.call(this);
+        }
     }
 
     function _handleFailedModelSave() {
+        this.model.toggle('saving');
+
+        _swapSavingTextWithSpinner.call(this);
         this.fireErrorModal(resources.contentItem.failedToSave);
     }
 
@@ -114,15 +140,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
     function _getContentSchema($deferred) {
         Api.getContentType(this.model.get('meta.type'))
-            .done(
-                this.model.resetContentLabel.bind(this.model),
-                _handleSuccessfulContentSchemaRetrieval.bind(this, $deferred)
-            )
+            .done(_handleSuccessfulContentSchemaRetrieval.bind(this, $deferred))
             .fail(_handleFailedContentSchemaRetrieval.bind(this, $deferred));
     }
 
     function _handleSuccessfulContentSchemaRetrieval($deferred, schema) {
         this.model.set('schema', schema);
+        this.model.resetContentLabel();
 
         _updateMastheadBreadcrumbs.call(this, $deferred);
     }
@@ -143,4 +167,26 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
         });
     }
+
+    function _swapSavingTextWithSpinner(e) {
+        var currentWidth,
+            $currentTarget;
+
+        if(e) {
+            $currentTarget = $(e.currentTarget);
+
+            this.model.set('swapElement', $currentTarget);
+            this.model.set('swapText', $currentTarget.text());
+            currentWidth = $currentTarget.width();
+            $currentTarget.empty().width(currentWidth).append('<i class="fa fa-refresh fa fa-spin"></i>');
+        } else {
+            $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
+        }
+    }
+
+    function remove() {
+        GrasshopperBaseView.prototype.remove.apply(this, arguments);
+        this.model.off('change:fields');
+    }
+
 });

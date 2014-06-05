@@ -12,7 +12,12 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         prepareToDeleteContentType : prepareToDeleteContentType,
         handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
-        saveContentType : saveContentType
+        saveContentType : saveContentType,
+        saveAndClose : saveAndClose,
+        newContentType : newContentType,
+        refreshAccordion : refreshAccordion,
+        collapseAccordion : collapseAccordion,
+        openSpecificAccordion : openSpecificAccordion
     });
 
     function beforeRender ($deferred) {
@@ -46,7 +51,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         _updateMastheadBreadcrumbs.call(this, $deferred, true);
     }
 
-    function prepareToDeleteContentType () {
+    function prepareToDeleteContentType (e) {
+        e.stopPropagation();
         _getContentTypesContent.call(this)
             .then(_warnUserBeforeDeleting.bind(this))
             .then(_actuallyDeleteContentType.bind(this));
@@ -74,33 +80,13 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _getContentTypesContent() {
-        var $deferred = new $.Deferred(),
-            self = this,
-            content;
+        var $deferred = new $.Deferred();
 
-        // TODO: This needs to be made more specific, Only get THIS types content. Maybe just make a new enpoint
-        // GET contenttype/:id/content
-        Api.makeQuery(
-            {
-                nodes : [],
-                types : [],
-                filters : [],
-                options : {
-                    fake : true
-                }
-            })
+        Api.getContentByContentType(this.model.get('_id'))
             .done(function(results) {
-                content = _.where(results, {type: self.model.get('_id')});
-
-                if(content.length) {
-                    $deferred.resolve(content.length);
-                } else {
-                    $deferred.resolve();
-                }
+                $deferred.resolve(results.total);
             })
-            .fail(function() {
-                $deferred.reject();
-            });
+            .fail($deferred.reject);
 
         return $deferred.promise();
     }
@@ -122,7 +108,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                     resources.contentType.successfullyDeletedPost
             }
         );
-        this.remove();
     }
 
     function _handleFailedContentTypeDeletion(model) {
@@ -135,30 +120,81 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function addNewFieldToContentType(e, context) {
-        var model = context.field.config.modelData;
+        var model = _.result(context.field.config, 'modelData');
 
-        _collapseAccordion.call(this);
+        this.collapseAccordion();
         model.isNew = true;
         this.collection.add(model);
-        _initializeSortableAccordions.call(this);
+        this.refreshAccordion();
+        _openLastAccordion.call(this);
     }
 
-    function _collapseAccordion() {
-        this.$el.find('.ui-accordion-header-active').each(function() {
-            this.click();
-        });
+    function collapseAccordion() {
+        this.$('#contentTypeFieldAccordion').accordion({ active : false });
     }
 
-    function saveContentType() {
+    function _openLastAccordion() {
+        this.$('#contentTypeFieldAccordion').find(
+            '.accordionHeader[modelid="'+ this.collection.last().cid +'"]').click();
+    }
+
+    function refreshAccordion() {
+        this.$('#contentTypeFieldAccordion').accordion('refresh');
+    }
+
+    function openSpecificAccordion(index) {
+        this.$('#contentTypeFieldAccordion').find(
+            '.fieldAccordion[modelid="'+ this.collection.at(index).cid +'"]').click();
+    }
+
+    function saveContentType(e) {
+        _swapSavingTextWithSpinner.call(this, e);
+        this.model.toggle('saving');
+        _saveContentTypeWorkflow.call(this, {});
+    }
+
+    function saveAndClose(e) {
+        _swapSavingTextWithSpinner.call(this, e);
+        this.model.toggle('saving');
+        _saveContentTypeWorkflow.call(this, { close : true });
+    }
+
+    function _saveContentTypeWorkflow(options) {
+        var self = this;
+
         this.model.set('fields', this.collection.toJSON());
 
-        this.model.save()
-            .done(_handleSuccessfulModelSave.bind(this))
-            .fail(_handleFailedModelSave.bind(this));
+        _warnIfFirstFieldIsNotString.call(this)
+            .done(function() {
+                self.model.save()
+                    .done(_handleSuccessfulModelSave.bind(self, options))
+                    .fail(_handleFailedModelSave.bind(self));
+            })
+            .fail(function() {
+                _swapSavingTextWithSpinner.call(self);
+                self.model.toggle('saving');
+            });
     }
 
-    function _handleSuccessfulModelSave() {
-        _collapseAccordion.call(this);
+    function _warnIfFirstFieldIsNotString() {
+        var $deferred = new $.Deferred();
+
+        if(!this.model.isFirstFieldDataTypeAString()) {
+            this.displayModal({
+                header : resources.warning,
+                msg : resources.contentType.validation.firstFieldIsNotAStringWarning
+            })
+                .done($deferred.resolve)
+                .fail($deferred.reject);
+        } else {
+            $deferred.resolve();
+        }
+
+        return $deferred.promise();
+    }
+
+    function _handleSuccessfulModelSave(options) {
+        this.collapseAccordion();
         this.displayTemporaryAlertBox(
             {
                 header : resources.success,
@@ -167,16 +203,26 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
             }
         );
 
-        this.app.router.navigateNinja(
-            constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id')));
+        if(options.close) {
+            this.app.router.navigateTrigger(constants.internalRoutes.contentTypes);
+        } else {
+            this.model.toggle('saving');
 
-        breadcrumbWorker.resetBreadcrumb.call(this);
-        _updateMastheadBreadcrumbs.call(this);
+            _swapSavingTextWithSpinner.call(this);
 
+            this.app.router.navigateNinja(
+                constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id')));
+
+            breadcrumbWorker.resetBreadcrumb.call(this);
+            _updateMastheadBreadcrumbs.call(this);
+        }
     }
 
     function _handleFailedModelSave() {
-        this.fireErrorModal(resources.contentType.failedSave);
+        this.model.toggle('saving');
+
+        _swapSavingTextWithSpinner.call(this);
+        this.fireErrorModal(this.model.validationError ? this.model.validationError : resources.contentType.failedSave);
     }
 
     function _updateMastheadBreadcrumbs($deferred, isNew) {
@@ -187,11 +233,21 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         var $accordion = this.$('#contentTypeFieldAccordion');
 
         $accordion
+            .accordion(
+            {
+                header : '.accordionHeader',
+                icons : false,
+                active : false,
+                collapsible : true,
+                disabled : false,
+                heightStyle : 'content'
+            })
             .sortable(
             {
                 handle : '.fieldAccordion',
                 revert : true,
                 axis : 'y',
+                start : _toggleAccordionEnabledDisabled.bind(this, $accordion),
                 stop : _applyCollectionSort.bind(this, $accordion)
             }
         );
@@ -199,13 +255,63 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function _applyCollectionSort($accordion) {
         var fields = [],
+            elements = {},
+            $children = $accordion.children(),
+            childLength = $children.length,
+            i,
             self = this;
 
         $accordion.find('.fieldAccordion').each(function() {
             fields.push(self.collection.get($(this).attr('modelid')));
         });
 
-        this.collection.reset(fields, { silent : true });
+        $children.each(function() {
+            elements[$(this).attr('sortIndex')] = this;
+        });
+
+        for(i = 0; i < childLength; ++i) {
+            $accordion.append(elements['sort'+ i]);
+            $accordion.accordion('refresh');
+        }
+
+        this.collection.reset(fields);
+
+        _toggleAccordionEnabledDisabled.call(this, $accordion);
+
+    }
+
+    function _toggleAccordionEnabledDisabled($accordion) {
+        if($accordion.accordion( 'option', 'disabled' )) {
+            $accordion.accordion( { disabled : false});
+            $accordion.accordion( { active : false});
+            $accordion.accordion('refresh');
+        } else {
+            $accordion.accordion( { disabled : true });
+            $accordion.accordion('refresh');
+        }
+    }
+
+    function newContentType() {
+        if(this.model.isNew()) {
+            this.app.router.displayContentTypeDetail();
+        } else {
+            this.app.router.navigateTrigger(constants.internalRoutes.newContentType);
+        }
+    }
+
+    function _swapSavingTextWithSpinner(e) {
+        var currentWidth,
+            $currentTarget;
+
+        if(e) {
+            $currentTarget = $(e.currentTarget);
+            this.model.set('swapElement', $currentTarget);
+            this.model.set('swapText', $currentTarget.text());
+            currentWidth = $currentTarget.width();
+            $currentTarget.empty().width(currentWidth).append('<i class="fa fa-refresh fa fa-spin"></i>');
+        } else {
+            $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
+        }
     }
 
 });

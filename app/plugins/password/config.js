@@ -19,9 +19,6 @@ define(['text!plugins/password/template.html', 'plugins/password/model', 'text!p
             },
             template : passwordPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
-            wrapper: false,
-            listeners : [],
-            mastheadButtons : []
+            wrapper: false
         };
     });

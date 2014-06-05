@@ -13,11 +13,12 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             defaults : {
                 loading : true,
                 nodeTreeType : 'content',
+                nodeId : new ComputedProperty(['_id'], function(_id) {
+                    return _id;
+                }),
+                breadcrumbs : [],
                 inRoot : new ComputedProperty(['_id'], function(_id) {
                     return _id === '0';
-                }),
-                folderLabel : new ComputedProperty(['_id', 'label'], function(_id, label) {
-                    return _id === '0' ? 'Root' : label;
                 }),
                 resources : resources
             },
@@ -37,9 +38,6 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 model : contentReferenceModalContentModel,
                 url : function() {
                     return constants.api.nodesContent.url.replace(':id', self.get('_id'));
-                },
-                parse : function(response) {
-                    return response.results;
                 }
             }))());
 

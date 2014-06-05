@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resources', 'constants',
-        'userDetailRow'],
+        'userDetailRow', 'appBinders'],
     function (template, UserIndexViewModel, resources, constants,
-              UserDetailRow) {
+              UserDetailRow, appBinders) {
         'use strict';
 
         return {
@@ -16,19 +16,18 @@ define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resour
                 'change #limitDropdown': 'changeLimit'
             },
             listeners: [],
-            mastheadButtons: [
-                {
-                    text: resources.mastheadButtons.addNewUser,
-                    href: constants.internalRoutes.addUser
-                }
-            ],
             breadcrumbs: [
+                {
+                    text : resources.home,
+                    href : constants.internalRoutes.content
+                },
                 {
                     text: resources.users,
                     href: constants.internalRoutes.users
                 }
             ],
             rivetsConfig: {
+                binders : [appBinders],
                 childViewBinders: {
                     'user-detail-row': UserDetailRow
                 }

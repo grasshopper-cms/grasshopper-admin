@@ -18,9 +18,6 @@ define(['text!plugins/datetime/template.html', 'plugins/datetime/model', 'text!p
             },
             template : datetimePluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
-            wrapper: false,
-            listeners : [],
-            mastheadButtons : []
+            wrapper: false
         };
     });

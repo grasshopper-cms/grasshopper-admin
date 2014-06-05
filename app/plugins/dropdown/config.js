@@ -24,8 +24,6 @@ define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!p
                 'click #addOptionToDropdown' : 'addOptionToDropdown',
                 'blur .optionInput' : 'reduceCollection'
             },
-            listeners : [],
-            mastheadButtons : [],
             collection : new Backbone.Collection()
         };
     });

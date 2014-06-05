@@ -4,12 +4,13 @@
     "foundation": "5.0.2",
     "requirejs-text": "2.0.10",
     "js-base64": "2.1.2",
-    "masseuse": "2.1.2",
+    "masseuse": "2.2.2",
     "jquery.ui": "1.10.4",
-    "ckeditor": "4",
+    "ckeditor": "4.3.5",
     "ace": "1.1.3",
     "moment": "2.5.1",
-    "font-awesome": "4.0.3"
+    "font-awesome": "4.0.3",
+    "ScrollToFixed": "~1.0.5"
   },
   "devDependencies": {
     "mocha": "1.12.1",

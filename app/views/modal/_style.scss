@@ -1,0 +1,109 @@
+#modalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $modal-background-color;
+  height: 100%;
+  width: 100%;
+  z-index: $modalContainerZIndex;
+
+  $modalPadding : 20px;
+
+  #modalContents {
+    display: flex;
+    flex-direction: column;
+    z-index: $modalContentsZIndex;
+    width: 35%;
+    background-color: $modal-contents-background-color;
+    box-shadow: 0 0 10px $modal-background-color;
+
+    #modalHeader {
+      padding: $modalPadding;
+      min-height: 40px;
+      text-align: left;
+      font-weight: normal;
+      font-size: 20px;
+    }
+
+    #modalBody {
+      padding: 0 $modalPadding 0 $modalPadding;
+      overflow: hidden;
+    }
+
+    .modalPadding { // utility class for things outside the inputContainer
+      padding: 0 $modalPadding 0 $modalPadding;
+    }
+
+    .inputContainer {
+      max-height: 500px;
+      overflow: scroll;
+      border: 1px solid $modalInputContainerBorder;
+    }
+
+    ol {
+      font-size: 12px;
+      word-wrap: break-word;
+      padding-left: 0px;
+
+      li {
+        list-style-position: inside;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    #buttonContainer {
+      padding: $modalPadding;
+    }
+
+    .imageContainer { // only used by the image modal
+      max-height: 500px;
+      overflow: scroll;
+      border: 1px solid $modalInputContainerBorder;
+      img {
+        max-height: 75%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    .imageModalUrl {
+      input {
+        margin-top: $modalPadding;
+        width: 100%;
+      }
+      a {
+        font-size: 11px;
+        line-height: 27px;
+        height: 26px;
+      }
+
+    }
+
+    #dropZone { // only used by the upload modal
+      height: 60px;
+      border: 2px dashed $modalDropzoneColor;
+      border-radius: 5px;
+      padding: 25px;
+      text-align: center;
+      color: $modalDropzoneColor;
+      &:hover {
+        border-color: $modalDropzoneHover;
+      }
+      &.active {
+        border-color: $modalDropzoneActive;
+      }
+    }
+
+    #uploadFileInput { // only used by the upload modal
+      visibility: hidden;
+      height: 0;
+      width: 0;
+    }
+  }
+}

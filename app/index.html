@@ -10,16 +10,22 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width"/>
         <title>Grasshopper</title>
+        <!-- build:css themes/main.css -->
+        <link rel="stylesheet" type="text/css" href="themes/main.css" />
+        <!-- endbuild -->
     </head>
 
     <body>
-        <div id="header"></div>
-        <div id="masthead"></div>
-        <div id="sidebar"></div>
-        <div id="stage"></div>
-        <div id="alertBox"></div>
-        <div id="footer"></div>
-        <div id="modal"></div>
+        <div id="siteContainter">
+            <div id="header"></div>
+            <div id="masthead"></div>
+            <div id="sidebar"></div>
+            <div id="stage"></div>
+            <div id="alertBox"></div>
+            <div id="footer"></div>
+            <div id="modal"></div>
+        </div>
+
 
         <!-- build:js main.js -->
         <script data-main="main" src="vendor/requirejs/require.js"></script>

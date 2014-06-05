@@ -14,18 +14,16 @@ define(['text!plugins/slug/template.html', 'plugins/slug/model', 'text!plugins/s
                 label : '',
                 type : 'slug',
                 defaultValueType : 'text',
-                dataType : 'string',
+                dataType : 'reference',
                 validation : [],
                 value : ''
             },
             template : slugPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {},
             wrapper: false,
             listeners : [
                 ['channels.views', 'contentFieldsChange', 'calculateSlug']
             ],
-            mastheadButtons : [],
             rivetsConfig : {
                 formatters : [formatters]
             }

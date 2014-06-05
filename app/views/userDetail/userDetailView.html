@@ -126,14 +126,58 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="small-12 columns">
-                            <button id="saveUser" class="button radius right small">{{model:resources->save}}</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </fieldset>
+
+        <div class="row">
+            <div class="small-12 columns">
+                <ul class="button-group radius right">
+                    <li>
+                        <button data-rv-on-click="view.saveUser" class="button tiny" data-rv-disabled="model:saving">
+                            {{model:resources->save}}
+                        </button>
+                    </li>
+
+                    <li>
+                        <button data-rv-on-click="view.saveAndClose" class="button tiny" data-rv-disabled="model:saving">
+                            {{model:resources->saveAndClose}}
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </div>
+
+    <section data-rv-move-to="view.mastheadButtonsSelector">
+        <div class="button-bar">
+            <ul class="button-group radius">
+
+                <li>
+                    <button data-rv-on-click="view.addNewUser" class="button tiny">
+                        {{model:resources->mastheadButtons->addNewUser}}
+                    </button>
+                </li>
+
+            </ul>
+
+            <ul class="button-group radius">
+
+                <li>
+                    <button data-rv-on-click="view.saveUser" class="button tiny" data-rv-disabled="model:saving">
+                        {{model:resources->save}}
+                    </button>
+                </li>
+
+                <li>
+                    <button data-rv-on-click="view.saveAndClose" class="button tiny" data-rv-disabled="model:saving">
+                        {{model:resources->saveAndClose}}
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
 </div>
