@@ -139,22 +139,20 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 elements = {},
                 $children = $sortable.children(),
                 childLength = $children.length,
-                i,
                 self = this;
 
-            $sortable.find('.sortableMulti').each(function() {
-                models.push(self.collection.get($(this).attr('modelid')));
-            });
-
             $children.each(function() {
-                elements[$(this).attr('sortIndex')] = this;
+                var thisModelsId = $(this).children('.sortableMulti').attr('modelid');
+                models.push(self.collection.get(thisModelsId)); // Create an array of models in the sorted order
+
+                elements[$(this).attr('sortIndex')] = this; // create an object of elements in sorted order
             });
 
-            for(i = 0; i < childLength; ++i) {
-                $sortable.append(elements['sort'+ i]);
-            }
+            _.times(childLength, function(index) {
+                $sortable.append(elements['sort'+ index]); // Append the Elements to the parent in sorted order
+            });
 
-            this.collection.reset(models);
+            this.collection.reset(models); // reset the model's collection in sorted order
 
             _fireSortStopEvent.call(this);
         }
