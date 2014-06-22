@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         main : {
             src : 'grunt/templates/README.template.md',
             dest : 'README.md',
-            baseLinkPath : 'https://github.com/Solid-Interactive/grasshopper-admin/tree/infiltrator/'
+            baseLinkPath : 'https://github.com/Solid-Interactive/grasshopper-admin/tree/master/'
         }
     });
 
