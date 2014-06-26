@@ -10,8 +10,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         deleteContent : deleteContent,
         handleRowClick : handleRowClick,
         saveContent : saveContent,
-        saveAndClose : saveAndClose,
-        remove : remove
+        saveAndClose : saveAndClose
     });
 
     function beforeRender($deferred) {
@@ -183,10 +182,4 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
         }
     }
-
-    function remove() {
-        GrasshopperBaseView.prototype.remove.apply(this, arguments);
-        this.model.off('change:fields');
-    }
-
 });
