@@ -86,7 +86,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
     }
 
     function _saveContentWorkflow(options) {
-        this.model.save({ parse : false })
+        this.model.save({ parse : true })
             .done(_handleSuccessfulModelSave.bind(this, options))
             .fail(_handleFailedModelSave.bind(this));
     }
