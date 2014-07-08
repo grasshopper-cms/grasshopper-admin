@@ -1,22 +1,15 @@
-
 // Import Foundation
 @import "../vendor/foundation/scss/normalize.scss";
 @import "../vendor/foundation/scss/foundation.scss";
-
 @import "fonts";
-
 @import "colors";
-
 @import "mixins";
-
 @import "z-index";
-
 @import "datetimepicker";
 
 $imgPath: 'img';
 
 $font: 'Open Sans', arial, sans-serif;
-
 
 .row {
   max-width: 100%;
@@ -47,8 +40,7 @@ body, html {
     border-collapse: inherit;
     width: 100%;
 
-    th
-    {
+    th {
       @include lightGradient;
     }
 
@@ -62,15 +54,17 @@ body, html {
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
+    padding:5px;
+    border-radius:3px;
   }
 
-  fieldset+legend {
+  fieldset + legend {
     max-width: 90%;
     font-weight: normal;
   }
 
   ul.folder-tree li {
-    list-style-type:none;
+    list-style-type: none;
   }
 
   .content {
@@ -82,7 +76,7 @@ body, html {
   }
 
   .search {
-    display:inline;
+    display: inline;
     width: 200px;
   }
 
@@ -123,6 +117,5 @@ body, html {
   @import "../plugins/codeeditor/_style.scss"; // Code Editor Plugin
   @import "../plugins/richtext/_style.scss"; // Rich Text Plugin
   @import "../plugins/checkbox/_style.scss"; // Checkbox Plugin
-
 
 }

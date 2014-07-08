@@ -29,9 +29,9 @@ define(['grasshopperBaseView', 'moment', 'jquery', 'datetimepicker'],
             this.$el.find('.datetimepicker').each(function () {
                 $(this).datetimepicker({
                     startDate : moment(),
-                    format: 'YYYY/MM/DD h:mm a',
+                    format: 'MM/DD/YYYY h:mm a',
                     formatTime: 'h:mm a',
-                    formatDate: 'YYYY/MM/DD'
+                    formatDate: 'MM/DD/YYYY'
                 });
             });
             $deferred.resolve();
