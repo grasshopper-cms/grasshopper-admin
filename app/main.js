@@ -51,6 +51,10 @@ require.config({
         scrollToFixed : {
             exports : 'jquery',
             deps : ['jquery']
+        },
+        datetimepicker : {
+            exports : 'datetimepicker',
+            deps : ['jquery']
         }
     },
     packages : [

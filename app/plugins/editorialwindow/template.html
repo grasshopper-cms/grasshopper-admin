@@ -11,8 +11,8 @@
 
             <div class="small-7 columns">
 
-                <input data-rv-id="model.cid | prepend startDate" type="datetime-local" data-rv-value="model:value->validFrom | asEditorialDate" style="margin-bottom: 0;">
-                <small data-rv-if="model:orderError" class="error">{{model:resources->plugins->editorialWindow->startAfterEnd}}</small>
+                <input class="datetimepicker" data-rv-id="model.cid | prepend startDate"  data-rv-value="model:value->validFrom  | asEditorialDate">
+                <small data-rv-if="model:orderError" class="error small-4">{{model:resources->plugins->editorialWindow->startAfterEnd}}</small>
 
             </div>
             <div class="small-5 columns">
@@ -35,7 +35,7 @@
 
             <div class="small-7 columns">
 
-                <input data-rv-id="model.cid | prepend endDate" type="datetime-local" data-rv-value="model:value->validTo | asEditorialDate">
+                <input class="datetimepicker" data-rv-id="model.cid | prepend endDate" data-rv-value="model:value->validTo | asEditorialDate">
 
             </div>
 

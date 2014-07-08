@@ -11,6 +11,8 @@
 
 @import "z-index";
 
+@import "datetimepicker";
+
 $imgPath: 'img';
 
 $font: 'Open Sans', arial, sans-serif;
@@ -121,5 +123,6 @@ body, html {
   @import "../plugins/codeeditor/_style.scss"; // Code Editor Plugin
   @import "../plugins/richtext/_style.scss"; // Rich Text Plugin
   @import "../plugins/checkbox/_style.scss"; // Checkbox Plugin
+
 
 }
