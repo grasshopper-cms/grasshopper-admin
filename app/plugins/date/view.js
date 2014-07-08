@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'moment', 'jquery', 'datetimepicker'],
-    function (GrasshopperBaseView, moment, $, datetimepicker) {
+    function (GrasshopperBaseView, moment, $) {
         'use strict';
 
         return GrasshopperBaseView.extend({
