@@ -10,7 +10,7 @@ define(['moment'], function (moment) {
 
     function readAsEditorialDate(value) {
         if(value) {
-            return moment(value).format('YYYY-MM-DDThh:mm:ss');
+            return moment(value).format('YYYY-MM-DD h:mm a');
         }
     }
 

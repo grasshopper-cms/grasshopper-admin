@@ -35,5 +35,6 @@
     "ckeditor-stylsheet" : "vendor/ckeditor/contents.css",
     "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
     "aceCodeEditor" : "vendor/ace/lib/ace/**/*",
-    "moment" : "vendor/moment/moment.js"
+    "moment" : "vendor/moment/moment.js",
+    "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker.js"
 }
