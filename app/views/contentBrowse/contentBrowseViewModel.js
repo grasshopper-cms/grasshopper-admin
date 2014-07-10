@@ -10,7 +10,8 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection',
         idAttribute : 'nodeId',
         defaults : {
             resources : resources,
-            constants : constants
+            constants : constants,
+            polymerInputLabel : 'change me below'
         },
         urlRoot : constants.api.node.url
     });

@@ -22,33 +22,50 @@
         <div class="tabs-content">
             <div class="content active" id="panel2-1">
 
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>{{model:resources->label}}</th>
-                            <th>{{model:resources->type}}</th>
-                            <th>{{model:resources->contentBrowse->modified}}</th>
-                            <th style="text-align: center; width: 10%;">{{model:resources->actions}}</th>
-                        </tr>
-                    </thead>
-                    <tbody id="contentBrowseTable">
-                        <!--Nodes Come First-->
-                        <tr class="nodeDetailRow" data-rv-each-node="model:childNodes:" data-rv-new-node-detail-row="node"></tr>
+                <!--<table class="content-table">-->
+                    <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>{{model:resources->label}}</th>-->
+                            <!--<th>{{model:resources->type}}</th>-->
+                            <!--<th>{{model:resources->contentBrowse->modified}}</th>-->
+                            <!--<th style="text-align: center; width: 10%;">{{model:resources->actions}}</th>-->
+                        <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody id="contentBrowseTable">-->
+                        <!--&lt;!&ndash;Nodes Come First&ndash;&gt;-->
+                        <!--<tr class="nodeDetailRow" data-rv-each-node="model:childNodes:" data-rv-new-node-detail-row="node"></tr>-->
 
-                        <!--Then Content-->
-                        <tr data-rv-unless="model:childContent.length | greaterThan 0">
-                            <td colspan="4" data-rv-unless="model:inRoot">
-                                {{model:resources->node->emptyContent}}
-                                <span>
-                                    <a data-rv-on-click="view.createContent">
-                                        {{model:resources->node->clickToAdd}}
-                                    </a>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="contentDetailRow" data-rv-each-content="model:childContent:" data-rv-new-content-detail-row="content"></tr>
-                    </tbody>
-                </table>
+                        <!--&lt;!&ndash;Then Content&ndash;&gt;-->
+                        <!--<tr data-rv-unless="model:childContent.length | greaterThan 0">-->
+                            <!--<td colspan="4" data-rv-unless="model:inRoot">-->
+                                <!--{{model:resources->node->emptyContent}}-->
+                                <!--<span>-->
+                                    <!--<a data-rv-on-click="view.createContent">-->
+                                        <!--{{model:resources->node->clickToAdd}}-->
+                                    <!--</a>-->
+                                <!--</span>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--<tr class="contentDetailRow" data-rv-each-content="model:childContent:" data-rv-new-content-detail-row="content"></tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+
+                <hr>
+                <h5>Polymer Playground</h5>
+
+                <link rel="import" href="../vendor/paper-input/paper-input.html">
+
+                <paper-input floatinglabel data-rv-label="model:polymerInputLabel" data-rv-value="model:polymer"></paper-input>
+
+                <hr>
+                Holy Diver, It Works...but...does it work with rivets?
+                <br>
+                This is riveted to that polymer inputs.value: {{model:polymer}}
+
+                <hr/>
+                Change the polymer input label with rivets:
+
+                <input type="text" data-rv-value="model:polymerInputLabel">
 
             </div>
             <div class="content" id="panel2-2" data-rv-hide="model:inRoot">
