@@ -83,7 +83,8 @@ require([
     'modernizr',
     'sortable',
     'accordion',
-    'scrollToFixed'
+    'scrollToFixed',
+    'platform'
 ],
     /**
      * @param $
