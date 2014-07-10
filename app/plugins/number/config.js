@@ -4,7 +4,7 @@ define(['text!plugins/number/template.html', 'plugins/number/model', 'text!plugi
         'use strict';
 
         return {
-            name : 'numberPLugin',
+            name : 'numberPlugin',
             ModelType : numberPluginModel,
             modelData : {
                 min : 1,
@@ -14,13 +14,10 @@ define(['text!plugins/number/template.html', 'plugins/number/model', 'text!plugi
                 type : 'number',
                 dataType : 'object',
                 validation : [],
-                value : {'' : ''}
+                value : ''
             },
             template : numberPluginTemplate,
             setupTemplate : setupTemplate,
-            events : {
-//                'blur .keyValueInput' : 'buildObj'
-            },
             wrapper: false
         };
     });
