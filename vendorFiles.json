@@ -35,5 +35,9 @@
     "ckeditor-stylsheet" : "vendor/ckeditor/contents.css",
     "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
     "aceCodeEditor" : "vendor/ace/lib/ace/**/*",
-    "moment" : "vendor/moment/moment.js"
+    "moment" : "vendor/moment/moment.js",
+    "platform" : "vendor/platform/platform.js",
+    "paper-input" : "vendor/paper-input/**",
+    "polymer" : "vendor/polymer/**",
+    "core-input" : "vendor/core-input/**"
 }
