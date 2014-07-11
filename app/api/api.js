@@ -17,7 +17,7 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 dataType : 'json',
                 url : url,
                 type : 'GET',
-                headers : {'Authorization' : 'Token ' + token}
+                headers : {'Authorization' : token}
             });
         },
         getUsers : function () {
@@ -57,7 +57,7 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 url : url,
                 type : 'POST',
                 data : data,
-                headers : {'Authorization' : 'Token ' + token}
+                headers : {'Authorization' : token}
             });
         },
         makeQuery : function (data) {
