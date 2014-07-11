@@ -18,5 +18,10 @@
     "chai": "1.7.2",
     "sinon": "1.7.3",
     "sinon-chai": "2.4.0"
+  },
+  "resolutions": {
+    "jquery": "2.1.1",
+    "requirejs": "2.1.14",
+    "rivets": "0.6.8"
   }
 }
