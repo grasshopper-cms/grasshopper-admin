@@ -29,14 +29,21 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'un
     function validate(attrs) {
         var err;
 
+
         if(_.isEmpty(attrs.label)) {
             err = resources.contentType.validation.mustHaveLabel;
         }
 
         if(!err) {
             _.each(attrs.fields, function(field) {
-                if(_.isEmpty(field.label)) {
+                if(_.isEmpty(field.label)) { // field name presence
                     err = resources.contentType.validation.fieldsMustHaveLabel;
+                }
+                if(_.isEmpty(field._id)) { // field id presence
+                    err = resources.contentType.validation.fieldsMustHaveIds;
+                }
+                if(_.where(attrs.fields, {_id: field._id}).length > 1) { // uniqueness
+                    err = resources.contentType.validation.fieldsMustBeUnique;
                 }
             });
         }
