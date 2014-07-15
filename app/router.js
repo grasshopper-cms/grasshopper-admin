@@ -2,7 +2,7 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants',
     'grasshopperBaseView',
-    'loginView', 'loginWorker', 'logoutWorker',
+    'loginView', 'loginWorker', 'logoutWorker', 'forbiddenView',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
@@ -22,7 +22,7 @@ define([
 ],
     function ($, Backbone, _, masseuse, Api, constants,
               GrasshopperBaseView,
-              LoginView, loginWorker, logoutWorker,
+              LoginView, loginWorker, logoutWorker, ForbiddenView,
               AlertBoxView,
               ModalView, modalViewConfig,
               resources,
@@ -65,6 +65,7 @@ define([
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
+                'forbidden' : 'displayForbidden',
                 '*path' : 'goHome'
             },
 
@@ -77,7 +78,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login', 'logout'],
+            excludeFromBeforeRouting : ['login', 'logout', 'forbidden'],
             userHasBreadcrumbs : userHasBreadcrumbs,
             removeThisRouteFromBreadcrumb : removeThisRouteFromBreadcrumb,
 
@@ -101,7 +102,8 @@ define([
             displayContentTypeDetail : displayContentTypeDetail,
             displayCreateFolder : displayCreateFolder,
             displayCreateContent : displayCreateContent,
-            displayCreateAssets : displayCreateAssets
+            displayCreateAssets : displayCreateAssets,
+            displayForbidden: displayForbidden
         });
 
         function onRouteFail () {
@@ -313,7 +315,7 @@ define([
                         }
                     });
             } else {
-                this.navigateTrigger('items');
+                this.navigateTrigger('forbidden');
             }
         }
 
@@ -394,6 +396,10 @@ define([
                     }
                 });
             addAssetsView.start();
+        }
+
+        function displayForbidden () {
+            this.loadMainContent(ForbiddenView);
         }
 
         return Router;

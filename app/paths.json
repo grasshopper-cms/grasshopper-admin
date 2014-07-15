@@ -252,6 +252,11 @@
             "" : "views/userIndex/userIndexView",
             "Config" : "views/userIndex/userIndexViewConfig",
             "Model" : "views/userIndex/userIndexViewModel"
+        },
+
+        "forbiddenView+" : {
+            "" : "views/forbidden/forbiddenView",
+            "Config" : "views/forbidden/forbiddenViewConfig"
         }
     },
 
