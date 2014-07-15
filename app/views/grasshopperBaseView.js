@@ -52,7 +52,8 @@ define(['backbone', 'masseuse', 'resources'],
         function start () {
             // Checking user permissions
             if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
-                // replace: true is essential if we want user to be able to go back. otherwise he will got stuck in a loop when pressing "back"
+                // replace: true is essential if we want user to be able to go back. otherwise he will got stuck in
+                // a loop when pressing "back"
                 this.app.router.navigateTrigger('forbidden',{replace: true});
                 return;
             }
