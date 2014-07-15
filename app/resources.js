@@ -274,6 +274,7 @@ define({
     no : 'No',
     ok : 'Ok',
     options : 'Options',
+    open : 'Open',
     password : 'Password',
     previous : 'Previous',
     profile : 'Profile',

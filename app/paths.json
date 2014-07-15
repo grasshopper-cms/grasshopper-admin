@@ -215,7 +215,8 @@
         "modalView+" : {
             "" : "views/modal/modalView",
             "Config" : "views/modal/modalViewConfig",
-            "Model" : "views/modal/modalViewModel"
+            "Model" : "views/modal/modalViewModel",
+            "Binders" : "views/modal/binders"
         },
 
         "nodeDetailView+" : {

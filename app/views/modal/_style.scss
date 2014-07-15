@@ -72,6 +72,7 @@
         margin-right: auto;
       }
     }
+
     .imageModalUrl {
       input {
         margin-top: $modalPadding;
@@ -82,7 +83,25 @@
         line-height: 27px;
         height: 26px;
       }
+    }
 
+    .fileExtension { // only used by the thumbnail modal
+      text-align: center;
+      &.hide {
+        display: none;
+      }
+      &+.imageContainer {
+        display: none;
+      }
+      .fileExtensionIcon {
+        font-size: 8rem;
+      }
+    }
+
+    .button {
+      &.hide {
+        display: none;
+      }
     }
 
     #dropZone { // only used by the upload modal
