@@ -287,6 +287,7 @@ define({
     save : 'Save',
     saveAndClose : 'Save and Close',
     selectOption : 'Please Select',
+    select : 'Select',
     settings : 'Settings',
     siteName : 'Grasshopper',
     status : 'Status',
