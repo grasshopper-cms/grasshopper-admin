@@ -93,8 +93,11 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             _saveContentWorkflow.call(this, {});
         }
 
-        function saveAndClose () {
-            _saveContentWorkflow.call(this, { close: true });
+        function saveAndClose(e) {
+            _swapSavingTextWithSpinner.call(this, e);
+            this.model.toggle('saving');
+            _saveContentWorkflow.call(this, { close : true });
+
         }
 
         function _saveContentWorkflow (options) {
