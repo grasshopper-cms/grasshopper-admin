@@ -241,6 +241,7 @@ define({
     confirm : 'Confirm',
     content : 'Content',
     contentTypes : 'Content Types',
+    forbidden : 'Forbidden',
     currentlySignedIn : 'You are currently signed in.',
     dashboard : 'Dashboard',
     defaultValue : 'Default Value',
