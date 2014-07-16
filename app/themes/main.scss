@@ -14,6 +14,7 @@ $font: 'Open Sans', arial, sans-serif;
 .row {
   max-width: 100%;
 }
+@import "_loading-spinner.scss";
 
 body, html {
   height: 100%;

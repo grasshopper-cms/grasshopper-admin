@@ -70,6 +70,9 @@ define([], function() {
             createFolder : '#items/nodeid/:id/createFolder',
             addContent : '#items/nodeid/:id/createContent',
             createAssets : '#items/nodeid/:id/createAssets'
+        },
+        timeouts: {
+            showSpinnerLoadingTimeout: 2000
         }
     };
 
