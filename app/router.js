@@ -78,7 +78,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login', 'logout', 'forbidden'],
+            excludeFromBeforeRouting : ['login', 'logout'],
             userHasBreadcrumbs : userHasBreadcrumbs,
             removeThisRouteFromBreadcrumb : removeThisRouteFromBreadcrumb,
 
