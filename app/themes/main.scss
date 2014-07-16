@@ -110,6 +110,7 @@ body, html {
   @import "../views/nodeTree/_style.scss"; // Node Tree
   @import "../views/contentBrowse/_style.scss"; // Content Browse
   @import "../views/pluginWrapper/_style.scss"; // Plugin Wrapper
+  @import "../views/forbidden/_style.scss"; // Forbidden page
 
   // PLUGINS
   @import "../plugins/embeddedtype/_style.scss"; // Embedded Type Plugin

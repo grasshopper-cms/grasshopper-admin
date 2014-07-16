@@ -69,7 +69,8 @@ define([], function() {
             about : '#about',
             createFolder : '#items/nodeid/:id/createFolder',
             addContent : '#items/nodeid/:id/createContent',
-            createAssets : '#items/nodeid/:id/createAssets'
+            createAssets : '#items/nodeid/:id/createAssets',
+            forbidden : '#forbidden'
         }
     };
 
