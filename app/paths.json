@@ -2,6 +2,7 @@
     "libraries" : {
         "jquery" : "vendor/jquery/dist/jquery",
         "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core",
+        "select2" : "vendor/select2/select2",
         "backbone" : "vendor/backbone-amd/backbone",
         "text" : "vendor/requirejs-text/text",
         "rivets" : "vendor/rivets/dist/rivets",
