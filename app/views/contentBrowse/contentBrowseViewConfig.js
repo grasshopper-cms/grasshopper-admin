@@ -9,6 +9,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
         return {
             name : 'contentBrowseView',
             ModelType : contentBrowseViewModel,
+            browserTitle : 'Content',
             appendTo : '#stage',
             wrapper : false,
             template : template,

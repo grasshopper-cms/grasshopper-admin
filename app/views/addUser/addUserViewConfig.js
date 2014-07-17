@@ -6,6 +6,7 @@ define(['text!views/addUser/addUserView.html', 'addUserViewModel', 'resources', 
     return {
         name : 'addUser',
         ModelType : addUserModel,
+        browserTitle : 'Add New User',
         modelData : {},
         appendTo : '#stage',
         wrapper : false,
