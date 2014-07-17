@@ -1,9 +1,10 @@
-define(['./utilities/localStorage', './utilities/validation', './utilities/cleanCollection'],
-    function(localStorage, validation, cleanCollection) {
+define(['./utilities/localStorage', './utilities/validation', './utilities/cleanCollection', './utilities/browserTitles'],
+    function(localStorage, validation, cleanCollection, browserTitles) {
     'use strict';
     return {
         localStorage : localStorage,
         validation : validation,
-        cleanCollection : cleanCollection
+        cleanCollection : cleanCollection,
+        browserTitles : browserTitles
     };
 });

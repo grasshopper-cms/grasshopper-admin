@@ -6,6 +6,7 @@ define(['text!views/forbidden/forbiddenView.html', 'resources', 'constants'],
         return {
             name : 'forbiddenView',
             modelData : {},
+            browserTitle : 'Forbidden',
             appendTo : '#stage',
             wrapper : false,
             template : template,

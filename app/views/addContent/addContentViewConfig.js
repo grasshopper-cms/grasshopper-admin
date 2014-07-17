@@ -5,6 +5,7 @@ define(['addContentViewModel'], function (addContentModel) {
     return {
         name : 'addContent',
         ModelType : addContentModel,
+        browserTitle : 'Content',
         modelData : {},
         permissions : ['admin', 'editor']
     };

@@ -87,16 +87,17 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function fireFileDetailModal () {
-            var self = this;
             this.model.get('assetModel')
                 .fetch()
-                .done(function (data) {
-                    self.displayModal(
-                        {
-                            header: self.model.get('selectedContentName'),
-                            type: 'image',
-                            data: data.url
-                        });
+                .done(_fireModalWithData.bind(this));
+        }
+
+        function _fireModalWithData(data) {
+            self.displayModal(
+                {
+                    header: self.model.get('selectedContentName'),
+                    type: 'image',
+                    data: data.url
                 });
         }
 

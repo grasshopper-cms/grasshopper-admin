@@ -1,6 +1,6 @@
 /*global define*/
 define([
-    'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants',
+    'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
     'grasshopperBaseView',
     'loginView', 'loginWorker', 'logoutWorker', 'forbiddenView',
     'alertBoxView',
@@ -20,7 +20,7 @@ define([
     'addContentView',
     'addAssetsView'
 ],
-    function ($, Backbone, _, masseuse, Api, constants,
+    function ($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
               LoginView, loginWorker, logoutWorker, ForbiddenView,
               AlertBoxView,
@@ -115,9 +115,10 @@ define([
                 self = this;
 
             $deferred.done(function() {
-                if(Backbone.history.getFragment() !== _.last(self.breadcrumb)) {
-                    self.breadcrumb.push(Backbone.history.getFragment());
-                    self.headerView.checkHeaderTab(Backbone.history.getFragment());
+                var fragment = Backbone.history.getFragment();
+                if(fragment !== _.last(self.breadcrumb)) {
+                    self.breadcrumb.push(fragment);
+                    self.headerView.checkHeaderTab(fragment);
                 }
             });
 
@@ -220,6 +221,7 @@ define([
             newView.start()
                 .done(function () {
                     $deferred.resolve(newView);
+                    helpers.browserTitles.setBrowserTitle(newView.browserTitle);
                 })
                 .fail(function () {
                     $deferred.reject();

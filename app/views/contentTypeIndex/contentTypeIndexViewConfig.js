@@ -7,6 +7,7 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
         return {
             name : 'contentTypeIndexView',
             ModelType : contentTypeIndexViewModel,
+            browserTitle : 'Content Types',
             appendTo : '#stage',
             wrapper : false,
             template : template,
