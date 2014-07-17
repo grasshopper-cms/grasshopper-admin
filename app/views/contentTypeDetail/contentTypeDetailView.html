@@ -43,13 +43,22 @@
                     <a data-dropdown="drop" data-options="is_hover:true" class="button tiny dropdown radius right">
                         {{model:resources->contentType->addNewField}}
                     </a>
-                    <ul id="drop" data-dropdown-content class="f-dropdown">
+                    <select class="contentTypesDropdownSelect right">
+                        <option data-rv-value="">
+
+                        </option>
+                        <option data-rv-each-field="model:plugins" data-rv-value="field.name">
+                                {{field.name}}
+                        </option>
+                    </select>
+                    <br/>
+                    <!--<ul id="drop" data-dropdown-content class="f-dropdown">
                         <li data-rv-each-field="model:plugins">
                             <a data-rv-on-click="view.addNewFieldToContentType">
                                 {{field.name}}
                             </a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </div>
 
             </div>

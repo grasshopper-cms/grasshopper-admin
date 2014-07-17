@@ -36,5 +36,6 @@
     "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
     "aceCodeEditor" : "vendor/ace/lib/ace/**/*",
     "moment" : "vendor/moment/moment.js",
-    "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker.js"
+    "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker.js",
+    "select2": "vendor/select2/select2.js"
 }

@@ -28,6 +28,10 @@ require.config({
             exports : 'jquery',
             deps : ['jquery']
         },
+        select2 : {
+            exports : 'jquery',
+            deps : ['jquery']
+        },
         widgetFactory : {
             exports : 'jquery',
             deps : ['jqueryui']
@@ -87,7 +91,8 @@ require([
     'modernizr',
     'sortable',
     'accordion',
-    'scrollToFixed'
+    'scrollToFixed',
+    'select2'
 ],
     /**
      * @param $
