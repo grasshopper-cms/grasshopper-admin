@@ -28,7 +28,8 @@ define(['backbone', 'masseuse', 'resources'],
                     'nodeId',
                     'wrapper',
                     'appendTo',
-                    'collection'
+                    'collection',
+                    'browserTitle'
                 ]);
 
             // TODO: I think I can get rid of this line.... Nowhere in this app do I call this.options or self.options.

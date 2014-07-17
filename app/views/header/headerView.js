@@ -20,27 +20,26 @@ define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],
         var currentTab = '#' + breadcrumb.split('/')[0];
 
         switch (currentTab) {
-            case constants.internalRoutes.user:
-            case constants.internalRoutes.users:
-            case constants.internalRoutes.addUser:
-                this.setActive('#users');
-                break;
-            case constants.internalRoutes.items:
-            case constants.internalRoutes.item:
-                this.setActive('#items');
-                break;
-            case constants.internalRoutes.contentTypes:
-                this.setActive('#contentTypes');
-                break;
-            default:
-                this.setActive('#items');
+        case constants.internalRoutes.user:
+        case constants.internalRoutes.users:
+        case constants.internalRoutes.addUser:
+            this.setActive('#users');
+            break;
+        case constants.internalRoutes.items:
+        case constants.internalRoutes.item:
+            this.setActive('#items');
+            break;
+        case constants.internalRoutes.contentTypes:
+            this.setActive('#contentTypes');
+            break;
+        default:
+            this.setActive('#items');
         }
     }
 
     function setActive(el) {
         $('.nav-item-link').removeClass('active');
         $(el).addClass('active');
-        console.log(el);
     }
 
 });
