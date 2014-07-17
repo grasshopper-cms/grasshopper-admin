@@ -83,7 +83,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         function _fileReferenceSelected (modalModel) {
             this.model.set('selectedContentName', modalModel.selectedContentName);
             this.model.set('selectedContent', modalModel.selectedContent);
-            this.model.set('value', _.last(modalModel.selectedContent, 2).join('/'));
+            this.model.set('value', _.last(modalModel.selectedContent.split('/'), 2).join('/'));
         }
 
         function fireFileDetailModal () {
@@ -93,9 +93,9 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _fireModalWithData(data) {
-            self.displayModal(
+            this.displayModal(
                 {
-                    header: self.model.get('selectedContentName'),
+                    header: this.model.get('selectedContentName'),
                     type: 'image',
                     data: data.url
                 });
