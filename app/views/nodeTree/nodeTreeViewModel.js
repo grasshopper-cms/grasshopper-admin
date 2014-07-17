@@ -1,7 +1,7 @@
 define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants',
-    'views/nodeTree/nodeTreeFileDetailModel', 'views/nodeTree/nodeTreeContentDetailModel', 'underscore'],
+    'views/nodeTree/nodeTreeFileDetailModel', 'views/nodeTree/nodeTreeContentDetailModel', 'underscore', 'masseuse'],
     function (Model, resources, grasshopperCollection, constants,
-              nodeTreeFileDetailModel, nodeTreeContentDetailModel, _) {
+              nodeTreeFileDetailModel, nodeTreeContentDetailModel, _, masseuse) {
 
     'use strict';
 
@@ -40,6 +40,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants',
                 }
             }
         }))());
+
+        this.set('nodeId', this.get('_id'));
     }
 
 });
