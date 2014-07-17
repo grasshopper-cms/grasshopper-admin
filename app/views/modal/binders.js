@@ -16,7 +16,7 @@ define(['jquery', 'underscore'],
                 ai : 'fa-file-image-o',
                 swf : 'fa-file-video-o'
             },
-            imageExtensions = ['jpg', 'jpeg', 'jpeg-2000', 'png', 'bmp', 'webp', 'svg', 'gif'];
+            imageExtensions = ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif'];
 
         return {
             checkfileextension : {
