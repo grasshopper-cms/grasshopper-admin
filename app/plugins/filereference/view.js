@@ -1,29 +1,28 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
     'plugins/filereference/modal/view'],
-    function (GrasshopperBaseView, _, Api, contentTypeWorker, $,
-              ModalView) {
+    function (GrasshopperBaseView, _, Api, contentTypeWorker, $, ModalView) {
 
         'use strict';
 
         return GrasshopperBaseView.extend({
             beforeRender: beforeRender,
-            afterRender : afterRender,
-            stopAccordionPropagation : stopAccordionPropagation,
-            setRootAsDefaultNode : setRootAsDefaultNode,
-            fireSelectFileModal : fireSelectFileModal,
-            setSelectedNode : setSelectedNode,
-            fireFileDetailModal : fireFileDetailModal
+            afterRender: afterRender,
+            stopAccordionPropagation: stopAccordionPropagation,
+            setRootAsDefaultNode: setRootAsDefaultNode,
+            fireSelectFileModal: fireSelectFileModal,
+            setSelectedNode: setSelectedNode,
+            fireFileDetailModal: fireFileDetailModal
         });
 
-        function beforeRender() {
-            if(this.model.get('inSetup')) {
+        function beforeRender () {
+            if (this.model.get('inSetup')) {
                 this.model.get('children').fetch()
                     .then(_getSelectedNode.bind(this));
             }
         }
 
-        function _getSelectedNode() {
+        function _getSelectedNode () {
             var $deferred = new $.Deferred(),
                 defaultNode = this.model.get('options.defaultNode');
 
@@ -31,7 +30,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
                 Api.getNodeDetail(defaultNode)
                     .done(setSelectedNode.bind(this, $deferred));
             } else if (defaultNode && defaultNode === '0') { // default is root
-                setSelectedNode.call(this, $deferred, { label : 'Root'});
+                setSelectedNode.call(this, $deferred, { label: 'Root'});
             } else {
                 $deferred.resolve();
             }
@@ -39,61 +38,67 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             return $deferred.promise();
         }
 
-        function setSelectedNode($deferred, nodeDetails) {
+        function setSelectedNode ($deferred, nodeDetails) {
             this.model.set('selectedNodeLabel', nodeDetails.label);
             $deferred && $deferred.resolve();
         }
 
-        function afterRender() {
+        function afterRender () {
             this.model.set('showTree', true);
             this.$el.foundation();
         }
 
-        function stopAccordionPropagation(e) {
+        function stopAccordionPropagation (e) {
             e.stopPropagation();
         }
 
-        function setRootAsDefaultNode(e) {
+        function setRootAsDefaultNode (e) {
             this.model.set('selectedNodeLabel', 'Root');
             this.model.set('options.defaultNode', '0');
             e.preventDefault();
         }
 
-        function fireSelectFileModal() {
+        function fireSelectFileModal () {
             _startModalView.call(this)
                 .done(_fileReferenceSelected.bind(this));
         }
 
-        function _startModalView() {
+        function _startModalView () {
             this.model.set('inSetup', false);
 
             var $deferred = new $.Deferred(),
                 modalView = new ModalView({
-                    modelData : {
-                        header : 'Select File',
-                        selectedContent : this.model.get('selectedContent'),
-                        _id : this.model.get('options.defaultNode')
+                    modelData: {
+                        header: 'Select File',
+                        selectedContent: this.model.get('selectedContent'),
+                        _id: this.model.get('options.defaultNode')
                     },
-                    $deferred : $deferred
+                    $deferred: $deferred
                 });
 
             modalView.start();
             return $deferred.promise();
         }
 
-        function _fileReferenceSelected(modalModel) {
+        function _fileReferenceSelected (modalModel) {
             this.model.set('selectedContentName', modalModel.selectedContentName);
             this.model.set('selectedContent', modalModel.selectedContent);
-            this.model.set('value', modalModel.selectedContent);
+            this.model.set('value', _.last(modalModel.selectedContent, 2).join('/'));
         }
 
-        function fireFileDetailModal() {
-            this.displayModal(
-                {
-                    header: this.model.get('selectedContentName'),
-                    type: 'image',
-                    data: this.model.get('selectedContent')
+        function fireFileDetailModal () {
+            var self = this;
+            this.model.get('assetModel')
+                .fetch()
+                .done(function (data) {
+                    self.displayModal(
+                        {
+                            header: self.model.get('selectedContentName'),
+                            type: 'image',
+                            data: data.url
+                        });
                 });
         }
+
 
     });

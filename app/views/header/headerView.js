@@ -1,25 +1,25 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],
-                                function (GrasshopperBaseView, headerViewConfig, $, constants) {
+    function (GrasshopperBaseView, headerViewConfig, $, constants) {
 
-    'use strict';
+        'use strict';
 
-    return GrasshopperBaseView.extend({
-        defaultOptions : headerViewConfig,
-        toogleNavigation : toogleNavigation,
-        checkHeaderTab: checkHeaderTab,
-        setActive: setActive
-    });
+        return GrasshopperBaseView.extend({
+            defaultOptions: headerViewConfig,
+            toogleNavigation: toogleNavigation,
+            checkHeaderTab: checkHeaderTab,
+            setActive: setActive
+        });
 
-    function toogleNavigation(e) {
-        e.preventDefault();
-        $('#main-nav').slideToggle('fast');
-    }
+        function toogleNavigation (e) {
+            e.preventDefault();
+            $('#main-nav').slideToggle('fast');
+        }
 
-    function checkHeaderTab(breadcrumb) {
-        var currentTab = '#' + breadcrumb.split('/')[0];
+        function checkHeaderTab (breadcrumb) {
+            var currentTab = '#' + breadcrumb.split('/')[0];
 
-        switch (currentTab) {
+            switch (currentTab) {
             case constants.internalRoutes.user:
             case constants.internalRoutes.users:
             case constants.internalRoutes.addUser:
@@ -34,13 +34,13 @@ define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],
                 break;
             default:
                 this.setActive('#items');
+            }
         }
-    }
 
-    function setActive(el) {
-        $('.nav-item-link').removeClass('active');
-        $(el).addClass('active');
-        console.log(el);
-    }
+        function setActive (el) {
+            $('.nav-item-link').removeClass('active');
+            $(el).addClass('active');
+            console.log(el);
+        }
 
-});
+    });
