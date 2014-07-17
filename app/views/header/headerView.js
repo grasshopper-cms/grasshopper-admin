@@ -18,7 +18,6 @@ define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],
 
     function checkHeaderTab(breadcrumb) {
         var currentTab = '#' + breadcrumb.split('/')[0];
-        console.log(currentTab);
 
         switch (currentTab) {
             case constants.internalRoutes.user:
@@ -28,15 +27,12 @@ define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],
                 break;
             case constants.internalRoutes.items:
             case constants.internalRoutes.item:
-                console.log();
                 this.setActive('#items');
                 break;
             case constants.internalRoutes.contentTypes:
-                console.log();
                 this.setActive('#contentTypes');
                 break;
             default:
-                console.log('default tab');
                 this.setActive('#items');
         }
     }
