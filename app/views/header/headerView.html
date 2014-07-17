@@ -31,26 +31,29 @@
                 <div class="large-12 columns">
                     <a data-rv-href="model:constants->internalRoutes->content" class="brand">{{model:resources->siteName}}</a>
 
+                    <a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse" data-rv-on-click="view.toogleNavigation">
+                        <i class="fa fa-align-justify"></i>
+                    </a>
 
                     <div class="nav-collapse">
                         <ul id="main-nav" class="nav pull-right">
 
-                            <li data-rv-show="model:userModel->role | includes admin reader editor">
-                                <a data-rv-href="model:constants->internalRoutes->content">
+                            <li class="nav-item" data-rv-show="model:userModel->role | includes admin reader editor">
+                                <a id="items" class="nav-item-link" data-rv-href="model:constants->internalRoutes->content">
                                     <i class="fa fa-th"></i>
                                     <span>{{model:resources->content}}</span>
                                 </a>
                             </li>
 
-                            <li data-rv-show="model:userModel->role | includes admin editor">
-                                <a data-rv-href="model:constants->internalRoutes->contentTypes">
+                            <li class="nav-item" data-rv-show="model:userModel->role | includes admin editor">
+                                <a id="contentTypes" class="nav-item-link" data-rv-href="model:constants->internalRoutes->contentTypes">
                                     <i class="fa fa-cogs"></i>
                                     <span>{{model:resources->types}}</span>
                                 </a>
                             </li>
 
-                            <li data-rv-show="model:userModel->role | equals admin">
-                                <a data-rv-href="model:constants->internalRoutes->users">
+                            <li class="nav-item" data-rv-show="model:userModel->role | equals admin">
+                                <a id="users" class="nav-item-link" data-rv-href="model:constants->internalRoutes->users">
                                     <i class="fa fa-user"></i>
                                     <span>{{model:resources->users}}</span>
                                 </a>

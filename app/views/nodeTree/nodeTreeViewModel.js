@@ -1,7 +1,7 @@
 define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants',
-    'views/nodeTree/nodeTreeFileDetailModel', 'views/nodeTree/nodeTreeContentDetailModel', 'underscore', 'masseuse'],
+    'views/nodeTree/nodeTreeFileDetailModel', 'views/nodeTree/nodeTreeContentDetailModel', 'underscore'],
     function (Model, resources, grasshopperCollection, constants,
-              nodeTreeFileDetailModel, nodeTreeContentDetailModel, _, masseuse) {
+              nodeTreeFileDetailModel, nodeTreeContentDetailModel, _) {
 
     'use strict';
 
