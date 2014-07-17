@@ -10,7 +10,7 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery', 'constants', 'res
             showUploadDialog: showUploadDialog
         });
 
-        function showUploadDialog($event, obj){
+        function showUploadDialog($event){
             var nodeId = this.model.get('nodeId'),
                 promises=[],
                 self = this;

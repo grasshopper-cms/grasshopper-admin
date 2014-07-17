@@ -39,21 +39,21 @@
                         <ul id="main-nav" class="nav pull-right">
 
                             <li class="nav-item" data-rv-show="model:userModel->role | includes admin reader editor">
-                                <a class="nav-item-link" data-rv-href="model:constants->internalRoutes->content">
+                                <a id="items" class="nav-item-link" data-rv-href="model:constants->internalRoutes->content">
                                     <i class="fa fa-th"></i>
                                     <span>{{model:resources->content}}</span>
                                 </a>
                             </li>
 
                             <li class="nav-item" data-rv-show="model:userModel->role | includes admin editor">
-                                <a class="nav-item-link" data-rv-href="model:constants->internalRoutes->contentTypes">
+                                <a id="contentTypes" class="nav-item-link" data-rv-href="model:constants->internalRoutes->contentTypes">
                                     <i class="fa fa-cogs"></i>
                                     <span>{{model:resources->types}}</span>
                                 </a>
                             </li>
 
                             <li class="nav-item" data-rv-show="model:userModel->role | equals admin">
-                                <a class="nav-item-link" data-rv-href="model:constants->internalRoutes->users">
+                                <a id="users" class="nav-item-link" data-rv-href="model:constants->internalRoutes->users">
                                     <i class="fa fa-user"></i>
                                     <span>{{model:resources->users}}</span>
                                 </a>

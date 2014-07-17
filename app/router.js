@@ -57,9 +57,9 @@ define([
                 'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
                 'addUser' : 'displayAddUser',
-                'item/types' : 'displayContentTypeIndex',
-                'item/types/new' : 'displayContentTypeDetail',
-                'item/types(/:id)' : 'displayContentTypeDetail',
+                'contentTypes' : 'displayContentTypeIndex',
+                'contentTypes/new' : 'displayContentTypeDetail',
+                'contentTypes(/:id)' : 'displayContentTypeDetail',
                 'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
@@ -117,6 +117,7 @@ define([
             $deferred.done(function() {
                 if(Backbone.history.getFragment() !== _.last(self.breadcrumb)) {
                     self.breadcrumb.push(Backbone.history.getFragment());
+                    self.headerView.checkHeaderTab(Backbone.history.getFragment());
                 }
             });
 

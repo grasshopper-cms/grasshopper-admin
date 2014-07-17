@@ -40,6 +40,8 @@
       list-style: none;
 
       .nav-item-link {
+        outline: none;
+
         &.active {
           background-image: -webkit-gradient(linear, left top, left bottom, from(#1e3751), to(#16283a));
           background-image: -webkit-linear-gradient(top, #1e3751, #16283a);
@@ -170,6 +172,11 @@
       padding: 0 0 8px;
       font-size: 2rem;
       text-align: right;
+      color: #F1F1F1;
+      
+      &:hover {
+        color: #cfd1cf;
+      }
 
       .fa-align-justify {
         margin-right: 14px;
