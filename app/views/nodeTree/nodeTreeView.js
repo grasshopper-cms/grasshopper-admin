@@ -1,13 +1,39 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery'],
-    function (GrasshopperBaseView, NodeTreeViewConfig, $) {
+define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery', 'constants', 'resources', 'underscore', 'assetWorker'],
+    function (GrasshopperBaseView, NodeTreeViewConfig, $, constants, resources, _, assetWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : NodeTreeViewConfig,
             afterRender : afterRender,
-            setSelectedNode : setSelectedNode
+            setSelectedNode : setSelectedNode,
+            showUploadDialog: showUploadDialog
         });
+
+        function showUploadDialog($event, obj){
+            var nodeId = this.model.get('nodeId'),
+                promises=[],
+                self = this;
+            $event.stopPropagation();
+
+            this.displayModal(
+                {
+                    header : resources.asset.uploadAssetModalMsg,
+                    type : 'upload',
+                    data : {}
+                })
+                .done(function (modalData) {
+                    _.each(modalData.files, function (file) {
+                        promises.push(assetWorker.postNewAsset(nodeId, file));
+                    });
+                    $.when(promises)
+                        .done(function() {
+                            self.model.get('content').fetch();
+                        });
+                });
+
+
+        }
 
         function afterRender() {
             _initializeAccordions.call(this);
