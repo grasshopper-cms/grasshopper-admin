@@ -32,7 +32,7 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
 
         function _setLocalStorageToken(tokenObj) {
             if ('Token' === tokenObj.token_type) {
-                LocalStorage.set('authToken', tokenObj.access_token);
+                LocalStorage.set('authToken', 'Basic '+ tokenObj.access_token);
             }
         }
 
