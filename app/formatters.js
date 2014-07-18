@@ -1,4 +1,4 @@
-define([], function () {
+define(['sparkmd5'], function (sparkmd5) {
     'use strict';
 
     /**
@@ -13,7 +13,8 @@ define([], function () {
         },
         hasLength : hasLength,
         sort : sort,
-        sortBy : sortBy
+        sortBy : sortBy,
+        gravatarUrl : gravatarUrl
     };
 
     /**
@@ -67,5 +68,19 @@ define([], function () {
 
         return arr.sort(sortFn);
 
+    }
+
+    function gravatarUrl(email, args) {
+        var md5value = sparkmd5.hash(email.toLowerCase()),
+            defaultImageAbsUrl;
+        // ip addr or localhost
+        if (window.location.hostname.indexOf('localhost') === 0 || /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/.test(window.location.hostname)) {
+            // mystery man
+            defaultImageAbsUrl = 'mm';
+        }
+        else {
+            defaultImageAbsUrl = window.location.protocol + '//' + window.location.host + '/themes/img/default-avatar.png';
+        }
+        return 'http://www.gravatar.com/avatar/' + md5value + '?s=' + args + '&d=' + encodeURIComponent(defaultImageAbsUrl);
     }
 });
