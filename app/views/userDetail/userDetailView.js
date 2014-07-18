@@ -37,6 +37,12 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
 
         function toggleEnabled (e) {
             e.stopPropagation();
+            if (this.model.id == this.app.user.id){
+                if(!confirm('You are trying to disable currently logged in user.\nYou won\'t be able to access system'+
+                'using this account\nAre you sure?')){
+                    return;
+                }
+            }
             this.model.toggle('enabled');
             this.model.trigger('change:enabled');
             this.saveUser();
