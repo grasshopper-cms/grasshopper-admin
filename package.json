@@ -13,7 +13,7 @@
       "name": "Greg Larrenaga"
     }
   ],
-  "version": "0.26.7-auth",
+  "version": "0.26.9",
   "repository": {
     "type": "git",
     "url": "https://github.com/Solid-Interactive/grasshopper-admin.git"
@@ -39,7 +39,8 @@
     "grunt-contrib-connect": "~0.7.1",
     "grunt-build-gh-pages": "0.1.1",
     "grunt-prompt": "~0.1.2",
-    "grunt-release-notes": "0.1.1"
+    "grunt-release-notes": "0.1.1",
+    "git-release-notes": "0.0.1"
   },
   "dependencies": {
     "commander": "~2.1.0",
