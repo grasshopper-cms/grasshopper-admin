@@ -48,9 +48,10 @@ define({
             'Are you sure?',
         roles : [ //TODO: DELETE THIS!!!
             'admin',
-            'reader',
             'editor',
             'author',
+            'reader',
+            'external',
             'none'
         ],
         successfullyUpdated : 'User was successfully updated',
