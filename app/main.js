@@ -92,7 +92,8 @@ require([
     'sortable',
     'accordion',
     'scrollToFixed',
-    'select2'
+    'select2',
+    'sparkmd5'
 ],
     /**
      * @param $

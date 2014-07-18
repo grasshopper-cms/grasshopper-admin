@@ -122,7 +122,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function addNewFieldToContentType(e, context) {
         var model = _.result(context.field.config, 'modelData');
-        debugger;
         this.collapseAccordion();
         model.isNew = true;
         this.collection.add(model);
