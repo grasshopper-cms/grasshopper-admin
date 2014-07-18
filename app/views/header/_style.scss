@@ -43,11 +43,11 @@
         outline: none;
 
         &.active {
-          background-image: -webkit-gradient(linear, left top, left bottom, from(#1e3751), to(#16283a));
-          background-image: -webkit-linear-gradient(top, #1e3751, #16283a);
-          background-image: linear-gradient(to top, #1e3751, #16283a);
-          -webkit-box-shadow: none;
-          box-shadow: none;
+          color: #333;
+          font-weight: bold;
+          text-shadow: none;
+          background: #fff;
+          border-bottom: 1px solid #fff;
         }
       }
 
