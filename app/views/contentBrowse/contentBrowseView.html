@@ -19,6 +19,10 @@
             </dd>
         </dl>
 
+        <div id="contentSearch" data-rv-unless="model:inRoot">
+            <input class="contentSearchInput" type="text" placeholder="Content Title" data-rv-value="model:contentSearchValue" data-rv-on-keyup="model:childContent.query"/>
+        </div>
+
         <div class="tabs-content">
             <div class="content active" id="panel2-1">
 

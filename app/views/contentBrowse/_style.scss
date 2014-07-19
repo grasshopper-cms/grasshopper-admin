@@ -1,6 +1,4 @@
 .contentBrowse {
-
-
   .tabs {
     border-bottom: 1px solid $tabBorderColor;
     & dd {
@@ -19,5 +17,10 @@
       width: 100%;
     }
   }
+}
 
+#contentSearch {
+  float: right;
+  width: 19rem;
+  margin: -3rem 0 0;
 }
