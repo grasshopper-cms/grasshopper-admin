@@ -43,11 +43,15 @@ define({
             login : 'LOGIN',
             password : 'PASSWORD'
         },
+        selfLockWarning:'You are trying to disable currently logged in user.\n' +
+            'You won\'t be able to access system using this account\n' +
+            'Are you sure?',
         roles : [ //TODO: DELETE THIS!!!
             'admin',
-            'reader',
             'editor',
             'author',
+            'reader',
+            'external',
             'none'
         ],
         successfullyUpdated : 'User was successfully updated',
@@ -141,6 +145,8 @@ define({
         validation : {
             mustHaveLabel : 'Content type must have a title.',
             fieldsMustHaveLabel : 'All fields must have a name.',
+            fieldsMustHaveIds: 'All fields should have ids',
+            fieldsMustBeUnique: 'All fields ids should be unique',
             firstFieldIsNotAStringWarning : 'The first field in this content type is not a string. ' +
                 'This could cause weird behavior in your content labels.'
         }

@@ -23,7 +23,7 @@ define(['constants', 'masseuse', 'jquery', 'helpers'], function (constants, Mass
 
         request.open('POST', constants.api.assets.url.replace(':id', nodeId));
 
-        request.setRequestHeader('Authorization', 'Token ' + token);
+        request.setRequestHeader('Authorization', token);
         request.setRequestHeader('Accept', '*/*');
 
         request.onreadystatechange = function () {
