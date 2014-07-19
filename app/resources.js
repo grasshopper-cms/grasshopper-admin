@@ -145,6 +145,8 @@ define({
         validation : {
             mustHaveLabel : 'Content type must have a title.',
             fieldsMustHaveLabel : 'All fields must have a name.',
+            fieldsMustHaveIds: 'All fields should have ids',
+            fieldsMustBeUnique: 'All fields ids should be unique',
             firstFieldIsNotAStringWarning : 'The first field in this content type is not a string. ' +
                 'This could cause weird behavior in your content labels.'
         }
