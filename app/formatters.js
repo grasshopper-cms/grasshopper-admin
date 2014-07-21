@@ -79,7 +79,7 @@ define(['sparkmd5'], function (sparkmd5) {
             defaultImageAbsUrl = 'mm';
         }
         else {
-            defaultImageAbsUrl = window.location.protocol + '//' + window.location.host + '/themes/img/default-avatar.png';
+            defaultImageAbsUrl = window.location.protocol + '//' + window.location.host + '/{{RESOURCEREF:themes/img/default-avatar.png}}';
         }
         return 'http://www.gravatar.com/avatar/' + md5value + '?s=' + args + '&d=' + encodeURIComponent(defaultImageAbsUrl);
     }

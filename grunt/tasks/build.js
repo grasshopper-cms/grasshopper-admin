@@ -35,6 +35,7 @@ module.exports = function (grunt) {
         'imagemin',
         'filerev',
         'usemin',
+        'processTemplateResourceRefs:production',
         'clean:temp'
     ]);
 };
