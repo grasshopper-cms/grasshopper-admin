@@ -18,6 +18,7 @@ module.exports = function (grunt) {
         'paths:toBuild',
         'interpolateConstantsBuild',
         'sass',
+        'processTemplateResourceRefs:development',
         'autoprefixer:no_dest',
         'connect:site',
         'watch'
