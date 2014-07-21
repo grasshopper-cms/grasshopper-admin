@@ -1,6 +1,5 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],
-                                function (GrasshopperBaseView, headerViewConfig, $, constants) {
+define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],  function (GrasshopperBaseView, headerViewConfig, $, constants) {
 
     'use strict';
 

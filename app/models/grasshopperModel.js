@@ -20,7 +20,7 @@ define(['backbone', 'masseuse', 'resources', 'constants', 'underscore', 'helpers
             fetchOptions = {
                 data : {},
                 headers : {
-                    'Authorization' : 'Token ' + token
+                    'Authorization' : token
                 },
                 success : function () {
 
@@ -42,7 +42,7 @@ define(['backbone', 'masseuse', 'resources', 'constants', 'underscore', 'helpers
             returnedObj,
             saveOptions = _.extend({}, options, {
                 headers : {
-                    'Authorization' : 'Token ' + LocalStorage.get('authToken')
+                    'Authorization' : LocalStorage.get('authToken')
                 }
             });
 
@@ -62,7 +62,7 @@ define(['backbone', 'masseuse', 'resources', 'constants', 'underscore', 'helpers
     function destroy (options) {
         options = options || {};
         options.headers = _.extend({}, options.headers, {
-            'Authorization' : 'Token ' + LocalStorage.get('authToken')
+            'Authorization' : LocalStorage.get('authToken')
         });
         return Backbone.Model.prototype.destroy.call(this, options);
     }

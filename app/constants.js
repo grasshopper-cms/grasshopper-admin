@@ -72,7 +72,24 @@ define([], function() {
             addContent : '#items/nodeid/:id/createContent',
             createAssets : '#items/nodeid/:id/createAssets',
             forbidden : '#forbidden'
-        }
+        },
+        timeouts: {
+            showSpinnerLoadingTimeout: 2000
+        },
+        fileExtensionsMap : {
+            pdf : 'fa-file-pdf-o',
+            doc : 'fa-file-word-o',
+            docx : 'fa-file-word-o',
+            xsl : 'fa-file-excel-o',
+            xslx : 'fa-file-excel-o',
+            txt : 'fa-file-text',
+            zip : 'fa-file-archive-o',
+            psd : 'fa-file-image-o',
+            ai : 'fa-file-image-o',
+            swf : 'fa-file-video-o'
+        },
+        imageExtensions : ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif']
+
     };
 
 });

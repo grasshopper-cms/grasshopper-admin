@@ -20,12 +20,23 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         }
 
         function saveUser (e) {
+            if (this.model.id == this.app.user.id && this.model.get('enabled')==='false' && this.model.changed.enabled !== undefined){
+                if(!confirm(resources.user.selfLockWarning)){
+                    e.stopPropagation();
+                    return;
+                }
+            }
             _swapSavingTextWithSpinner.call(this, e);
             this.model.toggle('saving');
             _updateUserWorkflow.call(this, {});
         }
 
         function saveAndClose() {
+            if (this.model.id == this.app.user.id && this.model.get('enabled')==='false' && this.model.changed.enabled !== undefined){
+                if(!confirm(resources.user.selfLockWarning)){
+                    return;
+                }
+            }
             _updateUserWorkflow.call(this, { close : true });
         }
 
@@ -37,6 +48,11 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
 
         function toggleEnabled (e) {
             e.stopPropagation();
+            if (this.model.id == this.app.user.id){
+                if(!confirm(resources.user.selfLockWarning)){
+                    return;
+                }
+            }
             this.model.toggle('enabled');
             this.model.trigger('change:enabled');
             this.saveUser();

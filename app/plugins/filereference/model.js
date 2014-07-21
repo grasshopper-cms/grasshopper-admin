@@ -1,5 +1,5 @@
-define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCollection', 'masseuse', 'underscore'],
-    function (Model, resources, Backbone, constants, grasshopperCollection, masseuse, _) {
+define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCollection', 'masseuse', 'underscore', 'assetDetailViewModel'],
+    function (Model, resources, Backbone, constants, grasshopperCollection, masseuse, _, assetDetailViewModel) {
 
     'use strict';
 
@@ -17,6 +17,12 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
             }),
             selectedContent : new ComputedProperty(['value'], function(value) {
                 return value;
+            }),
+            assetModel : new ComputedProperty(['value'], function(value){
+                return new assetDetailViewModel({
+                    nodeId : _.first(value.split('/')),
+                    url : value
+                });
             }),
             _id : '0'
         },
