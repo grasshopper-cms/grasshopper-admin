@@ -1,0 +1,29 @@
+/* loading-overlay-header should obstruct header, so its not clickable*/
+#loading-overlay-header,
+#loading-overlay{
+  display: none;
+  width:100%;
+  height: 100%;
+  position: absolute;
+  z-index:1000;
+}
+#loading-overlay{
+  background-color: rgba(255,255,255,0.9);
+  .loading-overlay-image{
+    display: block;
+    top: calc(50% - (19px/2));
+    position: fixed;
+    left: calc(50% - (220px/2));
+  }
+}
+#loading-overlay-header{
+  top: 0;
+  bottom: 0;
+}
+
+.spinner-loading{
+  overflow-y: hidden;
+  #loading-overlay, #loading-overlay-header{
+    display: block;
+  }
+}

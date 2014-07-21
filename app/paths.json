@@ -2,6 +2,7 @@
     "libraries" : {
         "jquery" : "vendor/jquery/dist/jquery",
         "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core",
+        "select2" : "vendor/select2/select2",
         "backbone" : "vendor/backbone-amd/backbone",
         "text" : "vendor/requirejs-text/text",
         "rivets" : "vendor/rivets/dist/rivets",
@@ -12,7 +13,9 @@
         "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
         "ace" : "vendor/ace/lib/ace",
         "moment" : "vendor/moment/moment",
-        "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed"
+        "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
+        "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker",
+        "sparkmd5" : "vendor/sparkMD5/spark-md5"
     },
 
     "routers" : {
@@ -214,7 +217,8 @@
         "modalView+" : {
             "" : "views/modal/modalView",
             "Config" : "views/modal/modalViewConfig",
-            "Model" : "views/modal/modalViewModel"
+            "Model" : "views/modal/modalViewModel",
+            "Binders" : "views/modal/binders"
         },
 
         "nodeDetailView+" : {
@@ -251,6 +255,11 @@
             "" : "views/userIndex/userIndexView",
             "Config" : "views/userIndex/userIndexViewConfig",
             "Model" : "views/userIndex/userIndexViewModel"
+        },
+
+        "forbiddenView+" : {
+            "" : "views/forbidden/forbiddenView",
+            "Config" : "views/forbidden/forbiddenViewConfig"
         }
     },
 

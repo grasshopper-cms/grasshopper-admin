@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/header/headerView.html', 'headerViewModel'],
-    function (template, HeaderViewModel) {
+define(['text!views/header/headerView.html', 'headerViewModel', 'formatters'],
+    function (template, HeaderViewModel, formatters) {
         'use strict';
 
         return {
@@ -11,6 +11,9 @@ define(['text!views/header/headerView.html', 'headerViewModel'],
             wrapper : false,
             template : template,
             events : {},
-            listeners : []
+            listeners : [],
+            rivetsConfig: {
+                formatters : [formatters]
+            }
         };
     });

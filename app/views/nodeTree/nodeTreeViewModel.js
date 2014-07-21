@@ -40,6 +40,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants',
                 }
             }
         }))());
+
+        this.set('nodeId', this.get('_id'));
     }
 
 });

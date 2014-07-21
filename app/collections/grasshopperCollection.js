@@ -20,7 +20,7 @@ define([
             fetchOptions = {
                 data : {},
                 headers : {
-                    'Authorization' : 'Token ' + token
+                    'Authorization' : token
                 },
                 success : function () {
 
@@ -39,7 +39,7 @@ define([
 
     function save () {
         var saveOptions = {headers : {
-            'Authorization' : 'Token ' + LocalStorage.get('authToken')
+            'Authorization' : LocalStorage.get('authToken')
         }};
         return Backbone.Collection.prototype.save.call(this, null, saveOptions);
     }
@@ -47,7 +47,7 @@ define([
     function destroy (options) {
         options = options || {};
         options.headers = _.extend({}, options.headers, {
-            'Authorization' : 'Token ' + LocalStorage.get('authToken')
+            'Authorization' : LocalStorage.get('authToken')
         });
         return Backbone.Collection.prototype.destroy.call(this, options);
     }

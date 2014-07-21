@@ -28,6 +28,10 @@ require.config({
             exports : 'jquery',
             deps : ['jquery']
         },
+        select2 : {
+            exports : 'jquery',
+            deps : ['jquery']
+        },
         widgetFactory : {
             exports : 'jquery',
             deps : ['jqueryui']
@@ -50,6 +54,10 @@ require.config({
         },
         scrollToFixed : {
             exports : 'jquery',
+            deps : ['jquery']
+        },
+        datetimepicker : {
+            exports : 'datetimepicker',
             deps : ['jquery']
         }
     },
@@ -75,6 +83,7 @@ require([
     'underscore',
     'jquery',
     'router',
+    'constants',
     'alerts',
     'dropdown',
     'tabs',
@@ -83,21 +92,49 @@ require([
     'modernizr',
     'sortable',
     'accordion',
-    'scrollToFixed'
+    'scrollToFixed',
+    'select2',
+    'sparkmd5'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router) {
-
+        function (Backbone, _, $, Router, constants) {
         'use strict';
+        var ajaxRequests = {}, requestsMidflight=0;
 
         _.templateSettings = {
             evaluate : /\[\[(.+?)\]\]/g,
             interpolate : /\[\[=(.+?)\]\]/g,
             escape : /\[\[-(.+?)\]\]/g
         };
+
+        $.ajaxSetup({
+            /* jslint unused: false */
+            beforeSend: function (jqXHR, settings) {
+                requestsMidflight++;
+                var $deferred = new $.Deferred(), showSpinnerLoading = function () {
+                    if (requestsMidflight > 0) {
+                        $('body').addClass('spinner-loading');
+                    }
+                }, hideSpinnerLoading = function () {
+                    if (requestsMidflight <= 0) {
+                        $('body').removeClass('spinner-loading');
+                    }
+                };
+                $deferred.then(showSpinnerLoading);
+                setTimeout(function () {
+                    $deferred.resolve();
+                }, constants.timeouts.showSpinnerLoadingTimeout);
+                jqXHR.always(function (jqXHR, textStatus) {
+                    requestsMidflight--;
+                    $deferred.reject();
+                    hideSpinnerLoading();
+                });
+            }
+
+        });
 
         // TODO: For some reason this is not needed?
         $(document).foundation();

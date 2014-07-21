@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         application : { // Get and compile application.scss
             options : {
                 style : 'compressed',
-                require : 'sass-globbing',
+                require : ['sass-globbing','sass-css-importer'],
                 sourcemap : true
             },
             files : grunt.file.expandMapping(['themes/**/main.scss'], 'css', {
