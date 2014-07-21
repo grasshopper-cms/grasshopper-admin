@@ -54,6 +54,7 @@ define([], function() {
                 url : apiEndpoint + '/system'
             }
         },
+        contentSearchThrottle : 600,
         internalRoutes : {
             user : '#user',
             users : '#users',
