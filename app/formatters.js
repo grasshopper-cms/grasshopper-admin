@@ -71,20 +71,7 @@ define(['sparkmd5'], function (sparkmd5) {
     }
 
     function gravatarUrl(email, args) {
-        var md5value = sparkmd5.hash(email.toLowerCase());/*
-            getAbsServerUrl = function () {
-                return  window.location.protocol + '//' + window.location.host +
-                    window.location.pathname.substring(0, window.location.pathname.lastIndexOf(' / ')) + '/';
-            },
-            defaultImageAbsUrl;
-        // ip addr or localhost
-        if (window.location.hostname.indexOf('localhost') === 0 || /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/.test(window.location.hostname)) {
-            // mystery man
-            defaultImageAbsUrl = 'mm';
-        }
-        else {
-            defaultImageAbsUrl = getAbsServerUrl + '{{RESOURCEREF:themes/img/default-avatar.png}}';
-        }*/
+        var md5value = sparkmd5.hash(email.toLowerCase());
         return 'http://www.gravatar.com/avatar/' + md5value + '?s=' + args + '&d=mm';
     }
 });

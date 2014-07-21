@@ -84,6 +84,7 @@ require([
     'jquery',
     'router',
     'constants',
+    'ajaxCounterWorker',
     'alerts',
     'dropdown',
     'tabs',
@@ -100,9 +101,8 @@ require([
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, constants) {
+        function (Backbone, _, $, Router, constants, ajaxCounterWorker) {
         'use strict';
-        var ajaxRequests = {}, requestsMidflight=0;
 
         _.templateSettings = {
             evaluate : /\[\[(.+?)\]\]/g,
@@ -110,31 +110,7 @@ require([
             escape : /\[\[-(.+?)\]\]/g
         };
 
-        $.ajaxSetup({
-            /* jslint unused: false */
-            beforeSend: function (jqXHR, settings) {
-                requestsMidflight++;
-                var $deferred = new $.Deferred(), showSpinnerLoading = function () {
-                    if (requestsMidflight > 0) {
-                        $('body').addClass('spinner-loading');
-                    }
-                }, hideSpinnerLoading = function () {
-                    if (requestsMidflight <= 0) {
-                        $('body').removeClass('spinner-loading');
-                    }
-                };
-                $deferred.then(showSpinnerLoading);
-                setTimeout(function () {
-                    $deferred.resolve();
-                }, constants.timeouts.showSpinnerLoadingTimeout);
-                jqXHR.always(function (jqXHR, textStatus) {
-                    requestsMidflight--;
-                    $deferred.reject();
-                    hideSpinnerLoading();
-                });
-            }
-
-        });
+        ajaxCounterWorker.setupCounter();
 
         // TODO: For some reason this is not needed?
         $(document).foundation();

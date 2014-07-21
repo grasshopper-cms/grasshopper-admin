@@ -19,7 +19,6 @@
       background-color: #008cba;
       border-color: #0079a1;
       color: #fff !important;
-      -webkit-transition: background-color 300ms ease-out;
       transition: background-color 300ms ease-out;
       -webkit-appearance: none;
       border: none;
@@ -31,7 +30,6 @@
       font-size: 0.6875rem;
 
       margin-bottom: 0;
-      -webkit-box-shadow: none;
       box-shadow: none;
 
       &:before {
