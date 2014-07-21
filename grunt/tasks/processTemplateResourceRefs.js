@@ -18,7 +18,6 @@ module.exports = function (grunt) {
     * Should replace all {{RESOURCEREF: image.png}} strings in js, css or html with strong-versioned url from filerev
     */
     grunt.registerMultiTask('processTemplateResourceRefs', 'Replace resources references after grunt-rev', function () {
-        debugger;
         //var files = grunt.file.expand(grunt.config().buildDirectory + '/main*.js');
         this.files.forEach(function (file) {
             var filenameIn = file.src[0], filenameOut = file.dest, contents = grunt.file.read(filenameIn), processed_contents;
