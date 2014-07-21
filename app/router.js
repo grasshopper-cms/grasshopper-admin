@@ -1,8 +1,8 @@
 /*global define*/
 define([
-    'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants',
+    'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
     'grasshopperBaseView',
-    'loginView', 'loginWorker', 'logoutWorker',
+    'loginView', 'loginWorker', 'logoutWorker', 'forbiddenView',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
@@ -20,9 +20,9 @@ define([
     'addContentView',
     'addAssetsView'
 ],
-    function ($, Backbone, _, masseuse, Api, constants,
+    function ($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
-              LoginView, loginWorker, logoutWorker,
+              LoginView, loginWorker, logoutWorker, ForbiddenView,
               AlertBoxView,
               ModalView, modalViewConfig,
               resources,
@@ -57,14 +57,15 @@ define([
                 'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
                 'addUser' : 'displayAddUser',
-                'item/types' : 'displayContentTypeIndex',
-                'item/types/new' : 'displayContentTypeDetail',
-                'item/types(/:id)' : 'displayContentTypeDetail',
+                'contentTypes' : 'displayContentTypeIndex',
+                'contentTypes/new' : 'displayContentTypeDetail',
+                'contentTypes(/:id)' : 'displayContentTypeDetail',
                 'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
+                'forbidden' : 'displayForbidden',
                 '*path' : 'goHome'
             },
 
@@ -101,7 +102,8 @@ define([
             displayContentTypeDetail : displayContentTypeDetail,
             displayCreateFolder : displayCreateFolder,
             displayCreateContent : displayCreateContent,
-            displayCreateAssets : displayCreateAssets
+            displayCreateAssets : displayCreateAssets,
+            displayForbidden: displayForbidden
         });
 
         function onRouteFail () {
@@ -113,8 +115,10 @@ define([
                 self = this;
 
             $deferred.done(function() {
-                if(Backbone.history.getFragment() !== _.last(self.breadcrumb)) {
-                    self.breadcrumb.push(Backbone.history.getFragment());
+                var fragment = Backbone.history.getFragment();
+                if(fragment !== _.last(self.breadcrumb)) {
+                    self.breadcrumb.push(fragment);
+                    self.headerView.checkHeaderTab(fragment);
                 }
             });
 
@@ -217,6 +221,7 @@ define([
             newView.start()
                 .done(function () {
                     $deferred.resolve(newView);
+                    helpers.browserTitles.setBrowserTitle(newView.browserTitle);
                 })
                 .fail(function () {
                     $deferred.reject();
@@ -313,7 +318,7 @@ define([
                         }
                     });
             } else {
-                this.navigateTrigger('items');
+                this.navigateTrigger('forbidden');
             }
         }
 
@@ -394,6 +399,10 @@ define([
                     }
                 });
             addAssetsView.start();
+        }
+
+        function displayForbidden () {
+            this.loadMainContent(ForbiddenView);
         }
 
         return Router;

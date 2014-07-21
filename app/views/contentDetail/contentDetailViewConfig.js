@@ -7,6 +7,7 @@ define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDe
         return {
             name : 'contentDetail',
             ModelType : contentDetailModel,
+            browserTitle : 'Content',
             modelData : {},
             appendTo : '#stage',
             wrapper : false,

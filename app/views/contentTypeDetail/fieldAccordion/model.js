@@ -29,8 +29,6 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
         });
 
         function initialize() {
-            _generateSlug.call(this, this, this.get('label'));
-            this.on('change:label', _generateSlug, this);
 
             _toggleMultiFieldset.call(this);
 
@@ -39,13 +37,6 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
             this.on('change:max', _ensureMaxIsAlwaysGreaterThanOrEqualToMin, this);
 
             this.get('validationCollection').on('change add remove', this.updateValidationRulesOnModel, this);
-        }
-
-        function _generateSlug(model, newValue) {
-            if(newValue) {
-                model.set('_id', newValue.replace(/ /g,'').toLowerCase());
-            }
-            return '';
         }
 
         function _toggleMultiFieldset() {

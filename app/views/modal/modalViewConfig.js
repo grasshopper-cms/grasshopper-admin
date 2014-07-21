@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/modal/modalView.html', 'modalViewModel', 'formatters'],
-    function (template, modalViewModel, appFormatters) {
+define(['text!views/modal/modalView.html', 'modalViewModel', 'formatters', 'modalViewBinders'],
+    function (template, modalViewModel, appFormatters, binders) {
 
     'use strict';
 
@@ -15,6 +15,7 @@ define(['text!views/modal/modalView.html', 'modalViewModel', 'formatters'],
         },
         rivetsConfig : {
             formatters : [appFormatters],
+            binders : [binders],
             instaUpdate : true
         }
     };

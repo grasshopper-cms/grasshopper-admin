@@ -36,6 +36,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.$el.foundation();
 
         _initializeSortableAccordions.call(this);
+        _initializeSelect2.call(this);
     }
 
     function _handleSuccessfulModelFetch($deferred) {
@@ -121,7 +122,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function addNewFieldToContentType(e, context) {
         var model = _.result(context.field.config, 'modelData');
-
         this.collapseAccordion();
         model.isNew = true;
         this.collection.add(model);
@@ -227,6 +227,27 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function _updateMastheadBreadcrumbs($deferred, isNew) {
         breadcrumbWorker.contentTypeBreadcrumb.call(this, $deferred, (isNew));
+    }
+
+    function _initializeSelect2(){
+        var self=this,
+            selectEl=$('.contentTypesDropdownSelect');
+        selectEl.select2({
+            placeholder: resources.contentType.addNewField
+        }).on('change', function(e) {
+            if (!e.val || e.val==='') {
+                return;
+            }
+            var plugin = _.find(self.model.get('plugins'),function(itm){
+                return e.val == itm.name;
+            }), model = _.result(plugin.config, 'modelData');
+            self.collapseAccordion();
+            model.isNew = true;
+            self.collection.add(model);
+            self.refreshAccordion();
+            _openLastAccordion.call(self);
+            selectEl.select2('val', '');
+        });
     }
 
     function _initializeSortableAccordions() {

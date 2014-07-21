@@ -40,6 +40,14 @@ module.exports = function (grunt) {
                 failOnError : true
             },
             command : 'bower install'
+        },
+        bundlerInstall : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true
+            },
+            command : 'bundle install'
         }
     });
 

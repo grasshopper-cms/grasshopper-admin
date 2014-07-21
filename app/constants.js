@@ -58,9 +58,9 @@ define([], function() {
             user : '#user',
             users : '#users',
             addUser : '#addUser',
-            contentTypes : '#item/types',
-            newContentType : '#item/types/new',
-            contentTypeDetail : '#item/types/:id',
+            contentTypes : '#contentTypes',
+            newContentType : '#contentTypes/new',
+            contentTypeDetail : '#contentTypes/:id',
             content : '#items',
             contentDetail : '#item/:id',
             nodeDetail : '#items/nodeid/:id',
@@ -69,7 +69,11 @@ define([], function() {
             about : '#about',
             createFolder : '#items/nodeid/:id/createFolder',
             addContent : '#items/nodeid/:id/createContent',
-            createAssets : '#items/nodeid/:id/createAssets'
+            createAssets : '#items/nodeid/:id/createAssets',
+            forbidden : '#forbidden'
+        },
+        timeouts: {
+            showSpinnerLoadingTimeout: 2000
         }
     };
 

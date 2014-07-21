@@ -28,7 +28,8 @@ define(['backbone', 'masseuse', 'resources'],
                     'nodeId',
                     'wrapper',
                     'appendTo',
-                    'collection'
+                    'collection',
+                    'browserTitle'
                 ]);
 
             // TODO: I think I can get rid of this line.... Nowhere in this app do I call this.options or self.options.
@@ -52,7 +53,9 @@ define(['backbone', 'masseuse', 'resources'],
         function start () {
             // Checking user permissions
             if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
-                this.app.router.navigateTrigger('items');
+                // replace: true is essential if we want user to be able to go back. otherwise he will got stuck in
+                // a loop when pressing "back"
+                this.app.router.navigateTrigger('forbidden',{replace: true});
                 return;
             }
 
