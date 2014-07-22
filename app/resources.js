@@ -211,7 +211,8 @@ define({
             setToNow : 'Set to now',
             start : 'Start',
             end : 'End',
-            neverExpire : 'Never Expire'
+            neverExpire : 'Never Expire',
+            dateFormat: 'YYYY/MM/DD h:mm a'
         },
         embeddedType : {
             contentType : 'Content Type'
