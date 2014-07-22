@@ -66,7 +66,10 @@ module.exports = function (grunt) {
                     expand : true,
                     cwd : 'app/',
                     src : [
-                        'themes/img/**'
+                        'themes/img/**',
+                        'themes/*.png',
+                        'themes/*.gif',
+                        'themes/*.jp*g'
                     ],
                     dest : '<%= buildDirectory %>'
                 }
