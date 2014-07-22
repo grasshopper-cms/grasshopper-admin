@@ -21,7 +21,6 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         }
 
         function saveUser(e) {
-            debugger;
             var lockoutFunction = function () {
                 _swapSavingTextWithSpinner.call(this, e);
                 this.model.toggle('saving');
@@ -31,9 +30,9 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
                 e.stopPropagation();
             }
             if (this.model.id == this.app.user.id && this.model.get('enabled').toString() === 'false' && this.model.changed.enabled !== undefined) {
-                this.showSelfLockoutWarning.call(this, lockoutFunction);
+                this.showSelfLockoutWarning(lockoutFunction);
             } else {
-                lockoutFunction.call(this);
+                lockoutFunction();
             }
         }
 
@@ -42,9 +41,9 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
                 _updateUserWorkflow.call(this, { close: true });
             };
             if (this.model.id == this.app.user.id && this.model.get('enabled').toString() === 'false' && this.model.changed.enabled !== undefined) {
-                this.showSelfLockoutWarning.call(this, lockoutFunction);
+                this.showSelfLockoutWarning(lockoutFunction);
             } else {
-                lockoutFunction.call(this);
+                lockoutFunction();
             }
         }
 
