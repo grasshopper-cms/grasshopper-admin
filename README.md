@@ -1,8 +1,58 @@
 # Grasshopper Admin
 
+### Grasshopper is an everybody friendly, flexible, extensible CMS.
+
+A CMS for the people, a great experience for developers, users and customers. Use Grasshopper to drastically speed up development for distributed systems. Support your clients better.
+
+![Create, Share, Present](http://solid-interactive.github.io/grasshopper-core-nodejs/images/create-share-present.png)
+
+By standardizing your development workflow, you can spend more time building your public facing applications and less time building backend systems, APIs and administrations.
+
+Grasshopper focuses on user happiness, not just developer happiness. Grasshopper provides tools for everyone involved in a project, developers, content managers, clients and customers alike.
+
+**Using Grasshopper, developers get**
+
+* An easy to use SDK, a ready to go REST API, built in concepts like user management and permissions, an open system that is both flexible and extensible.
+* High performance application stack built on Node.js. Hooks and events into the system to completely customize the handling of data and unlocking it's potential.
+* Consistent tools will that help you save time and delight your users. Using Grasshopper will elimiate much of the boring, boilerplate code that you have to write for every project.
+* The Grasshopper system can be run anywhere and has native cloud support that keeps growing. You can use services like Heroku or host on your own systems.
+
+**Using Grasshopper, managers get**
+
+* A ready to go environment to start working right away. No more technology black holes where you have to wait until the end of the project to do your job.
+* Faster access to the tools you need. When developers don't have to write code to give you what you want, you will get it faster.
+* Intuitive and useful content management screens that can have any definition. Any type of content can be defined, organized and managed without a developer having to write any code.
+* Piece of mind knowing that you can increase client engagement by giving them something to work on sooner and give them less time to think about changes.
+
+
+### Grasshopper Admin Project
+
+---------------------------------------------------------------------------------
+
 Front end of the [Grasshopper api](https://github.com/Solid-Interactive/grasshopper-api-js) - a Javascript / Data Management System
 
-### Usage
+### Grasshopper Components
+
+---------------------------------------------------------------------------------
+
+![Stack](http://solid-interactive.github.io/grasshopper-core-nodejs/images/stack.png)
+
+* [GRASSHOPPER CLI](https://github.com/Solid-Interactive/grasshopper-cli)
+* [GRASSHOPPER API](https://github.com/Solid-Interactive/grasshopper-api-js)
+* [GRASSHOPPER ADMIN](https://github.com/Solid-Interactive/grasshopper-admin)
+
+### Getting Started
+
+------------------------------------------------------------------
+
+The best thing to do is review the [Grasshopper website](http://solid-interactive.github.io/grasshopper-core-nodejs) and review the [documentation]([official documentation](http://solid-interactive.github.io/grasshopper-core-nodejs/documentation.html)).
+
+If you want to install grasshopper right away you should use the [CLI](https://github.com/Solid-Interactive/grasshopper-cli). Installing Grasshopper is super simple. Once your machine is configured, creating a new project is as easy as typing `grasshopper fly`.
+
+The installation process fully configures working instances of [core](https://github.com/Solid-Interactive/grasshopper-core-nodejs), [api](https://github.com/Solid-Interactive/grasshopper-api-js) and [admin](https://github.com/Solid-Interactive/grasshopper-admin) for you.
+
+
+### Manual Usage
 
 1. install
 
@@ -114,6 +164,11 @@ Front end of the [Grasshopper api](https://github.com/Solid-Interactive/grasshop
 * 0.26.3 - 14-06-14 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.3_14-06-14.md)
 * 0.26.4 - 14-06-21 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.4_14-06-21.md)
 * 0.26.5 - 14-06-26 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.5_14-06-26.md)
+* 0.26.6 - 14-07-11 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.6_14-07-11.md)
+* 0.26.7 - 14-07-17 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.7_14-07-17.md)
+* 0.26.8 - 14-07-18 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.8_14-07-18.md)
+* 0.26.9 - 14-07-18 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.9_14-07-18.md)
+* 0.26.10 - 14-07-22 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.10_14-07-22.md)
 
 
-_Compiled file. Do not modify directly. Created: 2014-06-26 11:44:35_
+_Compiled file. Do not modify directly. Created: 2014-07-22 04:51:47_
