@@ -9,7 +9,7 @@
     },
     "curly": true,
     "quotmark": "single",
-    "debug" : true,
+    "debug" : false,
     "validthis" : true,
     "expr" : true,
     "loopfunc" : false,
