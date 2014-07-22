@@ -11,7 +11,8 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
             saveAndClose : saveAndClose,
             toggleEnabled : toggleEnabled,
             handleRowClick : handleRowClick,
-            addNewUser : addNewUser
+            addNewUser : addNewUser,
+            showSelfLockoutWarning: showSelfLockoutWarning
         });
 
         function beforeRender ($deferred) {
@@ -19,25 +20,32 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
                 .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
-        function saveUser (e) {
-            if (this.model.id == this.app.user.id && this.model.get('enabled')==='false' && this.model.changed.enabled !== undefined){
-                if(!confirm(resources.user.selfLockWarning)){
-                    e.stopPropagation();
-                    return;
-                }
+        function saveUser(e) {
+            debugger;
+            var lockoutFunction = function () {
+                _swapSavingTextWithSpinner.call(this, e);
+                this.model.toggle('saving');
+                _updateUserWorkflow.call(this, {});
+            };
+            if (e){
+                e.stopPropagation();
             }
-            _swapSavingTextWithSpinner.call(this, e);
-            this.model.toggle('saving');
-            _updateUserWorkflow.call(this, {});
+            if (this.model.id == this.app.user.id && this.model.get('enabled').toString() === 'false' && this.model.changed.enabled !== undefined) {
+                this.showSelfLockoutWarning.call(this, lockoutFunction);
+            } else {
+                lockoutFunction.call(this);
+            }
         }
 
         function saveAndClose() {
-            if (this.model.id == this.app.user.id && this.model.get('enabled')==='false' && this.model.changed.enabled !== undefined){
-                if(!confirm(resources.user.selfLockWarning)){
-                    return;
-                }
+            var lockoutFunction = function () {
+                _updateUserWorkflow.call(this, { close: true });
+            };
+            if (this.model.id == this.app.user.id && this.model.get('enabled').toString() === 'false' && this.model.changed.enabled !== undefined) {
+                this.showSelfLockoutWarning.call(this, lockoutFunction);
+            } else {
+                lockoutFunction.call(this);
             }
-            _updateUserWorkflow.call(this, { close : true });
         }
 
         function _updateUserWorkflow(options) {
@@ -46,13 +54,16 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
                 .fail(_handleFailedSave.bind(this));
         }
 
-        function toggleEnabled (e) {
+        function showSelfLockoutWarning(completionFunction){
+            this.displayModal(
+                {
+                    header: resources.warning,
+                    msg: resources.user.selfLockWarning
+                }).done(completionFunction.bind(this));
+        }
+
+        function toggleEnabled(e) {
             e.stopPropagation();
-            if (this.model.id == this.app.user.id){
-                if(!confirm(resources.user.selfLockWarning)){
-                    return;
-                }
-            }
             this.model.toggle('enabled');
             this.model.trigger('change:enabled');
             this.saveUser();
