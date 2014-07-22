@@ -25,7 +25,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
                 _buildMastheadBreadcrumb.call(this),
                 this.model.fetch(),
                 this.model.get('childNodes').fetch(),
-                this.model.get('childContent').fetch())
+                this.model.get('childContent').query())
                 .done($deferred.resolve, _addAssetIndexView.bind(this))
                 .fail($deferred.reject);
         }

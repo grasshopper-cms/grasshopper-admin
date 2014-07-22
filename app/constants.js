@@ -73,7 +73,7 @@ define([], function() {
             createAssets : '#items/nodeid/:id/createAssets',
             forbidden : '#forbidden'
         },
-        timeouts: {
+        timeouts : {
             showSpinnerLoadingTimeout: 2000
         },
         fileExtensionsMap : {
@@ -88,7 +88,12 @@ define([], function() {
             ai : 'fa-file-image-o',
             swf : 'fa-file-video-o'
         },
-        imageExtensions : ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif']
+        imageExtensions : ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif'],
+        pagination : {
+            defaultPageSize : [25, 50, 100, 'all'],
+            defaultLimit: 25,
+            defaultSkip : 0
+        }
 
     };
 
