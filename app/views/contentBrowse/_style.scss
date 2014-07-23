@@ -46,3 +46,29 @@
   line-height: 2.3125rem;
   color: $borderGray;
 }
+
+.paginator {
+  overflow: hidden;
+
+  .pagination {
+    list-style-type: none;
+    margin: 0;
+  }
+}
+
+.pagination-limit {
+  float: left;
+}
+
+.pagination-skip {
+  float: right;
+}
+
+.pagination-item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.pagination-item-link {
+
+}
