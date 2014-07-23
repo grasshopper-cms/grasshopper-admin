@@ -19,7 +19,7 @@ module.exports = function (grunt) {
         'interpolateConstantsBuild',
         'sass',
         'autoprefixer:no_dest',
-        'connect:site',
+        'express:site',
         'watch'
     ]);
 };
