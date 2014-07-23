@@ -1,4 +1,4 @@
-define(['moment'], function (moment) {
+define(['moment','resources'], function (moment, resources) {
     'use strict';
 
     return {
@@ -10,7 +10,7 @@ define(['moment'], function (moment) {
 
     function readAsEditorialDate(value) {
         if(value) {
-            return moment(value).format('MM/DD/YYYY h:mm a');
+            return moment(value).format(resources.plugins.editorialWindow.dateFormat);
         }
     }
 

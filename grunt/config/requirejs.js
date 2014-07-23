@@ -9,8 +9,9 @@ module.exports = function (grunt) {
                 mainConfigFile: '<%= tempDirectory %>/main.js',
                 name: 'main',
                 out: '<%= buildDirectory%>/main.js',
-                optimize: 'uglify',
+                optimize: 'uglify2',
                 preserveLicenseComments: false,
+                generateSourceMaps:true,
                 include: ['vendor/requirejs/require.js']
             }
         }

@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'moment', 'jquery', 'datetimepicker'],
-    function (GrasshopperBaseView, moment, $) {
+define(['grasshopperBaseView', 'moment', 'jquery', 'datetimepicker', 'resources'],
+    function (GrasshopperBaseView, moment, $, datetimepicker, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -29,24 +29,25 @@ define(['grasshopperBaseView', 'moment', 'jquery', 'datetimepicker'],
             this.$el.find('.datetimepicker').each(function () {
                 $(this).datetimepicker({
                     startDate : moment(),
-                    format: 'MM/DD/YYYY h:mm a',
+                    timepicker : true,
                     formatTime: 'h:mm a',
-                    formatDate: 'MM/DD/YYYY'
+                    /*formatDate: 'YYYY/MM/DD',*/
+                    format: resources.plugins.editorialWindow.dateFormat
                 });
             });
             $deferred.resolve();
         }
 
         function setValidFromToNow () {
-            this.model.set('value.validFrom', moment());
+            this.model.set('value.validFrom', moment().format(resources.plugins.editorialWindow.dateFormat));
         }
 
         function setValidToToNow () {
-            this.model.set('value.validTo', moment());
+            this.model.set('value.validTo', moment().format(resources.plugins.editorialWindow.dateFormat));
         }
 
         function setValidToNeverExpire () {
-            this.model.set('value.validTo', moment('December 31 3000'));
+            this.model.set('value.validTo', moment('December 31 3000').format(resources.plugins.editorialWindow.dateFormat));
         }
 
     });

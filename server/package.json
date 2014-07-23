@@ -1,0 +1,29 @@
+{
+    "name": "grasshopper-admin-server",
+    "version": "0.27.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@git.thinksolid.com:opensource/grasshopper-admin-sample.git"
+    },
+    "author": "",
+    "license": "BSD-2-Clause",
+    "dependencies": {
+        "grasshopper-api": "0.14.22",
+        "grasshopper-admin": "0.27.0",
+        "express": "~4.2.0",
+        "grunt-contrib-watch": "^0.6.1",
+        "grunt": "^0.4.5",
+        "grunt-release-notes": "^0.1.1",
+        "grunt-prompt": "^1.1.0",
+        "grunt-contrib-copy": "^0.5.0",
+        "grunt-shell": "^0.7.0",
+        "grunt-contrib-clean": "^0.5.0",
+        "grunt-build-gh-pages": "^1.0.3"
+    }
+}

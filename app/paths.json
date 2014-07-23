@@ -274,6 +274,7 @@
         "loginWorker" : "workers/loginWorker",
         "logoutWorker" : "workers/logoutWorker",
         "contentTypeWorker" : "workers/contentTypeWorker",
+        "ajaxCounterWorker" : "workers/ajaxCounterWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
         "nodeWorker" : "workers/nodeWorker",

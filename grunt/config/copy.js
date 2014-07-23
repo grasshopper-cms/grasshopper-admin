@@ -66,7 +66,10 @@ module.exports = function (grunt) {
                     expand : true,
                     cwd : 'app/',
                     src : [
-                        'themes/img/**'
+                        'themes/img/**',
+                        'themes/*.png',
+                        'themes/*.gif',
+                        'themes/*.jp*g'
                     ],
                     dest : '<%= buildDirectory %>'
                 }
@@ -171,6 +174,19 @@ module.exports = function (grunt) {
                         'views/**/*.js'
                     ],
                     dest : '<%= buildDirectory %>'
+                }
+            ]
+        },
+        deploy : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'server/',
+                    src : [
+                        '**',
+                        '!node_mondules'
+                    ],
+                    dest : '_deploy'
                 }
             ]
         }

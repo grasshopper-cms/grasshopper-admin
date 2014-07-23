@@ -5,16 +5,16 @@ define(['sparkmd5'], function (sparkmd5) {
      * @namespace formatters
      */
     return {
-        prepend : prepend,
-        isGreaterThan : isGreaterThan,
-        asNumber : {
-            read : readAsNumber,
-            publish : publishAsNumber
+        prepend: prepend,
+        isGreaterThan: isGreaterThan,
+        asNumber: {
+            read: readAsNumber,
+            publish: publishAsNumber
         },
-        hasLength : hasLength,
-        sort : sort,
-        sortBy : sortBy,
-        gravatarUrl : gravatarUrl
+        hasLength: hasLength,
+        sort: sort,
+        sortBy: sortBy,
+        gravatarUrl: gravatarUrl
     };
 
     /**
@@ -45,7 +45,7 @@ define(['sparkmd5'], function (sparkmd5) {
     }
 
     function sort(arr, direction) {
-        if(direction === 'desc') {
+        if (direction === 'desc') {
             return arr.sort().reverse();
         }
         return arr.sort();
@@ -54,8 +54,8 @@ define(['sparkmd5'], function (sparkmd5) {
     function sortBy(arr, field, direction) {
         var reverse = (direction === 'desc'),
             out,
-            sortFn = function(a, b) {
-                if(a[field] < b[field]) {
+            sortFn = function (a, b) {
+                if (a[field] < b[field]) {
                     out = -1;
                 } else if (a[field] > b[field]) {
                     out = 1;
@@ -71,16 +71,7 @@ define(['sparkmd5'], function (sparkmd5) {
     }
 
     function gravatarUrl(email, args) {
-        var md5value = sparkmd5.hash(email.toLowerCase()),
-            defaultImageAbsUrl;
-        // ip addr or localhost
-        if (window.location.hostname.indexOf('localhost') === 0 || /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/.test(window.location.hostname)) {
-            // mystery man
-            defaultImageAbsUrl = 'mm';
-        }
-        else {
-            defaultImageAbsUrl = window.location.protocol + '//' + window.location.host + '/themes/img/default-avatar.png';
-        }
-        return 'http://www.gravatar.com/avatar/' + md5value + '?s=' + args + '&d=' + encodeURIComponent(defaultImageAbsUrl);
+        var md5value = sparkmd5.hash(email.toLowerCase());
+        return 'http://www.gravatar.com/avatar/' + md5value + '?s=' + args + '&d=mm';
     }
 });
