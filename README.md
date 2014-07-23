@@ -114,6 +114,15 @@ Front end of the [Grasshopper api](https://github.com/Solid-Interactive/grasshop
 * 0.26.3 - 14-06-14 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.3_14-06-14.md)
 * 0.26.4 - 14-06-21 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.4_14-06-21.md)
 * 0.26.5 - 14-06-26 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.5_14-06-26.md)
+* 0.26.6 - 14-07-11 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.6_14-07-11.md)
+* 0.26.7 - 14-07-17 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.7_14-07-17.md)
+* 0.26.8 - 14-07-18 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.8_14-07-18.md)
+* 0.26.9 - 14-07-18 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.9_14-07-18.md)
+* 0.26.10 - 14-07-21 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.10_14-07-21.md)
+* 0.26.11 - 14-07-21 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.11_14-07-21.md)
+* 0.26.12 - 14-07-21 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.12_14-07-21.md)
+* 0.26.14 - 14-07-22 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.26.14_14-07-22.md)
+* 0.27.0 - 14-07-22 - [features](https://github.com/Solid-Interactive/grasshopper-admin/tree/joust/release_notes/0.27.0_14-07-22.md)
 
 
-_Compiled file. Do not modify directly. Created: 2014-06-26 11:44:35_
+_Compiled file. Do not modify directly. Created: 2014-07-22 10:04:13_
