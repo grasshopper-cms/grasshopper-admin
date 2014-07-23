@@ -14,7 +14,8 @@
     }
   ],
   "version": "0.27.0",
-  "repository": {    "type": "git",
+  "repository": {
+    "type": "git",
     "url": "https://github.com/Solid-Interactive/grasshopper-admin.git"
   },
   "bugs": {
@@ -39,7 +40,8 @@
     "grunt-build-gh-pages": "0.1.1",
     "grunt-prompt": "~0.1.2",
     "grunt-release-notes": "0.1.1",
-    "git-release-notes": "0.0.1"
+    "git-release-notes": "0.0.1",
+    "grunt-express-server": "^0.4.17"
   },
   "dependencies": {
     "commander": "~2.1.0",

@@ -20,7 +20,7 @@ module.exports = function (grunt) {
         'sass',
         'processTemplateResourceRefs:development',
         'autoprefixer:no_dest',
-        'connect:site',
+        'express:site',
         'watch'
     ]);
 };

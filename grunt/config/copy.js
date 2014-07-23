@@ -176,6 +176,19 @@ module.exports = function (grunt) {
                     dest : '<%= buildDirectory %>'
                 }
             ]
+        },
+        deploy : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'server/',
+                    src : [
+                        '**',
+                        '!node_mondules'
+                    ],
+                    dest : '_deploy'
+                }
+            ]
         }
     });
 
