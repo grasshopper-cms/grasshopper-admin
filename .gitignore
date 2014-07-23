@@ -9,3 +9,5 @@ ghapi.json
 .bundle
 app/vendor
 .DS_Store
+_deploy
+server/public/admin
