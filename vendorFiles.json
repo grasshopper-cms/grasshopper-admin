@@ -5,7 +5,6 @@
     "lodash-amd" : "vendor/lodash-amd/underscore/**",
     "jquery" : "vendor/jquery/dist/jquery.js",
     "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core.js",
-    "fonts" : "vendor/fonts/**",
     "font-awesome-fonts" : "vendor/font-awesome/fonts/**",
     "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed.js",
     "text" : "vendor/requirejs-text/text.js",
