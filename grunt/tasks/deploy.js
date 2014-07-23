@@ -3,6 +3,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('deploy', 'Deploy', function () {
 
-        grunt.task.run(['copy:deploy', 'build_gh_pages:staging']);
+        grunt.task.run(['build','copy:deploy', 'build_gh_pages:staging']);
     });
 };
