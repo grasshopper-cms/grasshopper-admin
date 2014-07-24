@@ -3,6 +3,14 @@ module.exports = function (grunt) {
     'use strict';
 
     grunt.config('shell', {
+        commitReleaseNotes : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true
+            },
+            command : 'git commit README.md -m "Updating release notes."'
+        },
         test_heroku_api : {
             command : grunt.template.process('curl <%= apiEndpoint %>/token -H "Accept: application/json" -H "Acceen_US" -u <%= userAdmin %>'),
             options : {
