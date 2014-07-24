@@ -19,7 +19,6 @@ define(['jquery', 'underscore', 'constants'],
             $.ajaxSetup({
                 /* jslint unused: false */
                 beforeSend: function (jqXHR, settings) {
-                    console.log('RQ number:'+requestsMidflight+' meth: ' + settings.type +' at:'+settings.url);
                     if (requestFilter(jqXHR, settings)) {
                         requestsMidflight++;
                         var $deferred = new $.Deferred(), showSpinnerLoading = function () {
@@ -37,7 +36,6 @@ define(['jquery', 'underscore', 'constants'],
                         }, constants.timeouts.showSpinnerLoadingTimeout);
                         jqXHR.always(function (jqXHR, textStatus) {
                             requestsMidflight--;
-                            console.log('RQ done number:'+requestsMidflight+' meth: ' + settings.type +' at:'+settings.url);
                             $deferred.reject();
                             hideSpinnerLoading();
                         });
