@@ -64,6 +64,14 @@ module.exports = function (grunt) {
                 failOnError : true
             },
             command : 'bundle install'
+        },
+        setupHerokuEnvVariables : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true
+            },
+            command : 'heroku config:set GHCONFIG=\'<%= ghapiConfigs %>\''
         }
     });
 
