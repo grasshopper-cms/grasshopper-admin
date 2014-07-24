@@ -184,7 +184,7 @@ module.exports = function (grunt) {
                     cwd : 'server/',
                     src : [
                         '**',
-                        '!node_modules'
+                        '!node_modules/**'
                     ],
                     dest : '_deploy'
                 }
