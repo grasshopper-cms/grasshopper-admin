@@ -1,6 +1,8 @@
 /* jshint node:true */
 'use strict';
 
+var savedConfig;
+
 module.exports = function (grunt) {
     grunt.registerTask('loadGhConfigs', function () {
         if (!grunt.file.exists('ghapi.json')) {
@@ -8,10 +10,14 @@ module.exports = function (grunt) {
             return;
         }
 
-        var config = require('ghapi.json');
+        var config = savedConfig = require('ghapi.json');
         if (config) {
             grunt.config.set('ghapiConfigs', JSON.stringify(config));
         }
+    });
+
+    grunt.registerTask('loadGhConfigs:restore', function () {
+        grunt.file.write('ghapi.json', savedConfig);
     });
 };
 

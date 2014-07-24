@@ -11,7 +11,7 @@ module.exports = function (grunt) {
             'build',
             'copy:deploy',
             'build_gh_pages:staging',
-            'shell:deployHeroku'
+            'shell:deployHeroku',
         ];
 
         if (loadConfigs) {
@@ -19,7 +19,11 @@ module.exports = function (grunt) {
             tasks = [
                 'loadGhConfigs',
                 'shell:setupHerokuEnvVariables'
-            ].concat(tasks);
+            ]
+                .concat(tasks)
+                .concat([
+                    'loadGhConfigs:restore'
+                ]);
         }
 
         grunt.task.run(tasks);
