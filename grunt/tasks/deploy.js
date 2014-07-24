@@ -5,13 +5,13 @@ module.exports = function (grunt) {
                                         'To change the env variables, use a truthy argument:\n' +
                                         'grunt deploy:heroku:1', function (loadConfigs) {
         var tasks = [
-//            'clean:deploy',
-//            'releaseNotes',
-//            'shell:commitReleaseNotes',
-//            'build',
-//            'copy:deploy',
-//            'build_gh_pages:staging',
-//            'shell:deployHeroku'
+            'clean:deploy',
+            'releaseNotes',
+            'shell:commitReleaseNotes',
+            'build',
+            'copy:deploy',
+            'build_gh_pages:staging',
+            'shell:deployHeroku'
         ];
 
         if (loadConfigs) {
