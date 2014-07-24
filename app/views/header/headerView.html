@@ -1,49 +1,72 @@
-<div id="header-partial" class="contain-to-grid sticky">
-    <nav class="top-bar">
-        <ul class="title-area">
-            <!-- Title Area -->
-            <li class="name">
-                <h1>
-                    <a href="#">
-                        <img class="grasshopperLogo"
-                             src="http://content.screencast.com/users/GregSolid/folders/Jing/media/c4f1e4d6-b74f-467c-be23-2ed1c4bdfea1/00000028.png"/>
+<div>
 
-                        <div id="logo-text">{{data.resources.siteName}}</div>
+    <div id="topbar" class="contain-to-grid sticky">
+        <div id="top-nav">
+            <ul class="pull-right">
+                <li>
+                    <a data-rv-href="model:userModel->href">
+                        <img data-rv-src="model:userModel->email | gravatarUrl 24">
+                        <span data-rv-text="model:resources->user->loggedInAs | spaceAfter"></span>
+                        <span>{{model:userModel->firstname | spaceAfter}}{{model:userModel->lastname | spaceAfter}}</span>
                     </a>
-                </h1>
-            </li>
-            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-            <li class="toggle-topbar menu-icon"><a href="#"><span>{{data.resources.menu}}</span></a></li>
-        </ul>
-        <section class="top-bar-section">
-            <ul class="right">
-                <li><a id="logOutButton" href="#logout" data-header-show="data.loggedIn">{{data.resources.log_out}}</a>
                 </li>
-                <li><a id="logInButton" href="#login" data-header-hide="data.loggedIn">{{data.resources.log_in}}</a>
-                </li>
-                <li class="divider hide-for-small"></li>
-                <li class="has-dropdown">
-                    <a href="#">
-                        <img class="gravatar" data-header-show="data.loggedIn"
-                             src="http://content.screencast.com/users/GregSolid/folders/Jing/media/79416a51-e20b-4b29-8e56-5d6352ed3bb7/00000031.png"/>
-                        <span data-header-text="data.name"></span>
+                <li>
+                    <a id="logOutButton" data-rv-href="model:constants->internalRoutes->logout" data-rv-show="model:userModel->loggedIn">
+                        {{model:resources->log_out}}
                     </a>
-                    <ul class="dropdown">
-                        <li><a id="myProfileButton" data-header-show="data.loggedIn" data-header-href="data.url">{{data.resources.edit}}
-                            {{data.resources.profile}}</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">{{data.resources.site.about}}</a></li>
-                    </ul>
+                </li>
+                <li>
+                    <a id="logInButton" data-rv-href="model:constants->internalRoutes->login" data-rv-hide="model:userModel->loggedIn">
+                        {{model:resources->log_in}}
+                    </a>
                 </li>
             </ul>
-        </section>
-    </nav>
-</div>
-<div id="sub-header" class="row">
-    <div class="large-8 columns">
+
+        </div>
     </div>
-    <div class="large-4 columns">
-        <a id="displayUsersButton" data-header-show="data.admin" class="button"
-           href="#users">{{data.resources.users}}</a>
+
+    <div id="headerbar">
+        <div class="container">
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <a data-rv-href="model:constants->internalRoutes->content" class="brand">{{model:resources->siteName}}</a>
+
+                    <a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse" data-rv-on-click="view.toogleNavigation">
+                        <i class="fa fa-align-justify"></i>
+                    </a>
+
+                    <div class="nav-collapse">
+                        <ul id="main-nav" class="nav pull-right">
+
+                            <li class="nav-item" data-rv-show="model:userModel->role | includes admin reader editor">
+                                <a id="items" class="nav-item-link" data-rv-href="model:constants->internalRoutes->content">
+                                    <i class="fa fa-th"></i>
+                                    <span>{{model:resources->content}}</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item" data-rv-show="model:userModel->role | includes admin editor">
+                                <a id="contentTypes" class="nav-item-link" data-rv-href="model:constants->internalRoutes->contentTypes">
+                                    <i class="fa fa-cogs"></i>
+                                    <span>{{model:resources->types}}</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item" data-rv-show="model:userModel->role | equals admin">
+                                <a id="users" class="nav-item-link" data-rv-href="model:constants->internalRoutes->users">
+                                    <i class="fa fa-user"></i>
+                                    <span>{{model:resources->users}}</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
+
 </div>

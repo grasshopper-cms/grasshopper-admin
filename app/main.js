@@ -2,117 +2,146 @@
 // Require.js allows us to configure shortcut alias
 require.config({
     shim : {
-        underscore : {
-            exports : '_'
-        },
         base64 : {
             exports : 'Base64'
         },
         alerts : {
             deps : ['foundation']
         },
-        forms : {
-            exports : 'Forms',
+        dropdown : {
+            deps : ['foundation']
+        },
+        tabs : {
+            deps : ['foundation']
+        },
+        tooltip : {
+            deps : ['foundation']
+        },
+        abide : {
             deps : ['foundation']
         },
         foundation : {
             exports : 'Foundation',
             deps : ['jquery']
+        },
+        jqueryui : {
+            exports : 'jquery',
+            deps : ['jquery']
+        },
+        select2 : {
+            exports : 'jquery',
+            deps : ['jquery']
+        },
+        widgetFactory : {
+            exports : 'jquery',
+            deps : ['jqueryui']
+        },
+        mouseInteraction : {
+            exports : 'jquery',
+            deps : ['jqueryui', 'widgetFactory']
+        },
+        sortable : {
+            exports : 'jquery',
+            deps : ['jqueryui', 'widgetFactory', 'mouseInteraction']
+        },
+        accordion : {
+            exports : 'jquery',
+            deps : ['jqueryui', 'widgetFactory']
+        },
+        ckeditorAdapter : {
+            exports : 'jquery',
+            deps : ['jquery', 'ckeditor']
+        },
+        scrollToFixed : {
+            exports : 'jquery',
+            deps : ['jquery']
+        },
+        datetimepicker : {
+            exports : 'datetimepicker',
+            deps : ['jquery']
         }
-
     },
-    paths : {
-        // Libraries
-        underscore : 'vendor/lodash/dist/lodash.underscore',
-        jquery : 'vendor/jquery/jquery',
-        backbone : 'vendor/backbone-amd/backbone',
-        text : 'vendor/requirejs-text/text',
-        rivets : 'vendor/rivets/dist/rivets',
-        base64 : 'vendor/js-base64/base64',
-        foundation : 'vendor/foundation/js/foundation/foundation',
-        paginator : 'vendor/backbone.paginator/lib/backbone.paginator',
-        LocalStorage : 'localStorage',
-
-        // Routers
-        masseuseRouter : 'vendor/masseuse/app/masseuseRouter',
-        router : 'router',
-
-        // Foundation Dependencies
-        alerts : 'vendor/foundation/js/foundation/foundation.alerts',
-        forms : 'vendor/foundation/js/foundation/foundation.forms',
-
-        // Views
-        baseView : 'vendor/masseuse/app/baseView',
-        loginView : 'views/login/loginView',
-        loginViewConfig : 'views/login/loginViewConfig',
-        headerView : 'views/header/headerView',
-        headerViewConfig : 'views/header/headerViewConfig',
-        emptyView : 'views/empty/emptyView',
-        emptyViewConfig : 'views/empty/emptyViewConfig',
-        alertBoxView : 'views/alertBox/alertBoxView',
-        alertBoxViewConfig : 'views/alertBox/alertBoxViewConfig',
-        userDetailView : 'views/userDetail/userDetailView',
-        userDetailViewConfig : 'views/userDetail/userDetailViewConfig',
-        usersIndexView : 'views/usersIndex/usersIndexView',
-        usersIndexViewConfig : 'views/usersIndex/usersIndexViewConfig',
-
-        // Mixins
-        mixin : 'vendor/masseuse/app/mixin',
-        rivetView : 'mixins/rivetView',
-
-        // Channels
-        channels : 'vendor/masseuse/app/channels',
-
-        // Models
-        computedProperty : 'vendor/masseuse/app/computedProperty',
-        masseuseModel : 'vendor/masseuse/app/MasseuseModel',
-        selfValidatingModel : 'models/selfValidatingModel',
-        UserModel : 'models/UserModel',
-
-        // View Models
-        loginViewModel : 'models/viewModels/loginViewModel',
-        headerViewModel : 'models/viewModels/headerViewModel',
-        alertBoxViewModel : 'models/viewModels/alertBoxViewModel',
-        userDetailViewModel : 'models/viewModels/userDetailViewModel',
-        usersIndexViewModel : 'models/viewModels/usersIndexViewModel',
-
-        // Workers
-        loginWorker : 'workers/loginWorker',
-        userWorker : 'workers/userWorker',
-
-        // Collections
-        paginatedCollection : 'collections/paginatedCollection',
-        userCollection : 'collections/userCollection',
-
-        // Api proxy
-        api : 'api/api',
-
-        // Validation
-        validation : 'validation/validation',
-
-        // Resources File
-        resources : 'resources',
-        constants : 'constants'
-    }
+    packages : [
+        {
+            name : 'underscore',
+            location : 'vendor/lodash-amd/underscore'
+        },
+        {
+            name : 'masseuse',
+            location : 'vendor/masseuse/app'
+        },
+        {
+            name : 'helpers',
+            location : 'helpers'
+        }
+    ]
+    // <%= paths %>
 });
 
 require([
+    'backbone',
+    'underscore',
     'jquery',
     'router',
+    'constants',
     'alerts',
-    'forms'
+    'dropdown',
+    'tabs',
+    'tooltip',
+    'abide',
+    'modernizr',
+    'sortable',
+    'accordion',
+    'scrollToFixed',
+    'select2',
+    'sparkmd5'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-    function ($, Router) {
+        function (Backbone, _, $, Router, constants) {
+        'use strict';
+        var ajaxRequests = {}, requestsMidflight=0;
 
-    'use strict';
-    $(document).foundation();
+        _.templateSettings = {
+            evaluate : /\[\[(.+?)\]\]/g,
+            interpolate : /\[\[=(.+?)\]\]/g,
+            escape : /\[\[-(.+?)\]\]/g
+        };
 
-    new Router().start();
-    Backbone.history.start();
-    // TODO: setup push state on nginx
-    //Backbone.history.start({pushState: true});
-});
+        $.ajaxSetup({
+            /* jslint unused: false */
+            beforeSend: function (jqXHR, settings) {
+                requestsMidflight++;
+                var $deferred = new $.Deferred(), showSpinnerLoading = function () {
+                    if (requestsMidflight > 0) {
+                        $('body').addClass('spinner-loading');
+                    }
+                }, hideSpinnerLoading = function () {
+                    if (requestsMidflight <= 0) {
+                        $('body').removeClass('spinner-loading');
+                    }
+                };
+                $deferred.then(showSpinnerLoading);
+                setTimeout(function () {
+                    $deferred.resolve();
+                }, constants.timeouts.showSpinnerLoadingTimeout);
+                jqXHR.always(function (jqXHR, textStatus) {
+                    requestsMidflight--;
+                    $deferred.reject();
+                    hideSpinnerLoading();
+                });
+            }
+
+        });
+
+        // TODO: For some reason this is not needed?
+        $(document).foundation();
+
+        new Router();
+        Backbone.history.start();
+
+        // TODO: setup push state on nginx
+        //Backbone.history.start({pushState: true});
+    });

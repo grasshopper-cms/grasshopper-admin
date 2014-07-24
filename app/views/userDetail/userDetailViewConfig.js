@@ -1,17 +1,29 @@
 /*global define:false*/
-define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel'], function (templateHtml, userDetailViewModel) {
-    'use strict';
+define(['text!views/userDetail/userDetailView.html', 'userDetailViewModel',
+    'resources', 'constants', 'appBinders'],
+    function (formTemplate, userDetailModel, resources, constants, appBinders) {
+        'use strict';
 
-    return {
-        name : 'userDetailView',
-        // for model attribute errors on self validating models, follow the convention of attribute+"Error". See the rivetView "publish" method
-        ModelType : userDetailViewModel,
-        modelData: {},
-        el : '#stage',
-        templateHtml : templateHtml,
-        events : {
-            'click #saveUser' : 'updateModel'
-        }
-    };
-
-});
+        return {
+            name : 'userDetail',
+            modelData : {},
+            ModelType : userDetailModel,
+            browserTitle : 'User Details',
+            appendTo : '#stage',
+            wrapper : false,
+            template : formTemplate,
+            breadcrumbs : [
+                {
+                    text : resources.home,
+                    href : constants.internalRoutes.content
+                },
+                {
+                    text : resources.users,
+                    href : constants.internalRoutes.users
+                }
+            ],
+            rivetsConfig : {
+                binders : [appBinders]
+            }
+        };
+    });

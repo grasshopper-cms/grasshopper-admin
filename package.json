@@ -1,44 +1,64 @@
 {
-  "name": "Grasshopper-Admin",
-  "description": "Grasshopper Admin",
-  "version": "0.0.1",
-  "homepage": "",
-  "repository": {
-    "type": "git",
-    "url": ""
+  "name": "grasshopper-admin",
+  "description": "GUI for the grasshopper DMS",
+  "author": "Travis McHattie",
+  "contributors": [
+    {
+      "name": "Travis McHattie"
+    },
+    {
+      "name": "Peter Ajtai"
+    },
+    {
+      "name": "Greg Larrenaga"
+    }
+  ],
+  "version": "0.26.10",
+  "repository": {    "type": "git",
+    "url": "https://github.com/Solid-Interactive/grasshopper-admin.git"
   },
-  "author": "SOLID Interactive",
-  "keywords": [],
   "bugs": {
-    "email": "",
-    "url": ""
-  },
-  "engines": {
-    "node": ">=0.8.19"
+    "url": "https://github.com/Solid-Interactive/grasshopper-admin/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://opensource.org/licenses/MIT"
+      "url": "https://github.com/Solid-Interactive/grasshopper-admin/blob/master/LICENSE"
     }
   ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "bin": {
+    "grasshopper": "./bin/gha"
+  },
   "devDependencies": {
-    "grunt": "~0.4.1",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-livereload": "~0.1.2",
-    "mocha": "~1.12.0",
-    "chai": "~1.7.2",
-    "grunt-open": "~0.2.0",
-    "matchdep": "~0.1.2",
-    "grunt-contrib-connect": "~0.3.0",
-    "grunt-shell": "~0.2.2",
-    "grunt-build-gh-pages": "0.0.4",
+    "grunt-contrib-connect": "~0.7.1",
+    "grunt-build-gh-pages": "0.1.1",
+    "grunt-prompt": "~0.1.2",
+    "grunt-release-notes": "0.1.1",
+    "git-release-notes": "0.0.1"
+  },
+  "dependencies": {
+    "commander": "~2.1.0",
+    "grunt": "~0.4.1",
+    "grunt-autoprefixer": "~0.7.3",
+    "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-requirejs": "~0.4.0",
-    "grunt-contrib-sass": "~0.5.0",
-    "notes": "0.0.4",
-    "rivets": "~0.5.12",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-imagemin": "~0.7.0",
     "grunt-contrib-jshint": "0.2.0",
-    "grunt-usemin": "~0.1.12"
+    "grunt-contrib-requirejs": "~0.4.3",
+    "grunt-contrib-sass": "^0.7.3",
+    "grunt-filerev": "^0.2.1",
+    "grunt-replace": "~0.7.7",
+    "grunt-requirejs-paths": "~0.1.1",
+    "grunt-rev": "~0.1.0",
+    "grunt-shell": "~0.2.2",
+    "grunt-usemin": "~2.1.1",
+    "lodash": "~2.4.1",
+    "matchdep": "~0.1.2"
   }
 }

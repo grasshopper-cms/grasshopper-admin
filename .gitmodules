@@ -1,9 +1,1 @@
-[submodule "api"]
-	path = api
-	url = git@git.thinksolid.com:opensource/grasshopper-api-js.git
-[submodule "wiki"]
-    path = wiki
-    url = git@git.thinksolid.com:opensource/grasshopper-admin.wiki.git
-[submodule "app/vendor/masseuse"]
-	path = app/vendor/masseuse
-	url = git@git.thinksolid.com:opensource/masseuse.git
+

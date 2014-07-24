@@ -2,46 +2,52 @@
     <div class="row">
         <div class="large-5 small-centered columns">
             <form>
-                <div class="loginContainer">
-                    <div class="row">
-                        <div class="small-11 small-centered columns">
-                            <h2>
-                                Log In
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="small-11 small-centered columns">
-                            <div class="row">
-                                <input type="text" id="loginUsername" data-login-class-error="data.usernameError"
-                                       placeholder="User Name" data-login-value="data.username">
-                                <small class="error" data-login-show="data.usernameError">
-                                    <div data-login-text="data.usernameError"></div>
-                                </small>
-                            </div>
-                            <div class="row">
-                                <input type="password" id="loginPassword" data-login-class-error="data.passwordError"
-                                       placeholder="Password" data-login-value="data.password">
-                                <small class="error" data-login-show="data.passwordError">
-                                    <div data-login-text="data.passwordError"></div>
-                                </small>
+                <div class="account-container login stacked">
+                    <div class="content clearfix">
+                        <div class="row">
+                            <div class="small-centered columns">
+                                <h1>
+                                    {{model:resources->user->signIn}}
+                                </h1>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-5 small-offset-7 columns">
-                            <input id="loginButton" class="login-button" type="submit"
-                                    data-login-class-disabled="data.hasError" value="Log In">
-                            </input>
+                        <div class="row">
+                            <div class="small-centered columns">
+                                <div class="login-fields">
+
+                                    <p>{{model:resources->user->signInRegisteredUser}}</p>
+
+
+                                    <div class="field row collapse">
+                                        <div class="small-2 columns">
+                                            <span class="prefix"><i class="fa fa-user"></i></span>
+                                        </div>
+                                        <div class="small-10 columns">
+                                            <input type="text" data-rv-class-error="model:usernameError" placeholder="User Name" data-rv-value="model:username" class="login username-field">
+                                            <div data-rv-text="model:usernameError"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field row collapse">
+                                        <div class="small-2 columns">
+                                            <span class="prefix"><i class="fa fa-key"></i></span>
+                                        </div>
+                                        <div class="small-10 columns">
+                                            <input type="password" data-rv-class-error="model:passwordError" placeholder="Password" data-rv-value="model:password" class="login password-field">
+                                            <div data-rv-text="model:passwordError"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="small-5 small-offset-1 columns">
-                            Password Reset
-                        </div>
-                        <div class="small-5 small-offset-1 columns">
-                            What is Grasshopper?
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <button id="loginButton" class="button success radius right" data-rv-class-disabled="model:hasError">
+                                    {{model:resources->user->signIn}}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

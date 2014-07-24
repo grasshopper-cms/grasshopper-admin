@@ -1,0 +1,226 @@
+#header {
+  background-color: $headerBackgroundColor;
+
+  .brand {
+    position: relative;
+    top: 24px;
+    display: block;
+    overflow: hidden;
+    width: 280px;
+    height: 32px;
+    margin-right: .75em;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 600;
+    background: url(#{$imgPath}/logo.png) no-repeat 0 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .btn-navbar {
+    display: none;
+    height: auto;
+    padding: 14px 0 10px;
+    margin: 25px -20px 0;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  #main-nav {
+    position: relative;
+    padding: 0;
+    margin-top: 15px;
+    margin-right: 0;
+    margin-bottom: 0;
+
+    > li {
+      float: left;
+      padding: 0;
+      margin: 0 4px 0 0;
+      list-style: none;
+
+      .nav-item-link {
+        outline: none;
+
+        &.active {
+          color: #333;
+          font-weight: bold;
+          text-shadow: none;
+          background: #fff;
+          border-bottom: 1px solid #fff;
+        }
+      }
+
+      > a {
+        padding: 10px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #ffffff;
+        background: transparent;
+        border: 1px solid transparent;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 3px;
+        background-clip: padding-box;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+      }
+
+      a, a:hover, .open {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: $menuBGBlue;
+        background-image: linear-gradient(to bottom, $menuTopGradient, $menuBottomGradient);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff24415f', endColorstr='#ff172b3e', GradientType=0);
+        border: 1px solid $menuBorder;
+        box-shadow: inset 0 1px 0 $menuShadow;
+      }
+
+      a:hover,
+      .open > a {
+        background-color: #1b3148;
+        background-image: linear-gradient(to bottom, #1e3751, #16283a);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1e3751', endColorstr='#ff16283a', GradientType=0);
+      }
+
+      .active > a {
+        color: #192d42;
+        background: $white;
+        filter: none !important;
+        border-bottom-color: #ffffff;
+        box-shadow: none;
+        text-shadow: none;
+      }
+
+      a > i {
+        position: relative;
+        top: 1px;
+        padding-right: .35em;
+        font-size: 14px;
+
+      }
+
+      .nav-icon > a {
+        i {
+          padding-right:0;
+        }
+        span {
+          display:none;
+        }
+      }
+
+    }
+
+  }
+
+  #headerbar {
+    position: relative;
+    z-index: $headerBarZIndex;
+    height: 80px;
+    background: #1d354d;
+    box-shadow: inset 0 1px 0 #28496b;
+
+    .container {
+      position: relative;
+      height: 80px;
+    }
+  }
+
+  #topbar {
+    position: relative;
+    z-index: $topBarZIndex;
+    padding: 8px;
+    height:35px;
+    background: #16283a;
+    border-bottom: 1px solid $topBarBorderBottom;
+
+    #top-nav {
+
+      > ul {
+        padding: 0;
+        margin: 0;
+
+        > li {
+          float: left;
+          padding: 0;
+          margin: 0 0 0 1.5em;
+          list-style: none;
+          color: #ffffff;
+          font-size: 11px;
+
+          :first-child {
+            margin-left: 0;
+          }
+
+          > a {
+            color: #80a7cf;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 979px) {
+  #header {
+    .btn-navbar {
+      display: block;
+      float: right;
+      margin: -7px 0 10px;
+      padding: 0 0 8px;
+      font-size: 2rem;
+      text-align: right;
+      color: #F1F1F1;
+      
+      &:hover {
+        color: #cfd1cf;
+      }
+
+      .fa-align-justify {
+        margin-right: 14px;
+      }
+    }
+
+    .nav-collapse {
+      clear: both;
+    }
+
+    #main-nav {
+      display: none;
+      float: none;
+      padding: 0;
+      margin:0 0 15px;
+
+      .nav-item {
+        float: none;
+        display: block;
+        width: 100%;
+      }
+
+      .nav-item-link {
+        display: block;
+        border: 1px solid #080f15;
+        -webkit-box-shadow: inset 0 1px 0 #325b85;
+        box-shadow: inset 0 1px 0 #325b85;
+      }
+    }
+
+    #headerbar {
+      height: auto;
+
+      .container {
+        height: auto;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 980px) {
+  #header {
+    #main-nav {
+      display: inline-block !important;
+    }
+  }
+}

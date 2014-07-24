@@ -1,0 +1,91 @@
+//-------------  Definition  -------------
+$black: black;
+$black45Percent: rgba(0,0,0,0.45);
+
+$gray: #f8f8f8;
+$lightGray: lightgray;
+$darkerGray: #E4E1E1;
+$darkGray: #B1B1B1;
+
+$green: #43ac6a;
+
+$red : #AF4434;
+
+$yellow: #B69201;
+
+$blue: #1d354d;
+$lightBlue: #007DA6;
+$mediumBlue: #28496b;
+
+$white: #FFFFFF;
+$offWhite: #f9f9f9;
+
+//-------------  Implementation  -------------
+
+// Header View
+$topBarBorderBottom: $black;
+$headerBackgroundColor : $blue;
+$menuBGBlue: #1f3852;
+$menuTopGradient: #24415f;
+$menuBottomGradient: #172b3e;
+$menuBorder: #080f15;
+$menuShadow: #325b85;
+
+// Login View
+$buttonText: $offWhite;
+$buttonOkay: $green;
+$loginBackground: $offWhite;
+$loginBorder: $lightGray;
+$accountContainerBackground : $gray;
+$loginFieldsBackground : $gray;
+$accountContainerTextColor : $mediumBlue;
+
+// Modal View
+$modal-background-color: $black45Percent;
+$modal-contents-background-color: $white;
+$modalInputContainerBorder: $darkGray;
+$modalDropzoneColor: $offWhite;
+$modalDropzoneHover: $lightBlue;
+$modalDropzoneActive: $lightBlue;
+
+// Content Browse
+$tabBorderColor: $lightGray;
+$activeTabBorderColor: $white;
+
+// Alert Box View
+$alertBoxBackgroundColor: $white;
+$alertBoxNormal: $lightBlue;
+$alertBoxSuccess: $green;
+$alertBoxError: $red;
+$alertBoxWarning: $yellow;
+
+// Asset Detail View
+$assetDetailTableRowHover : $darkerGray;
+
+// Content Detail View
+$contentDetailTableRowHover : $darkerGray;
+
+// Content Type Detail View
+$accordionHeaderTableRowHover: $darkerGray;
+$accordionContentBackground: $lightGray;
+$accordionContentBorder: $darkGray;
+$fieldsetBorder: $darkGray;
+
+// Content Type Index View
+$contentTypeIndexTableRowHover: $darkerGray;
+
+// Footer View
+$footerContainerBackground: #1d354d;
+$footerContainerText: $white;
+
+// Masthead View
+$mastheadContainerTextShadow: $white;
+
+// Node Detail View
+$nodeDetailRowHover: $darkerGray;
+
+// Users Index View
+$userIndexTableRowHover: $darkerGray;
+
+// Embedded Type Plugin
+$accordionHeaderBackgroundColor: $darkerGray;

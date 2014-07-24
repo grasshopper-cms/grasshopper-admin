@@ -1,7 +1,11 @@
-.idea
-.DS_Store
 desktop.ini
 *node_modules*
 *npm-debug*
 build
 .sass-cache
+.idea
+gha.json
+ghapi.json
+.bundle
+app/vendor
+.DS_Store

@@ -1,33 +1,21 @@
 define([
-    'masseuseModel',
-    'validation',
-    'computedProperty',
-    'resources',
-    'constants'
-], function (Model, validation, ComputedProperty, resources, constants) {
+    'grasshopperModel', 'masseuse', 'resources', 'constants'
+], function (Model, masseuse, resources, constants) {
 
     'use strict';
+    var ComputedProperty = masseuse.ComputedProperty;
     return Model.extend({
-        urlRoot : constants.api.user.url,
-        url : constants.api.user.url,
+        idAttribute : '_id',
         defaults : {
             login : false,
             role : false,
-            name : false,
             enabled : false,
             email : false,
-            password : false,
-            loggedIn : new ComputedProperty(['enabled'], function (attribute) {
-                return attribute;
+            loggedIn : new ComputedProperty(['enabled'], function (enabled) {
+                return enabled;
             }),
-            isAdmin : new ComputedProperty(['role'], function (attribute) {
-                return resources.user.roles.admin == attribute;
-            }),
-            isReader : new ComputedProperty(['role'], function (attribute) {
-                return resources.user.roles.reader == attribute;
-            }),
-            urlLink : new ComputedProperty(['_id'], function (attribute) {
-                return '#' + constants.api.user.shortUrl + attribute;
+            href : new ComputedProperty(['_id'], function (id) {
+                return constants.internalRoutes.user + '/' + id;
             })
         }
     });

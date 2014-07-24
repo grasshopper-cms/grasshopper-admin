@@ -1,0 +1,12 @@
+#userIndex {
+  #UserSearch {
+    width:180px;
+  }
+}
+
+#userIndexTable {
+  cursor: pointer;
+  :hover {
+    background-color: $userIndexTableRowHover;
+  }
+}

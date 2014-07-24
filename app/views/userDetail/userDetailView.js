@@ -1,70 +1,123 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'resources', 'userWorker'], function (BaseView, rivetView, resources, userWorker) {
+define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker', 'jquery'],
+    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker, $) {
 
-        var userDetailView = BaseView.extend({
-            rivetView : rivetView({rivetScope : '#userDetail', rivetPrefix : 'userdetail', instaUpdateRivets : false}),
+        'use strict';
+
+        return GrasshopperBaseView.extend({
+            defaultOptions : userDetailViewConfig,
             beforeRender : beforeRender,
-            afterRender : afterRender,
-            displaySuccessfulSave : displaySuccessfulSave,
-            displaySaveError : displaySaveError,
-            updateModel : updateModel,
-            updateNameInHeader : updateNameInHeader
+            saveUser : saveUser,
+            saveAndClose : saveAndClose,
+            toggleEnabled : toggleEnabled,
+            handleRowClick : handleRowClick,
+            addNewUser : addNewUser
         });
 
-        function beforeRender() {
-            this.model.set('isAdmin', this.app.user.get('isAdmin'));
-            this.model.attributesToIgnore = ['isAdmin', 'resources', 'id', 'roles', 'possibleStatus', 'statusOptions'];
-            console.log(this.model.statusOptions);
+        function beforeRender ($deferred) {
+            this.model.fetch()
+                .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
-//      TODO: Turn this into a mixin
-        function afterRender () {
-            this.rivetView();
-            this.$el.foundation('forms');
+        function saveUser (e) {
+            if (this.model.id == this.app.user.id && this.model.get('enabled')==='false' && this.model.changed.enabled !== undefined){
+                if(!confirm(resources.user.selfLockWarning)){
+                    e.stopPropagation();
+                    return;
+                }
+            }
+            _swapSavingTextWithSpinner.call(this, e);
+            this.model.toggle('saving');
+            _updateUserWorkflow.call(this, {});
         }
 
-        function updateModel(model) {
-            var self = this;
+        function saveAndClose() {
+            if (this.model.id == this.app.user.id && this.model.get('enabled')==='false' && this.model.changed.enabled !== undefined){
+                if(!confirm(resources.user.selfLockWarning)){
+                    return;
+                }
+            }
+            _updateUserWorkflow.call(this, { close : true });
+        }
 
-            this.model.attributes = _.omit(this.model.attributes, this.model.attributesToIgnore);
+        function _updateUserWorkflow(options) {
             this.model.save()
-                .done(function(model, response, options) {
-                    displaySuccessfulSave();
-                    updateNameInHeader.call(self, self.model);
-                }).fail(function(odel, xhr, options) {
-                    displaySaveError.call(self, xhr);
-                });
-
-            return false;
+                .done(_handleSuccessfulSave.bind(this, options))
+                .fail(_handleFailedSave.bind(this));
         }
 
-        function updateNameInHeader(model) {
-            if(userWorker.isThisMyProfile(model, this.app.user.get('_id'))) {
-                this.app.user.set('name', model.get('name'));
+        function toggleEnabled (e) {
+            e.stopPropagation();
+            if (this.model.id == this.app.user.id){
+                if(!confirm(resources.user.selfLockWarning)){
+                    return;
+                }
             }
+            this.model.toggle('enabled');
+            this.model.trigger('change:enabled');
+            this.saveUser();
         }
 
-        function displaySuccessfulSave() {
-            var progressBar = $('.progress-bar');
-
-            progressBar.addClass('active');
-            progressBar.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e){
-                progressBar.addClass('disappear');
-                progressBar.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e){
-                    progressBar.removeClass('active').removeClass('disappear');
-                });
-            });
+        function handleRowClick (e) {
+            e.stopPropagation();
+            this.app.router.navigateTrigger(this.model.get('href'), {}, true);
         }
 
-        function displaySaveError(xhr) {
-            var message = '';
-            if(xhr.status === 500) {
-                message = $.parseJSON(xhr.responseText).message;
+        function _handleSuccessfulSave (options, model) {
+            this.displayTemporaryAlertBox(
+                {
+                    header : resources.success,
+                    style : 'success',
+                    msg : resources.user.successfullyUpdated
+                }
+            );
+
+            if(options.close) {
+                this.app.router.navigateTrigger(constants.internalRoutes.users);
             } else {
-                message = resources.user.errors[xhr.status];
+                this.model.toggle('saving');
+
+                _swapSavingTextWithSpinner.call(this);
             }
-            this.displayAlertBox(message);
+
+            _updateNameInHeader.call(this, model);
         }
 
-    return userDetailView;
-});
+        function _handleFailedSave (xhr) {
+            this.model.toggle('saving');
+
+            _swapSavingTextWithSpinner.call(this);
+            this.fireErrorModal(xhr.responseJSON.message);
+        }
+
+        function _updateNameInHeader (model) {
+            if (this.app.user.get('_id') === model._id) {
+                this.app.user.set(model);
+            }
+        }
+
+        function _updateMastheadBreadcrumbs($deferred) {
+            breadcrumbWorker.userBreadcrumb.call(this, $deferred);
+        }
+
+        function addNewUser() {
+            this.app.router.navigateTrigger(constants.internalRoutes.addUser);
+        }
+
+        function _swapSavingTextWithSpinner(e) {
+            var currentWidth,
+                $currentTarget;
+
+            if(e) {
+                $currentTarget = $(e.currentTarget);
+
+                this.model.set('swapElement', $currentTarget);
+                this.model.set('swapText', $currentTarget.text());
+                currentWidth = $currentTarget.width();
+                $currentTarget.empty().width(currentWidth).append('<i class="fa fa-refresh fa fa-spin"></i>');
+            } else {
+                $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
+            }
+        }
+
+    });

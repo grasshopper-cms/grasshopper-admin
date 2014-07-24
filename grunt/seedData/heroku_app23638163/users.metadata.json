@@ -1,0 +1,1 @@
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "heroku_app23638163.users", "name" : "_id_" }, { "v" : 1, "key" : { "login" : 1 }, "unique" : true, "ns" : "heroku_app23638163.users", "name" : "login_1", "background" : true, "safe" : null } ] }

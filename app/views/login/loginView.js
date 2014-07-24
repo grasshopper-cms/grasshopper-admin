@@ -1,31 +1,22 @@
 /*global define:false*/
-define(['baseView', 'rivetView', 'loginWorker'],
-    /**
-     * @param BaseView
-     * @param rivetView
-     * @param {loginWorker} loginWorker
-     */
-        function (BaseView, rivetView, loginWorker) {
-
-        /**
-         * @class LoginView extends @BaseView
-         */
-        var LoginView = BaseView.extend({
-            rivetView : rivetView({rivetScope : '#login-page', rivetPrefix : 'login', instaUpdateRivets : true}),
-            login : login,
-            throwLoginError : throwLoginError
-        });
-
-        function login () {
-            if (this.model.isValid()) {
-                loginWorker.doLogin(this);
-            }
-            return false;
-        }
-
-        function throwLoginError(xhr) {
-            this.displayAlertBox(xhr);
-        }
-
-        return LoginView;
+define(['grasshopperBaseView', 'loginViewConfig', 'loginWorker'],
+    function (GrasshopperBaseView, loginViewConfig, loginWorker) {
+    'use strict';
+    return GrasshopperBaseView.extend({
+        defaultOptions : loginViewConfig,
+        login : login,
+        throwLoginError : throwLoginError
     });
+
+    function login () {
+        if (this.model.isValid()) {
+            loginWorker.doLogin.call(this);
+        }
+        return false;
+    }
+
+    function throwLoginError (xhr) {
+        this.fireErrorModal(xhr);
+    }
+
+});

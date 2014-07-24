@@ -1,0 +1,10 @@
+#contentTypeIndexTable {
+  cursor: pointer;
+  :hover {
+    background-color: $contentTypeIndexTableRowHover;
+  }
+
+  .actions {
+    width: 30%;
+  }
+}

@@ -1,111 +1,154 @@
 /*global define*/
 define([
-    'backbone',
-    'masseuseRouter',
-    'loginView',
-    'loginViewConfig',
-    'api',
-    'loginWorker',
-    'userWorker',
-    'emptyView',
-    'emptyViewConfig',
-    'underscore',
-    'baseView',
-    'UserModel',
+    'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
+    'grasshopperBaseView',
+    'loginView', 'loginWorker', 'logoutWorker', 'forbiddenView',
     'alertBoxView',
-    'alertBoxViewConfig',
+    'modalView', 'modalViewConfig',
     'resources',
-    'userDetailView',
-    'userDetailViewConfig',
+    'userDetailView', 'UserModel',
     'headerView',
-    'headerViewConfig',
-    'usersIndexView',
-    'usersIndexViewConfig',
-    'constants',
-    'LocalStorage'
+    'footerView',
+    'mastheadView',
+    'userIndexView',
+    'addUserView',
+    'contentBrowseView',
+    'contentDetailView',
+    'contentTypeIndexView',
+    'contentTypeDetailView',
+    'addFolderView',
+    'addContentView',
+    'addAssetsView'
 ],
-    function (Backbone, MasseuseRouter, LoginView, loginViewConfig, Api, loginWorker, userWorker, EmptyView, emptyViewConfig, _, BaseView, UserModel, AlertBoxView, alertBoxViewConfig, resources, UserDetailView, userDetailViewConfig, HeaderView, headerViewConfig, UsersIndexView, usersIndexViewConfig, constants, LocalStorage) {
+    function ($, Backbone, _, masseuse, Api, constants, helpers,
+              GrasshopperBaseView,
+              LoginView, loginWorker, logoutWorker, ForbiddenView,
+              AlertBoxView,
+              ModalView, modalViewConfig,
+              resources,
+              UserDetailView, UserModel,
+              HeaderView,
+              FooterView,
+              MastheadView,
+              UserIndexView,
+              AddUserView,
+              ContentBrowseView,
+              ContentDetailView,
+              ContentTypeIndexView,
+              ContentTypeDetailView,
+              AddFolderView,
+              AddContentView,
+              AddAssetsView) {
 
-        var userModel = new UserModel(),
-            currentView;
+        'use strict';
+        var MasseuseRouter = masseuse.MasseuseRouter,
+            userModel = new UserModel(),
+            currentView,
+            Router;
 
         /**
          * @class Router
          * @extends MasseuseRouter
          */
-        var Router = MasseuseRouter.extend({
-            initialize : initialize,
-            start : start,
-
+        Router = MasseuseRouter.extend({
             routes : {
                 'login' : 'displayLogin',
                 'logout' : 'goLogout',
+                'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
-                'home' : 'displayApp',
-                'users(/page/:number)(/show/:limit)' : 'displayUsersIndex',
+                'addUser' : 'displayAddUser',
+                'contentTypes' : 'displayContentTypeIndex',
+                'contentTypes/new' : 'displayContentTypeDetail',
+                'contentTypes(/:id)' : 'displayContentTypeDetail',
+                'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
+                'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
+                'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
+                'items(/nodeid/:nodeId)' : 'displayContentBrowse',
+                'item/:id' : 'displayContentDetail',
+                'forbidden' : 'displayForbidden',
                 '*path' : 'goHome'
             },
 
+            breadcrumb  : [],
+
+            user : userModel,
+            initialize : initialize,
+            startHeader : startHeader,
+            removeHeader : removeHeader,
+
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login'],
+            excludeFromBeforeRouting : ['login', 'logout'],
+            userHasBreadcrumbs : userHasBreadcrumbs,
+            removeThisRouteFromBreadcrumb : removeThisRouteFromBreadcrumb,
 
             navigateTrigger : navigateTrigger,
             navigateNinja : navigateNinja,
             navigateDeferred : navigateDeferred,
+            navigateBack : navigateBack,
+
+            loadMainContent : loadMainContent,
 
             goHome : goHome,
-            displayApp : displayApp,
             displayLogin : displayLogin,
             goLogout : goLogout,
-            displayUserDetail : displayUserDetail,
-            user : userModel,
             navigate : navigate,
-            displayUsersIndex : displayUsersIndex
+            displayUserIndex : displayUserIndex,
+            displayUserDetail : displayUserDetail,
+            displayAddUser : displayAddUser,
+            displayContentBrowse : displayContentBrowse,
+            displayContentDetail : displayContentDetail,
+            displayContentTypeIndex : displayContentTypeIndex,
+            displayContentTypeDetail : displayContentTypeDetail,
+            displayCreateFolder : displayCreateFolder,
+            displayCreateContent : displayCreateContent,
+            displayCreateAssets : displayCreateAssets,
+            displayForbidden: displayForbidden
         });
 
         function onRouteFail () {
-            this.navigateTrigger('login');
+            this.goLogout();
         }
 
         function beforeRouting () {
             var $deferred = new $.Deferred(),
                 self = this;
 
-            if (LocalStorage.get('authToken')) {
-
-                if (!this.user.get('_id')) {
-                    Api.authenticateToken(LocalStorage.get('authToken'))
-                        .done(function (data) {
-                            self.user.set({
-                                _id : data._id,
-                                email : data.email,
-                                enabled : data.enabled,
-                                login : data.login,
-                                name : data.name,
-                                password : data.password,
-                                role : data.role
-                            });
-                            $deferred.resolve();
-                        })
-                        .fail(function () {
-                            $deferred.reject();
-                        });
-                } else {
-                    $deferred.resolve();
+            $deferred.done(function() {
+                var fragment = Backbone.history.getFragment();
+                if(fragment !== _.last(self.breadcrumb)) {
+                    self.breadcrumb.push(fragment);
+                    self.headerView.checkHeaderTab(fragment);
                 }
+            });
 
-            } else {
-                $deferred.reject();
-            }
+            loginWorker.userIsStillValidUser.call(this, $deferred);
 
             return $deferred.promise();
         }
 
-        function navigateTrigger (fragment, options) {
+        function userHasBreadcrumbs () {
+            return (this.breadcrumb && this.breadcrumb.length > 1);
+        }
+
+        function removeThisRouteFromBreadcrumb () {
+            this.breadcrumb.pop();
+        }
+
+        function _handleRoutingFromRefreshOnModalView (nodeId) {
+            if(nodeId === '0') {
+                nodeId = null;
+                this.breadcrumb.unshift(constants.internalRoutes.content.replace('#', ''));
+            } else {
+                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
+            }
+            this.displayContentBrowse(nodeId);
+        }
+
+        function navigateTrigger (fragment, options, doBeforeRender) {
             options = options || {};
             options.trigger = true;
-            this.navigate(fragment, options);
+            this.navigate(fragment, options, doBeforeRender);
         }
 
         function navigateNinja (fragment, options) {
@@ -120,128 +163,246 @@ define([
             this.navigate(fragment, options);
         }
 
-        function navigate (fragment, options) {
-            // TODO: Move in to masseuse parts that we can
+        function navigateBack (trigger) {
+            if (trigger) {
+                this.navigateTrigger(this.breadcrumb[this.breadcrumb.length - 1]);
+            } else {
+                this.navigateNinja(this.breadcrumb[this.breadcrumb.length - 1]);
+            }
+        }
+
+        function navigate (fragment, options, doBeforeRender) {
             if (currentView instanceof Backbone.View) {
-                // (and override destroy in GH to remove alerts)
-                currentView.hideAlertBox();
-                // TODO: this breaks the ui
-                //currentView.remove();
+                currentView.hideAlertBox.call(currentView);
+            }
+            if (doBeforeRender) {
+                this.beforeRouting();
             }
             Backbone.Router.prototype.navigate.apply(this, arguments);
-
         }
 
         function initialize () {
-            var oldSave = Backbone.Model.prototype.save,
-                oldSet = Backbone.Collection.prototype.set;
-
             MasseuseRouter.prototype.initialize.apply(this, arguments);
 
-            BaseView.prototype.app = {
+            GrasshopperBaseView.prototype.channels.addChannel('views');
+
+            GrasshopperBaseView.prototype.app = {
                 router : this,
                 user : this.user
             };
-            BaseView.prototype.displayAlertBox = displayAlertBox;
-            BaseView.prototype.hideAlertBox = hideAlertBox;
-            Backbone.Collection.prototype.set = function(data, options) {
-                if (data && data.results) {
-                    data = data.results;
-                }
-                oldSet.call(this, data, options);
-            };
-            Backbone.Model.prototype.save = function() {
-                var saveOptions = {headers : {
-                    'Authorization' : 'Token ' + LocalStorage.get('authToken')
-                }};
-                return oldSave.call(this, null, saveOptions);
-            };
+            GrasshopperBaseView.prototype.displayAlertBox = displayAlertBox;
+            GrasshopperBaseView.prototype.displayTemporaryAlertBox = displayTemporaryAlertBox;
+            GrasshopperBaseView.prototype.hideAlertBox = hideAlertBox;
+
+            GrasshopperBaseView.prototype.displayModal = displayModal;
+            GrasshopperBaseView.prototype.hideModal = hideModal;
+
         }
 
-        function start () {
-            var headerView = newView(HeaderView, headerViewConfig);
+        function loadMainContent (ViewType, config, bypass) {
+            var $deferred = new $.Deferred(),
+                newView = new ViewType(config);
 
-            headerView.start();
-            headerView.rivetView();
+            config = config || {};
 
-            return this;
+            if (currentView && currentView.name === config.name && !bypass) {
+                return $deferred.resolve(currentView)
+                    .promise();
+            }
+
+            newView.on(GrasshopperBaseView.beforeRenderDone, function() {
+                if (currentView) {
+                    currentView.remove();
+                }
+                currentView = newView;
+                $('#mastheadButtons').empty();
+            });
+
+            newView.start()
+                .done(function () {
+                    $deferred.resolve(newView);
+                    helpers.browserTitles.setBrowserTitle(newView.browserTitle);
+                })
+                .fail(function () {
+                    $deferred.reject();
+                });
+
+            return $deferred.promise();
+        }
+
+        function startHeader () {
+            this.headerView = new HeaderView({
+                modelData : {
+                    userModel : this.user
+                }
+            });
+            this.headerView.start();
+            this.mastheadView = new MastheadView();
+            this.mastheadView.start();
+
+            this.footerView = new FooterView();
+            this.footerView.start();
+        }
+
+        function removeHeader () {
+            if (this.headerView && this.mastheadView && this.footerView) {
+                this.headerView.remove();
+                this.mastheadView.remove();
+                this.footerView.remove();
+                this.headerView = null;
+                this.mastheadView = null;
+                this.footerView = null;
+            }
         }
 
         function goLogout () {
-            LocalStorage.remove('authToken');
-            this.user.clear();
-            this.navigate('login', {trigger : true});
+            logoutWorker.doLogout.call(this)
+                .done(this.navigate.bind(this, 'login', {trigger : true}, true));
         }
 
         function displayLogin () {
-            var loginView = newView(LoginView, loginViewConfig);
-            loginView.start();
-            loginView.rivetView();
+            this.loadMainContent(LoginView);
         }
 
-        function displayAlertBox (msg) {
-            var alertBoxView;
-            this.hideAlertBox();
-            alertBoxView = new AlertBoxView(alertBoxViewConfig);
-            alertBoxView.model.set('error', msg);
+        function displayAlertBox (options) {
+            var alertBoxView = new AlertBoxView({
+                    modelData : options
+                });
             alertBoxView.start();
-            alertBoxView.rivetView();
-            BaseView.prototype.alertBoxView = alertBoxView;
         }
 
-        function hideAlertBox() {
-            if (BaseView.prototype.alertBoxView && BaseView.prototype.alertBoxView.remove) {
-                BaseView.prototype.alertBoxView.remove();
+        function displayTemporaryAlertBox (options) {
+            options.temporary = true;
+            this.displayAlertBox(options);
+        }
+
+        function hideAlertBox () {
+            this.channels.views.trigger('hideAlertBoxes');
+        }
+
+        function displayModal (options) {
+            var $deferred = new $.Deferred(),
+                modalView = new ModalView({
+                    modelData : {
+                        header : (options.header) ? options.header : null,
+                        msg : options.msg,
+                        data : (options.data) ? options.data : null
+                    },
+                    type : (options.type) ? options.type : null,
+                    $deferred : $deferred
+                });
+            this.hideModal();
+            modalView.start();
+            GrasshopperBaseView.prototype.modalView = modalView;
+            return $deferred.promise();
+        }
+
+        function hideModal () {
+            if (GrasshopperBaseView.prototype.modalView && GrasshopperBaseView.prototype.modalView.remove) {
+                GrasshopperBaseView.prototype.modalView.remove();
             }
         }
 
         function goHome () {
-            this.navigateTrigger('home');
-        }
-
-        function displayApp () {
-            // Display the app.
-            var emptyView = newView(EmptyView, emptyViewConfig);
-            emptyView.start();
-            emptyView.rivetView();
+            this.navigateTrigger('items');
         }
 
         function displayUserDetail (id) {
-            userWorker.getProfileData(userModel, id)
-                .done(function (data) {
-                    var userDetailView = newView(UserDetailView, userDetailViewConfig);
-                    userDetailView.start();
-                    userDetailView.model.set(data);
-                })
-                .fail(function (xhr) {
-                    BaseView.prototype.displayAlertBox(resources.user.errors[xhr.status]);
+            // I did the role check here instead of in the config with permissions, this is because there are Admin's
+            // getting their own, Admins getting others, and others getting their own.
+            if (this.user.get('role') === 'admin' || this.user.get('_id') === id) {
+                this.loadMainContent(UserDetailView, {
+                        modelData : {
+                            _id : id,
+                            userModel : this.user
+                        }
+                    });
+            } else {
+                this.navigateTrigger('forbidden');
+            }
+        }
+
+        function displayUserIndex (pageNumber, pageLimit) {
+            this.loadMainContent(UserIndexView, {
+                    modelData : {
+                        pageNumber : pageNumber,
+                        pageLimit : pageLimit
+                    }
                 });
         }
 
-        function displayUsersIndex (pageNumber, pageLimit) {
-            var usersIndexView = newView(UsersIndexView, usersIndexViewConfig),
-                defaultLimit = constants.userCollection.pageSize,
-                defaultPage = constants.userCollection.page;
-
-            usersIndexView.goToPage(pageNumber || defaultPage, pageLimit || defaultLimit)
-            .done(function(){
-                usersIndexView.start();
-                usersIndexView.rivetView();
-                usersIndexView.renderPlugins();
-            });
-
+        function displayAddUser () {
+            this.loadMainContent(AddUserView);
         }
 
-        function newView (ViewType, config, bypass) {
-            if (currentView) {
-                if (currentView.options.name !== config.name || bypass) {
-                    currentView = new ViewType(config);
-                }
-            } else {
-                currentView = new ViewType(config);
-            }
+        function displayContentBrowse (nodeId) {
+            this.loadMainContent(ContentBrowseView, {
+                    modelData : {
+                        nodeId : nodeId ? nodeId : '0',
+                        inRoot : !nodeId
+                    }
+                });
+        }
 
-            return currentView;
+        function displayContentDetail (id, options) {
+            this.loadMainContent(ContentDetailView, {
+                    modelData : _.extend({}, options, {
+                        _id : id
+                    })
+                });
+        }
+
+        function displayContentTypeIndex () {
+            this.loadMainContent(ContentTypeIndexView);
+        }
+
+        function displayContentTypeDetail (id) {
+            this.loadMainContent(ContentTypeDetailView, {
+                    modelData : {
+                        _id : id
+                    }
+                });
+        }
+
+        function displayCreateFolder (nodeId) {
+            if (!this.userHasBreadcrumbs()) {
+                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
+            }
+            var addFolderView = new AddFolderView({
+                    modelData : {
+                        nodeId : (nodeId) ? nodeId : null
+                    }
+                });
+            addFolderView.start();
+        }
+
+        function displayCreateContent (nodeId) {
+            if (!this.userHasBreadcrumbs()) {
+                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
+            }
+            this.loadMainContent(AddContentView, {
+                    modelData : {
+                        meta : {
+                            node : nodeId
+                        }
+                    }
+                });
+        }
+
+        function displayCreateAssets (nodeId) {
+            if (!this.userHasBreadcrumbs()) {
+                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
+            }
+            var addAssetsView = new AddAssetsView({
+                    modelData : {
+                        nodeId : nodeId
+                    }
+                });
+            addAssetsView.start();
+        }
+
+        function displayForbidden () {
+            this.loadMainContent(ForbiddenView);
         }
 
         return Router;

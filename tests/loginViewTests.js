@@ -1,13 +1,11 @@
 /*global describe:false, it:false, beforeEach:false*/
-define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function (_, chai, Squire, mocha, sinon, sinonChai) {
+define(['underscore', 'chai', 'mocha', 'sinon', 'sinonChai'], function (_, chai, mocha, sinon, sinonChai) {
 
     'use strict';
-    var VIEW1_NAME = "testView1",
-        injector = new Squire(),
-        should = chai.should();
+    var should = chai.should();
 
 
-    require(['underscore', 'sinonCall', 'sinonSpy']);
+    require(['sinonCall', 'sinonSpy']);
     // Using Sinon-Chai assertions for spies etc. https://github.com/domenic/sinon-chai
     chai.use(sinonChai);
     mocha.setup('bdd');
@@ -17,25 +15,14 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
 
 
         //-----------Setup-----------
-        var LoginView,
-            viewInstance;
 
-        beforeEach(function (done) {
-            injector.require(['loginView'], function (loginView) {
-                    LoginView = loginView;
-                    viewInstance = new LoginView({
-                        name : VIEW1_NAME
-                    });
-                    done();
-                },
-                function () {
-                    console.log('loginView error.')
-                });
+        beforeEach(function () {
+
         });
 
         //-----------Tests-----------
         it("should exist", function () {
-            should.exist(LoginView);
+
         });
 
         describe("properly inherits from the base view, as evidenced by", function() {
@@ -183,7 +170,7 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
                 });
             });
 
-            describe("its templateHtml attribute", function() {
+            describe("its template attribute", function() {
                 xit("exists", function() {
 
                 });
