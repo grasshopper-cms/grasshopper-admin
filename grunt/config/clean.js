@@ -6,7 +6,8 @@ module.exports = function (grunt) {
         options: { force: true },
         build : ['<%= buildDirectory %>'],
         temp : ['<%= tempDirectory %>'],
-        seedData : ['grunt/seedData']
+        seedData : ['grunt/seedData'],
+        deploy : ['_deploy']
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');

@@ -43,9 +43,8 @@ define({
             login : 'LOGIN',
             password : 'PASSWORD'
         },
-        selfLockWarning:'You are trying to disable currently logged in user. \n' +
-            'You won\'t be able to access system using this account. \n' +
-            'Are you sure?',
+        selfLockWarning:'Warning! This will disable the current user and you won\'t have access to the system from' +
+            ' this account. Are you sure you want to do this?',
         roles : [ //TODO: DELETE THIS!!!
             'admin',
             'editor',
