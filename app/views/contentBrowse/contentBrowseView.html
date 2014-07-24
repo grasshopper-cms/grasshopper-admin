@@ -50,6 +50,23 @@
                     </tbody>
                 </table>
 
+                <section data-rv-if="model:childContent.length | isGreaterThen 25" data-rv-new-pagination-view="model:childContent"></section>
+
+                <div data-rv-paginator="model:childContent:" class="paginator">
+                    <ul class="pagination pagination-limit" data-rv-each-size="model:constants->pagination->defaultPageSize">
+                        <li class="pagination-item">
+                            <a class="pagination-item-link" data-rv-on-click="model:childContent.setLimit" data-rv-text="size"></a>
+                        </li>
+                    </ul>
+                    <ul class="pagination pagination-skip">
+                        <li class="pagination-item"><a class="pagination-item-link" href="">&lt;prev</a></li>
+                        <li class="pagination-item"><a class="pagination-item-link" href="">1</a></li>
+                        <li class="pagination-item"><a class="pagination-item-link" href="">2</a></li>
+                        <li class="pagination-item"><a class="pagination-item-link" href="">3</a></li>
+                        <li class="pagination-item"><a class="pagination-item-link" href="">next&gt;</a></li>
+                    </ul>
+                </div>
+
             </div>
             <div class="content" id="panel2-2" data-rv-hide="model:inRoot">
                 <div id="assetIndex">

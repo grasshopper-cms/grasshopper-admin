@@ -29,7 +29,8 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection',
             model : contentDetailViewModel,
             url : function() {
                 return constants.api.nodesContent.url.replace(':id', self.get('nodeId'));
-            }
+            },
+            nodeId : this.get('nodeId')
         }))());
 
         this.set('childAssets', new (GrasshopperCollection.extend({

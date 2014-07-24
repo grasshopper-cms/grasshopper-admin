@@ -234,6 +234,8 @@
             "Binders" : "views/nodeTree/nodeTreeViewBinders"
         },
 
+        "pagination" : "views/pagination",
+
         "pluginWrapperView+" : {
             "" : "views/pluginWrapper/pluginWrapperView",
             "Config" : "views/pluginWrapper/pluginWrapperViewConfig",
