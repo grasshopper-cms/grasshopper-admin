@@ -25,8 +25,10 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker'],
         }
 
         function handleRowClick () {
-            this.app.router.navigateTrigger(this.model.get('href'));
-            return false;
+            if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey && e.which!=2){
+                this.app.router.navigateTrigger(this.model.get('href'));
+                return false;
+            }
         }
 
         function editNodeName(e) {
