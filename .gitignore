@@ -1,4 +1,5 @@
 .idea/
 .sass-cache/
 _server
-node_modulesghapi.json
+node_modules
+ghapi.json
