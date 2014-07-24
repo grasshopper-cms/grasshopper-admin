@@ -51,6 +51,25 @@ If you want to install grasshopper right away you should use the [CLI](https://g
 
 The installation process fully configures working instances of [core](https://github.com/Solid-Interactive/grasshopper-core-nodejs), [api](https://github.com/Solid-Interactive/grasshopper-api-js) and [admin](https://github.com/Solid-Interactive/grasshopper-admin) for you.
 
+#### Using heroku
+
+Gh-admin comes with a `server` directory that can run grasshopper-api to server grasshopper data to you. 
+If you have a heroku account, then you can deploy to it using the `grunt deploy:heroku` commands.
+
+The heroku app will use environmental variables to load the grunt configs, so the first time you deploy you have to load the environmental variables along with doing the build:
+
+```shell
+# any truthy arguments to deploy:heroku will load env vars to heroku from ghapi.json in the root of your project 
+grunt deploy:heroku:setupConfigs
+```
+
+Once the environmental variables are on heroku there is no need to load them again, unless you want to change them, so subsequent deploys can use the form:
+
+```shell
+grunt deploy:heroku
+```
+
+If loaded the environmental variables are loaded from `ghapi.json` in the root of the project.
 
 ### Manual Usage
 
@@ -176,4 +195,4 @@ The installation process fully configures working instances of [core](https://gi
 * 0.27.1 - 14-07-23 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.27.1_14-07-23.md)
 
 
-_Compiled file. Do not modify directly. Created: 2014-07-24 01:19:15_
+_Compiled file. Do not modify directly. Created: 2014-07-24 02:11:25_
