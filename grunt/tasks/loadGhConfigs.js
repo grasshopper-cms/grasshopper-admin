@@ -17,7 +17,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('loadGhConfigs:restore', function () {
-        grunt.file.write('ghapi.json', savedConfig);
+        grunt.file.write('ghapi.json', JSON.stringify(savedConfig,null,4));
     });
 };
 
