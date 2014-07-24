@@ -16,8 +16,10 @@ module.exports = function (grunt) {
 
         if (loadConfigs) {
             grunt.log.write('Loading ghapi configs');
-            tasks.unshift('shell:setupHerokuEnvVariables');
-            tasks.unshift('loadGhConfigs');
+            tasks = [
+                'loadGhConfigs',
+                'shell:setupHerokuEnvVariables'
+            ].concat(tasks);
         }
 
         grunt.task.run(tasks);
