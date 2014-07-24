@@ -17,7 +17,8 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             addNewAsset : addNewAsset,
             editNodeName : editNodeName,
             editNodeContentTypes : editNodeContentTypes,
-            deleteNode : deleteNode
+            deleteNode : deleteNode,
+            searchContent : searchContent
         });
 
         function beforeRender ($deferred) {
@@ -25,7 +26,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
                 _buildMastheadBreadcrumb.call(this),
                 this.model.fetch(),
                 this.model.get('childNodes').fetch(),
-                this.model.get('childContent').fetch())
+                this.model.get('childContent').query())
                 .done($deferred.resolve, _addAssetIndexView.bind(this))
                 .fail($deferred.reject);
         }
@@ -92,6 +93,11 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
         function deleteNode() {
             nodeWorker.deleteNode.call(this);
             _closeActionsDropdown.call();
+        }
+
+        function searchContent() {
+            console.log(this.model.get('contentSearchValue'));
+            this.model.get('childContent').searchQuery(this.model.get('contentSearchValue'));
         }
 
         function _closeActionsDropdown() {

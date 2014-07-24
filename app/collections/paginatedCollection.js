@@ -6,11 +6,9 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
             model : Model,
             nodeId : '',
             query : query,
+            searchQuery : _.throttle(query, constants.contentSearchThrottle),
             next: next,
             setLimit: setLimit,
-            searchQuery : _.throttle(query, constants.contentSearchThrottle),
-            limit : constants.pagination.defaultLimit,
-            skip : constants.pagination.defaultSkip,
             totalAmount : ''
         });
 
@@ -32,7 +30,7 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
                 $deferred = new $.Deferred(),
                 queryData = {
                     filters: [
-                        {key: ['fields.title'], cmp: '%', value: value || ''}
+                        {key: 'virtual.label', cmp: '%', value: value || ''}
                     ],
                     nodes: [self.nodeId],
                     options: {

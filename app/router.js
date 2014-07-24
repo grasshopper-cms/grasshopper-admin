@@ -63,6 +63,8 @@ define([
                 'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
+                'items(/nodeid/:nodeId/limit/:limit)' : 'displayContentBrowse',
+                'items(/nodeid/:nodeId/limit/:limit/skip/:skip)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 'forbidden' : 'displayForbidden',
@@ -335,11 +337,13 @@ define([
             this.loadMainContent(AddUserView);
         }
 
-        function displayContentBrowse (nodeId) {
+        function displayContentBrowse (nodeId, limit, skip) {
             this.loadMainContent(ContentBrowseView, {
                     modelData : {
                         nodeId : nodeId ? nodeId : '0',
-                        inRoot : !nodeId
+                        inRoot : !nodeId,
+                        limit : limit,
+                        skip : skip
                     }
                 });
         }
