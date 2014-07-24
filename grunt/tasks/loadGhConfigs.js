@@ -3,9 +3,15 @@
 
 module.exports = function (grunt) {
     grunt.registerTask('loadGhConfigs', function () {
-        var config = require('ghapi.json');
+        if (!grunt.file.exists('ghapi.json')) {
+            grunt.fail.fatal('no ghapi.json file found. please try again.');
+            return;
+        }
 
-        grunt.config.set('ghapiConfigs', JSON.stringify(config));
+        var config = require('ghapi.json');
+        if (config) {
+            grunt.config.set('ghapiConfigs', JSON.stringify(config));
+        }
     });
 };
 

@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : 'heroku config:set GHCONFIG=<%= ghapiConfigs %>'
+            command : 'heroku config:set GHCONFIG=\'<%= ghapiConfigs %>\''
         }
     });
 
