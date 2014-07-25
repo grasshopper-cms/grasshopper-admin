@@ -10,7 +10,6 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
               radioTemplate, listTemplate,
               errorTemplate) {
         'use strict';
-        var initializeOptions;
         return GrasshopperBaseView.extend({
             defaultOptions : modalViewConfig,
             initialize : initialize,
