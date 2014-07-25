@@ -1,50 +1,36 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker', 'jquery'],
-    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker, $) {
+define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker', 'underscore', 'mixins/handleRowCLick'],
+    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker, _, handleRowCLick) {
 
         'use strict';
 
-        return GrasshopperBaseView.extend({
+        return GrasshopperBaseView.extend(_.extend({
             defaultOptions : userDetailViewConfig,
             beforeRender : beforeRender,
+            afterRender : afterRender,
             saveUser : saveUser,
             saveAndClose : saveAndClose,
             toggleEnabled : toggleEnabled,
-            handleRowClick : handleRowClick,
-            addNewUser : addNewUser,
-            showSelfLockoutWarning: showSelfLockoutWarning
-        });
+            addNewUser : addNewUser
+        }, handleRowCLick));
 
         function beforeRender ($deferred) {
             this.model.fetch()
                 .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
-        function saveUser(e) {
-            var self=this,lockoutFunction = function () {
-                _swapSavingTextWithSpinner.call(self, e);
-                self.model.toggle('saving');
-                _updateUserWorkflow.call(self, {});
-            };
-            if (e){
-                e.stopPropagation();
-            }
-            if (this.model.id == this.app.user.id && this.model.get('enabled').toString() === 'false' && this.model.changed.enabled !== undefined) {
-                this.showSelfLockoutWarning(lockoutFunction);
-            } else {
-                lockoutFunction();
-            }
+        function afterRender() {
+            _setUpEnabledChangeWarning.call(this);
+        }
+
+        function saveUser() {
+            this.model.toggle('saving');
+            _updateUserWorkflow.call(this, {});
         }
 
         function saveAndClose() {
-            var self=this, lockoutFunction = function () {
-                _updateUserWorkflow.call(self, { close: true });
-            };
-            if (this.model.id == this.app.user.id && this.model.get('enabled').toString() === 'false' && this.model.changed.enabled !== undefined) {
-                this.showSelfLockoutWarning(lockoutFunction);
-            } else {
-                lockoutFunction();
-            }
+            this.model.toggle('saving');
+            _updateUserWorkflow.call(this, { close : true });
         }
 
         function _updateUserWorkflow(options) {
@@ -53,12 +39,12 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
                 .fail(_handleFailedSave.bind(this));
         }
 
-        function showSelfLockoutWarning(completionFunction){
-            this.displayModal(
+        function _showSelfLockoutWarning(){
+            return this.displayModal(
                 {
                     header: resources.warning,
                     msg: resources.user.selfLockWarning
-                }).done(completionFunction.bind(this));
+                });
         }
 
         function toggleEnabled(e) {
@@ -68,11 +54,17 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
             this.saveUser();
         }
 
-        function handleRowClick (e) {
-            if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey && e.which!=2){
-                e.stopPropagation();
-                this.app.router.navigateTrigger(this.model.get('href'), {}, true);
-            }
+        function _setUpEnabledChangeWarning() {
+            var self = this;
+
+            this.model.on('change:enabled', function() {
+                if(self.model.get('userIsChangingTheirProfile') && self.model.get('enabled').toString() === 'false') {
+                    _showSelfLockoutWarning.call(self)
+                        .fail(function() {
+                            self.model.set('enabled', self.model.previous('enabled'));
+                        });
+                }
+            });
         }
 
         function _handleSuccessfulSave (options, model) {
@@ -88,8 +80,6 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
                 this.app.router.navigateTrigger(constants.internalRoutes.users);
             } else {
                 this.model.toggle('saving');
-
-                _swapSavingTextWithSpinner.call(this);
             }
 
             _updateNameInHeader.call(this, model);
@@ -98,7 +88,6 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
         function _handleFailedSave (xhr) {
             this.model.toggle('saving');
 
-            _swapSavingTextWithSpinner.call(this);
             this.fireErrorModal(xhr.responseJSON.message);
         }
 
@@ -114,22 +103,6 @@ define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants',
 
         function addNewUser() {
             this.app.router.navigateTrigger(constants.internalRoutes.addUser);
-        }
-
-        function _swapSavingTextWithSpinner(e) {
-            var currentWidth,
-                $currentTarget;
-
-            if(e) {
-                $currentTarget = $(e.currentTarget);
-
-                this.model.set('swapElement', $currentTarget);
-                this.model.set('swapText', $currentTarget.text());
-                currentWidth = $currentTarget.width();
-                $currentTarget.empty().width(currentWidth).append('<i class="fa fa-refresh fa fa-spin"></i>');
-            } else {
-                $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
-            }
         }
 
     });
