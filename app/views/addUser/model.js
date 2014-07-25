@@ -1,5 +1,5 @@
 define(['grasshopperModel', 'resources', 'constants'], function (Model, resources, constants) {
-        'use strict';
+    'use strict';
 
     return Model.extend({
         defaults : {

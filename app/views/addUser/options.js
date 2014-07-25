@@ -1,16 +1,16 @@
 /*global define:false*/
-define(['text!views/addUser/addUserView.html', 'addUserViewModel', 'resources', 'constants', 'appBinders'],
-    function (formTemplate, addUserModel, resources, constants, appBinders) {
+define(['text!views/addUser/template.html', 'addUser/model', 'resources', 'constants', 'appBinders'],
+    function (template, Model, resources, constants, appBinders) {
     'use strict';
 
     return {
         name : 'addUser',
-        ModelType : addUserModel,
+        ModelType : Model,
         browserTitle : 'Add New User',
         modelData : {},
         appendTo : '#stage',
         wrapper : false,
-        template : formTemplate,
+        template : template,
         events : {},
         listeners : [],
         mastheadButtons : [],

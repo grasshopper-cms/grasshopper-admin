@@ -11,7 +11,7 @@ define([
     'footerView',
     'mastheadView',
     'userIndexView',
-    'addUserView',
+    'addUser/view',
     'contentBrowseView',
     'contentDetailView',
     'contentTypeIndexView',
