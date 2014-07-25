@@ -99,6 +99,8 @@
         }
     },
 
+    "mixins" : "mixins",
+
     "views" : {
         "grasshopperBaseView" : "views/grasshopperBaseView",
 
