@@ -110,7 +110,7 @@
                         </div>
                     </div>
 
-                    <div class="row listItem" data-rv-show="model:userModel->role | equals admin">
+                    <div class="row listItem" data-rv-if="model:userModel->role | equals admin">
                         <div class="large-3 columns">
                             <label for="password" class="right inline">{{model:resources->user->attributeTitles->password |
                                 withColon}}</label>
