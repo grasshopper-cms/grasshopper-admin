@@ -1,10 +1,10 @@
-define(['grasshopperModel', 'resources', 'constants'],
-    function (Model, resources, constants) {
+define(['grasshopperModel', 'resources', 'constants'], function (Model, resources, constants) {
         'use strict';
-        return Model.extend({
-            defaults : {
-                resources : resources
-            },
-            url : constants.api.newUser.url
-        });
+
+    return Model.extend({
+        defaults : {
+            resources : resources
+        },
+        url : constants.api.newUser.url
     });
+});
