@@ -25,7 +25,6 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
         });
 
         function initialize (options) {
-            initializeOptions = options;
             switch (options.type) {
             case 'image':
                 options.template = imageModalTemplate;
@@ -52,12 +51,13 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
                 options.template = defaultTemplate;
                 break;
             }
+            this.options = options;
             GrasshopperBaseView.prototype.initialize.apply(this, arguments);
         }
 
         function afterRender () {
             this.$el.foundation();
-            if (initializeOptions && initializeOptions.type=='input'){
+            if (this.options && this.options.type=='input'){
                 $('input', this.$el).focus();
             }
         }
