@@ -1,0 +1,13 @@
+desktop.ini
+node_modules/
+*npm-debug*
+build/
+.sass-cache/
+.idea/
+.bundle
+app/vendor/
+.DS_Store
+_deploy/
+server/
+ghapi.json
+gha.json
