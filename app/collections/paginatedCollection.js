@@ -15,7 +15,6 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
 
         function next(e, context ) {
             e.preventDefault();
-            console.log('YEAH BUDDYYYYY');
 
             this.limit = context.limit;
             this.query();
@@ -23,6 +22,7 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
 
         function setLimit( ev, context ) {
             ev.preventDefault();
+
             this.limit = context.size;
             this.query(context.model.get('contentSearchValue'));
         }
@@ -43,12 +43,12 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
 
             api.makeQuery(queryData)
                 .done(function(data) {
-                    console.log(data);
 
                     if (self.models.length !== data.results.length) {
                         self.totalAmount = data.total;
                         self.set(data.results, {merge : false});
                     }
+
                     $deferred.resolve();
                 });
 
