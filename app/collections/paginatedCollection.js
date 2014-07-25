@@ -13,9 +13,11 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
         });
 
 
-        function next( context ) {
+        function next(e, context ) {
+            e.preventDefault();
             console.log('YEAH BUDDYYYYY');
-            this.limit = context.size;
+
+            this.limit = context.limit;
             this.query();
         }
 
