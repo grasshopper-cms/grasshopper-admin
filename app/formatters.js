@@ -71,7 +71,7 @@ define(['sparkmd5'], function (sparkmd5) {
     }
 
     function gravatarUrl(email, args) {
-        var md5value = sparkmd5.hash(email.toLowerCase());
+        var md5value = email ? sparkmd5.hash(email.toLowerCase()) : '';
         return 'http://www.gravatar.com/avatar/' + md5value + '?s=' + args + '&d=mm';
     }
 });
