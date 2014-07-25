@@ -1,11 +1,11 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userDetailViewConfig', 'resources', 'constants', 'breadcrumbWorker', 'underscore', 'mixins/handleRowCLick'],
-    function (GrasshopperBaseView, userDetailViewConfig, resources, constants, breadcrumbWorker, _, handleRowCLick) {
+define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', 'breadcrumbWorker', 'underscore', 'mixins/handleRowCLick'],
+    function (GrasshopperBaseView, options, resources, constants, breadcrumbWorker, _, handleRowCLick) {
 
         'use strict';
 
         return GrasshopperBaseView.extend(_.extend({
-            defaultOptions : userDetailViewConfig,
+            defaultOptions : options,
             beforeRender : beforeRender,
             afterRender : afterRender,
             saveUser : saveUser,

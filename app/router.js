@@ -6,7 +6,7 @@ define([
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
-    'userDetailView', 'UserModel',
+    'userDetail/view', 'UserModel',
     'headerView',
     'footerView',
     'mastheadView',

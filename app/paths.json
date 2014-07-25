@@ -241,15 +241,9 @@
             "Collection" : "views/pluginWrapper/pluginCollection"
         },
 
-        "userDetailView+" : {
-            "" : "views/userDetail/userDetailView",
-            "Config" : "views/userDetail/userDetailViewConfig",
-            "Model" : "views/userDetail/userDetailViewModel",
-            "userDetailRow+" : {
-                "" : "views/userDetail/userDetailRow/view",
-                "Config" : "views/userDetail/userDetailRow/config"
-            }
-        },
+        "userDetail" : "views/userDetail",
+
+        "userDetailRow" : "views/userDetail/userDetailRow",
 
         "userIndexView+" : {
             "" : "views/userIndex/userIndexView",
