@@ -99,8 +99,6 @@
         }
     },
 
-    "mixins" : "mixins",
-
     "views" : {
         "grasshopperBaseView" : "views/grasshopperBaseView",
 
@@ -122,7 +120,11 @@
             "Model" : "views/addFolder/addFolderViewModel"
         },
 
-        "addUser" : "views/addUser",
+        "addUserView+" : {
+            "" : "views/addUser/addUserView",
+            "Config" : "views/addUser/addUserViewConfig",
+            "Model" : "views/addUser/addUserViewModel"
+        },
 
         "alertBoxView+" : {
             "" : "views/alertBox/alertBoxView",
@@ -283,7 +285,6 @@
 
     "collections" : {
         "grasshopperCollection" : "collections/grasshopperCollection",
-        "paginatedCollection" : "collections/paginatedCollection",
         "userCollection" : "collections/userCollection"
     },
 

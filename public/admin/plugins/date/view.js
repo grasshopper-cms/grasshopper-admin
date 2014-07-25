@@ -28,8 +28,7 @@ define(['grasshopperBaseView', 'moment', 'jquery', 'datetimepicker'],
                     startDate : moment(),
                     timepicker : false,
                     format: 'YYYY/MM/DD',
-                    formatDate: 'YYYY/MM/DD',
-                    step: 1
+                    formatDate: 'YYYY/MM/DD'
                 });
             });
             $deferred.resolve();

@@ -87,12 +87,7 @@ define([], function() {
             ai : 'fa-file-image-o',
             swf : 'fa-file-video-o'
         },
-        imageExtensions : ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif'],
-        pagination : {
-            defaultLimit : 25,
-            defaultSkip : 0,
-            defaultPageSize : [25, 50, 100, 'all']
-        }
+        imageExtensions : ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif']
 
     };
 

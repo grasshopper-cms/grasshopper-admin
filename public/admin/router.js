@@ -11,7 +11,7 @@ define([
     'footerView',
     'mastheadView',
     'userIndexView',
-    'addUser/view',
+    'addUserView',
     'contentBrowseView',
     'contentDetailView',
     'contentTypeIndexView',
@@ -63,8 +63,6 @@ define([
                 'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
-                'items(/nodeid/:nodeId/limit/:limit)' : 'displayContentBrowse',
-                'items(/nodeid/:nodeId/limit/:limit/skip/:skip)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 'forbidden' : 'displayForbidden',
@@ -337,13 +335,11 @@ define([
             this.loadMainContent(AddUserView);
         }
 
-        function displayContentBrowse (nodeId, limit, skip) {
+        function displayContentBrowse (nodeId) {
             this.loadMainContent(ContentBrowseView, {
                     modelData : {
                         nodeId : nodeId ? nodeId : '0',
-                        inRoot : !nodeId,
-                        limit : limit,
-                        skip : skip
+                        inRoot : !nodeId
                     }
                 });
         }

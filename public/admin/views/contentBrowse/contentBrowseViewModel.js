@@ -1,6 +1,6 @@
-define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', 'paginatedCollection',
+define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection',
     'nodeDetailViewModel', 'contentDetailViewModel', 'assetDetailViewModel', 'underscore'],
-    function (Model, resources, constants, GrasshopperCollection, PaginatedCollection,
+    function (Model, resources, constants, GrasshopperCollection,
               nodeDetailViewModel, contentDetailViewModel, assetDetailViewModel, _) {
 
     'use strict';
@@ -25,13 +25,11 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
             }
         }))());
 
-        this.set('childContent', new (PaginatedCollection.extend({
+        this.set('childContent', new (GrasshopperCollection.extend({
             model : contentDetailViewModel,
             url : function() {
                 return constants.api.nodesContent.url.replace(':id', self.get('nodeId'));
             },
-            limit : parseInt( this.get('limit') || constants.pagination.defaultLimit, 10 ),
-            skip : parseInt( this.get('skip') || constants.pagination.defaultSkip, 10 ),
             nodeId : this.get('nodeId')
         }))());
 

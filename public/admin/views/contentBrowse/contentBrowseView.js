@@ -17,8 +17,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             addNewAsset : addNewAsset,
             editNodeName : editNodeName,
             editNodeContentTypes : editNodeContentTypes,
-            deleteNode : deleteNode,
-            searchContent : searchContent
+            deleteNode : deleteNode
         });
 
         function beforeRender ($deferred) {
@@ -26,7 +25,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
                 _buildMastheadBreadcrumb.call(this),
                 this.model.fetch(),
                 this.model.get('childNodes').fetch(),
-                _getChildContent.call(this))
+                this.model.get('childContent').fetch())
                 .done($deferred.resolve, _addAssetIndexView.bind(this))
                 .fail($deferred.reject);
         }
@@ -47,12 +46,6 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             breadcrumbWorker.contentBrowse.call(this, $deferred);
 
             return $deferred.promise();
-        }
-
-        function _getChildContent() {
-            if(!this.model.get('inRoot')) {
-                return this.model.get('childContent').query();
-            }
         }
 
         function activateTab (tab) {
@@ -99,25 +92,6 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
         function deleteNode() {
             nodeWorker.deleteNode.call(this);
             _closeActionsDropdown.call();
-        }
-
-        function searchContent() {
-            _toggleSearchSpinner.call(this);
-
-            this.model.get('childContent').searchQuery(this.model.get('contentSearchValue'))
-                .done(_toggleSearchSpinner.bind(this, true));
-        }
-
-        function _toggleSearchSpinner(revert) {
-            var $searchIcon = this.$('.contentSearchIcon');
-
-            if(revert) {
-                $searchIcon.removeClass('fa-refresh fa-spin');
-                $searchIcon.addClass('fa-search');
-            } else {
-                $searchIcon.removeClass('fa-search');
-                $searchIcon.addClass('fa-refresh fa-spin');
-            }
         }
 
         function _closeActionsDropdown() {

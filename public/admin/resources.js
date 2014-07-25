@@ -37,11 +37,10 @@ define({
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
             lastName : 'LAST NAME',
-            displayName : 'DISPLAY NAME',
             role : 'USER ROLE',
             enabled : 'ENABLED?',
             email : 'EMAIL',
-            username : 'USERNAME',
+            login : 'LOGIN',
             password : 'PASSWORD'
         },
         selfLockWarning:'Warning! This will disable the current user and you won\'t have access to the system from' +

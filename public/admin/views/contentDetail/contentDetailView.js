@@ -1,16 +1,17 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants', 'mixins/handleRowClick', 'underscore'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants, handleRowClick, _) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants) {
         'use strict';
 
-        return GrasshopperBaseView.extend(_.extend({
+        return GrasshopperBaseView.extend({
             defaultOptions: contentDetailViewConfig,
             beforeRender: beforeRender,
             afterRender: afterRender,
             deleteContent: deleteContent,
+            handleRowClick: handleRowClick,
             saveContent: saveContent,
             saveAndClose: saveAndClose
-        }, handleRowClick));
+        });
 
         function beforeRender ($deferred) {
             if (this.model.get('isNew')) {
@@ -81,6 +82,10 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
                 }
             );
             this.remove();
+        }
+
+        function handleRowClick () {
+            this.app.router.navigateTrigger(this.model.get('href'));
         }
 
         function saveContent (e) {

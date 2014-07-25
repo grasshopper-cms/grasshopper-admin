@@ -7,7 +7,7 @@ define([
     return Model.extend({
         idAttribute : '_id',
         defaults : {
-            username : false,
+            login : false,
             role : false,
             enabled : false,
             email : false,

@@ -32,8 +32,7 @@ define(['grasshopperBaseView', 'moment', 'jquery', 'datetimepicker', 'resources'
                     timepicker : true,
                     formatTime: 'h:mm a',
                     /*formatDate: 'YYYY/MM/DD',*/
-                    format: resources.plugins.editorialWindow.dateFormat,
-                    step: 1
+                    format: resources.plugins.editorialWindow.dateFormat
                 });
             });
             $deferred.resolve();

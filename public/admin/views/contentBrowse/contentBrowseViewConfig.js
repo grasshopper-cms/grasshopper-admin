@@ -27,7 +27,6 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             ],
             permissions : ['admin', 'reader', 'editor'],
             rivetsConfig : {
-                instaUpdate: true,
                 binders : [appBinders],
                 childViewBinders : {
                     'node-detail-row': NodeDetailView,

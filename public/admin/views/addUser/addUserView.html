@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="small-12 columns">
+
+        <fieldset>
+            <legend>
+                <h3>
+                    {{model:resources->user->addNewUser}}
+                </h3>
+            </legend>
+
+            <div class="row">
+                <div class="large-12 small-centered columns">
+                    <div data-rv-each-field="model:schema">
+                        <div data-rv-fieldwrapper="field"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 small-centered columns">
+                    <button data-rv-on-click="view.saveUser" class="button small radius right">{{model:resources->save}}</button>
+                </div>
+            </div>
+
+        </fieldset>
+
+    </div>
+
+    <section data-rv-move-to="view.mastheadButtonsSelector">
+        <ul class="button-group radius right">
+
+            <li>
+                <a data-rv-on-click="view.addNewUser" class="button tiny">
+                    {{model:resources->mastheadButtons->addNewUser}}
+                </a>
+            </li>
+
+        </ul>
+    </section>
+</div>

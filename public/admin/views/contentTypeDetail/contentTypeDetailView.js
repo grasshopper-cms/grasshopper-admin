@@ -116,10 +116,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function handleRowClick (e) {
-        if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey && e.which!=2){
-            e.stopPropagation();
-            this.app.router.navigateTrigger(this.model.get('href'), {}, true);
-        }
+        e.stopPropagation();
+        this.app.router.navigateTrigger(this.model.get('href'), {}, true);
     }
 
     function addNewFieldToContentType(e, context) {
