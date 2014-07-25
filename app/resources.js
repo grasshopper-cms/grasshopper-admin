@@ -37,6 +37,7 @@ define({
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
             lastName : 'LAST NAME',
+            displayName : 'DISPLAY NAME',
             role : 'USER ROLE',
             enabled : 'ENABLED?',
             email : 'EMAIL',
