@@ -43,8 +43,8 @@ define({
             login : 'LOGIN',
             password : 'PASSWORD'
         },
-        selfLockWarning:'Warning! This will disable the current user and you won\'t have access to the system from' +
-            ' this account. Are you sure you want to do this?',
+        selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
+            'Are you sure you want to do this?',
         roles : [ //TODO: DELETE THIS!!!
             'admin',
             'editor',
