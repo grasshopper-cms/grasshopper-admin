@@ -60,6 +60,16 @@ define(['jquery', 'underscore', 'masseuse',
                 $(el).on('click', function(e) {
                     e.stopPropagation();
                 });
+            },
+            'swap-text-while' : function(el, revert) {
+                var $el = $(el);
+
+                if(revert) {
+                    $el.attr('oldText', $el.text());
+                    $el.html($el.attr('data-swap-html') || 'Saving...');
+                } else {
+                    $el.html($el.attr('oldText'));
+                }
             }
         };
 
