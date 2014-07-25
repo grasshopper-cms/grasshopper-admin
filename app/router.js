@@ -65,6 +65,7 @@ define([
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
                 'items(/nodeid/:nodeId/limit/:limit)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId/limit/:limit/skip/:skip)' : 'displayContentBrowse',
+                'items(/nodeid/:nodeId/limit/:limit/skip/:skip/query/:query)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 'forbidden' : 'displayForbidden',
@@ -83,6 +84,7 @@ define([
             excludeFromBeforeRouting : ['login', 'logout'],
             userHasBreadcrumbs : userHasBreadcrumbs,
             removeThisRouteFromBreadcrumb : removeThisRouteFromBreadcrumb,
+            getCurrentBreadcrumb : getCurrentBreadcrumb,
 
             navigateTrigger : navigateTrigger,
             navigateNinja : navigateNinja,
@@ -135,6 +137,10 @@ define([
 
         function removeThisRouteFromBreadcrumb () {
             this.breadcrumb.pop();
+        }
+
+        function getCurrentBreadcrumb() {
+            return _.last(this.breadcrumb);
         }
 
         function _handleRoutingFromRefreshOnModalView (nodeId) {
@@ -337,13 +343,14 @@ define([
             this.loadMainContent(AddUserView);
         }
 
-        function displayContentBrowse (nodeId, limit, skip) {
+        function displayContentBrowse (nodeId, limit, skip, query) {
             this.loadMainContent(ContentBrowseView, {
                     modelData : {
                         nodeId : nodeId ? nodeId : '0',
                         inRoot : !nodeId,
-                        limit : limit,
-                        skip : skip
+                        limit : limit ? limit : 25,
+                        skip : skip ? skip : 0,
+                        contentSearchValue : query ? query : ''
                     }
                 });
         }

@@ -7,7 +7,8 @@ define(['masseuse', 'resources', 'constants'],
     return Model.extend({
         defaults : {
             constants : constants,
-            resources : resources
+            resources : resources,
+            contentSearchValue : ''
         }
     });
 

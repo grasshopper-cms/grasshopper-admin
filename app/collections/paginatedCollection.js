@@ -7,24 +7,25 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
             nodeId : '',
             query : query,
             searchQuery : _.throttle(query, constants.contentSearchThrottle),
-            next: next,
+            doSkip: doSkip,
             setLimit: setLimit,
             totalAmount : ''
         });
 
 
-        function next(e, context ) {
-            e.preventDefault();
+        function doSkip(skip, contentSearchValue, isGoToPage) {
+            if ( isGoToPage ) {
+                this.skip = (skip > 0) ? skip : 0;
+            } else {
+                this.skip += (this.skip + skip >= 0) ? skip : 0;
+            }
 
-            this.limit = context.limit;
-            this.query();
+            return this.query(contentSearchValue);
         }
 
-        function setLimit( ev, context ) {
-            ev.preventDefault();
-
-            this.limit = context.size;
-            this.query(context.model.get('contentSearchValue'));
+        function setLimit(size, contentSearchValue) {
+            this.limit = size;
+            return this.query(contentSearchValue);
         }
 
         function query(value) {
@@ -40,10 +41,8 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
                         skip : parseInt( self.skip, 10)
                     }
                 };
-
             api.makeQuery(queryData)
                 .done(function(data) {
-
                     if (self.models.length !== data.results.length) {
                         self.totalAmount = data.total;
                         self.set(data.results, {merge : false});
