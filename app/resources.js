@@ -41,7 +41,7 @@ define({
             role : 'USER ROLE',
             enabled : 'ENABLED?',
             email : 'EMAIL',
-            login : 'LOGIN',
+            username : 'USERNAME',
             password : 'PASSWORD'
         },
         selfLockWarning:'Warning! This will disable the current user and you won\'t have access to the system from' +
