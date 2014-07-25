@@ -94,6 +94,33 @@ body, html {
     z-index: $tooltipZIndex;
   }
 
+  #contentSearch {
+    position: relative;
+    float: right;
+    width: 19rem;
+    margin: -3rem 0 0;
+
+    .contentSearchInput {
+      margin: 0;
+      padding-right: 2rem;
+      font-style: italic;
+    }
+
+    .contentSearchInput:focus {
+      font-style: normal;
+    }
+
+    .contentSearchIcon {
+      position: absolute;
+      right: 0.5rem;
+      top: 0;
+      margin: 0;
+      font-size: 1.3rem;
+      line-height: 2.3125rem;
+      color: $borderGray;
+    }
+  }
+
   // VIEWS
   @import "../views/header/_style.scss"; // Header
   @import "../views/footer/_style.scss"; // Footer
