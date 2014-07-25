@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resources', 'constants',
-        'userDetailRow', 'appBinders'],
+        'userDetailRow/view', 'appBinders'],
     function (template, UserIndexViewModel, resources, constants,
-              UserDetailRow, appBinders) {
+              UserDetailRowView, appBinders) {
         'use strict';
 
         return {
@@ -30,7 +30,7 @@ define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resour
             rivetsConfig: {
                 binders : [appBinders],
                 childViewBinders: {
-                    'user-detail-row': UserDetailRow
+                    'user-detail-row': UserDetailRowView
                 }
             },
             permissions: ['admin']
