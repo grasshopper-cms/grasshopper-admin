@@ -47,6 +47,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function _handleNewContentType($deferred) {
         var textboxModelData = _.clone(_.findWhere(plugins.fields, { type : 'textbox' }).config.modelData);
 
+        textboxModelData._id = 'title';
         textboxModelData.label = 'Title';
         this.collection.reset(textboxModelData);
         _updateMastheadBreadcrumbs.call(this, $deferred, true);
