@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
+define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationWorker',
     'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker'],
-    function (GrasshopperBaseView, contentBrowseViewConfig, $,
+    function (GrasshopperBaseView, contentBrowseViewConfig, $, paginationWorker,
               _, breadcrumbWorker, constants, nodeWorker) {
         'use strict';
 
@@ -102,10 +102,15 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
         }
 
         function searchContent() {
-            _toggleSearchSpinner.call(this);
+            var childContent = this.model.get('childContent'),
+                contentSearchValue = this.model.get('contentSearchValue');
 
-            this.model.get('childContent').searchQuery(this.model.get('contentSearchValue'))
-                .done(_toggleSearchSpinner.bind(this, true));
+            _toggleSearchSpinner.call(this);
+            childContent.searchQuery(contentSearchValue)
+                .done(
+                    paginationWorker.setUrl.bind(this, childContent.limit, childContent.skip, contentSearchValue),
+                    _toggleSearchSpinner.bind(this, true)
+                );
         }
 
         function _toggleSearchSpinner(revert) {

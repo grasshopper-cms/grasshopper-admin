@@ -9,7 +9,7 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
             searchQuery : _.throttle(query, constants.contentSearchThrottle),
             doSkip: doSkip,
             setLimit: setLimit,
-            totalAmount : ''
+            total : 0
         });
 
 
@@ -43,13 +43,13 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
                 };
             api.makeQuery(queryData)
                 .done(function(data) {
-                    if (self.models.length !== data.results.length) {
-                        self.totalAmount = data.total;
-                        self.set(data.results, {merge : false});
+                    if (this.models.length !== data.results.length) {
+                        this.total = data.total;
+                        this.set(data.results, {merge : false});
                     }
 
                     $deferred.resolve();
-                });
+                }.bind(this));
 
             return $deferred.promise();
         }

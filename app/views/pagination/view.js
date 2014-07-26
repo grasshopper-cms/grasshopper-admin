@@ -1,22 +1,31 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'pagination/options'],
-    function (GrasshopperBaseView, options) {
+define(['grasshopperBaseView', 'pagination/options', 'paginationWorker'],
+    function (GrasshopperBaseView, options, paginationWorker) {
     'use strict';
 
     return GrasshopperBaseView.extend({
         defaultOptions : options,
+        afterRender : afterRender,
         goToPage : goToPage,
         next : next,
         prev : prev,
-        setLimit : setLimit,
-        setUrl : setUrl
+        setLimit : setLimit
     });
+
+    function afterRender() {
+        console.log('AFTER RENDER');
+        this.model.set({
+            limit : this.collection.limit,
+            total : this.collection.total
+        }, true);
+    }
 
     function setLimit(e, context) {
         e.preventDefault();
+        this.model.set('limit', context.size);
         this.collection.setLimit(context.size, this.model.get('contentSearchValue'))
             .done(
-                setUrl.call(this, context.size, this.collection.skip, this.model.get('contentSearchValue'))
+                paginationWorker.setUrl.bind(this, context.size, this.collection.skip, this.model.get('contentSearchValue'))
             );
     }
 
@@ -24,15 +33,15 @@ define(['grasshopperBaseView', 'pagination/options'],
         e.preventDefault();
         this.collection.doSkip(3, this.model.get('contentSearchValue'), true)
             .done(
-            setUrl.call(this, this.collection.limit, this.collection.skip, this.model.get('contentSearchValue'))
-        );
+                paginationWorker.setUrl.bind(this, this.collection.limit, this.collection.skip, this.model.get('contentSearchValue'))
+            );
     }
 
     function next(e) {
         e.preventDefault();
         this.collection.doSkip(1, this.model.get('contentSearchValue'))
             .done(
-                setUrl.call(this, this.collection.limit, this.collection.skip, this.model.get('contentSearchValue'))
+                paginationWorker.setUrl.bind(this, this.collection.limit, this.collection.skip, this.model.get('contentSearchValue'))
             );
     }
 
@@ -40,24 +49,7 @@ define(['grasshopperBaseView', 'pagination/options'],
         e.preventDefault();
         this.collection.doSkip(-1, this.model.get('contentSearchValue'))
             .done(
-            setUrl.call(this, this.collection.limit, this.collection.skip, this.model.get('contentSearchValue'))
-        );
+                paginationWorker.setUrl.bind(this, this.collection.limit, this.collection.skip, this.model.get('contentSearchValue'))
+            );
     }
-
-    function setUrl(size, skip, contentSearchValue) {
-        var url = this.app.router.getCurrentBreadcrumb();
-
-        if (url.indexOf('/limit') !== -1) {
-            url = url.slice(0, url.indexOf('/limit'));
-        }
-
-        if (!contentSearchValue) {
-            url += '/limit/' + size + '/skip/' + skip;
-        } else {
-            url += '/limit/' + size + '/skip/' + skip + '/query/' + contentSearchValue;
-        }
-
-        this.app.router.navigateNinja(url);
-    }
-
 });

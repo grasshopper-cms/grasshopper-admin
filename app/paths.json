@@ -278,7 +278,8 @@
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
         "nodeWorker" : "workers/nodeWorker",
-        "urlWorker" : "workers/urlWorker"
+        "urlWorker" : "workers/urlWorker",
+        "paginationWorker" : "workers/paginationWorker"
     },
 
     "collections" : {

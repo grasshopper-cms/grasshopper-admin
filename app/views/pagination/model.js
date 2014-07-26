@@ -8,7 +8,11 @@ define(['masseuse', 'resources', 'constants'],
         defaults : {
             constants : constants,
             resources : resources,
-            contentSearchValue : ''
+            contentSearchValue : '',
+            pageNumbers : masseuse.ComputedProperty(['limit', 'total'], function(limit, total) {
+                //TODO: array of pages
+                return (total % limit === 0 ) ? (total / limit) : parseInt(total / limit) + 1;
+            }, true)
         }
     });
 
