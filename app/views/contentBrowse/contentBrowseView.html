@@ -109,7 +109,8 @@
             </li>
 
             <li>
-                <a data-rv-on-click="view.createFolder" class="button tiny">
+                <a data-rv-on-click="view.createFolder" class="button tiny"
+                   data-rv-show="view.hasCreateFolderPermission">
                     {{model:resources->mastheadButtons->createFolder}}
                 </a>
             </li>

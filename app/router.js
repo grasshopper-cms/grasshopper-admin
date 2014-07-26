@@ -6,7 +6,7 @@ define([
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
-    'userDetailView', 'UserModel',
+    'userDetail/view', 'UserModel',
     'headerView',
     'footerView',
     'mastheadView',
@@ -294,7 +294,9 @@ define([
                     modelData : {
                         header : (options.header) ? options.header : null,
                         msg : options.msg,
-                        data : (options.data) ? options.data : null
+                        data : (options.data) ? options.data : null,
+                        hideCancel: !!options.hideCancel,
+                        hideConfirm: !!options.hideConfirm
                     },
                     type : (options.type) ? options.type : null,
                     $deferred : $deferred

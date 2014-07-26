@@ -1,8 +1,8 @@
-define(['userDetailView', 'userDetailRowConfig'], function(UserDetailView, userDetailRowConfig) {
+define(['userDetail/view', 'userDetailRow/options'], function(UserDetailView, options) {
     'use strict';
 
     return UserDetailView.extend({
-        defaultOptions : userDetailRowConfig,
+        defaultOptions : options,
         beforeRender : noop
     });
 

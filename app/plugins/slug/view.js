@@ -16,12 +16,14 @@ define(['grasshopperBaseView', 'underscore'],
         }
 
         function _collectAvailableSluggables() {
-            var allStringFields = this.parent.parent.collection.where({ dataType : 'string' }),
-                allSluggableFields = _.filter(allStringFields, function(model) {
-                    return model.get('type') !== 'slug';
-                });
+            if (this.model) {
+                var allStringFields = this.parent.parent.collection.where({ dataType: 'string' }),
+                    allSluggableFields = _.filter(allStringFields, function (model) {
+                        return model.get('type') !== 'slug';
+                    });
 
-            this.model.get('possibleFieldsToSlug').reset(allSluggableFields);
+                this.model.get('possibleFieldsToSlug').reset(allSluggableFields);
+            }
         }
 
         function _attachRefreshListenerToParentCollection() {

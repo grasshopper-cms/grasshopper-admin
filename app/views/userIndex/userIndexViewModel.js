@@ -1,4 +1,4 @@
-define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', 'userDetailViewModel'],
+define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', 'userDetail/model'],
     function (GrasshopperModel, resources, constants, grasshopperCollection, userDetailViewModel) {
 
     'use strict';

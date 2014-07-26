@@ -1,10 +1,20 @@
 // Import Foundation
 @import "../vendor/foundation/scss/normalize.scss";
 @import "../vendor/foundation/scss/foundation.scss";
+
+// Fonts
 @import "fonts";
+
+// Colors
 @import "colors";
+
+// Mixins
 @import "mixins";
+
+// Z-Index
 @import "z-index";
+
+// Vendor Plugins
 @import "datetimepicker";
 @import "CSS:../vendor/select2/select2";
 

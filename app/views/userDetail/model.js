@@ -16,7 +16,10 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse', 'underscore'],
                 href : new ComputedProperty(['_id'], function(_id) {
                     return constants.internalRoutes.user + '/' + _id;
                 }),
-                saving : false
+                saving : false,
+                userIsChangingTheirProfile : ComputedProperty(['_id', 'userModel'], function(_id, userModel) {
+                    return _id && userModel && _id === userModel.get('_id');
+                })
             },
             toJSON : toJSON,
             urlRoot : constants.api.users.url,
@@ -32,6 +35,6 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse', 'underscore'],
         function toJSON() {
             var json = GrasshopperModel.prototype.toJSON.apply(this);
 
-            return _.omit(json, ['swapElement', 'swapText']);
+            return _.omit(json, ['userIsChangingTheirProfile', 'saving', 'userModel', 'fullname']);
         }
     });
