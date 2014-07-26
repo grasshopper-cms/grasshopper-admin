@@ -11,6 +11,7 @@
         "modernizr" : "vendor/modernizr/modernizr",
         "ckeditor" : "vendor/ckeditor/ckeditor",
         "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
+        "svg-edit-embed-api" : "vendor/svg-edit-2.7/embedapi",
         "ace" : "vendor/ace/lib/ace",
         "moment" : "vendor/moment/moment",
         "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
