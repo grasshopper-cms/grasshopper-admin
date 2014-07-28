@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="large-12 small-centered columns">
+
+        <div data-rv-show="model:loading">
+            <div>
+                <i class="fa fa-refresh fa fa-spin"></i>
+            </div>
+        </div>
+
+        <div data-rv-hide="model:loading" id="embeddedTypeAccordion">
+
+            <div class="accordionHeader">
+                {{model:accordionLabel | existsOr -- }}
+            </div>
+
+            <div class="accordionContent">
+                <div data-rv-each-field="model:activeContentType->fields">
+                    <div data-rv-fieldwrapper="field"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
