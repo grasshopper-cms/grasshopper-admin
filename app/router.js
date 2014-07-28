@@ -18,7 +18,8 @@ define([
     'contentTypeDetailView',
     'addFolderView',
     'addContentView',
-    'addAssetsView'
+    'addAssetsView',
+    'sysInfoView'
 ],
     function ($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
@@ -38,7 +39,9 @@ define([
               ContentTypeDetailView,
               AddFolderView,
               AddContentView,
-              AddAssetsView) {
+              AddAssetsView,
+              SysInfoView
+        ) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
@@ -56,6 +59,7 @@ define([
                 'logout' : 'goLogout',
                 'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
+                'sysinfo': 'displaySysinfo',
                 'addUser' : 'displayAddUser',
                 'contentTypes' : 'displayContentTypeIndex',
                 'contentTypes/new' : 'displayContentTypeDetail',
@@ -97,6 +101,7 @@ define([
             navigate : navigate,
             displayUserIndex : displayUserIndex,
             displayUserDetail : displayUserDetail,
+            displaySysinfo: displaySysinfo,
             displayAddUser : displayAddUser,
             displayContentBrowse : displayContentBrowse,
             displayContentDetail : displayContentDetail,
@@ -337,6 +342,10 @@ define([
 
         function displayAddUser () {
             this.loadMainContent(AddUserView);
+        }
+
+        function displaySysinfo(){
+            this.loadMainContent(SysInfoView);
         }
 
         function displayContentBrowse (nodeId, limit, skip) {

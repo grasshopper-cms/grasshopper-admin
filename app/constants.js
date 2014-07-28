@@ -3,10 +3,12 @@ define([], function() {
     'use strict';
 
     var apiEndpoint = '<%= apiEndpoint %>',
-        version = '<%= version %>';
+        version = '<%= version %>',
+        librariesVersions = '<%= JSON.stringify(librariesVersions) %>';
 
     return {
         version : version,
+        librariesVersions: librariesVersions,
         api : {
             base : {
                 url : apiEndpoint
@@ -58,6 +60,7 @@ define([], function() {
             user : '#user',
             users : '#users',
             addUser : '#addUser',
+            sysInfo: '#sysinfo',
             contentTypes : '#contentTypes',
             newContentType : '#contentTypes/new',
             contentTypeDetail : '#contentTypes/:id',

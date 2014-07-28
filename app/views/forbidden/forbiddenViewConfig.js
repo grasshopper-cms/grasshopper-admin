@@ -19,7 +19,7 @@ define(['text!views/forbidden/forbiddenView.html', 'resources', 'constants'],
                 },
                 {
                     text : resources.forbidden,
-                    href : constants.internalRoutes.contentTypes
+                    href : constants.internalRoutes.forbidden
                 }
             ]
         };

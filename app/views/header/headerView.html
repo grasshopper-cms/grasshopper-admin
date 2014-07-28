@@ -60,6 +60,15 @@
                                 </a>
                             </li>
 
+                            <li class="nav-item"
+                                data-rv-show="model:userModel->role | includes admin reader editor author">
+                                <a id="sysInfo" class="nav-item-link"
+                                   data-rv-href="model:constants->internalRoutes->sysInfo">
+                                    <i class="fa fa-info"></i>
+                                    <span>{{model:resources->sysInfo}}</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
 
