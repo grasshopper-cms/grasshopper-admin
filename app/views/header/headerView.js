@@ -31,6 +31,9 @@ define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],  func
         case constants.internalRoutes.contentTypes:
             this.setActive('#contentTypes');
             break;
+        case constants.internalRoutes.sysInfo:
+            this.setActive('#sysInfo');
+            break;
         default:
             this.setActive('#items');
         }

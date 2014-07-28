@@ -255,6 +255,11 @@
         "forbiddenView+" : {
             "" : "views/forbidden/forbiddenView",
             "Config" : "views/forbidden/forbiddenViewConfig"
+        },
+
+        "sysInfoView+" : {
+            "" : "views/sysInfo/sysInfoView",
+            "Config" : "views/sysInfo/sysInfoViewConfig"
         }
     },
 

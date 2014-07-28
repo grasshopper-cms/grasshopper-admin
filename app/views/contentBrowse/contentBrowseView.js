@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
-    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker'],
+    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig'],
     function (GrasshopperBaseView, contentBrowseViewConfig, $,
-              _, breadcrumbWorker, constants, nodeWorker) {
+              _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -18,7 +18,8 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             editNodeName : editNodeName,
             editNodeContentTypes : editNodeContentTypes,
             deleteNode : deleteNode,
-            searchContent : searchContent
+            searchContent : searchContent,
+            hasCreateFolderPermission: hasCreateFolderPermission
         });
 
         function beforeRender ($deferred) {
@@ -122,6 +123,10 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
 
         function _closeActionsDropdown() {
             $('#actionsDropdown').click();
+        }
+        function hasCreateFolderPermission(){
+            var role=this.app.user ? this.app.user.get('role') : undefined;
+            return _.contains(addFolderViewConfig.permissions, role);
         }
 
     });
