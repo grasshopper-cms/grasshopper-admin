@@ -310,6 +310,7 @@ define({
     upload : 'Upload',
     user_name : 'User Name',
     users : 'Users',
+    sysInfo : 'Info',
     value : 'Value',
     validation : 'Validation',
     warning : 'Warning!',

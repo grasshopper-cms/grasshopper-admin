@@ -11,6 +11,7 @@
         "modernizr" : "vendor/modernizr/modernizr",
         "ckeditor" : "vendor/ckeditor/ckeditor",
         "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
+        "svg-edit-embed-api" : "vendor/svg-edit-2.7/embedapi",
         "ace" : "vendor/ace/lib/ace",
         "moment" : "vendor/moment/moment",
         "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
@@ -254,6 +255,11 @@
         "forbiddenView+" : {
             "" : "views/forbidden/forbiddenView",
             "Config" : "views/forbidden/forbiddenViewConfig"
+        },
+
+        "sysInfoView+" : {
+            "" : "views/sysInfo/sysInfoView",
+            "Config" : "views/sysInfo/sysInfoViewConfig"
         }
     },
 

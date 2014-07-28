@@ -33,6 +33,9 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
         function parse(response, options) {
             if(options.parse === false) {
                 return _.omit(response, ['fields']);
+//                _.each(response.fields, function(field) {
+//                    this.set('fields.'+ field, )
+//                }.bind(this))
             }
             return response;
         }

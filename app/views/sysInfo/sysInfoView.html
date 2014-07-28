@@ -1,0 +1,25 @@
+<div class="sysInfo_page">
+    <h1>Grasshopper Information</h1>
+
+    <div>
+        Grasshopper is released under the
+        <a href="https://github.com/Solid-Interactive/grasshopper-core-nodejs/blob/master/LICENSE">MIT license</a>
+        and has been sponsored by <a href="http://www.thinksolid.com/">Solid Interactive</a>. Further
+        <a href="http://solid-interactive.github.io/grasshopper-core-nodejs/documentation.html">documentation</a>
+        is available on the <a href="http://grasshopper.ws/">Grasshopper website</a>.<br/><br/>
+    </div>
+    <div class="sysInfo_versions">
+        <div class="version">
+            grasshopper-admin {{model:constants->version}}
+        </div>
+        <div class="version" data-rv-each-component="model:apiVersions->components">
+            {{component.name}}
+            {{component.version}}
+        </div>
+        <h2>Components:</h2>
+        <div class="version" data-rv-each-lib="model:librariesVersions">
+            {{lib.name}}
+            {{lib.version}}
+        </div>
+    </div>
+</div>
