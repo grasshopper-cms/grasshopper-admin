@@ -4,11 +4,11 @@ define([], function() {
 
     var apiEndpoint = '<%= apiEndpoint %>',
         version = '<%= version %>',
-        librariesVersions = '<%= JSON.stringify(librariesVersions) %>';
+        libraryVersions = '<%= JSON.stringify(libraryVersions) %>';
 
     return {
         version : version,
-        librariesVersions: librariesVersions,
+        librariesVersions: libraryVersions,
         api : {
             base : {
                 url : apiEndpoint

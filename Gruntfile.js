@@ -11,14 +11,13 @@ module.exports = function (grunt) {
         ghaConfigPath = path.dirname(ghaConfig),
         version = grunt.file.readJSON('package.json').version,
         tempDir = '.tempo',
-        librariesVersions = grunt.file.expand(['bower.json']).map(function(filename){
-            var contents=grunt.file.readJSON(filename);
+        libraryVersions = grunt.file.expand(['app/vendor/*/.bower.json']).map(function(filename){
+            var contents = grunt.file.readJSON(filename);
             return {
                 name: contents.name,
                 version: contents.version
             };
         });
-
 
 
     if (!ghaConfig) {
@@ -36,7 +35,7 @@ module.exports = function (grunt) {
     grunt.config.set('buildDirectory', ghaConfigPath + path.sep + ghaConfig.buildDirectory);
     grunt.config.set('externalPluginsDirectory', ghaConfig.externalPluginsDirectory);
     grunt.config.set('version', version);
-    grunt.config.set('librariesVersions', librariesVersions);
+    grunt.config.set('libraryVersions', libraryVersions);
 
     grunt.loadTasks('grunt/config');
     grunt.loadTasks('grunt/tasks');
