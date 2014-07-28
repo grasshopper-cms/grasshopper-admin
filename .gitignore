@@ -10,3 +10,4 @@ ghapi.json
 app/vendor
 _deploy
 server/public/admin
+tempo
