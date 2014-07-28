@@ -1,7 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'jquery', 'svg-edit-embed-api'],
-    function (GrasshopperBaseView, $) {
+define(['grasshopperBaseView', 'jquery', 'helpers', 'svg-edit-embed-api'],
+    function (GrasshopperBaseView, $, helpers) {
         'use strict';
+
+        var LocalStorage = helpers.localStorage;
 
         return GrasshopperBaseView.extend({
             initializeSvgEdit : initializeSvgEdit,
@@ -15,6 +17,8 @@ define(['grasshopperBaseView', 'jquery', 'svg-edit-embed-api'],
                 $iframe = this.$(iframe),
                 svgCanvas = new window.EmbeddedSVGEdit(iframe),
                 $mainButton = $iframe.contents().find('#main_button');
+
+            LocalStorage.remove('svgedit-default');
 
             if(this.model.get('value')) {
                 svgCanvas.setSvgString(this.model.get('value'));
