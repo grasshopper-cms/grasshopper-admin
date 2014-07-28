@@ -7,5 +7,6 @@ build
 ghapi.json
 .bundle
 .DS_Store
+app/vendor
 _deploy
 server/public/admin
