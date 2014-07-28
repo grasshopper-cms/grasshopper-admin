@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         ghaConfigPath = path.dirname(ghaConfig),
         version = grunt.file.readJSON('package.json').version,
         tempDir = '.tempo',
-        librariesVersions = grunt.file.expand(['app/vendor/*/.bower.json']).map(function(filename){
+        librariesVersions = grunt.file.expand(['bower.json']).map(function(filename){
             var contents=grunt.file.readJSON(filename);
             return {
                 name: contents.name,
