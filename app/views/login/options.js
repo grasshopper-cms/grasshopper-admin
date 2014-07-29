@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/login/template.html', 'login/model'], function (template, loginModel) {
+define(['text!views/login/template.html', 'login/model', 'appBinders'], function (template, loginModel, appBinders) {
     'use strict';
 
     return {
@@ -12,8 +12,8 @@ define(['text!views/login/template.html', 'login/model'], function (template, lo
         appendTo : '#stage',
         wrapper : false,
         template : template,
-        events : {},
-        listeners : [
-        ]
+        rivetsConfig : {
+            binders : [appBinders]
+        }
     };
 });
