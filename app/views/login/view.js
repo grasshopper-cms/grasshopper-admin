@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'login/options', 'loginWorker'],
-    function (GrasshopperBaseView, loginOptions, loginWorker) {
+define(['grasshopperBaseView', 'login/options', 'loginWorker', 'api'],
+    function (GrasshopperBaseView, loginOptions, loginWorker, Api) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -11,14 +11,27 @@ define(['grasshopperBaseView', 'login/options', 'loginWorker'],
     });
 
     function login () {
+        _toggleSpinner.call(this);
+
         if (this.model.isValid()) {
-            loginWorker.doLogin.call(this);
+            loginWorker.doLogin.call(this)
+                .always(_toggleSpinner.bind(this));
         }
         return false;
     }
 
     function loginWithGoogle() {
-        console.log('YEAH BUDDy');
+        _toggleSpinner.call(this);
+
+        Api.getGoogleUrl()
+            .done(function(url) {
+                window.location.href = url;
+            })
+            .fail(this.throwLoginError.bind(this));
+    }
+
+    function _toggleSpinner() {
+        this.model.toggle('loggingIn');
     }
 
     function throwLoginError (xhr) {
