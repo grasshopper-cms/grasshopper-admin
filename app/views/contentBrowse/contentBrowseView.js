@@ -125,7 +125,8 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             $('#actionsDropdown').click();
         }
         function hasCreateFolderPermission(){
-            var role=this.app.user ? this.app.user.get('role') : undefined;
+            var role = this.app.user ? this.app.user.get('role') : undefined;
+
             return _.contains(addFolderViewConfig.permissions, role);
         }
 
