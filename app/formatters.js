@@ -16,6 +16,7 @@ define(['sparkmd5'], function (sparkmd5) {
         sortBy: sortBy,
         gravatarUrl: gravatarUrl,
         preventDefault : preventDefault,
+        stopImmediatePropagation : stopImmediatePropagation,
         asBoolean : asBoolean
     };
 
@@ -75,6 +76,14 @@ define(['sparkmd5'], function (sparkmd5) {
     function gravatarUrl(email, args) {
         var md5value = email ? sparkmd5.hash(email.toLowerCase()) : '';
         return 'http://www.gravatar.com/avatar/' + md5value + '?s=' + args + '&d=mm';
+    }
+
+    function stopImmediatePropagation(value) {
+        return function(e) {
+            e.stopImmediatePropagation();
+            value.call(this, e);
+            return false;
+        };
     }
 
     function preventDefault(value) {
