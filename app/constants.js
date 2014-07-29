@@ -8,7 +8,7 @@ define([], function() {
 
     return {
         version : version,
-        librariesVersions: libraryVersions,
+        libraryVersions: libraryVersions,
         api : {
             base : {
                 url : apiEndpoint
