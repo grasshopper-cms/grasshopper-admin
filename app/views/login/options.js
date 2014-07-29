@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['text!views/login/loginView.html', 'loginViewModel'], function (template, loginViewModel) {
+define(['text!views/login/template.html', 'login/model', 'appBinders'], function (template, loginModel, appBinders) {
     'use strict';
 
     return {
@@ -7,15 +7,13 @@ define(['text!views/login/loginView.html', 'loginViewModel'], function (template
         modelData : {},
         // for model attribute errors on self validating models, follow the convention of attribute+"Error".
         // See the rivetView "publish" method
-        ModelType : loginViewModel,
+        ModelType : loginModel,
         browserTitle : 'Sign In',
         appendTo : '#stage',
         wrapper : false,
         template : template,
-        events : {
-            'click #loginButton' : 'login'
-        },
-        listeners : [
-        ]
+        rivetsConfig : {
+            binders : [appBinders]
+        }
     };
 });

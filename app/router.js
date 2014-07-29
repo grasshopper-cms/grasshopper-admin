@@ -2,7 +2,7 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
     'grasshopperBaseView',
-    'loginView', 'loginWorker', 'logoutWorker', 'forbiddenView',
+    'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
@@ -45,6 +45,7 @@ define([
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
+            LocalStorage = helpers.localStorage,
             userModel = new UserModel(),
             currentView,
             Router;
@@ -55,7 +56,7 @@ define([
          */
         Router = MasseuseRouter.extend({
             routes : {
-                'login' : 'displayLogin',
+                'login(/:token)' : 'displayLogin',
                 'logout' : 'goLogout',
                 'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
@@ -84,7 +85,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login', 'logout'],
+            excludeFromBeforeRouting : ['login(/:token)', 'logout'],
             userHasBreadcrumbs : userHasBreadcrumbs,
             removeThisRouteFromBreadcrumb : removeThisRouteFromBreadcrumb,
 
@@ -267,8 +268,16 @@ define([
                 .done(this.navigate.bind(this, 'login', {trigger : true}, true));
         }
 
-        function displayLogin () {
-            this.loadMainContent(LoginView);
+        function displayLogin (token) {
+
+            if(token) {
+                // I am assuming this is a google token because that is all we support right meow.
+                LocalStorage.set('authToken', 'Google '+ token);
+                this.navigateTrigger('#items');
+            } else {
+                this.loadMainContent(LoginView);
+            }
+
         }
 
         function displayAlertBox (options) {

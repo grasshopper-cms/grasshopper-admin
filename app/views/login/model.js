@@ -1,14 +1,14 @@
-define(['masseuse', 'validationLibrary', 'underscore', 'resources'],
-    function (masseuse, validationLibrary, _, resources) {
+define(['grasshopperModel', 'masseuse', 'validationLibrary', 'underscore', 'resources'],
+    function (GrasshopperModel, masseuse, validationLibrary, _, resources) {
     'use strict';
 
-    var Model = masseuse.MasseuseModel,
-        ComputedProperty = masseuse.ComputedProperty;
+    var ComputedProperty = masseuse.ComputedProperty;
 
-    return Model.extend({
+    return GrasshopperModel.extend({
         validate : _validate,
         defaults : {
             resources : resources,
+            loggingIn : false,
             username : '',
             password : '',
             usernameError : new ComputedProperty(['username'], _validateUserLoginAttribute, true),
