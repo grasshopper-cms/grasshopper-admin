@@ -17,9 +17,20 @@
             {{component.version}}
         </div>
         <h2>Components:</h2>
-        <div class="version" data-rv-each-lib="model:libraryVersions">
-            {{lib.name}}
-            {{lib.version}}
-        </div>
+        <table>
+            <thead>
+            <tr>
+                <th width="50%">Package</th>
+                <th width="50%">Version</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-rv-each-lib="model:libraryVersions">
+                <td>{{lib.name}}</td>
+                <td>{{lib.version}}</td>
+
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
