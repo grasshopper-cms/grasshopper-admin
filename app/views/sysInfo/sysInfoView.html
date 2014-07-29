@@ -9,13 +9,24 @@
         is available on the <a href="http://grasshopper.ws/">Grasshopper website</a>.<br/><br/>
     </div>
     <div class="sysInfo_versions">
-        <div class="version">
-            grasshopper-admin {{model:constants->version}}
-        </div>
-        <div class="version" data-rv-each-component="model:apiVersions->components">
-            {{component.name}}
-            {{component.version}}
-        </div>
+        <table>
+            <thead>
+            <tr>
+                <th width="50%">Package</th>
+                <th width="50%">Version</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>grasshopper-admin</td>
+                <td>{{model:constants->version}}</td>
+            </tr>
+            <tr data-rv-each-component="model:apiVersions->components">
+                <td>{{component.name}}</td>
+                <td>{{component.version}}</td>
+            </tr>
+            </tbody>
+        </table>
         <h2>Components:</h2>
         <table>
             <thead>
@@ -28,7 +39,6 @@
             <tr data-rv-each-lib="model:libraryVersions">
                 <td>{{lib.name}}</td>
                 <td>{{lib.version}}</td>
-
             </tr>
             </tbody>
         </table>
