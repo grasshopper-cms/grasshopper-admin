@@ -16,7 +16,7 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
                     label : '',
                     fields: {},
                     saving: false
-                }
+                };
             },
             urlRoot : constants.api.content.url,
             toJSON : toJSON,
