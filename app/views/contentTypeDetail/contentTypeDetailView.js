@@ -150,20 +150,18 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
             '.fieldAccordion[modelid="'+ this.collection.at(index).cid +'"]').click();
     }
 
-    function saveContentType(e) {
-        _swapSavingTextWithSpinner.call(this, e);
-        this.model.toggle('saving');
+    function saveContentType() {
         _saveContentTypeWorkflow.call(this, {});
     }
 
-    function saveAndClose(e) {
-        _swapSavingTextWithSpinner.call(this, e);
-        this.model.toggle('saving');
+    function saveAndClose() {
         _saveContentTypeWorkflow.call(this, { close : true });
     }
 
     function _saveContentTypeWorkflow(options) {
         var self = this;
+
+        this.model.toggle('saving');
 
         this.model.set('fields', this.collection.toJSON());
 
@@ -174,7 +172,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
                     .fail(_handleFailedModelSave.bind(self));
             })
             .fail(function() {
-                _swapSavingTextWithSpinner.call(self);
                 self.model.toggle('saving');
             });
     }
@@ -211,8 +208,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         } else {
             this.model.toggle('saving');
 
-            _swapSavingTextWithSpinner.call(this);
-
             this.app.router.navigateNinja(
                 constants.internalRoutes.contentTypeDetail.replace(':id', this.model.get('_id')));
 
@@ -224,7 +219,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     function _handleFailedModelSave() {
         this.model.toggle('saving');
 
-        _swapSavingTextWithSpinner.call(this);
         this.fireErrorModal(this.model.validationError ? this.model.validationError : resources.contentType.failedSave);
     }
 
@@ -320,21 +314,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
             this.app.router.displayContentTypeDetail();
         } else {
             this.app.router.navigateTrigger(constants.internalRoutes.newContentType);
-        }
-    }
-
-    function _swapSavingTextWithSpinner(e) {
-        var currentWidth,
-            $currentTarget;
-
-        if(e) {
-            $currentTarget = $(e.currentTarget);
-            this.model.set('swapElement', $currentTarget);
-            this.model.set('swapText', $currentTarget.text());
-            currentWidth = $currentTarget.width();
-            $currentTarget.empty().width(currentWidth).append('<i class="fa fa-refresh fa fa-spin"></i>');
-        } else {
-            $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
         }
     }
 

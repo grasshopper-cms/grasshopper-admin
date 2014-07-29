@@ -23,7 +23,7 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'un
     function toJSON() {
         var json = GrasshopperModel.prototype.toJSON.apply(this);
 
-        return _.omit(json, ['swapElement', 'swapText']);
+        return _.omit(json, []);
     }
 
     function validate(attrs) {

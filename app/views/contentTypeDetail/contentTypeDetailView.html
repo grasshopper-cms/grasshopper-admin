@@ -80,15 +80,15 @@
             <ul class="button-group radius right">
 
                 <li>
-                    <button class="button tiny" data-rv-on-click="view.saveContentType" data-rv-disabled="model:saving" style="margin-top: 20px;">
+                    <a class="button tiny" data-rv-on-click="view.saveContentType" data-rv-disabled="model:saving" style="margin-top: 20px;" data-swap-html="<i class='fa fa-refresh fa-spin'></i>" data-rv-swap-text-while="model:saving">
                         {{model:resources->save}}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
-                    <button class="button tiny" data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving" style="margin-top: 20px;">
+                    <a class="button tiny" data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving" style="margin-top: 20px;" data-swap-html="<i class='fa fa-refresh fa-spin'></i>" data-rv-swap-text-while="model:saving">
                         {{model:resources->saveAndClose}}
-                    </button>
+                    </a>
                 </li>
 
             </ul>
@@ -101,9 +101,9 @@
             <ul class="button-group radius">
 
                 <li>
-                    <button data-rv-on-click="view.newContentType" class="button tiny">
+                    <a data-rv-on-click="view.newContentType" class="button tiny">
                         {{model:resources->mastheadButtons->addContentType}}
-                    </button>
+                    </a>
                 </li>
 
             </ul>
@@ -111,15 +111,15 @@
             <ul class="button-group radius">
 
                 <li>
-                    <button data-rv-on-click="view.saveContentType" data-rv-disabled="model:saving" class="button tiny">
+                    <a data-rv-on-click="view.saveContentType" data-rv-disabled="model:saving" class="button tiny" data-swap-html="<i class='fa fa-refresh fa-spin'></i>" data-rv-swap-text-while="model:saving">
                         {{model:resources->save}}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
-                    <button data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving" class="button tiny">
+                    <a data-rv-on-click="view.saveAndClose" data-rv-disabled="model:saving" class="button tiny" data-swap-html="<i class='fa fa-refresh fa-spin'></i>" data-rv-swap-text-while="model:saving">
                         {{model:resources->saveAndClose}}
-                    </button>
+                    </a>
                 </li>
 
             </ul>
