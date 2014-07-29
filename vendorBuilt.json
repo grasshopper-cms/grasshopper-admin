@@ -2,7 +2,7 @@
     "font-awesome-fonts" : "vendor/font-awesome/fonts/**",
     "ckeditorSkins" : "vendor/ckeditor/skins/**",
     "ckeditorCss" : "vendor/ckeditor/contents.css",
-    "aceCodeEditor" : "vendor/ace/lib/ace/css/**",
+    "aceCodeEditorCss" : "vendor/ace/lib/ace/css/**",
     "fonts" : "vendor/fonts/**",
 
     "ckeditor" : "vendor/ckeditor/ckeditor.js",
@@ -12,5 +12,6 @@
     "ckeditor-styleJavascript" : "vendor/ckeditor/styles.js",
     "ckeditor-stylsheet" : "vendor/ckeditor/contents.css",
     "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
-    "aceCodeEditor" : "vendor/ace/lib/ace/**/*"
+    "aceCodeEditor" : "vendor/ace/lib/ace/**/*",
+    "svg-edit" : "vendor/svg-edit-2.7/**/*"
 }
