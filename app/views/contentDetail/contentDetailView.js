@@ -39,7 +39,6 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             $deferred.resolve();
         }
 
-
         function afterRender () {
             this.$el.foundation();
             _addListenerForModelChange.call(this);
@@ -80,7 +79,6 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
                         resources.contentItem.successfullyDeletedPost
                 }
             );
-            this.remove();
         }
 
         function saveContent (e) {
