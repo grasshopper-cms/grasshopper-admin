@@ -266,6 +266,7 @@ define({
     label : 'Label',
     login : 'Login',
     log_in : 'Log In',
+    logInWithGoogle : 'Login with Google',
     log_out : 'Log Out',
     match : 'Match',
     maximum : 'Maximum',
