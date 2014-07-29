@@ -12,9 +12,7 @@ define(['text!views/login/loginView.html', 'loginViewModel'], function (template
         appendTo : '#stage',
         wrapper : false,
         template : template,
-        events : {
-            'click #loginButton' : 'login'
-        },
+        events : {},
         listeners : [
         ]
     };

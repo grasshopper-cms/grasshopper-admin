@@ -2,9 +2,11 @@
 define(['grasshopperBaseView', 'loginViewConfig', 'loginWorker'],
     function (GrasshopperBaseView, loginViewConfig, loginWorker) {
     'use strict';
+
     return GrasshopperBaseView.extend({
         defaultOptions : loginViewConfig,
         login : login,
+        loginWithGoogle : loginWithGoogle,
         throwLoginError : throwLoginError
     });
 
@@ -13,6 +15,10 @@ define(['grasshopperBaseView', 'loginViewConfig', 'loginWorker'],
             loginWorker.doLogin.call(this);
         }
         return false;
+    }
+
+    function loginWithGoogle() {
+        console.log('YEAH BUDDy');
     }
 
     function throwLoginError (xhr) {
