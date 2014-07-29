@@ -4,11 +4,11 @@ define([], function() {
 
     var apiEndpoint = '',
         version = '0.27.4',
-        librariesVersions = '[{"name":"ScrollToFixed","version":"1.0.6"},{"name":"SparkMD5","version":"0.0.5"},{"name":"ace","version":"1.1.3"},{"name":"backbone-amd","version":"1.1.0"},{"name":"chai","version":"1.7.2"},{"name":"ckeditor","version":"4.3.5"},{"name":"datetimepicker","version":"2.3.2"},{"name":"font-awesome","version":"4.1.0"},{"name":"foundation","version":"5.0.2"},{"name":"jquery.ui","version":"1.10.4"},{"name":"jquery","version":"2.1.1"},{"name":"js-base64","version":"2.1.2"},{"name":"lodash-amd","version":"2.4.1"},{"name":"masseuse","version":"2.3.0"},{"name":"mocha","version":"1.12.1"},{"name":"modernizr","version":"2.8.3"},{"name":"moment","version":"2.5.1"},{"name":"requirejs-text","version":"2.0.10"},{"name":"requirejs","version":"2.1.14"},{"name":"rivets","version":"0.6.8"},{"name":"select2","version":"3.5.1"},{"name":"sinon-chai","version":"2.4.0"},{"name":"sinon","version":"1.7.3"}]';
+        libraryVersions = '[{"name":"ScrollToFixed","version":"1.0.6"},{"name":"SparkMD5","version":"0.0.5"},{"name":"ace","version":"1.1.3"},{"name":"backbone-amd","version":"1.1.0"},{"name":"chai","version":"1.7.2"},{"name":"ckeditor","version":"4.3.5"},{"name":"datetimepicker","version":"2.3.2"},{"name":"font-awesome","version":"4.1.0"},{"name":"foundation","version":"5.0.2"},{"name":"jquery.ui","version":"1.10.4"},{"name":"jquery","version":"2.1.1"},{"name":"js-base64","version":"2.1.2"},{"name":"lodash-amd","version":"2.4.1"},{"name":"masseuse","version":"2.3.0"},{"name":"mocha","version":"1.12.1"},{"name":"modernizr","version":"2.8.3"},{"name":"moment","version":"2.5.1"},{"name":"requirejs-text","version":"2.0.10"},{"name":"requirejs","version":"2.1.14"},{"name":"rivets","version":"0.6.8"},{"name":"select2","version":"3.5.1"},{"name":"sinon-chai","version":"2.4.0"},{"name":"sinon","version":"1.7.3"}]';
 
     return {
         version : version,
-        librariesVersions: librariesVersions,
+        librariesVersions: libraryVersions,
         api : {
             base : {
                 url : apiEndpoint
