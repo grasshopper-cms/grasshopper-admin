@@ -10,7 +10,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         beforeRender : beforeRender,
         afterRender : afterRender,
         prepareToDeleteContentType : prepareToDeleteContentType,
-        addNewFieldToContentType : addNewFieldToContentType,
         saveContentType : saveContentType,
         saveAndClose : saveAndClose,
         newContentType : newContentType,
@@ -115,15 +114,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         this.fireErrorModal(resources.contentType.errorDeleted + model.get('label'));
     }
 
-    function addNewFieldToContentType(e, context) {
-        var model = _.result(context.field.config, 'modelData');
-        this.collapseAccordion();
-        model.isNew = true;
-        this.collection.add(model);
-        this.refreshAccordion();
-        _openLastAccordion.call(this);
-    }
-
     function collapseAccordion() {
         this.$('#contentTypeFieldAccordion').accordion({ active : false });
     }
@@ -219,24 +209,31 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function _initializeSelect2(){
-        var self=this,
-            selectEl=$('.contentTypesDropdownSelect');
-        selectEl.select2({
-            placeholder: resources.contentType.addNewField
-        }).on('change', function(e) {
-            if (!e.val || e.val==='') {
-                return;
-            }
-            var plugin = _.find(self.model.get('plugins'),function(itm){
+        this.$contentTypePicker = $('.contentTypesDropdownSelect');
+
+        this.$contentTypePicker.select2(
+            {
+                placeholder: resources.contentType.addNewField
+            })
+            .on('change', _addNewFieldToContentType.bind(this));
+    }
+
+    function _addNewFieldToContentType(e) {
+        if (!e.val || e.val === '') {
+            return;
+        }
+
+        var plugin = _.find(this.model.get('plugins'), function(itm) {
                 return e.val == itm.name;
-            }), model = _.result(plugin.config, 'modelData');
-            self.collapseAccordion();
-            model.isNew = true;
-            self.collection.add(model);
-            self.refreshAccordion();
-            _openLastAccordion.call(self);
-            selectEl.select2('val', '');
-        });
+            }),
+            model = _.result(plugin.config, 'modelData');
+
+        this.collapseAccordion();
+        model.isNew = true;
+        this.collection.add(model);
+        this.refreshAccordion();
+        _openLastAccordion.call(this);
+        this.$contentTypePicker.select2('val', '');
     }
 
     function _initializeSortableAccordions() {
