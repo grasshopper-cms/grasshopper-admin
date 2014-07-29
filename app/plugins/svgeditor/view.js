@@ -6,11 +6,15 @@ define(['grasshopperBaseView', 'jquery', 'helpers', 'svg-edit-embed-api'],
         var LocalStorage = helpers.localStorage;
 
         return GrasshopperBaseView.extend({
+            beforeRender : beforeRender,
             initializeSvgEdit : initializeSvgEdit,
-            saveSvg : saveSvg,
-            showEditor : showEditor,
-            hideEditor: hideEditor
+            saveSvg : saveSvg
         });
+
+        function beforeRender($deferred) {
+            LocalStorage.remove('svgedit-default')
+                .done($deferred.resolve);
+        }
 
         function initializeSvgEdit() {
             var iframe = document.getElementById('svgEdit'),
@@ -18,24 +22,17 @@ define(['grasshopperBaseView', 'jquery', 'helpers', 'svg-edit-embed-api'],
                 svgCanvas = new window.EmbeddedSVGEdit(iframe),
                 $mainButton = $iframe.contents().find('#main_button');
 
-            LocalStorage.remove('svgedit-default');
-
             if(this.model.get('value')) {
                 svgCanvas.setSvgString(this.model.get('value'));
             }
 
-            $mainButton.find('#tool_save').hide();
-
             this.svgCanvas = svgCanvas;
+
+            $iframe.contents().mouseup(this.saveSvg.bind(this));
+
+            $mainButton.find('#tool_save').hide();
         }
 
-        function showEditor() {
-            this.model.toggle('editing');
-        }
-
-        function hideEditor() {
-            this.model.toggle('editing');
-        }
 
         function saveSvg() {
             var self = this;
@@ -60,7 +57,5 @@ define(['grasshopperBaseView', 'jquery', 'helpers', 'svg-edit-embed-api'],
 
             return $deferred.promise();
         }
-
-
 
     });
