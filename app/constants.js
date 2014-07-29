@@ -54,6 +54,9 @@ define([], function() {
             },
             version : {
                 url : apiEndpoint + '/system'
+            },
+            google : {
+                url : apiEndpoint + '/googleurl'
             }
         },
         internalRoutes : {
