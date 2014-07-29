@@ -10,7 +10,7 @@ module.exports = function (grunt) {
             return;
         }
 
-        var config = savedConfig = require('ghapi.json');
+        var config = savedConfig = grunt.file.readJSON('ghapi.json');
         if (config) {
             grunt.config.set('ghapiConfigs', JSON.stringify(config));
         }
