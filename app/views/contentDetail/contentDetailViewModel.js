@@ -7,16 +7,14 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
 
         return Model.extend({
             idAttribute : '_id',
-            defaults : function() {
-                return {
-                    resources : resources,
-                    href : new ComputedProperty(['_id'], function (id) {
-                        return constants.internalRoutes.contentDetail.replace(':id', id);
-                    }),
-                    label : '',
-                    fields: {},
-                    saving: false
-                };
+            defaults : {
+                resources : resources,
+                href : new ComputedProperty(['_id'], function (id) {
+                    return constants.internalRoutes.contentDetail.replace(':id', id);
+                }),
+                label : '',
+                fields: {},
+                saving: false
             },
             urlRoot : constants.api.content.url,
             toJSON : toJSON,

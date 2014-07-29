@@ -65,7 +65,10 @@ define(['jquery', 'underscore', 'masseuse',
                 var $el = $(el);
 
                 if(revert) {
-                    $el.attr('oldText', $el.text());
+                    if(!$el.attr('oldText')) { // Should Only Do this once.
+                        $el.attr('oldText', $el.text());
+                        $el.width($el.width()); // Forces the buttons to maintain width.
+                    }
                     $el.html($el.attr('data-swap-html') || 'Saving...');
                 } else {
                     $el.html($el.attr('oldText'));
