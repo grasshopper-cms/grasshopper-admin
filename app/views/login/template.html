@@ -43,11 +43,11 @@
                     </div>
                     <div class="row">
                         <div class="small-12 columns">
-                            <button id="loginWithGoogleButton" class="button success radius tiny left" data-rv-on-click="view.loginWithGoogle">
+                            <button id="loginWithGoogleButton" class="button success radius tiny left" data-rv-on-click="view.loginWithGoogle" data-swap-html="<i class='fa fa-refresh fa-spin'></i>" data-rv-swap-text-while="model:loggingIn">
                                 {{model:resources->logInWithGoogle}}
                             </button>
 
-                            <button id="loginButton" class="button success radius tiny right" data-rv-class-disabled="model:hasError" data-rv-on-click="view.login">
+                            <button id="loginButton" class="button success radius tiny right" data-rv-class-disabled="model:hasError" data-rv-on-click="view.login"  data-swap-html="<i class='fa fa-refresh fa-spin'></i>" data-rv-swap-text-while="model:loggingIn">
                                 {{model:resources->user->signIn}}
                             </button>
                         </div>
