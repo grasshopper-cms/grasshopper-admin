@@ -1,16 +1,15 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
-    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker', 'plugins', 'constants'],
+    'resources', 'api', 'underscore', 'jquery', 'breadcrumbWorker', 'plugins', 'constants', 'mixins/handleRowClick'],
     function (GrasshopperBaseView, contentTypeDetailViewConfig,
-              resources, Api, _, $, breadcrumbWorker, plugins, constants) {
+              resources, Api, _, $, breadcrumbWorker, plugins, constants, handleRowClick) {
     'use strict';
 
-    return GrasshopperBaseView.extend({
+    return GrasshopperBaseView.extend(_.extend({
         defaultOptions : contentTypeDetailViewConfig,
         beforeRender : beforeRender,
         afterRender : afterRender,
         prepareToDeleteContentType : prepareToDeleteContentType,
-        handleRowClick : handleRowClick,
         addNewFieldToContentType : addNewFieldToContentType,
         saveContentType : saveContentType,
         saveAndClose : saveAndClose,
@@ -18,7 +17,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         refreshAccordion : refreshAccordion,
         collapseAccordion : collapseAccordion,
         openSpecificAccordion : openSpecificAccordion
-    });
+    }, handleRowClick));
 
     function beforeRender ($deferred) {
         if (!this.model.has('label') && !this.model.isNew()) {
@@ -114,13 +113,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function _handleFailedContentTypeDeletion(model) {
         this.fireErrorModal(resources.contentType.errorDeleted + model.get('label'));
-    }
-
-    function handleRowClick (e) {
-        if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey && e.which!=2){
-            e.stopPropagation();
-            this.app.router.navigateTrigger(this.model.get('href'), {}, true);
-        }
     }
 
     function addNewFieldToContentType(e, context) {
