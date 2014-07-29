@@ -1,16 +1,16 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants', 'mixins/handleRowClick', 'underscore'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants, handleRowClick, _) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants', 'mixins/handleRowClick'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants, handleRowClick) {
         'use strict';
 
-        return GrasshopperBaseView.extend(_.extend({
+        return GrasshopperBaseView.extend({
             defaultOptions: contentDetailViewConfig,
             beforeRender: beforeRender,
             afterRender: afterRender,
             deleteContent: deleteContent,
             saveContent: saveContent,
             saveAndClose: saveAndClose
-        }, handleRowClick));
+        }).extend(handleRowClick);
 
         function beforeRender ($deferred) {
             if (this.model.get('isNew')) {

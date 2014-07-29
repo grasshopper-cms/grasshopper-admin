@@ -5,7 +5,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
               resources, Api, _, $, breadcrumbWorker, plugins, constants, handleRowClick) {
     'use strict';
 
-    return GrasshopperBaseView.extend(_.extend({
+    return GrasshopperBaseView.extend({
         defaultOptions : contentTypeDetailViewConfig,
         beforeRender : beforeRender,
         afterRender : afterRender,
@@ -16,7 +16,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         refreshAccordion : refreshAccordion,
         collapseAccordion : collapseAccordion,
         openSpecificAccordion : openSpecificAccordion
-    }, handleRowClick));
+    }).extend(handleRowClick);
 
     function beforeRender ($deferred) {
         if (!this.model.has('label') && !this.model.isNew()) {

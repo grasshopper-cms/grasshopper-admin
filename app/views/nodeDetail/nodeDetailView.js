@@ -1,15 +1,15 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker', 'mixins/handleRowClick', 'underscore'],
-    function (GrasshopperBaseView, nodeDetailViewConfig, nodeWorker, handleRowClick, _) {
+define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker', 'mixins/handleRowClick'],
+    function (GrasshopperBaseView, nodeDetailViewConfig, nodeWorker, handleRowClick) {
         'use strict';
-        return GrasshopperBaseView.extend(_.extend({
+        return GrasshopperBaseView.extend({
             defaultOptions : nodeDetailViewConfig,
             afterRender : afterRender,
             prepareToDeleteNode : prepareToDeleteNode,
             prepareToEditContentTypes : prepareToEditContentTypes,
             editNodeName : editNodeName,
             editContentTypes : editContentTypes
-        }, handleRowClick));
+        }).extend(handleRowClick);
 
         function afterRender() {
             if(this.model.isNew()) {

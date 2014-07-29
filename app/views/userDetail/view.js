@@ -4,7 +4,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
 
         'use strict';
 
-        return GrasshopperBaseView.extend(_.extend({
+        return GrasshopperBaseView.extend({
             defaultOptions : options,
             beforeRender : beforeRender,
             afterRender : afterRender,
@@ -12,7 +12,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             saveAndClose : saveAndClose,
             toggleEnabled : toggleEnabled,
             addNewUser : addNewUser
-        }, handleRowCLick));
+        }).extend(handleRowCLick);
 
         function beforeRender ($deferred) {
             this.model.fetch()
