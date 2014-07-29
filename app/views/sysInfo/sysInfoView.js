@@ -11,7 +11,7 @@ define(['grasshopperBaseView', 'sysInfoViewConfig', 'jquery', 'api', 'constants'
 
         function beforeRender($deferred) {
             this.model.set('constants', constants);
-            this.model.set('librariesVersions', JSON.parse(constants.librariesVersions));
+            this.model.set('libraryVersions', JSON.parse(constants.libraryVersions));
             _getApiVersion.call(this)
                 .done($deferred.resolve);
         }
