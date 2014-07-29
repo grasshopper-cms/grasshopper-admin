@@ -2,7 +2,7 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
     'grasshopperBaseView',
-    'loginView', 'loginWorker', 'logoutWorker', 'forbiddenView',
+    'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',

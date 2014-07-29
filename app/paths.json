@@ -200,11 +200,7 @@
             "Model" : "views/header/headerViewModel"
         },
 
-        "loginView+" : {
-            "" : "views/login/loginView",
-            "Config" : "views/login/loginViewConfig",
-            "Model" : "views/login/loginViewModel"
-        },
+        "login" : "views/login",
 
         "mastheadView+" : {
             "" : "views/masthead/mastheadView",
