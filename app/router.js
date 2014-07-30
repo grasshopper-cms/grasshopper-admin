@@ -8,7 +8,6 @@ define([
     'resources',
     'userDetail/view', 'UserModel',
     'headerView',
-    'footerView',
     'mastheadView',
     'userIndexView',
     'addUser/view',
@@ -29,7 +28,6 @@ define([
               resources,
               UserDetailView, UserModel,
               HeaderView,
-              FooterView,
               MastheadView,
               UserIndexView,
               AddUserView,
@@ -248,18 +246,14 @@ define([
             this.mastheadView = new MastheadView();
             this.mastheadView.start();
 
-            this.footerView = new FooterView();
-            this.footerView.start();
         }
 
         function removeHeader () {
-            if (this.headerView && this.mastheadView && this.footerView) {
+            if (this.headerView && this.mastheadView) {
                 this.headerView.remove();
                 this.mastheadView.remove();
-                this.footerView.remove();
                 this.headerView = null;
                 this.mastheadView = null;
-                this.footerView = null;
             }
         }
 

@@ -188,12 +188,6 @@
             "Model" : "views/fileBrowser/fileBrowserViewModel"
         },
 
-        "footerView+" : {
-            "" : "views/footer/footerView",
-            "Config" : "views/footer/footerViewConfig",
-            "Model" : "views/footer/footerViewModel"
-        },
-
         "headerView+" : {
             "" : "views/header/headerView",
             "Config" : "views/header/headerViewConfig",
