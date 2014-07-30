@@ -9,6 +9,7 @@ module.exports = function (grunt) {
         'copy:vendor',
         'registerPlugins',
         'paths:app',
+        'getBowerVersions',
         'setBuildConfig',
         'sass',
         'autoprefixer:no_dest'
