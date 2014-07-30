@@ -52,7 +52,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
 
         function _getChildContent() {
             if(!this.model.get('inRoot')) {
-                return this.model.get('childContent').query();
+                return this.searchContent();
             }
         }
 
@@ -117,7 +117,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
         function _toggleSearchSpinner(revert) {
             var $searchIcon = this.$('.contentSearchIcon');
 
-            if(revert) {
+            if (revert) {
                 $searchIcon.removeClass('fa-refresh fa-spin');
                 $searchIcon.addClass('fa-search');
             } else {
@@ -129,9 +129,9 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
         function _closeActionsDropdown() {
             $('#actionsDropdown').click();
         }
-        
+
         function hasCreateFolderPermission(){
-            var role=this.app.user ? this.app.user.get('role') : undefined;
+            var role = this.app.user ? this.app.user.get('role') : undefined;
             return _.contains(addFolderViewConfig.permissions, role);
         }
 

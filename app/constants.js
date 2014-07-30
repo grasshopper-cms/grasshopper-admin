@@ -91,6 +91,7 @@ define([], function() {
         pagination : {
             defaultLimit : 25,
             defaultSkip : 0,
+            defaultPagesLimit : 7,
             defaultPageSize : [25, 50, 100, 'all']
         }
 

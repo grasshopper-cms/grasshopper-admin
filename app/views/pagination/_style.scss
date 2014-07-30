@@ -17,10 +17,13 @@
   .pagination-item {
     display: inline-block;
     vertical-align: top;
+    margin-left: 0;
   }
 
   .pagination-item-link {
-
+    &.active {
+      background: #e6e6e6;
+    }
   }
 }
 

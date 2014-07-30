@@ -350,8 +350,8 @@ define([
                     modelData : {
                         nodeId : nodeId ? nodeId : '0',
                         inRoot : !nodeId,
-                        limit : limit ? limit : 25,
-                        skip : skip ? skip : 0,
+                        limit : limit ? limit : constants.pagination.defaultLimit,
+                        skip : skip ? skip : constants.pagination.defaultSkip,
                         contentSearchValue : query ? query : ''
                     }
                 });

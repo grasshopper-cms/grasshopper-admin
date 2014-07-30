@@ -13,43 +13,55 @@ define(['grasshopperBaseView', 'pagination/options', 'paginationWorker'],
     });
 
     function afterRender() {
-        console.log('AFTER RENDER');
         this.model.set({
             limit : this.collection.limit,
-            total : this.collection.total
+            total : this.collection.total,
+            currentPage : this.collection.skip
         }, true);
     }
 
     function setLimit(e, context) {
         e.preventDefault();
+        var contentSearchValue = this.model.get('contentSearchValue');
+
         this.model.set('limit', context.size);
-        this.collection.setLimit(context.size, this.model.get('contentSearchValue'))
+        this.collection.setLimit(context.size, contentSearchValue)
             .done(
-                paginationWorker.setUrl.bind(this, context.size, this.collection.skip, this.model.get('contentSearchValue'))
+                paginationWorker.setUrl.bind(this, context.size, this.collection.skip, contentSearchValue)
             );
     }
 
-    function goToPage(e) {
+    function goToPage(e, context) {
         e.preventDefault();
-        this.collection.doSkip(3, this.model.get('contentSearchValue'), true)
-            .done(
-                paginationWorker.setUrl.bind(this, this.collection.limit, this.collection.skip, this.model.get('contentSearchValue'))
-            );
+        var contentSearchValue = this.model.get('contentSearchValue'),
+            pageNumbersLength = this.model.get('pageNumbers').length;
+
+        _toPage.call(this, context.number.linkTo, contentSearchValue, pageNumbersLength, true);
     }
 
     function next(e) {
         e.preventDefault();
-        this.collection.doSkip(1, this.model.get('contentSearchValue'))
-            .done(
-                paginationWorker.setUrl.bind(this, this.collection.limit, this.collection.skip, this.model.get('contentSearchValue'))
-            );
+        var contentSearchValue = this.model.get('contentSearchValue'),
+            pageNumbersLength = this.model.get('pageNumbers').length;
+
+        _toPage.call(this, 1, contentSearchValue, pageNumbersLength);
     }
 
     function prev(e) {
         e.preventDefault();
-        this.collection.doSkip(-1, this.model.get('contentSearchValue'))
+        var contentSearchValue = this.model.get('contentSearchValue'),
+            pageNumbersLength = this.model.get('pageNumbers').length;
+
+        _toPage.call(this, -1, contentSearchValue, pageNumbersLength);
+    }
+
+    function _toPage(page, contentSearchValue, pageNumbersLength, isGoToPage) {
+        isGoToPage = isGoToPage || false;
+
+        this.collection.doSkip(page, contentSearchValue, pageNumbersLength, isGoToPage)
             .done(
-                paginationWorker.setUrl.bind(this, this.collection.limit, this.collection.skip, this.model.get('contentSearchValue'))
+                this.model.set('currentPage', this.collection.skip),
+                paginationWorker.setUrl.bind(this, this.collection.limit, this.collection.skip, contentSearchValue)
             );
     }
 });

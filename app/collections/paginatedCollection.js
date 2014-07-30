@@ -13,11 +13,14 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
         });
 
 
-        function doSkip(skip, contentSearchValue, isGoToPage) {
+        function doSkip(skip, contentSearchValue, pageLength, isGoToPage) {
+            pageLength = parseInt(pageLength, 10) || 0;
+            isGoToPage = isGoToPage || false;
+
             if ( isGoToPage ) {
-                this.skip = (skip > 0) ? skip : 0;
+                this.skip = (skip >= 0 && skip <= pageLength) ? skip : 1;
             } else {
-                this.skip += (this.skip + skip >= 0) ? skip : 0;
+                this.skip += ( (this.skip + skip >= 1) && (this.skip + skip <= pageLength) ) ? skip : 0;
             }
 
             return this.query(contentSearchValue);
@@ -29,25 +32,22 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
         }
 
         function query(value) {
-            var self = this,
-                $deferred = new $.Deferred(),
+            var $deferred = new $.Deferred(),
                 queryData = {
                     filters: [
                         {key: 'virtual.label', cmp: '%', value: value || ''}
                     ],
-                    nodes: [self.nodeId],
+                    nodes: [this.nodeId],
                     options: {
-                        limit: parseInt( self.limit, 10),
-                        skip : parseInt( self.skip, 10)
+                        limit: parseInt(this.limit, 10),
+                        skip : parseInt(this.skip, 10) - 1
                     }
                 };
+
             api.makeQuery(queryData)
                 .done(function(data) {
-                    if (this.models.length !== data.results.length) {
-                        this.total = data.total;
-                        this.set(data.results, {merge : false});
-                    }
-
+                    this.set(data.results);
+                    this.total = data.total;
                     $deferred.resolve();
                 }.bind(this));
 
