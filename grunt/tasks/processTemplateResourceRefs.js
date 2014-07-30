@@ -4,19 +4,20 @@ module.exports = function (grunt) {
     'use strict';
     var path = require('path');
 
-    function replaceResourceFunction(match, p1, offset, s) {
-        var fullPath = path.resolve(grunt.config().buildDirectory + '/', p1), revFileAbsPath, revFileRelPath;
+    function replaceResourceFunction(match, p1) {
+        var fullPath = path.resolve(grunt.config().buildDirectory + '/', p1), normalizePath = function (path) {
+                return path.substring(grunt.config().buildDirectory.length + 1).replace(/\\/g, '/');
+            };
         if (!grunt.filerev) {
             return p1;
+        } else {
+            return normalizePath(grunt.filerev.summary[fullPath]);
         }
-        revFileAbsPath = grunt.filerev.summary[fullPath];
-        revFileRelPath = revFileAbsPath.substring(grunt.config().buildDirectory.length + 1); // Should leave rel path without leading slash
-        return revFileRelPath.replace(/\\/g, '/'); // Convert windows slahses to URI slashes
     }
 
     /*
-    * Should replace all {{RESOURCEREF: image.png}} strings in js, css or html with strong-versioned url from filerev
-    */
+     * Should replace all {{RESOURCEREF: image.png}} strings in js, css or html with strong-versioned url from filerev
+     */
     grunt.registerMultiTask('processTemplateResourceRefs', 'Replace resources references after grunt-rev', function () {
         //var files = grunt.file.expand(grunt.config().buildDirectory + '/main*.js');
         this.files.forEach(function (file) {

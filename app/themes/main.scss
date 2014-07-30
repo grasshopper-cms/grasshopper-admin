@@ -35,7 +35,6 @@ body, html {
   #siteContainter {
     min-height: 100%;
     position: relative;
-    padding-bottom: 60px; // The Height of the footer.
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -133,7 +132,6 @@ body, html {
 
   // VIEWS
   @import "../views/header/_style.scss"; // Header
-  @import "../views/footer/_style.scss"; // Footer
   @import "../views/modal/_style.scss"; // Modal
   @import "../views/alertBox/_style.scss"; // Alertbox
   @import "../views/login/_style.scss"; // Login
@@ -150,6 +148,7 @@ body, html {
   @import "../views/contentBrowse/_style.scss"; // Content Browse
   @import "../views/pluginWrapper/_style.scss"; // Plugin Wrapper
   @import "../views/forbidden/_style.scss"; // Forbidden page
+  @import "../views/sysInfo/_style.scss"; // SysInfo page
   @import "../views/pagination/_style.scss"; // Pagination View
 
   // PLUGINS

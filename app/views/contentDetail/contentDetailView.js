@@ -1,16 +1,16 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants', 'mixins/handleRowClick', 'underscore'],
-    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants, handleRowClick, _) {
+define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery', 'api', 'breadcrumbWorker', 'constants', 'mixins/handleRowClick'],
+    function (GrasshopperBaseView, contentDetailViewConfig, resources, $, Api, breadcrumbWorker, constants, handleRowClick) {
         'use strict';
 
-        return GrasshopperBaseView.extend(_.extend({
+        return GrasshopperBaseView.extend({
             defaultOptions: contentDetailViewConfig,
             beforeRender: beforeRender,
             afterRender: afterRender,
             deleteContent: deleteContent,
             saveContent: saveContent,
             saveAndClose: saveAndClose
-        }, handleRowClick));
+        }).extend(handleRowClick);
 
         function beforeRender ($deferred) {
             if (this.model.get('isNew')) {
@@ -38,7 +38,6 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             this.model.resetContentLabel.call(this.model);
             $deferred.resolve();
         }
-
 
         function afterRender () {
             this.$el.foundation();
@@ -80,23 +79,21 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
                         resources.contentItem.successfullyDeletedPost
                 }
             );
-            this.remove();
         }
 
-        function saveContent (e) {
-            _toggleModelSavingAndSwapSpinner.call(this, e);
+        function saveContent () {
             _saveContentWorkflow.call(this, {});
         }
 
-        function saveAndClose(e) {
-            _swapSavingTextWithSpinner.call(this, e);
-            this.model.toggle('saving');
+        function saveAndClose() {
             _saveContentWorkflow.call(this, { close : true });
 
         }
 
         function _saveContentWorkflow (options) {
-            this.model.save({ parse: true })
+            this.model.toggle('saving');
+
+            this.model.save({ smartParse: true })
                 .done(_handleSuccessfulModelSave.bind(this, options))
                 .fail(_handleFailedModelSave.bind(this));
         }
@@ -116,7 +113,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
                 this.app.router.navigateTrigger(
                     constants.internalRoutes.nodeDetail.replace(':id', this.model.get('meta.node')));
             } else {
-                _toggleModelSavingAndSwapSpinner.call(this);
+                this.model.toggle('saving');
 
                 this.app.router.navigateNinja(
                     constants.internalRoutes.contentDetail.replace(':id', this.model.get('_id')));
@@ -134,13 +131,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         }
 
         function _handleFailedModelSave (response) {
-            _toggleModelSavingAndSwapSpinner.call(this);
-            this.fireErrorModal(_getFailedModelSaveMessage(response));
-        }
-
-        function _toggleModelSavingAndSwapSpinner (e) {
             this.model.toggle('saving');
-            e ? _swapSavingTextWithSpinner.call(this, e) : _swapSavingTextWithSpinner.call(this);
+            this.fireErrorModal(_getFailedModelSaveMessage(response));
         }
 
         function _getFailedModelSaveMessage (response) {
@@ -184,26 +176,5 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             this.model.on('change:fields', function () {
                 self.channels.views.trigger('contentFieldsChange', self.model.get('fields'));
             });
-        }
-
-        function _swapSavingTextWithSpinner (e) {
-            var currentWidth,
-                $currentTarget;
-
-            if (e) {
-                $currentTarget = $(e.currentTarget);
-
-                _setSwapElementAndText.call(this, $currentTarget);
-
-                currentWidth = $currentTarget.width();
-                $currentTarget.empty().width(currentWidth).append('<i class="fa fa-refresh fa fa-spin"></i>');
-            } else {
-                $(this.model.get('swapElement')).empty().text(this.model.get('swapText'));
-            }
-        }
-
-        function _setSwapElementAndText ($currentTarget) {
-            this.model.set('swapElement', $currentTarget);
-            this.model.set('swapText', $currentTarget.text());
         }
     });

@@ -3,10 +3,12 @@ define([], function() {
     'use strict';
 
     var apiEndpoint = '<%= apiEndpoint %>',
-        version = '<%= version %>';
+        version = '<%= version %>',
+        libraryVersions = '<%= JSON.stringify(libraryVersions) %>';
 
     return {
         version : version,
+        libraryVersions: libraryVersions,
         api : {
             base : {
                 url : apiEndpoint
@@ -52,12 +54,16 @@ define([], function() {
             },
             version : {
                 url : apiEndpoint + '/system'
+            },
+            google : {
+                url : apiEndpoint + '/googleurl'
             }
         },
         internalRoutes : {
             user : '#user',
             users : '#users',
             addUser : '#addUser',
+            sysInfo: '#sysinfo',
             contentTypes : '#contentTypes',
             newContentType : '#contentTypes/new',
             contentTypeDetail : '#contentTypes/:id',

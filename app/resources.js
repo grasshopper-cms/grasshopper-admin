@@ -37,15 +37,14 @@ define({
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
             lastName : 'LAST NAME',
-            displayName : 'DISPLAY NAME',
             role : 'USER ROLE',
             enabled : 'ENABLED?',
             email : 'EMAIL',
-            username : 'USERNAME',
+            login : 'LOGIN',
             password : 'PASSWORD'
         },
         selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
-            'Are you sure you want to do this? (You Will still need to save to apply changes.',
+            'Are you sure you want to do this?',
         roles : [ //TODO: DELETE THIS!!!
             'admin',
             'editor',

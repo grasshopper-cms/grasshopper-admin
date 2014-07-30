@@ -6,7 +6,8 @@ build
 .idea
 ghapi.json
 .bundle
-app/vendor
 .DS_Store
+app/vendor
 _deploy
 server/public/admin
+.tempo

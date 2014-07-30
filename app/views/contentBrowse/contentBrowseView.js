@@ -132,6 +132,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
 
         function hasCreateFolderPermission(){
             var role = this.app.user ? this.app.user.get('role') : undefined;
+
             return _.contains(addFolderViewConfig.permissions, role);
         }
 

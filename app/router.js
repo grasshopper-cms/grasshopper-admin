@@ -2,13 +2,12 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
     'grasshopperBaseView',
-    'loginView', 'loginWorker', 'logoutWorker', 'forbiddenView',
+    'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
     'userDetail/view', 'UserModel',
     'headerView',
-    'footerView',
     'mastheadView',
     'userIndexView',
     'addUser/view',
@@ -18,7 +17,8 @@ define([
     'contentTypeDetailView',
     'addFolderView',
     'addContentView',
-    'addAssetsView'
+    'addAssetsView',
+    'sysInfoView'
 ],
     function ($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
@@ -28,7 +28,6 @@ define([
               resources,
               UserDetailView, UserModel,
               HeaderView,
-              FooterView,
               MastheadView,
               UserIndexView,
               AddUserView,
@@ -38,10 +37,13 @@ define([
               ContentTypeDetailView,
               AddFolderView,
               AddContentView,
-              AddAssetsView) {
+              AddAssetsView,
+              SysInfoView
+        ) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
+            LocalStorage = helpers.localStorage,
             userModel = new UserModel(),
             currentView,
             Router;
@@ -52,10 +54,11 @@ define([
          */
         Router = MasseuseRouter.extend({
             routes : {
-                'login' : 'displayLogin',
+                'login(/:token)' : 'displayLogin',
                 'logout' : 'goLogout',
                 'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
+                'sysinfo': 'displaySysinfo',
                 'addUser' : 'displayAddUser',
                 'contentTypes' : 'displayContentTypeIndex',
                 'contentTypes/new' : 'displayContentTypeDetail',
@@ -81,7 +84,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login', 'logout'],
+            excludeFromBeforeRouting : ['login(/:token)', 'logout'],
             userHasBreadcrumbs : userHasBreadcrumbs,
             removeThisRouteFromBreadcrumb : removeThisRouteFromBreadcrumb,
             getCurrentBreadcrumb : getCurrentBreadcrumb,
@@ -99,6 +102,7 @@ define([
             navigate : navigate,
             displayUserIndex : displayUserIndex,
             displayUserDetail : displayUserDetail,
+            displaySysinfo: displaySysinfo,
             displayAddUser : displayAddUser,
             displayContentBrowse : displayContentBrowse,
             displayContentDetail : displayContentDetail,
@@ -248,18 +252,14 @@ define([
             this.mastheadView = new MastheadView();
             this.mastheadView.start();
 
-            this.footerView = new FooterView();
-            this.footerView.start();
         }
 
         function removeHeader () {
-            if (this.headerView && this.mastheadView && this.footerView) {
+            if (this.headerView && this.mastheadView) {
                 this.headerView.remove();
                 this.mastheadView.remove();
-                this.footerView.remove();
                 this.headerView = null;
                 this.mastheadView = null;
-                this.footerView = null;
             }
         }
 
@@ -268,8 +268,16 @@ define([
                 .done(this.navigate.bind(this, 'login', {trigger : true}, true));
         }
 
-        function displayLogin () {
-            this.loadMainContent(LoginView);
+        function displayLogin (token) {
+
+            if(token) {
+                // I am assuming this is a google token because that is all we support right meow.
+                LocalStorage.set('authToken', 'Google '+ token);
+                this.navigateTrigger('#items');
+            } else {
+                this.loadMainContent(LoginView);
+            }
+
         }
 
         function displayAlertBox (options) {
@@ -343,6 +351,10 @@ define([
 
         function displayAddUser () {
             this.loadMainContent(AddUserView);
+        }
+
+        function displaySysinfo(){
+            this.loadMainContent(SysInfoView);
         }
 
         function displayContentBrowse (nodeId, limit, skip, query) {

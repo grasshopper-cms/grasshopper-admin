@@ -8,18 +8,20 @@ define(['text!plugins/codeeditor/template.html', 'plugins/codeeditor/model',
         return {
             name : 'codeEditorPlugin',
             ModelType : codeEditorPluginModel,
-            modelData : {
-                min : 1,
-                max : 1,
-                options : {
-                    theme : 'light',
-                    language : 'javascript'
-                },
-                label : '',
-                type : 'codeeditor',
-                dataType : 'code',
-                validation : [],
-                value : ''
+            modelData : function() {
+                return {
+                    min : 1,
+                    max : 1,
+                    options : {
+                        theme : 'light',
+                        language : 'javascript'
+                    },
+                    label : '',
+                    type : 'codeeditor',
+                    dataType : 'code',
+                    validation : [],
+                    value : ''
+                };
             },
             template : template,
             setupTemplate : setupTemplate,

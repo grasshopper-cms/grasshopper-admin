@@ -106,11 +106,11 @@
 
     #dropZone { // only used by the upload modal
       height: 60px;
-      border: 2px dashed $modalDropzoneColor;
+      border: 2px dashed $modalDropzoneFaceColor;
       border-radius: 5px;
       padding: 25px;
       text-align: center;
-      color: $modalDropzoneColor;
+      color: $modalDropzoneFaceColor;
       &:hover {
         border-color: $modalDropzoneHover;
       }

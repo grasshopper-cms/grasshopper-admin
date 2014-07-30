@@ -11,6 +11,7 @@
         "modernizr" : "vendor/modernizr/modernizr",
         "ckeditor" : "vendor/ckeditor/ckeditor",
         "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
+        "svg-edit-embed-api" : "vendor/svg-edit-2.7/embedapi",
         "ace" : "vendor/ace/lib/ace",
         "moment" : "vendor/moment/moment",
         "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
@@ -187,23 +188,13 @@
             "Model" : "views/fileBrowser/fileBrowserViewModel"
         },
 
-        "footerView+" : {
-            "" : "views/footer/footerView",
-            "Config" : "views/footer/footerViewConfig",
-            "Model" : "views/footer/footerViewModel"
-        },
-
         "headerView+" : {
             "" : "views/header/headerView",
             "Config" : "views/header/headerViewConfig",
             "Model" : "views/header/headerViewModel"
         },
 
-        "loginView+" : {
-            "" : "views/login/loginView",
-            "Config" : "views/login/loginViewConfig",
-            "Model" : "views/login/loginViewModel"
-        },
+        "login" : "views/login",
 
         "mastheadView+" : {
             "" : "views/masthead/mastheadView",
@@ -254,6 +245,11 @@
         "forbiddenView+" : {
             "" : "views/forbidden/forbiddenView",
             "Config" : "views/forbidden/forbiddenViewConfig"
+        },
+
+        "sysInfoView+" : {
+            "" : "views/sysInfo/sysInfoView",
+            "Config" : "views/sysInfo/sysInfoViewConfig"
         }
     },
 
