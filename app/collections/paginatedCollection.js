@@ -7,50 +7,49 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
             nodeId : '',
             query : query,
             searchQuery : _.throttle(query, constants.contentSearchThrottle),
-            next: next,
+            doSkip: doSkip,
             setLimit: setLimit,
-            totalAmount : ''
+            total : 0
         });
 
 
-        function next(e, context ) {
-            e.preventDefault();
+        function doSkip(skip, contentSearchValue, pageLength, isGoToPage) {
+            pageLength = parseInt(pageLength, 10) || 0;
+            isGoToPage = isGoToPage || false;
 
-            this.limit = context.limit;
-            this.query();
+            if ( isGoToPage ) {
+                this.skip = (skip >= 0 && skip <= pageLength) ? skip : 1;
+            } else {
+                this.skip += ( (this.skip + skip >= 1) && (this.skip + skip <= pageLength) ) ? skip : 0;
+            }
+
+            return this.query(contentSearchValue);
         }
 
-        function setLimit( ev, context ) {
-            ev.preventDefault();
-
-            this.limit = context.size;
-            this.query(context.model.get('contentSearchValue'));
+        function setLimit(size, contentSearchValue) {
+            this.limit = size;
+            return this.query(contentSearchValue);
         }
 
         function query(value) {
-            var self = this,
-                $deferred = new $.Deferred(),
+            var $deferred = new $.Deferred(),
                 queryData = {
                     filters: [
                         {key: 'virtual.label', cmp: '%', value: value || ''}
                     ],
-                    nodes: [self.nodeId],
+                    nodes: [this.nodeId],
                     options: {
-                        limit: parseInt( self.limit, 10),
-                        skip : parseInt( self.skip, 10)
+                        limit: parseInt(this.limit, 10),
+                        skip : parseInt(this.skip, 10) - 1
                     }
                 };
 
             api.makeQuery(queryData)
                 .done(function(data) {
-
-                    if (self.models.length !== data.results.length) {
-                        self.totalAmount = data.total;
-                        self.set(data.results, {merge : false});
-                    }
-
+                    this.set(data.results);
+                    this.total = data.total;
                     $deferred.resolve();
-                });
+                }.bind(this));
 
             return $deferred.promise();
         }

@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
+define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationWorker',
     'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig'],
-    function (GrasshopperBaseView, contentBrowseViewConfig, $,
+    function (GrasshopperBaseView, contentBrowseViewConfig, $, paginationWorker,
               _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig) {
         'use strict';
 
@@ -52,7 +52,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
 
         function _getChildContent() {
             if(!this.model.get('inRoot')) {
-                return this.model.get('childContent').query();
+                return this.searchContent();
             }
         }
 
@@ -103,16 +103,21 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
         }
 
         function searchContent() {
-            _toggleSearchSpinner.call(this);
+            var childContent = this.model.get('childContent'),
+                contentSearchValue = this.model.get('contentSearchValue');
 
-            this.model.get('childContent').searchQuery(this.model.get('contentSearchValue'))
-                .done(_toggleSearchSpinner.bind(this, true));
+            _toggleSearchSpinner.call(this);
+            childContent.searchQuery(contentSearchValue)
+                .done(
+                    paginationWorker.setUrl.bind(this, childContent.limit, childContent.skip, contentSearchValue),
+                    _toggleSearchSpinner.bind(this, true)
+                );
         }
 
         function _toggleSearchSpinner(revert) {
             var $searchIcon = this.$('.contentSearchIcon');
 
-            if(revert) {
+            if (revert) {
                 $searchIcon.removeClass('fa-refresh fa-spin');
                 $searchIcon.addClass('fa-search');
             } else {
@@ -124,6 +129,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
         function _closeActionsDropdown() {
             $('#actionsDropdown').click();
         }
+
         function hasCreateFolderPermission(){
             var role = this.app.user ? this.app.user.get('role') : undefined;
 
