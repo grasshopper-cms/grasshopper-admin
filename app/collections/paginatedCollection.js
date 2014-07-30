@@ -43,12 +43,13 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
                         skip : parseInt(this.skip, 10) - 1
                     }
                 };
-
+            $('#panel2-1').addClass('spinner-loading');
             api.makeQuery(queryData)
                 .done(function(data) {
                     this.set(data.results);
                     this.total = data.total;
                     $deferred.resolve();
+                    $('#panel2-1').removeClass('spinner-loading');
                 }.bind(this));
 
             return $deferred.promise();
