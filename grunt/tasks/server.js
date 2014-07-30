@@ -20,6 +20,8 @@ module.exports = function (grunt) {
         'sass',
         'processTemplateResourceRefs:development',
         'autoprefixer:no_dest',
+        'loadGhConfigs',
+        'env:localhost',
         'express:site',
         'watch'
     ]);
