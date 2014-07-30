@@ -37,14 +37,15 @@ define({
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
             lastName : 'LAST NAME',
+            displayName : 'DISPLAY NAME',
             role : 'USER ROLE',
             enabled : 'ENABLED?',
             email : 'EMAIL',
-            login : 'LOGIN',
+            username : 'USERNAME',
             password : 'PASSWORD'
         },
         selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
-            'Are you sure you want to do this?',
+            'Are you sure you want to do this? (You Will still need to save to apply changes.',
         roles : [ //TODO: DELETE THIS!!!
             'admin',
             'editor',
@@ -265,6 +266,7 @@ define({
     label : 'Label',
     login : 'Login',
     log_in : 'Log In',
+    logInWithGoogle : 'Login with Google',
     log_out : 'Log Out',
     match : 'Match',
     maximum : 'Maximum',
@@ -309,6 +311,7 @@ define({
     upload : 'Upload',
     user_name : 'User Name',
     users : 'Users',
+    sysInfo : 'Info',
     value : 'Value',
     validation : 'Validation',
     warning : 'Warning!',
