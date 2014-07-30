@@ -9,5 +9,7 @@ var express = require('express'),
 api = api();
 app.use(api.ghApi || api.router);
 app.use(express.static(__dirname + '/public'));
-console.log('litening on: ' + PORT);
-app.listen(PORT);
+
+app.listen(PORT, function(){
+    console.log('Listening on: ' + PORT);
+});
