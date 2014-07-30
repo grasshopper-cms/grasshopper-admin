@@ -2,14 +2,11 @@
 module.exports = function (grunt) {
     'use strict';
 
-    grunt.config('express', {
-        site : {
-            options: {
-                script : 'server',
-                args :  ['GRASSHOPPER_CONFIG=\'<%= ghapiConfigs %>\'']
-            }
+    grunt.config('env', {
+        localhost : {
+            GRASSHOPPER_CONFIG : '<%= ghapiConfigs %>'
         }
     });
 
-    grunt.loadNpmTasks('grunt-express-server');
+    grunt.loadNpmTasks('grunt-env');
 };
