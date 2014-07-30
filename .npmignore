@@ -5,7 +5,8 @@ build/
 .sass-cache/
 .idea/
 .bundle
-app/vendor/
+!app/vendor/svg-edit-2.7
+app/vendor
 .DS_Store
 _deploy/
 server/
