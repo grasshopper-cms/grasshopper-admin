@@ -6,8 +6,12 @@ module.exports = function (grunt) {
                                         'grunt deploy:heroku:1', function (loadConfigs) {
         var tasks = [
             'clean:deploy',
+            'releaseNotes',
+            'shell:commitReleaseNotes',
             'build',
             'copy:deploy',
+            'build_gh_pages:staging',
+            'shell:deployHeroku',
         ];
 
         if (loadConfigs) {
