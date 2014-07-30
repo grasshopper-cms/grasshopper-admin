@@ -60,6 +60,19 @@ define(['jquery', 'underscore', 'masseuse',
                 $(el).on('click', function(e) {
                     e.stopPropagation();
                 });
+            },
+            'swap-text-while' : function(el, revert) {
+                var $el = $(el);
+
+                if(revert) {
+                    if(!$el.attr('oldText')) { // Should Only Do this once.
+                        $el.attr('oldText', $el.text());
+                        $el.width($el.width()); // Forces the buttons to maintain width.
+                    }
+                    $el.html($el.attr('data-swap-html') || 'Saving...');
+                } else {
+                    $el.html($el.attr('oldText'));
+                }
             }
         };
 

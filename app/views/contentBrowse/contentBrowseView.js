@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
-    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker'],
+    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig'],
     function (GrasshopperBaseView, contentBrowseViewConfig, $,
-              _, breadcrumbWorker, constants, nodeWorker) {
+              _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -17,7 +17,9 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             addNewAsset : addNewAsset,
             editNodeName : editNodeName,
             editNodeContentTypes : editNodeContentTypes,
-            deleteNode : deleteNode
+            deleteNode : deleteNode,
+            searchContent : searchContent,
+            hasCreateFolderPermission: hasCreateFolderPermission
         });
 
         function beforeRender ($deferred) {
@@ -25,7 +27,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
                 _buildMastheadBreadcrumb.call(this),
                 this.model.fetch(),
                 this.model.get('childNodes').fetch(),
-                this.model.get('childContent').fetch())
+                _getChildContent.call(this))
                 .done($deferred.resolve, _addAssetIndexView.bind(this))
                 .fail($deferred.reject);
         }
@@ -46,6 +48,12 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             breadcrumbWorker.contentBrowse.call(this, $deferred);
 
             return $deferred.promise();
+        }
+
+        function _getChildContent() {
+            if(!this.model.get('inRoot')) {
+                return this.model.get('childContent').query();
+            }
         }
 
         function activateTab (tab) {
@@ -94,8 +102,32 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery',
             _closeActionsDropdown.call();
         }
 
+        function searchContent() {
+            _toggleSearchSpinner.call(this);
+
+            this.model.get('childContent').searchQuery(this.model.get('contentSearchValue'))
+                .done(_toggleSearchSpinner.bind(this, true));
+        }
+
+        function _toggleSearchSpinner(revert) {
+            var $searchIcon = this.$('.contentSearchIcon');
+
+            if(revert) {
+                $searchIcon.removeClass('fa-refresh fa-spin');
+                $searchIcon.addClass('fa-search');
+            } else {
+                $searchIcon.removeClass('fa-search');
+                $searchIcon.addClass('fa-refresh fa-spin');
+            }
+        }
+
         function _closeActionsDropdown() {
             $('#actionsDropdown').click();
+        }
+        function hasCreateFolderPermission(){
+            var role = this.app.user ? this.app.user.get('role') : undefined;
+
+            return _.contains(addFolderViewConfig.permissions, role);
         }
 
     });

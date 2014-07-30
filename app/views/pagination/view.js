@@ -8,8 +8,8 @@ define(['grasshopperBaseView', 'pagination/options'],
         next : next
     });
 
-    function next() {
-        this.collection.next();
+    function next(e, context) {
+        this.collection.next(e, context);
     }
 
 

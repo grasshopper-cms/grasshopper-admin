@@ -9,6 +9,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   sass (>= 3.3.0)

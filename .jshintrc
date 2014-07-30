@@ -9,7 +9,6 @@
     },
     "curly": true,
     "quotmark": "single",
-    "debug" : false,
     "validthis" : true,
     "expr" : true,
     "loopfunc" : false,

@@ -1,10 +1,20 @@
 // Import Foundation
 @import "../vendor/foundation/scss/normalize.scss";
 @import "../vendor/foundation/scss/foundation.scss";
+
+// Fonts
 @import "fonts";
+
+// Colors
 @import "colors";
+
+// Mixins
 @import "mixins";
+
+// Z-Index
 @import "z-index";
+
+// Vendor Plugins
 @import "datetimepicker";
 @import "CSS:../vendor/select2/select2";
 
@@ -25,7 +35,6 @@ body, html {
   #siteContainter {
     min-height: 100%;
     position: relative;
-    padding-bottom: 60px; // The Height of the footer.
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -94,9 +103,35 @@ body, html {
     z-index: $tooltipZIndex;
   }
 
+  #contentSearch {
+    position: relative;
+    float: right;
+    width: 19rem;
+    margin: -3rem 0 0;
+
+    .contentSearchInput {
+      margin: 0;
+      padding-right: 2rem;
+      font-style: italic;
+    }
+
+    .contentSearchInput:focus {
+      font-style: normal;
+    }
+
+    .contentSearchIcon {
+      position: absolute;
+      right: 0.5rem;
+      top: 0;
+      margin: 0;
+      font-size: 1.3rem;
+      line-height: 2.3125rem;
+      color: $borderGray;
+    }
+  }
+
   // VIEWS
   @import "../views/header/_style.scss"; // Header
-  @import "../views/footer/_style.scss"; // Footer
   @import "../views/modal/_style.scss"; // Modal
   @import "../views/alertBox/_style.scss"; // Alertbox
   @import "../views/login/_style.scss"; // Login
@@ -113,6 +148,7 @@ body, html {
   @import "../views/contentBrowse/_style.scss"; // Content Browse
   @import "../views/pluginWrapper/_style.scss"; // Plugin Wrapper
   @import "../views/forbidden/_style.scss"; // Forbidden page
+  @import "../views/sysInfo/_style.scss"; // SysInfo page
   @import "../views/pagination/_style.scss"; // Pagination View
 
   // PLUGINS

@@ -14,7 +14,10 @@ define(['sparkmd5'], function (sparkmd5) {
         hasLength: hasLength,
         sort: sort,
         sortBy: sortBy,
-        gravatarUrl: gravatarUrl
+        gravatarUrl: gravatarUrl,
+        preventDefault : preventDefault,
+        stopImmediatePropagation : stopImmediatePropagation,
+        asBoolean : asBoolean
     };
 
     /**
@@ -71,7 +74,27 @@ define(['sparkmd5'], function (sparkmd5) {
     }
 
     function gravatarUrl(email, args) {
-        var md5value = sparkmd5.hash(email.toLowerCase());
+        var md5value = email ? sparkmd5.hash(email.toLowerCase()) : '';
         return 'http://www.gravatar.com/avatar/' + md5value + '?s=' + args + '&d=mm';
+    }
+
+    function stopImmediatePropagation(value) {
+        return function(e) {
+            e.stopImmediatePropagation();
+            value.call(this, e);
+            return false;
+        };
+    }
+
+    function preventDefault(value) {
+        return function(e) {
+            e.preventDefault();
+            value.call(this, e);
+            return false;
+        };
+    }
+
+    function asBoolean(value) {
+        return (value === 'true' || value === true);
     }
 });

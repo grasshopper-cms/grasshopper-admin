@@ -2,23 +2,23 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
     'grasshopperBaseView',
-    'loginView', 'loginWorker', 'logoutWorker', 'forbiddenView',
+    'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
-    'userDetailView', 'UserModel',
+    'userDetail/view', 'UserModel',
     'headerView',
-    'footerView',
     'mastheadView',
     'userIndexView',
-    'addUserView',
+    'addUser/view',
     'contentBrowseView',
     'contentDetailView',
     'contentTypeIndexView',
     'contentTypeDetailView',
     'addFolderView',
     'addContentView',
-    'addAssetsView'
+    'addAssetsView',
+    'sysInfoView'
 ],
     function ($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
@@ -28,7 +28,6 @@ define([
               resources,
               UserDetailView, UserModel,
               HeaderView,
-              FooterView,
               MastheadView,
               UserIndexView,
               AddUserView,
@@ -38,10 +37,13 @@ define([
               ContentTypeDetailView,
               AddFolderView,
               AddContentView,
-              AddAssetsView) {
+              AddAssetsView,
+              SysInfoView
+        ) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
+            LocalStorage = helpers.localStorage,
             userModel = new UserModel(),
             currentView,
             Router;
@@ -52,10 +54,11 @@ define([
          */
         Router = MasseuseRouter.extend({
             routes : {
-                'login' : 'displayLogin',
+                'login(/:token)' : 'displayLogin',
                 'logout' : 'goLogout',
                 'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
+                'sysinfo': 'displaySysinfo',
                 'addUser' : 'displayAddUser',
                 'contentTypes' : 'displayContentTypeIndex',
                 'contentTypes/new' : 'displayContentTypeDetail',
@@ -63,6 +66,8 @@ define([
                 'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
                 'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
+                'items(/nodeid/:nodeId/limit/:limit)' : 'displayContentBrowse',
+                'items(/nodeid/:nodeId/limit/:limit/skip/:skip)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 'forbidden' : 'displayForbidden',
@@ -78,7 +83,7 @@ define([
 
             onRouteFail : onRouteFail,
             beforeRouting : beforeRouting,
-            excludeFromBeforeRouting : ['login', 'logout'],
+            excludeFromBeforeRouting : ['login(/:token)', 'logout'],
             userHasBreadcrumbs : userHasBreadcrumbs,
             removeThisRouteFromBreadcrumb : removeThisRouteFromBreadcrumb,
 
@@ -95,6 +100,7 @@ define([
             navigate : navigate,
             displayUserIndex : displayUserIndex,
             displayUserDetail : displayUserDetail,
+            displaySysinfo: displaySysinfo,
             displayAddUser : displayAddUser,
             displayContentBrowse : displayContentBrowse,
             displayContentDetail : displayContentDetail,
@@ -240,18 +246,14 @@ define([
             this.mastheadView = new MastheadView();
             this.mastheadView.start();
 
-            this.footerView = new FooterView();
-            this.footerView.start();
         }
 
         function removeHeader () {
-            if (this.headerView && this.mastheadView && this.footerView) {
+            if (this.headerView && this.mastheadView) {
                 this.headerView.remove();
                 this.mastheadView.remove();
-                this.footerView.remove();
                 this.headerView = null;
                 this.mastheadView = null;
-                this.footerView = null;
             }
         }
 
@@ -260,8 +262,16 @@ define([
                 .done(this.navigate.bind(this, 'login', {trigger : true}, true));
         }
 
-        function displayLogin () {
-            this.loadMainContent(LoginView);
+        function displayLogin (token) {
+
+            if(token) {
+                // I am assuming this is a google token because that is all we support right meow.
+                LocalStorage.set('authToken', 'Google '+ token);
+                this.navigateTrigger('#items');
+            } else {
+                this.loadMainContent(LoginView);
+            }
+
         }
 
         function displayAlertBox (options) {
@@ -286,7 +296,9 @@ define([
                     modelData : {
                         header : (options.header) ? options.header : null,
                         msg : options.msg,
-                        data : (options.data) ? options.data : null
+                        data : (options.data) ? options.data : null,
+                        hideCancel: !!options.hideCancel,
+                        hideConfirm: !!options.hideConfirm
                     },
                     type : (options.type) ? options.type : null,
                     $deferred : $deferred
@@ -335,11 +347,17 @@ define([
             this.loadMainContent(AddUserView);
         }
 
-        function displayContentBrowse (nodeId) {
+        function displaySysinfo(){
+            this.loadMainContent(SysInfoView);
+        }
+
+        function displayContentBrowse (nodeId, limit, skip) {
             this.loadMainContent(ContentBrowseView, {
                     modelData : {
                         nodeId : nodeId ? nodeId : '0',
-                        inRoot : !nodeId
+                        inRoot : !nodeId,
+                        limit : limit,
+                        skip : skip
                     }
                 });
         }

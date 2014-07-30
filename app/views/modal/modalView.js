@@ -10,7 +10,6 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
               radioTemplate, listTemplate,
               errorTemplate) {
         'use strict';
-
         return GrasshopperBaseView.extend({
             defaultOptions : modalViewConfig,
             initialize : initialize,
@@ -51,11 +50,15 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
                 options.template = defaultTemplate;
                 break;
             }
+            this.options = options;
             GrasshopperBaseView.prototype.initialize.apply(this, arguments);
         }
 
         function afterRender () {
             this.$el.foundation();
+            if (this.options && this.options.type=='input'){
+                $('input', this.$el).focus();
+            }
         }
 
         function fireClickOnUploadFileInput (e) {

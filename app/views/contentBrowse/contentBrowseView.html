@@ -19,6 +19,11 @@
             </dd>
         </dl>
 
+        <div id="contentSearch" data-rv-unless="model:inRoot">
+            <input class="contentSearchInput" type="text" placeholder="Search by content label " data-rv-value="model:contentSearchValue" data-rv-on-keyup="view.searchContent"/>
+            <span class="contentSearchIcon fa fa-search"></span>
+        </div>
+
         <div class="tabs-content">
             <div class="content active" id="panel2-1">
 
@@ -51,21 +56,6 @@
                 </table>
 
                 <section data-rv-if="model:childContent.length | isGreaterThen 25" data-rv-new-pagination-view="model:childContent"></section>
-
-                <div data-rv-paginator="model:childContent:" class="paginator">
-                    <ul class="pagination pagination-limit" data-rv-each-size="model:constants->pagination->defaultPageSize">
-                        <li class="pagination-item">
-                            <a class="pagination-item-link" data-rv-on-click="model:childContent.setLimit" data-rv-text="size"></a>
-                        </li>
-                    </ul>
-                    <ul class="pagination pagination-skip">
-                        <li class="pagination-item"><a class="pagination-item-link" href="">&lt;prev</a></li>
-                        <li class="pagination-item"><a class="pagination-item-link" href="">1</a></li>
-                        <li class="pagination-item"><a class="pagination-item-link" href="">2</a></li>
-                        <li class="pagination-item"><a class="pagination-item-link" href="">3</a></li>
-                        <li class="pagination-item"><a class="pagination-item-link" href="">next&gt;</a></li>
-                    </ul>
-                </div>
 
             </div>
             <div class="content" id="panel2-2" data-rv-hide="model:inRoot">
@@ -119,7 +109,8 @@
             </li>
 
             <li>
-                <a data-rv-on-click="view.createFolder" class="button tiny">
+                <a data-rv-on-click="view.createFolder" class="button tiny"
+                   data-rv-show="view.hasCreateFolderPermission">
                     {{model:resources->mastheadButtons->createFolder}}
                 </a>
             </li>

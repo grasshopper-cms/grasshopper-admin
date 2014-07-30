@@ -1,5 +1,16 @@
-<div id="pagination">
-    IT IS WORKING
+<div id="paginator">
 
-    <button data-rv-on-click="view.next">NEXT</button>
+    <!--<div data-rv-paginator="model:childContent:" class="paginator">-->
+        <ul class="pagination pagination-limit">
+            <li class="pagination-item" data-rv-each-size="model:constants->pagination->defaultPageSize">
+                <a class="pagination-item-link" data-rv-on-click="collection.setLimit" data-rv-text="size"></a>
+            </li>
+        </ul>
+        <ul class="pagination pagination-skip">
+            <li class="pagination-item"><a class="pagination-item-link" href="">&lt;prev</a></li>
+            <li class="pagination-item"><a class="pagination-item-link" href="">1</a></li>
+            <li class="pagination-item"><a class="pagination-item-link" href="">2</a></li>
+            <li class="pagination-item"><a class="pagination-item-link" href="">3</a></li>
+            <li class="pagination-item"><a class="pagination-item-link" data-rv-on-click="view.next" href="">next&gt;</a></li>
+        </ul>
 </div>

@@ -7,7 +7,8 @@ var express = require('express'),
     config = require('./ghapi.json'),
     PORT = process.env.PORT || 3000;
 
-app.use(api(config).router);
+api = api(config);
+app.use(api.ghApi || api.router);
 app.use(express.static(__dirname + '/public'));
 console.log('litening on: ' + PORT);
 app.listen(PORT);

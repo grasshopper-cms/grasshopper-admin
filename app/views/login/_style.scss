@@ -1,22 +1,5 @@
 #login-page {
 
-  .login-button {
-    @include button;
-    @include button-style($buttonOkay);
-    @include radius;
-    @include single-transition;
-    @include inset-shadow(true);
-    color: $buttonText;
-    float:right;
-  }
-
-  .loginContainer {
-    @include radius;
-    border: 1px solid $loginBorder;
-    padding: 16px 28px 23px;
-    background-color: $loginBackground;
-  }
-
   .account-container h1 {
     margin-bottom: .4em;
     color: $accountContainerTextColor;
