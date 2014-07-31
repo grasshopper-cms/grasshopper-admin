@@ -68,7 +68,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function remove() {
-            if(!this.model.get('inSetup')) {
+            if(this.model && !this.model.get('inSetup')) {
                 window.open = this.oldWindowOpen;
                 this.ckeditor.destroy();
             }
