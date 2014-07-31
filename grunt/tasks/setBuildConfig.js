@@ -6,8 +6,7 @@ module.exports = function (grunt) {
     var tempDirectory = grunt.config.get('tempDirectory'),
         buildDirectory = grunt.config.get('buildDirectory'),
         apiEndpoint = grunt.config.get('apiEndpoint'),
-        version = grunt.config.get('version'),
-        libraryVersions = grunt.config.get('libraryVersions');
+        version = grunt.config.get('version');
 
     grunt.registerTask("interpolateConstantsTemp", "Sets the correct build config for constants", function () {
         var template = grunt.file.read('app/constants.js'),
@@ -15,7 +14,7 @@ module.exports = function (grunt) {
                 data : {
                     apiEndpoint : apiEndpoint,
                     version : version,
-                    libraryVersions : libraryVersions
+                    libraryVersions : grunt.config.get('libraryVersions')
                 }
             });
 
@@ -28,7 +27,7 @@ module.exports = function (grunt) {
                 data : {
                     apiEndpoint : apiEndpoint,
                     version : version,
-                    libraryVersions: libraryVersions
+                    libraryVersions: grunt.config.get('libraryVersions')
                 }
             });
 
