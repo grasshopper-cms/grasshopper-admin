@@ -18,6 +18,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'shell:bundlerInstall',
         'shell:bowerInstall',
+        'getBowerVersions',
         'vendor:setup:vendorFiles',
         'copy:temp',
         'copy:vendor',
