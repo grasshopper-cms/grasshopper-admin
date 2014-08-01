@@ -46,14 +46,13 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
         function _actuallyChangeFieldPluginType(newType) {
             var newModel = _.result(_.findWhere(this.model.get('plugins'), { type : newType }).config, 'modelData'),
                 thisModel = this.model.pick('label', 'min', 'max', 'multi', 'helpText', 'validation', '_id'),
-                index = this.parent.collection.indexOf(this.model);
+                index = this.parent.collection.indexOf(this.model),
+                oldModelReference=this.model;
 
             _.extend(newModel, thisModel);
 
-            this.parent.collapseAccordion();
-
+            this.parent.collection.remove(oldModelReference);
             this.parent.collection.add(newModel, { at : index });
-            this.parent.collection.remove(this.model);
 
             this.parent.refreshAccordion();
             this.parent.openSpecificAccordion(index);

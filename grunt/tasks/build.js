@@ -9,6 +9,7 @@ module.exports = function (grunt) {
         'copy:vendor',
         'registerPlugins',
         'paths:app',
+        'getBowerVersions',
         'setBuildConfig',
         'sass',
         'autoprefixer:no_dest'
@@ -17,6 +18,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'shell:bundlerInstall',
         'shell:bowerInstall',
+        'getBowerVersions',
         'vendor:setup:vendorFiles',
         'copy:temp',
         'copy:vendor',
