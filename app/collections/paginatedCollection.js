@@ -26,14 +26,15 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
             return this.query(contentSearchValue);
         }
 
-        function setLimit(size, contentSearchValue) {
-            this.limit = size;
+        function setLimit(limit, contentSearchValue) {
+            this.limit = !!parseInt(limit, 10) ? limit : constants.pagination.defaultAllLimit;
             return this.query(contentSearchValue);
         }
 
         function query(value) {
             this.skip = (_.isUndefined(this.contentSearchValue) || this.contentSearchValue == value) ? this.skip : constants.pagination.defaultSkip;
             this.contentSearchValue = value || '';
+            this.limit = !!parseInt(this.limit, 10) ? this.limit : constants.pagination.defaultAllLimit;
 
             var $deferred = new $.Deferred(),
                 queryData = {

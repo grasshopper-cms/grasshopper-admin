@@ -15,6 +15,7 @@ define(['grasshopperBaseView', 'pagination/options', 'paginationWorker', 'consta
     function afterRender() {
         _setActiveClassToLimit.call(this);
         _updateComputedProperty.call(this);
+        _checkPaginationVisibility.call(this);
         this.listenTo(this.collection, 'paginatedCollection:query', _updateComputedProperty.bind(this));
         this.listenTo(this.collection, 'paginatedCollection:query', _setActiveClassToLimit.bind(this));
     }
@@ -27,6 +28,14 @@ define(['grasshopperBaseView', 'pagination/options', 'paginationWorker', 'consta
         }, true);
     }
 
+    function _checkPaginationVisibility() {
+        if ( this.collection.limit > this.collection.total || this.collection.total === 'all') {
+            $('.pagination-skip').addClass('hidden');
+        } else {
+            $('.pagination-skip').removeClass('hidden');
+        }
+    }
+
     function setLimit(e, context) {
         e.preventDefault();
         var contentSearchValue = this.model.get('contentSearchValue');
@@ -36,6 +45,7 @@ define(['grasshopperBaseView', 'pagination/options', 'paginationWorker', 'consta
         this.collection.setLimit(context.size, contentSearchValue)
             .done(
                 paginationWorker.setUrl.bind(this, context.size, this.collection.skip, contentSearchValue),
+                _checkPaginationVisibility.call(this),
                 _setActiveClassToLimit(e)
             );
     }
@@ -75,8 +85,9 @@ define(['grasshopperBaseView', 'pagination/options', 'paginationWorker', 'consta
 
     function _setActiveClassToLimit(e) {
         var paginationLimit = $('.pagination-limit');
+
         paginationLimit.find('.pagination-item-link').removeClass('active');
-        if (e) {
+        if (!!e) {
             $(e.currentTarget).addClass('active');
         } else {
             paginationLimit.find('.pagination-item-link:contains(' + this.collection.limit + ')').addClass('active');

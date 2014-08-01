@@ -130,6 +130,10 @@ body, html {
     }
   }
 
+  .hidden {
+    display: none !important;
+  }
+
   // VIEWS
   @import "../views/header/_style.scss"; // Header
   @import "../views/modal/_style.scss"; // Modal

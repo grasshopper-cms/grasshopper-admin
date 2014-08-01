@@ -99,7 +99,8 @@ define([], function() {
             defaultLimit : 25,
             defaultSkip : 1,
             defaultPagesLimit : 7,
-            defaultPageSize : [25, 50, 100, 'all']
+            defaultPageSize : [25, 50, 100, 'all'],
+            defaultAllLimit : 100000
         },
         controlKeyCodeMap : {
             13 : 'enter',
