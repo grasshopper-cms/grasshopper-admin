@@ -32,7 +32,7 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
         }
 
         function query(value) {
-            this.skip = (this.contentSearchValue == value) ? this.skip : constants.pagination.defaultSkip;
+            this.skip = (_.isUndefined(this.contentSearchValue) || this.contentSearchValue == value) ? this.skip : constants.pagination.defaultSkip;
             this.contentSearchValue = value || '';
 
             var $deferred = new $.Deferred(),

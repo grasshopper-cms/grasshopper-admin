@@ -16,6 +16,7 @@ define(['grasshopperBaseView', 'pagination/options', 'paginationWorker', 'consta
         _setActiveClassToLimit.call(this);
         _updateComputedProperty.call(this);
         this.listenTo(this.collection, 'paginatedCollection:query', _updateComputedProperty.bind(this));
+        this.listenTo(this.collection, 'paginatedCollection:query', _setActiveClassToLimit.bind(this));
     }
 
     function _updateComputedProperty() {

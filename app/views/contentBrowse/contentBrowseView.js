@@ -115,7 +115,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
             _toggleSearchSpinner.call(this);
             childContent.searchQuery(contentSearchValue)
                 .done(
-                    paginationWorker.setUrl.bind(this, childContent.limit, constants.pagination.defaultSkip, contentSearchValue),
+                    paginationWorker.setUrl.bind(this, childContent.limit, childContent.skip, contentSearchValue),
                     _toggleSearchSpinner.bind(this, true)
                 );
         }
