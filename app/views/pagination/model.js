@@ -8,7 +8,6 @@ define(['masseuse', 'resources', 'constants'],
         defaults : {
             constants : constants,
             resources : resources,
-            contentSearchValue : '',
             pageNumbers : masseuse.ComputedProperty(['limit', 'total', 'currentPage'], function(limit, total, currentPage) {
                 var totalPageNumber = (total % limit === 0 ) ? (total / limit) : parseInt(total / limit, 10) + 1,
                     pageArr = [];
@@ -18,6 +17,7 @@ define(['masseuse', 'resources', 'constants'],
                 } else {
                     pageArr = getPagesArray(currentPage, totalPageNumber);
                 }
+
                 return pageArr;
             }, true)
         }

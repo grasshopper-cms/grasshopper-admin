@@ -22,8 +22,11 @@
   }
 
   .pagination-item-link {
+    padding: 0.0625rem 0.425rem;
+    
     &.active {
-      background: #e6e6e6;
+      margin: 0 0.2rem;
+      background: $paginationActiveItem;
     }
   }
 }
