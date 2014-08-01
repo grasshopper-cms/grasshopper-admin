@@ -102,9 +102,15 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
             _closeActionsDropdown.call();
         }
 
-        function searchContent() {
-            var childContent = this.model.get('childContent'),
-                contentSearchValue = this.model.get('contentSearchValue');
+        function searchContent(e) {
+            var childContent, contentSearchValue;
+
+            if (!_.isUndefined(e) && !_.isUndefined(constants.controlKeyCodeMap[e.keyCode])) {
+                return false;
+            }
+
+            childContent = this.model.get('childContent');
+            contentSearchValue = $.trim(this.model.get('contentSearchValue'));
 
             _toggleSearchSpinner.call(this);
             childContent.searchQuery(contentSearchValue)

@@ -100,8 +100,21 @@ define([], function() {
             defaultSkip : 1,
             defaultPagesLimit : 7,
             defaultPageSize : [25, 50, 100, 'all']
+        },
+        controlKeyCodeMap : {
+            13 : 'enter',
+            16 : 'shift',
+            17 : 'cntrl',
+            18 : 'alt',
+            20 : 'capsLock',
+            27 : 'esc',
+            37 : 'lArr',
+            38 : 'tArr',
+            39 : 'rArr',
+            40 : 'bArr',
+            91 : 'leftCMD',
+            93 : 'rightCMD'
         }
-
     };
 
 });
