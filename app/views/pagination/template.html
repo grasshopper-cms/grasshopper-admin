@@ -4,7 +4,7 @@
             <a class="pagination-item-link" data-rv-on-click="view.setLimit" data-rv-text="size"></a>
         </li>
     </ul>
-    <ul class="pagination pagination-skip">
+    <ul class="pagination pagination-skip" data-rv-unless="model:limit | isGreaterThan 25">
         <li class="pagination-item">
             <a class="pagination-item-link" data-rv-on-click="view.prev">&lt;prev</a>
         </li>

@@ -14,11 +14,11 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
 
 
         function doSkip(skip, contentSearchValue, pageLength, isGoToPage) {
-            pageLength = parseInt(pageLength, 10) || 0;
+            pageLength = parseInt(pageLength, 10) || 1;
             isGoToPage = isGoToPage || false;
 
             if ( isGoToPage ) {
-                this.skip = (skip >= 0 && skip <= pageLength) ? skip : 1;
+                this.skip = (skip >= 1 && skip <= pageLength) ? skip : 1;
             } else {
                 this.skip += ( (this.skip + skip >= 1) && (this.skip + skip <= pageLength) ) ? skip : 0;
             }
@@ -32,6 +32,9 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
         }
 
         function query(value) {
+            this.skip = (this.contentSearchValue == value) ? this.skip : constants.pagination.defaultSkip;
+            this.contentSearchValue = value || '';
+
             var $deferred = new $.Deferred(),
                 queryData = {
                     filters: [
@@ -40,14 +43,18 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
                     nodes: [this.nodeId],
                     options: {
                         limit: parseInt(this.limit, 10),
-                        skip : parseInt(this.skip, 10) - 1
+                        skip : (parseInt(this.skip, 10) - 1) * this.limit
                     }
                 };
 
+            $('#panel2-1').addClass('spinner-loading');
             api.makeQuery(queryData)
                 .done(function(data) {
-                    this.set(data.results);
+                    this.reset(data.results);
                     this.total = data.total;
+                    this.skip =  parseInt(this.skip, 10);
+                    this.trigger('paginatedCollection:query');
+                    $('#panel2-1').removeClass('spinner-loading');
                     $deferred.resolve();
                 }.bind(this));
 

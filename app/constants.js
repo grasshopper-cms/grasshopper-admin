@@ -94,9 +94,10 @@ define([], function() {
             swf : 'fa-file-video-o'
         },
         imageExtensions : ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif'],
+        contentSearchThrottle: 1000,
         pagination : {
             defaultLimit : 25,
-            defaultSkip : 0,
+            defaultSkip : 1,
             defaultPagesLimit : 7,
             defaultPageSize : [25, 50, 100, 'all']
         }

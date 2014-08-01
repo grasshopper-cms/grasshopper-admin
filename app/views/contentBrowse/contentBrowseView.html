@@ -26,7 +26,9 @@
 
         <div class="tabs-content">
             <div class="content active" id="panel2-1">
-
+                <div id="table-loading-overlay">
+                    <img class="loading-overlay-image" src="themes/img/loading-spinner-horizontal.gif">
+                </div>
                 <table class="content-table">
                     <thead>
                         <tr>
@@ -51,7 +53,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr class="contentDetailRow" data-rv-each-content="model:childContent:" data-rv-new-content-detail-row="content"></tr>
+                        <tr class="contentDetailRow" data-rv-each-content="model:childContent.models" data-rv-new-content-detail-row="content"></tr>
                     </tbody>
                 </table>
 
