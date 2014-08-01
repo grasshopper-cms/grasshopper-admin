@@ -1,0 +1,82 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'grasshoper-api-js' ]
+2 info using npm@2.0.0-alpha-5
+3 info using node@v0.10.29
+4 verbose node symlink /usr/local/bin/node
+5 warn package.json grasshopper-admin-server@0.27.1 No description
+6 warn package.json grasshopper-admin-server@0.27.1 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'grasshoper-api-js', null ]
+9 verbose cache add spec="grasshoper-api-js" args=["grasshoper-api-js",null]
+10 verbose parsed spec { raw: 'grasshoper-api-js',
+10 verbose parsed spec   scope: null,
+10 verbose parsed spec   name: 'grasshoper-api-js',
+10 verbose parsed spec   rawSpec: '',
+10 verbose parsed spec   spec: '*',
+10 verbose parsed spec   type: 'range' }
+11 verbose addNamed [ 'grasshoper-api-js', '*' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 74804a6c-grasshoper-api-js grasshoper-api-js@*
+14 verbose lock grasshoper-api-js@* /Users/malcom/.npm/74804a6c-grasshoper-api-js.lock
+15 silly addNameRange { name: 'grasshoper-api-js', range: '*', hasData: false }
+16 verbose mapToRegistry name grasshoper-api-js
+17 verbose mapToRegistry uri https://registry.npmjs.org/grasshoper-api-js
+18 verbose request where is /grasshoper-api-js
+19 verbose request registry https://registry.npmjs.org/
+20 verbose request id 8591ae0690d09f29
+21 verbose request url raw /grasshoper-api-js
+22 verbose request url resolving [ 'https://registry.npmjs.org/', './grasshoper-api-js' ]
+23 verbose request url resolved https://registry.npmjs.org/grasshoper-api-js
+24 verbose request where is https://registry.npmjs.org/grasshoper-api-js
+25 verbose request no basic auth needed
+26 info trying registry request attempt 1 at 14:02:35
+27 http GET https://registry.npmjs.org/grasshoper-api-js
+28 http 404 https://registry.npmjs.org/grasshoper-api-js
+29 verbose headers { date: 'Fri, 01 Aug 2014 21:02:36 GMT',
+29 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+29 verbose headers   'content-type': 'application/json',
+29 verbose headers   'cache-control': 'max-age=0',
+29 verbose headers   'content-length': '52',
+29 verbose headers   'accept-ranges': 'bytes',
+29 verbose headers   via: '1.1 varnish',
+29 verbose headers   age: '0',
+29 verbose headers   'x-served-by': 'cache-lax1426-LAX',
+29 verbose headers   'x-cache': 'MISS',
+29 verbose headers   'x-cache-hits': '0',
+29 verbose headers   'x-timer': 'S1406926956.170507,VS0,VE42',
+29 verbose headers   'keep-alive': 'timeout=10, max=50',
+29 verbose headers   connection: 'Keep-Alive' }
+30 silly registry.get cb [ 404,
+30 silly registry.get   { date: 'Fri, 01 Aug 2014 21:02:36 GMT',
+30 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 silly registry.get     'content-type': 'application/json',
+30 silly registry.get     'cache-control': 'max-age=0',
+30 silly registry.get     'content-length': '52',
+30 silly registry.get     'accept-ranges': 'bytes',
+30 silly registry.get     via: '1.1 varnish',
+30 silly registry.get     age: '0',
+30 silly registry.get     'x-served-by': 'cache-lax1426-LAX',
+30 silly registry.get     'x-cache': 'MISS',
+30 silly registry.get     'x-cache-hits': '0',
+30 silly registry.get     'x-timer': 'S1406926956.170507,VS0,VE42',
+30 silly registry.get     'keep-alive': 'timeout=10, max=50',
+30 silly registry.get     connection: 'Keep-Alive' } ]
+31 silly lockFile 74804a6c-grasshoper-api-js grasshoper-api-js@*
+32 silly lockFile 74804a6c-grasshoper-api-js grasshoper-api-js@*
+33 error 404 404 Not Found: grasshoper-api-js
+33 error 404
+33 error 404 'grasshoper-api-js' is not in the npm registry.
+33 error 404 You should bug the author to publish it
+33 error 404 It was specified as a dependency of 'grasshopper-admin-server'
+33 error 404
+33 error 404 Maybe try 'npm search grasshoper api'
+33 error 404
+33 error 404 Note that you can also install from a
+33 error 404 tarball, folder, or http url, or git url.
+34 error System Darwin 13.3.0
+35 error command "node" "/usr/local/bin/npm" "install" "grasshoper-api-js"
+36 error cwd /Users/malcom/Work/grasshopper-admin/server
+37 error node -v v0.10.29
+38 error npm -v 2.0.0-alpha-5
+39 error code E404
+40 verbose exit [ 1, true ]

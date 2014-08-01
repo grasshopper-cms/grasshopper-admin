@@ -1,6 +1,6 @@
 {
     "name": "grasshopper-admin-server",
-    "version": "0.27.0",
+    "version": "0.27.1",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -14,7 +14,7 @@
     "author": "",
     "license": "BSD-2-Clause",
     "dependencies": {
-        "grasshopper-api": "0.14.28",
+        "grasshopper-api": "0.14.30",
         "express": "~4.2.0",
         "grunt-contrib-watch": "^0.6.1",
         "grunt": "^0.4.5",
