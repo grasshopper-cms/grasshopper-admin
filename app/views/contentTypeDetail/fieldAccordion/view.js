@@ -114,6 +114,8 @@ define(['grasshopperBaseView', 'fieldAccordionConfig', 'underscore', 'resources'
             })
                 .done(function() {
                     self.parent.collection.remove(self.model);
+                    self.parent.collection.reset(self.parent.collection.models);
+                    self.parent.refreshAccordion();
                 });
 
         }
