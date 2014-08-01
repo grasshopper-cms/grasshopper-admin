@@ -10,6 +10,7 @@ module.exports = function (grunt) {
         'clean:build',
         'jshint',
         'vendor:setup:vendorFiles',
+        'getBowerVersions',
         'copy:appJsAndHtmlToBuild',
         'copy:vendorFilesToBuild',
         'registerPlugins',
