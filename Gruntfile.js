@@ -12,7 +12,6 @@ module.exports = function (grunt) {
         version = grunt.file.readJSON('package.json').version,
         tempDir = '.tempo';
 
-
     if (!ghaConfig) {
         grunt.fatal('Please create a build configuration file at "gha.json"');
     }

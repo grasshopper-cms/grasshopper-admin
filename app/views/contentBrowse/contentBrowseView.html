@@ -19,9 +19,16 @@
             </dd>
         </dl>
 
+        <div id="contentSearch" data-rv-unless="model:inRoot">
+            <input class="contentSearchInput" type="text" placeholder="Search by content label " data-rv-value="model:contentSearchValue" data-rv-on-keyup="view.searchContent"/>
+            <span class="contentSearchIcon fa fa-search"></span>
+        </div>
+
         <div class="tabs-content">
             <div class="content active" id="panel2-1">
-
+                <div id="table-loading-overlay">
+                    <img class="loading-overlay-image" src="themes/img/loading-spinner-horizontal.gif">
+                </div>
                 <table class="content-table">
                     <thead>
                         <tr>
@@ -46,9 +53,11 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr class="contentDetailRow" data-rv-each-content="model:childContent:" data-rv-new-content-detail-row="content"></tr>
+                        <tr class="contentDetailRow" data-rv-each-content="model:childContent.models" data-rv-new-content-detail-row="content"></tr>
                     </tbody>
                 </table>
+
+                <section data-rv-if="model:childContent.total | isGreaterThan 25" data-rv-new-pagination-view="model:childContent"></section>
 
             </div>
             <div class="content" id="panel2-2" data-rv-hide="model:inRoot">
@@ -102,7 +111,8 @@
             </li>
 
             <li>
-                <a data-rv-on-click="view.createFolder" class="button tiny">
+                <a data-rv-on-click="view.createFolder" class="button tiny"
+                   data-rv-show="view.hasCreateFolderPermission">
                     {{model:resources->mastheadButtons->createFolder}}
                 </a>
             </li>

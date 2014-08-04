@@ -12,7 +12,8 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
         };
 
         function doLogin () {
-            var self = this;
+            var self = this,
+                $deferred = $.Deferred();
 
             _getToken.call(this, this.model.get('username'), this.model.get('password'))
                 .done(function(tokenObj) {
@@ -23,7 +24,10 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
                 })
                 .fail(function(xhr) {
                     self.throwLoginError(resources.api.login.errors[xhr.status]);
-                });
+                })
+                .always($deferred.resolve);
+
+            return $deferred.promise();
         }
 
         function _getToken(username, password) {

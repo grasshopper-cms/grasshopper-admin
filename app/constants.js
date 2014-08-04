@@ -3,10 +3,12 @@ define([], function() {
     'use strict';
 
     var apiEndpoint = '<%= apiEndpoint %>',
-        version = '<%= version %>';
+        version = '<%= version %>',
+        libraryVersions = '<%= JSON.stringify(libraryVersions) %>';
 
     return {
         version : version,
+        libraryVersions: libraryVersions,
         api : {
             base : {
                 url : apiEndpoint
@@ -52,12 +54,16 @@ define([], function() {
             },
             version : {
                 url : apiEndpoint + '/system'
+            },
+            google : {
+                url : apiEndpoint + '/googleurl'
             }
         },
         internalRoutes : {
             user : '#user',
             users : '#users',
             addUser : '#addUser',
+            sysInfo: '#sysinfo',
             contentTypes : '#contentTypes',
             newContentType : '#contentTypes/new',
             contentTypeDetail : '#contentTypes/:id',
@@ -74,6 +80,41 @@ define([], function() {
         },
         timeouts: {
             showSpinnerLoadingTimeout: 2000
+        },
+        fileExtensionsMap : {
+            pdf : 'fa-file-pdf-o',
+            doc : 'fa-file-word-o',
+            docx : 'fa-file-word-o',
+            xsl : 'fa-file-excel-o',
+            xslx : 'fa-file-excel-o',
+            txt : 'fa-file-text',
+            zip : 'fa-file-archive-o',
+            psd : 'fa-file-image-o',
+            ai : 'fa-file-image-o',
+            swf : 'fa-file-video-o'
+        },
+        imageExtensions : ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif'],
+        contentSearchThrottle: 1000,
+        pagination : {
+            defaultLimit : 25,
+            defaultSkip : 1,
+            defaultPagesLimit : 7,
+            defaultPageSize : [25, 50, 100, 'all'],
+            defaultAllLimit : 100000
+        },
+        controlKeyCodeMap : {
+            13 : 'enter',
+            16 : 'shift',
+            17 : 'cntrl',
+            18 : 'alt',
+            20 : 'capsLock',
+            27 : 'esc',
+            37 : 'lArr',
+            38 : 'tArr',
+            39 : 'rArr',
+            40 : 'bArr',
+            91 : 'leftCMD',
+            93 : 'rightCMD'
         }
     };
 

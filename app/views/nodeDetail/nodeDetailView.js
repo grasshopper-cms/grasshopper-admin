@@ -1,16 +1,15 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker'],
-    function (GrasshopperBaseView, nodeDetailViewConfig, nodeWorker) {
+define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker', 'mixins/handleRowClick'],
+    function (GrasshopperBaseView, nodeDetailViewConfig, nodeWorker, handleRowClick) {
         'use strict';
         return GrasshopperBaseView.extend({
             defaultOptions : nodeDetailViewConfig,
             afterRender : afterRender,
             prepareToDeleteNode : prepareToDeleteNode,
             prepareToEditContentTypes : prepareToEditContentTypes,
-            handleRowClick : handleRowClick,
             editNodeName : editNodeName,
             editContentTypes : editContentTypes
-        });
+        }).extend(handleRowClick);
 
         function afterRender() {
             if(this.model.isNew()) {
@@ -22,11 +21,6 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker'],
         function prepareToDeleteNode (e) {
             e.stopPropagation();
             nodeWorker.deleteNode.call(this);
-        }
-
-        function handleRowClick () {
-            this.app.router.navigateTrigger(this.model.get('href'));
-            return false;
         }
 
         function editNodeName(e) {

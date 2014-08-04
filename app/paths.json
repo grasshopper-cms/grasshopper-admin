@@ -11,6 +11,7 @@
         "modernizr" : "vendor/modernizr/modernizr",
         "ckeditor" : "vendor/ckeditor/ckeditor",
         "ckeditorAdapter" : "vendor/ckeditor/adapters/jquery",
+        "svg-edit-embed-api" : "vendor/svg-edit-2.7/embedapi",
         "ace" : "vendor/ace/lib/ace",
         "moment" : "vendor/moment/moment",
         "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
@@ -99,6 +100,8 @@
         }
     },
 
+    "mixins" : "mixins",
+
     "views" : {
         "grasshopperBaseView" : "views/grasshopperBaseView",
 
@@ -120,11 +123,7 @@
             "Model" : "views/addFolder/addFolderViewModel"
         },
 
-        "addUserView+" : {
-            "" : "views/addUser/addUserView",
-            "Config" : "views/addUser/addUserViewConfig",
-            "Model" : "views/addUser/addUserViewModel"
-        },
+        "addUser" : "views/addUser",
 
         "alertBoxView+" : {
             "" : "views/alertBox/alertBoxView",
@@ -189,23 +188,13 @@
             "Model" : "views/fileBrowser/fileBrowserViewModel"
         },
 
-        "footerView+" : {
-            "" : "views/footer/footerView",
-            "Config" : "views/footer/footerViewConfig",
-            "Model" : "views/footer/footerViewModel"
-        },
-
         "headerView+" : {
             "" : "views/header/headerView",
             "Config" : "views/header/headerViewConfig",
             "Model" : "views/header/headerViewModel"
         },
 
-        "loginView+" : {
-            "" : "views/login/loginView",
-            "Config" : "views/login/loginViewConfig",
-            "Model" : "views/login/loginViewModel"
-        },
+        "login" : "views/login",
 
         "mastheadView+" : {
             "" : "views/masthead/mastheadView",
@@ -234,6 +223,8 @@
             "Binders" : "views/nodeTree/nodeTreeViewBinders"
         },
 
+        "pagination" : "views/pagination",
+
         "pluginWrapperView+" : {
             "" : "views/pluginWrapper/pluginWrapperView",
             "Config" : "views/pluginWrapper/pluginWrapperViewConfig",
@@ -241,15 +232,9 @@
             "Collection" : "views/pluginWrapper/pluginCollection"
         },
 
-        "userDetailView+" : {
-            "" : "views/userDetail/userDetailView",
-            "Config" : "views/userDetail/userDetailViewConfig",
-            "Model" : "views/userDetail/userDetailViewModel",
-            "userDetailRow+" : {
-                "" : "views/userDetail/userDetailRow/view",
-                "Config" : "views/userDetail/userDetailRow/config"
-            }
-        },
+        "userDetail" : "views/userDetail",
+
+        "userDetailRow" : "views/userDetail/userDetailRow",
 
         "userIndexView+" : {
             "" : "views/userIndex/userIndexView",
@@ -260,6 +245,11 @@
         "forbiddenView+" : {
             "" : "views/forbidden/forbiddenView",
             "Config" : "views/forbidden/forbiddenViewConfig"
+        },
+
+        "sysInfoView+" : {
+            "" : "views/sysInfo/sysInfoView",
+            "Config" : "views/sysInfo/sysInfoViewConfig"
         }
     },
 
@@ -274,14 +264,17 @@
         "loginWorker" : "workers/loginWorker",
         "logoutWorker" : "workers/logoutWorker",
         "contentTypeWorker" : "workers/contentTypeWorker",
+        "ajaxCounterWorker" : "workers/ajaxCounterWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
         "nodeWorker" : "workers/nodeWorker",
-        "urlWorker" : "workers/urlWorker"
+        "urlWorker" : "workers/urlWorker",
+        "paginationWorker" : "workers/paginationWorker"
     },
 
     "collections" : {
         "grasshopperCollection" : "collections/grasshopperCollection",
+        "paginatedCollection" : "collections/paginatedCollection",
         "userCollection" : "collections/userCollection"
     },
 

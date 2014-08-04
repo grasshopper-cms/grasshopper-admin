@@ -4,8 +4,10 @@ desktop.ini
 build
 .sass-cache
 .idea
-gha.json
 ghapi.json
 .bundle
-app/vendor
 .DS_Store
+app/vendor
+_deploy
+server/public/admin
+.tempo

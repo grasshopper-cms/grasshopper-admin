@@ -13,7 +13,8 @@ module.exports = function (grunt) {
             finished = grunt.template.process(template, {
                 data : {
                     apiEndpoint : apiEndpoint,
-                    version : version
+                    version : version,
+                    libraryVersions : grunt.config.get('libraryVersions')
                 }
             });
 
@@ -25,7 +26,8 @@ module.exports = function (grunt) {
             finished = grunt.template.process(template, {
                 data : {
                     apiEndpoint : apiEndpoint,
-                    version : version
+                    version : version,
+                    libraryVersions: grunt.config.get('libraryVersions')
                 }
             });
 

@@ -21,9 +21,16 @@
   bottom: 0;
 }
 
-.spinner-loading{
+.spinner-loading {
   overflow-y: hidden;
+
   #loading-overlay, #loading-overlay-header{
     display: block;
+  }
+
+  .spinner-loading {
+    #table-loading-overlay {
+      display: none;
+    }
   }
 }

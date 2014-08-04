@@ -5,7 +5,6 @@
     "lodash-amd" : "vendor/lodash-amd/underscore/**",
     "jquery" : "vendor/jquery/dist/jquery.js",
     "jqueryui" : "vendor/jquery.ui/ui/jquery.ui.core.js",
-    "fonts" : "vendor/fonts/**",
     "font-awesome-fonts" : "vendor/font-awesome/fonts/**",
     "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed.js",
     "text" : "vendor/requirejs-text/text.js",
@@ -30,7 +29,7 @@
     "ckeditor" : "vendor/ckeditor/ckeditor.js",
     "ckeditor-jqueryAdapter" : "vendor/ckeditor/adapters/jquery.js",
     "ckeditor-kamaSkin" : "vendor/ckeditor/skins/moono/**",
-    "ckeditor-englishLanguage" : "vendor/ckeditor/lang/en.js",
+    "ckeditor-languages" : "vendor/ckeditor/lang/*.js",
     "ckeditor-styleJavascript" : "vendor/ckeditor/styles.js",
     "ckeditor-stylsheet" : "vendor/ckeditor/contents.css",
     "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
@@ -38,5 +37,6 @@
     "moment" : "vendor/moment/moment.js",
     "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker.js",
     "select2": "vendor/select2/select2.js",
-    "sparkmd5": "vendor/sparkMD5/spark-md5.js"
+    "sparkmd5": "vendor/sparkMD5/spark-md5.js",
+    "svg-edit" : "vendor/svg-edit-2.7/**/*"
 }

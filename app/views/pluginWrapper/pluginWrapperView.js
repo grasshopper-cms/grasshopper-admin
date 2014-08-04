@@ -83,9 +83,17 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
         }
 
         function _handleDefaultValue(value) {
-            var defaultValue = this.model.get('defaultValue') || this.model.get('configModule.modelData').value;
+            //var defaultValue = this.model.attributes.defaultValue || this.model.attributes.configModule.modelData.value, copyOfDefaultValue={};
+            var defaultValue = this.model.get('defaultValue') || this.model.get('configModule.modelData').value, copyOfDefaultValue={};
             if (_.isUndefined(value)) {
-                return defaultValue;
+                /* Deep copy, if object */
+                if (typeof(defaultValue)==='object'){
+                    $.extend(true, copyOfDefaultValue,defaultValue);
+                    return copyOfDefaultValue;
+                }
+                else {
+                    return defaultValue;
+                }
             } else {
                 return value;
             }

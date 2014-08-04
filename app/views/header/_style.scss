@@ -9,7 +9,7 @@
     width: 280px;
     height: 32px;
     margin-right: .75em;
-    color: #FFF;
+    color: $white;
     font-size: 18px;
     font-weight: 600;
     line-height: 600;
@@ -24,6 +24,11 @@
     margin: 25px -20px 0;
     font-size: 16px;
     text-align: center;
+  }
+
+  .gravatar-img{
+    max-width: 24px;
+    max-height: 24px;
   }
 
   #main-nav {
@@ -43,11 +48,11 @@
         outline: none;
 
         &.active {
-          color: #333;
+          color: $lightDark;
           font-weight: bold;
           text-shadow: none;
-          background: #fff;
-          border-bottom: 1px solid #fff;
+          background: $white;
+          border-bottom: 1px solid $white;
         }
       }
 
@@ -55,7 +60,7 @@
         padding: 10px 12px;
         font-size: 12px;
         font-weight: 600;
-        color: #ffffff;
+        color: $white;
         background: transparent;
         border: 1px solid transparent;
         border-top-right-radius: 3px;
@@ -67,29 +72,23 @@
       }
 
       a, a:hover, .open {
-        color: #ffffff;
+        color: $white;
         text-decoration: none;
-        background-color: $menuBGBlue;
-        background-image: linear-gradient(to bottom, $menuTopGradient, $menuBottomGradient);
-        background-repeat: repeat-x;
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff24415f', endColorstr='#ff172b3e', GradientType=0);
+        @include toBottomGradient($menuBGBlue, $menuTopGradient, $menuBottomGradient);
         border: 1px solid $menuBorder;
         box-shadow: inset 0 1px 0 $menuShadow;
       }
 
       a:hover,
       .open > a {
-        background-color: #1b3148;
-        background-image: linear-gradient(to bottom, #1e3751, #16283a);
-        background-repeat: repeat-x;
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1e3751', endColorstr='#ff16283a', GradientType=0);
+        @include toBottomGradient($menuBGBlueHover, $menuTopGradientHover, $menuBottomGradientHover);
       }
 
       .active > a {
         color: #192d42;
         background: $white;
         filter: none !important;
-        border-bottom-color: #ffffff;
+        border-bottom-color: $white;
         box-shadow: none;
         text-shadow: none;
       }
@@ -119,7 +118,7 @@
     position: relative;
     z-index: $headerBarZIndex;
     height: 80px;
-    background: #1d354d;
+    background: $footerContainerBackground;
     box-shadow: inset 0 1px 0 #28496b;
 
     .container {
@@ -133,7 +132,7 @@
     z-index: $topBarZIndex;
     padding: 8px;
     height:35px;
-    background: #16283a;
+    background: $menuBottomGradientHover;
     border-bottom: 1px solid $topBarBorderBottom;
 
     #top-nav {
@@ -147,7 +146,7 @@
           padding: 0;
           margin: 0 0 0 1.5em;
           list-style: none;
-          color: #ffffff;
+          color: $white;
           font-size: 11px;
 
           :first-child {
@@ -172,10 +171,10 @@
       padding: 0 0 8px;
       font-size: 2rem;
       text-align: right;
-      color: #F1F1F1;
+      color: $menuResponsiveIcon;
       
       &:hover {
-        color: #cfd1cf;
+        color: $menuResponsiveIconHover;
       }
 
       .fa-align-justify {
@@ -201,9 +200,8 @@
 
       .nav-item-link {
         display: block;
-        border: 1px solid #080f15;
-        -webkit-box-shadow: inset 0 1px 0 #325b85;
-        box-shadow: inset 0 1px 0 #325b85;
+        border: 1px solid $menuBorder;
+        box-shadow: inset 0 1px 0 $menuShadow;
       }
     }
 

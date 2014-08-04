@@ -6,6 +6,13 @@ module.exports = function (grunt) {
         options : {
             build_branch : 'builds',
             dist : 'build'
+        },
+        staging : {
+            options: {
+                build_branch: "staging",
+                dist: "_deploy",
+                pull: true
+            }
         }
     });
 

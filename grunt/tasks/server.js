@@ -10,6 +10,7 @@ module.exports = function (grunt) {
         'clean:build',
         'jshint',
         'vendor:setup:vendorFiles',
+        'getBowerVersions',
         'copy:appJsAndHtmlToBuild',
         'copy:vendorFilesToBuild',
         'registerPlugins',
@@ -18,8 +19,11 @@ module.exports = function (grunt) {
         'paths:toBuild',
         'interpolateConstantsBuild',
         'sass',
+        'processTemplateResourceRefs:development',
         'autoprefixer:no_dest',
-        'connect:site',
+        'loadGhConfigs',
+        'env:localhost',
+        'express:site',
         'watch'
     ]);
 };

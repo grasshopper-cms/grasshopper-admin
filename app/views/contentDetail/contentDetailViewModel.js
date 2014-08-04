@@ -31,10 +31,35 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
         }
 
         function parse(response, options) {
+            if (options.smartParse === true){
+                transplantProperties(response, this, '');
+                return;
+            }
             if(options.parse === false) {
                 return _.omit(response, ['fields']);
+//                _.each(response.fields, function(field) {
+//                    this.set('fields.'+ field, )
+//                }.bind(this))
             }
             return response;
+        }
+
+        function transplantProperties(obj, where, keyPart){
+            var propName,propVal,keyName;
+            for(propName in obj){
+                propVal=obj[propName];
+                if (keyPart.length>0){
+                    keyName=keyPart+'.'+propName;
+                }
+                else{
+                    keyName=propName;
+                }
+                if(_.isObject(propVal)){
+                    transplantProperties(propVal, where, keyName);
+                } else{
+                    where.set(keyName, propVal);
+                }
+            }
         }
 
         function resetContentLabel() {

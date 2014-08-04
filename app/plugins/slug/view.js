@@ -16,12 +16,14 @@ define(['grasshopperBaseView', 'underscore'],
         }
 
         function _collectAvailableSluggables() {
-            var allStringFields = this.parent.parent.collection.where({ dataType : 'string' }),
-                allSluggableFields = _.filter(allStringFields, function(model) {
-                    return model.get('type') !== 'slug';
-                });
+            if (this.model) {
+                var allStringFields = this.parent.parent.collection.where({ dataType: 'string' }),
+                    allSluggableFields = _.filter(allStringFields, function (model) {
+                        return model.get('type') !== 'slug';
+                    });
 
-            this.model.get('possibleFieldsToSlug').reset(allSluggableFields);
+                this.model.get('possibleFieldsToSlug').reset(allSluggableFields);
+            }
         }
 
         function _attachRefreshListenerToParentCollection() {
@@ -41,7 +43,7 @@ define(['grasshopperBaseView', 'underscore'],
         }
 
         function _asSlug(value) {
-            var arigatoSon = '' + value;
+            var arigatoSon = value!==undefined ? value : '';
             return arigatoSon.toLowerCase().trim().replace(/[\s]+/g, '-').replace(/[^-a-zA-Z0-9._~]/g, '');
         }
 
