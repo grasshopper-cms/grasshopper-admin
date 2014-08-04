@@ -249,6 +249,7 @@ define({
     content : 'Content',
     contentTypes : 'Content Types',
     forbidden : 'Forbidden',
+    notFound : 'Not Found',
     currentlySignedIn : 'You are currently signed in.',
     dashboard : 'Dashboard',
     defaultValue : 'Default Value',

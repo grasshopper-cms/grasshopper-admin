@@ -2,7 +2,7 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
     'grasshopperBaseView',
-    'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView',
+    'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView', 'notFoundView',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
@@ -22,7 +22,7 @@ define([
 ],
     function ($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
-              LoginView, loginWorker, logoutWorker, ForbiddenView,
+              LoginView, loginWorker, logoutWorker, ForbiddenView, NotFoundView,
               AlertBoxView,
               ModalView, modalViewConfig,
               resources,
@@ -72,6 +72,7 @@ define([
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 'forbidden' : 'displayForbidden',
+                'notFound' : 'displayNotFound',
                 '*path' : 'goHome'
             },
 
@@ -111,7 +112,8 @@ define([
             displayCreateFolder : displayCreateFolder,
             displayCreateContent : displayCreateContent,
             displayCreateAssets : displayCreateAssets,
-            displayForbidden: displayForbidden
+            displayForbidden: displayForbidden,
+            displayNotFound: displayNotFound
         });
 
         function onRouteFail () {
@@ -428,6 +430,10 @@ define([
 
         function displayForbidden () {
             this.loadMainContent(ForbiddenView);
+        }
+
+        function displayNotFound () {
+            this.loadMainContent(NotFoundView);
         }
 
         return Router;

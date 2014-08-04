@@ -1,10 +1,11 @@
-.forbiden_page {
+.error_page {
   display: table;
   margin: 0 auto;
-}
 
-.forbidden_sidetext, .forbidden_image {
-  display: table-cell;
-  vertical-align: middle;
-  padding: 10px;
+  .error_sidetext, .error_image {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+  }
+
 }

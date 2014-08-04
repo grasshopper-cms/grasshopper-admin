@@ -76,7 +76,8 @@ define([], function() {
             createFolder : '#items/nodeid/:id/createFolder',
             addContent : '#items/nodeid/:id/createContent',
             createAssets : '#items/nodeid/:id/createAssets',
-            forbidden : '#forbidden'
+            forbidden : '#forbidden',
+            notFound : '#notFound'
         },
         timeouts: {
             showSpinnerLoadingTimeout: 2000

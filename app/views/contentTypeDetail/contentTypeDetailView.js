@@ -19,10 +19,13 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }).extend(handleRowClick);
 
     function beforeRender ($deferred) {
+        var self=this;
         if (!this.model.has('label') && !this.model.isNew()) {
-            this.model.fetch()
-                .done(_handleSuccessfulModelFetch.bind(this, $deferred))
-                .fail($deferred.reject);
+            this.model.fetch({error:function(collection, response, options){
+                if (response.status == 404){
+                    self.app.router.navigateTrigger('notFound');
+                }
+            }}).done(_handleSuccessfulModelFetch.bind(this, $deferred)).fail($deferred.reject);
         } else if (this.model.isNew()) {
             _handleNewContentType.call(this, $deferred);
         } else {

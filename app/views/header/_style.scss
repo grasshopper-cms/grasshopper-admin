@@ -130,7 +130,7 @@
   #topbar {
     position: relative;
     z-index: $topBarZIndex;
-    padding: 8px;
+    padding: 6px;
     height:35px;
     background: $menuBottomGradientHover;
     border-bottom: 1px solid $topBarBorderBottom;
@@ -149,6 +149,8 @@
           color: $white;
           font-size: 11px;
 
+          height: 24px;
+          line-height: 24px;
           :first-child {
             margin-left: 0;
           }
