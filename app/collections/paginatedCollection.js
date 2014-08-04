@@ -6,7 +6,7 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
             model : Model,
             nodeId : '',
             query : query,
-            searchQuery : _.throttle(query, constants.contentSearchThrottle),
+            searchQuery : _.throttle(query, constants.contentSearchThrottle, {leading:false}),
             doSkip: doSkip,
             setLimit: setLimit,
             total : 0

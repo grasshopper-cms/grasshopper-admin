@@ -52,7 +52,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
 
         function _getChildContent() {
             if(!this.model.get('inRoot')) {
-                return this.searchContent();
+                return this.searchContent(undefined, true);
             }
         }
 
@@ -102,7 +102,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
             _closeActionsDropdown.call();
         }
 
-        function searchContent(e) {
+        function searchContent(e, isFirstQuery) {
             var childContent, contentSearchValue;
 
             if (!_.isUndefined(e) && !_.isUndefined(constants.controlKeyCodeMap[e.keyCode])) {
@@ -112,12 +112,16 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
             childContent = this.model.get('childContent');
             contentSearchValue = $.trim(this.model.get('contentSearchValue'));
 
-            _toggleSearchSpinner.call(this);
-            childContent.searchQuery(contentSearchValue)
-                .done(
-                    paginationWorker.setUrl.bind(this, childContent.limit, childContent.skip, contentSearchValue),
-                    _toggleSearchSpinner.bind(this, true)
-                );
+            if (isFirstQuery) {
+                childContent.searchQuery(contentSearchValue);
+            } else {
+                _toggleSearchSpinner.call(this);
+                childContent.searchQuery(contentSearchValue)
+                    .done(
+                        paginationWorker.setUrl.bind(this, childContent.limit, childContent.skip, contentSearchValue),
+                        _toggleSearchSpinner.bind(this, true)
+                    );
+            }
         }
 
         function _toggleSearchSpinner(revert) {
