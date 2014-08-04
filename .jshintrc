@@ -15,7 +15,7 @@
     "onevar" : true,
     "strict" : true,
     "undef" : true,
-    "unused" : true,
+    "unused" : "vars",
     "maxlen" : 242,
     "newcap" : false,
     "trailing" : true,
