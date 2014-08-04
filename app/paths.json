@@ -247,6 +247,11 @@
             "Config" : "views/forbidden/forbiddenViewConfig"
         },
 
+        "notFoundView+" : {
+            "" : "views/notFound/notFoundView",
+            "Config" : "views/notFound/notFoundViewConfig"
+        },
+
         "sysInfoView+" : {
             "" : "views/sysInfo/sysInfoView",
             "Config" : "views/sysInfo/sysInfoViewConfig"
