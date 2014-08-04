@@ -46,9 +46,10 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
 
         function _handleSuccessfulAuthentication(userModel) {
             if(userModel.role !== 'external') {
-                this.model.clear();
                 this.app.user.set(userModel);
                 this.app.router.navigateTrigger('items');
+                this.model.clear();
+                this.model.set('hideLoginForm',true);
             } else {
                 this.model.clear();
                 this.app.router.navigateTrigger('logout');
