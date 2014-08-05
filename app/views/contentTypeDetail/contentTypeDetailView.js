@@ -216,6 +216,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
         this.$contentTypePicker.select2(
             {
+                containerCssClass: 'contentTypesDropdownSelectContainer',
+                dropdownCssClass: 'contentTypesDropdownSelectDrop',
                 placeholder: resources.contentType.addNewField
             })
             .on('change', _addNewFieldToContentType.bind(this));
