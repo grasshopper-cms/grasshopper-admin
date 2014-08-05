@@ -16,7 +16,7 @@
         "moment" : "vendor/moment/moment",
         "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
         "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker",
-        "sparkmd5" : "vendor/sparkMD5/spark-md5"
+        "sparkmd5" : "vendor/SparkMD5/spark-md5"
     },
 
     "routers" : {

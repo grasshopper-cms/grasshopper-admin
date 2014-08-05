@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', 'breadcrumbWorker', 'underscore', 'mixins/handleRowCLick'],
+define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', 'breadcrumbWorker', 'underscore', 'mixins/handleRowClick'],
     function (GrasshopperBaseView, options, resources, constants, breadcrumbWorker, _, handleRowCLick) {
 
         'use strict';
