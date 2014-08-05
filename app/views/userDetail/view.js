@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', 'breadcrumbWorker', 'underscore', 'mixins/handleRowClick'],
-    function (GrasshopperBaseView, options, resources, constants, breadcrumbWorker, _, handleRowCLick) {
+define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', 'breadcrumbWorker', 'underscore', 'mixins/handleRowCLick', 'nodeWorker'],
+    function (GrasshopperBaseView, options, resources, constants, breadcrumbWorker, _, handleRowCLick, nodeWorker) {
 
         'use strict';
 
@@ -11,6 +11,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             saveUser : saveUser,
             saveAndClose : saveAndClose,
             toggleEnabled : toggleEnabled,
+            deleteUser: deleteUser,
             addNewUser : addNewUser
         }).extend(handleRowCLick);
 
@@ -45,6 +46,11 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                     header: resources.warning,
                     msg: resources.user.selfLockWarning
                 });
+        }
+
+        function deleteUser(e){
+            e.stopPropagation();
+            nodeWorker.deleteUser.call(this);
         }
 
         function toggleEnabled(e) {
