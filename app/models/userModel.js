@@ -11,6 +11,7 @@ define([
             role : false,
             enabled : false,
             email : false,
+            profile : {},
             loggedIn : new ComputedProperty(['enabled'], function (enabled) {
                 return enabled;
             }),

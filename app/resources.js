@@ -42,7 +42,8 @@ define({
             enabled : 'ENABLED?',
             email : 'EMAIL',
             username : 'USERNAME',
-            password : 'PASSWORD'
+            password : 'PASSWORD',
+            profile : 'PROFILE'
         },
         selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
             'Are you sure you want to do this? (You Will still need to save to apply changes.',

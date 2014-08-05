@@ -1,22 +1,18 @@
 // Import Foundation
 @import "../vendor/foundation/scss/normalize.scss";
 @import "../vendor/foundation/scss/foundation.scss";
-
 // Fonts
 @import "fonts";
-
 // Colors
 @import "colors";
-
 // Mixins
 @import "mixins";
-
 // Z-Index
 @import "z-index";
-
 // Vendor Plugins
 @import "datetimepicker";
 @import "CSS:../vendor/select2/select2";
+@import "CSS:../vendor/jsoneditor/jsoneditor";
 
 $imgPath: 'img';
 
@@ -25,12 +21,65 @@ $font: 'Open Sans', arial, sans-serif;
 .row {
   max-width: 100%;
 }
+
 @import "_loading-spinner.scss";
 
 body, html {
   height: 100%;
 
   font-family: $font;
+  .jsoneditor-contextmenu {
+    button {
+      border-radius: 0px;
+    }
+    ul {
+      li {
+        button.default {
+          width: 90px;
+        }
+        ul {
+          left: 0px;
+          &.menu {
+            height: auto !important;
+          }
+        }
+      }
+    }
+
+  }
+  .jsoneditor {
+    textarea.text {
+      min-height: 200px;
+    }
+    button {
+      border-radius: 0px;
+    }
+    .search {
+      width: 200px;
+      input {
+        padding: 0px;
+      }
+    }
+    table {
+      border-radius: 0px;
+      width: inherit;
+      background: none;
+      margin-bottom: 0px;
+      border: none;
+
+      th {
+        background: none;
+        border-bottom: 0px;
+        box-shadow: 0px;
+      }
+
+      tr {
+        background: none;
+        border-bottom: 0px;
+        box-shadow: 0px;
+      }
+    }
+  }
 
   #siteContainter {
     min-height: 100%;
@@ -65,8 +114,8 @@ body, html {
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
-    padding:5px;
-    border-radius:3px;
+    padding: 5px;
+    border-radius: 3px;
   }
 
   fieldset + legend {

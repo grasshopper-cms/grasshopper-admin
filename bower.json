@@ -13,7 +13,8 @@
     "ScrollToFixed": "~1.0.5",
     "datetimepicker": "~2.3.0",
     "select2": "~3.5.0",
-    "SparkMD5": "satazor/SparkMD5"
+    "SparkMD5": "satazor/SparkMD5",
+    "jsoneditor": "~3.1.1"
   },
   "devDependencies": {
     "mocha": "1.12.1",
