@@ -89,6 +89,15 @@
                             <input id="password" type="password" data-rv-value="model:identities->basic->password" data-rv-placeholder="model:resources->user->attributeTitles->password"/>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="large-3 columns">
+                            <label class="right inline">{{model:resources->user->attributeTitles->profile | withColon}}</label>
+                        </div>
+                        <div class="large-9 columns">
+                            <div id="profile"></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </fieldset>

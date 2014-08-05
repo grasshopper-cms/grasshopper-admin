@@ -116,7 +116,14 @@ define([], function() {
             40 : 'bArr',
             91 : 'leftCMD',
             93 : 'rightCMD'
+        },
+        // https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
+
+        jsoneditor : {
+            mode: 'tree',
+            modes:['code', 'tree']
         }
+
     };
 
 });

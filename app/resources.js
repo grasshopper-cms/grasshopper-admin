@@ -42,7 +42,8 @@ define({
             enabled : 'ENABLED?',
             email : 'EMAIL',
             username : 'USERNAME',
-            password : 'PASSWORD'
+            password : 'PASSWORD',
+            profile : 'PROFILE'
         },
         selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
             'Are you sure you want to do this? (You Will still need to save to apply changes.',
@@ -79,7 +80,9 @@ define({
     },
     node : {
         deletionWarning : 'Are you sure you want to delete this folder? All of its contents will also be deleted.',
-        successfullyDeletedPre : 'Folder ',
+        userDeletionWarning : 'Are you sure that you want to delete this user?',
+        successfullyDeletedWithoutLabel : 'Successfully deleted',
+        successfullyDeletedPre : 'Item ',
         successfullyDeletedPost : ' was successfully deleted.',
         successfullyUpdated : 'Folder was successfully updated.',
         successfullyCreatedPre : 'Folder: ',
@@ -234,6 +237,9 @@ define({
         slug : {
             refresh : 'Refresh',
             selectField : 'Select Field'
+        },
+        author : {
+            selectUser : 'Select user'
         }
     },
     validationViews : {

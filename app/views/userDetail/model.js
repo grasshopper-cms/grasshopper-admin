@@ -10,6 +10,7 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse', 'underscore'],
             defaults : {
                 resources : resources,
                 enabled : true,
+                profile : {},
                 fullname : new ComputedProperty(['firstname', 'lastname'], function(firstname, lastname) {
                     return firstname + ' ' + lastname;
                 }),

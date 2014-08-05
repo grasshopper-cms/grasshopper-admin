@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', 'breadcrumbWorker', 'underscore', 'mixins/handleRowClick'],
-    function (GrasshopperBaseView, options, resources, constants, breadcrumbWorker, _, handleRowCLick) {
+define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', 'breadcrumbWorker', 'underscore', 'mixins/handleRowCLick', 'nodeWorker', 'mixins/jsonEditor'],
+    function (GrasshopperBaseView, options, resources, constants, breadcrumbWorker, _, handleRowCLick, nodeWorker, jsonEditor) {
 
         'use strict';
 
@@ -11,6 +11,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             saveUser : saveUser,
             saveAndClose : saveAndClose,
             toggleEnabled : toggleEnabled,
+            deleteUser: deleteUser,
             addNewUser : addNewUser
         }).extend(handleRowCLick);
 
@@ -19,8 +20,22 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                 .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
-        function afterRender() {
+        function afterRender () {
             _setUpEnabledChangeWarning.call(this);
+            _setUpJsonEditor.call(this);
+        }
+
+        function _setUpJsonEditor () {
+            var initialValue = this.model.get('profile');
+
+            jsonEditor.init(document.getElementById('profile'), this, {
+                change: _jsonEditorChangeCallback.bind(this),
+                json: initialValue
+            });
+        }
+
+        function _jsonEditorChangeCallback () {
+            this.model.set('profile', this.jsonEditor.get());
         }
 
         function saveUser() {
@@ -45,6 +60,11 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                     header: resources.warning,
                     msg: resources.user.selfLockWarning
                 });
+        }
+
+        function deleteUser(e){
+            e.stopPropagation();
+            nodeWorker.deleteUser.call(this);
         }
 
         function toggleEnabled(e) {
