@@ -1,18 +1,17 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
-    function (GrasshopperBaseView, _, $, require) {
+define(['grasshopperBaseView', 'underscore', 'jquery', 'require', 'resources'],
+    function (GrasshopperBaseView, _, $, require, resources) {
 
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender: beforeRender
+            beforeRender: beforeRender,
+            afterRender: afterRender
         });
 
         function beforeRender($deferred) {
             var self = this;
-            this.model.get('users').fetch(/*{success:function(){
-                debugger;
-            }}*/).fail(function (jqXHR, status, error) {
+            this.model.get('users').fetch().fail(function (jqXHR, status, error) {
                 self.model.get('users').reset(
                     [
                         {_id: self.app.user.get('_id'), displayName: self.app.user.get('displayName')}
@@ -21,9 +20,15 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
                 self.model.set('no_permissions', true);
                 $deferred.resolve();
             }).done($deferred.resolve);
-           /* setTimeout(function(){
-                debugger;
-            },3000);*/
+        }
+
+        function afterRender(){
+            this.$('select').select2(
+                {
+                    containerCssClass: 'authorDropdownSelectContainer',
+                    dropdownCssClass: 'authorDropdownSelectDrop',
+                    placeholder: resources.selectOption
+                });
         }
 
 
