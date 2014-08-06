@@ -52,7 +52,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
 
         function _getChildContent() {
             if(!this.model.get('inRoot')) {
-                return this.searchContent(undefined, true);
+                return this.searchContent(undefined, undefined, true);
             }
         }
 
@@ -102,7 +102,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
             _closeActionsDropdown.call();
         }
 
-        function searchContent(e, isFirstQuery) {
+        function searchContent(e, context, isFirstQuery) {
             var childContent, contentSearchValue;
 
             if (!_.isUndefined(e) && !_.isUndefined(constants.controlKeyCodeMap[e.keyCode])) {

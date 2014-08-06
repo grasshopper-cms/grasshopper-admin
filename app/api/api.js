@@ -73,6 +73,9 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         makeQuery : function (data) {
             return this.post(constants.api.contentQuery.url, data);
         },
+        makeUsersQuery : function (data) {
+            return this.post(constants.api.usersQuery.url, data);
+        },
         postFolder : function (data) {
             return this.post(constants.api.node.url, data);
         },
