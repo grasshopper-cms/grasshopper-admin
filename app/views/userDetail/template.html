@@ -37,23 +37,6 @@
 
                     <div class="row">
                         <div class="large-3 columns">
-                            <label class="right inline">{{model:resources->user->attributeTitles->enabled | withColon}}</label>
-                        </div>
-                        <div class="large-9 columns">
-                            <input id="enabled" type="radio" value="true"
-                                   data-rv-checked="model:enabled | asBoolean"
-                                   data-rv-enabled="model:userModel->role | equals admin">
-                            <label for="enabled">{{model:resources->yes}}</label>
-
-                            <input id="disabled" type="radio" value="false"
-                                   data-rv-checked="model:enabled | asBoolean"
-                                   data-rv-enabled="model:userModel->role | equals admin">
-                            <label for="disabled">{{model:resources->no}}</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="large-3 columns">
                             <label for="role" class="right inline">{{model:resources->user->attributeTitles->role | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
@@ -95,6 +78,46 @@
                         </div>
                         <div class="large-9 columns">
                             <div id="profile"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="large-3 columns">
+
+                        </div>
+                        <div class="large-9 columns">
+                           <div class="user-lock-delete-buttons">
+                               <div class="user-lock-delete-button-block lock-user-block">
+                                   <div class="user-lock-delete-borders">
+                                       <div class="user-lock-delete-block-header">Lock this user</div>
+                                       <div class="user-lock-delete-block-text">Locking a user will prevent them from logging in and using the system.</div>
+                                       <div class="user-lock-delete-block-action">
+                                           <a data-rv-on-click="view.toggleEnabled" data-rv-show="model:enabled"
+                                              class="button tiny radius alert">
+                                               Lock user
+                                           </a>
+                                           <a data-rv-on-click="view.toggleEnabled" data-rv-hide="model:enabled"
+                                              class="button tiny radius alert">
+                                               Unlock user
+                                           </a>
+                                       </div>
+                                   </div>
+
+                               </div>
+                               <div class="user-lock-delete-button-block delete-user-block">
+                                   <div class="user-lock-delete-borders">
+                                       <div class="user-lock-delete-block-header">Remove user</div>
+                                       <div class="user-lock-delete-block-text">Deleting a user will permanently remove them from the system. This operation cannot be undone.</div>
+                                       <div class="user-lock-delete-block-action">
+                                           <a data-rv-on-click="view.deleteUserAndGoBack" class="button tiny radius alert">
+                                               Remove user
+                                           </a>
+
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
                         </div>
                     </div>
 

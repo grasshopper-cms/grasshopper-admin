@@ -45,9 +45,9 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
                 .done(_actuallyDeleteNode.bind(this, true));
         }
 
-        function deleteUser() {
+        function deleteUser(goBack) {
             _warnUserBeforeDeleting.call(this, resources.node.userDeletionWarning)
-                .done(_actuallyDeleteNode.bind(this, false));
+                .done(_actuallyDeleteNode.bind(this, goBack !== undefined ? goBack : false));
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

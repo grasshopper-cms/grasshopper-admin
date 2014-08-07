@@ -12,6 +12,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             saveAndClose : saveAndClose,
             toggleEnabled : toggleEnabled,
             deleteUser: deleteUser,
+            deleteUserAndGoBack: deleteUserAndGoBack,
             addNewUser : addNewUser
         }).extend(handleRowCLick);
 
@@ -64,7 +65,12 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
 
         function deleteUser(e){
             e.stopPropagation();
-            nodeWorker.deleteUser.call(this);
+            nodeWorker.deleteUser.call(this, false);
+        }
+
+        function deleteUserAndGoBack(e){
+            e.stopPropagation();
+            nodeWorker.deleteUser.call(this, true);
         }
 
         function toggleEnabled(e) {
