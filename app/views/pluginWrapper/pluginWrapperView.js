@@ -6,21 +6,19 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
         return GrasshopperBaseView.extend({
             defaultOptions : pluginWrapperViewConfig,
             beforeRender : beforeRender,
-            afterRender : afterRender,
             addField : addField,
             removeField : removeField
         });
 
         function beforeRender($deferred) {
-            _getPlugin.call(this, $deferred);
+            _getPlugin.call(this)
+                .done(_handleMultiple.bind(this), $deferred.resolve);
         }
 
-        function afterRender() {
-            _handleMultiple.call(this);
-        }
 
-        function _getPlugin($deferred) {
-            var self = this;
+        function _getPlugin() {
+            var self = this,
+                $deferred = $.Deferred();
 
             require(['plugins'], function(plugins) {
                 var plugin = _.find(plugins.fields, {type : self.model.get('type')});
@@ -33,6 +31,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 $deferred.resolve();
             });
 
+            return $deferred.promise();
         }
 
         function addField() {
