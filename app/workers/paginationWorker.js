@@ -19,6 +19,6 @@ define(['constants'], function (constants) {
             url += '/limit/' + limit + '/skip/' + skip + '/query/' + contentSearchValue;
         }
 
-        this.app.router.navigateNinja(url);
+        this.app.router.navigate(url, {trigger:false});
     }
 });
