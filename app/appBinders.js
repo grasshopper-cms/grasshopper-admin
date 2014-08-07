@@ -26,7 +26,9 @@ define(['jquery', 'underscore', 'masseuse',
                         collection : PluginWrapperViewCollection.createFromParentView(parentView, thisField),
                         appendTo : el
                     });
-                    rivets.viewInstance.start();
+
+                    parentView.addChild(rivets.viewInstance);
+                    //rivets.viewInstance.start();
                 },
                 publish : true
             },
