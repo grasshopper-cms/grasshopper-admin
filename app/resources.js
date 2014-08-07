@@ -62,7 +62,16 @@ define({
         },
         newUserAdded : 'New User Added',
         couldNotFindUserContentType : 'Could not find Users content type. Please make one.',
-        addNewUser : 'Add New User'
+        addNewUser : 'Add New User',
+        blocks: {
+            lockUser: 'Lock this user',
+            lockUserSubtext: 'Locking a user will prevent them from logging in and using the system.',
+            lockUserButton: 'Lock user',
+            unlockUserButton: 'Unlock user',
+            deleteUser: 'Remove user',
+            deleteUserSubtext: 'Deleting a user will permanently remove them from the system. This operation cannot be undone.',
+            deleteUserButton: 'Remove user'
+        }
     },
     site : {
         about : 'About Grasshopper'
