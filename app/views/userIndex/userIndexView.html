@@ -1,6 +1,13 @@
 <div>
     <div class="row">
-        <div class="small-12 columns">
+        <div id="contentSearch" class="contentSearch-user">
+            <input class="contentSearchInput" type="text" placeholder="Users search" data-rv-value="model:contentSearchValue" data-rv-on-keyup="view.searchContent"/>
+            <span class="contentSearchIcon fa fa-search"></span>
+        </div>
+        <div class="small-12 columns userIndexTableWrapper table-wrapper">
+            <div id="table-loading-overlay">
+                <img class="loading-overlay-image" src="{{RESOURCEREF:themes/img/loading-spinner-horizontal.gif}}">
+            </div>
             <table width="100%">
                 <thead>
                 <tr>
@@ -15,6 +22,7 @@
                     <tr data-rv-each-user="model:users:" data-rv-new-user-detail-row="user"></tr>
                 </tbody>
             </table>
+            <section data-rv-if="model:users.total | isGreaterThan 25" data-rv-new-pagination-view="model:users"></section>
         </div>
     </div>
 

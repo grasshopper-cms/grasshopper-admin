@@ -275,7 +275,8 @@
         "breadcrumbWorker" : "workers/breadcrumbWorker",
         "nodeWorker" : "workers/nodeWorker",
         "urlWorker" : "workers/urlWorker",
-        "paginationWorker" : "workers/paginationWorker"
+        "paginationWorker" : "workers/paginationWorker",
+        "searchWorker" : "workers/searchWorker"
     },
 
     "collections" : {

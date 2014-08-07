@@ -25,6 +25,9 @@ define([], function() {
             users : {
                 url : apiEndpoint + '/users'
             },
+            usersQuery : {
+                url : apiEndpoint + '/users/query'
+            },
             newUser : {
                 url : apiEndpoint + '/users'
             },

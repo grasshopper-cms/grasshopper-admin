@@ -56,7 +56,8 @@ define([
             routes : {
                 'login(/:token)' : 'displayLogin',
                 'logout' : 'goLogout',
-                'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
+                'users(/limit/:limit/skip/:skip)' : 'displayUserIndex',
+                'users(/limit/:limit/skip/:skip/query/:query)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
                 'sysinfo': 'displaySysinfo',
                 'addUser' : 'displayAddUser',
@@ -342,11 +343,12 @@ define([
             }
         }
 
-        function displayUserIndex (pageNumber, pageLimit) {
+        function displayUserIndex (limit, skip, query) {
             this.loadMainContent(UserIndexView, {
                     modelData : {
-                        pageNumber : pageNumber,
-                        pageLimit : pageLimit
+                        limit : limit ? limit : constants.pagination.defaultLimit,
+                        skip : skip ? skip : constants.pagination.defaultSkip,
+                        contentSearchValue : query ? query : ''
                     }
                 });
         }

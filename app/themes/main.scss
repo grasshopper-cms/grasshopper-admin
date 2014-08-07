@@ -158,6 +158,10 @@ body, html {
     width: 19rem;
     margin: -3rem 0 0;
 
+    &.contentSearch-user {
+      margin: 0 1rem 0.5rem 0;
+    }
+
     .contentSearchInput {
       margin: 0;
       padding-right: 2rem;

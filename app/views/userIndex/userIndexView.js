@@ -1,17 +1,18 @@
 /*global define:false*/
-define(['jquery', 'grasshopperBaseView', 'userIndexViewConfig', 'constants'],
-    function ($, GrasshopperBaseView, userIndexViewConfig, constants) {
+define(['jquery', 'underscore', 'grasshopperBaseView', 'userIndexViewConfig', 'constants', 'searchWorker'],
+    function ($, _, GrasshopperBaseView, userIndexViewConfig, constants, searchWorker) {
 
         'use strict';
 
         return GrasshopperBaseView.extend({
             defaultOptions : userIndexViewConfig,
             beforeRender : beforeRender,
-            addNewUser : addNewUser
+            addNewUser : addNewUser,
+            searchContent : searchContent
         });
 
         function beforeRender ($deferred) {
-            this.model.get('users').fetch()
+            $.when(this.searchContent(undefined, undefined, true))
                 .done($deferred.resolve);
         }
 
@@ -19,4 +20,7 @@ define(['jquery', 'grasshopperBaseView', 'userIndexViewConfig', 'constants'],
             this.app.router.navigateTrigger(constants.internalRoutes.addUser);
         }
 
+        function searchContent(e, context, isFirstQuery) {
+            return searchWorker.searchContent.call(this, e, context, 'users', isFirstQuery);
+        }
     });
