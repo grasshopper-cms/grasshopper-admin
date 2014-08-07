@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationWorker',
+define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorker',
     'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig'],
-    function (GrasshopperBaseView, contentBrowseViewConfig, $, paginationWorker,
+    function (GrasshopperBaseView, contentBrowseViewConfig, $, searchWorker,
               _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig) {
         'use strict';
 
@@ -102,40 +102,6 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
             _closeActionsDropdown.call();
         }
 
-        function searchContent(e, context, isFirstQuery) {
-            var childContent, contentSearchValue;
-
-            if (!_.isUndefined(e) && !_.isUndefined(constants.controlKeyCodeMap[e.keyCode])) {
-                return false;
-            }
-
-            childContent = this.model.get('childContent');
-            contentSearchValue = $.trim(this.model.get('contentSearchValue'));
-
-            if (isFirstQuery) {
-                childContent.searchQuery(contentSearchValue);
-            } else {
-                _toggleSearchSpinner.call(this);
-                childContent.searchQuery(contentSearchValue)
-                    .done(
-                        paginationWorker.setUrl.bind(this, childContent.limit, childContent.skip, contentSearchValue),
-                        _toggleSearchSpinner.bind(this, true)
-                    );
-            }
-        }
-
-        function _toggleSearchSpinner(revert) {
-            var $searchIcon = this.$('.contentSearchIcon');
-
-            if (revert) {
-                $searchIcon.removeClass('fa-refresh fa-spin');
-                $searchIcon.addClass('fa-search');
-            } else {
-                $searchIcon.removeClass('fa-search');
-                $searchIcon.addClass('fa-refresh fa-spin');
-            }
-        }
-
         function _closeActionsDropdown() {
             $('#actionsDropdown').click();
         }
@@ -144,6 +110,10 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
             var role = this.app.user ? this.app.user.get('role') : undefined;
 
             return _.contains(addFolderViewConfig.permissions, role);
+        }
+
+        function searchContent(e, context, isFirstQuery) {
+            return searchWorker.searchContent.call(this, e, context, 'childContent', isFirstQuery);
         }
 
     });

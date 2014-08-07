@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['jquery', 'underscore', 'grasshopperBaseView', 'userIndexViewConfig', 'constants', 'paginationWorker'],
-    function ($, _, GrasshopperBaseView, userIndexViewConfig, constants, paginationWorker) {
+define(['jquery', 'underscore', 'grasshopperBaseView', 'userIndexViewConfig', 'constants', 'searchWorker'],
+    function ($, _, GrasshopperBaseView, userIndexViewConfig, constants, searchWorker) {
 
         'use strict';
 
@@ -21,40 +21,6 @@ define(['jquery', 'underscore', 'grasshopperBaseView', 'userIndexViewConfig', 'c
         }
 
         function searchContent(e, context, isFirstQuery) {
-            var users, contentSearchValue,
-                $deferred = new $.Deferred();
-
-            if (!_.isUndefined(e) && !_.isUndefined(constants.controlKeyCodeMap[e.keyCode])) {
-                return false;
-            }
-
-            users = this.model.get('users');
-            contentSearchValue = $.trim(this.model.get('contentSearchValue'));
-
-            if (isFirstQuery) {
-                users.searchQuery(contentSearchValue);
-            } else {
-                _toggleSearchSpinner.call(this);
-                users.searchQuery(contentSearchValue)
-                    .done(
-                        paginationWorker.setUrl.bind(this, users.limit, users.skip, contentSearchValue),
-                        _toggleSearchSpinner.bind(this, true),
-                        $deferred.resolve()
-                    )
-                    .fail( $deferred.reject() );
-            }
+            return searchWorker.searchContent.call(this, e, context, 'users', isFirstQuery);
         }
-
-        function _toggleSearchSpinner(revert) {
-            var $searchIcon = this.$('.contentSearchIcon');
-
-            if (revert) {
-                $searchIcon.removeClass('fa-refresh fa-spin');
-                $searchIcon.addClass('fa-search');
-            } else {
-                $searchIcon.removeClass('fa-search');
-                $searchIcon.addClass('fa-refresh fa-spin');
-            }
-        }
-
     });
