@@ -272,6 +272,11 @@ define({
         },
         author : {
             selectUser : 'Select user'
+        },
+        jsonEditor : {
+            language : 'Language',
+            theme : 'Theme',
+            loading : 'LOADING JSON EDITOR...'
         }
     },
     validationViews : {
