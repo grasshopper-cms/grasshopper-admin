@@ -1,17 +1,17 @@
 /*global define:false*/
-define(['text!plugins/contentreference/modal/template.html', 'plugins/contentreference/modal/model',
-    'appBinders', 'resources', 'constants', 'plugins/contentreference/modal/binders'],
-    function (template, modalModel, appBinders, resources, constants, contentRefModalBinders) {
+define(['text!views/itemSelectModal/template.html', 'itemSelectModal/model',
+    'appBinders', 'resources', 'itemSelectModal/binders'],
+    function (template, Model, appBinders, resources, binders) {
     'use strict';
 
     return {
-        name : 'contentReferenceModal',
-        ModelType : modalModel,
+        name : 'itemSelectModal',
+        ModelType : Model,
         appendTo : '#modal',
         wrapper : false,
         template : template,
         rivetsConfig : {
-            binders : [appBinders, contentRefModalBinders]
+            binders : [appBinders, binders]
         },
         privateBreadcrumbs : true,
         breadcrumbs : [
@@ -21,7 +21,6 @@ define(['text!plugins/contentreference/modal/template.html', 'plugins/contentref
             }
         ],
         events : {
-            'click #nodeTree' : 'stopAccordionPropagation',
             'click #confirm' : 'confirmModal',
             'click #cancel' : 'cancelModal',
             'click .modalBreadcrumb' : 'navigateToFolder'

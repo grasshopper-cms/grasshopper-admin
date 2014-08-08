@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'masseuse',
 
         'use strict';
 
-        var ProxyProperty = masseuse.ProxyProperty;
+//        var ProxyProperty = masseuse.ProxyProperty;
 
         return {
             fieldwrapper : {
@@ -50,9 +50,9 @@ define(['jquery', 'underscore', 'masseuse',
                     el.removeEventListener('blur', _callback.bind(this, el), false);
                 }
             },
-            nodetree :  function(el, model) {
-                _appendNodeTreeView.call(this, el, model);
-            },
+//            nodetree :  function(el, model) {
+//                _appendNodeTreeView.call(this, el, model);
+//            },
             'move-to' : function(el, selector) {
                 var $selector = $(selector);
                 $selector.append($(el).contents());
@@ -77,24 +77,24 @@ define(['jquery', 'underscore', 'masseuse',
                 }
             }
         };
-
-        function _appendNodeTreeView(el, model) {
-            var nodeTreeView = new NodeTreeView({
-                appendTo : el,
-                modelData : _.extend({}, model.attributes, {
-                    allowedTypes : this.model.model.get('allowedContentTypes'),
-                    selectedContent : new ProxyProperty('selectedContent', this.model.model),
-                    inSetup : this.model.model.get('inSetup'),
-                    nodeTreeType : this.model.model.get('nodeTreeType'),
-                    availableTypes : this.model.model.get('availableTypes')
-                })
-            });
-
-            if(this.model.model.get('inSetup')) {
-                nodeTreeView.model.set('selectedNode',  new ProxyProperty('options.defaultNode', this.model.model));
-            }
-            this.model.view.addChild(nodeTreeView);
-        }
+//
+//        function _appendNodeTreeView(el, model) {
+//            var nodeTreeView = new NodeTreeView({
+//                appendTo : el,
+//                modelData : _.extend({}, model.attributes, {
+//                    allowedTypes : this.model.model.get('allowedContentTypes'),
+//                    selectedContent : new ProxyProperty('selectedContent', this.model.model),
+//                    inSetup : this.model.model.get('inSetup'),
+//                    nodeTreeType : this.model.model.get('nodeTreeType'),
+//                    availableTypes : this.model.model.get('availableTypes')
+//                })
+//            });
+//
+//            if(this.model.model.get('inSetup')) {
+//                nodeTreeView.model.set('selectedNode',  new ProxyProperty('options.defaultNode', this.model.model));
+//            }
+//            this.model.view.addChild(nodeTreeView);
+//        }
 
         function _callback(el, evt) {
             // listen for the enter key or Blur to save to the model.
