@@ -59,21 +59,21 @@ define([
                 'users(/limit/:limit/skip/:skip)' : 'displayUserIndex',
                 'users(/limit/:limit/skip/:skip/query/:query)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
-                'sysinfo': 'displaySysinfo',
-                'addUser' : 'displayAddUser',
-                'contentTypes' : 'displayContentTypeIndex',
-                'contentTypes/new' : 'displayContentTypeDetail',
-                'contentTypes(/:id)' : 'displayContentTypeDetail',
-                'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
-                'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
-                'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
+                'sys-info': 'displaySysinfo',
+                'add-user' : 'displayAddUser',
+                'content-types' : 'displayContentTypeIndex',
+                'content-types/new' : 'displayContentTypeDetail',
+                'content-types(/:id)' : 'displayContentTypeDetail',
+                'items/nodeid/:nodeId/create-assets' : 'displayCreateAssets',
+                'items/nodeid/:nodeId/create-folder' : 'displayCreateFolder',
+                'items/nodeid/:nodeId/create-content' : 'displayCreateContent',
                 'items(/nodeid/:nodeId/limit/:limit)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId/limit/:limit/skip/:skip)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId/limit/:limit/skip/:skip/query/:query)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 'forbidden' : 'displayForbidden',
-                'notFound' : 'displayNotFound',
+                'not-found' : 'displayNotFound',
                 '*path' : 'goHome'
             },
 
@@ -272,11 +272,20 @@ define([
         }
 
         function displayLogin (token) {
+            var googleRedirect = LocalStorage.get('googleRedirect');
 
             if(token) {
                 // I am assuming this is a google token because that is all we support right meow.
                 LocalStorage.set('authToken', 'Google '+ token);
-                this.navigateTrigger('#items');
+
+                // Check if we have anything in localstorage telling us to redirect somewhere else after google login
+                if (googleRedirect && googleRedirect !== undefined) {
+                    LocalStorage.remove('googleRedirect')
+                        .done(this.navigateTrigger.bind(this,googleRedirect));
+                } else  {
+                    this.navigateTrigger('#items');
+                }
+
             } else {
                 this.loadMainContent(LoginView);
             }

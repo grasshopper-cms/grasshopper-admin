@@ -33,6 +33,28 @@ define({
         signInRegisteredUser : 'Sign in using your registered account:',
         signUp : 'Sign Up',
         userDetailHeaderText : 'Profile for: ',
+        unlinkModalWithBasic : {
+            header: 'Unlink Google',
+            msg: 'Are you sure you want to remove google log in?'
+        },
+        unlinkModalWithoutBasic : {
+            header: 'Unlink Google',
+            msg: 'You are about to unlink this Google account without a username and password. Clicking continue will disable this user account.'
+        },
+        unlinkSuccessModal : {
+            header: 'Unlink Success',
+            msg: 'You successfully unlinked your google account.',
+            hideCancel: true
+        },
+        linkModal : {
+            header: 'Link Google',
+            msg: 'Are you sure you want to link your google account?'
+        },
+        linkModalSuccess : {
+            header: 'Link Success',
+            msg: 'You successfully linked your google account.',
+            hideCancel: true
+        },
         attributeTitles : {
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
@@ -43,7 +65,8 @@ define({
             email : 'EMAIL',
             username : 'USERNAME',
             password : 'PASSWORD',
-            profile : 'PROFILE'
+            profile : 'PROFILE',
+            linkedIdentities : 'LINKED IDENTITIES'
         },
         selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
             'Are you sure you want to do this? (You Will still need to save to apply changes.',
