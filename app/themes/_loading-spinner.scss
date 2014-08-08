@@ -1,21 +1,25 @@
 /* loading-overlay-header should obstruct header, so its not clickable*/
+
 #loading-overlay-header,
-#loading-overlay{
+#loading-overlay {
   display: none;
+  position: absolute;
   width:100%;
   height: 100%;
-  position: absolute;
   z-index:1000;
 }
+
 #loading-overlay{
   background-color: rgba(255,255,255,0.9);
+
   .loading-overlay-image{
     display: block;
-    top: calc(50% - (19px/2));
     position: fixed;
+    top: calc(50% - (19px/2));
     left: calc(50% - (220px/2));
   }
 }
+
 #loading-overlay-header{
   top: 0;
   bottom: 0;
@@ -24,7 +28,9 @@
 .spinner-loading {
   overflow-y: hidden;
 
-  #loading-overlay, #loading-overlay-header{
+  #loading-overlay,
+  #loading-overlay-header,
+  #table-loading-overlay {
     display: block;
   }
 
@@ -32,5 +38,22 @@
     #table-loading-overlay {
       display: none;
     }
+  }
+}
+
+#table-loading-overlay {
+  display: none;
+  position: absolute;
+  top: 3.3rem;
+  right: 0.1rem;
+  bottom: 2.8rem;
+  left: 0.1rem;
+  z-index: 1;
+  background-color: rgba(255,255,255,0.9);
+
+  .loading-overlay-image {
+    position: absolute;
+    top: calc(50% - (19px/2));
+    left: calc(50% - (220px/2));
   }
 }

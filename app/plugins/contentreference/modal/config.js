@@ -11,6 +11,7 @@ define(['text!plugins/contentreference/modal/template.html', 'plugins/contentref
         wrapper : false,
         template : template,
         rivetsConfig : {
+            instaUpdate: true,
             binders : [appBinders, contentRefModalBinders]
         },
         privateBreadcrumbs : true,

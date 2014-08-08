@@ -1,7 +1,7 @@
-define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore', 'api',
-        'plugins/contentreference/modal/contentModel'],
-    function (Model, resources, grasshopperCollection, constants, masseuse, _, Api,
-              contentReferenceModalContentModel) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection', 'paginatedCollection',
+        'constants', 'masseuse', 'underscore', 'api', 'plugins/contentreference/modal/contentModel'],
+    function (Model, resources, grasshopperCollection, paginatedCollection,
+              constants, masseuse, _, api, contentReferenceModalContentModel) {
 
         'use strict';
 
@@ -34,11 +34,16 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 }
             }))());
 
-            this.set('content', new (grasshopperCollection.extend({
+            this.set('content', new (paginatedCollection.extend({
                 model : contentReferenceModalContentModel,
                 url : function() {
                     return constants.api.nodesContent.url.replace(':id', self.get('_id'));
-                }
+                },
+                limit : 10000,
+                skip : parseInt(constants.pagination.defaultSkip, 10),
+                nodeId : this.get('nodeId'),
+                filtersKey : 'virtual.label',
+                queryRequest : api.makeQuery
             }))());
 
             this.on('change:selectedContent', _getContentDetails.bind(this));
@@ -48,7 +53,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
         function _getContentDetails() {
             var self = this;
 
-            Api.getContentDetail(this.get('selectedContent'))
+            api.getContentDetail(this.get('selectedContent'))
                 .done(function(contentDetails) {
                     self.set('selectedContentDetails', contentDetails);
                 });
