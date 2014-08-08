@@ -1,53 +1,65 @@
 .itemSelectModal {
-  max-height: 700px;
-  padding: 1.25em;
-  margin-bottom: 3px;
 
-  .nodeTree {
-    padding-bottom: 5px;
+  .itemSelection {
+    padding: 1.25rem;
   }
 
-  .nodeTreeAccordionHeader {
-    &:focus {
-      outline: none;
-    }
+  .childNode {
+    margin-bottom: 1rem;
   }
 
-  .nodeTreeAccordionContent {
-    margin-bottom: 0;
-    padding-left: 15px;
-    input {
-      margin-bottom: 0;
-    }
-
-    ul {
-      margin-bottom: 0;
-    }
+  .childContent {
 
   }
 
-  .nodeTreeSubNode {
-    margin-top: 8px;
-    margin-right: 15px;
-    margin-left: 15px;
-    line-height: 0;
-  }
 
-  .noMarginBottom {
-    margin-bottom: 0;
-  }
 
-  .nodeTreeThumbNail {
-    max-height: 53px;
-    margin-right: 10px;
-    border: 0;
-  }
 
-  .thumbnailContainer {
-    float: left;
-    width: 44px;
-    overflow: hidden;
-  }
+//  .nodeTree {
+//    padding-bottom: 5px;
+//  }
+
+//  .nodeTreeAccordionHeader {
+//    &:focus {
+//      outline: none;
+//    }
+//  }
+
+//  .nodeTreeAccordionContent {
+//    margin-bottom: 0;
+//    padding-left: 15px;
+//    input {
+//      margin-bottom: 0;
+//    }
+//
+//    ul {
+//      margin-bottom: 0;
+//    }
+//
+//  }
+
+//  .nodeTreeSubNode {
+//    margin-top: 8px;
+//    margin-right: 15px;
+//    margin-left: 15px;
+//    line-height: 0;
+//  }
+
+//  .noMarginBottom {
+//    margin-bottom: 0;
+//  }
+
+//  .nodeTreeThumbNail {
+//    max-height: 53px;
+//    margin-right: 10px;
+//    border: 0;
+//  }
+
+//  .thumbnailContainer {
+//    float: left;
+//    width: 44px;
+//    overflow: hidden;
+//  }
 
   #fileName {
     float: right;

@@ -1,8 +1,6 @@
 /*global define:false*/
-define(['itemSelectModal/view', 'jquery', 'masseuse'], function (ModalView, $, masseuse) {
+define(['itemSelectModal/view', 'jquery'], function (ModalView, $) {
     'use strict';
-
-    var ProxyProperty = masseuse.ProxyProperty;
 
     return {
         fireItemSelectModal : fireItemSelectModal
@@ -12,7 +10,7 @@ define(['itemSelectModal/view', 'jquery', 'masseuse'], function (ModalView, $, m
         var $deferred = new $.Deferred(),
         modalView = new ModalView({
             modelData : {
-                value : new ProxyProperty('value', this.model),
+                value : this.model.get('value'),
                 _id : this.model.get('nodeId')
             },
             $deferred : $deferred

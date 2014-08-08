@@ -17,17 +17,21 @@
                 <i class="fa fa-refresh fa fa-spin"></i>
             </div>
 
-            <div id="nodeTree" class="inputContainer" data-rv-hide="model:loading">
+            <div class="inputContainer itemSelection" data-rv-hide="model:loading">
 
-                <div data-rv-each-node="model:childNodes:" data-rv-on-click="view.navigateToFolder" data-rv-nodeid="node:_id">
-                    <i class="fa fa-folder"></i>
-                    {{node:label | spaceBefore}}
+                <div class="childNode" data-rv-each-node="model:childNodes:" data-rv-on-click="view.navigateToFolder" data-rv-nodeid="node:_id">
+                    <i data-rv-nodeid="node:_id" class="fa fa-folder"></i>
+                    <a data-rv-nodeid="node:_id">{{node:label | spaceBefore}}</a>
                 </div>
 
-                <ul data-rv-hide="model:inRoot" class="no-bullet nodeTreeContent accordion">
+                <ul data-rv-hide="model:inRoot" class="no-bullet childContent">
                     <li data-rv-each-item="model:content:">
                         <input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-value="item:_id" data-rv-checked="model:value">
                         <label data-rv-for="item.cid">{{item:label}}</label>
+                    </li>
+
+                    <li data-rv-unless="model:content.length | greaterThan 0">
+                        {{model:resources->node->emptyContent}}
                     </li>
                 </ul>
 

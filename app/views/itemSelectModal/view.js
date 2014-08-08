@@ -7,7 +7,6 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
         return GrasshopperBaseView.extend({
             defaultOptions : config,
             beforeRender : beforeRender,
-            afterRender : afterRender,
             confirmModal : confirmModal,
             cancelModal : cancelModal,
             navigateToFolder : navigateToFolder
@@ -15,14 +14,10 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
 
         function beforeRender($deferred) {
             _setBreadcrumbs.call(this);
-            $.when(_fetchChildNodes.call(this),
-                    _fetchChildContent.call(this),
-                    _fetchCurrentNode.call(this))
-                .done(_toggleLoadingSpinner.bind(this), $deferred.resolve);
-        }
 
-        function afterRender() {
-//            this.$el.foundation();
+            $.when(_fetchChildNodes.call(this),
+                    _fetchChildContent.call(this))
+                .done(_toggleLoadingSpinner.bind(this), $deferred.resolve);
         }
 
         function _fetchChildNodes() {
@@ -33,16 +28,12 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
             return this.model.get('content').fetch();
         }
 
-        function _fetchCurrentNode() {
-            return this.model.fetch();
-        }
-
         function _toggleLoadingSpinner() {
             this.model.toggle('loading');
         }
 
         function confirmModal () {
-            this.$deferred.resolve(this.model.attributes);
+            this.$deferred.resolve(this.model.get('value'));
             _removeModal.call(this);
         }
 
@@ -75,8 +66,7 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
             $.when(
                 _setBreadcrumbs.call(this),
                 _fetchChildNodes.call(this),
-                _fetchChildContent.call(this),
-                _fetchCurrentNode.call(this))
+                _fetchChildContent.call(this))
                 .done(_toggleLoadingSpinner.bind(this));
         }
 

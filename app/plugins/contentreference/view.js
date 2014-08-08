@@ -120,15 +120,13 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function fireSelectContentModal() {
-            _startModalView.call(this);
-//                .done(_contentReferenceSelected.bind(this));
+            _startModalView.call(this)
+                .done(_contentReferenceSelected.bind(this));
         }
 
-//        function _contentReferenceSelected(modalModel) {
-//            this.model.set('selectedContentLabel', modalModel.selectedContentLabel);
-//            this.model.set('selectedContent', modalModel.selectedContent);
-//            this.model.set('value', modalModel.selectedContent);
-//        }
+        function _contentReferenceSelected(selectedContentId) {
+            this.model.set('value', selectedContentId);
+        }
 
         function _startModalView() {
             this.model.set('inSetup', false);

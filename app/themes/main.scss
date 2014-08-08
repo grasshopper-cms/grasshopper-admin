@@ -207,6 +207,7 @@ body, html {
   @import "../views/forbidden/_style.scss"; // Forbidden page
   @import "../views/sysInfo/_style.scss"; // SysInfo page
   @import "../views/pagination/_style.scss"; // Pagination View
+  @import "../views/itemSelectModal/_style.scss"; // Item Select Modal
 
   // PLUGINS
   @import "../plugins/embeddedtype/_style.scss"; // Embedded Type Plugin
