@@ -11,4 +11,18 @@
       padding-right: 6px;
     }
   }
+
+  #identities {
+    i {
+      cursor:pointer;
+      font-size: 30px;
+      padding: 13px 17px 9px 15px;
+      &.linked {
+        background-color: $blue;
+        color: white;
+      }
+    }
+
+
+  }
 }

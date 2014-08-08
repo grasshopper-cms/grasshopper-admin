@@ -57,6 +57,9 @@ define([], function() {
             },
             google : {
                 url : apiEndpoint + '/googleurl'
+            },
+            unlinkGoogle : {
+                url : apiEndpoint + '/users/:id/unlink'
             }
         },
         internalRoutes : {
@@ -122,6 +125,10 @@ define([], function() {
         jsoneditor : {
             mode: 'tree',
             modes:['code', 'tree']
+        },
+
+        profileGoogleLinkRedirect : {
+            url : '#user/:id'
         }
 
     };
