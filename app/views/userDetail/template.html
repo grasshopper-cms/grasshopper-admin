@@ -89,16 +89,17 @@
                            <div class="user-lock-delete-buttons">
                                <div class="user-lock-delete-button-block lock-user-block">
                                    <div class="user-lock-delete-borders">
-                                       <div class="user-lock-delete-block-header">Lock this user</div>
-                                       <div class="user-lock-delete-block-text">Locking a user will prevent them from logging in and using the system.</div>
+                                       <div
+                                               class="user-lock-delete-block-header">{{model:resources->user->blocks->lockUser}}</div>
+                                       <div class="user-lock-delete-block-text">{{model:resources->user->blocks->lockUserSubtext}}</div>
                                        <div class="user-lock-delete-block-action">
                                            <a data-rv-on-click="view.toggleEnabled" data-rv-show="model:enabled"
                                               class="button tiny radius alert">
-                                               Lock user
+                                               {{model:resources->user->blocks->lockUserButton}}
                                            </a>
                                            <a data-rv-on-click="view.toggleEnabled" data-rv-hide="model:enabled"
                                               class="button tiny radius alert">
-                                               Unlock user
+                                               {{model:resources->user->blocks->unlockUserButton}}
                                            </a>
                                        </div>
                                    </div>
@@ -106,16 +107,14 @@
                                </div>
                                <div class="user-lock-delete-button-block delete-user-block">
                                    <div class="user-lock-delete-borders">
-                                       <div class="user-lock-delete-block-header">Remove user</div>
-                                       <div class="user-lock-delete-block-text">Deleting a user will permanently remove them from the system. This operation cannot be undone.</div>
+                                       <div class="user-lock-delete-block-header">{{model:resources->user->blocks->deleteUser}}</div>
+                                       <div class="user-lock-delete-block-text">{{model:resources->user->blocks->deleteUserSubtext}}</div>
                                        <div class="user-lock-delete-block-action">
                                            <a data-rv-on-click="view.deleteUserAndGoBack" class="button tiny radius alert">
-                                               Remove user
+                                               {{model:resources->user->blocks->deleteUserButton}}
                                            </a>
-
                                        </div>
                                    </div>
-
                                </div>
                            </div>
                         </div>

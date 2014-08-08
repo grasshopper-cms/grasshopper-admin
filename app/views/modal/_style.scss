@@ -18,6 +18,7 @@
     flex-direction: column;
     z-index: $modalContentsZIndex;
     width: 35%;
+    min-width:280px;
     background-color: $modal-contents-background-color;
     box-shadow: 0 0 10px $modal-background-color;
 
@@ -42,6 +43,10 @@
       max-height: 500px;
       overflow: scroll;
       border: 1px solid $modalInputContainerBorder;
+
+      .nowrapRow{
+        white-space: nowrap;
+      }
     }
 
     ol {
