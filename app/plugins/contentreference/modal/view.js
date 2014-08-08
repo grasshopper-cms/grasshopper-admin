@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery', 'breadcrumbWorker'],
-    function (GrasshopperBaseView, config, $, breadcrumbWorker) {
+define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery', 'breadcrumbWorker', 'searchWorker'],
+    function (GrasshopperBaseView, config, $, breadcrumbWorker, searchWorker) {
 
         'use strict';
 
@@ -12,6 +12,7 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
             confirmModal : confirmModal,
             cancelModal : cancelModal,
             setSelectedNode : setSelectedNode,
+            searchContent : searchContent,
             navigateToFolder : navigateToFolder
         });
 
@@ -20,7 +21,10 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
             $.when(_fetchChildNodes.call(this),
                     _fetchChildContent.call(this),
                     _fetchCurrentNode.call(this))
-                .done(_toggleLoadingSpinner.bind(this), $deferred.resolve);
+                .done(
+                    _toggleLoadingSpinner.bind(this),
+                    $deferred.resolve
+                );
         }
 
         function afterRender() {
@@ -32,7 +36,9 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
         }
 
         function _fetchChildContent() {
-            return this.model.get('content').fetch();
+            if(!this.model.get('inRoot')) {
+                return this.searchContent(undefined, undefined, true);
+            }
         }
 
         function _fetchCurrentNode() {
@@ -86,4 +92,7 @@ define(['grasshopperBaseView', 'plugins/contentreference/modal/config', 'jquery'
             _fetchCurrentNode.call(this);
         }
 
+        function searchContent(e, context, isFirstQuery) {
+            return searchWorker.searchContent.call(this, e, context, 'content', false, isFirstQuery);
+        }
     });

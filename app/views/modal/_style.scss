@@ -28,6 +28,24 @@
       text-align: left;
       font-weight: normal;
       font-size: 20px;
+
+      .modalHeader-title {
+        margin: 0 0 15px;
+        padding: 0 0 5px;
+        border-bottom: 1px solid #ccc;
+      }
+      .modalHeader-nav {
+        margin: 0 0 10px;
+        &-item {
+        
+        }
+      }
+    }
+
+    #contentSearch {
+      float: none;
+      margin: 0;
+      width: 100%;
     }
 
     #modalBody {
