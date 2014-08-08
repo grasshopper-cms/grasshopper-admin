@@ -68,8 +68,8 @@ define([], function() {
         internalRoutes : {
             user : '#user',
             users : '#users',
-            addUser : '#addUser',
-            sysInfo: '#sysinfo',
+            addUser : '#add-user',
+            sysInfo: '#sys-info',
             contentTypes : '#content-types',
             newContentType : '#content-types/new',
             contentTypeDetail : '#content-types/:id',
@@ -79,11 +79,11 @@ define([], function() {
             login : '#login',
             logout : '#logout',
             about : '#about',
-            createFolder : '#items/nodeid/:id/createFolder',
-            addContent : '#items/nodeid/:id/createContent',
-            createAssets : '#items/nodeid/:id/createAssets',
+            createFolder : '#items/nodeid/:id/create-folder',
+            addContent : '#items/nodeid/:id/create-content',
+            createAssets : '#items/nodeid/:id/create-assets',
             forbidden : '#forbidden',
-            notFound : '#notFound'
+            notFound : '#not-found'
         },
         timeouts: {
             showSpinnerLoadingTimeout: 2000
