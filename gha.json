@@ -1,4 +1,4 @@
 {
-    "apiEndpoint" : "",
+    "apiEndpoint" : "http://localhost:3000",
     "buildDirectory" : "server/public/admin"
 }

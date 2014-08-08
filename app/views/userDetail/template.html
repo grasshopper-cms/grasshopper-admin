@@ -74,6 +74,16 @@
                     </div>
                     <div class="row">
                         <div class="large-3 columns">
+                            <label class="right inline">{{model:resources->user->attributeTitles->linkedIdentities | withColon}}</label>
+                        </div>
+                        <div class="large-9 columns">
+                            <div id="identities">
+                                <i data-rv-class-linked="model:hasGoogle" class="fa fa-google" data-rv-on-click="view.toggleGoogle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-3 columns">
                             <label class="right inline">{{model:resources->user->attributeTitles->profile | withColon}}</label>
                         </div>
                         <div class="large-9 columns">

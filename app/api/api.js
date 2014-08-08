@@ -27,6 +27,10 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 headers : {'Authorization' : token}
             });
         },
+
+        unlinkGoogle : function(userId) {
+            return this.post(constants.api.unlinkGoogle.url.replace(':id', userId), {key: 'google'});
+        },
         getUsers : function () {
             return this.authenticatedRequest(constants.api.users.url);
         },

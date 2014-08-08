@@ -15,9 +15,13 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             saveAndClose: saveAndClose,
             toggleEnabled: toggleEnabled,
             deleteUser: deleteUser,
+<<<<<<< HEAD
             deleteUserAndGoBack: deleteUserAndGoBack,
+            addNewUser : addNewUser
+=======
             addNewUser: addNewUser,
             toggleGoogle: toggleGoogle
+>>>>>>> GRAS-1467-unlink-and-link-identities
         }).extend(handleRowCLick);
 
         function beforeRender ($deferred) {
