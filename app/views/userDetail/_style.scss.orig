@@ -11,18 +11,7 @@
       padding-right: 6px;
     }
   }
-
-  #identities {
-    i {
-      cursor:pointer;
-      font-size: 30px;
-      padding: 13px 17px 9px 15px;
-      &.linked {
-        background-color: $blue;
-        color: white;
-      }
-    }
-  }
+<<<<<<< HEAD
 }
 
 .user-lock-delete-buttons {
@@ -57,6 +46,20 @@
     background-color: #F0DEDE;
     border-color: #ECD5D8;
     color: #B9645E;
-  }
+=======
 
+  #identities {
+    i {
+      cursor:pointer;
+      font-size: 30px;
+      padding: 13px 17px 9px 15px;
+      &.linked {
+        background-color: $blue;
+        color: white;
+      }
+    }
+
+
+>>>>>>> GRAS-1467-unlink-and-link-identities
+  }
 }

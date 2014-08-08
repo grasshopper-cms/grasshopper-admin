@@ -14,6 +14,7 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery', 'constants', 'res
             var nodeId = this.model.get('nodeId'),
                 promises=[],
                 self = this;
+
             $event.stopPropagation();
 
             this.displayModal(
@@ -23,9 +24,11 @@ define(['grasshopperBaseView', 'nodeTreeViewConfig', 'jquery', 'constants', 'res
                     data : {}
                 })
                 .done(function (modalData) {
+
                     _.each(modalData.files, function (file) {
                         promises.push(assetWorker.postNewAsset(nodeId, file));
                     });
+
                     $.when(promises)
                         .done(function() {
                             self.model.get('content').fetch();
