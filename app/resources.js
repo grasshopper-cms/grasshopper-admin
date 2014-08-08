@@ -65,6 +65,8 @@ define({
             email : 'EMAIL',
             username : 'USERNAME',
             password : 'PASSWORD',
+            createdBy : 'CREATED BY',
+            updatedBy : 'UPDATED BY',
             profile : 'PROFILE',
             linkedIdentities : 'LINKED IDENTITIES'
         },

@@ -21,7 +21,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
         }).extend(handleRowCLick);
 
         function beforeRender ($deferred) {
-            this.model.fetch()
+            this.model.fetch().done(_fetchModUsers.bind(this))
                 .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
@@ -112,6 +112,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                 this.model.toggle('saving');
             }
 
+            _fetchModUsers.call(this);
             _updateNameInHeader.call(this, model);
         }
 
@@ -124,6 +125,20 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
         function _updateNameInHeader (model) {
             if (this.app.user.get('_id') === model._id) {
                 this.app.user.set(model);
+            }
+        }
+
+        function _fetchModUsers() {
+            var self = this;
+            var createdBy = this.model.get('createdBy');
+            if (createdBy) {
+                Api.makeUsersQuery({'filters': [
+                    {'key': '_id', 'cmp': '=', 'value': createdBy}
+                ]}).then(function (data) {
+                    if (data.results.length > 0) {
+                        self.model.set('createdByDisplayName', data.results[0].displayName);
+                    }
+                });
             }
         }
 
