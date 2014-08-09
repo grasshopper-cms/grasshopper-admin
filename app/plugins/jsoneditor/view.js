@@ -70,11 +70,17 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
         }
 
         function _setValueFromEditor() {
-            this.model.set('value', this.editor.getValue());
+            var value = this.editor.getValue();
+            if ( _isValidJson(value) ) {
+                this.model.set('isError', false);
+                this.model.set('value', JSON.parse(value));
+            } else {
+                this.model.set('isError', true);
+            }
         }
 
         function _setEditorValueFromContentValue() {
-            var value = this.model.get('value');
+            var value = JSON.stringify(this.model.get('value'), null, 4);
             if(!_.isUndefined(value)) {
                 this.editor.setValue(value);
             }
@@ -82,6 +88,15 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
 
         function _toggleLoadingSpinner() {
             this.model.toggle('loading');
+        }
+
+        function _isValidJson(value) {
+            try {
+                JSON.parse(value);
+            } catch (e) {
+                return false;
+            }
+            return true;
         }
 
     });
