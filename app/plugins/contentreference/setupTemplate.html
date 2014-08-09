@@ -24,9 +24,9 @@
                         </a>
                     </span>
 
-                    <div data-rv-hide="model:showTree"><i class="fa fa-refresh"></i></div>
-                    <div data-rv-show="model:showTree" id="nodeTree">
-                        <div data-rv-each-node="model:children:" data-rv-nodetree="node"></div>
+                    <div data-rv-unless="model:showTree"><i class="fa fa-refresh"></i></div>
+                    <div data-rv-if="model:showTree">
+                        <section data-rv-recurse-nodes-radios="model:childNodes"></section>
                     </div>
                 </label>
             </div>

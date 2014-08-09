@@ -6,6 +6,7 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
     var ComputedProperty = masseuse.ComputedProperty;
 
     return Model.extend({
+        initialize : initialize,
         defaults : {
             resources : resources,
             showTree : false,
@@ -22,5 +23,21 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
         },
         urlRoot : constants.api.node.url
     });
+
+    function initialize() {
+        var self = this;
+
+        Model.prototype.initialize.apply(this, arguments);
+
+        this.set('childNodes', new (grasshopperCollection.extend({
+            model : Model.extend({
+                initialize : initialize
+            }),
+            url : function() {
+                return constants.api.nodesChildren.url.replace(':id', self.get('_id'));
+            }
+        }))());
+
+    }
 
 });

@@ -6,8 +6,6 @@ define(['jquery', 'underscore', 'masseuse',
 
         'use strict';
 
-//        var ProxyProperty = masseuse.ProxyProperty;
-
         return {
             fieldwrapper : {
                 bind : function() {},
@@ -50,9 +48,6 @@ define(['jquery', 'underscore', 'masseuse',
                     el.removeEventListener('blur', _callback.bind(this, el), false);
                 }
             },
-//            nodetree :  function(el, model) {
-//                _appendNodeTreeView.call(this, el, model);
-//            },
             'move-to' : function(el, selector) {
                 var $selector = $(selector);
                 $selector.append($(el).contents());
@@ -75,25 +70,49 @@ define(['jquery', 'underscore', 'masseuse',
                 } else {
                     $el.html($el.attr('oldText'));
                 }
+            },
+            'recurse-nodes-radios' : function(el, collection) {
+                var $el = $(el),
+                    $div = $('<div/>');
+
+
+//                recurseChildNodes(collection, $el);
+
+//                collection.fetch()
+//                    .done(function() {
+//                        $el.empty();
+//
+//                        if(collection.length) {
+//                            collection.each(function(model) {
+//                                $div.append('<div style="padding-left: 5px;" data-rv-recurse-nodes-radios="model:childNodes">NODE</div>');
+//                            });
+//
+//                            $el.append($div);
+//                        }
+//                    });
+
+//                <!--<div data-rv-each-node="model:childNodes:" data-rv-on-click="view.navigateToFolder" data-rv-nodeid="node:_id">-->
+//                <!--<i data-rv-nodeid="node:_id" class="fa fa-folder"></i>-->
+//                    <!--<a data-rv-nodeid="node:_id">{{node:label | spaceBefore}}</a>-->
+//                    <!--</div>-->
             }
         };
+
+//        function recurseChildNodes(collection, $element) {
+//            collection.fetch()
+//                .done(function() {
+//                    if(collection.length) {
 //
-//        function _appendNodeTreeView(el, model) {
-//            var nodeTreeView = new NodeTreeView({
-//                appendTo : el,
-//                modelData : _.extend({}, model.attributes, {
-//                    allowedTypes : this.model.model.get('allowedContentTypes'),
-//                    selectedContent : new ProxyProperty('selectedContent', this.model.model),
-//                    inSetup : this.model.model.get('inSetup'),
-//                    nodeTreeType : this.model.model.get('nodeTreeType'),
-//                    availableTypes : this.model.model.get('availableTypes')
-//                })
-//            });
+//                        $element.append('<div style="padding-left: 5px;">NODE</div>');
 //
-//            if(this.model.model.get('inSetup')) {
-//                nodeTreeView.model.set('selectedNode',  new ProxyProperty('options.defaultNode', this.model.model));
-//            }
-//            this.model.view.addChild(nodeTreeView);
+//                        collection.each(function(model) {
+////                            $element.append('<div style="padding-left: 5px;">NODE</div>');
+//                            recurseChildNodes(model.get('childNodes'), $element);
+//                        });
+//                    } else {
+//                        $element.append('<div style="padding-left: 5px;">NODE</div>');
+//                    }
+//                });
 //        }
 
         function _callback(el, evt) {

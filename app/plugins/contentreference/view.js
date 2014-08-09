@@ -6,8 +6,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
         'use strict';
 
-//        var ProxyProperty = masseuse.ProxyProperty;
-
         return GrasshopperBaseView.extend({
             beforeRender: beforeRender,
             afterRender : afterRender,
@@ -15,14 +13,14 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             setAvailableContentTypes : setAvailableContentTypes,
             setRootAsDefaultNode : setRootAsDefaultNode,
             fireSelectContentModal : fireSelectContentModal,
-            setSelectedNode : setSelectedNode
+            setSelectedNodeLabel : setSelectedNodeLabel
         }).extend(itemSelectModal);
 
         function beforeRender() {
             if(this.model.get('inSetup')) {
-//                this.model.get('children').fetch()
-//                    .then(_getSelectedNode.bind(this))
-//                    .then(_getAvailableContentTypes.bind(this));
+//                this.model.get('childNodes').fetch()
+                    _getSelectedNode.call(this)
+                        .then(_getAvailableContentTypes.bind(this));
             } else {
                 _getSelectedContent.call(this);
                 this.model.on('change:value', _getSelectedContent.bind(this));
@@ -51,55 +49,53 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             this.model.set('contentDetails', contentDetails);
         }
 
-//        function _getSelectedNode() {
-//            var $deferred = new $.Deferred(),
-//                defaultNode = this.model.get('options.defaultNode');
-//
-//            if (defaultNode && defaultNode !== '0') { // default is not root
-//                Api.getNodeDetail(defaultNode)
-//                    .done(setSelectedNode.bind(this, $deferred));
-//            } else if (defaultNode && defaultNode === '0') { // default is root
-//                setSelectedNode.call(this, $deferred, { label : 'Root'});
-//            } else {
-//                $deferred.resolve();
-//            }
-//
-//            return $deferred.promise();
-//        }
+        function _getSelectedNode() {
+            var $deferred = new $.Deferred(),
+                defaultNode = this.model.get('options.defaultNode');
 
-        function setSelectedNode($deferred, nodeDetails) {
+            if (defaultNode && defaultNode !== '0') { // default is not root
+                Api.getNodeDetail(defaultNode)
+                    .done(setSelectedNodeLabel.bind(this, $deferred));
+            } else if (defaultNode && defaultNode === '0') { // default is root
+                setSelectedNodeLabel.call(this, $deferred, { label : 'Root'});
+            } else {
+                $deferred.resolve();
+            }
+
+            return $deferred.promise();
+        }
+
+        function setSelectedNodeLabel($deferred, nodeDetails) {
             this.model.set('selectedNodeLabel', nodeDetails.label);
             $deferred && $deferred.resolve();
         }
 
-//        function _getAvailableContentTypes() {
-//            var $deferred = new $.Deferred();
-//
-//            contentTypeWorker.getAvailableContentTypes()
-//                .done(_setPreSelectedTypes.bind(this, $deferred));
-//
-//            return $deferred.promise();
-//        }
+        function _getAvailableContentTypes() {
+            var $deferred = new $.Deferred();
 
-//        function _setPreSelectedTypes($deferred, availableTypes) {
-//            var allowedTypes = this.model.get('options.allowedTypes');
-//
-//            _.each(availableTypes, function(type) {
-//                if(_.contains(allowedTypes, type._id)) {
-//                    type.checked = true;
-//                } else {
-//                    type.checked = false;
-//                }
-//            });
-//
-//            this.model.set('availableTypes', availableTypes);
-//            $deferred.resolve();
-//        }
+            contentTypeWorker.getAvailableContentTypes()
+                .done(_setPreSelectedTypes.bind(this, $deferred));
+
+            return $deferred.promise();
+        }
+
+        function _setPreSelectedTypes($deferred, availableTypes) {
+            var allowedTypes = this.model.get('options.allowedTypes');
+
+            _.each(availableTypes, function(type) {
+                if(_.contains(allowedTypes, type._id)) {
+                    type.checked = true;
+                } else {
+                    type.checked = false;
+                }
+            });
+
+            this.model.set('availableTypes', availableTypes);
+            $deferred.resolve();
+        }
 
         function afterRender() {
-            window.contentRefView = this;
             this.model.set('showTree', true);
-            this.$el.foundation();
         }
 
         function stopAccordionPropagation(e) {
