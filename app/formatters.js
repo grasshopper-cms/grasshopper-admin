@@ -1,4 +1,4 @@
-define(['sparkmd5'], function (sparkmd5) {
+define(['sparkmd5', 'constants'], function (sparkmd5, constants) {
     'use strict';
 
     /**
@@ -17,7 +17,8 @@ define(['sparkmd5'], function (sparkmd5) {
         gravatarUrl: gravatarUrl,
         preventDefault : preventDefault,
         stopImmediatePropagation : stopImmediatePropagation,
-        asBoolean : asBoolean
+        asBoolean : asBoolean,
+        asUserDetailsLink: asUserDetailsLink
     };
 
     /**
@@ -96,5 +97,9 @@ define(['sparkmd5'], function (sparkmd5) {
 
     function asBoolean(value) {
         return (value === 'true' || value === true);
+    }
+
+    function asUserDetailsLink(value){
+        return constants.internalRoutes.user+'/'+value;
     }
 });

@@ -21,8 +21,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
         }).extend(handleRowCLick);
 
         function beforeRender ($deferred) {
-            this.model.fetch()
-                .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
+            this.model.fetch().done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
         function afterRender () {
