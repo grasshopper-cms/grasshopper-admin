@@ -17,7 +17,7 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
 
             $.when(_fetchChildNodes.call(this),
                     _fetchChildContent.call(this))
-                .done(_toggleLoadingSpinner.bind(this), $deferred.resolve);
+                .done($deferred.resolve);
         }
 
         function _fetchChildNodes() {
@@ -26,10 +26,6 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
 
         function _fetchChildContent() {
             return this.model.get('content').fetch();
-        }
-
-        function _toggleLoadingSpinner() {
-            this.model.toggle('loading');
         }
 
         function confirmModal () {
@@ -60,14 +56,11 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
         function navigateToFolder(e) {
             this.model.set('_id', $(e.target).attr('nodeId'));
 
-            _toggleLoadingSpinner.call(this);
             breadcrumbWorker.resetBreadcrumb.call(this);
 
-            $.when(
-                _setBreadcrumbs.call(this),
-                _fetchChildNodes.call(this),
-                _fetchChildContent.call(this))
-                .done(_toggleLoadingSpinner.bind(this));
+            _setBreadcrumbs.call(this);
+            _fetchChildNodes.call(this);
+            _fetchChildContent.call(this)
         }
 
     });

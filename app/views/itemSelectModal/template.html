@@ -13,11 +13,7 @@
 
         <div id="modalBody" class="row">
 
-            <div data-rv-show="model:loading">
-                <i class="fa fa-refresh fa fa-spin"></i>
-            </div>
-
-            <div class="inputContainer itemSelection" data-rv-hide="model:loading">
+            <section class="inputContainer itemSelection">
 
                 <div class="childNode" data-rv-each-node="model:childNodes:" data-rv-on-click="view.navigateToFolder" data-rv-nodeid="node:_id">
                     <i data-rv-nodeid="node:_id" class="fa fa-folder"></i>
@@ -35,7 +31,8 @@
                     </li>
                 </ul>
 
-            </div>
+            </section>
+
         </div>
 
         <div id="buttonContainer" class="row" data-rv-hide="model:loading">
