@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'backbone', 'nodeTreeView', 'pluginWrapperViewCollection'],
+    'pluginWrapperView', 'backbone', 'pluginWrapperViewCollection'],
     function ($, _, masseuse,
-              PluginWrapperView, Backbone, NodeTreeView, PluginWrapperViewCollection) {
+              PluginWrapperView, Backbone, PluginWrapperViewCollection) {
 
         'use strict';
 
@@ -73,47 +73,41 @@ define(['jquery', 'underscore', 'masseuse',
             },
             'recurse-nodes-radios' : function(el, collection) {
                 var $el = $(el),
-                    $div = $('<div/>');
+                    $div = $('<div/>'),
+                    hasAncestors = [];
 
+                if(!this.onlyOnce) {
+                    this.onlyOnce = true;
 
-//                recurseChildNodes(collection, $el);
+                    collection.each(function(model) {
+                        if(model.get('ancestors').length) {
+                            hasAncestors.push(model);
+                        } else {
+                            $div.append(getNodeRadioTemplate(model));
+                        }
+                    });
 
-//                collection.fetch()
-//                    .done(function() {
-//                        $el.empty();
-//
-//                        if(collection.length) {
-//                            collection.each(function(model) {
-//                                $div.append('<div style="padding-left: 5px;" data-rv-recurse-nodes-radios="model:childNodes">NODE</div>');
-//                            });
-//
-//                            $el.append($div);
-//                        }
-//                    });
+                    _.each(hasAncestors, function(model) {
+                        // try and find the last ancestor
+                        var lastAncestor = $div.find('[value="'+ _.last(model.get('ancestors'))._id +'"]');
+                        if(lastAncestor) {
+                            lastAncestor.closest('li').append('<ul>'+ getNodeRadioTemplate(model) +'</ul>');
+                        } else {
+                            hasAncestors.push(model);
+                        }
+                    });
 
-//                <!--<div data-rv-each-node="model:childNodes:" data-rv-on-click="view.navigateToFolder" data-rv-nodeid="node:_id">-->
-//                <!--<i data-rv-nodeid="node:_id" class="fa fa-folder"></i>-->
-//                    <!--<a data-rv-nodeid="node:_id">{{node:label | spaceBefore}}</a>-->
-//                    <!--</div>-->
+                    $el.append($div);
+                }
             }
         };
 
-//        function recurseChildNodes(collection, $element) {
-//            collection.fetch()
-//                .done(function() {
-//                    if(collection.length) {
-//
-//                        $element.append('<div style="padding-left: 5px;">NODE</div>');
-//
-//                        collection.each(function(model) {
-////                            $element.append('<div style="padding-left: 5px;">NODE</div>');
-//                            recurseChildNodes(model.get('childNodes'), $element);
-//                        });
-//                    } else {
-//                        $element.append('<div style="padding-left: 5px;">NODE</div>');
-//                    }
-//                });
-//        }
+        function getNodeRadioTemplate(model) {
+            return '<li>' +
+                '<input class="nodeRadio" type="radio" value="'+ model.get('_id') +'" name="'+ model.get('_id') +'">' +
+                '<label for="'+ model.get('_id') +'">'+ model.get('label') +'</label>' +
+                '</li>';
+        }
 
         function _callback(el, evt) {
             // listen for the enter key or Blur to save to the model.
