@@ -1,9 +1,23 @@
 .availableTypes {
+  border: solid 1px #B1B1B1;
+  padding: 1rem;
+  background: #f8f8f8;
+  height: 500px;
+  overflow: scroll;
+
   input {
     margin-bottom: 0;
   }
 }
 
-.nodeRadio {
-  padding-left: 1.5rem;
+#selectDefaultNode {
+  border: solid 1px #B1B1B1;
+  padding: 1rem;
+  background: #f8f8f8;
+  height: 500px;
+  overflow: scroll;
+
+  .nodeRadio {
+    padding-left: 1.5rem;
+  }
 }

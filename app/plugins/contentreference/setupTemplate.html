@@ -1,48 +1,50 @@
 <div class="row">
-    <div class="small-6 columns">
-        <div class="row">
-            <div class="small-12 columns">
-                <label>{{model:resources->plugins->contentReference->defaultFolder | withColon}}
-                    <div class="row collapse">
-                        <div class="small-11 columns">
-                            <input type="text" data-rv-value="model:selectedNodeLabel" readonly="true">
-                        </div>
-                        <div class="small-1 columns" style="padding-left: 0;">
-                            <span class="postfix radius"><i class="fa fa-lock"></i></span>
-                        </div>
+    <div class="row">
+        <div class="small-6 columns">
+            <label><span>{{model:resources->plugins->contentReference->defaultFolder | withColon}}</span>
+                <div class="row collapse">
+                    <div class="small-11 columns">
+                        <input type="text" data-rv-value="model:selectedNodeLabel" readonly="true">
                     </div>
-                </label>
-            </div>
+                    <div class="small-1 columns" style="padding-left: 0;">
+                        <span class="postfix radius"><i class="fa fa-lock"></i></span>
+                    </div>
+                </div>
+            </label>
         </div>
-        <div class="row">
+    </div>
+
+
+    <div class="row">
+        <div class="small-6 columns">
             <div class="small-12 columns">
+                <span>{{model:resources->plugins->contentReference->selectDefaultFolder | withColon}}</span>
+
                 <section id="selectDefaultNode">
-                    <span>{{model:resources->plugins->contentReference->selectDefaultFolder | withColon}}</span>
-
-
                     <ul class="no-bullet noMarginBottom">
                         <li>
                             <input type="radio" value="0" name="nodeRadio" data-label="Root" id="root">
-                            <label for="root">Root</label>
+                            <label for="root">{{model:resources->root}}</label>
                         </li>
                     </ul>
                     <section class="nodeRadio" id="nodeRadioList"></section>
-
                 </section>
-          </div>
-        </div>
-    </div>
+            </div>
 
-    <div class="small-6 columns">
-        <div class="row">
-            <div class="small-12 columns">
-                <label>Allowed Content Types:
-                    <div data-rv-each-option="model:availableTypes" class="availableTypes">
+        </div>
+
+        <div class="small-6 columns">
+            <div class="small=12 columns">
+                <span>{{model:resources->plugins->contentReference->allowedContentTypes | withColon}}</span>
+
+                <section class="availableTypes">
+                    <div data-rv-each-option="model:availableTypes">
                         <input data-rv-id="option._id" type="checkbox" data-rv-checked="option.checked">
                         <label data-rv-for="option._id">{{option.label}}</label>
                     </div>
-                </label>
+                </section>
             </div>
         </div>
     </div>
+
 </div>
