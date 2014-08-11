@@ -28,7 +28,7 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             if(this.model.get('inSetup')) {
                 $.when(this.model.get('childNodesDeep').fetch(), _getAvailableContentTypes.call(this))
                     .done(
-                        this.buildNodeRadioList.bind(this, $('#nodeRadioList'), this.model.get('childNodesDeep')),
+                        this.buildNodeRadioList.bind(this, this.$('#nodeRadioList'), this.model.get('childNodesDeep')),
                         _getSelectedNode.bind(this)
                     );
             }

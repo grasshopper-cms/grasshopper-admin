@@ -1,5 +1,7 @@
-define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCollection', 'masseuse', 'underscore', 'assetDetailViewModel'],
-    function (Model, resources, Backbone, constants, grasshopperCollection, masseuse, _, assetDetailViewModel) {
+define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', 'masseuse',
+    'underscore', 'assetDetailViewModel'],
+    function (Model, resources, constants, grasshopperCollection, masseuse,
+              _, assetDetailViewModel) {
 
     'use strict';
 
@@ -9,7 +11,6 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
         initialize : initialize,
         defaults : {
             resources : resources,
-            showTree : false,
             inSetup : true,
             nodeTreeType : 'file',
             selectedContentName : new ComputedProperty(['selectedContent'], function(selectedContent) {
@@ -19,11 +20,17 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
                 return value;
             }),
             assetModel : new ComputedProperty(['value'], function(value){
-                return new assetDetailViewModel({
-                    nodeId : _.first(value.split('/')),
-                    url : value
-                });
+                if(value) {
+                    return new assetDetailViewModel({
+                        nodeId : _.first(value.split('/')),
+                        url : value
+                    });
+                }
             }),
+            nodeId : new ComputedProperty(['options'], function() {
+                return this.get('options.defaultNode');
+            }),
+            value : '',
             _id : '0'
         },
         urlRoot : constants.api.node.url
@@ -34,17 +41,11 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
 
         Model.prototype.initialize.apply(this, arguments);
 
-        this.set('children', new (grasshopperCollection.extend({
+        this.set('childNodesDeep', new (grasshopperCollection.extend({
+            comparator : 'ancestors', // to ensure the nodes with ancestors are always at the end
             url : function() {
-                return constants.api.nodesChildren.url.replace(':id', self.get('_id'));
+                return constants.api.nodesChildrenDeep.url.replace(':id', self.get('_id'));
             }
         }))());
-
-        this.on('change:options', function() {
-            if (this.get('options.defaultNode') !== '0') {
-                this.set('selectedNodeLabel',
-                    this.get('children').findWhere( { _id : this.get('options.defaultNode') }).get('label'));
-            }
-        });
     }
 });

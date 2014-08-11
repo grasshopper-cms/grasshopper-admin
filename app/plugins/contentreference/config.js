@@ -1,9 +1,9 @@
 /*global define:false*/
 define(['text!plugins/contentreference/template.html', 'plugins/contentreference/model',
-    'text!plugins/contentreference/setupTemplate.html', 'backbone',
+    'text!plugins/contentreference/setupTemplate.html',
     'appBinders', 'formatters'],
     function (contentReferencePluginTemplate, contentReferencePluginModel,
-              setupTemplate, Backbone, appBinders, formatters) {
+              setupTemplate, appBinders, formatters) {
         'use strict';
 
         return {
@@ -25,7 +25,7 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
             template : contentReferencePluginTemplate,
             setupTemplate : setupTemplate,
             events : {
-//                'blur input' : 'setAvailableContentTypes',
+                'click .availableTypes' : 'setAvailableContentTypes',
                 'click #selectDefaultNode' : 'selectDefaultNode'
             },
             rivetsConfig : {
