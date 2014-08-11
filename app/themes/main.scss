@@ -212,6 +212,7 @@ body, html {
   // PLUGINS
   @import "../plugins/embeddedtype/_style.scss"; // Embedded Type Plugin
   @import "../plugins/contentreference/_style.scss"; // Content Reference Plugin
+  @import "../plugins/filereference/_style.scss"; // File Reference Plugin
   @import "../plugins/codeeditor/_style.scss"; // Code Editor Plugin
   @import "../plugins/richtext/_style.scss"; // Rich Text Plugin
   @import "../plugins/checkbox/_style.scss"; // Checkbox Plugin
