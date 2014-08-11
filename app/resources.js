@@ -228,6 +228,7 @@ define({
             loading : 'LOADING CODE EDITOR...'
         },
         contentReference : {
+            allowedContentTypes: 'Allowed Content Types',
             selectedContent : 'Selected Content',
             currentFolder : 'Current Folder',
             selectDefaultFolder : 'Select Default Folder',
