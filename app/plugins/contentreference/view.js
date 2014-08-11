@@ -1,6 +1,6 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
-    'masseuse', 'mixins/itemSelectModal', 'plugins/contentreference/buildNodeRadioList'],
+    'masseuse', 'mixins/itemSelectModal', 'mixins/buildNodeRadioList'],
     function (GrasshopperBaseView, _, Api, contentTypeWorker, $,
               masseuse, itemSelectModal, buildNodeRadioList) {
 
