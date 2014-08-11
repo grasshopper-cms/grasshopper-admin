@@ -1,8 +1,10 @@
 .jsonEditor {
-  margin-bottom: 7px;
+  margin: 0 0 10px;
 }
 
 .jsonEditorError {
-  padding: 10px 0 17px;
-  color: $errorRed;
+  margin: 0 0 10px;
+  padding: 10px;
+  color: $userDetailRemoveColor;
+  background: $userDetailRemoveBackgroundColor;
 }

@@ -1,5 +1,4 @@
 #userDetail {
-
   legend {
     font-size: 20px;
     font-weight: normal;
@@ -61,16 +60,16 @@
   }
 
   .lock-user-block {
-    background-color: #FBF7E2;
-    border-color: #F9EFD8;
-    color: #AF8636;
     margin-right: 10px;
+    color: $userDetailLockColor;
+    background-color: $userDetailLockBackgroundColor;
+    border-color: $userDetailLockBorderColor;
   }
 
   .delete-user-block {
-    background-color: #F0DEDE;
-    border-color: #ECD5D8;
-    color: #B9645E;
+    color: $userDetailRemoveColor;
+    background-color: $userDetailRemoveBackgroundColor;
+    border-color: $userDetailRemoveBorderColor;
   }
 
 }

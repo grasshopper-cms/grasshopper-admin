@@ -43,7 +43,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
         function _setEditorLines() {
             this.editor.setOptions(
                 {
-                    maxLines : 500,
+                    maxLines : Infinity,
                     minLines : 10
                 }
             );
@@ -92,7 +92,6 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
 
         function _isValidJson(value) {
             try {
-                JSON.parse(value);
             } catch (e) {
                 return false;
             }

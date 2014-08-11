@@ -49,7 +49,9 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 i = 0,
                 self = this;
 
-            if (values && _.isArray(values) && !_.isEmpty(values)) { // If values exists and is array that is not empty
+            if (values && (this.model.get('type') === 'jsoneditor')) { // If values exists and plugin has jsoneditor type
+                _addPlugin.call(this, values);
+            } else if (values && _.isArray(values) && !_.isEmpty(values)) { // If values exists and is array that is not empty
                 _.each(values, function (value) {
                     _addPlugin.call(self, value);
                 });
