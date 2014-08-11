@@ -60,7 +60,7 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
 
             _setBreadcrumbs.call(this);
             _fetchChildNodes.call(this);
-            _fetchChildContent.call(this)
+            _fetchChildContent.call(this);
         }
 
     });
