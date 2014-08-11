@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
-    'masseuse', 'mixins/itemSelectModal'],
+    'masseuse', 'mixins/itemSelectModal', 'plugins/contentreference/buildNodeRadioList'],
     function (GrasshopperBaseView, _, Api, contentTypeWorker, $,
-              masseuse, itemSelectModal) {
+              masseuse, itemSelectModal, buildNodeRadioList) {
 
         'use strict';
 
@@ -11,19 +11,26 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             afterRender : afterRender,
             stopAccordionPropagation : stopAccordionPropagation,
             setAvailableContentTypes : setAvailableContentTypes,
-            setRootAsDefaultNode : setRootAsDefaultNode,
             fireSelectContentModal : fireSelectContentModal,
-            setSelectedNodeLabel : setSelectedNodeLabel
-        }).extend(itemSelectModal);
+            selectDefaultNode : selectDefaultNode
+        })
+            .extend(itemSelectModal)
+            .extend(buildNodeRadioList);
 
         function beforeRender() {
-            if(this.model.get('inSetup')) {
-//                this.model.get('childNodes').fetch()
-                    _getSelectedNode.call(this)
-                        .then(_getAvailableContentTypes.bind(this));
-            } else {
+            if(!this.model.get('inSetup')) {
                 _getSelectedContent.call(this);
                 this.model.on('change:value', _getSelectedContent.bind(this));
+            }
+        }
+
+        function afterRender() {
+            if(this.model.get('inSetup')) {
+                $.when(this.model.get('childNodesDeep').fetch(), _getAvailableContentTypes.call(this))
+                    .done(
+                        this.buildNodeRadioList.bind(this, $('#nodeRadioList'), this.model.get('childNodesDeep')),
+                        _getSelectedNode.bind(this)
+                    );
             }
         }
 
@@ -50,24 +57,12 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _getSelectedNode() {
-            var $deferred = new $.Deferred(),
-                defaultNode = this.model.get('options.defaultNode');
+            var defaultNode = this.model.get('options.defaultNode'),
+                $defaultNodeRadio = this.$('#selectDefaultNode').find('#'+ defaultNode);
 
-            if (defaultNode && defaultNode !== '0') { // default is not root
-                Api.getNodeDetail(defaultNode)
-                    .done(setSelectedNodeLabel.bind(this, $deferred));
-            } else if (defaultNode && defaultNode === '0') { // default is root
-                setSelectedNodeLabel.call(this, $deferred, { label : 'Root'});
-            } else {
-                $deferred.resolve();
-            }
+            $defaultNodeRadio.prop('checked', true);
 
-            return $deferred.promise();
-        }
-
-        function setSelectedNodeLabel($deferred, nodeDetails) {
-            this.model.set('selectedNodeLabel', nodeDetails.label);
-            $deferred && $deferred.resolve();
+            this.selectDefaultNode();
         }
 
         function _getAvailableContentTypes() {
@@ -94,10 +89,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             $deferred.resolve();
         }
 
-        function afterRender() {
-            this.model.set('showTree', true);
-        }
-
         function stopAccordionPropagation(e) {
             e.stopPropagation();
         }
@@ -109,10 +100,14 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             this.model.set('options.allowedTypes', checkedTypes);
         }
 
-        function setRootAsDefaultNode(e) {
-            this.model.set('selectedNodeLabel', 'Root');
-            this.model.set('options.defaultNode', '0');
-            e.preventDefault();
+        function selectDefaultNode() {
+            var $selectedNode = this.$('#selectDefaultNode').find('input:radio[name="nodeRadio"]:checked'),
+                selectedNodeId = $selectedNode.val(),
+                selectedNodeLabel = $selectedNode.attr('data-label');
+
+            this.model.set('selectedNodeLabel', selectedNodeLabel);
+            this.model.set('options.defaultNode', selectedNodeId);
+
         }
 
         function fireSelectContentModal() {

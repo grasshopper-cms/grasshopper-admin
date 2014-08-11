@@ -16,20 +16,20 @@
         </div>
         <div class="row">
             <div class="small-12 columns">
-                <label>
-                    {{model:resources->plugins->contentReference->selectDefaultFolderOr}}
-                    <span>
-                        <a data-rv-on-click="view.setRootAsDefaultNode">
-                            {{model:resources->plugins->contentReference->setRootAsDefault}}
-                        </a>
-                    </span>
+                <section id="selectDefaultNode">
+                    <span>{{model:resources->plugins->contentReference->selectDefaultFolder | withColon}}</span>
 
-                    <div data-rv-unless="model:showTree"><i class="fa fa-refresh"></i></div>
-                    <div data-rv-if="model:showTree">
-                        <section data-rv-recurse-nodes-radios="model:childNodes"></section>
-                    </div>
-                </label>
-            </div>
+
+                    <ul class="no-bullet noMarginBottom">
+                        <li>
+                            <input type="radio" value="0" name="nodeRadio" data-label="Root" id="root">
+                            <label for="root">Root</label>
+                        </li>
+                    </ul>
+                    <section class="nodeRadio" id="nodeRadioList"></section>
+
+                </section>
+          </div>
         </div>
     </div>
 

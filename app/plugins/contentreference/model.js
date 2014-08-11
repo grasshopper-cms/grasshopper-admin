@@ -9,7 +9,6 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
         initialize : initialize,
         defaults : {
             resources : resources,
-            showTree : false,
             selectedContentHref : new ComputedProperty(['value'], function(contentId) {
                 return constants.internalRoutes.contentDetail.replace(':id', contentId);
             }),
@@ -29,12 +28,10 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
 
         Model.prototype.initialize.apply(this, arguments);
 
-        this.set('childNodes', new (grasshopperCollection.extend({
-            model : Model.extend({
-                initialize : initialize
-            }),
+        this.set('childNodesDeep', new (grasshopperCollection.extend({
+            comparator : 'ancestors', // to ensure the nodes with ancestors are always at the end
             url : function() {
-                return constants.api.nodesChildren.url.replace(':id', self.get('_id'));
+                return constants.api.nodesChildrenDeep.url.replace(':id', self.get('_id'));
             }
         }))());
 

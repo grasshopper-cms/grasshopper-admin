@@ -25,8 +25,8 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
             template : contentReferencePluginTemplate,
             setupTemplate : setupTemplate,
             events : {
-                'click #nodeTree' : 'stopAccordionPropagation',
-                'blur input' : 'setAvailableContentTypes'
+//                'blur input' : 'setAvailableContentTypes',
+                'click #selectDefaultNode' : 'selectDefaultNode'
             },
             rivetsConfig : {
                 formatters : [formatters],
