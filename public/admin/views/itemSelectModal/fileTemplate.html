@@ -1,0 +1,57 @@
+<div id="modalContainer" class="itemSelectModal">
+    <div id="modalContents">
+
+        <div id="modalHeader" class="row">
+            {{model:header}}
+        </div>
+
+        <div class="row modalPadding">
+            <span data-rv-breadcrumb="model:breadcrumbs"></span>
+        </div>
+
+        </br>
+
+        <div id="modalBody" class="row">
+
+            <section class="inputContainer itemSelection">
+
+                <div class="childNode" data-rv-each-node="model:childNodes:" data-rv-on-click="view.navigateToFolder" data-rv-nodeid="node:_id">
+                    <i data-rv-nodeid="node:_id" class="fa fa-folder"></i>
+                    <a data-rv-nodeid="node:_id">{{node:label | spaceBefore}}</a>
+                </div>
+
+                <ul data-rv-hide="model:inRoot" class="no-bullet childContent">
+                    <li data-rv-each-item="model:assets:">
+                        <input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-value="item:_id" data-rv-checked="model:value">
+
+                        <label data-rv-for="item.cid">
+
+                            <div class="thumbnailContainer">
+                                <img class="th thumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
+                            </div>
+
+                            <div class="fileName">
+                                <a>{{item:fileName}}</a>
+                            </div>
+
+                        </label>
+                    </li>
+
+                    <li data-rv-unless="model:assets.length | greaterThan 0">
+                        {{model:resources->node->emptyContent}}
+                    </li>
+                </ul>
+
+            </section>
+
+        </div>
+
+        <div id="buttonContainer" class="row" data-rv-hide="model:loading">
+            <div class="right">
+                <button id="confirm" class="button tiny radius noMarginBottom">{{model:resources->confirm}}</button>
+                <button id="cancel" class="button tiny radius noMarginBottom">{{model:resources->cancel}}</button>
+            </div>
+        </div>
+
+    </div>
+</div>
