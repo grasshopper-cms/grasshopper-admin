@@ -21,12 +21,23 @@
                 </div>
 
                 <ul data-rv-hide="model:inRoot" class="no-bullet childContent">
-                    <li data-rv-each-item="model:content:">
+                    <li data-rv-each-item="model:assets:">
                         <input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-value="item:_id" data-rv-checked="model:value">
-                        <label data-rv-for="item.cid">{{item:label}}</label>
+
+                        <label data-rv-for="item.cid">
+
+                            <div class="thumbnailContainer">
+                                <img class="th thumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
+                            </div>
+
+                            <div class="fileName">
+                                <a>{{item:fileName}}</a>
+                            </div>
+
+                        </label>
                     </li>
 
-                    <li data-rv-unless="model:content.length | greaterThan 0">
+                    <li data-rv-unless="model:assets.length | greaterThan 0">
                         {{model:resources->node->emptyContent}}
                     </li>
                 </ul>

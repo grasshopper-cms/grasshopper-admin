@@ -13,7 +13,7 @@
 
   }
 
-  #fileName {
+  .fileName {
     float: right;
     width: 194px;
     padding: 5px;
@@ -21,6 +21,18 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  .thumbNail {
+    max-height: 53px;
+    margin-right: 10px;
+    border: 0;
+  }
+
+  .thumbnailContainer {
+    float: left;
+    width: 44px;
+    overflow: hidden;
   }
 
 }
