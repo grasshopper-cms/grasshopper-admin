@@ -16,7 +16,8 @@ define(['text!plugins/jsoneditor/template.html', 'plugins/jsoneditor/model'],
                     type : 'jsoneditor',
                     dataType : 'code',
                     validation : [],
-                    value : ''
+                    value : '',
+                    allowMultiple : false
                 };
             },
             template : template,
