@@ -11,7 +11,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             initialize : initialize,
             idAttribute : '_id',
             defaults : {
-                header : 'Select Content',
+                header : 'Select Item',
                 nodeId : new ComputedProperty(['_id'], function(_id) {
                     return _id; // This is here for the contentBrowse breadcrumb.
                 }),

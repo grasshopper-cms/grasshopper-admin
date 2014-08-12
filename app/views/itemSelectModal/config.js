@@ -1,7 +1,8 @@
 /*global define:false*/
-define(['text!views/itemSelectModal/template.html', 'itemSelectModal/model',
+define(['text!views/itemSelectModal/contentTemplate.html', 'text!views/itemSelectModal/fileTemplate.html',
+    'itemSelectModal/model',
     'appBinders', 'resources', 'itemSelectModal/binders'],
-    function (template, Model, appBinders, resources, binders) {
+    function (contentTemplate, fileTemplate, Model, appBinders, resources, binders) {
     'use strict';
 
     return {
@@ -9,7 +10,8 @@ define(['text!views/itemSelectModal/template.html', 'itemSelectModal/model',
         ModelType : Model,
         appendTo : '#modal',
         wrapper : false,
-        template : template,
+        contentTemplate : contentTemplate,
+        fileTemplate : fileTemplate,
         rivetsConfig : {
             binders : [appBinders, binders]
         },

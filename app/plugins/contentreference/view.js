@@ -120,9 +120,10 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         }
 
         function _startModalView() {
-            this.model.set('inSetup', false);
+            var value = this.model.get('value'),
+                nodeId = this.model.get('nodeId');
 
-            return this.fireItemSelectModal();
+            return this.fireContentSelectModal(value, nodeId);
         }
 
     });

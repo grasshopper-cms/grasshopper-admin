@@ -3,18 +3,43 @@ define(['itemSelectModal/view', 'jquery'], function (ModalView, $) {
     'use strict';
 
     return {
-        fireItemSelectModal : fireItemSelectModal
+        fireContentSelectModal : fireContentSelectModal,
+        fireFileSelectModal : fireFileSelectModal
     };
 
-    function fireItemSelectModal() {
+    function fireContentSelectModal(value, nodeId) {
+        var options = {
+            type : 'content',
+            header : 'Select Content',
+            value : value,
+            nodeId : nodeId
+        };
+
+        return _startItemSelectView.call(this, options);
+    }
+
+    function fireFileSelectModal(value, nodeId) {
+        var options = {
+            type : 'file',
+            header : 'Select File',
+            value : value,
+            nodeId : nodeId
+        };
+
+        return _startItemSelectView.call(this, options);
+    }
+
+    function _startItemSelectView(options) {
         var $deferred = new $.Deferred(),
-        modalView = new ModalView({
-            modelData : {
-                value : this.model.get('value'),
-                _id : this.model.get('nodeId')
-            },
-            $deferred : $deferred
-        });
+            modalView = new ModalView({
+                type : options.type,
+                modelData : {
+                    header : options.header,
+                    value : options.value,
+                    _id : options.nodeId
+                },
+                $deferred : $deferred
+            });
 
         modalView.start();
         return $deferred.promise();

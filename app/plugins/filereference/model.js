@@ -11,7 +11,7 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
         initialize : initialize,
         defaults : {
             resources : resources,
-            inSetup : true,
+            inSetup : false,
             nodeTreeType : 'file',
             selectedContentName : new ComputedProperty(['selectedContent'], function(selectedContent) {
                 return (selectedContent) ? _.last(selectedContent.split('/')) : '';

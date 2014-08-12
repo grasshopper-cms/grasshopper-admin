@@ -65,9 +65,10 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function _startModalView () {
-            this.model.set('inSetup', false);
+            var value = this.model.get('value'),
+                 nodeId = this.model.get('nodeId');
 
-            return this.fireItemSelectModal();
+            return this.fireFileSelectModal(value, nodeId);
         }
 
         function _fileReferenceSelected (selectedContentId) {

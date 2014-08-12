@@ -6,11 +6,29 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
 
         return GrasshopperBaseView.extend({
             defaultOptions : config,
+            initialize : initialize,
             beforeRender : beforeRender,
             confirmModal : confirmModal,
             cancelModal : cancelModal,
             navigateToFolder : navigateToFolder
         });
+
+        function initialize(options) {
+            switch (options.type) {
+                case 'file':
+                    options.template = config.fileTemplate;
+                    break;
+                case 'content':
+                    options.template = config.contentTemplate;
+                    break;
+                default:
+                    options.template = config.contentTemplate;
+                    break;
+            }
+
+            this.options = options;
+            GrasshopperBaseView.prototype.initialize.apply(this, arguments);
+        }
 
         function beforeRender($deferred) {
             _setBreadcrumbs.call(this);
