@@ -9,7 +9,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         return GrasshopperBaseView.extend({
             beforeRender: beforeRender,
             afterRender : afterRender,
-            stopAccordionPropagation : stopAccordionPropagation,
             setAvailableContentTypes : setAvailableContentTypes,
             fireSelectContentModal : fireSelectContentModal,
             selectDefaultNode : selectDefaultNode
@@ -87,10 +86,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
             this.model.set('availableTypes', availableTypes);
             $deferred.resolve();
-        }
-
-        function stopAccordionPropagation(e) {
-            e.stopPropagation();
         }
 
         function setAvailableContentTypes() {

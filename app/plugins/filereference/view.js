@@ -8,7 +8,6 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
 
         return GrasshopperBaseView.extend({
             afterRender: afterRender,
-            stopAccordionPropagation: stopAccordionPropagation,
             fireSelectFileModal: fireSelectFileModal,
             selectDefaultNode: selectDefaultNode,
             fireFileDetailModal: fireFileDetailModal
@@ -44,43 +43,24 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
             this.model.set('options.defaultNode', selectedNodeId);
         }
 
-//        function setSelectedNode ($deferred, nodeDetails) {
-//            this.model.set('selectedNodeLabel', nodeDetails.label);
-//            $deferred && $deferred.resolve();
-//        }
-
-        function stopAccordionPropagation (e) {
-            e.stopPropagation();
-        }
-
-//        function setRootAsDefaultNode (e) {
-//            this.model.set('selectedNodeLabel', 'Root');
-//            this.model.set('options.defaultNode', '0');
-//            e.preventDefault();
-//        }
-
-        function fireSelectFileModal () {
+        function fireSelectFileModal() {
             _startModalView.call(this)
                 .done(_fileReferenceSelected.bind(this));
         }
 
-        function _startModalView () {
+        function _startModalView() {
             var value = this.model.get('value'),
                  nodeId = this.model.get('nodeId');
 
             return this.fireFileSelectModal(value, nodeId);
         }
 
-        function _fileReferenceSelected (selectedContentId) {
-            console.log(selectedContentId);
-//            this.model.set('selectedContentName', modalModel.selectedContentName);
-//            this.model.set('selectedContent', modalModel.selectedContent);
-//            this.model.set('value', _.last(modalModel.selectedContent.split('/'), 2).join('/'));
+        function _fileReferenceSelected(selectedFilePath) {
+            this.model.set('value', selectedFilePath);
         }
 
-        function fireFileDetailModal () {
-            this.model.get('assetModel')
-                .fetch()
+        function fireFileDetailModal() {
+            this.model.get('assetModel').fetch()
                 .done(_fireModalWithData.bind(this));
         }
 

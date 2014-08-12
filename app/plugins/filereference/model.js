@@ -12,12 +12,8 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
         defaults : {
             resources : resources,
             inSetup : false,
-            nodeTreeType : 'file',
-            selectedContentName : new ComputedProperty(['selectedContent'], function(selectedContent) {
-                return (selectedContent) ? _.last(selectedContent.split('/')) : '';
-            }),
-            selectedContent : new ComputedProperty(['value'], function(value) {
-                return value;
+            selectedFileName : new ComputedProperty(['value'], function(filePath) {
+                return (filePath) ? _.last(filePath.split('/')) : '';
             }),
             assetModel : new ComputedProperty(['value'], function(value){
                 if(value) {
