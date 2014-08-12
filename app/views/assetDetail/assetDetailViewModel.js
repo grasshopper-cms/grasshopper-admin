@@ -10,6 +10,9 @@ define(['grasshopperModel', 'resources', 'underscore', 'constants', 'masseuse'],
                 fileName : new ComputedProperty(['url'], function (url) {
                     return (url) ? _.last(url.split('/')) : '';
                 }),
+                path : new ComputedProperty(['url'], function(url) {
+                    return (url) ? _.last(url.split('/'), 2).join('/') : '';
+                }),
                 id : new ComputedProperty(['fileName'], function (fileName) {
                     return (fileName) ? fileName : '';
                 }),
