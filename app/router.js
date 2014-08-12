@@ -272,16 +272,16 @@ define([
         }
 
         function displayLogin (token) {
-            var googleRedirect = LocalStorage.get('googleRedirect');
+            var redirect = LocalStorage.get(constants.loginRedirectKey);
 
             if(token) {
                 // I am assuming this is a google token because that is all we support right meow.
                 LocalStorage.set('authToken', 'Google '+ token);
 
-                // Check if we have anything in localstorage telling us to redirect somewhere else after google login
-                if (googleRedirect && googleRedirect !== undefined) {
-                    LocalStorage.remove('googleRedirect')
-                        .done(this.navigateTrigger.bind(this,googleRedirect));
+                // Check if we have anything in localstorage telling us to redirect somewhere else after login
+                if (redirect && redirect !== undefined) {
+                    LocalStorage.remove(constants.loginRedirectKey)
+                        .done(this.navigateTrigger.bind(this, redirect));
                 } else  {
                     this.navigateTrigger('#items');
                 }
