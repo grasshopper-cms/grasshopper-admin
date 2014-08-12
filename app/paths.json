@@ -17,7 +17,8 @@
         "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
         "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker",
         "sparkmd5" : "vendor/SparkMD5/spark-md5",
-        "JSONEditor" : "vendor/jsoneditor/jsoneditor"
+        "JSONEditor" : "vendor/jsoneditor/jsoneditor",
+        "contextjs" : "vendor/contextjs/context"
     },
 
     "routers" : {
@@ -195,6 +196,12 @@
             "Model" : "views/header/headerViewModel"
         },
 
+        "clipboardView+" : {
+            "" : "views/clipboard/clipboardView",
+            "Config" : "views/clipboard/clipboardViewConfig",
+            "Model" : "views/clipboard/clipboardViewModel"
+        },
+
         "login" : "views/login",
 
         "mastheadView+" : {
@@ -271,6 +278,7 @@
         "logoutWorker" : "workers/logoutWorker",
         "contentTypeWorker" : "workers/contentTypeWorker",
         "ajaxCounterWorker" : "workers/ajaxCounterWorker",
+        "clipboardWorker" : "workers/clipboardWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
         "nodeWorker" : "workers/nodeWorker",

@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorker',
-    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig'],
+    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig', 'clipboardWorker'],
     function (GrasshopperBaseView, contentBrowseViewConfig, $, searchWorker,
-              _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig) {
+              _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig, clipboardWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -34,6 +34,61 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
 
         function afterRender () {
             this.$el.foundation();
+            _initClipboard.call(this);
+        }
+
+
+        function _initClipboard() {
+            var self = this;
+            context.init({preventDoubleContext: true, compress: true});
+
+            context.attach('#contentBrowseTable', [
+                {text: '<i class="fa fa-scissors"></i> Cut', action: function (e) {
+                    e.preventDefault();
+                    var target = $(e.target).closest('.dropdown-context').data('contextTarget');
+                    if (target) {
+                        $(target).closest('.nodeOrContentDetailRow').trigger('clipboard:cut');
+                    }
+
+                }},
+                {text: '<i class="fa fa-files-o"></i> Copy', action: function (e) {
+                    e.preventDefault();
+                    var target = $(e.target).closest('.dropdown-context').data('contextTarget');
+                    if (target) {
+                        $(target).closest('.nodeOrContentDetailRow').trigger('clipboard:copy');
+                    }
+                }},
+                {text: '<i class="fa fa-clipboard"></i> Paste', action: function (e) {
+                    e.preventDefault();
+                    var target = $(e.target).closest('.dropdown-context').data('contextTarget'), $target = $(target);
+                    if (target) {
+                        var $nodeDetailRow = $target.closest('.nodeOrContentDetailRow');
+                        if ($nodeDetailRow.length) {
+                            $nodeDetailRow.trigger('clipboard:paste');
+                        }
+                        else {
+                            $target.trigger('clipboard:paste');
+                        }
+
+                    }
+                }}
+            ]);
+
+            this.$el.on('clipboard:cut', '.nodeOrContentDetailRow', function (e) {
+                clipboardWorker.cutContent(self, {type: 'content', id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
+            });
+            this.$el.on('clipboard:copy', '.nodeOrContentDetailRow', function (e) {
+                clipboardWorker.copyContent(self, {type: 'content', id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
+            });
+            this.$el.on('clipboard:paste', '.nodeOrContentDetailRow', function (e) {
+                e.stopPropagation();
+                var clickedItemId = $(this).data('id'), currentFolderId = self.model.id;
+                clipboardWorker.pasteContent(self, {type: 'content', id: clickedItemId, name: $('.contentDetailRowName', this).text()}, {type: 'content', id: currentFolderId, name: self.model.get('label')});
+            });
+            this.$el.on('clipboard:paste', '#contentBrowseTable', function (e) {
+                var currentFolderId = self.model.id;
+                clipboardWorker.pasteContent(self, undefined, {type: 'content', id: currentFolderId, name: self.model.get('label')});
+            });
         }
 
         function _addAssetIndexView() {

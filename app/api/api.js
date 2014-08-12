@@ -74,6 +74,10 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 headers : {'Authorization' : token}
             });
         },
+        /* This is move or copy. */
+        moveContent: function (data) {
+            return this.post(constants.api.logout.url, data);
+        },
         makeQuery : function (data) {
             return this.post(constants.api.contentQuery.url, data);
         },

@@ -85,6 +85,7 @@ require([
     'router',
     'constants',
     'ajaxCounterWorker',
+    'clipboardWorker',
     'alerts',
     'dropdown',
     'tabs',
@@ -95,13 +96,14 @@ require([
     'accordion',
     'scrollToFixed',
     'select2',
-    'sparkmd5'
+    'sparkmd5',
+    'contextjs'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, constants, ajaxCounterWorker) {
+        function (Backbone, _, $, Router, constants, ajaxCounterWorker, clipboardWorker) {
         'use strict';
 
         _.templateSettings = {
