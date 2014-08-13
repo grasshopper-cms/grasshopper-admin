@@ -3,7 +3,7 @@
     	<select>
             <option disabled selected>{{model:resources->plugins->author->selectUser}}</option>
             <option data-rv-each-user="model:users:" data-rv-value="user:_id">
-                {{user:displayName}}
+                {{user:displayname}}
             </option>
         </select>
         <div class="author_no_permissions" data-rv-show="model:no_permissions">

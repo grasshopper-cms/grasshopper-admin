@@ -17,7 +17,7 @@ define(['text!plugins/author/template.html', 'plugins/author/model', 'text!plugi
                 dataType : 'dropdown',
                 validation : [],
                 value : {
-                    displayName : '',
+                    displayname : '',
                     _id : ''
                 }
             },

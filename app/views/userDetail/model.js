@@ -21,10 +21,10 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse', 'underscore'],
                 userIsChangingTheirProfile : ComputedProperty(['_id', 'userModel'], function(_id, userModel) {
                     return _id && userModel && _id === userModel.get('_id');
                 }),
-                hasGoogle : new ComputedProperty(['linkedIdentities'], function(identities){
+                hasGoogle : new ComputedProperty(['linkedidentities'], function(identities){
                     return _.contains(identities, 'google');
                 }),
-                hasBasic : new ComputedProperty(['linkedIdentities'], function(identities){
+                hasBasic : new ComputedProperty(['linkedidentities'], function(identities){
                     return _.contains(identities, 'basic');
                 })
 
