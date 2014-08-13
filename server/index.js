@@ -8,7 +8,11 @@ var express = require('express'),
 
 api = api();
 app.use(api.ghApi || api.router);
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/admin'));
+
+app.get(/^\/admin(\/[\w-]+)*$/, function(request, response) {
+    response.sendfile(__dirname + '/public/admin/index.html');
+});
 
 app.listen(PORT, function(){
     console.log('Listening on: ' + PORT);
