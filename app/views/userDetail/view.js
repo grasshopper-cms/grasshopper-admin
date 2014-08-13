@@ -186,7 +186,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
         }
 
         function linkToModel () {
-            LocalStorage.set('googleRedirect', constants.profileGoogleLinkRedirect.url.replace(':id', this.model.get('_id')));
+            LocalStorage.set(constants.loginRedirectKey, constants.profileGoogleLinkRedirect.url.replace(':id', this.model.get('_id')));
             _loginWithGoogle.call(this);
         }
 

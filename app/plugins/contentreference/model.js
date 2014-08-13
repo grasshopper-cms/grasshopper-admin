@@ -9,32 +9,34 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
         initialize : initialize,
         defaults : {
             resources : resources,
-            showTree : false,
             selectedContentHref : new ComputedProperty(['value'], function(contentId) {
                 return constants.internalRoutes.contentDetail.replace(':id', contentId);
             }),
             selectedContentLabel : new ComputedProperty(['contentDetails'], function() {
                 return this.get('contentDetails.fields.' + this.get('contentDetails.meta.labelfield'));
             }),
-            _id : '0'
+            _id : '0',
+            nodeId : new ComputedProperty(['options'], function() {
+                return this.get('options.defaultNode');
+            }),
+            inSetup : false,
+            loading : false
         },
         urlRoot : constants.api.node.url
     });
 
     function initialize() {
         var self = this;
+
         Model.prototype.initialize.apply(this, arguments);
-        this.set('children', new (grasshopperCollection.extend({
+
+        this.set('childNodesDeep', new (grasshopperCollection.extend({
+            comparator : 'ancestors', // to ensure the nodes with ancestors are always at the end
             url : function() {
-                return constants.api.nodesChildren.url.replace(':id', self.get('_id'));
+                return constants.api.nodesChildrenDeep.url.replace(':id', self.get('_id'));
             }
         }))());
 
-        this.on('change:options', function() {
-            if (this.get('options.defaultNode') !== '0') {
-                this.set('selectedNodeLabel',
-                    this.get('children').findWhere( { _id : this.get('options.defaultNode') }).get('label'));
-            }
-        });
     }
+
 });

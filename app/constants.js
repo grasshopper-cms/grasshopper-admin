@@ -40,6 +40,9 @@ define([], function() {
             nodesChildren : {
                 url : apiEndpoint + '/node/:id/children'
             },
+            nodesChildrenDeep : {
+                url : apiEndpoint + '/node/:id/children/deep'
+            },
             nodesContent : {
                 url : apiEndpoint + '/node/:id/content'
             },
@@ -129,6 +132,8 @@ define([], function() {
             mode: 'tree',
             modes:['code', 'tree']
         },
+
+        loginRedirectKey : 'loginRedirect',
 
         profileGoogleLinkRedirect : {
             url : '#user/:id'

@@ -195,6 +195,8 @@
             "Model" : "views/header/headerViewModel"
         },
 
+        "itemSelectModal" : "views/itemSelectModal",
+
         "login" : "views/login",
 
         "mastheadView+" : {
@@ -215,13 +217,6 @@
             "" : "views/nodeDetail/nodeDetailView",
             "Config" : "views/nodeDetail/nodeDetailViewConfig",
             "Model" : "views/nodeDetail/nodeDetailViewModel"
-        },
-
-        "nodeTreeView+" : {
-            "" : "views/nodeTree/nodeTreeView",
-            "Config" : "views/nodeTree/nodeTreeViewConfig",
-            "Model" : "views/nodeTree/nodeTreeViewModel",
-            "Binders" : "views/nodeTree/nodeTreeViewBinders"
         },
 
         "pagination" : "views/pagination",
@@ -282,7 +277,8 @@
     "collections" : {
         "grasshopperCollection" : "collections/grasshopperCollection",
         "paginatedCollection" : "collections/paginatedCollection",
-        "userCollection" : "collections/userCollection"
+        "userCollection" : "collections/userCollection",
+        "searchCollection" : "collections/searchCollection"
     },
 
     "api" : {

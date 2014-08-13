@@ -1,9 +1,9 @@
 /*global define:false*/
 define(['text!plugins/filereference/template.html', 'plugins/filereference/model',
-    'text!plugins/filereference/setupTemplate.html', 'backbone',
+    'text!plugins/filereference/setupTemplate.html',
     'appBinders', 'formatters'],
     function (fileReferencePluginTemplate, fileReferencePluginModel,
-              setupTemplate, Backbone, appBinders, formatters) {
+              setupTemplate, appBinders, formatters) {
         'use strict';
 
         return {
@@ -25,7 +25,7 @@ define(['text!plugins/filereference/template.html', 'plugins/filereference/model
             template : fileReferencePluginTemplate,
             setupTemplate : setupTemplate,
             events : {
-                'click #nodeTree' : 'stopAccordionPropagation'
+                'click #selectDefaultNode' : 'selectDefaultNode'
             },
             rivetsConfig : {
                 formatters : [formatters],
