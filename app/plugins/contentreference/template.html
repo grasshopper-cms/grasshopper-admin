@@ -1,7 +1,9 @@
 <div class="row">
+
     <div class="small-8 columns">
-        <input type="text" data-rv-value="model:selectedContentLabel" readonly="true">
+        <input type="text" data-rv-value="model:selectedContentLabel" readonly="true" data-rv-swap-text-while="model:loading" data-swap-html="<i class='fa fa-refresh fa-spin'></i>">
     </div>
+
     <div class="small-4 columns">
 
         <ul class="button-group radius">
@@ -10,7 +12,7 @@
                     {{model:resources->plugins->contentReference->selectContent}}
                 </button>
             </li>
-            <li data-rv-show="model:selectedContentLabel">
+            <li data-rv-if="model:selectedContentLabel">
                 <a class="button tiny" data-rv-href="model:selectedContentHref" target="_blank">
                     {{model:resources->plugins->contentReference->viewContent}}
                 </a>
@@ -18,4 +20,5 @@
         </ul>
 
     </div>
+
 </div>

@@ -1,4 +1,4 @@
 {
-    "apiEndpoint" : "http://localhost:3000",
+    "apiEndpoint" : "http://grasshopper-admin-sample.herokuapp.com",
     "buildDirectory" : "server/public/admin"
 }

@@ -230,10 +230,10 @@ define({
             loading : 'LOADING CODE EDITOR...'
         },
         contentReference : {
+            allowedContentTypes: 'Allowed Content Types',
             selectedContent : 'Selected Content',
             currentFolder : 'Current Folder',
-            selectDefaultFolderOr : 'Select Default Folder or',
-            setRootAsDefault : 'Set Root Folder as Default',
+            selectDefaultFolder : 'Select Default Folder',
             defaultFolder : 'Default Folder',
             contentTypes : 'Content Types',
             selectContent : 'Select Content',
@@ -356,6 +356,7 @@ define({
     type : 'Type',
     types : 'Types',
     upload : 'Upload',
+    uploadFile : 'Upload File',
     user_name : 'User Name',
     users : 'Users',
     sysInfo : 'Info',
