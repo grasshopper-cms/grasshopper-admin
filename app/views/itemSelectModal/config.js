@@ -13,6 +13,7 @@ define(['text!views/itemSelectModal/contentTemplate.html', 'text!views/itemSelec
         contentTemplate : contentTemplate,
         fileTemplate : fileTemplate,
         rivetsConfig : {
+            instaUpdate : true,
             binders : [appBinders, binders]
         },
         privateBreadcrumbs : true,

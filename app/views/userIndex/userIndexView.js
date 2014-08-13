@@ -21,6 +21,6 @@ define(['jquery', 'underscore', 'grasshopperBaseView', 'userIndexViewConfig', 'c
         }
 
         function searchContent(e, context, isFirstQuery) {
-            return searchWorker.searchContent.call(this, e, context, 'users', isFirstQuery);
+            return searchWorker.searchContent.call(this, e, context, 'users', true, isFirstQuery);
         }
     });

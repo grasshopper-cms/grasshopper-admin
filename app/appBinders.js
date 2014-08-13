@@ -63,51 +63,15 @@ define(['jquery', 'underscore', 'masseuse',
 
                 if(revert) {
                     if(!$el.attr('oldText')) { // Should Only Do this once.
-                        $el.attr('oldText', $el.text());
+                        $el.attr('oldText', $el.html());
                         $el.width($el.width()); // Forces the buttons to maintain width.
                     }
                     $el.html($el.attr('data-swap-html') || 'Saving...');
                 } else {
                     $el.html($el.attr('oldText'));
                 }
-            },
-            'recurse-nodes-radios' : function(el, collection) {
-                var $el = $(el),
-                    $div = $('<div/>'),
-                    hasAncestors = [];
-
-                if(!this.onlyOnce) {
-                    this.onlyOnce = true;
-
-                    collection.each(function(model) {
-                        if(model.get('ancestors').length) {
-                            hasAncestors.push(model);
-                        } else {
-                            $div.append(getNodeRadioTemplate(model));
-                        }
-                    });
-
-                    _.each(hasAncestors, function(model) {
-                        // try and find the last ancestor
-                        var lastAncestor = $div.find('[value="'+ _.last(model.get('ancestors'))._id +'"]');
-                        if(lastAncestor) {
-                            lastAncestor.closest('li').append('<ul>'+ getNodeRadioTemplate(model) +'</ul>');
-                        } else {
-                            hasAncestors.push(model);
-                        }
-                    });
-
-                    $el.append($div);
-                }
             }
         };
-
-        function getNodeRadioTemplate(model) {
-            return '<li>' +
-                '<input class="nodeRadio" type="radio" value="'+ model.get('_id') +'" name="'+ model.get('_id') +'">' +
-                '<label for="'+ model.get('_id') +'">'+ model.get('label') +'</label>' +
-                '</li>';
-        }
 
         function _callback(el, evt) {
             // listen for the enter key or Blur to save to the model.

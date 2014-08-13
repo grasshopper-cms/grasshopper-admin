@@ -1,8 +1,14 @@
 .itemSelectModal {
 
   .itemSelection {
+    position: relative;
     padding: 1.25rem;
     height: 400px;
+
+    #table-loading-overlay {
+      top: 0.1rem;
+      bottom: 0.1rem;
+    }
   }
 
   .childNode {
@@ -11,6 +17,12 @@
 
   .childContent {
 
+  }
+
+  #contentSearch {
+    float: none;
+    margin: 0;
+    width: 100%;
   }
 
   .fileName {

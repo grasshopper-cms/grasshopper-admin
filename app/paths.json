@@ -284,7 +284,8 @@
     "collections" : {
         "grasshopperCollection" : "collections/grasshopperCollection",
         "paginatedCollection" : "collections/paginatedCollection",
-        "userCollection" : "collections/userCollection"
+        "userCollection" : "collections/userCollection",
+        "searchCollection" : "collections/searchCollection"
     },
 
     "api" : {

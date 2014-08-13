@@ -133,6 +133,8 @@ define([], function() {
             modes:['code', 'tree']
         },
 
+        loginRedirectKey : 'loginRedirect',
+
         profileGoogleLinkRedirect : {
             url : '#user/:id'
         }

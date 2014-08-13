@@ -31,9 +31,7 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
         }
 
         function beforeRender($deferred) {
-            window.view = this;
             _setBreadcrumbs.call(this);
-
             $.when(_fetchChildNodes.call(this),
                     _fetchChildContentOrAssets.call(this))
                 .done($deferred.resolve);

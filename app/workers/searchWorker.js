@@ -7,8 +7,12 @@ define(['constants', 'paginationWorker', 'jquery', 'underscore'],
         searchContent: searchContent
     };
 
-    function searchContent(e, context, modelName, isFirstQuery) {
-        var model, contentSearchValue;
+    function searchContent(e, context, modelName, isNotUpdateUrl, isFirstQuery) {
+        var model,
+            contentSearchValue;
+
+        isNotUpdateUrl = isNotUpdateUrl || false;
+        isFirstQuery = isFirstQuery || false;
 
         if (!_.isUndefined(e) && !_.isUndefined(constants.controlKeyCodeMap[e.keyCode])) {
             return false;
@@ -23,9 +27,9 @@ define(['constants', 'paginationWorker', 'jquery', 'underscore'],
             _toggleSearchSpinner.call(this);
             model.searchQuery(contentSearchValue)
                 .done(
-                paginationWorker.setUrl.bind(this, model.limit, model.skip, contentSearchValue),
-                _toggleSearchSpinner.bind(this, true)
-            );
+                    isNotUpdateUrl && paginationWorker.setUrl.bind(this, model.limit, model.skip, contentSearchValue),
+                    _toggleSearchSpinner.bind(this, true)
+                );
         }
     }
 

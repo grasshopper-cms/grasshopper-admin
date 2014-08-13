@@ -65,6 +65,8 @@ define({
             email : 'EMAIL',
             username : 'USERNAME',
             password : 'PASSWORD',
+            createdBy : 'CREATED BY',
+            updatedBy : 'UPDATED BY',
             profile : 'PROFILE',
             linkedIdentities : 'LINKED IDENTITIES'
         },
@@ -272,6 +274,11 @@ define({
         },
         author : {
             selectUser : 'Select user'
+        },
+        jsonEditor : {
+            language : 'Language',
+            theme : 'Theme',
+            loading : 'LOADING JSON EDITOR...'
         }
     },
     validationViews : {

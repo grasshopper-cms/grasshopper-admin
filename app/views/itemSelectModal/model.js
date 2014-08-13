@@ -1,7 +1,7 @@
 define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore',
-        'itemSelectModal/contentModel', 'assetDetailViewModel'],
+        'itemSelectModal/contentModel', 'assetDetailViewModel', 'searchCollection'],
     function (Model, resources, grasshopperCollection, constants, masseuse, _,
-              contentModel, assetDetailViewModel) {
+              contentModel, assetDetailViewModel, searchCollection) {
 
         'use strict';
 
@@ -35,8 +35,13 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 }
             }))());
 
-            this.set('content', new (grasshopperCollection.extend({
+            this.set('content', new (searchCollection.extend({
                 model : contentModel,
+                nodeId : function() {
+                    return self.get('_id');
+                },
+                filterKey : 'virtual.label',
+                limit : 10000,
                 url : function() {
                     return constants.api.nodesContent.url.replace(':id', self.get('_id'));
                 }

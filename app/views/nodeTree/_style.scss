@@ -1,7 +1,13 @@
 #nodeTree {
+  position: relative;
   max-height: 700px;
   padding: 1.25em;
   margin-bottom: 3px;
+
+  #table-loading-overlay {
+    top: 0.1rem;
+    bottom: 0.1rem;
+  }
 
   .nodeTree {
     padding-bottom: 5px;
@@ -58,5 +64,4 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-
 }

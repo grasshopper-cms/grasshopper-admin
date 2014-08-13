@@ -113,7 +113,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
         }
 
         function searchContent(e, context, isFirstQuery) {
-            return searchWorker.searchContent.call(this, e, context, 'childContent', isFirstQuery);
+            return searchWorker.searchContent.call(this, e, context, 'childContent', true, isFirstQuery);
         }
 
     });
