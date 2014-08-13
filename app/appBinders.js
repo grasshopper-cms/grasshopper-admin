@@ -26,7 +26,6 @@ define(['jquery', 'underscore', 'masseuse',
                     });
 
                     parentView.addChild(rivets.viewInstance);
-                    //rivets.viewInstance.start();
                 },
                 publish : true
             },
