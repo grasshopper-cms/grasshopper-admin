@@ -219,13 +219,6 @@
             "Model" : "views/nodeDetail/nodeDetailViewModel"
         },
 
-        "nodeTreeView+" : {
-            "" : "views/nodeTree/nodeTreeView",
-            "Config" : "views/nodeTree/nodeTreeViewConfig",
-            "Model" : "views/nodeTree/nodeTreeViewModel",
-            "Binders" : "views/nodeTree/nodeTreeViewBinders"
-        },
-
         "pagination" : "views/pagination",
 
         "pluginWrapperView+" : {
