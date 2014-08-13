@@ -9,15 +9,13 @@ define(['jquery', 'underscore'], function ($, _) {
     function breadcrumb(el, breadcrumbs) {
         var $el = $(el);
 
-        if(breadcrumbs) {
-            $el.empty();
+        $el.empty();
 
-            _.each(_.initial(breadcrumbs), function(crumb) {
-                $el.append('<a class="modalBreadcrumb" nodeId="'+ crumb.nodeId +'">'+ crumb.text +' / </a>');
-            });
-
-            $el.append('<span>'+ _.last(breadcrumbs).text +'</span>');
-        }
+        _.each(_.initial(breadcrumbs), function(crumb) {
+            $el.append('<a class="modalBreadcrumb" nodeId="'+ crumb.nodeId +'">'+ crumb.text +' / </a>');
+        });
+        console.log(breadcrumbs);
+        $el.append('<span>'+ _.last(breadcrumbs).text +'</span>');
 
     }
 });

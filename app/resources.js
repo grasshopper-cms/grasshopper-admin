@@ -225,6 +225,7 @@ define({
     },
     plugins : {
         author : {
+            selectUser : 'Select User',
             noPermissions : 'You don\'t have permissions to query users list. You can only select current user.'
         },
         codeEditor : {
@@ -274,9 +275,6 @@ define({
         slug : {
             refresh : 'Refresh',
             selectField : 'Select Field'
-        },
-        author : {
-            selectUser : 'Select user'
         },
         jsonEditor : {
             language : 'Language',
