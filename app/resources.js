@@ -213,17 +213,15 @@ define({
         size : 'Size',
         modified : 'Modified'
     },
-    nodeTree : {
-        emptyFolder : {
-            content : 'This folder has no content.',
-            files : 'This folder has no files.'
-        }
-    },
     pluginWrapper : {
         emptyFieldsMessage : 'not set.',
         clickToAdd : 'Click To Add.'
     },
     plugins : {
+        author : {
+            selectUser : 'Select User',
+            noPermissions : 'You don\'t have permissions to query users list. You can only select current user.'
+        },
         codeEditor : {
             language : 'Language',
             theme : 'Theme',
@@ -271,9 +269,6 @@ define({
         slug : {
             refresh : 'Refresh',
             selectField : 'Select Field'
-        },
-        author : {
-            selectUser : 'Select user'
         },
         jsonEditor : {
             language : 'Language',

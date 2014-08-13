@@ -31,7 +31,7 @@ define(['grasshopperCollection', 'underscore', 'constants', 'api', 'jquery'],
 
             Api.makeQuery(queryData)
                 .done(function(results) {
-                    this.reset(results);
+                    this.reset(results, { parse: true });
                     this.searching = false;
                     $deferred.resolve();
                 }.bind(this));

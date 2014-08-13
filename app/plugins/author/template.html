@@ -1,13 +1,13 @@
  <div class="row">
     <div class="large-12 small-centered columns">
     	<select>
-           <option selected>{{model:resources->plugins->author->selectUser}}</option>
-            <option data-rv-each-option="model:users:" data-rv-value="option.id">
-                {{option:displayName}}
+            <option disabled selected>{{model:resources->plugins->author->selectUser}}</option>
+            <option data-rv-each-user="model:users:" data-rv-value="user:_id">
+                {{user:displayName}}
             </option>
         </select>
         <div class="author_no_permissions" data-rv-show="model:no_permissions">
-            You don't have permissions to query users list. You can only select current user.
+            {{model:resources->plugins->author->noPermissions}}
         </div>
 	</div>
 </div>
