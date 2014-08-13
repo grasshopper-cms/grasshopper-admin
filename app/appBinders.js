@@ -1,12 +1,10 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'backbone', 'nodeTreeView', 'pluginWrapperViewCollection'],
+    'pluginWrapperView', 'backbone', 'pluginWrapperViewCollection'],
     function ($, _, masseuse,
-              PluginWrapperView, Backbone, NodeTreeView, PluginWrapperViewCollection) {
+              PluginWrapperView, Backbone, PluginWrapperViewCollection) {
 
         'use strict';
-
-        var ProxyProperty = masseuse.ProxyProperty;
 
         return {
             fieldwrapper : {
@@ -50,9 +48,6 @@ define(['jquery', 'underscore', 'masseuse',
                     el.removeEventListener('blur', _callback.bind(this, el), false);
                 }
             },
-            nodetree :  function(el, model) {
-                _appendNodeTreeView.call(this, el, model);
-            },
             'move-to' : function(el, selector) {
                 var $selector = $(selector);
                 $selector.append($(el).contents());
@@ -68,7 +63,7 @@ define(['jquery', 'underscore', 'masseuse',
 
                 if(revert) {
                     if(!$el.attr('oldText')) { // Should Only Do this once.
-                        $el.attr('oldText', $el.text());
+                        $el.attr('oldText', $el.html());
                         $el.width($el.width()); // Forces the buttons to maintain width.
                     }
                     $el.html($el.attr('data-swap-html') || 'Saving...');
@@ -77,24 +72,6 @@ define(['jquery', 'underscore', 'masseuse',
                 }
             }
         };
-
-        function _appendNodeTreeView(el, model) {
-            var nodeTreeView = new NodeTreeView({
-                appendTo : el,
-                modelData : _.extend({}, model.attributes, {
-                    allowedTypes : this.model.model.get('allowedContentTypes'),
-                    selectedContent : new ProxyProperty('selectedContent', this.model.model),
-                    inSetup : this.model.model.get('inSetup'),
-                    nodeTreeType : this.model.model.get('nodeTreeType'),
-                    availableTypes : this.model.model.get('availableTypes')
-                })
-            });
-
-            if(this.model.model.get('inSetup')) {
-                nodeTreeView.model.set('selectedNode',  new ProxyProperty('options.defaultNode', this.model.model));
-            }
-            this.model.view.addChild(nodeTreeView);
-        }
 
         function _callback(el, evt) {
             // listen for the enter key or Blur to save to the model.

@@ -1,7 +1,7 @@
 define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'masseuse', 'underscore',
-    'views/nodeTree/nodeTreeFileDetailModel'],
+        'itemSelectModal/contentModel', 'assetDetailViewModel', 'searchCollection'],
     function (Model, resources, grasshopperCollection, constants, masseuse, _,
-              fileDetailModel) {
+              contentModel, assetDetailViewModel, searchCollection) {
 
         'use strict';
 
@@ -11,16 +11,13 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             initialize : initialize,
             idAttribute : '_id',
             defaults : {
-                loading : true,
-                nodeTreeType : 'file',
+                header : 'Select Item',
+                nodeId : new ComputedProperty(['_id'], function(_id) {
+                    return _id; // This is here for the contentBrowse breadcrumb.
+                }),
+                breadcrumbs : [],
                 inRoot : new ComputedProperty(['_id'], function(_id) {
                     return _id === '0';
-                }),
-                folderLabel : new ComputedProperty(['_id', 'label'], function(_id, label) {
-                    return _id === '0' ? 'Root' : label;
-                }),
-                selectedContentName : new ComputedProperty(['selectedContent'], function(selectedContent) {
-                    return (selectedContent) ? _.last(selectedContent.split('/')) : '';
                 }),
                 resources : resources
             },
@@ -32,18 +29,31 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
             Model.prototype.initialize.apply(this, arguments);
 
-            this.set('children', new (grasshopperCollection.extend({
+            this.set('childNodes', new (grasshopperCollection.extend({
                 url : function() {
                     return constants.api.nodesChildren.url.replace(':id', self.get('_id'));
                 }
             }))());
 
-            this.set('content', new (grasshopperCollection.extend({
-                model : fileDetailModel,
+            this.set('content', new (searchCollection.extend({
+                model : contentModel,
+                nodeId : function() {
+                    return self.get('_id');
+                },
+                filterKey : 'virtual.label',
+                limit : 10000,
+                url : function() {
+                    return constants.api.nodesContent.url.replace(':id', self.get('_id'));
+                }
+            }))());
+
+            this.set('assets', new (grasshopperCollection.extend({
+                model : assetDetailViewModel,
                 url : function() {
                     return constants.api.assets.url.replace(':id', self.get('_id'));
                 }
             }))());
 
         }
+
     });

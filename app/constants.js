@@ -40,6 +40,9 @@ define([], function() {
             nodesChildren : {
                 url : apiEndpoint + '/node/:id/children'
             },
+            nodesChildrenDeep : {
+                url : apiEndpoint + '/node/:id/children/deep'
+            },
             nodesContent : {
                 url : apiEndpoint + '/node/:id/content'
             },

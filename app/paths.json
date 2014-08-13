@@ -195,6 +195,8 @@
             "Model" : "views/header/headerViewModel"
         },
 
+        "itemSelectModal" : "views/itemSelectModal",
+
         "login" : "views/login",
 
         "mastheadView+" : {
@@ -282,7 +284,8 @@
     "collections" : {
         "grasshopperCollection" : "collections/grasshopperCollection",
         "paginatedCollection" : "collections/paginatedCollection",
-        "userCollection" : "collections/userCollection"
+        "userCollection" : "collections/userCollection",
+        "searchCollection" : "collections/searchCollection"
     },
 
     "api" : {
