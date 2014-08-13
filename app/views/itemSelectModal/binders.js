@@ -14,7 +14,6 @@ define(['jquery', 'underscore'], function ($, _) {
         _.each(_.initial(breadcrumbs), function(crumb) {
             $el.append('<a class="modalBreadcrumb" nodeId="'+ crumb.nodeId +'">'+ crumb.text +' / </a>');
         });
-        console.log(breadcrumbs);
         $el.append('<span>'+ _.last(breadcrumbs).text +'</span>');
 
     }
