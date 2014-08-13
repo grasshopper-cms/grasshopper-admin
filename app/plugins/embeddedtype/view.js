@@ -37,10 +37,12 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             var activeTypeId = this.model.get('options'),
                 activeContentType;
 
-            if(!_.isEmpty(activeTypeId)) {
+            if(!_.isEmpty(activeTypeId) || !_.isBoolean(activeTypeId)) {
                 activeContentType = _.findWhere(this.model.get('availableContentTypes'), {_id : activeTypeId});
                 this.model.set('activeContentType', activeContentType);
                 _proxyValues.call(this);
+            } else if(_.isBoolean(activeTypeId)) {
+                this.model.set('invalidContentType', true);
             }
             this.model.toggle('loading');
         }
