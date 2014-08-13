@@ -17,7 +17,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 }),
                 breadcrumbs : [],
                 inRoot : new ComputedProperty(['_id'], function(_id) {
-                    return _id === '0';
+                    return _id === '0' || _id === 0;
                 }),
                 resources : resources,
                 uploading : false
