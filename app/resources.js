@@ -213,12 +213,6 @@ define({
         size : 'Size',
         modified : 'Modified'
     },
-    nodeTree : {
-        emptyFolder : {
-            content : 'This folder has no content.',
-            files : 'This folder has no files.'
-        }
-    },
     pluginWrapper : {
         emptyFieldsMessage : 'not set.',
         clickToAdd : 'Click To Add.'
