@@ -37,8 +37,8 @@
                         </label>
                     </li>
 
-                    <li data-rv-unless="model:assets.length | greaterThan 0">
-                        {{model:resources->node->emptyContent}}
+                    <li data-rv-if="model:assets.length | equals 0">
+                        {{model:resources->asset->emptyNode}}
                     </li>
                 </ul>
 
@@ -47,7 +47,7 @@
         </div>
 
         <div id="buttonContainer" class="row" data-rv-hide="model:loading">
-            <div class="left">
+            <div class="left" data-rv-hide="model:inRoot">
                 <button class="button tiny radius noMarginBottom" data-rv-on-click="view.startUploadWorkflow" data-rv-swap-text-while="model:uploading" data-swap-html="<i class='fa fa-refresh fa-spin'></i>">
                     {{model:resources->uploadFile}}
                 </button>

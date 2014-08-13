@@ -114,9 +114,10 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
 
         function _startModalView() {
             var value = this.model.get('value'),
-                nodeId = this.model.get('nodeId');
+                nodeId = this.model.get('nodeId'),
+                allowedTypes = this.model.get('options.allowedTypes');
 
-            return this.fireContentSelectModal(value, nodeId);
+            return this.fireContentSelectModal(value, nodeId, allowedTypes);
         }
 
         function _toggleLoadingSpinner() {
