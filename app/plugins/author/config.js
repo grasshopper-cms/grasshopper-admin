@@ -16,7 +16,10 @@ define(['text!plugins/author/template.html', 'plugins/author/model', 'text!plugi
                 type : 'author',
                 dataType : 'dropdown',
                 validation : [],
-                value : ''
+                value : {
+                    displayName : '',
+                    _id : ''
+                }
             },
             wrapper: false,
             template : template,

@@ -10,28 +10,30 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require', 'resources'],
         });
 
         function beforeRender($deferred) {
-            var self = this;
-
-            self.model.get('users').fetch()
-                .fail(function (jqXHR, status, error) {
-                    self.model.get('users').reset([ self.app.user ]);
-                    self.model.set('no_permissions', true);
-                    $deferred.resolve();
-                })
-                .done(function () {
-                    var filteredUsers = self.model.get('users').filter(function (item) {
-                        return _.contains(['admin', 'editor', 'author'], item.get('role'));
-                    });
-                    self.model.get('users').reset(filteredUsers);
-                    $deferred.resolve();
-                });
+            if(!this.model.get('inSetup')) {
+                this.model.get('users').fetch()
+                    .fail(_handleFailedUserFetch.bind(this))
+                    .always($deferred.resolve);
+            }
+            $deferred.resolve();
         }
 
         function afterRender() {
-            var value = this.model.get('value'),
-                selectEl = this.$('select');
+            if(!this.model.get('inSetup')) {
+                _initializeSelect2.call(this);
+            }
+        }
 
-            selectEl.select2(
+        function _handleFailedUserFetch() {
+            this.model.get('users').reset([ this.app.user ]);
+            this.model.toggle('no_permissions');
+        }
+
+        function _initializeSelect2() {
+            var value = this.model.get('value'),
+                $select = this.$('select');
+
+            $select.select2(
                 {
                     containerCssClass : 'authorDropdownSelectContainer',
                     dropdownCssClass : 'authorDropdownSelectDrop',
@@ -40,19 +42,17 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require', 'resources'],
                 })
                 .on('change', _changeValue.bind(this));
 
-            if (value && typeof(value) === 'object') {
-                selectEl.select2('val', value.id);
-            } else if (value && typeof(value) === 'string') {
-                selectEl.select2('val', value);
-            }
+            setTimeout(function() {
+                $select.select2('val', value._id.toString());
+            }, 500);
         }
 
-        function _getValueStruct(id) {
-            var foundUser = this.model.get('users').findWhere({ _id : id });
+        function _getValueStruct(_id) {
+            var foundUser = this.model.get('users').findWhere({ _id : _id });
 
             if (foundUser){
                 return {
-                    id : id,
+                    _id : _id,
                     displayName : foundUser.get('displayName')
                 };
             }
