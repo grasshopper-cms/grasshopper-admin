@@ -356,6 +356,7 @@ define({
     type : 'Type',
     types : 'Types',
     upload : 'Upload',
+    uploadFile : 'Upload File',
     user_name : 'User Name',
     users : 'Users',
     sysInfo : 'Info',

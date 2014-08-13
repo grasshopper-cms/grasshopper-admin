@@ -19,7 +19,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 inRoot : new ComputedProperty(['_id'], function(_id) {
                     return _id === '0';
                 }),
-                resources : resources
+                resources : resources,
+                uploading : false
             },
             urlRoot : constants.api.node.url
         });

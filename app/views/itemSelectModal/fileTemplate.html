@@ -21,17 +21,17 @@
                 </div>
 
                 <ul data-rv-hide="model:inRoot" class="no-bullet childContent">
-                    <li data-rv-each-item="model:assets:">
-                        <input data-rv-id="item.cid" type="radio" name="selectedContent" data-rv-value="item:path" data-rv-checked="model:value">
+                    <li data-rv-each-asset="model:assets:">
+                        <input data-rv-id="asset.cid" type="radio" name="selectedContent" data-rv-value="asset:path" data-rv-checked="model:value">
 
-                        <label data-rv-for="item.cid">
+                        <label data-rv-for="asset.cid">
 
                             <div class="thumbnailContainer">
-                                <img class="th thumbNail left" data-rv-src="item:url" data-rv-alt="item:fileName">
+                                <img class="th thumbNail left" data-rv-src="asset:url" data-rv-alt="asset:fileName">
                             </div>
 
                             <div class="fileName">
-                                <a>{{item:fileName}}</a>
+                                <a>{{asset:fileName}}</a>
                             </div>
 
                         </label>
@@ -47,6 +47,11 @@
         </div>
 
         <div id="buttonContainer" class="row" data-rv-hide="model:loading">
+            <div class="left">
+                <button class="button tiny radius noMarginBottom" data-rv-on-click="view.startUploadWorkflow" data-rv-swap-text-while="model:uploading" data-swap-html="<i class='fa fa-refresh fa-spin'></i>">
+                    {{model:resources->uploadFile}}
+                </button>
+            </div>
             <div class="right">
                 <button id="confirm" class="button tiny radius noMarginBottom">{{model:resources->confirm}}</button>
                 <button id="cancel" class="button tiny radius noMarginBottom">{{model:resources->cancel}}</button>

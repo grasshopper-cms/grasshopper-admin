@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWorker'],
-    function (GrasshopperBaseView, config, $, breadcrumbWorker) {
+define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWorker', 'resources', 'assetWorker', 'underscore'],
+    function (GrasshopperBaseView, config, $, breadcrumbWorker, resources, assetWorker, _) {
 
         'use strict';
 
@@ -10,7 +10,8 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
             beforeRender : beforeRender,
             confirmModal : confirmModal,
             cancelModal : cancelModal,
-            navigateToFolder : navigateToFolder
+            navigateToFolder : navigateToFolder,
+            startUploadWorkflow : startUploadWorkflow
         });
 
         function initialize(options) {
@@ -84,4 +85,56 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
             _fetchChildContentOrAssets.call(this);
         }
 
+        function startUploadWorkflow() {
+            var nodeId = this.model.get('_id'),
+                promises = [],
+                self = this;
+
+            _toggleUploading.call(this);
+
+            _getFilesFromUser.call(this)
+                .done(function(files) {
+
+                    _.each(files, function(file) {
+                        promises.push(assetWorker.postNewAsset(nodeId, file));
+                    });
+
+                    $.when(promises)
+                        .then(_fetchChildContentOrAssets.bind(self))
+                        .then(_toggleUploading.bind(self));
+
+                });
+        }
+
+        function _getFilesFromUser() {
+            var $deferred = $.Deferred();
+
+            this.displayModal(
+                {
+                    header : resources.asset.uploadAssetModalMsg,
+                    type : 'upload',
+                    data : {}
+                })
+                .done(function(modalData) {
+                    $deferred.resolve(modalData.files);
+                });
+
+            return $deferred.promise();
+        }
+
+        function _toggleUploading() {
+            this.model.toggle('uploading');
+        }
+
     });
+
+
+
+//'filter-by-allowed-types' :  function(el, model) {
+//                    var allowedTypes = model.get('allowedTypes'),
+//                            thisModelsType = model.get('type');
+//
+//                        if (!_.isEmpty(allowedTypes) && !_.contains(allowedTypes, thisModelsType)) {
+//                            $(el).hide();
+//                        }
+//                }
