@@ -7,7 +7,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender: beforeRender,
             afterRender : afterRender,
             setAvailableContentTypes : setAvailableContentTypes,
             fireSelectContentModal : fireSelectContentModal,
@@ -16,13 +15,6 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
             .extend(itemSelectModal)
             .extend(buildNodeRadioList);
 
-        function beforeRender() {
-            if(!this.model.get('inSetup')) {
-                _getSelectedContent.call(this);
-                this.model.on('change:value', _getSelectedContent.bind(this));
-            }
-        }
-
         function afterRender() {
             if(this.model.get('inSetup')) {
                 $.when(this.model.get('childNodesDeep').fetch(), _getAvailableContentTypes.call(this))
@@ -30,6 +22,12 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
                         this.buildNodeRadioList.bind(this, this.$('#nodeRadioList'), this.model.get('childNodesDeep')),
                         _getSelectedNode.bind(this)
                     );
+            } else {
+                _toggleLoadingSpinner.call(this);
+                _getSelectedContent.call(this)
+                    .done(_toggleLoadingSpinner.bind(this));
+
+                this.model.on('change:value', _getSelectedContent.bind(this));
             }
         }
 
@@ -119,6 +117,10 @@ define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery
                 nodeId = this.model.get('nodeId');
 
             return this.fireContentSelectModal(value, nodeId);
+        }
+
+        function _toggleLoadingSpinner() {
+            this.model.toggle('loading');
         }
 
     });

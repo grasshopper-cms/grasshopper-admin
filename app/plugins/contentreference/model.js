@@ -19,7 +19,8 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
             nodeId : new ComputedProperty(['options'], function() {
                 return this.get('options.defaultNode');
             }),
-            inSetup : false
+            inSetup : false,
+            loading : false
         },
         urlRoot : constants.api.node.url
     });
