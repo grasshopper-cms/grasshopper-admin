@@ -59,7 +59,7 @@ define({
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
             lastName : 'LAST NAME',
-            displayName : 'DISPLAY NAME',
+            displayname : 'DISPLAY NAME',
             role : 'USER ROLE',
             enabled : 'ENABLED?',
             email : 'EMAIL',
@@ -68,7 +68,7 @@ define({
             createdBy : 'CREATED BY',
             updatedBy : 'UPDATED BY',
             profile : 'PROFILE',
-            linkedIdentities : 'LINKED IDENTITIES'
+            linkedidentities : 'LINKED IDENTITIES'
         },
         selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
             'Are you sure you want to do this? (You Will still need to save to apply changes.',
@@ -306,7 +306,7 @@ define({
     key: 'Key',
     label : 'Label',
     login : 'Login',
-    displayName : 'Display name',
+    displayname : 'Display name',
     log_in : 'Log In',
     logInWithGoogle : 'Login with Google',
     log_out : 'Log Out',

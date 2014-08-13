@@ -28,10 +28,10 @@
 
                     <div class="row">
                         <div class="large-3 columns">
-                            <label for="displayName" class="right inline">{{model:resources->user->attributeTitles->displayName | withColon}}</label>
+                            <label for="displayname" class="right inline">{{model:resources->user->attributeTitles->displayname | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
-                            <input id="displayName" type="text" data-rv-value="model:displayName"/>
+                            <input id="displayname" type="text" data-rv-value="model:displayname"/>
                         </div>
                     </div>
 
@@ -81,13 +81,13 @@
                         </div>
                         <div class="large-9 columns">
                             <a class="form-valigned-text" data-rv-href="model:createdBy.id | asUserDetailsLink"
-                               data-rv-text="model:createdBy.displayName"/>
+                               data-rv-text="model:createdBy.displayname"/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="large-3 columns">
-                            <label class="right inline">{{model:resources->user->attributeTitles->linkedIdentities | withColon}}</label>
+                            <label class="right inline">{{model:resources->user->attributeTitles->linkedidentities | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
                             <div id="identities">

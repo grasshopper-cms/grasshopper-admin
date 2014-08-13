@@ -53,7 +53,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require', 'resources'],
             if (foundUser){
                 return {
                     _id : _id,
-                    displayName : foundUser.get('displayName')
+                    displayname : foundUser.get('displayname')
                 };
             }
             // if no user found, return undefined
