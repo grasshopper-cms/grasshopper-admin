@@ -224,6 +224,9 @@ define({
         clickToAdd : 'Click To Add.'
     },
     plugins : {
+        author : {
+            noPermissions : 'You don\'t have permissions to query users list. You can only select current user.'
+        },
         codeEditor : {
             language : 'Language',
             theme : 'Theme',
