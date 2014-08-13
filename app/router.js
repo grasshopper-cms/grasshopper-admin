@@ -153,9 +153,9 @@ define([
         function _handleRoutingFromRefreshOnModalView (nodeId) {
             if(nodeId === '0') {
                 nodeId = null;
-                this.breadcrumb.unshift(constants.internalRoutes.content.replace('#', ''));
+                this.breadcrumb.unshift(constants.internalRoutes.content);
             } else {
-                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
+                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId));
             }
             this.displayContentBrowse(nodeId);
         }
@@ -211,7 +211,6 @@ define([
 
             GrasshopperBaseView.prototype.displayModal = displayModal;
             GrasshopperBaseView.prototype.hideModal = hideModal;
-
         }
 
         function loadMainContent (ViewType, config, bypass) {
@@ -334,7 +333,7 @@ define([
         }
 
         function goHome () {
-            this.navigateTrigger('items');
+            this.navigate('items', {trigger:true});
         }
 
         function displayUserDetail (id) {

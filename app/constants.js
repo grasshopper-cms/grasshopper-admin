@@ -69,24 +69,24 @@ define([], function() {
             }
         },
         internalRoutes : {
-            user : '#user',
-            users : '#users',
-            addUser : '#add-user',
-            sysInfo: '#sys-info',
-            contentTypes : '#content-types',
-            newContentType : '#content-types/new',
-            contentTypeDetail : '#content-types/:id',
-            content : '#items',
-            contentDetail : '#item/:id',
-            nodeDetail : '#items/nodeid/:id',
-            login : '#login',
-            logout : '#logout',
-            about : '#about',
-            createFolder : '#items/nodeid/:id/create-folder',
-            addContent : '#items/nodeid/:id/create-content',
-            createAssets : '#items/nodeid/:id/create-assets',
-            forbidden : '#forbidden',
-            notFound : '#not-found'
+            user : '/user',
+            users : '/users',
+            addUser : '/add-user',
+            sysInfo: '/sys-info',
+            contentTypes : '/content-types',
+            newContentType : '/content-types/new',
+            contentTypeDetail : '/content-types/:id',
+            content : '/items',
+            contentDetail : '/item/:id',
+            nodeDetail : '/items/nodeid/:id',
+            login : '/login',
+            logout : '/logout',
+            about : '/about',
+            createFolder : '/items/nodeid/:id/create-folder',
+            addContent : '/items/nodeid/:id/create-content',
+            createAssets : '/items/nodeid/:id/create-assets',
+            forbidden : '/forbidden',
+            notFound : '/not-found'
         },
         timeouts: {
             showSpinnerLoadingTimeout: 2000
@@ -136,7 +136,7 @@ define([], function() {
         loginRedirectKey : 'loginRedirect',
 
         profileGoogleLinkRedirect : {
-            url : '#user/:id'
+            url : '/user/:id'
         }
 
     };

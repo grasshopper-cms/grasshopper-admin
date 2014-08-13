@@ -70,10 +70,14 @@ module.exports = function (grunt) {
 
     function buildPluginsObject(abspath, rootdir, subdir, filename) {
         var thisField,
-            readMe;
+            readMe,
+            path;
 
         // TODO: This is really sub optimal.
         if(subdir.indexOf('/') === -1) {
+            //should be absolute path
+            path = (abspath && abspath[0] !== '/') ? '/' + abspath : abspath;
+
             if(_.isEmpty(_.where(plugins.fields, {type: subdir}))) {
                 plugins.fields.push({
                     type: subdir,
@@ -85,7 +89,7 @@ module.exports = function (grunt) {
             if(filename === 'view.js') {
                 thisField = _.where(plugins.fields, {type: subdir})[0];
                 thisField.view = subdir;
-                defineBlock.push(abspath.replace('app/', '').toString());
+                defineBlock.push(path.replace('app/', '').toString());
                 argumentsBlock.push(subdir + 'View');
             }
 
@@ -99,7 +103,7 @@ module.exports = function (grunt) {
             if(filename === 'config.js') {
                 thisField = _.where(plugins.fields, {type: subdir})[0];
                 thisField.config = subdir;
-                defineBlock.push(abspath.replace('app/', '').toString());
+                defineBlock.push(path.replace('app/', '').toString());
                 argumentsBlock.push(subdir + 'Config');
             }
         }

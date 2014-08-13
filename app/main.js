@@ -104,6 +104,8 @@ require([
         function (Backbone, _, $, Router, constants, ajaxCounterWorker) {
         'use strict';
 
+        var router = new Router();
+
         _.templateSettings = {
             evaluate : /\[\[(.+?)\]\]/g,
             interpolate : /\[\[=(.+?)\]\]/g,
@@ -115,9 +117,19 @@ require([
         // TODO: For some reason this is not needed?
         $(document).foundation();
 
-        new Router();
-        Backbone.history.start();
+        Backbone.history.start({
+            hashChange : false,
+            pushState: true,
+            root: '/admin'
+        });
 
-        // TODO: setup push state on nginx
-        //Backbone.history.start({pushState: true});
+        $(document).on('click', 'a:not([data-bypass])', function (evt) {
+            var href = $(this).attr('href') || '';
+            var protocol = this.protocol + '//';
+
+            if (href && href.slice(protocol.length) !== protocol) {
+                evt.preventDefault();
+                router.navigate(href, {trigger:true});
+            }
+        });
     });
