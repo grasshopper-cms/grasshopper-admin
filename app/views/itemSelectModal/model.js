@@ -37,6 +37,17 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             }))());
 
             this.set('content', new (searchCollection.extend({
+                parse : function(content) {
+                    var allowedTypes = self.get('allowedTypes');
+
+                    if(_.isEmpty(allowedTypes)) { // Show everything if user does not filter by types.
+                        return content;
+                    }
+
+                    return _.filter(content, function(item) {
+                        return _.contains(allowedTypes, item.meta.type);
+                    });
+                },
                 model : contentModel,
                 nodeId : function() {
                     return self.get('_id');

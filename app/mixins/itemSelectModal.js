@@ -7,12 +7,13 @@ define(['itemSelectModal/view', 'jquery'], function (ModalView, $) {
         fireFileSelectModal : fireFileSelectModal
     };
 
-    function fireContentSelectModal(value, nodeId) {
+    function fireContentSelectModal(value, nodeId, allowedTypes) {
         var options = {
             type : 'content',
             header : 'Select Content',
             value : value,
-            nodeId : nodeId
+            nodeId : nodeId,
+            allowedTypes : allowedTypes
         };
 
         return _startItemSelectView.call(this, options);
@@ -23,7 +24,8 @@ define(['itemSelectModal/view', 'jquery'], function (ModalView, $) {
             type : 'file',
             header : 'Select File',
             value : value,
-            nodeId : nodeId
+            nodeId : nodeId,
+            allowedTypes : []
         };
 
         return _startItemSelectView.call(this, options);
@@ -36,7 +38,8 @@ define(['itemSelectModal/view', 'jquery'], function (ModalView, $) {
                 modelData : {
                     header : options.header,
                     value : options.value,
-                    _id : options.nodeId
+                    _id : options.nodeId,
+                    allowedTypes : options.allowedTypes
                 },
                 $deferred : $deferred
             });
