@@ -16,7 +16,8 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         refreshAccordion : refreshAccordion,
         collapseAccordion : collapseAccordion,
         openSpecificAccordion : openSpecificAccordion
-    }).extend(handleRowClick);
+    })
+        .extend(handleRowClick);
 
     function beforeRender($deferred) {
         var self = this;
