@@ -29,6 +29,12 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
         }
 
         function _handleSuccessfulContentTypeRetrieval($deferred, availableContentTypes) {
+            var contentTypeId = this.model.get('contentTypeId');
+
+            availableContentTypes = _.filter(availableContentTypes, function(num) {
+                return num._id !== contentTypeId;
+            });
+
             this.model.set('availableContentTypes', availableContentTypes);
             $deferred.resolve();
         }

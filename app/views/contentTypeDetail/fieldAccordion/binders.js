@@ -11,6 +11,7 @@ define(['underscore', 'masseuse', 'plugins', 'require', 'jquery'],
                 },
                 routine : function(el, model) {
                     var rivets = this,
+                        parentView = this.model.view,
                         plugin = _.find(plugins.fields, {type : model.get('type')}),
                         ViewModule = plugin.view,
                         configModule = plugin.config;
@@ -28,6 +29,7 @@ define(['underscore', 'masseuse', 'plugins', 'require', 'jquery'],
 
                     rivets.viewInstance = new ViewModule(configModule, {
                         modelData : {
+                            contentTypeId : parentView.model.get('contentTypeId'), // This is the contentType's Id
                             options : masseuse.ProxyProperty('options', model),
                             inSetup : true
                         },
@@ -36,7 +38,7 @@ define(['underscore', 'masseuse', 'plugins', 'require', 'jquery'],
                         appendTo : el
                     });
 
-                    rivets.model.view.addChild(rivets.viewInstance);
+                    parentView.addChild(rivets.viewInstance);
                 },
                 publishes : true
             },
