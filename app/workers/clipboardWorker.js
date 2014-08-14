@@ -44,7 +44,7 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api'],
 
         function _getIds(values) {
             return _.map(values, function (item) {
-                return item.id;
+                return {id: item.id, type: item.type};
             });
         }
 
@@ -53,6 +53,8 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api'],
         }
 
         function pasteContent(ctx, ids, folderInfo) {
+            var $deferred = new $.Deferred();
+
             if (clipboardContent && clipboardContent.op) {
                 var msg = 'Should we ';
                 msg += clipboardContent.op;
@@ -63,13 +65,22 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api'],
                 msg += folderInfo.name ? folderInfo.name : 'ROOT';
                 msg += '?';
 
-                _displayPasteWarning.call(this, ctx, msg).done(function () {
-                    Api.moveContent(_prepareMoveRequest(clipboardContent, folderInfo)).done(function () {
-                        _notify();
+                _displayPasteWarning.call(this, ctx, msg).then(function () {
+                    Api.moveContent(_prepareMoveRequest(clipboardContent, folderInfo)).then(function (data) {
+                        clear();
+                        $deferred.resolve(data);
+                    }, function (err) {
+                        $deferred.reject(err);
+                        _displayError.call(this, ctx, ( err &&  err.responseJSON) ? err.responseJSON.message : 'Cannot complete operation');
                     });
+                }, function (err) {
+                    $deferred.reject(err);
                 });
             }
-
+            else {
+                $deferred.reject('No operation specfified');
+            }
+            return $deferred.promise();
         }
 
         function _displayPasteWarning(view, msg) {
@@ -77,6 +88,15 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api'],
                 {
                     header: resources.warning,
                     type: 'warning',
+                    msg: msg
+                });
+        }
+
+        function _displayError(view, msg) {
+            return view.displayModal(
+                {
+                    header: resources.error,
+                    type: 'error',
                     msg: msg
                 });
         }
