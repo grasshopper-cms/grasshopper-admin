@@ -13,6 +13,7 @@
 @import "datetimepicker";
 @import "CSS:../vendor/select2/select2";
 @import "CSS:../vendor/jsoneditor/jsoneditor";
+@import "CSS:../vendor/contextjs/context.standalone";
 
 $imgPath: 'img';
 
@@ -132,7 +133,7 @@ body, html {
   }
 
   #stage {
-    margin-top: 1em;
+    margin-top: 2.5em;
   }
 
   .search {
@@ -193,6 +194,7 @@ body, html {
   @import "../views/alertBox/_style.scss"; // Alertbox
   @import "../views/login/_style.scss"; // Login
   @import "../views/masthead/_style.scss"; // Masthead
+  @import "../views/clipboard/_style.scss"; // Clipboard
   @import "../views/userIndex/_style.scss"; // User Index
   @import "../views/userDetail/_style.scss"; // User Detail
   @import "../views/contentDetail/_style.scss"; // Content Detail

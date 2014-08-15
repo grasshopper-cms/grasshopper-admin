@@ -18,7 +18,8 @@ define([
     'addFolderView',
     'addContentView',
     'addAssetsView',
-    'sysInfoView'
+    'sysInfoView',
+    'clipboardView'
 ],
     function ($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
@@ -38,7 +39,8 @@ define([
               AddFolderView,
               AddContentView,
               AddAssetsView,
-              SysInfoView
+              SysInfoView,
+              ClipboardView
         ) {
 
         'use strict';
@@ -253,7 +255,12 @@ define([
             this.headerView.start();
             this.mastheadView = new MastheadView();
             this.mastheadView.start();
+            startClipboard.call(this);
+        }
 
+        function startClipboard () {
+            this.clipboardView = new ClipboardView({});
+            this.clipboardView.start();
         }
 
         function removeHeader () {

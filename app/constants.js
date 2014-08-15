@@ -55,6 +55,9 @@ define([], function() {
             content : {
                 url : apiEndpoint + '/content'
             },
+            moveNode : {
+                url : apiEndpoint + '/node/move'
+            },
             contentQuery : {
                 url : apiEndpoint + '/content/query'
             },
