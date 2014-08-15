@@ -189,7 +189,7 @@ module.exports = function (grunt) {
                 }
             ]
         },
-        indexToDeploy : {
+        index : {
             files : [
                 {
                     expand : true,
@@ -197,7 +197,7 @@ module.exports = function (grunt) {
                     src : [
                         'index.html'
                     ],
-                    dest : '_deploy'
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         }

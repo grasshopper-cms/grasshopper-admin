@@ -28,6 +28,7 @@ module.exports = function (grunt) {
         'copy:imagesToBuild',
         'sass',
         'autoprefixer:no_dest',
+        'copy:index',
         'requirejs',
         'vendor:switch',
         'vendor:setup:vendorBuilt',
