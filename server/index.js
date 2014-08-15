@@ -10,7 +10,7 @@ api = api();
 app.use(api.ghApi || api.router);
 app.use(express.static(__dirname + '/public/admin'));
 
-app.get(/^\/admin(\/[\w-]+)*$/, function(request, response) {
+app.get('/admin*?', function(request, response) {
     response.sendfile(__dirname + '/public/admin/index.html');
 });
 
