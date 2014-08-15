@@ -21,7 +21,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
 
     function beforeRender($deferred) {
         var self = this;
-
         if (!this.model.has('label') && !this.model.isNew()) {
             this.model.fetch({error: function (collection, response, options) {
                 if (response.status === 404) {

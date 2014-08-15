@@ -139,12 +139,6 @@
             "Model" : "views/assetDetail/assetDetailViewModel"
         },
 
-        "clipboardView+" : {
-            "" : "views/clipboard/clipboardView",
-            "Config" : "views/clipboard/clipboardViewConfig",
-            "Model" : "views/clipboard/clipboardViewModel"
-        },
-
         "contentBrowseView+" : {
             "" : "views/contentBrowse/contentBrowseView",
             "Config" : "views/contentBrowse/contentBrowseViewConfig",
@@ -204,6 +198,11 @@
 
         "itemSelectModal" : "views/itemSelectModal",
 
+        "clipboardView+" : {
+            "" : "views/clipboard/clipboardView",
+            "Config" : "views/clipboard/clipboardViewConfig",
+            "Model" : "views/clipboard/clipboardViewModel"
+        },
         "login" : "views/login",
 
         "mastheadView+" : {
@@ -270,17 +269,17 @@
     },
 
     "workers" : {
-        "loginWorker" : "workers/loginWorker",
+				"loginWorker" : "workers/loginWorker",
         "logoutWorker" : "workers/logoutWorker",
         "contentTypeWorker" : "workers/contentTypeWorker",
         "ajaxCounterWorker" : "workers/ajaxCounterWorker",
+				"clipboardWorker" : "workers/clipboardWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
         "nodeWorker" : "workers/nodeWorker",
         "urlWorker" : "workers/urlWorker",
         "paginationWorker" : "workers/paginationWorker",
-        "searchWorker" : "workers/searchWorker",
-        "clipboardWorker" : "workers/clipboardWorker"
+        "searchWorker" : "workers/searchWorker"
     },
 
     "collections" : {
