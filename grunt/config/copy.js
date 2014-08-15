@@ -53,7 +53,6 @@ module.exports = function (grunt) {
                         '**',
                         '!**/*.scss',
                         '**/*.html',
-                        '!index.html',
                         '!vendor/**'
                     ],
                     dest : '<%= tempDirectory %>'

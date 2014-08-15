@@ -11,7 +11,7 @@ module.exports = function (grunt) {
             'build',
             'copy:deploy',
             'build_gh_pages:staging',
-            'shell:deployHeroku',
+            'shell:deployHeroku'
         ];
 
         if (loadConfigs) {
