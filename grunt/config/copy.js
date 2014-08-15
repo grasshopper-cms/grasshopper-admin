@@ -188,6 +188,18 @@ module.exports = function (grunt) {
                     dest : '_deploy'
                 }
             ]
+        },
+        indexToDeploy : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        'index.html'
+                    ],
+                    dest : '_deploy'
+                }
+            ]
         }
     });
 

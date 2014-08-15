@@ -10,6 +10,7 @@ module.exports = function (grunt) {
             'shell:commitReleaseNotes',
             'build',
             'copy:deploy',
+            'copy:indexToDeploy',
             'build_gh_pages:staging',
             'shell:deployHeroku'
         ];
