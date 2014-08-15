@@ -40,7 +40,8 @@
                     </thead>
                     <tbody id="contentBrowseTable">
                         <!--Nodes Come First-->
-                        <tr class="nodeDetailRow" data-rv-each-node="model:childNodes:" data-rv-new-node-detail-row="node"></tr>
+                        <tr class="nodeDetailRow nodeOrContentDetailRow" data-rv-each-node="model:childNodes:"
+                            data-rv-data-id="node.id" data-rv-new-node-detail-row="node"></tr>
 
                         <!--Then Content-->
                         <tr data-rv-unless="model:childContent.length | greaterThan 0">
@@ -53,7 +54,8 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr class="contentDetailRow" data-rv-each-content="model:childContent.models" data-rv-new-content-detail-row="content"></tr>
+                        <tr class="contentDetailRow nodeOrContentDetailRow" data-rv-each-content="model:childContent.models" data-rv-data-id="content.id"
+                            data-rv-new-content-detail-row="content"></tr>
                     </tbody>
                 </table>
 
