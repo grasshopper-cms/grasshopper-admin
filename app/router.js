@@ -155,9 +155,9 @@ define([
         function _handleRoutingFromRefreshOnModalView (nodeId) {
             if(nodeId === '0') {
                 nodeId = null;
-                this.breadcrumb.unshift(constants.internalRoutes.content.replace('#', ''));
+                this.breadcrumb.unshift(constants.internalRoutes.content);
             } else {
-                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
+                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId));
             }
             this.displayContentBrowse(nodeId);
         }
@@ -213,7 +213,6 @@ define([
 
             GrasshopperBaseView.prototype.displayModal = displayModal;
             GrasshopperBaseView.prototype.hideModal = hideModal;
-
         }
 
         function loadMainContent (ViewType, config, bypass) {
@@ -279,16 +278,16 @@ define([
         }
 
         function displayLogin (token) {
-            var googleRedirect = LocalStorage.get('googleRedirect');
+            var redirect = LocalStorage.get(constants.loginRedirectKey);
 
             if(token) {
                 // I am assuming this is a google token because that is all we support right meow.
                 LocalStorage.set('authToken', 'Google '+ token);
 
-                // Check if we have anything in localstorage telling us to redirect somewhere else after google login
-                if (googleRedirect && googleRedirect !== undefined) {
-                    LocalStorage.remove('googleRedirect')
-                        .done(this.navigateTrigger.bind(this,googleRedirect));
+                // Check if we have anything in localstorage telling us to redirect somewhere else after login
+                if (redirect && redirect !== undefined) {
+                    LocalStorage.remove(constants.loginRedirectKey)
+                        .done(this.navigateTrigger.bind(this, redirect));
                 } else  {
                     this.navigateTrigger('#items');
                 }
@@ -322,8 +321,9 @@ define([
                         header : (options.header) ? options.header : null,
                         msg : options.msg,
                         data : (options.data) ? options.data : null,
-                        hideCancel: !!options.hideCancel,
-                        hideConfirm: !!options.hideConfirm
+                        hideCancel : !!options.hideCancel,
+                        hideConfirm : !!options.hideConfirm,
+                        withSearch : options.withSearch
                     },
                     type : (options.type) ? options.type : null,
                     $deferred : $deferred
@@ -341,7 +341,7 @@ define([
         }
 
         function goHome () {
-            this.navigateTrigger('items');
+            this.navigate('items', {trigger:true});
         }
 
         function displayUserDetail (id) {

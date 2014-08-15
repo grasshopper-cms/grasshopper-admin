@@ -23,6 +23,9 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
             require(['plugins'], function(plugins) {
                 var plugin = _.find(plugins.fields, {type : self.model.get('type')});
 
+                // Ensuring Model Data is Obj that we can get into.
+                plugin.config.modelData = _.result(plugin.config, 'modelData');
+
                 self.model.set({
                     ViewModule : plugin.view,
                     configModule : plugin.config
@@ -46,18 +49,21 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
         function _handleMultiple() {
             var values = this.model.get('value'),
                 minimum = this.model.get('min'),
+                allowMultiple = this.model.get('configModule.modelData.allowMultiple'),
                 i = 0,
                 self = this;
 
-            if (values && _.isArray(values) && !_.isEmpty(values)) { // If values exists and is array that is not empty
+            if (values && !_.isUndefined(allowMultiple) && !allowMultiple) { // If values exists and allowMultiple is false.
+                _addPlugin.call(this, values);
+            } else if (values && _.isArray(values) && !_.isEmpty(values)) { // If values exists and is array that is not empty.
                 _.each(values, function (value) {
                     _addPlugin.call(self, value);
                 });
-            } else if (values && _.isArray(values) && _.isEmpty(values)) { // If value exists and is an empty array
+            } else if (values && _.isArray(values) && _.isEmpty(values)) { // If value exists and is an empty array.
                 _evaluateMultiButtons.call(this);
-            } else if (!!values || _.isString(values)) { // if values exists
+            } else if (!!values || _.isString(values)) { // if values exists.
                 _addPlugin.call(this, values);
-            } else if (minimum === 0) { // if values does not exist and minimum is zero
+            } else if (minimum === 0) { // if values does not exist and minimum is zero.
                 this.collection.setValuesOnParentFieldsObject();
                 _evaluateMultiButtons.call(this);
             } else { // if values does not exist and there is a minimum
@@ -83,7 +89,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         function _handleDefaultValue(value) {
             //var defaultValue = this.model.attributes.defaultValue || this.model.attributes.configModule.modelData.value, copyOfDefaultValue={};
-            var defaultValue = this.model.get('defaultValue') || this.model.get('configModule.modelData').value, copyOfDefaultValue={};
+            var defaultValue = this.model.get('defaultValue') || this.model.get('configModule.modelData.value'), copyOfDefaultValue={};
             if (_.isUndefined(value)) {
                 /* Deep copy, if object */
                 if (typeof(defaultValue)==='object'){

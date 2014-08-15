@@ -1,7 +1,8 @@
 /*global define:false*/
 define(['text!plugins/author/template.html', 'plugins/author/model', 'text!plugins/author/setupTemplate.html',
     'plugins/author/formatters'],
-    function (authorPluginTemplate, authorPluginModel, setupTemplate, formatters) {
+    function (template, authorPluginModel, setupTemplate,
+              formatters) {
         'use strict';
 
         return {
@@ -15,14 +16,14 @@ define(['text!plugins/author/template.html', 'plugins/author/model', 'text!plugi
                 type : 'author',
                 dataType : 'dropdown',
                 validation : [],
-                value : ''
+                value : {
+                    displayname : '',
+                    _id : ''
+                }
             },
             wrapper: false,
-            template : authorPluginTemplate,
+            template : template,
             setupTemplate : setupTemplate,
-            listeners : [
-                /*['channels.views', 'contentFieldsChange']*/
-            ],
             rivetsConfig : {
                 formatters : [formatters]
             }

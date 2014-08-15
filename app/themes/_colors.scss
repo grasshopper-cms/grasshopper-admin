@@ -80,7 +80,6 @@ $accordionHeaderTableRowHover: $darkerGray;
 $accordionContentBackground: $lightGray;
 $accordionContentBorder: $darkGray;
 $fieldsetBorder: $darkGray;
-$errorRed : #FF9494;
 
 // Content Type Index View
 $contentTypeIndexTableRowHover: $darkerGray;
@@ -97,6 +96,15 @@ $nodeDetailRowHover: $darkerGray;
 
 // Users Index View
 $userIndexTableRowHover: $darkerGray;
+
+// Users Details View
+$userDetailLockColor: #AF8636;
+$userDetailLockBackgroundColor: #FBF7E2;
+$userDetailLockBorderColor: #F9EFD8;
+
+$userDetailRemoveColor: #B9645E;
+$userDetailRemoveBackgroundColor: #F0DEDE;
+$userDetailRemoveBorderColor: #ECD5D8;
 
 // Embedded Type Plugin
 $accordionHeaderBackgroundColor: $darkerGray;

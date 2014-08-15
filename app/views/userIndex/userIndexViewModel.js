@@ -22,7 +22,7 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection',
             },
             limit : parseInt( this.get('limit') || constants.pagination.defaultLimit, 10 ),
             skip : parseInt( this.get('skip') || constants.pagination.defaultSkip, 10 ),
-            filtersKey : ['firstname', 'lastname', 'email', 'displayName'],
+            filtersKey : ['firstname', 'lastname', 'email', 'displayname'],
             queryRequest : api.makeUsersQuery
         }))());
     }

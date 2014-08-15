@@ -5,11 +5,13 @@ module.exports = function (grunt) {
     var path = require('path');
 
     function replaceResourceFunction(match, p1) {
-        var fullPath = path.resolve(grunt.config().buildDirectory + '/', p1), normalizePath = function (path) {
-                return path.substring(grunt.config().buildDirectory.length + 1).replace(/\\/g, '/');
+        var fullPath = path.resolve(grunt.config().buildDirectory + '/', p1),
+            normalizePath = function (path) {
+                return '/' + path.substring(grunt.config().buildDirectory.length + 1).replace(/\\/g, '/');
             };
+
         if (!grunt.filerev) {
-            return p1;
+            return '/' + p1;
         } else {
             return normalizePath(grunt.filerev.summary[fullPath]);
         }

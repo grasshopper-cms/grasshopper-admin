@@ -96,6 +96,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
                 {
                     header : resources.contentType.editContentTypes,
                     type : 'checkbox',
+                    withSearch : true,
                     data : availableContentTypes
                 });
         }

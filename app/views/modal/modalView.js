@@ -1,14 +1,14 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!views/modal/_imageModalView.html',
-    'text!views/modal/_inputModalView.html', 'text!views/modal/_checkboxModalView.html',
-    'text!views/modal/_uploadModalView.html', 'text!views/modal/modalView.html',
-    'text!views/modal/_radioModalView.html', 'text!views/modal/_listModalView.html',
-    'text!views/modal/_errorModalView.html'],
-    function (GrasshopperBaseView, modalViewConfig, _, $, imageModalTemplate,
-              inputModalTemplate, checkboxTemplate,
-              uploadTemplate, defaultTemplate,
-              radioTemplate, listTemplate,
-              errorTemplate) {
+define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'constants',
+    'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html',
+    'text!views/modal/_checkboxModalView.html', 'text!views/modal/_uploadModalView.html',
+    'text!views/modal/modalView.html', 'text!views/modal/_radioModalView.html',
+    'text!views/modal/_listModalView.html', 'text!views/modal/_errorModalView.html'],
+    function (GrasshopperBaseView, modalViewConfig, _, $, constants,
+              imageModalTemplate, inputModalTemplate,
+              checkboxTemplate, uploadTemplate,
+              defaultTemplate, radioTemplate,
+              listTemplate, errorTemplate) {
         'use strict';
         return GrasshopperBaseView.extend({
             defaultOptions : modalViewConfig,
@@ -20,7 +20,8 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
             handleDragOver : handleDragOver,
             handleDragLeave : handleDragLeave,
             confirmModal : confirmModal,
-            cancelModal : cancelModal
+            cancelModal : cancelModal,
+            searchContentType : searchContentType
         });
 
         function initialize (options) {
@@ -56,8 +57,12 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
 
         function afterRender () {
             this.$el.foundation();
-            if (this.options && this.options.type=='input'){
+            if (this.options && this.options.type === 'input') {
                 $('input', this.$el).focus();
+            }
+
+            if (this.model.get('withSearch')) {
+                this.model.set('originalData', this.model.get('data'));
             }
         }
 
@@ -121,6 +126,29 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'text!
 
         function _removeModal () {
             this.remove();
+        }
+
+        function searchContentType (e) {
+            var model = this.model,
+                searchValue = $.trim(this.model.get('contentTypeSearchValue')).toLowerCase(),
+                tmpModel;
+
+            if (!_.isUndefined(e) && !_.isUndefined(constants.controlKeyCodeMap[e.keyCode])) {
+                return false;
+            }
+
+            if (searchValue) {
+                tmpModel = _.filter(model.get('originalData'), function (obj) {
+                    if ( _.has(obj, 'label') ) {
+                        return obj.label.toLowerCase().indexOf(searchValue) !== -1 ? obj : false;
+                    }
+                    return false;
+                });
+
+                model.set('data', tmpModel);
+            } else {
+                model.set('data', model.get('originalData'));
+            }
         }
 
     });

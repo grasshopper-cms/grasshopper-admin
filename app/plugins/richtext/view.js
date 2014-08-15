@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'underscore', 'jquery',
-    'plugins/richtext/fileBrowserModal/view', 'plugins/richtext/ckeditorConfig', 'require'],
+    'plugins/richtext/ckeditorConfig', 'require', 'mixins/itemSelectModal'],
     function (GrasshopperBaseView, _, $,
-              FileBrowserView, ckeditorConfig, require) {
+              ckeditorConfig, require, itemSelectModal) {
 
         'use strict';
 
@@ -11,7 +11,8 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
             remove : remove,
             sortStart : sortStart,
             stopSort : stopSort
-        });
+        })
+            .extend(itemSelectModal);
 
         function afterRender() {
             if(this.model.get('inSetup')) {
@@ -86,23 +87,23 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
         }
 
         function _fireFileBrowserModal() {
-            var $deferred = new $.Deferred(),
-                fileBrowserView = new FileBrowserView(
-                {
-                    modelData : {
-                        _id : '0'
-                    },
-                    $deferred : $deferred
-                }
-            );
+            var nodeId = 0,
+                value;
 
-            fileBrowserView.start();
-
-            return $deferred.promise();
+            return this.fireFileSelectModal(value, nodeId);
         }
 
         function _setUrlOfFile(selectedFile) {
-            window.CKEDITOR.tools.callFunction(this.ckeditor._.filebrowserFn, selectedFile);
+            this.model.set('selectedFile', selectedFile);
+
+            this.model.get('assetModel').fetch()
+                .done(function() {
+                    var assetUrl = this.model.get('assetModel.url');
+
+                    window.CKEDITOR.tools.callFunction(this.ckeditor._.filebrowserFn, assetUrl);
+                }.bind(this));
+
+
         }
 
         function sortStart() {

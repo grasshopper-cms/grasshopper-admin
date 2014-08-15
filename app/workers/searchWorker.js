@@ -8,7 +8,8 @@ define(['constants', 'paginationWorker', 'jquery', 'underscore'],
     };
 
     function searchContent(e, context, modelName, isNotUpdateUrl, isFirstQuery) {
-        var model, contentSearchValue;
+        var model,
+            contentSearchValue;
 
         isNotUpdateUrl = isNotUpdateUrl || false;
         isFirstQuery = isFirstQuery || false;

@@ -55,6 +55,9 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         getNodesContent : function(nodeId) {
             return this.authenticatedRequest(constants.api.nodesContent.url.replace(':id', nodeId));
         },
+        getNodesDeep : function(nodeId) {
+            return this.authenticatedRequest(constants.api.nodesChildrenDeep.url.replace(':id', nodeId));
+        },
         getGoogleUrl : function() {
             return this.unAuthenticatedRequest(constants.api.google.url);
         },

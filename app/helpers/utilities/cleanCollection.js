@@ -10,7 +10,7 @@ define(['underscore'], function (_) {
             }
 
             if(_.isUndefined(value) || _.isNull(value) || _.isNaN(value) ||
-                ( _.isEmpty(value) && !_.isString(value) && !_.isArray(value)) && !_.isBoolean(value) ) {
+                ( _.isEmpty(value) && !_.isString(value) && !_.isArray(value)) && !_.isBoolean(value) && !_.isNumber(value) ) {
 
                 if(_.isArray(collection)) {
                     collection.splice(key , 1);

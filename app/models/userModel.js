@@ -18,10 +18,10 @@ define([
             href : new ComputedProperty(['_id'], function (id) {
                 return constants.internalRoutes.user + '/' + id;
             }),
-            hasGoogle : new ComputedProperty(['linkedIdentities'], function(identities){
+            hasGoogle : new ComputedProperty(['linkedidentities'], function(identities){
                 return _.contains(identities, 'google');
             }),
-            hasBasic : new ComputedProperty(['linkedIdentities'], function(identities){
+            hasBasic : new ComputedProperty(['linkedidentities'], function(identities){
                 return _.contains(identities, 'basic');
             })
         },

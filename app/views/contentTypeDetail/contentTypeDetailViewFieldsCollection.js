@@ -9,7 +9,7 @@ define(['backbone', 'fieldAccordionModel', 'underscore'], function(Backbone, fie
 
             return _.map(json, function(obj) {
                 return _.pick(obj, 'label', 'max', 'min',
-                    'options', 'type', 'validation', '_id', 'helpText', 'defaultValue', 'dataType');
+                    'options', 'type', 'validation', '_id', '_uid','helpText', 'defaultValue', 'dataType');
             });
         }
     });

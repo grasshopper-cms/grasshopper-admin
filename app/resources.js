@@ -59,16 +59,16 @@ define({
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
             lastName : 'LAST NAME',
-            displayName : 'DISPLAY NAME',
+            displayname : 'DISPLAY NAME',
             role : 'USER ROLE',
             enabled : 'ENABLED?',
             email : 'EMAIL',
             username : 'USERNAME',
             password : 'PASSWORD',
-            createdBy : 'CREATED BY',
-            updatedBy : 'UPDATED BY',
+            createdby : 'CREATED BY',
+            updatedby : 'UPDATED BY',
             profile : 'PROFILE',
-            linkedIdentities : 'LINKED IDENTITIES'
+            linkedidentities : 'LINKED IDENTITIES'
         },
         selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
             'Are you sure you want to do this? (You Will still need to save to apply changes.',
@@ -213,27 +213,25 @@ define({
         size : 'Size',
         modified : 'Modified'
     },
-    nodeTree : {
-        emptyFolder : {
-            content : 'This folder has no content.',
-            files : 'This folder has no files.'
-        }
-    },
     pluginWrapper : {
         emptyFieldsMessage : 'not set.',
         clickToAdd : 'Click To Add.'
     },
     plugins : {
+        author : {
+            selectUser : 'Select User',
+            noPermissions : 'You don\'t have permissions to query users list. You can only select current user.'
+        },
         codeEditor : {
             language : 'Language',
             theme : 'Theme',
             loading : 'LOADING CODE EDITOR...'
         },
         contentReference : {
+            allowedContentTypes: 'Allowed Content Types',
             selectedContent : 'Selected Content',
             currentFolder : 'Current Folder',
-            selectDefaultFolderOr : 'Select Default Folder or',
-            setRootAsDefault : 'Set Root Folder as Default',
+            selectDefaultFolder : 'Select Default Folder',
             defaultFolder : 'Default Folder',
             contentTypes : 'Content Types',
             selectContent : 'Select Content',
@@ -272,9 +270,6 @@ define({
             refresh : 'Refresh',
             selectField : 'Select Field'
         },
-        author : {
-            selectUser : 'Select user'
-        },
         jsonEditor : {
             language : 'Language',
             theme : 'Theme',
@@ -303,6 +298,7 @@ define({
     email : 'Email',
     enabled : 'Enabled',
     error : 'Error',
+    emptySearchResult : 'Ooops, try one more time.',
     falseText : 'False',
     from : 'From',
     home : 'Home',
@@ -311,7 +307,7 @@ define({
     key: 'Key',
     label : 'Label',
     login : 'Login',
-    displayName : 'Display name',
+    displayname : 'Display name',
     log_in : 'Log In',
     logInWithGoogle : 'Login with Google',
     log_out : 'Log Out',
@@ -356,6 +352,7 @@ define({
     type : 'Type',
     types : 'Types',
     upload : 'Upload',
+    uploadFile : 'Upload File',
     user_name : 'User Name',
     users : 'Users',
     sysInfo : 'Info',
