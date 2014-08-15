@@ -196,6 +196,8 @@
             "Model" : "/views/header/headerViewModel"
         },
 
+        "itemSelectModal" : "/views/itemSelectModal",
+
         "clipboardView+" : {
             "" : "/views/clipboard/clipboardView",
             "Config" : "/views/clipboard/clipboardViewConfig",
