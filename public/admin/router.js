@@ -18,7 +18,8 @@ define([
     'addFolderView',
     'addContentView',
     'addAssetsView',
-    'sysInfoView'
+    'sysInfoView',
+    'clipboardView'
 ],
     function ($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
@@ -38,7 +39,8 @@ define([
               AddFolderView,
               AddContentView,
               AddAssetsView,
-              SysInfoView
+              SysInfoView,
+              ClipboardView
         ) {
 
         'use strict';
@@ -153,9 +155,9 @@ define([
         function _handleRoutingFromRefreshOnModalView (nodeId) {
             if(nodeId === '0') {
                 nodeId = null;
-                this.breadcrumb.unshift(constants.internalRoutes.content);
+                this.breadcrumb.unshift(constants.internalRoutes.content.replace('#', ''));
             } else {
-                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId));
+                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
             }
             this.displayContentBrowse(nodeId);
         }
@@ -211,6 +213,7 @@ define([
 
             GrasshopperBaseView.prototype.displayModal = displayModal;
             GrasshopperBaseView.prototype.hideModal = hideModal;
+
         }
 
         function loadMainContent (ViewType, config, bypass) {
@@ -253,7 +256,12 @@ define([
             this.headerView.start();
             this.mastheadView = new MastheadView();
             this.mastheadView.start();
+            startClipboard.call(this);
+        }
 
+        function startClipboard () {
+            this.clipboardView = new ClipboardView({});
+            this.clipboardView.start();
         }
 
         function removeHeader () {
@@ -314,8 +322,9 @@ define([
                         header : (options.header) ? options.header : null,
                         msg : options.msg,
                         data : (options.data) ? options.data : null,
-                        hideCancel: !!options.hideCancel,
-                        hideConfirm: !!options.hideConfirm
+                        hideCancel : !!options.hideCancel,
+                        hideConfirm : !!options.hideConfirm,
+                        withSearch : options.withSearch
                     },
                     type : (options.type) ? options.type : null,
                     $deferred : $deferred
@@ -333,7 +342,7 @@ define([
         }
 
         function goHome () {
-            this.navigate('items', {trigger:true});
+            this.navigateTrigger('items');
         }
 
         function displayUserDetail (id) {

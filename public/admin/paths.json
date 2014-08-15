@@ -17,7 +17,8 @@
         "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
         "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker",
         "sparkmd5" : "vendor/SparkMD5/spark-md5",
-        "JSONEditor" : "vendor/jsoneditor/jsoneditor"
+        "JSONEditor" : "vendor/jsoneditor/jsoneditor",
+        "contextjs" : "vendor/contextjs/context"
     },
 
     "routers" : {
@@ -138,6 +139,12 @@
             "Model" : "views/assetDetail/assetDetailViewModel"
         },
 
+        "clipboardView+" : {
+            "" : "views/clipboard/clipboardView",
+            "Config" : "views/clipboard/clipboardViewConfig",
+            "Model" : "views/clipboard/clipboardViewModel"
+        },
+
         "contentBrowseView+" : {
             "" : "views/contentBrowse/contentBrowseView",
             "Config" : "views/contentBrowse/contentBrowseViewConfig",
@@ -210,7 +217,8 @@
             "" : "views/modal/modalView",
             "Config" : "views/modal/modalViewConfig",
             "Model" : "views/modal/modalViewModel",
-            "Binders" : "views/modal/binders"
+            "Binders" : "views/modal/binders",
+            "Formatters" : "views/modal/formatters"
         },
 
         "nodeDetailView+" : {
@@ -271,7 +279,8 @@
         "nodeWorker" : "workers/nodeWorker",
         "urlWorker" : "workers/urlWorker",
         "paginationWorker" : "workers/paginationWorker",
-        "searchWorker" : "workers/searchWorker"
+        "searchWorker" : "workers/searchWorker",
+        "clipboardWorker" : "workers/clipboardWorker"
     },
 
     "collections" : {
@@ -283,6 +292,10 @@
 
     "api" : {
         "api" : "api/api"
+    },
+
+    "plugins" : {
+        "plugins" : "plugins"
     },
 
     "binders" : {
