@@ -8,7 +8,7 @@ define(['backbone', 'fieldAccordionModel', 'underscore'], function(Backbone, fie
             var json = Backbone.Collection.prototype.toJSON.apply(this);
 
             return _.map(json, function(obj) {
-                return _.pick(obj, 'label', 'max', 'min',
+                return _.pick(obj, 'label', 'max', 'min', 'allowMultiple',
                     'options', 'type', 'validation', '_id', '_uid','helpText', 'defaultValue', 'dataType');
             });
         }
