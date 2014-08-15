@@ -9,8 +9,8 @@ module.exports = function (grunt) {
             options: {
                 patterns: [
                     {
-                        match: '<script data-main="main" src="vendor/requirejs/require.js"></script>',
-                        replacement: '<script src="main.js"></script>'
+                        replacement: '<script data-main="/main" src="/vendor/requirejs/require.js"></script>',
+                        match: '<script src="/main.js"></script>'
                     }
                 ],
                 usePrefix: false

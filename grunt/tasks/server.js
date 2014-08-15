@@ -15,6 +15,7 @@ module.exports = function (grunt) {
         'copy:vendorFilesToBuild',
         'registerPlugins',
         'copy:fromTempToBuild',
+        'replace:requirejs',
         'clean:temp',
         'paths:toBuild',
         'interpolateConstantsBuild',
