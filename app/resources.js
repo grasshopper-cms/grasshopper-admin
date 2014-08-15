@@ -298,6 +298,7 @@ define({
     email : 'Email',
     enabled : 'Enabled',
     error : 'Error',
+    emptySearchResult : 'Ooops, try one more time.',
     falseText : 'False',
     from : 'From',
     home : 'Home',

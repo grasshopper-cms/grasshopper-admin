@@ -210,7 +210,8 @@
             "" : "/views/modal/modalView",
             "Config" : "/views/modal/modalViewConfig",
             "Model" : "/views/modal/modalViewModel",
-            "Binders" : "/views/modal/binders"
+            "Binders" : "/views/modal/binders",
+            "Formatters" : "/views/modal/formatters"
         },
 
         "nodeDetailView+" : {
