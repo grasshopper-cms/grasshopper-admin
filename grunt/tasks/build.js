@@ -29,7 +29,6 @@ module.exports = function (grunt) {
         'sass',
         'autoprefixer:no_dest',
         'requirejs',
-        'replace:requirejs',
         'vendor:switch',
         'vendor:setup:vendorBuilt',
         'copy:vendor',
