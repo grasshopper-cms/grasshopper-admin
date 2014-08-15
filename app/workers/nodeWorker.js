@@ -173,7 +173,9 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _redirectToParent() {
             var parent = this.model.get('parent');
 
-            if(parent && parent._id) {
+            if (this.model.get('userModel')) {
+                this.app.router.navigateTrigger(constants.internalRoutes.users);
+            } else if(parent && parent._id) {
                 this.app.router.navigateTrigger(constants.internalRoutes.nodeDetail.replace(':id', parent._id));
             } else {
                 this.app.router.navigateTrigger(constants.internalRoutes.content);
