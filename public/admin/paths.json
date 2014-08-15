@@ -285,10 +285,6 @@
         "api" : "api/api"
     },
 
-    "plugins" : {
-        "plugins" : "plugins"
-    },
-
     "binders" : {
         "appBinders" : "appBinders",
         "pluginWrapperBinders" : "views/pluginWrapper/pluginWrapperBinders",
