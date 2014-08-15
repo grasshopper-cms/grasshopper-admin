@@ -29,6 +29,12 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
         }
 
         function _handleSuccessfulContentTypeRetrieval($deferred, availableContentTypes) {
+            var contentTypeId = this.model.get('contentTypeId');
+
+            availableContentTypes = _.filter(availableContentTypes, function(num) {
+                return num._id !== contentTypeId;
+            });
+
             this.model.set('availableContentTypes', availableContentTypes);
             $deferred.resolve();
         }
@@ -37,10 +43,12 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             var activeTypeId = this.model.get('options'),
                 activeContentType;
 
-            if(!_.isEmpty(activeTypeId)) {
+            if(!_.isEmpty(activeTypeId) || !_.isBoolean(activeTypeId)) {
                 activeContentType = _.findWhere(this.model.get('availableContentTypes'), {_id : activeTypeId});
                 this.model.set('activeContentType', activeContentType);
                 _proxyValues.call(this);
+            } else if(_.isBoolean(activeTypeId)) {
+                this.model.set('invalidContentType', true);
             }
             this.model.toggle('loading');
         }

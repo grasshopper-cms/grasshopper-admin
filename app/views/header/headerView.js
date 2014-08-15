@@ -16,7 +16,7 @@ define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],  func
     }
 
     function checkHeaderTab(breadcrumb) {
-        var currentTab = '#' + breadcrumb.split('/')[0];
+        var currentTab = '/' + breadcrumb.split('/')[0];
 
         switch (currentTab) {
         case constants.internalRoutes.user:

@@ -10,18 +10,21 @@ define(['fieldAccordionView'],
                     this.viewInstance.remove();
                 },
                 routine : function(el, model) {
+                    var parentView = this.model.view;
 
                     if (this.viewInstance) {
                         this.model.view.removeChild(this.viewInstance);
                         this.viewInstance.remove();
                     }
 
+                    model.set('contentTypeId', parentView.model.get('_id'), { silent : true });
+
                     this.viewInstance = new FieldAccordionView({
                         appendTo : el,
                         model : model
                     });
 
-                    this.model.view.addChild(this.viewInstance);
+                    parentView.addChild(this.viewInstance);
                 }
             }
         };
