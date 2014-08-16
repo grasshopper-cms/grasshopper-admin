@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" data-rv-if="model:allowMultiple | hasAllowMultiple">
                 <div class="small-2 columns">
                     <label data-rv-for="model.cid  | prepend multi" class="right inline">{{model:resources->allowMultiple}}</label>
                 </div>

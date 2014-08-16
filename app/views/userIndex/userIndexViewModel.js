@@ -1,5 +1,7 @@
-define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', 'userDetail/model'],
-    function (GrasshopperModel, resources, constants, grasshopperCollection, userDetailViewModel) {
+define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection',
+    'userDetail/model', 'paginatedCollection', 'api'],
+    function (GrasshopperModel, resources, constants, grasshopperCollection,
+              userDetailViewModel, PaginatedCollection, api) {
 
     'use strict';
 
@@ -13,13 +15,16 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
 
     function initialize() {
         GrasshopperModel.prototype.initialize.apply(this, arguments);
-        this.set('users', new (grasshopperCollection.extend({
+        this.set('users', new (PaginatedCollection.extend({
             model : userDetailViewModel,
             url : function() {
                 return constants.api.users.url;
-            }
+            },
+            limit : parseInt( this.get('limit') || constants.pagination.defaultLimit, 10 ),
+            skip : parseInt( this.get('skip') || constants.pagination.defaultSkip, 10 ),
+            filtersKey : ['firstname', 'lastname', 'email', 'displayname'],
+            queryRequest : api.makeUsersQuery
         }))());
     }
-
 
 });

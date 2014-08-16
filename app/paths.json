@@ -16,7 +16,9 @@
         "moment" : "vendor/moment/moment",
         "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
         "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker",
-        "sparkmd5" : "vendor/sparkMD5/spark-md5"
+        "sparkmd5" : "vendor/SparkMD5/spark-md5",
+        "JSONEditor" : "vendor/jsoneditor/jsoneditor",
+        "contextjs" : "vendor/contextjs/context"
     },
 
     "routers" : {
@@ -194,6 +196,13 @@
             "Model" : "views/header/headerViewModel"
         },
 
+        "itemSelectModal" : "views/itemSelectModal",
+
+        "clipboardView+" : {
+            "" : "views/clipboard/clipboardView",
+            "Config" : "views/clipboard/clipboardViewConfig",
+            "Model" : "views/clipboard/clipboardViewModel"
+        },
         "login" : "views/login",
 
         "mastheadView+" : {
@@ -207,20 +216,14 @@
             "" : "views/modal/modalView",
             "Config" : "views/modal/modalViewConfig",
             "Model" : "views/modal/modalViewModel",
-            "Binders" : "views/modal/binders"
+            "Binders" : "views/modal/binders",
+            "Formatters" : "views/modal/formatters"
         },
 
         "nodeDetailView+" : {
             "" : "views/nodeDetail/nodeDetailView",
             "Config" : "views/nodeDetail/nodeDetailViewConfig",
             "Model" : "views/nodeDetail/nodeDetailViewModel"
-        },
-
-        "nodeTreeView+" : {
-            "" : "views/nodeTree/nodeTreeView",
-            "Config" : "views/nodeTree/nodeTreeViewConfig",
-            "Model" : "views/nodeTree/nodeTreeViewModel",
-            "Binders" : "views/nodeTree/nodeTreeViewBinders"
         },
 
         "pagination" : "views/pagination",
@@ -247,6 +250,11 @@
             "Config" : "views/forbidden/forbiddenViewConfig"
         },
 
+        "notFoundView+" : {
+            "" : "views/notFound/notFoundView",
+            "Config" : "views/notFound/notFoundViewConfig"
+        },
+
         "sysInfoView+" : {
             "" : "views/sysInfo/sysInfoView",
             "Config" : "views/sysInfo/sysInfoViewConfig"
@@ -261,21 +269,24 @@
     },
 
     "workers" : {
-        "loginWorker" : "workers/loginWorker",
+				"loginWorker" : "workers/loginWorker",
         "logoutWorker" : "workers/logoutWorker",
         "contentTypeWorker" : "workers/contentTypeWorker",
         "ajaxCounterWorker" : "workers/ajaxCounterWorker",
+				"clipboardWorker" : "workers/clipboardWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
         "nodeWorker" : "workers/nodeWorker",
         "urlWorker" : "workers/urlWorker",
-        "paginationWorker" : "workers/paginationWorker"
+        "paginationWorker" : "workers/paginationWorker",
+        "searchWorker" : "workers/searchWorker"
     },
 
     "collections" : {
         "grasshopperCollection" : "collections/grasshopperCollection",
         "paginatedCollection" : "collections/paginatedCollection",
-        "userCollection" : "collections/userCollection"
+        "userCollection" : "collections/userCollection",
+        "searchCollection" : "collections/searchCollection"
     },
 
     "api" : {

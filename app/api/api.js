@@ -27,6 +27,10 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 headers : {'Authorization' : token}
             });
         },
+
+        unlinkGoogle : function(userId) {
+            return this.post(constants.api.unlinkGoogle.url.replace(':id', userId), {key: 'google'});
+        },
         getUsers : function () {
             return this.authenticatedRequest(constants.api.users.url);
         },
@@ -51,6 +55,9 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         getNodesContent : function(nodeId) {
             return this.authenticatedRequest(constants.api.nodesContent.url.replace(':id', nodeId));
         },
+        getNodesDeep : function(nodeId) {
+            return this.authenticatedRequest(constants.api.nodesChildrenDeep.url.replace(':id', nodeId));
+        },
         getGoogleUrl : function() {
             return this.unAuthenticatedRequest(constants.api.google.url);
         },
@@ -70,8 +77,15 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
                 headers : {'Authorization' : token}
             });
         },
+        /* This is move or copy. */
+        moveContent: function (data) {
+            return this.post(constants.api.moveNode.url, data);
+        },
         makeQuery : function (data) {
             return this.post(constants.api.contentQuery.url, data);
+        },
+        makeUsersQuery : function (data) {
+            return this.post(constants.api.usersQuery.url, data);
         },
         postFolder : function (data) {
             return this.post(constants.api.node.url, data);

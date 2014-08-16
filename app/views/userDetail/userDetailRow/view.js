@@ -3,7 +3,8 @@ define(['userDetail/view', 'userDetailRow/options'], function(UserDetailView, op
 
     return UserDetailView.extend({
         defaultOptions : options,
-        beforeRender : noop
+        beforeRender : noop,
+        afterRender : noop
     });
 
     function noop() {}

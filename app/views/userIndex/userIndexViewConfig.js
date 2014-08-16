@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resources', 'constants',
-        'userDetailRow/view', 'appBinders'],
+        'userDetailRow/view', 'appBinders', 'pagination/view'],
     function (template, UserIndexViewModel, resources, constants,
-              UserDetailRowView, appBinders) {
+              UserDetailRowView, appBinders, PaginationView) {
         'use strict';
 
         return {
@@ -28,9 +28,11 @@ define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resour
                 }
             ],
             rivetsConfig: {
+                instaUpdate: true,
                 binders : [appBinders],
                 childViewBinders: {
-                    'user-detail-row': UserDetailRowView
+                    'user-detail-row': UserDetailRowView,
+                    'pagination-view': PaginationView
                 }
             },
             permissions: ['admin']

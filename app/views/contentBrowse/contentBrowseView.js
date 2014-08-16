@@ -1,8 +1,8 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationWorker',
-    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig'],
-    function (GrasshopperBaseView, contentBrowseViewConfig, $, paginationWorker,
-              _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig) {
+define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorker',
+    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig', 'clipboardWorker'],
+    function (GrasshopperBaseView, contentBrowseViewConfig, $, searchWorker,
+              _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig, clipboardWorker) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -34,6 +34,81 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
 
         function afterRender () {
             this.$el.foundation();
+            _initClipboard.call(this);
+        }
+
+
+        function _initClipboard() {
+            var self = this;
+            context.init({preventDoubleContext: true, compress: true});
+
+            context.attach('#contentBrowseTable', [
+                {text: '<i class="fa fa-scissors"></i> Cut', action: function (e) {
+                    e.preventDefault();
+                    var target = $(e.target).closest('.dropdown-context').data('contextTarget');
+                    if (target) {
+                        $(target).closest('.nodeOrContentDetailRow').trigger('clipboard:cut');
+                    }
+
+                }},
+                {text: '<i class="fa fa-files-o"></i> Copy', action: function (e) {
+                    e.preventDefault();
+                    var target = $(e.target).closest('.dropdown-context').data('contextTarget');
+                    if (target) {
+                        $(target).closest('.nodeOrContentDetailRow').trigger('clipboard:copy');
+                    }
+                }},
+                {text: '<i class="fa fa-clipboard"></i> Paste', action: function (e) {
+                    e.preventDefault();
+                    var target = $(e.target).closest('.dropdown-context').data('contextTarget'), $target = $(target);
+                    if (target) {
+                        var $nodeDetailRow = $target.closest('.nodeOrContentDetailRow');
+                        if ($nodeDetailRow.length) {
+                            $nodeDetailRow.trigger('clipboard:paste');
+                        }
+                        else {
+                            $target.trigger('clipboard:paste');
+                        }
+
+                    }
+                }}
+            ]);
+
+            var _getRowType = function (el) {
+                var $el = $(el), type;
+                if ($el.hasClass('nodeDetailRow')) {
+                    type = 'node';
+                } else if ($el.hasClass('contentDetailRow')) {
+                    type = 'content';
+                }
+                return type;
+            };
+
+            this.$el.on('clipboard:cut', '.nodeOrContentDetailRow', function (e) {
+                clipboardWorker.cutContent(self, {type: _getRowType(this), id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
+            });
+            this.$el.on('clipboard:copy', '.nodeOrContentDetailRow', function (e) {
+                clipboardWorker.copyContent(self, {type: _getRowType(this), id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
+            });
+            this.$el.on('clipboard:paste', '.nodeOrContentDetailRow', function (e) {
+                e.stopPropagation();
+                var clickedItemId = $(this).data('id'), currentFolderId = self.model.id;
+                clipboardWorker.pasteContent(self,
+                    {type: _getRowType(this), id: clickedItemId, name: $('.contentDetailRowName', this).text()},
+                    {type: 'node', id: currentFolderId, name: self.model.get('label')}).done(function (data) {
+                        self.model.get('childNodes').fetch();
+                        _getChildContent.call(self);
+                    });
+            });
+            this.$el.on('clipboard:paste', '#contentBrowseTable', function (e) {
+                var currentFolderId = self.model.id;
+                clipboardWorker.pasteContent(self, undefined,
+                    {type: 'node', id: currentFolderId, name: self.model.get('label')}
+                ).done(function (data) {
+                        self.model.get('childNodes').fetch();
+                        _getChildContent.call(self);
+                    });
+            });
         }
 
         function _addAssetIndexView() {
@@ -52,7 +127,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
 
         function _getChildContent() {
             if(!this.model.get('inRoot')) {
-                return this.searchContent();
+                return this.searchContent(undefined, undefined, true);
             }
         }
 
@@ -102,36 +177,6 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
             _closeActionsDropdown.call();
         }
 
-        function searchContent(e) {
-            var childContent, contentSearchValue;
-
-            if (!_.isUndefined(e) && !_.isUndefined(constants.controlKeyCodeMap[e.keyCode])) {
-                return false;
-            }
-
-            childContent = this.model.get('childContent');
-            contentSearchValue = $.trim(this.model.get('contentSearchValue'));
-
-            _toggleSearchSpinner.call(this);
-            childContent.searchQuery(contentSearchValue)
-                .done(
-                    paginationWorker.setUrl.bind(this, childContent.limit, childContent.skip, contentSearchValue),
-                    _toggleSearchSpinner.bind(this, true)
-                );
-        }
-
-        function _toggleSearchSpinner(revert) {
-            var $searchIcon = this.$('.contentSearchIcon');
-
-            if (revert) {
-                $searchIcon.removeClass('fa-refresh fa-spin');
-                $searchIcon.addClass('fa-search');
-            } else {
-                $searchIcon.removeClass('fa-search');
-                $searchIcon.addClass('fa-refresh fa-spin');
-            }
-        }
-
         function _closeActionsDropdown() {
             $('#actionsDropdown').click();
         }
@@ -140,6 +185,10 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'paginationW
             var role = this.app.user ? this.app.user.get('role') : undefined;
 
             return _.contains(addFolderViewConfig.permissions, role);
+        }
+
+        function searchContent(e, context, isFirstQuery) {
+            return searchWorker.searchContent.call(this, e, context, 'childContent', true, isFirstQuery);
         }
 
     });

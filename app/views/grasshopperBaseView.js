@@ -1,36 +1,36 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'resources'],
-    function (Backbone, masseuse, resources) {
+define(['backbone', 'masseuse', 'resources', 'underscore'],
+    function (Backbone, masseuse, resources, _) {
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
-            oldSet = Backbone.Collection.prototype.set;
+            oldSet = Backbone.Collection.prototype.set, DEFAULT_VIEW_OPTIONS=[
+                '$deferred',
+                'type',
+                'defaultBreadcrumbs',
+                'defaultMastheadButtons',
+                'breadcrumbs',
+                'privateBreadcrumbs',
+                'mastheadButtons',
+                'permissions',
+                'nodeId',
+                'wrapper',
+                'appendTo',
+                'collection',
+                'browserTitle'
+            ];
 
         return RivetView.extend({
             initialize : initialize,
             start : start,
             fireErrorModal : fireErrorModal,
-            mastheadButtonsSelector : '#mastheadButtons'
+            mastheadButtonsSelector : '#mastheadButtons'/*,
+            remove: remove*/
         });
 
         function initialize (options) {
             options.viewOptions = options.viewOptions || [];
-            options.viewOptions =  options.viewOptions.concat(
-                [
-                    '$deferred',
-                    'type',
-                    'defaultBreadcrumbs',
-                    'defaultMastheadButtons',
-                    'breadcrumbs',
-                    'privateBreadcrumbs',
-                    'mastheadButtons',
-                    'permissions',
-                    'nodeId',
-                    'wrapper',
-                    'appendTo',
-                    'collection',
-                    'browserTitle'
-                ]);
+            options.viewOptions =  options.viewOptions.concat(DEFAULT_VIEW_OPTIONS);
 
             // TODO: I think I can get rid of this line.... Nowhere in this app do I call this.options or self.options.
             this.options = options;
@@ -59,9 +59,23 @@ define(['backbone', 'masseuse', 'resources'],
                 return;
             }
 
+/*            if(!window.startedViews){
+                window.startedViews=[];
+            }
+            window.startedViews.push({ name : this.name, cid : this.cid, parent : this.parent ? this.parent.name : 'NONE'});
+
+            console.log('STARTING:', this.name);*/
+
             return RivetView.prototype.start.apply(this, arguments)
                 .done(_handleAfterRender.bind(this));
         }
+
+        /*function remove(){
+            console.log('REMOVING:', this.name);
+            var oldView = _.findWhere(window.startedViews, { cid : this.cid });
+            window.startedViews = _.without(window.startedViews, oldView);
+            RivetView.prototype.remove.apply(this,arguments);
+        }*/
 
         function fireErrorModal(message) {
             return this.displayModal(

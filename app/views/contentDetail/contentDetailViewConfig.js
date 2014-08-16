@@ -1,7 +1,7 @@
 /*global define:false*/
-define(['text!views/contentDetail/contentDetailView.html', 'text!views/contentDetail/_contentDetailRow.html',
+define(['text!views/contentDetail/contentDetailView.html',
     'contentDetailViewModel', 'appBinders', 'resources', 'constants'],
-    function (formTemplate, rowTemplate, contentDetailModel, appBinders, resources, constants) {
+    function (formTemplate, contentDetailModel, appBinders, resources, constants) {
         'use strict';
 
         return {

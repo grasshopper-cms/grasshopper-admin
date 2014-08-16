@@ -2,7 +2,7 @@
 define([
     'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
     'grasshopperBaseView',
-    'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView',
+    'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView', 'notFoundView',
     'alertBoxView',
     'modalView', 'modalViewConfig',
     'resources',
@@ -18,11 +18,12 @@ define([
     'addFolderView',
     'addContentView',
     'addAssetsView',
-    'sysInfoView'
+    'sysInfoView',
+    'clipboardView'
 ],
     function ($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
-              LoginView, loginWorker, logoutWorker, ForbiddenView,
+              LoginView, loginWorker, logoutWorker, ForbiddenView, NotFoundView,
               AlertBoxView,
               ModalView, modalViewConfig,
               resources,
@@ -38,7 +39,8 @@ define([
               AddFolderView,
               AddContentView,
               AddAssetsView,
-              SysInfoView
+              SysInfoView,
+              ClipboardView
         ) {
 
         'use strict';
@@ -56,22 +58,24 @@ define([
             routes : {
                 'login(/:token)' : 'displayLogin',
                 'logout' : 'goLogout',
-                'users(/page/:pageNumber/show/:pageLimit)' : 'displayUserIndex',
+                'users(/limit/:limit/skip/:skip)' : 'displayUserIndex',
+                'users(/limit/:limit/skip/:skip/query/:query)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
-                'sysinfo': 'displaySysinfo',
-                'addUser' : 'displayAddUser',
-                'contentTypes' : 'displayContentTypeIndex',
-                'contentTypes/new' : 'displayContentTypeDetail',
-                'contentTypes(/:id)' : 'displayContentTypeDetail',
-                'items/nodeid/:nodeId/createAssets' : 'displayCreateAssets',
-                'items/nodeid/:nodeId/createFolder' : 'displayCreateFolder',
-                'items/nodeid/:nodeId/createContent' : 'displayCreateContent',
+                'sys-info': 'displaySysinfo',
+                'add-user' : 'displayAddUser',
+                'content-types' : 'displayContentTypeIndex',
+                'content-types/new' : 'displayContentTypeDetail',
+                'content-types(/:id)' : 'displayContentTypeDetail',
+                'items/nodeid/:nodeId/create-assets' : 'displayCreateAssets',
+                'items/nodeid/:nodeId/create-folder' : 'displayCreateFolder',
+                'items/nodeid/:nodeId/create-content' : 'displayCreateContent',
                 'items(/nodeid/:nodeId/limit/:limit)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId/limit/:limit/skip/:skip)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId/limit/:limit/skip/:skip/query/:query)' : 'displayContentBrowse',
                 'items(/nodeid/:nodeId)' : 'displayContentBrowse',
                 'item/:id' : 'displayContentDetail',
                 'forbidden' : 'displayForbidden',
+                'not-found' : 'displayNotFound',
                 '*path' : 'goHome'
             },
 
@@ -111,7 +115,8 @@ define([
             displayCreateFolder : displayCreateFolder,
             displayCreateContent : displayCreateContent,
             displayCreateAssets : displayCreateAssets,
-            displayForbidden: displayForbidden
+            displayForbidden: displayForbidden,
+            displayNotFound: displayNotFound
         });
 
         function onRouteFail () {
@@ -150,9 +155,9 @@ define([
         function _handleRoutingFromRefreshOnModalView (nodeId) {
             if(nodeId === '0') {
                 nodeId = null;
-                this.breadcrumb.unshift(constants.internalRoutes.content.replace('#', ''));
+                this.breadcrumb.unshift(constants.internalRoutes.content);
             } else {
-                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId).replace('#', ''));
+                this.breadcrumb.unshift(constants.internalRoutes.nodeDetail.replace(':id', nodeId));
             }
             this.displayContentBrowse(nodeId);
         }
@@ -208,7 +213,6 @@ define([
 
             GrasshopperBaseView.prototype.displayModal = displayModal;
             GrasshopperBaseView.prototype.hideModal = hideModal;
-
         }
 
         function loadMainContent (ViewType, config, bypass) {
@@ -251,7 +255,12 @@ define([
             this.headerView.start();
             this.mastheadView = new MastheadView();
             this.mastheadView.start();
+            startClipboard.call(this);
+        }
 
+        function startClipboard () {
+            this.clipboardView = new ClipboardView({});
+            this.clipboardView.start();
         }
 
         function removeHeader () {
@@ -269,11 +278,20 @@ define([
         }
 
         function displayLogin (token) {
+            var redirect = LocalStorage.get(constants.loginRedirectKey);
 
             if(token) {
                 // I am assuming this is a google token because that is all we support right meow.
                 LocalStorage.set('authToken', 'Google '+ token);
-                this.navigateTrigger('#items');
+
+                // Check if we have anything in localstorage telling us to redirect somewhere else after login
+                if (redirect && redirect !== undefined) {
+                    LocalStorage.remove(constants.loginRedirectKey)
+                        .done(this.navigateTrigger.bind(this, redirect));
+                } else  {
+                    this.navigateTrigger('#items');
+                }
+
             } else {
                 this.loadMainContent(LoginView);
             }
@@ -303,8 +321,9 @@ define([
                         header : (options.header) ? options.header : null,
                         msg : options.msg,
                         data : (options.data) ? options.data : null,
-                        hideCancel: !!options.hideCancel,
-                        hideConfirm: !!options.hideConfirm
+                        hideCancel : !!options.hideCancel,
+                        hideConfirm : !!options.hideConfirm,
+                        withSearch : options.withSearch
                     },
                     type : (options.type) ? options.type : null,
                     $deferred : $deferred
@@ -322,7 +341,7 @@ define([
         }
 
         function goHome () {
-            this.navigateTrigger('items');
+            this.navigate('items', {trigger:true});
         }
 
         function displayUserDetail (id) {
@@ -340,11 +359,12 @@ define([
             }
         }
 
-        function displayUserIndex (pageNumber, pageLimit) {
+        function displayUserIndex (limit, skip, query) {
             this.loadMainContent(UserIndexView, {
                     modelData : {
-                        pageNumber : pageNumber,
-                        pageLimit : pageLimit
+                        limit : limit ? limit : constants.pagination.defaultLimit,
+                        skip : skip ? skip : constants.pagination.defaultSkip,
+                        contentSearchValue : query ? query : ''
                     }
                 });
         }
@@ -428,6 +448,10 @@ define([
 
         function displayForbidden () {
             this.loadMainContent(ForbiddenView);
+        }
+
+        function displayNotFound () {
+            this.loadMainContent(NotFoundView);
         }
 
         return Router;

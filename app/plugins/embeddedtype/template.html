@@ -7,7 +7,9 @@
             </div>
         </div>
 
-        <div data-rv-hide="model:loading" id="embeddedTypeAccordion">
+        <span class="accordionError" data-rv-if="model:invalidContentType">Content type is invalid. Please update your content type.</span>
+
+        <div data-rv-unless="model:invalidContentType" data-rv-hide="model:loading" id="embeddedTypeAccordion">
 
             <div class="accordionHeader">
                 {{model:accordionLabel | existsOr -- }}

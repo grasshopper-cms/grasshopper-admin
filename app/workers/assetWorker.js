@@ -17,7 +17,7 @@ define(['constants', 'masseuse', 'jquery', 'helpers'], function (constants, Mass
 
         request = new XMLHttpRequest();
 
-        request.upload.addEventListener('progress', function (e) {
+        request.upload.addEventListener('progress', function(e) {
             $deferred.notify((e.loaded / e.total) * 100 + '%');
         }, false);
 

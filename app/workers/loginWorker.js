@@ -1,5 +1,5 @@
-define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
-    function (Api, $, resources, masseuse, helpers) {
+define(['api', 'jquery', 'resources', 'masseuse', 'helpers', 'constants'],
+    function (Api, $, resources, masseuse, helpers, constants) {
         'use strict';
 
         var LocalStorage = helpers.localStorage;
@@ -45,10 +45,21 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers'],
         }
 
         function _handleSuccessfulAuthentication(userModel) {
+            var redirect = LocalStorage.get(constants.loginRedirectKey);
+
             if(userModel.role !== 'external') {
-                this.model.clear();
+
                 this.app.user.set(userModel);
-                this.app.router.navigateTrigger('items');
+
+                if (redirect && redirect !== undefined) {
+                    LocalStorage.remove(constants.loginRedirectKey)
+                        .done(this.app.router.navigateTrigger.bind(this.app.router, redirect));
+                } else {
+                    this.app.router.navigateTrigger('items');
+                }
+
+                this.model.clear();
+                this.model.set('hideLoginForm',true);
             } else {
                 this.model.clear();
                 this.app.router.navigateTrigger('logout');

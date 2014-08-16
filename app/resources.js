@@ -33,16 +33,42 @@ define({
         signInRegisteredUser : 'Sign in using your registered account:',
         signUp : 'Sign Up',
         userDetailHeaderText : 'Profile for: ',
+        unlinkModalWithBasic : {
+            header: 'Unlink Google',
+            msg: 'Are you sure you want to remove google log in?'
+        },
+        unlinkModalWithoutBasic : {
+            header: 'Unlink Google',
+            msg: 'You are about to unlink this Google account without a username and password. Clicking continue will disable this user account.'
+        },
+        unlinkSuccessModal : {
+            header: 'Unlink Success',
+            msg: 'You successfully unlinked your google account.',
+            hideCancel: true
+        },
+        linkModal : {
+            header: 'Link Google',
+            msg: 'Are you sure you want to link your google account?'
+        },
+        linkModalSuccess : {
+            header: 'Link Success',
+            msg: 'You successfully linked your google account.',
+            hideCancel: true
+        },
         attributeTitles : {
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
             lastName : 'LAST NAME',
-            displayName : 'DISPLAY NAME',
+            displayname : 'DISPLAY NAME',
             role : 'USER ROLE',
             enabled : 'ENABLED?',
             email : 'EMAIL',
             username : 'USERNAME',
-            password : 'PASSWORD'
+            password : 'PASSWORD',
+            createdby : 'CREATED BY',
+            updatedby : 'UPDATED BY',
+            profile : 'PROFILE',
+            linkedidentities : 'LINKED IDENTITIES'
         },
         selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
             'Are you sure you want to do this? (You Will still need to save to apply changes.',
@@ -61,7 +87,16 @@ define({
         },
         newUserAdded : 'New User Added',
         couldNotFindUserContentType : 'Could not find Users content type. Please make one.',
-        addNewUser : 'Add New User'
+        addNewUser : 'Add New User',
+        blocks: {
+            lockUser: 'Lock this user',
+            lockUserSubtext: 'Locking a user will prevent them from logging in and using the system.',
+            lockUserButton: 'Lock user',
+            unlockUserButton: 'Unlock user',
+            deleteUser: 'Remove user',
+            deleteUserSubtext: 'Deleting a user will permanently remove them from the system. This operation cannot be undone.',
+            deleteUserButton: 'Remove user'
+        }
     },
     site : {
         about : 'About Grasshopper'
@@ -79,7 +114,9 @@ define({
     },
     node : {
         deletionWarning : 'Are you sure you want to delete this folder? All of its contents will also be deleted.',
-        successfullyDeletedPre : 'Folder ',
+        userDeletionWarning : 'Are you sure that you want to delete this user?',
+        successfullyDeletedWithoutLabel : 'Successfully deleted',
+        successfullyDeletedPre : 'Item ',
         successfullyDeletedPost : ' was successfully deleted.',
         successfullyUpdated : 'Folder was successfully updated.',
         successfullyCreatedPre : 'Folder: ',
@@ -176,27 +213,25 @@ define({
         size : 'Size',
         modified : 'Modified'
     },
-    nodeTree : {
-        emptyFolder : {
-            content : 'This folder has no content.',
-            files : 'This folder has no files.'
-        }
-    },
     pluginWrapper : {
         emptyFieldsMessage : 'not set.',
         clickToAdd : 'Click To Add.'
     },
     plugins : {
+        author : {
+            selectUser : 'Select User',
+            noPermissions : 'You don\'t have permissions to query users list. You can only select current user.'
+        },
         codeEditor : {
             language : 'Language',
             theme : 'Theme',
             loading : 'LOADING CODE EDITOR...'
         },
         contentReference : {
+            allowedContentTypes: 'Allowed Content Types',
             selectedContent : 'Selected Content',
             currentFolder : 'Current Folder',
-            selectDefaultFolderOr : 'Select Default Folder or',
-            setRootAsDefault : 'Set Root Folder as Default',
+            selectDefaultFolder : 'Select Default Folder',
             defaultFolder : 'Default Folder',
             contentTypes : 'Content Types',
             selectContent : 'Select Content',
@@ -234,6 +269,11 @@ define({
         slug : {
             refresh : 'Refresh',
             selectField : 'Select Field'
+        },
+        jsonEditor : {
+            language : 'Language',
+            theme : 'Theme',
+            loading : 'LOADING JSON EDITOR...'
         }
     },
     validationViews : {
@@ -249,6 +289,7 @@ define({
     content : 'Content',
     contentTypes : 'Content Types',
     forbidden : 'Forbidden',
+    notFound : 'Not Found',
     currentlySignedIn : 'You are currently signed in.',
     dashboard : 'Dashboard',
     defaultValue : 'Default Value',
@@ -257,6 +298,7 @@ define({
     email : 'Email',
     enabled : 'Enabled',
     error : 'Error',
+    emptySearchResult : 'Ooops, try one more time.',
     falseText : 'False',
     from : 'From',
     home : 'Home',
@@ -265,7 +307,7 @@ define({
     key: 'Key',
     label : 'Label',
     login : 'Login',
-    displayName : 'Display name',
+    displayname : 'Display Name',
     log_in : 'Log In',
     logInWithGoogle : 'Login with Google',
     log_out : 'Log Out',
@@ -310,6 +352,7 @@ define({
     type : 'Type',
     types : 'Types',
     upload : 'Upload',
+    uploadFile : 'Upload File',
     user_name : 'User Name',
     users : 'Users',
     sysInfo : 'Info',

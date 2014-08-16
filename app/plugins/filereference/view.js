@@ -1,94 +1,66 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
-    'plugins/filereference/modal/view'],
-    function (GrasshopperBaseView, _, Api, contentTypeWorker, $, ModalView) {
+define(['grasshopperBaseView', 'underscore', 'jquery',
+    'mixins/itemSelectModal', 'mixins/buildNodeRadioList'],
+    function (GrasshopperBaseView, _, $,
+              itemSelectModal, buildNodeRadioList) {
 
         'use strict';
 
         return GrasshopperBaseView.extend({
-            beforeRender: beforeRender,
             afterRender: afterRender,
-            stopAccordionPropagation: stopAccordionPropagation,
-            setRootAsDefaultNode: setRootAsDefaultNode,
             fireSelectFileModal: fireSelectFileModal,
-            setSelectedNode: setSelectedNode,
+            selectDefaultNode: selectDefaultNode,
             fireFileDetailModal: fireFileDetailModal
-        });
+        })
+            .extend(itemSelectModal)
+            .extend(buildNodeRadioList);
 
-        function beforeRender () {
+        function afterRender () {
             if (this.model.get('inSetup')) {
-                this.model.get('children').fetch()
-                    .then(_getSelectedNode.bind(this));
+                this.model.get('childNodesDeep').fetch()
+                    .done(
+                        this.buildNodeRadioList.bind(this, this.$('#nodeRadioList'), this.model.get('childNodesDeep')),
+                        _getSelectedNode.bind(this)
+                    );
             }
         }
 
         function _getSelectedNode () {
-            var $deferred = new $.Deferred(),
-                defaultNode = this.model.get('options.defaultNode');
+            var defaultNode = this.model.get('options.defaultNode'),
+                $defaultNodeRadio = this.$('#selectDefaultNode').find('#'+ defaultNode);
 
-            if (defaultNode && defaultNode !== '0') { // default is not root
-                Api.getNodeDetail(defaultNode)
-                    .done(setSelectedNode.bind(this, $deferred));
-            } else if (defaultNode && defaultNode === '0') { // default is root
-                setSelectedNode.call(this, $deferred, { label: 'Root'});
-            } else {
-                $deferred.resolve();
-            }
+            $defaultNodeRadio.prop('checked', true);
 
-            return $deferred.promise();
+            this.selectDefaultNode();
         }
 
-        function setSelectedNode ($deferred, nodeDetails) {
-            this.model.set('selectedNodeLabel', nodeDetails.label);
-            $deferred && $deferred.resolve();
+        function selectDefaultNode() {
+            var $selectedNode = this.$('#selectDefaultNode').find('input:radio[name="nodeRadio"]:checked'),
+                selectedNodeId = $selectedNode.val(),
+                selectedNodeLabel = $selectedNode.attr('data-label');
+
+            this.model.set('selectedNodeLabel', selectedNodeLabel);
+            this.model.set('options.defaultNode', selectedNodeId);
         }
 
-        function afterRender () {
-            this.model.set('showTree', true);
-            this.$el.foundation();
-        }
-
-        function stopAccordionPropagation (e) {
-            e.stopPropagation();
-        }
-
-        function setRootAsDefaultNode (e) {
-            this.model.set('selectedNodeLabel', 'Root');
-            this.model.set('options.defaultNode', '0');
-            e.preventDefault();
-        }
-
-        function fireSelectFileModal () {
+        function fireSelectFileModal() {
             _startModalView.call(this)
                 .done(_fileReferenceSelected.bind(this));
         }
 
-        function _startModalView () {
-            this.model.set('inSetup', false);
+        function _startModalView() {
+            var value = this.model.get('value'),
+                 nodeId = this.model.get('nodeId');
 
-            var $deferred = new $.Deferred(),
-                modalView = new ModalView({
-                    modelData: {
-                        header: 'Select File',
-                        selectedContent: this.model.get('selectedContent'),
-                        _id: this.model.get('options.defaultNode')
-                    },
-                    $deferred: $deferred
-                });
-
-            modalView.start();
-            return $deferred.promise();
+            return this.fireFileSelectModal(value, nodeId);
         }
 
-        function _fileReferenceSelected (modalModel) {
-            this.model.set('selectedContentName', modalModel.selectedContentName);
-            this.model.set('selectedContent', modalModel.selectedContent);
-            this.model.set('value', _.last(modalModel.selectedContent.split('/'), 2).join('/'));
+        function _fileReferenceSelected(selectedFilePath) {
+            this.model.set('value', selectedFilePath);
         }
 
-        function fireFileDetailModal () {
-            this.model.get('assetModel')
-                .fetch()
+        function fireFileDetailModal() {
+            this.model.get('assetModel').fetch()
                 .done(_fireModalWithData.bind(this));
         }
 

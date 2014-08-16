@@ -13,5 +13,6 @@
     "ckeditor-stylsheet" : "vendor/ckeditor/contents.css",
     "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
     "aceCodeEditor" : "vendor/ace/lib/ace/**/*",
-    "svg-edit" : "vendor/svg-edit-2.7/**/*"
+    "svg-edit" : "vendor/svg-edit-2.7/**/*",
+    "contextjs" : "vendor/contextjs/context.js"
 }

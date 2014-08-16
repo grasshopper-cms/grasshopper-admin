@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/modal/modalView.html', 'modalViewModel', 'formatters', 'modalViewBinders'],
-    function (template, modalViewModel, appFormatters, binders) {
+define(['text!views/modal/modalView.html', 'modalViewModel', 'formatters', 'modalViewBinders', 'modalViewFormatters'],
+    function (template, modalViewModel, appFormatters, binders, formatters) {
 
     'use strict';
 
@@ -13,8 +13,9 @@ define(['text!views/modal/modalView.html', 'modalViewModel', 'formatters', 'moda
         events : {
             'change #uploadFileInput' : 'handleFileSelect'
         },
+        viewOptions : ['withSearch'],
         rivetsConfig : {
-            formatters : [appFormatters],
+            formatters : [appFormatters, formatters],
             binders : [binders],
             instaUpdate : true
         }

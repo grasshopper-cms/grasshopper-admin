@@ -1,4 +1,4 @@
-define([], function () {
+define(['underscore'], function (_) {
     'use strict';
 
     /**
@@ -10,7 +10,8 @@ define([], function () {
         radioToBoolean : {
             read : readRadioToBoolean,
             publish : publishRadioToBoolean
-        }
+        },
+        hasAllowMultiple : hasAllowMultiple
     };
 
     /**
@@ -40,5 +41,9 @@ define([], function () {
             return true;
         }
         return false;
+    }
+
+    function hasAllowMultiple (value) {
+        return (_.isUndefined(value) ? true : value);
     }
 });

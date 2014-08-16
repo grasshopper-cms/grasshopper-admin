@@ -25,6 +25,9 @@ define([], function() {
             users : {
                 url : apiEndpoint + '/users'
             },
+            usersQuery : {
+                url : apiEndpoint + '/users/query'
+            },
             newUser : {
                 url : apiEndpoint + '/users'
             },
@@ -36,6 +39,9 @@ define([], function() {
             },
             nodesChildren : {
                 url : apiEndpoint + '/node/:id/children'
+            },
+            nodesChildrenDeep : {
+                url : apiEndpoint + '/node/:id/children/deep'
             },
             nodesContent : {
                 url : apiEndpoint + '/node/:id/content'
@@ -49,6 +55,9 @@ define([], function() {
             content : {
                 url : apiEndpoint + '/content'
             },
+            moveNode : {
+                url : apiEndpoint + '/node/move'
+            },
             contentQuery : {
                 url : apiEndpoint + '/content/query'
             },
@@ -57,26 +66,30 @@ define([], function() {
             },
             google : {
                 url : apiEndpoint + '/googleurl'
+            },
+            unlinkGoogle : {
+                url : apiEndpoint + '/users/:id/unlink'
             }
         },
         internalRoutes : {
-            user : '#user',
-            users : '#users',
-            addUser : '#addUser',
-            sysInfo: '#sysinfo',
-            contentTypes : '#contentTypes',
-            newContentType : '#contentTypes/new',
-            contentTypeDetail : '#contentTypes/:id',
-            content : '#items',
-            contentDetail : '#item/:id',
-            nodeDetail : '#items/nodeid/:id',
-            login : '#login',
-            logout : '#logout',
-            about : '#about',
-            createFolder : '#items/nodeid/:id/createFolder',
-            addContent : '#items/nodeid/:id/createContent',
-            createAssets : '#items/nodeid/:id/createAssets',
-            forbidden : '#forbidden'
+            user : '/user',
+            users : '/users',
+            addUser : '/add-user',
+            sysInfo: '/sys-info',
+            contentTypes : '/content-types',
+            newContentType : '/content-types/new',
+            contentTypeDetail : '/content-types/:id',
+            content : '/items',
+            contentDetail : '/item/:id',
+            nodeDetail : '/items/nodeid/:id',
+            login : '/login',
+            logout : '/logout',
+            about : '/about',
+            createFolder : '/items/nodeid/:id/create-folder',
+            addContent : '/items/nodeid/:id/create-content',
+            createAssets : '/items/nodeid/:id/create-assets',
+            forbidden : '/forbidden',
+            notFound : '/not-found'
         },
         timeouts: {
             showSpinnerLoadingTimeout: 2000
@@ -115,7 +128,20 @@ define([], function() {
             40 : 'bArr',
             91 : 'leftCMD',
             93 : 'rightCMD'
+        },
+        // https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
+
+        jsoneditor : {
+            mode: 'tree',
+            modes:['code', 'tree']
+        },
+
+        loginRedirectKey : 'loginRedirect',
+
+        profileGoogleLinkRedirect : {
+            url : '/user/:id'
         }
+
     };
 
 });

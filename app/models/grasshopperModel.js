@@ -30,7 +30,8 @@ define(['backbone', 'masseuse', 'resources', 'constants', 'underscore', 'helpers
         if (options) {
             _.extend(fetchOptions.data, options.data);
             _.extend(fetchOptions.headers, options.headers);
-            _.extend(fetchOptions.success, options.success);
+            _.extend(fetchOptions.success, options.success); // Why are we trying to extend function? copypaste error?
+            fetchOptions.error = options.error;
         }
 
         args[0] = fetchOptions;

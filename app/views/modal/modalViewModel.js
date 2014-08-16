@@ -5,6 +5,7 @@ define(['masseuse', 'resources', 'constants'], function (masseuse, resources, co
         defaults : {
             resources : resources,
             constants : constants,
+            withSearch : false,
             files : []
         }
     });

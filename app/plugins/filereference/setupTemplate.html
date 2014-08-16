@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row fileReferenceSetup">
 
     <div class="small-12 columns">
         <div class="small-2 columns">
@@ -17,21 +17,17 @@
     </div>
 
     <div class="small-12 columns">
-        <label>
-            {{model:resources->plugins->fileReference->selectDefaultFolderOr}}
-        <span>
-            <a data-rv-on-click="view.setRootAsDefaultNode">
-                {{model:resources->plugins->fileReference->setRootAsDefault}}
-            </a>
-        </span>
+        <span>{{model:resources->plugins->contentReference->selectDefaultFolder | withColon}}</span>
 
-            <div data-rv-hide="model:showTree"><i class="fa fa-refresh"></i></div>
-
-            <div data-rv-show="model:showTree" id="nodeTree">
-                <div data-rv-each-node="model:children:" data-rv-nodetree="node"></div>
-            </div>
-
-        </label>
+        <section id="selectDefaultNode">
+            <ul class="no-bullet noMarginBottom">
+                <li>
+                    <input type="radio" value="0" name="nodeRadio" data-label="Root" id="0">
+                    <label for="0">{{model:resources->root}}</label>
+                </li>
+            </ul>
+            <section class="nodeRadio" id="nodeRadioList"></section>
+        </section>
     </div>
 
 </div>

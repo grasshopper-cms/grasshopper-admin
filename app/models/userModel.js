@@ -1,6 +1,6 @@
 define([
-    'grasshopperModel', 'masseuse', 'resources', 'constants'
-], function (Model, masseuse, resources, constants) {
+    'grasshopperModel', 'masseuse', 'resources', 'constants', 'underscore', 'api'
+], function (Model, masseuse, resources, constants, _, api) {
 
     'use strict';
     var ComputedProperty = masseuse.ComputedProperty;
@@ -11,13 +11,25 @@ define([
             role : false,
             enabled : false,
             email : false,
+            profile : {},
             loggedIn : new ComputedProperty(['enabled'], function (enabled) {
                 return enabled;
             }),
             href : new ComputedProperty(['_id'], function (id) {
                 return constants.internalRoutes.user + '/' + id;
+            }),
+            hasGoogle : new ComputedProperty(['linkedidentities'], function(identities){
+                return _.contains(identities, 'google');
+            }),
+            hasBasic : new ComputedProperty(['linkedidentities'], function(identities){
+                return _.contains(identities, 'basic');
             })
-        }
+        },
+        unlinkGoogle : unlinkGoogle
     });
+
+    function unlinkGoogle () {
+        return api.unlinkGoogle(this.get('_id'));
+    }
 
 });

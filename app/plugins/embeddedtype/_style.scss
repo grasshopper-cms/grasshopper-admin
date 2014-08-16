@@ -18,3 +18,11 @@
 .button {
   outline: none;
 }
+
+.accordionError {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0 1rem 0;
+  padding: 0.625rem 0;
+  color: $userDetailRemoveColor;
+}

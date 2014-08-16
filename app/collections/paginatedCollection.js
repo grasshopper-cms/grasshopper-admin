@@ -6,7 +6,7 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
             model : Model,
             nodeId : '',
             query : query,
-            searchQuery : _.throttle(query, constants.contentSearchThrottle),
+            searchQuery : _.throttle(query, constants.contentSearchThrottle, {leading:false}),
             doSkip: doSkip,
             setLimit: setLimit,
             total : 0
@@ -38,24 +38,22 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
 
             var $deferred = new $.Deferred(),
                 queryData = {
-                    filters: [
-                        {key: 'virtual.label', cmp: '%', value: value || ''}
-                    ],
-                    nodes: [this.nodeId],
+                    filters : [{key: this.filtersKey, cmp: '%', value: value || ''}],
+                    nodes: [this.nodeId] || [],
                     options: {
                         limit: parseInt(this.limit, 10),
                         skip : (parseInt(this.skip, 10) - 1) * this.limit
                     }
                 };
 
-            $('#panel2-1').addClass('spinner-loading');
-            api.makeQuery(queryData)
+            $('.table-wrapper').addClass('spinner-loading');
+            this.queryRequest.call(api, queryData)
                 .done(function(data) {
                     this.reset(data.results);
                     this.total = data.total;
                     this.skip =  parseInt(this.skip, 10);
                     this.trigger('paginatedCollection:query');
-                    $('#panel2-1').removeClass('spinner-loading');
+                    $('.table-wrapper').removeClass('spinner-loading');
                     $deferred.resolve();
                 }.bind(this));
 

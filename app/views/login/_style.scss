@@ -23,4 +23,12 @@
   .login-fields .field {
     margin-bottom: 1.25em;
   }
+  .login-validation-error{
+    color: red;
+    padding-top: 0.5em;
+    &:before{
+      content: "\f071";
+      font-family: "FontAwesome";
+    }
+  }
 }

@@ -5,7 +5,8 @@
         "require": false,
         "beforeEach": false,
         "describe": false,
-        "it": false
+        "it": false,
+        "context": false
     },
     "curly": true,
     "quotmark": "single",
@@ -15,7 +16,7 @@
     "onevar" : true,
     "strict" : true,
     "undef" : true,
-    "unused" : true,
+    "unused" : "vars",
     "maxlen" : 242,
     "newcap" : false,
     "trailing" : true,

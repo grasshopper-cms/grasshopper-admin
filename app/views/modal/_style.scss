@@ -18,6 +18,7 @@
     flex-direction: column;
     z-index: $modalContentsZIndex;
     width: 35%;
+    min-width:280px;
     background-color: $modal-contents-background-color;
     box-shadow: 0 0 10px $modal-background-color;
 
@@ -27,11 +28,51 @@
       text-align: left;
       font-weight: normal;
       font-size: 20px;
+
+      .modalHeader-title {
+        margin: 0 0 15px;
+        padding: 0 0 5px;
+        font-size: 1.4rem;
+        border-bottom: 1px solid #ccc;
+      }
+      .modalHeader-nav {
+        margin: 0 0 10px;
+      }
+
+      #contentTypeSearch {
+        position: relative;
+        width: 100%;
+        margin: 0;
+
+        .contentTypeSearchInput {
+          margin: 0;
+          padding-right: 2rem;
+          font-style: italic;
+        }
+
+        .contentTypeSearchInput:focus {
+          font-style: normal;
+        }
+
+        .contentTypeSearchIcon {
+          position: absolute;
+          right: 0.5rem;
+          top: 0;
+          margin: 0;
+          font-size: 1.3rem;
+          line-height: 2.3125rem;
+          color: $borderGray;
+        }
+      }
     }
 
     #modalBody {
       padding: 0 $modalPadding 0 $modalPadding;
       overflow: hidden;
+
+      .modalEmptySearch {
+        margin: 0;
+      }
     }
 
     .modalPadding { // utility class for things outside the inputContainer
@@ -42,6 +83,10 @@
       max-height: 500px;
       overflow: scroll;
       border: 1px solid $modalInputContainerBorder;
+
+      .nowrapRow{
+        white-space: nowrap;
+      }
     }
 
     ol {

@@ -11,6 +11,7 @@ define(['grasshopperModel', 'masseuse', 'validationLibrary', 'underscore', 'reso
             loggingIn : false,
             username : '',
             password : '',
+            hideLoginForm: false,
             usernameError : new ComputedProperty(['username'], _validateUserLoginAttribute, true),
             passwordError : new ComputedProperty(['password'], _validateUserLoginAttribute, true),
             hasError : new ComputedProperty(['usernameError', 'passwordError'], _checkForErrors)

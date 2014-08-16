@@ -10,6 +10,7 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse', 'underscore'],
             defaults : {
                 resources : resources,
                 enabled : true,
+                profile : {},
                 fullname : new ComputedProperty(['firstname', 'lastname'], function(firstname, lastname) {
                     return firstname + ' ' + lastname;
                 }),
@@ -19,7 +20,14 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse', 'underscore'],
                 saving : false,
                 userIsChangingTheirProfile : ComputedProperty(['_id', 'userModel'], function(_id, userModel) {
                     return _id && userModel && _id === userModel.get('_id');
+                }),
+                hasGoogle : new ComputedProperty(['linkedidentities'], function(identities){
+                    return _.contains(identities, 'google');
+                }),
+                hasBasic : new ComputedProperty(['linkedidentities'], function(identities){
+                    return _.contains(identities, 'basic');
                 })
+
             },
             toJSON : toJSON,
             urlRoot : constants.api.users.url,

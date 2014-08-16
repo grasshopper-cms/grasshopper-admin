@@ -1,22 +1,19 @@
 // Import Foundation
 @import "../vendor/foundation/scss/normalize.scss";
 @import "../vendor/foundation/scss/foundation.scss";
-
 // Fonts
 @import "fonts";
-
 // Colors
 @import "colors";
-
 // Mixins
 @import "mixins";
-
 // Z-Index
 @import "z-index";
-
 // Vendor Plugins
 @import "datetimepicker";
 @import "CSS:../vendor/select2/select2";
+@import "CSS:../vendor/jsoneditor/jsoneditor";
+@import "CSS:../vendor/contextjs/context.standalone";
 
 $imgPath: 'img';
 
@@ -25,12 +22,65 @@ $font: 'Open Sans', arial, sans-serif;
 .row {
   max-width: 100%;
 }
+
 @import "_loading-spinner.scss";
 
 body, html {
   height: 100%;
 
   font-family: $font;
+  .jsoneditor-contextmenu {
+    button {
+      border-radius: 0px;
+    }
+    ul {
+      li {
+        button.default {
+          width: 90px;
+        }
+        ul {
+          left: 0px;
+          &.menu {
+            height: auto !important;
+          }
+        }
+      }
+    }
+
+  }
+  .jsoneditor {
+    textarea.text {
+      min-height: 200px;
+    }
+    button {
+      border-radius: 0px;
+    }
+    .search {
+      width: 200px;
+      input {
+        padding: 0px;
+      }
+    }
+    table {
+      border-radius: 0px;
+      width: inherit;
+      background: none;
+      margin-bottom: 0px;
+      border: none;
+
+      th {
+        background: none;
+        border-bottom: 0px;
+        box-shadow: 0px;
+      }
+
+      tr {
+        background: none;
+        border-bottom: 0px;
+        box-shadow: 0px;
+      }
+    }
+  }
 
   #siteContainter {
     min-height: 100%;
@@ -65,8 +115,8 @@ body, html {
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
-    padding:5px;
-    border-radius:3px;
+    padding: 5px;
+    border-radius: 3px;
   }
 
   fieldset + legend {
@@ -83,7 +133,7 @@ body, html {
   }
 
   #stage {
-    margin-top: 1em;
+    margin-top: 2.5em;
   }
 
   .search {
@@ -108,6 +158,10 @@ body, html {
     float: right;
     width: 19rem;
     margin: -3rem 0 0;
+
+    &.contentSearch-user {
+      margin: 0 0 0.5rem;
+    }
 
     .contentSearchInput {
       margin: 0;
@@ -140,6 +194,7 @@ body, html {
   @import "../views/alertBox/_style.scss"; // Alertbox
   @import "../views/login/_style.scss"; // Login
   @import "../views/masthead/_style.scss"; // Masthead
+  @import "../views/clipboard/_style.scss"; // Clipboard
   @import "../views/userIndex/_style.scss"; // User Index
   @import "../views/userDetail/_style.scss"; // User Detail
   @import "../views/contentDetail/_style.scss"; // Content Detail
@@ -148,18 +203,21 @@ body, html {
   @import "../views/contentTypeDetail/_style.scss"; // Content Type Detail
   @import "../views/contentTypeDetail/fieldAccordion/_style.scss"; // Content Type Detail Field Accordion
   @import "../views/nodeDetail/_style.scss"; // Node Detail
-  @import "../views/nodeTree/_style.scss"; // Node Tree
   @import "../views/contentBrowse/_style.scss"; // Content Browse
   @import "../views/pluginWrapper/_style.scss"; // Plugin Wrapper
   @import "../views/forbidden/_style.scss"; // Forbidden page
   @import "../views/sysInfo/_style.scss"; // SysInfo page
   @import "../views/pagination/_style.scss"; // Pagination View
+  @import "../views/itemSelectModal/_style.scss"; // Item Select Modal
 
   // PLUGINS
   @import "../plugins/embeddedtype/_style.scss"; // Embedded Type Plugin
   @import "../plugins/contentreference/_style.scss"; // Content Reference Plugin
+  @import "../plugins/filereference/_style.scss"; // File Reference Plugin
   @import "../plugins/codeeditor/_style.scss"; // Code Editor Plugin
+  @import "../plugins/jsoneditor/_style.scss"; // JSON Editor Plugin
   @import "../plugins/richtext/_style.scss"; // Rich Text Plugin
   @import "../plugins/checkbox/_style.scss"; // Checkbox Plugin
+  @import "../plugins/author/_style.scss"; // Author Plugin
 
 }

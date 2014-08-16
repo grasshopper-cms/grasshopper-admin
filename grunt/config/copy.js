@@ -53,7 +53,6 @@ module.exports = function (grunt) {
                         '**',
                         '!**/*.scss',
                         '**/*.html',
-                        '!index.html',
                         '!vendor/**'
                     ],
                     dest : '<%= tempDirectory %>'
@@ -187,6 +186,18 @@ module.exports = function (grunt) {
                         '!node_modules/**'
                     ],
                     dest : '_deploy'
+                }
+            ]
+        },
+        index : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        'index.html'
+                    ],
+                    dest : '<%= buildDirectory %>'
                 }
             ]
         }

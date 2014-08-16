@@ -53,7 +53,7 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
             this.displayModal(
                 {
                     msg : resources.contentType.noContentTypes,
-                    hideCancel: true
+                    hideConfirm: true
                 })
                 .always(_rejectDeferredThenNavigateBack.bind(this, $deferred));
         }

@@ -6,7 +6,8 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
             getNodeForTree : getNodeForTree,
             editName : editName,
             editContentTypes : editContentTypes,
-            deleteNode : deleteNode
+            deleteNode : deleteNode,
+            deleteUser : deleteUser
         };
 
         function getNodeForTree(nodeId) {
@@ -40,8 +41,13 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         }
 
         function deleteNode() {
-            _warnUserBeforeDeleting.call(this)
-                .done(_actuallyDeleteNode.bind(this));
+            _warnUserBeforeDeleting.call(this, resources.node.deletionWarning)
+                .done(_actuallyDeleteNode.bind(this, true));
+        }
+
+        function deleteUser(goBack) {
+            _warnUserBeforeDeleting.call(this, resources.node.userDeletionWarning)
+                .done(_actuallyDeleteNode.bind(this, goBack !== undefined ? goBack : false));
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,6 +96,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
                 {
                     header : resources.contentType.editContentTypes,
                     type : 'checkbox',
+                    withSearch : true,
                     data : availableContentTypes
                 });
         }
@@ -121,33 +128,40 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
             this.fireErrorModal(msg);
         }
 
-        function _warnUserBeforeDeleting() {
+        function _warnUserBeforeDeleting(message) {
             return this.displayModal(
                 {
                     header : resources.warning,
-                    msg : resources.node.deletionWarning
+                    msg : message
                 });
         }
 
-        function _actuallyDeleteNode() {
+        function _actuallyDeleteNode(goToParent) {
             var self = this;
             this.model.fetch()
                 .then(function() {
                     self.model.destroy()
-                        .done(_handleSuccessfulNodeDeletion.bind(self))
+                        .done(_handleSuccessfulNodeDeletion.bind(self,goToParent))
                         .fail(_handleFailedNodeDeletion.bind(self));
                 });
         }
 
-        function _handleSuccessfulNodeDeletion() {
-            _redirectToParent.call(this);
-
+        function _handleSuccessfulNodeDeletion(goToParent) {
+            var message;
+            if (goToParent !== false) {
+                _redirectToParent.call(this);
+            }
+            if (this.model.get('label')) {
+                message = resources.node.successfullyDeletedPre + this.model.get('label') + resources.node.successfullyDeletedPost;
+            }
+            else {
+                message = resources.node.successfullyDeletedWithoutLabel;
+            }
             this.displayTemporaryAlertBox(
                 {
-                    header : resources.success,
-                    style : 'success',
-                    msg : resources.node.successfullyDeletedPre + this.model.get('label') +
-                        resources.node.successfullyDeletedPost
+                    header: resources.success,
+                    style: 'success',
+                    msg: message
                 }
             );
         }
@@ -159,7 +173,9 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _redirectToParent() {
             var parent = this.model.get('parent');
 
-            if(parent && parent._id) {
+            if (this.model.get('userModel')) {
+                this.app.router.navigateTrigger(constants.internalRoutes.users);
+            } else if(parent && parent._id) {
                 this.app.router.navigateTrigger(constants.internalRoutes.nodeDetail.replace(':id', parent._id));
             } else {
                 this.app.router.navigateTrigger(constants.internalRoutes.content);

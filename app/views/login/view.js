@@ -11,9 +11,9 @@ define(['grasshopperBaseView', 'login/options', 'loginWorker', 'api'],
     });
 
     function login () {
-        _toggleSpinner.call(this);
 
         if (this.model.isValid()) {
+            _toggleSpinner.call(this);
             loginWorker.doLogin.call(this)
                 .always(_toggleSpinner.bind(this));
         }
