@@ -37,8 +37,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                 }
             },
             transitions : {
-                enter : 'transition.slideRightIn',
-                exit : 'transition.slideLeftOut'
+                enter : 'transition.fadeIn'
             }
         };
     });
