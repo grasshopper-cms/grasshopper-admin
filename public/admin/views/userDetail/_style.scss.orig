@@ -1,0 +1,65 @@
+#userDetail {
+
+  legend {
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  #statusText {
+    label {
+      padding-left: 6px;
+      padding-right: 6px;
+    }
+  }
+<<<<<<< HEAD
+}
+
+.user-lock-delete-buttons {
+  .user-lock-delete-button-block {
+    width: 50%;
+    float: left;
+    .user-lock-delete-borders {
+      border: 1px solid;
+      margin: 25px 0 10px;
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .user-lock-delete-block-header {
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+    .user-lock-delete-block-action .button {
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+  }
+
+  .lock-user-block .user-lock-delete-borders {
+    background-color: #FBF7E2;
+    border-color: #F9EFD8;
+    color: #AF8636;
+    margin-right: 10px;
+  }
+
+  .delete-user-block .user-lock-delete-borders {
+    background-color: #F0DEDE;
+    border-color: #ECD5D8;
+    color: #B9645E;
+=======
+
+  #identities {
+    i {
+      cursor:pointer;
+      font-size: 30px;
+      padding: 13px 17px 9px 15px;
+      &.linked {
+        background-color: $blue;
+        color: white;
+      }
+    }
+
+
+>>>>>>> GRAS-1467-unlink-and-link-identities
+  }
+}
