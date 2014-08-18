@@ -317,7 +317,7 @@ define({
     key: 'Key',
     label : 'Label',
     login : 'Login',
-    displayname : 'Display Name',
+    displayname : 'Display name',
     log_in : 'Log In',
     logInWithGoogle : 'Login with Google',
     log_out : 'Log Out',
