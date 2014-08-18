@@ -35,6 +35,10 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                     'asset-detail-row' : AssetDetailView,
                     'pagination-view' : PaginationView
                 }
+            },
+            transitions : {
+                enter : 'transition.slideUpIn',
+                exit : 'transition.slideDownOut'
             }
         };
     });
