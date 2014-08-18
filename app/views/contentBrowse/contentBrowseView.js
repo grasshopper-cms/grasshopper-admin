@@ -84,27 +84,27 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
                 return type;
             };
 
-            this.$el.on('clipboard:cut', '.nodeOrContentDetailRow', function (e) {
+            this.$el.on('clipboard:cut', '.nodeOrContentDetailRow', function() {
                 clipboardWorker.cutContent(self, {type: _getRowType(this), id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
             });
-            this.$el.on('clipboard:copy', '.nodeOrContentDetailRow', function (e) {
+            this.$el.on('clipboard:copy', '.nodeOrContentDetailRow', function() {
                 clipboardWorker.copyContent(self, {type: _getRowType(this), id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
             });
-            this.$el.on('clipboard:paste', '.nodeOrContentDetailRow', function (e) {
+            this.$el.on('clipboard:paste', '.nodeOrContentDetailRow', function(e) {
                 e.stopPropagation();
                 var clickedItemId = $(this).data('id'), currentFolderId = self.model.id;
                 clipboardWorker.pasteContent(self,
                     {type: _getRowType(this), id: clickedItemId, name: $('.contentDetailRowName', this).text()},
-                    {type: 'node', id: currentFolderId, name: self.model.get('label')}).done(function (data) {
+                    {type: 'node', id: currentFolderId, name: self.model.get('label')}).done(function() {
                         self.model.get('childNodes').fetch();
                         _getChildContent.call(self);
                     });
             });
-            this.$el.on('clipboard:paste', '#contentBrowseTable', function (e) {
+            this.$el.on('clipboard:paste', '#contentBrowseTable', function () {
                 var currentFolderId = self.model.id;
                 clipboardWorker.pasteContent(self, undefined,
                     {type: 'node', id: currentFolderId, name: self.model.get('label')}
-                ).done(function (data) {
+                ).done(function() {
                         self.model.get('childNodes').fetch();
                         _getChildContent.call(self);
                     });
