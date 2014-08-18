@@ -14,7 +14,7 @@
     "author": "",
     "license": "BSD-2-Clause",
     "dependencies": {
-        "grasshopper-api": "0.15.7",
+        "grasshopper-api": "0.15.9",
         "express": "~4.8.0",
         "grunt-contrib-watch": "^0.6.1",
         "grunt": "^0.4.5",
