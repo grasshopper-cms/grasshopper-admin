@@ -129,7 +129,7 @@ require([
             var href = $(this).attr('href') || '';
             var protocol = this.protocol + '//';
 
-            if (href && href.slice(protocol.length) !== protocol) {
+            if (href && href!='#' && href.slice(protocol.length) !== protocol) {
                 evt.preventDefault();
                 router.navigate(href, {trigger:true});
             }

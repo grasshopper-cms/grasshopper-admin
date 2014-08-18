@@ -58,6 +58,12 @@ define([], function() {
             moveNode : {
                 url : apiEndpoint + '/node/move'
             },
+            copyAsset : {
+                url : apiEndpoint + '/node/:id/assets/copy'
+            },
+            moveAsset : {
+                url : apiEndpoint + '/node/:id/assets/move'
+            },
             contentQuery : {
                 url : apiEndpoint + '/content/query'
             },
