@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'resources'],
-    function (Backbone, masseuse, resources) {
+define(['backbone', 'masseuse', 'resources', 'underscore'],
+    function (Backbone, masseuse, resources, _) {
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
@@ -24,6 +24,8 @@ define(['backbone', 'masseuse', 'resources'],
             initialize : initialize,
             start : start,
             fireErrorModal : fireErrorModal,
+            enter : enter,
+            remove : remove,
             mastheadButtonsSelector : '#mastheadButtons'
         });
 
@@ -31,7 +33,6 @@ define(['backbone', 'masseuse', 'resources'],
             options.viewOptions = options.viewOptions || [];
             options.viewOptions =  options.viewOptions.concat(defaultViewOptions);
 
-            // TODO: I think I can get rid of this line.... Nowhere in this app do I call this.options or self.options.
             this.options = options;
 
             RivetView.prototype.initialize.apply(this, arguments);
@@ -51,7 +52,7 @@ define(['backbone', 'masseuse', 'resources'],
             }
 
             return RivetView.prototype.start.apply(this, arguments)
-                .done(_handleAfterRender.bind(this));
+                .done(_handleAfterRender.bind(this), this.enter);
         }
 
         function fireErrorModal(message) {
@@ -62,6 +63,22 @@ define(['backbone', 'masseuse', 'resources'],
                     msg : message
                 }
             );
+        }
+
+        function enter() {
+            if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'enter')) {
+                this.$el.velocity(this.options.transitions.enter);
+            }
+        }
+
+        function remove() {
+            if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'exit')) {
+               this.$el.velocity(this.options.transitions.exit, {
+                   complete : RivetView.prototype.remove.bind(this, arguments)
+               });
+            } else {
+                RivetView.prototype.remove.apply(this, arguments);
+            }
         }
 
     });
