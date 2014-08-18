@@ -18,7 +18,9 @@
         "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker",
         "sparkmd5" : "vendor/SparkMD5/spark-md5",
         "JSONEditor" : "vendor/jsoneditor/jsoneditor",
-        "contextjs" : "vendor/contextjs/context"
+        "contextjs" : "vendor/contextjs/context",
+        "velocity" : "vendor/velocity/jquery.velocity",
+        "velocityUi" : "vendor/velocity/velocity.ui"
     },
 
     "routers" : {
