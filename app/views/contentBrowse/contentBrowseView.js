@@ -37,7 +37,6 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
             _initClipboard.call(this);
         }
 
-
         function _initClipboard() {
             var self = this;
             context.init({preventDoubleContext: true, compress: true});
