@@ -4,7 +4,7 @@ define(['backbone', 'masseuse', 'resources'],
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
-            oldSet = Backbone.Collection.prototype.set,
+//            oldSet = Backbone.Collection.prototype.set,
             defaultViewOptions = [
                 '$deferred',
                 'type',
@@ -35,12 +35,12 @@ define(['backbone', 'masseuse', 'resources'],
             // TODO: I think I can get rid of this line.... Nowhere in this app do I call this.options or self.options.
             this.options = options;
 
-            Backbone.Collection.prototype.set = function (data, options) {
-                if (data && data.results) {
-                    data = data.results;
-                }
-                oldSet.call(this, data, options);
-            };
+//            Backbone.Collection.prototype.set = function (data, options) {
+//                if (data && data.results) {
+//                    data = data.results;
+//                }
+//                oldSet.call(this, data, options);
+//            };
 
             RivetView.prototype.initialize.apply(this, arguments);
         }
