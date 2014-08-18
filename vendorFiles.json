@@ -36,10 +36,11 @@
     "aceCodeEditor" : "vendor/ace/lib/ace/**/*",
     "moment" : "vendor/moment/moment.js",
     "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker.js",
-    "select2": "vendor/select2/select2.js",
-    "sparkmd5": "vendor/SparkMD5/spark-md5.js",
+    "select2" : "vendor/select2/select2.js",
+    "sparkmd5" : "vendor/SparkMD5/spark-md5.js",
     "svg-edit" : "vendor/svg-edit-2.7/**/*",
     "JSONEditor" : "vendor/jsoneditor/**/*",
-    "contextjs": "vendor/contextjs/context.js"
-
+    "contextjs" : "vendor/contextjs/context.js",
+    "velocity" : "vendor/velocity/jquery.velocity.js",
+    "velocityUi" : "vendor/velocity/velocity.ui.js"
 }
