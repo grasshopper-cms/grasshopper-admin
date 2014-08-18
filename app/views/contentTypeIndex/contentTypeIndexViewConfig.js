@@ -31,8 +31,7 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
                 }
             },
             transitions : {
-                enter : 'transition.slideRightIn',
-                exit : 'transition.slideLeftOut'
+                enter : 'transition.fadeIn'
             }
         };
     });
