@@ -71,7 +71,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
 
         function _setValueFromEditor() {
             var value = this.editor.getValue();
-            if ( _isValidJson() ) {
+            if ( _isValidJson(value) ) {
                 this.model.set('isError', false);
                 this.model.set('value', JSON.parse(value));
             } else {
@@ -90,7 +90,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
             this.model.toggle('loading');
         }
 
-        function _isValidJson() {
+        function _isValidJson(value) {
             try {
             } catch (e) {
                 return false;

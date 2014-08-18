@@ -37,6 +37,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
             _initClipboard.call(this);
         }
 
+
         function _initClipboard() {
             var self = this;
             context.init({preventDoubleContext: true, compress: true});
@@ -83,27 +84,27 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
                 return type;
             };
 
-            this.$el.on('clipboard:cut', '.nodeOrContentDetailRow', function() {
+            this.$el.on('clipboard:cut', '.nodeOrContentDetailRow', function (e) {
                 clipboardWorker.cutContent(self, {type: _getRowType(this), id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
             });
-            this.$el.on('clipboard:copy', '.nodeOrContentDetailRow', function() {
+            this.$el.on('clipboard:copy', '.nodeOrContentDetailRow', function (e) {
                 clipboardWorker.copyContent(self, {type: _getRowType(this), id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
             });
-            this.$el.on('clipboard:paste', '.nodeOrContentDetailRow', function(e) {
+            this.$el.on('clipboard:paste', '.nodeOrContentDetailRow', function (e) {
                 e.stopPropagation();
                 var clickedItemId = $(this).data('id'), currentFolderId = self.model.id;
                 clipboardWorker.pasteContent(self,
                     {type: _getRowType(this), id: clickedItemId, name: $('.contentDetailRowName', this).text()},
-                    {type: 'node', id: currentFolderId, name: self.model.get('label')}).done(function() {
+                    {type: 'node', id: currentFolderId, name: self.model.get('label')}).done(function (data) {
                         self.model.get('childNodes').fetch();
                         _getChildContent.call(self);
                     });
             });
-            this.$el.on('clipboard:paste', '#contentBrowseTable', function () {
+            this.$el.on('clipboard:paste', '#contentBrowseTable', function (e) {
                 var currentFolderId = self.model.id;
                 clipboardWorker.pasteContent(self, undefined,
                     {type: 'node', id: currentFolderId, name: self.model.get('label')}
-                ).done(function() {
+                ).done(function (data) {
                         self.model.get('childNodes').fetch();
                         _getChildContent.call(self);
                     });

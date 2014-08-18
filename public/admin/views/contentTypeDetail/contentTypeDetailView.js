@@ -24,7 +24,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
         if (!this.model.has('label') && !this.model.isNew()) {
             this.model
                 .fetch({
-                    error : function (collection, response) {
+                    error : function (collection, response, options) {
                         if (response.status === 404 || response.status === 500 ) {
                             self.app.router.navigateTrigger('not-found');
                         }

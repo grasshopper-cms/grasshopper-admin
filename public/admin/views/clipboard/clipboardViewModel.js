@@ -1,4 +1,4 @@
-define(['grasshopperModel', 'resources'], function (GrasshopperModel, resources) {
+define(['grasshopperModel', 'masseuse', 'resources', 'constants', 'clipboardWorker'], function (GrasshopperModel, masseuse, resources, constants, clipboardWorker) {
     'use strict';
 
     return GrasshopperModel.extend({

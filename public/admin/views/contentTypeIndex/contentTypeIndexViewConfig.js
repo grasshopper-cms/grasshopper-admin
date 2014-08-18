@@ -29,9 +29,6 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
                 childViewBinders : {
                     'content-type-detail-row' : contentTypeDetailRow
                 }
-            },
-            transitions : {
-                enter : 'transition.fadeIn'
             }
         };
     });
