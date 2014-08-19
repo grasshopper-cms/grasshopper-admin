@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', 'breadcrumbWorker', 'underscore',
-    'mixins/handleRowCLick', 'nodeWorker', 'mixins/jsonEditor', 'helpers', 'api'],
+    'mixins/handleRowCLick', 'mixins/jsonEditor', 'helpers', 'api'],
     function (GrasshopperBaseView, options, resources, constants, breadcrumbWorker, _,
-              handleRowCLick, nodeWorker, jsonEditor, helpers,Api) {
+              handleRowCLick, jsonEditor, helpers, Api) {
 
         'use strict';
         var LocalStorage = helpers.localStorage;
@@ -15,13 +15,14 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             saveAndClose: saveAndClose,
             toggleEnabled: toggleEnabled,
             deleteUser: deleteUser,
-            deleteUserAndGoBack: deleteUserAndGoBack,
             addNewUser: addNewUser,
             toggleGoogle: toggleGoogle
-        }).extend(handleRowCLick);
+        })
+            .extend(handleRowCLick);
 
         function beforeRender ($deferred) {
-            this.model.fetch().done(_updateMastheadBreadcrumbs.bind(this, $deferred));
+            this.model.fetch()
+                .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
         function afterRender () {
@@ -66,14 +67,49 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                 });
         }
 
-        function deleteUser (e) {
-            e.stopPropagation();
-            nodeWorker.deleteUser.call(this, false);
+        function deleteUser () {
+            _deleteUserWorkflow.call(this);
         }
 
-        function deleteUserAndGoBack(e){
-            e.stopPropagation();
-            nodeWorker.deleteUser.call(this, true);
+        function _deleteUserWorkflow() {
+            _warnUserBeforeDeleting.call(this)
+                .done(_actuallyDeleteUser.bind(this));
+        }
+
+        function _warnUserBeforeDeleting() {
+            return this.displayModal(
+                {
+                    header: resources.warning,
+                    msg: resources.user.delete.warningMessage
+                });
+        }
+
+        function _actuallyDeleteUser() {
+            this.model.destroy()
+                .then(_handleSuccessfulUserDeletion.bind(this))
+                .fail(_handleFailedUserDeletion.bind(this));
+        }
+
+        function _handleSuccessfulUserDeletion() {
+            this.app.router.navigateTrigger(constants.internalRoutes.users);
+
+            this.displayTemporaryAlertBox(
+                {
+                    header: resources.success,
+                    style: 'success',
+                    msg: resources.user.delete.success
+                }
+            );
+        }
+
+        function _handleFailedUserDeletion() {
+            this.displayTemporaryAlertBox(
+                {
+                    header: resources.error,
+                    style: 'error',
+                    msg: resources.user.delete.failure
+                }
+            );
         }
 
         function toggleEnabled (e) {
@@ -203,3 +239,37 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
         }
 
     });
+
+
+/*
+ {
+ "__v" : 1,
+ "_id" : ObjectId("53f25d4ac0578800007ccf5b"),
+ "createdby" : {
+ "id" : "5246e73d56c02c0744000004",
+ "displayname" : "admin"
+ },
+ "dateCreated" : ISODate("2014-08-18T20:08:42.895Z"),
+ "displayname" : "greg.larrenaga@thinksolid.com",
+ "email" : "greg.larrenaga@thinksolid.com",
+ "enabled" : true,
+ "firstname" : "Greg",
+ "identities" : {
+ "google" : {
+ "accessToken" : "ya29.ZQBEtbhB2Q8tUiIAAAD2b3BHqzzXCbL7NnGlEXCGgoSpLiPmMVtx2UzJQ9r1sVc8OE5gC-1JAslcjXnW3L0",
+ "id" : "105708433433841019982"
+ }
+ },
+ "lastname" : "Larrenaga",
+ "linkedidentities" : [],
+ "permissions" : [],
+ "profile" : {
+ "picture" : "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg"
+ },
+ "role" : "admin",
+ "updatedby" : {
+ "id" : "5246e73d56c02c0744000004",
+ "displayname" : "admin"
+ }
+ }
+ */
