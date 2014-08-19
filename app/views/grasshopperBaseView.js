@@ -68,6 +68,8 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
         function enter() {
             if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'enter')) {
                 this.$el.velocity(this.options.transitions.enter);
+            } else if (_.has(this.options, 'transitions') && this.options.transitions === 'none') {
+
             } else {
                 this.$el.velocity('transition.fadeIn');
             }

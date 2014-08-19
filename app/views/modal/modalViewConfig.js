@@ -18,6 +18,7 @@ define(['text!views/modal/modalView.html', 'modalViewModel', 'formatters', 'moda
             formatters : [appFormatters, formatters],
             binders : [binders],
             instaUpdate : true
-        }
+        },
+        transitions : 'none'
     };
 });

@@ -14,6 +14,7 @@ define(['text!views/clipboard/clipboardView.html', 'clipboardViewModel', 'format
             listeners : [],
             rivetsConfig: {
                 formatters : [formatters]
-            }
+            },
+            transitions : 'none'
         };
     });
