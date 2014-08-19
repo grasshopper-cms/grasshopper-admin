@@ -81,6 +81,12 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         moveContent: function (data) {
             return this.post(constants.api.moveNode.url, data);
         },
+        moveAsset: function( data){
+            return this.post(constants.api.moveAsset.url.replace(':id',data.nodeid), data);
+        },
+        copyAsset: function(data){
+            return this.post(constants.api.copyAsset.url.replace(':id',data.nodeid), data);
+        },
         makeQuery : function (data) {
             return this.post(constants.api.contentQuery.url, data);
         },

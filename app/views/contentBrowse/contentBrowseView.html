@@ -40,7 +40,7 @@
                     </thead>
                     <tbody id="contentBrowseTable">
                         <!--Nodes Come First-->
-                        <tr class="nodeDetailRow nodeOrContentDetailRow" data-rv-each-node="model:childNodes:"
+                        <tr class="nodeDetailRow clipboardTargetRow" data-rv-each-node="model:childNodes:"
                             data-rv-data-id="node.id" data-rv-new-node-detail-row="node"></tr>
 
                         <!--Then Content-->
@@ -54,7 +54,8 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr class="contentDetailRow nodeOrContentDetailRow" data-rv-each-content="model:childContent.models" data-rv-data-id="content.id"
+                        <tr class="contentDetailRow clipboardTargetRow" data-rv-each-content=
+                                "model:childContent.models" data-rv-data-id="content.id"
                             data-rv-new-content-detail-row="content"></tr>
                     </tbody>
                 </table>
@@ -87,7 +88,8 @@
                                 </td>
                             </tr>
 
-                            <tr class="assetDetailRow" data-rv-new-asset-detail-row="asset" data-rv-each-asset="model:childAssets:"></tr>
+                            <tr class="assetDetailRow clipboardTargetRow" data-rv-new-asset-detail-row="asset"
+                                data-rv-each-asset="model:childAssets:" data-rv-data-id="asset.id"></tr>
 
                         </tbody>
                     </table>

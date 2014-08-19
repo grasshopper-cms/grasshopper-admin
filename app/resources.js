@@ -203,6 +203,16 @@ define({
         emptyNode : 'This folder does not contain any files.',
         clickToAdd : 'Click to add some.'
     },
+    clipboard:{
+        cut: 'Cut',
+        copy: 'Copy',
+        paste: 'Paste',
+        warningPaste: 'Should we :op :nr_items :items to folder :folder?',
+        differentContentTypesWarning: 'Clipboard contains items of different types ',
+        noOperationSpecified: 'No operation specfified',
+        cannotCompleteOperation: 'Cannot complete operation',
+        itemsInClipboard: 'item in clipboard'
+    },
     contentBrowse : {
         author : 'Author',
         modified : 'Modified'
@@ -307,7 +317,7 @@ define({
     key: 'Key',
     label : 'Label',
     login : 'Login',
-    displayname : 'Display Name',
+    displayname : 'Display name',
     log_in : 'Log In',
     logInWithGoogle : 'Login with Google',
     log_out : 'Log Out',
