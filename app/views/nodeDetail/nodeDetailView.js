@@ -16,7 +16,7 @@ define(['grasshopperBaseView', 'nodeDetailViewConfig', 'nodeWorker', 'mixins/han
         function afterRender() {
             if(this.model.isNew()) {
                 this.model.save()
-                    .done(this.editContentTypes);
+                    .done(this.editContentTypes.bind(this));
             }
         }
 
