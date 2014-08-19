@@ -67,51 +67,6 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                 });
         }
 
-        function deleteUser() {
-            _deleteUserWorkflow.call(this);
-        }
-
-        function _deleteUserWorkflow() {
-            _warnUserBeforeDeleting.call(this)
-                .done(_actuallyDeleteUser.bind(this));
-        }
-
-        function _warnUserBeforeDeleting() {
-            return this.displayModal(
-                {
-                    header: resources.warning,
-                    msg: resources.user.delete.warningMessage
-                });
-        }
-
-        function _actuallyDeleteUser() {
-            this.model.destroy()
-                .then(_handleSuccessfulUserDeletion.bind(this))
-                .fail(_handleFailedUserDeletion.bind(this));
-        }
-
-        function _handleSuccessfulUserDeletion() {
-            this.app.router.navigateTrigger(constants.internalRoutes.users);
-
-            this.displayTemporaryAlertBox(
-                {
-                    header: resources.success,
-                    style: 'success',
-                    msg: resources.user.delete.success
-                }
-            );
-        }
-
-        function _handleFailedUserDeletion() {
-            this.displayTemporaryAlertBox(
-                {
-                    header: resources.error,
-                    style: 'error',
-                    msg: resources.user.delete.failure
-                }
-            );
-        }
-
         function toggleEnabled(e) {
             e.stopPropagation();
             this.model.toggle('enabled');
@@ -236,6 +191,48 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
 
         function _throwLoginError(xhr) {
             this.fireErrorModal(xhr);
+        }
+
+        // Delete User Methods
+        function deleteUser() {
+            _warnUserBeforeDeleting.call(this)
+                .done(_actuallyDeleteUser.bind(this));
+        }
+
+        function _warnUserBeforeDeleting() {
+            return this.displayModal(
+                {
+                    header: resources.warning,
+                    msg: resources.user.delete.warningMessage
+                });
+        }
+
+        function _actuallyDeleteUser() {
+            this.model.destroy()
+                .then(_handleSuccessfulUserDeletion.bind(this))
+                .fail(_handleFailedUserDeletion.bind(this));
+        }
+
+        function _handleSuccessfulUserDeletion() {
+            this.app.router.navigateTrigger(constants.internalRoutes.users);
+
+            this.displayTemporaryAlertBox(
+                {
+                    header: resources.success,
+                    style: 'success',
+                    msg: resources.user.delete.success
+                }
+            );
+        }
+
+        function _handleFailedUserDeletion() {
+            this.displayTemporaryAlertBox(
+                {
+                    header: resources.error,
+                    style: 'error',
+                    msg: resources.user.delete.failure
+                }
+            );
         }
 
     });
