@@ -4,7 +4,7 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
-            oldSet = Backbone.Collection.prototype.set, DEFAULT_VIEW_OPTIONS=[
+            defaultViewOptions = [
                 '$deferred',
                 'type',
                 'defaultBreadcrumbs',
@@ -24,22 +24,16 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
             initialize : initialize,
             start : start,
             fireErrorModal : fireErrorModal,
-            mastheadButtonsSelector : '#mastheadButtons'/*,
-            remove: remove*/
+            enter : enter,
+            remove : remove,
+            mastheadButtonsSelector : '#mastheadButtons'
         });
 
         function initialize (options) {
             options.viewOptions = options.viewOptions || [];
-            options.viewOptions =  options.viewOptions.concat(DEFAULT_VIEW_OPTIONS);
+            options.viewOptions =  options.viewOptions.concat(defaultViewOptions);
 
-            // TODO: I think I can get rid of this line.... Nowhere in this app do I call this.options or self.options.
             this.options = options;
-            Backbone.Collection.prototype.set = function (data, options) {
-                if (data && data.results) {
-                    data = data.results;
-                }
-                oldSet.call(this, data, options);
-            };
 
             RivetView.prototype.initialize.apply(this, arguments);
         }
@@ -53,29 +47,13 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
         function start () {
             // Checking user permissions
             if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
-                // replace: true is essential if we want user to be able to go back. otherwise he will got stuck in
-                // a loop when pressing "back"
-                this.app.router.navigateTrigger('forbidden',{replace: true});
+                this.app.router.navigateTrigger('forbidden',{ replace: true }); //replace: true is essential otherwise stuck in a loop when pressing "back"
                 return;
             }
 
-/*            if(!window.startedViews){
-                window.startedViews=[];
-            }
-            window.startedViews.push({ name : this.name, cid : this.cid, parent : this.parent ? this.parent.name : 'NONE'});
-
-            console.log('STARTING:', this.name);*/
-
             return RivetView.prototype.start.apply(this, arguments)
-                .done(_handleAfterRender.bind(this));
+                .done(_handleAfterRender.bind(this), this.enter);
         }
-
-        /*function remove(){
-            console.log('REMOVING:', this.name);
-            var oldView = _.findWhere(window.startedViews, { cid : this.cid });
-            window.startedViews = _.without(window.startedViews, oldView);
-            RivetView.prototype.remove.apply(this,arguments);
-        }*/
 
         function fireErrorModal(message) {
             return this.displayModal(
@@ -85,6 +63,26 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
                     msg : message
                 }
             );
+        }
+
+        function enter() {
+            if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'enter')) {
+                this.$el.velocity(this.options.transitions.enter);
+            } else if (_.has(this.options, 'transitions') && this.options.transitions === 'none') {
+
+            } else {
+                this.$el.velocity('transition.fadeIn');
+            }
+        }
+
+        function remove() {
+            if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'exit')) {
+               this.$el.velocity(this.options.transitions.exit, {
+                   complete : RivetView.prototype.remove.bind(this, arguments)
+               });
+            } else {
+                RivetView.prototype.remove.apply(this, arguments);
+            }
         }
 
     });

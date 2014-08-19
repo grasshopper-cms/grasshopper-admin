@@ -59,6 +59,14 @@ require.config({
         datetimepicker : {
             exports : 'datetimepicker',
             deps : ['jquery']
+        },
+        velocity : {
+            exports : 'jquery',
+            deps : ['jquery']
+        },
+        velocityUi : {
+            exports : 'jquery',
+            deps : ['jquery', 'velocity']
         }
     },
     packages : [
@@ -85,7 +93,6 @@ require([
     'router',
     'constants',
     'ajaxCounterWorker',
-    'clipboardWorker',
     'alerts',
     'dropdown',
     'tabs',
@@ -97,13 +104,15 @@ require([
     'scrollToFixed',
     'select2',
     'sparkmd5',
-    'contextjs'
+    'contextjs',
+    'velocity',
+    'velocityUi'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, constants, ajaxCounterWorker, clipboardWorker) {
+        function (Backbone, _, $, Router, constants, ajaxCounterWorker) {
         'use strict';
 
         var router = new Router();
