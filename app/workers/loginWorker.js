@@ -55,19 +55,19 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers', 'constants'],
                     LocalStorage.remove(constants.loginRedirectKey)
                         .done(this.app.router.navigateTrigger.bind(this.app.router, redirect));
                 } else {
-                    this.app.router.navigateTrigger('items');
+                    this.app.router.navigateTrigger(constants.internalRoutes.content);
                 }
 
                 this.model.clear();
                 this.model.set('hideLoginForm',true);
             } else {
                 this.model.clear();
-                this.app.router.navigateTrigger('logout');
+                this.app.router.navigateTrigger(constants.internalRoutes.logout);
             }
         }
 
         function _handleFailedAuthentication() {
-            this.navigateTrigger('login');
+            this.navigateTrigger(constants.internalRoutes.login);
         }
 
         function userIsStillValidUser ($deferred) {

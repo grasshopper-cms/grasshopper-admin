@@ -182,7 +182,7 @@ define([
         }
 
         function navigateNotFound() {
-            this.navigate('not-found' ,{ trigger : true })
+            this.navigate(constants.internalRoutes.notFound, { trigger : true });
         }
 
         function navigateBack (trigger) {
@@ -279,7 +279,7 @@ define([
 
         function goLogout () {
             logoutWorker.doLogout.call(this)
-                .done(this.navigate.bind(this, 'login', {trigger : true}, true));
+                .done(this.navigate.bind(this, constants.internalRoutes.logout, {trigger : true}, true));
         }
 
         function displayLogin (token) {
@@ -294,7 +294,7 @@ define([
                     LocalStorage.remove(constants.loginRedirectKey)
                         .done(this.navigateTrigger.bind(this, redirect));
                 } else  {
-                    this.navigateTrigger('#items');
+                    this.navigateTrigger(constants.internalRoutes.content);
                 }
 
             } else {
@@ -346,7 +346,7 @@ define([
         }
 
         function goHome () {
-            this.navigate('items', {trigger:true});
+            this.navigate(constants.internalRoutes.content, {trigger:true});
         }
 
         function displayUserDetail (id) {
@@ -360,7 +360,7 @@ define([
                         }
                     });
             } else {
-                this.navigateTrigger('forbidden');
+                this.navigateTrigger(constants.internalRoutes.forbidden);
             }
         }
 

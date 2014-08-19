@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'addUser/options', 'resources', 'breadcrumbWorker'],
-    function (GrasshopperBaseView, options, resources, breadcrumbWorker) {
+define(['grasshopperBaseView', 'addUser/options', 'resources', 'breadcrumbWorker', 'constants'],
+    function (GrasshopperBaseView, options, resources, breadcrumbWorker, constants) {
     'use strict';
 
     return GrasshopperBaseView.extend({
@@ -21,7 +21,7 @@ define(['grasshopperBaseView', 'addUser/options', 'resources', 'breadcrumbWorker
     }
 
     function _handleSuccessfulSave () {
-        this.app.router.navigateTrigger('users');
+        this.app.router.navigateTrigger(constants.internalRoutes.users);
         this.displayTemporaryAlertBox(
             {
                 header : resources.success,

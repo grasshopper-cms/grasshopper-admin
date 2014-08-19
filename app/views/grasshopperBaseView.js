@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'resources', 'underscore'],
-    function (Backbone, masseuse, resources, _) {
+define(['backbone', 'masseuse', 'resources', 'underscore', 'constants'],
+    function (Backbone, masseuse, resources, _, constants) {
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
@@ -44,10 +44,10 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
             }
         }
 
-        function start () {
+        function start() {
             // Checking user permissions
             if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
-                this.app.router.navigateTrigger('forbidden',{ replace: true }); //replace: true is essential otherwise stuck in a loop when pressing "back"
+                this.app.router.navigateTrigger(constants.internalRoutes.forbidden, { replace : true }); //replace: true is essential otherwise stuck in a loop when pressing "back"
                 return;
             }
 
