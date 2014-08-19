@@ -25,12 +25,12 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                 .done(_updateMastheadBreadcrumbs.bind(this, $deferred));
         }
 
-        function afterRender () {
+        function afterRender() {
             _setUpEnabledChangeWarning.call(this);
             _setUpJsonEditor.call(this);
         }
 
-        function _setUpJsonEditor () {
+        function _setUpJsonEditor() {
             var initialValue = this.model.get('profile');
 
             jsonEditor.init(document.getElementById('profile'), this, {
@@ -39,27 +39,27 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             });
         }
 
-        function _jsonEditorChangeCallback () {
+        function _jsonEditorChangeCallback() {
             this.model.set('profile', this.jsonEditor.get());
         }
 
-        function saveUser () {
+        function saveUser() {
             this.model.toggle('saving');
             _updateUserWorkflow.call(this, {});
         }
 
-        function saveAndClose () {
+        function saveAndClose() {
             this.model.toggle('saving');
             _updateUserWorkflow.call(this, { close: true });
         }
 
-        function _updateUserWorkflow (options) {
+        function _updateUserWorkflow(options) {
             this.model.save()
                 .done(_handleSuccessfulSave.bind(this, options))
                 .fail(_handleFailedSave.bind(this));
         }
 
-        function _showSelfLockoutWarning () {
+        function _showSelfLockoutWarning() {
             return this.displayModal(
                 {
                     header: resources.warning,
@@ -67,7 +67,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                 });
         }
 
-        function deleteUser () {
+        function deleteUser() {
             _deleteUserWorkflow.call(this);
         }
 
@@ -112,14 +112,14 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             );
         }
 
-        function toggleEnabled (e) {
+        function toggleEnabled(e) {
             e.stopPropagation();
             this.model.toggle('enabled');
             this.model.trigger('change:enabled');
             this.saveUser();
         }
 
-        function _setUpEnabledChangeWarning () {
+        function _setUpEnabledChangeWarning() {
             var self = this;
 
             this.model.on('change:enabled', function () {
@@ -132,7 +132,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             });
         }
 
-        function _handleSuccessfulSave (options, model) {
+        function _handleSuccessfulSave(options, model) {
             this.displayTemporaryAlertBox(
                 {
                     header: resources.success,
@@ -150,27 +150,27 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             _updateNameInHeader.call(this, model);
         }
 
-        function _handleFailedSave (xhr) {
+        function _handleFailedSave(xhr) {
             this.model.toggle('saving');
 
             this.fireErrorModal(xhr.responseJSON.message);
         }
 
-        function _updateNameInHeader (model) {
+        function _updateNameInHeader(model) {
             if (this.app.user.get('_id') === model._id) {
                 this.app.user.set(model);
             }
         }
 
-        function _updateMastheadBreadcrumbs ($deferred) {
+        function _updateMastheadBreadcrumbs($deferred) {
             breadcrumbWorker.userBreadcrumb.call(this, $deferred);
         }
 
-        function addNewUser () {
+        function addNewUser() {
             this.app.router.navigateTrigger(constants.internalRoutes.addUser);
         }
 
-        function toggleGoogle (e) {
+        function toggleGoogle(e) {
             if (this.model.get('hasGoogle')) {
                 _unlinkGoogle.call(this);
             } else {
@@ -179,7 +179,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             e.preventDefault();
         }
 
-        function _unlinkGoogle () {
+        function _unlinkGoogle() {
             if (this.model.get('hasBasic')) {
                 _unlinkWithBasicRemaining.call(this);
             } else {
@@ -187,41 +187,41 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             }
         }
 
-        function _unlinkWithBasicRemaining () {
+        function _unlinkWithBasicRemaining() {
             this.displayModal(resources.user.unlinkModalWithBasic)
                 .done(_unlinkFromModel.bind(this));
         }
 
-        function _unlinkWithoutBasicRemaining () {
+        function _unlinkWithoutBasicRemaining() {
             this.displayModal(resources.user.unlinkModalWithoutBasic)
                 .done(_unlinkFromModel.bind(this));
         }
 
-        function _unlinkFromModel () {
+        function _unlinkFromModel() {
             this.model.get('userModel').unlinkGoogle()
                 .done(_refreshModelAndDisplaySuccess.bind(this));
         }
 
-        function _refreshModelAndDisplaySuccess () {
+        function _refreshModelAndDisplaySuccess() {
             this.model.fetch()
                 .done(_displayUnlinkSuccessModal.bind(this))
                 .fail(_unlinkFail.bind(this));
         }
 
-        function _displayUnlinkSuccessModal () {
+        function _displayUnlinkSuccessModal() {
             this.displayModal(resources.user.unlinkSuccessModal);
         }
 
-        function _unlinkFail () {
+        function _unlinkFail() {
             this.app.router.goLogout();
         }
 
-        function _linkGoogle () {
+        function _linkGoogle() {
             this.displayModal(resources.user.linkModal)
                 .done(linkToModel.bind(this));
         }
 
-        function linkToModel () {
+        function linkToModel() {
             LocalStorage.set(constants.loginRedirectKey, constants.profileGoogleLinkRedirect.url.replace(':id', this.model.get('_id')));
             _loginWithGoogle.call(this);
         }
@@ -234,42 +234,8 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                 .fail(_throwLoginError.bind(this));
         }
 
-        function _throwLoginError (xhr) {
+        function _throwLoginError(xhr) {
             this.fireErrorModal(xhr);
         }
 
     });
-
-
-/*
- {
- "__v" : 1,
- "_id" : ObjectId("53f25d4ac0578800007ccf5b"),
- "createdby" : {
- "id" : "5246e73d56c02c0744000004",
- "displayname" : "admin"
- },
- "dateCreated" : ISODate("2014-08-18T20:08:42.895Z"),
- "displayname" : "greg.larrenaga@thinksolid.com",
- "email" : "greg.larrenaga@thinksolid.com",
- "enabled" : true,
- "firstname" : "Greg",
- "identities" : {
- "google" : {
- "accessToken" : "ya29.ZQBEtbhB2Q8tUiIAAAD2b3BHqzzXCbL7NnGlEXCGgoSpLiPmMVtx2UzJQ9r1sVc8OE5gC-1JAslcjXnW3L0",
- "id" : "105708433433841019982"
- }
- },
- "lastname" : "Larrenaga",
- "linkedidentities" : [],
- "permissions" : [],
- "profile" : {
- "picture" : "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg"
- },
- "role" : "admin",
- "updatedby" : {
- "id" : "5246e73d56c02c0744000004",
- "displayname" : "admin"
- }
- }
- */
