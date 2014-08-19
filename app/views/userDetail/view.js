@@ -30,45 +30,76 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             _setUpJsonEditor.call(this);
         }
 
-        function _setUpJsonEditor() {
-            var initialValue = this.model.get('profile');
-
-            jsonEditor.init(document.getElementById('profile'), this, {
-                change: _jsonEditorChangeCallback.bind(this),
-                json: initialValue
-            });
+        // Google Identities
+        function toggleGoogle() {
+            if (this.model.get('hasGoogle')) {
+                _unlinkGoogle.call(this);
+            } else {
+                _linkGoogle.call(this);
+            }
         }
 
-        function _jsonEditorChangeCallback() {
-            this.model.set('profile', this.jsonEditor.get());
+        function _unlinkGoogle() {
+            if (this.model.get('hasBasic')) {
+                _unlinkWithBasicRemaining.call(this);
+            } else {
+                _unlinkWithoutBasicRemaining.call(this);
+            }
         }
 
-        function saveUser() {
-            this.model.toggle('saving');
-            _updateUserWorkflow.call(this, {});
+        function _refreshModelAndDisplaySuccess() {
+            this.model.fetch()
+                .done(_displayUnlinkSuccessModal.bind(this))
+                .fail(_unlinkFail.bind(this));
         }
 
-        function saveAndClose() {
-            this.model.toggle('saving');
-            _updateUserWorkflow.call(this, { close: true });
+        function _displayUnlinkSuccessModal() {
+            this.displayModal(resources.user.unlinkSuccessModal);
         }
 
-        function _updateUserWorkflow(options) {
-            this.model.save()
-                .done(_handleSuccessfulSave.bind(this, options))
-                .fail(_handleFailedSave.bind(this));
+        function _unlinkFail() {
+            this.app.router.goLogout();
         }
 
-        function _showSelfLockoutWarning() {
-            return this.displayModal(
-                {
-                    header: resources.warning,
-                    msg: resources.user.selfLockWarning
-                });
+        function _linkGoogle() {
+            this.displayModal(resources.user.linkModal)
+                .done(_linkToModel.bind(this));
         }
 
-        function toggleEnabled(e) {
-            e.stopPropagation();
+        function _linkToModel() {
+            LocalStorage.set(constants.loginRedirectKey, constants.profileGoogleLinkRedirect.url.replace(':id', this.model.get('_id')));
+            _loginWithGoogle.call(this);
+        }
+
+        function _loginWithGoogle() {
+            Api.getGoogleUrl()
+                .done(function(url) {
+                    window.location.href = url;
+                })
+                .fail(_throwLoginError.bind(this));
+        }
+
+        function _throwLoginError(xhr) {
+            this.fireErrorModal(xhr);
+        }
+
+        function _unlinkWithBasicRemaining() {
+            this.displayModal(resources.user.unlinkModalWithBasic)
+                .done(_unlinkFromModel.bind(this));
+        }
+
+        function _unlinkWithoutBasicRemaining() {
+            this.displayModal(resources.user.unlinkModalWithoutBasic)
+                .done(_unlinkFromModel.bind(this));
+        }
+
+        function _unlinkFromModel() {
+            this.model.get('userModel').unlinkGoogle()
+                .done(_refreshModelAndDisplaySuccess.bind(this));
+        }
+
+        // Enabled / Disabled User attribute
+        function toggleEnabled() {
             this.model.toggle('enabled');
             this.model.trigger('change:enabled');
             this.saveUser();
@@ -85,6 +116,55 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
                         });
                 }
             });
+        }
+
+        function _showSelfLockoutWarning() {
+            return this.displayModal(
+                {
+                    header: resources.warning,
+                    msg: resources.user.selfLockWarning
+                });
+        }
+
+        // Add New User
+        function addNewUser() {
+            this.app.router.navigateTrigger(constants.internalRoutes.addUser);
+        }
+
+        // Breadcrumbs
+        function _updateMastheadBreadcrumbs($deferred) {
+            breadcrumbWorker.userBreadcrumb.call(this, $deferred);
+        }
+
+        // JSON Editor
+        function _setUpJsonEditor() {
+            var initialValue = this.model.get('profile');
+
+            jsonEditor.init(this.$('#profile'), this, {
+                change: _jsonEditorChangeCallback.bind(this),
+                json: initialValue
+            });
+        }
+
+        function _jsonEditorChangeCallback() {
+            this.model.set('profile', this.jsonEditor.get());
+        }
+
+        // Save User Methods
+        function saveUser() {
+            this.model.toggle('saving');
+            _updateUserWorkflow.call(this, {});
+        }
+
+        function saveAndClose() {
+            this.model.toggle('saving');
+            _updateUserWorkflow.call(this, { close: true });
+        }
+
+        function _updateUserWorkflow(options) {
+            this.model.save()
+                .done(_handleSuccessfulSave.bind(this, options))
+                .fail(_handleFailedSave.bind(this));
         }
 
         function _handleSuccessfulSave(options, model) {
@@ -115,82 +195,6 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             if (this.app.user.get('_id') === model._id) {
                 this.app.user.set(model);
             }
-        }
-
-        function _updateMastheadBreadcrumbs($deferred) {
-            breadcrumbWorker.userBreadcrumb.call(this, $deferred);
-        }
-
-        function addNewUser() {
-            this.app.router.navigateTrigger(constants.internalRoutes.addUser);
-        }
-
-        function toggleGoogle(e) {
-            if (this.model.get('hasGoogle')) {
-                _unlinkGoogle.call(this);
-            } else {
-                _linkGoogle.call(this);
-            }
-            e.preventDefault();
-        }
-
-        function _unlinkGoogle() {
-            if (this.model.get('hasBasic')) {
-                _unlinkWithBasicRemaining.call(this);
-            } else {
-                _unlinkWithoutBasicRemaining.call(this);
-            }
-        }
-
-        function _unlinkWithBasicRemaining() {
-            this.displayModal(resources.user.unlinkModalWithBasic)
-                .done(_unlinkFromModel.bind(this));
-        }
-
-        function _unlinkWithoutBasicRemaining() {
-            this.displayModal(resources.user.unlinkModalWithoutBasic)
-                .done(_unlinkFromModel.bind(this));
-        }
-
-        function _unlinkFromModel() {
-            this.model.get('userModel').unlinkGoogle()
-                .done(_refreshModelAndDisplaySuccess.bind(this));
-        }
-
-        function _refreshModelAndDisplaySuccess() {
-            this.model.fetch()
-                .done(_displayUnlinkSuccessModal.bind(this))
-                .fail(_unlinkFail.bind(this));
-        }
-
-        function _displayUnlinkSuccessModal() {
-            this.displayModal(resources.user.unlinkSuccessModal);
-        }
-
-        function _unlinkFail() {
-            this.app.router.goLogout();
-        }
-
-        function _linkGoogle() {
-            this.displayModal(resources.user.linkModal)
-                .done(linkToModel.bind(this));
-        }
-
-        function linkToModel() {
-            LocalStorage.set(constants.loginRedirectKey, constants.profileGoogleLinkRedirect.url.replace(':id', this.model.get('_id')));
-            _loginWithGoogle.call(this);
-        }
-
-        function _loginWithGoogle() {
-            Api.getGoogleUrl()
-                .done(function(url) {
-                    window.location.href = url;
-                })
-                .fail(_throwLoginError.bind(this));
-        }
-
-        function _throwLoginError(xhr) {
-            this.fireErrorModal(xhr);
         }
 
         // Delete User Methods
