@@ -97,6 +97,7 @@ define([
             navigateNinja : navigateNinja,
             navigateDeferred : navigateDeferred,
             navigateBack : navigateBack,
+            navigateNotFound : navigateNotFound,
 
             loadMainContent : loadMainContent,
 
@@ -178,6 +179,10 @@ define([
             options = options || {};
             options.deferred = true;
             this.navigate(fragment, options);
+        }
+
+        function navigateNotFound() {
+            this.navigate('not-found' ,{ trigger : true })
         }
 
         function navigateBack (trigger) {
