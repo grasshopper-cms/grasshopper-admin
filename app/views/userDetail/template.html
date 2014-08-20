@@ -75,13 +75,10 @@
 
                     <div class="row" data-rv-if="model:createdby">
                         <div class="large-3 columns">
-                            <label
-                                   class="right inline">{{model:resources->user->attributeTitles->createdby |
-                                withColon}}</label>
+                            <label class="right inline">{{model:resources->user->attributeTitles->createdby | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
-                            <a class="form-valigned-text" data-rv-href="model:createdby.id | asUserDetailsLink"
-                               data-rv-text="model:createdby.displayname"/>
+                            <a class="form-valigned-text" data-rv-href="model:createdby.id | asUserDetailsLink" data-rv-text="model:createdby.displayname"></a>
                         </div>
                     </div>
 
@@ -91,7 +88,7 @@
                         </div>
                         <div class="large-9 columns">
                             <div id="identities">
-                                <i data-rv-class-linked="model:hasGoogle" class="fa fa-google" data-rv-on-click="view.toggleGoogle"></i>
+                                <i data-rv-class-linked="model:hasGoogle" class="fa fa-google" data-rv-on-click="view.toggleGoogle | stopImmediatePropagation"></i>
                             </div>
                         </div>
                     </div>
@@ -116,11 +113,11 @@
                                                class="user-lock-delete-block-header">{{model:resources->user->blocks->lockUser}}</div>
                                        <div class="user-lock-delete-block-text">{{model:resources->user->blocks->lockUserSubtext}}</div>
                                        <div class="user-lock-delete-block-action">
-                                           <a data-rv-on-click="view.toggleEnabled" data-rv-show="model:enabled"
+                                           <a data-rv-on-click="view.toggleEnabled | stopImmediatePropagation" data-rv-show="model:enabled"
                                               class="button tiny radius alert">
                                                {{model:resources->user->blocks->lockUserButton}}
                                            </a>
-                                           <a data-rv-on-click="view.toggleEnabled" data-rv-hide="model:enabled"
+                                           <a data-rv-on-click="view.toggleEnabled | stopImmediatePropagation" data-rv-hide="model:enabled"
                                               class="button tiny radius alert">
                                                {{model:resources->user->blocks->unlockUserButton}}
                                            </a>
@@ -133,7 +130,7 @@
                                        <div class="user-lock-delete-block-header">{{model:resources->user->blocks->deleteUser}}</div>
                                        <div class="user-lock-delete-block-text">{{model:resources->user->blocks->deleteUserSubtext}}</div>
                                        <div class="user-lock-delete-block-action">
-                                           <a data-rv-on-click="view.deleteUserAndGoBack" class="button tiny radius alert">
+                                           <a data-rv-on-click="view.deleteUser | stopImmediatePropagation" class="button tiny radius alert">
                                                {{model:resources->user->blocks->deleteUserButton}}
                                            </a>
                                        </div>

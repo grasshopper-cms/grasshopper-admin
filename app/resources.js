@@ -55,6 +55,11 @@ define({
             msg: 'You successfully linked your google account.',
             hideCancel: true
         },
+        delete : {
+            warningMessage : 'Are you sure you want to delete this user?',
+            success : 'User Successfully Deleted',
+            failure : 'Failed to delete user.'
+        },
         attributeTitles : {
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
