@@ -5,13 +5,12 @@ define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],  func
 
     return GrasshopperBaseView.extend({
         defaultOptions : headerViewConfig,
-        toogleNavigation : toogleNavigation,
+        toggleNavigation : toggleNavigation,
         checkHeaderTab: checkHeaderTab,
         setActive: setActive
     });
 
-    function toogleNavigation(e) {
-        e.preventDefault();
+    function toggleNavigation() {
         $('#main-nav').slideToggle('fast');
     }
 
@@ -19,23 +18,26 @@ define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],  func
         var currentTab = '/' + breadcrumb.split('/')[0];
 
         switch (currentTab) {
-        case constants.internalRoutes.user:
-        case constants.internalRoutes.users:
-        case constants.internalRoutes.addUser:
-            this.setActive('#users');
-            break;
-        case constants.internalRoutes.items:
-        case constants.internalRoutes.item:
-            this.setActive('#items');
-            break;
-        case constants.internalRoutes.contentTypes:
-            this.setActive('#contentTypes');
-            break;
-        case constants.internalRoutes.sysInfo:
-            this.setActive('#sysInfo');
-            break;
-        default:
-            this.setActive('#items');
+            case constants.internalRoutes.advancedSearch:
+                this.setActive('#advancedSearch');
+                break;
+            case constants.internalRoutes.user:
+            case constants.internalRoutes.users:
+            case constants.internalRoutes.addUser:
+                this.setActive('#users');
+                break;
+            case constants.internalRoutes.items:
+            case constants.internalRoutes.item:
+                this.setActive('#items');
+                break;
+            case constants.internalRoutes.contentTypes:
+                this.setActive('#contentTypes');
+                break;
+            case constants.internalRoutes.sysInfo:
+                this.setActive('#sysInfo');
+                break;
+            default:
+                this.setActive('#items');
         }
     }
 
