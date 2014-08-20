@@ -164,6 +164,7 @@ define({
         selectContentType : 'Which Content Type would you like to use?',
         contentInRoot : 'You cannot create content in the Root.',
         noContentTypes : 'This folder has no allowed content types.',
+        noContentTypesCreated: 'There are currently no content types.',
         fields : 'Fields',
         fieldType : 'Field Type',
         addNewField : 'Add New Field',
