@@ -123,8 +123,6 @@ define({
         successfullyDeletedWithoutLabel : 'Successfully deleted',
         successfullyDeleted : 'Item :item was successfully deleted.',
         successfullyUpdated : 'Folder was successfully updated.',
-        successfullyCreatedPre : 'Folder: ',
-        successfullyCreatedPost : ' was successfully created.',
         errorUpdated : 'Folder could not be updated.',
         errorDeleted : 'There was an issue deleting this folder: ',
         enterName : 'Please enter the name of the folder: ',
@@ -136,8 +134,7 @@ define({
     },
     contentItem : {
         deletionWarning : 'Are you sure you want to delete this content?',
-        successfullyDeletedPre : 'Content ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Content :item was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: ',
         readonly : 'Readonly',
         labelErrorMessage : 'Label is a required field.',
