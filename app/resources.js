@@ -290,6 +290,7 @@ define({
     },
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
+    advancedSearch : 'Advanced Search',
     add : 'Add',
     addNewUser : 'Add New User',
     cancel : 'Cancel',
