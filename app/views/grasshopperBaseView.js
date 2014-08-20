@@ -1,6 +1,7 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'resources', 'underscore', 'constants'],
-    function (Backbone, masseuse, resources, _, constants) {
+
+define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constants'],
+    function (Backbone, masseuse, resources, _, mousetrap, constants) {
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
@@ -38,6 +39,14 @@ define(['backbone', 'masseuse', 'resources', 'underscore', 'constants'],
             RivetView.prototype.initialize.apply(this, arguments);
         }
 
+        function _initializeHotKeys() {
+            if(_.has(this.options, 'hotkeys')) {
+                _.each(this.options.hotkeys, function (hotkey) {
+                    mousetrap.bind(hotkey.keys, this[hotkey.method].bind(this));
+                }, this);
+            }
+        }
+
         function _handleAfterRender() {
             if (this.breadcrumbs && !this.privateBreadcrumbs) {
                 this.channels.views.trigger('updateMastheadBreadcrumbs', this);
@@ -52,7 +61,7 @@ define(['backbone', 'masseuse', 'resources', 'underscore', 'constants'],
             }
 
             return RivetView.prototype.start.apply(this, arguments)
-                .done(_handleAfterRender.bind(this), this.enter);
+                .done(_handleAfterRender.bind(this), this.enter, _initializeHotKeys.bind(this));
         }
 
         function fireErrorModal(message) {
@@ -76,6 +85,12 @@ define(['backbone', 'masseuse', 'resources', 'underscore', 'constants'],
         }
 
         function remove() {
+            if(_.has(this.options, 'hotkeys')) {
+                _.each(this.options.hotkeys, function (hotkey) {
+                    mousetrap.unbind(hotkey.keys);
+                }, this);
+            }
+
             if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'exit')) {
                this.$el.velocity(this.options.transitions.exit, {
                    complete : RivetView.prototype.remove.bind(this, arguments)

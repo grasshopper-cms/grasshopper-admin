@@ -49,6 +49,11 @@ body, html {
 
   }
   .jsoneditor {
+    border-color: $lightGray;
+    .menu {
+      background-color: $gray;
+      border-color: $lightGray;
+    }
     textarea.text {
       min-height: 200px;
     }
@@ -57,6 +62,9 @@ body, html {
     }
     .search {
       width: 200px;
+      .frame {
+        border-color: $lightGray;
+      }
       input {
         padding: 0px;
       }
