@@ -1,0 +1,149 @@
+<div class="row advancedSearch">
+    <div class="large-12 columns">
+        <dl class="tabs" data-tab>
+            <dd class="active" id="contentTab">
+                <a data-bypass href="#panel2-1">
+                    <p class="title">
+                        <i class="fa fa-list-alt"></i>
+                        {{model:resources->content | spaceBefore}}
+                    </p>
+                </a>
+            </dd>
+            <dd data-rv-hide="model:inRoot" id="filesTab">
+                <a data-bypass href="#panel2-2">
+                    <p class="title">
+                        <i class="fa fa-paperclip"></i>
+                        {{model:resources->fileIndex->files | spaceBefore}}
+                    </p>
+                </a>
+            </dd>
+        </dl>
+
+        <div class="tabs-content">
+            <div class="content active table-wrapper" id="panel2-1">
+                YEAH YEAH YEAH YEAH YEAH, ADVANCED SEARCH
+                <!--<div id="table-loading-overlay">-->
+                    <!--<img class="loading-overlay-image" src="{{RESOURCEREF:themes/img/loading-spinner-horizontal.gif}}">-->
+                <!--</div>-->
+                <!--<table class="content-table">-->
+                    <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>{{model:resources->label}}</th>-->
+                            <!--<th>{{model:resources->type}}</th>-->
+                            <!--<th>{{model:resources->contentBrowse->modified}}</th>-->
+                            <!--<th style="text-align: center; width: 10%;">{{model:resources->actions}}</th>-->
+                        <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody id="contentBrowseTable">-->
+                        <!--&lt;!&ndash;Nodes Come First&ndash;&gt;-->
+                        <!--<tr class="nodeDetailRow clipboardTargetRow" data-rv-each-node="model:childNodes:"-->
+                            <!--data-rv-data-id="node.id" data-rv-new-node-detail-row="node"></tr>-->
+
+                        <!--&lt;!&ndash;Then Content&ndash;&gt;-->
+                        <!--<tr data-rv-unless="model:childContent.length | greaterThan 0">-->
+                            <!--<td colspan="4" data-rv-unless="model:inRoot">-->
+                                <!--{{model:resources->node->emptyContent}}-->
+                                <!--<span>-->
+                                    <!--<a data-rv-on-click="view.createContent">-->
+                                        <!--{{model:resources->node->clickToAdd}}-->
+                                    <!--</a>-->
+                                <!--</span>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--<tr class="contentDetailRow clipboardTargetRow" data-rv-each-content=-->
+                                <!--"model:childContent.models" data-rv-data-id="content.id"-->
+                            <!--data-rv-new-content-detail-row="content"></tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+
+                <!--<section data-rv-if="model:childContent.total | isGreaterThan 25" data-rv-new-pagination-view="model:childContent"></section>-->
+
+            </div>
+            <div class="content" id="panel2-2">
+                <!--<div id="assetIndex">-->
+
+                    <!--<table class="content-table">-->
+                        <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<th>{{model:resources->fileIndex->fileName}}</th>-->
+                                <!--<th>{{model:resources->fileIndex->size}}</th>-->
+                                <!--<th>{{model:resources->fileIndex->modified}}</th>-->
+                                <!--<th style="text-align: center; width: 15%;">{{model:resources->actions}}</th>-->
+                            <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+
+                            <!--<tr data-rv-unless="model:childAssets.length | greaterThan 0">-->
+                                <!--<td colspan="4">-->
+                                    <!--{{model:resources->asset->emptyNode}}-->
+                                    <!--<span>-->
+                                        <!--<a data-rv-on-click="view.createAssets">-->
+                                            <!--{{model:resources->asset->clickToAdd}}-->
+                                        <!--</a>-->
+                                    <!--</span>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+
+                            <!--<tr class="assetDetailRow clipboardTargetRow" data-rv-new-asset-detail-row="asset"-->
+                                <!--data-rv-each-asset="model:childAssets:" data-rv-data-id="asset.id"></tr>-->
+
+                        <!--</tbody>-->
+                    <!--</table>-->
+                    <!--&lt;!&ndash;Built from assetIndex&ndash;&gt;-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+
+    <!--<section data-rv-move-to="view.mastheadButtonsSelector">-->
+        <!--<ul class="button-group radius right">-->
+
+            <!--<li data-rv-unless="model:inRoot">-->
+                <!--<a data-rv-on-click="view.createContent" class="button tiny">-->
+                    <!--{{model:resources->mastheadButtons->createContent}}-->
+                <!--</a>-->
+            <!--</li>-->
+
+            <!--<li data-rv-unless="model:inRoot">-->
+                <!--<a data-rv-on-click="view.createAssets" class="button tiny">-->
+                    <!--{{model:resources->mastheadButtons->uploadFile}}-->
+                <!--</a>-->
+            <!--</li>-->
+
+            <!--<li>-->
+                <!--<a data-rv-on-click="view.createFolder" class="button tiny"-->
+                   <!--data-rv-show="view.hasCreateFolderPermission">-->
+                    <!--{{model:resources->mastheadButtons->createFolder}}-->
+                <!--</a>-->
+            <!--</li>-->
+
+            <!--<li data-rv-unless="model:inRoot">-->
+                <!--<a class="button tiny dropdown" id="actionsDropdown" data-dropdown="drop">-->
+                    <!--{{model:resources->mastheadButtons->actions}}-->
+                <!--</a>-->
+
+                <!--<ul id="drop" class="f-dropdown" data-dropdown-content>-->
+                    <!--<li data-rv-on-click="view.editNodeName">-->
+                        <!--<a>-->
+                            <!--{{model:resources->mastheadButtons->editNodeName}}-->
+                        <!--</a>-->
+                    <!--</li>-->
+
+                    <!--<li data-rv-on-click="view.editNodeContentTypes">-->
+                        <!--<a>-->
+                            <!--{{model:resources->mastheadButtons->editNodeContentTypes}}-->
+                        <!--</a>-->
+                    <!--</li>-->
+
+                    <!--<li data-rv-on-click="view.deleteNode">-->
+                        <!--<a>-->
+                            <!--{{model:resources->mastheadButtons->deleteNode}}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+
+        <!--</ul>-->
+    <!--</section>-->
+</div>
+

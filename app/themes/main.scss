@@ -193,6 +193,7 @@ body, html {
   }
 
   // VIEWS
+  @import "../views/advancedSearch/_style.scss"; // Advanced Search
   @import "../views/header/_style.scss"; // Header
   @import "../views/modal/_style.scss"; // Modal
   @import "../views/alertBox/_style.scss"; // Alertbox
