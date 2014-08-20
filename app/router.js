@@ -279,7 +279,7 @@ define([
 
         function goLogout () {
             logoutWorker.doLogout.call(this)
-                .done(this.navigate.bind(this, constants.internalRoutes.logout, {trigger : true}, true));
+                .done(this.navigate.bind(this, constants.internalRoutes.login, {trigger : true}, true));
         }
 
         function displayLogin (token) {
