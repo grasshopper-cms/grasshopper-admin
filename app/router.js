@@ -19,7 +19,8 @@ define([
     'addContentView',
     'addAssetsView',
     'sysInfoView',
-    'clipboardView'
+    'clipboardView',
+    'advancedSearch/view'
 ],
     function($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
@@ -40,7 +41,8 @@ define([
               AddContentView,
               AddAssetsView,
               SysInfoView,
-              ClipboardView
+              ClipboardView,
+              AdvancedSearchView
         ) {
 
         'use strict';
@@ -66,6 +68,7 @@ define([
                 'content-types' : 'displayContentTypeIndex',
                 'content-types/new' : 'displayContentTypeDetail',
                 'content-types(/:id)' : 'displayContentTypeDetail',
+                'advanced-search' : 'displayAdvancedSearch',
                 'items/nodeid/:nodeId/create-assets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/create-folder' : 'displayCreateFolder',
                 'items/nodeid/:nodeId/create-content' : 'displayCreateContent',
@@ -116,6 +119,7 @@ define([
             displayCreateFolder : displayCreateFolder,
             displayCreateContent : displayCreateContent,
             displayCreateAssets : displayCreateAssets,
+            displayAdvancedSearch : displayAdvancedSearch,
             displayForbidden: displayForbidden,
             displayNotFound: displayNotFound
         });
@@ -452,7 +456,7 @@ define([
         }
 
         function displayAdvancedSearch() {
-
+            this.loadMainContent(AdvancedSearchView);
         }
 
         function displayForbidden() {
