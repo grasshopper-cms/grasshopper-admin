@@ -138,8 +138,7 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
                 {
                     header : resources.success,
                     style : 'success',
-                    msg : resources.node.successfullyDeletedPre + this.model.get('label') +
-                        resources.node.successfullyDeletedPost
+                    msg : resources.node.successfullyDeleted.replace(':item', this.model.get('label'))
                 }
             );
         }
