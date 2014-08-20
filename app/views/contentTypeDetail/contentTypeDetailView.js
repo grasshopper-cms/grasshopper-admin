@@ -106,8 +106,7 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
             {
                 header : resources.success,
                 style : 'success',
-                msg : resources.contentType.successfullyDeletedPre + model.get('label') +
-                    resources.contentType.successfullyDeletedPost
+                msg : resources.contentType.successfullyDeleted.replace(':item', model.get('label'))
             }
         );
     }

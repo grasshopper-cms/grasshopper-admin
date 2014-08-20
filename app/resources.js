@@ -158,8 +158,7 @@ define({
         deletionWarningWithoutAssociatedContent : 'Are you sure you want to delete this content type?',
         deletionWarningWithAssociatedContent : 'You have :count of content associated with this content type. ' +
             'If you confirm it will all be deleted!',
-        successfullyDeletedPre : 'Content Type ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Content Type :item was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: ',
         serverError : 'Content Types could not be retrieved.',
         selectContentType : 'Which Content Type would you like to use?',
