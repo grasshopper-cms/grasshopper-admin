@@ -265,7 +265,6 @@
     },
 
     "models" : {
-        "selfValidatingModel" : "models/selfValidatingModel",
         "UserModel" : "models/userModel",
         "grasshopperModel" : "models/grasshopperModel",
         "pluginSetupModel" : "views/contentTypeDetail/pluginSetupModel"
