@@ -19,7 +19,7 @@
         "sparkmd5" : "vendor/SparkMD5/spark-md5",
         "JSONEditor" : "vendor/jsoneditor/jsoneditor",
         "contextjs" : "vendor/contextjs/context",
-        "velocity" : "vendor/velocity/jquery.velocity",
+        "velocity" : "vendor/velocity/velocity",
         "velocityUi" : "vendor/velocity/velocity.ui",
         "mousetrap" : "vendor/mousetrap/mousetrap"
     },
