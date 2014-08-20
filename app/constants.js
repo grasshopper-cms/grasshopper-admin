@@ -80,6 +80,7 @@ define([], function() {
         internalRoutes : {
             user : '/user',
             users : '/users',
+            userDetail : '/user/:id',
             addUser : '/add-user',
             sysInfo: '/sys-info',
             contentTypes : '/content-types',
