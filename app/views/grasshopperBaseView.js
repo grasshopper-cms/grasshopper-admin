@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'resources', 'underscore'],
-    function (Backbone, masseuse, resources, _) {
+define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap'],
+    function (Backbone, masseuse, resources, _, mousetrap) {
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
@@ -38,6 +38,14 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
             RivetView.prototype.initialize.apply(this, arguments);
         }
 
+        function _initializeHotKeys() {
+            if(_.has(this.options, 'hotkeys')) {
+                _.each(this.options.hotkeys, function (hotkey) {
+                    mousetrap.bind(hotkey.keys, this[hotkey.method].bind(this));
+                }, this);
+            }
+        }
+
         function _handleAfterRender() {
             if (this.breadcrumbs && !this.privateBreadcrumbs) {
                 this.channels.views.trigger('updateMastheadBreadcrumbs', this);
@@ -52,7 +60,7 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
             }
 
             return RivetView.prototype.start.apply(this, arguments)
-                .done(_handleAfterRender.bind(this), this.enter);
+                .done(_handleAfterRender.bind(this), this.enter, _initializeHotKeys.bind(this));
         }
 
         function fireErrorModal(message) {
@@ -76,6 +84,12 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
         }
 
         function remove() {
+            if(_.has(this.options, 'hotkeys')) {
+                _.each(this.options.hotkeys, function (hotkey) {
+                    mousetrap.unbind(hotkey.keys);
+                }, this);
+            }
+
             if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'exit')) {
                this.$el.velocity(this.options.transitions.exit, {
                    complete : RivetView.prototype.remove.bind(this, arguments)

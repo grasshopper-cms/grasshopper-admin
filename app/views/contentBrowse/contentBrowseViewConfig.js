@@ -38,6 +38,12 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             },
             transitions : {
                 enter : 'transition.fadeIn'
-            }
+            },
+            hotkeys : [
+                {
+                    keys : 'c',
+                    method : 'createContent'
+                }
+            ]
         };
     });

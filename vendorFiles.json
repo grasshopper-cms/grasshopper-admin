@@ -42,5 +42,6 @@
     "JSONEditor" : "vendor/jsoneditor/**/*",
     "contextjs" : "vendor/contextjs/context.js",
     "velocity" : "vendor/velocity/jquery.velocity.js",
-    "velocityUi" : "vendor/velocity/velocity.ui.js"
+    "velocityUi" : "vendor/velocity/velocity.ui.js",
+    "mousetrap" : "vendor/mousetrap/mousetrap.js"
 }
