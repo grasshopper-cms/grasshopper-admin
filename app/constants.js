@@ -78,6 +78,7 @@ define([], function() {
             }
         },
         internalRoutes : {
+            advancedSearch : '/advanced-search',
             user : '/user',
             users : '/users',
             userDetail : '/user/:id',
