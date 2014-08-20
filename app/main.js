@@ -105,7 +105,7 @@ require([
     'select2',
     'sparkmd5',
     'contextjs',
-    'velocity',
+//    'velocity',
     'velocityUi'
 ],
     /**
