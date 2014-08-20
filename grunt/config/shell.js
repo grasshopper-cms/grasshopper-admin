@@ -57,7 +57,7 @@ module.exports = function (grunt) {
             },
             command : 'bower install'
         },
-        bundlerInstall : {
+        bundleInstall : {
             options : {
                 stdout : true,
                 stderr : true,
