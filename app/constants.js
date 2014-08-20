@@ -160,6 +160,11 @@ define([], function() {
 
         profileGoogleLinkRedirect : {
             url : '/user/:id'
+        },
+
+        contextConfig : {
+            preventDoubleContext: true,
+            compress: true
         }
 
     };
