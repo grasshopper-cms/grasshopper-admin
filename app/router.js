@@ -21,7 +21,7 @@ define([
     'sysInfoView',
     'clipboardView'
 ],
-    function ($, Backbone, _, masseuse, Api, constants, helpers,
+    function($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
               LoginView, loginWorker, logoutWorker, ForbiddenView, NotFoundView,
               AlertBoxView,
@@ -120,11 +120,11 @@ define([
             displayNotFound: displayNotFound
         });
 
-        function onRouteFail () {
+        function onRouteFail() {
             this.goLogout();
         }
 
-        function beforeRouting () {
+        function beforeRouting() {
             var $deferred = new $.Deferred(),
                 self = this;
 
@@ -141,11 +141,11 @@ define([
             return $deferred.promise();
         }
 
-        function userHasBreadcrumbs () {
+        function userHasBreadcrumbs() {
             return (this.breadcrumb && this.breadcrumb.length > 1);
         }
 
-        function removeThisRouteFromBreadcrumb () {
+        function removeThisRouteFromBreadcrumb() {
             this.breadcrumb.pop();
         }
 
@@ -153,7 +153,7 @@ define([
             return _.last(this.breadcrumb);
         }
 
-        function _handleRoutingFromRefreshOnModalView (nodeId) {
+        function _handleRoutingFromRefreshOnModalView(nodeId) {
             if(nodeId === '0') {
                 nodeId = null;
                 this.breadcrumb.unshift(constants.internalRoutes.content);
@@ -163,19 +163,19 @@ define([
             this.displayContentBrowse(nodeId);
         }
 
-        function navigateTrigger (fragment, options, doBeforeRender) {
+        function navigateTrigger(fragment, options, doBeforeRender) {
             options = options || {};
             options.trigger = true;
             this.navigate(fragment, options, doBeforeRender);
         }
 
-        function navigateNinja (fragment, options) {
+        function navigateNinja(fragment, options) {
             options = options || {};
             options.replace = true;
             this.navigate(fragment, options);
         }
 
-        function navigateDeferred (fragment, options) {
+        function navigateDeferred(fragment, options) {
             options = options || {};
             options.deferred = true;
             this.navigate(fragment, options);
@@ -185,7 +185,7 @@ define([
             this.navigate(constants.internalRoutes.notFound, { trigger : true });
         }
 
-        function navigateBack (trigger) {
+        function navigateBack(trigger) {
             if (trigger) {
                 this.navigateTrigger(this.breadcrumb[this.breadcrumb.length - 1]);
             } else {
@@ -193,7 +193,7 @@ define([
             }
         }
 
-        function navigate (fragment, options, doBeforeRender) {
+        function navigate(fragment, options, doBeforeRender) {
             if (currentView instanceof Backbone.View) {
                 currentView.hideAlertBox.call(currentView);
             }
@@ -203,7 +203,7 @@ define([
             Backbone.Router.prototype.navigate.apply(this, arguments);
         }
 
-        function initialize () {
+        function initialize() {
             MasseuseRouter.prototype.initialize.apply(this, arguments);
 
             GrasshopperBaseView.prototype.channels.addChannel('views');
@@ -220,7 +220,7 @@ define([
             GrasshopperBaseView.prototype.hideModal = hideModal;
         }
 
-        function loadMainContent (ViewType, config, bypass) {
+        function loadMainContent(ViewType, config, bypass) {
             var $deferred = new $.Deferred(),
                 newView = new ViewType(config);
 
@@ -251,7 +251,7 @@ define([
             return $deferred.promise();
         }
 
-        function startHeader () {
+        function startHeader() {
             this.headerView = new HeaderView({
                 modelData : {
                     userModel : this.user
@@ -263,12 +263,12 @@ define([
             startClipboard.call(this);
         }
 
-        function startClipboard () {
+        function startClipboard() {
             this.clipboardView = new ClipboardView({});
             this.clipboardView.start();
         }
 
-        function removeHeader () {
+        function removeHeader() {
             if (this.headerView && this.mastheadView) {
                 this.headerView.remove();
                 this.mastheadView.remove();
@@ -277,12 +277,12 @@ define([
             }
         }
 
-        function goLogout () {
+        function goLogout() {
             logoutWorker.doLogout.call(this)
                 .done(this.navigate.bind(this, constants.internalRoutes.login, {trigger : true}, true));
         }
 
-        function displayLogin (token) {
+        function displayLogin(token) {
             var redirect = LocalStorage.get(constants.loginRedirectKey);
 
             if(token) {
@@ -303,23 +303,23 @@ define([
 
         }
 
-        function displayAlertBox (options) {
+        function displayAlertBox(options) {
             var alertBoxView = new AlertBoxView({
                     modelData : options
                 });
             alertBoxView.start();
         }
 
-        function displayTemporaryAlertBox (options) {
+        function displayTemporaryAlertBox(options) {
             options.temporary = true;
             this.displayAlertBox(options);
         }
 
-        function hideAlertBox () {
+        function hideAlertBox() {
             this.channels.views.trigger('hideAlertBoxes');
         }
 
-        function displayModal (options) {
+        function displayModal(options) {
             var $deferred = new $.Deferred(),
                 modalView = new ModalView({
                     modelData : {
@@ -339,17 +339,17 @@ define([
             return $deferred.promise();
         }
 
-        function hideModal () {
+        function hideModal() {
             if (GrasshopperBaseView.prototype.modalView && GrasshopperBaseView.prototype.modalView.remove) {
                 GrasshopperBaseView.prototype.modalView.remove();
             }
         }
 
-        function goHome () {
+        function goHome() {
             this.navigate(constants.internalRoutes.content, {trigger:true});
         }
 
-        function displayUserDetail (id) {
+        function displayUserDetail(id) {
             // I did the role check here instead of in the config with permissions, this is because there are Admin's
             // getting their own, Admins getting others, and others getting their own.
             if (this.user.get('role') === 'admin' || this.user.get('_id') === id) {
@@ -364,7 +364,7 @@ define([
             }
         }
 
-        function displayUserIndex (limit, skip, query) {
+        function displayUserIndex(limit, skip, query) {
             this.loadMainContent(UserIndexView, {
                     modelData : {
                         limit : limit ? limit : constants.pagination.defaultLimit,
@@ -374,7 +374,7 @@ define([
                 });
         }
 
-        function displayAddUser () {
+        function displayAddUser() {
             this.loadMainContent(AddUserView);
         }
 
@@ -382,7 +382,7 @@ define([
             this.loadMainContent(SysInfoView);
         }
 
-        function displayContentBrowse (nodeId, limit, skip, query) {
+        function displayContentBrowse(nodeId, limit, skip, query) {
             this.loadMainContent(ContentBrowseView, {
                     modelData : {
                         nodeId : nodeId ? nodeId : '0',
@@ -394,7 +394,7 @@ define([
                 });
         }
 
-        function displayContentDetail (id, options) {
+        function displayContentDetail(id, options) {
             this.loadMainContent(ContentDetailView, {
                     modelData : _.extend({}, options, {
                         _id : id
@@ -402,11 +402,11 @@ define([
                 });
         }
 
-        function displayContentTypeIndex () {
+        function displayContentTypeIndex() {
             this.loadMainContent(ContentTypeIndexView);
         }
 
-        function displayContentTypeDetail (id) {
+        function displayContentTypeDetail(id) {
             this.loadMainContent(ContentTypeDetailView, {
                     modelData : {
                         _id : id
@@ -414,7 +414,7 @@ define([
                 });
         }
 
-        function displayCreateFolder (nodeId) {
+        function displayCreateFolder(nodeId) {
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModalView.call(this, nodeId);
             }
@@ -426,7 +426,7 @@ define([
             addFolderView.start();
         }
 
-        function displayCreateContent (nodeId) {
+        function displayCreateContent(nodeId) {
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModalView.call(this, nodeId);
             }
@@ -439,7 +439,7 @@ define([
                 });
         }
 
-        function displayCreateAssets (nodeId) {
+        function displayCreateAssets(nodeId) {
             if (!this.userHasBreadcrumbs()) {
                 _handleRoutingFromRefreshOnModalView.call(this, nodeId);
             }
@@ -451,11 +451,15 @@ define([
             addAssetsView.start();
         }
 
-        function displayForbidden () {
+        function displayAdvancedSearch() {
+
+        }
+
+        function displayForbidden() {
             this.loadMainContent(ForbiddenView);
         }
 
-        function displayNotFound () {
+        function displayNotFound() {
             this.loadMainContent(NotFoundView);
         }
 
