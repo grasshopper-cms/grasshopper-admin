@@ -12,7 +12,8 @@ module.exports = function (grunt) {
         'getBowerVersions',
         'setBuildConfig',
         'sass',
-        'autoprefixer:no_dest'
+        'autoprefixer:no_dest',
+        'addBase'
     ]);
 
     grunt.registerTask('build', [
@@ -37,6 +38,7 @@ module.exports = function (grunt) {
         'imagemin',
         'filerev',
         'usemin',
+        'addBase',
         'processTemplateResourceRefs:production',
         'clean:temp'
     ]);
