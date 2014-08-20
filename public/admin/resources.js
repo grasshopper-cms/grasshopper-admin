@@ -55,6 +55,11 @@ define({
             msg: 'You successfully linked your google account.',
             hideCancel: true
         },
+        delete : {
+            warningMessage : 'Are you sure you want to delete this user?',
+            success : 'User Successfully Deleted',
+            failure : 'Failed to delete user.'
+        },
         attributeTitles : {
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
@@ -116,11 +121,8 @@ define({
         deletionWarning : 'Are you sure you want to delete this folder? All of its contents will also be deleted.',
         userDeletionWarning : 'Are you sure that you want to delete this user?',
         successfullyDeletedWithoutLabel : 'Successfully deleted',
-        successfullyDeletedPre : 'Item ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Item :item was successfully deleted.',
         successfullyUpdated : 'Folder was successfully updated.',
-        successfullyCreatedPre : 'Folder: ',
-        successfullyCreatedPost : ' was successfully created.',
         errorUpdated : 'Folder could not be updated.',
         errorDeleted : 'There was an issue deleting this folder: ',
         enterName : 'Please enter the name of the folder: ',
@@ -132,8 +134,7 @@ define({
     },
     contentItem : {
         deletionWarning : 'Are you sure you want to delete this content?',
-        successfullyDeletedPre : 'Content ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Content :item was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: ',
         readonly : 'Readonly',
         labelErrorMessage : 'Label is a required field.',
@@ -157,8 +158,7 @@ define({
         deletionWarningWithoutAssociatedContent : 'Are you sure you want to delete this content type?',
         deletionWarningWithAssociatedContent : 'You have :count of content associated with this content type. ' +
             'If you confirm it will all be deleted!',
-        successfullyDeletedPre : 'Content Type ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Content Type :item was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: ',
         serverError : 'Content Types could not be retrieved.',
         selectContentType : 'Which Content Type would you like to use?',
@@ -190,8 +190,7 @@ define({
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
-        successfullyDeletedPre : 'Asset Name: ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Asset Name: :asset was successfully deleted.',
         errorDeleted : 'There was an issue deleting this asset: ',
         editFileName : 'Edit File Name',
         editNameSuccess : 'File name was successfully updated.',
@@ -202,6 +201,16 @@ define({
         uploadAssetModalMsg : 'Upload an Asset.',
         emptyNode : 'This folder does not contain any files.',
         clickToAdd : 'Click to add some.'
+    },
+    clipboard:{
+        cut: 'Cut',
+        copy: 'Copy',
+        paste: 'Paste',
+        warningPaste: 'Should we :op :nr_items :items to folder :folder?',
+        differentContentTypesWarning: 'Clipboard contains items of different types ',
+        noOperationSpecified: 'No operation specified',
+        cannotCompleteOperation: 'Cannot complete operation',
+        itemsInClipboard: 'item in clipboard'
     },
     contentBrowse : {
         author : 'Author',
@@ -281,6 +290,7 @@ define({
     },
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
+    advancedSearch : 'Advanced Search',
     add : 'Add',
     addNewUser : 'Add New User',
     cancel : 'Cancel',

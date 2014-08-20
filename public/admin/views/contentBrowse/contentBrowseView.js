@@ -1,8 +1,10 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorker',
-    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig', 'clipboardWorker'],
+    'underscore', 'breadcrumbWorker', 'constants', 'nodeWorker', 'addFolderViewConfig',
+    'mixins/clipboardContextMenu', 'mixins/clipboardEvents'],
     function (GrasshopperBaseView, contentBrowseViewConfig, $, searchWorker,
-              _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig, clipboardWorker) {
+              _, breadcrumbWorker, constants, nodeWorker, addFolderViewConfig,
+              clipboardContextMenu, clipboardEvents) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -10,6 +12,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
             beforeRender : beforeRender,
             afterRender : afterRender,
             activateTab : activateTab,
+            addAssetIndexView : addAssetIndexView,
             createContent : createContent,
             createAssets : createAssets,
             createFolder : createFolder,
@@ -18,100 +21,31 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
             editNodeName : editNodeName,
             editNodeContentTypes : editNodeContentTypes,
             deleteNode : deleteNode,
+            getChildContent : getChildContent,
             searchContent : searchContent,
             hasCreateFolderPermission: hasCreateFolderPermission
-        });
+        })
+        .extend(clipboardContextMenu)
+        .extend(clipboardEvents);
 
         function beforeRender ($deferred) {
             $.when(
-                _buildMastheadBreadcrumb.call(this),
-                this.model.fetch(),
-                this.model.get('childNodes').fetch(),
-                _getChildContent.call(this))
-                .done($deferred.resolve, _addAssetIndexView.bind(this))
+                    _buildMastheadBreadcrumb.call(this),
+                    this.model.fetch(),
+                    this.model.get('childNodes').fetch(),
+                    this.getChildContent())
+                .done($deferred.resolve, addAssetIndexView.bind(this))
                 .fail($deferred.reject);
         }
 
         function afterRender () {
             this.$el.foundation();
-            _initClipboard.call(this);
+            this.initClipboardMenu(this.$el.find('#contentBrowseTable'));
+            this.initClipboardMenu(this.$el.find('#assetIndex'));
+            this.setupClipboardEvents();
         }
 
-
-        function _initClipboard() {
-            var self = this;
-            context.init({preventDoubleContext: true, compress: true});
-
-            context.attach('#contentBrowseTable', [
-                {text: '<i class="fa fa-scissors"></i> Cut', action: function (e) {
-                    e.preventDefault();
-                    var target = $(e.target).closest('.dropdown-context').data('contextTarget');
-                    if (target) {
-                        $(target).closest('.nodeOrContentDetailRow').trigger('clipboard:cut');
-                    }
-
-                }},
-                {text: '<i class="fa fa-files-o"></i> Copy', action: function (e) {
-                    e.preventDefault();
-                    var target = $(e.target).closest('.dropdown-context').data('contextTarget');
-                    if (target) {
-                        $(target).closest('.nodeOrContentDetailRow').trigger('clipboard:copy');
-                    }
-                }},
-                {text: '<i class="fa fa-clipboard"></i> Paste', action: function (e) {
-                    e.preventDefault();
-                    var target = $(e.target).closest('.dropdown-context').data('contextTarget'), $target = $(target);
-                    if (target) {
-                        var $nodeDetailRow = $target.closest('.nodeOrContentDetailRow');
-                        if ($nodeDetailRow.length) {
-                            $nodeDetailRow.trigger('clipboard:paste');
-                        }
-                        else {
-                            $target.trigger('clipboard:paste');
-                        }
-
-                    }
-                }}
-            ]);
-
-            var _getRowType = function (el) {
-                var $el = $(el), type;
-                if ($el.hasClass('nodeDetailRow')) {
-                    type = 'node';
-                } else if ($el.hasClass('contentDetailRow')) {
-                    type = 'content';
-                }
-                return type;
-            };
-
-            this.$el.on('clipboard:cut', '.nodeOrContentDetailRow', function (e) {
-                clipboardWorker.cutContent(self, {type: _getRowType(this), id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
-            });
-            this.$el.on('clipboard:copy', '.nodeOrContentDetailRow', function (e) {
-                clipboardWorker.copyContent(self, {type: _getRowType(this), id: $(this).data('id'), name: $('.contentDetailRowName', this).text() });
-            });
-            this.$el.on('clipboard:paste', '.nodeOrContentDetailRow', function (e) {
-                e.stopPropagation();
-                var clickedItemId = $(this).data('id'), currentFolderId = self.model.id;
-                clipboardWorker.pasteContent(self,
-                    {type: _getRowType(this), id: clickedItemId, name: $('.contentDetailRowName', this).text()},
-                    {type: 'node', id: currentFolderId, name: self.model.get('label')}).done(function (data) {
-                        self.model.get('childNodes').fetch();
-                        _getChildContent.call(self);
-                    });
-            });
-            this.$el.on('clipboard:paste', '#contentBrowseTable', function (e) {
-                var currentFolderId = self.model.id;
-                clipboardWorker.pasteContent(self, undefined,
-                    {type: 'node', id: currentFolderId, name: self.model.get('label')}
-                ).done(function (data) {
-                        self.model.get('childNodes').fetch();
-                        _getChildContent.call(self);
-                    });
-            });
-        }
-
-        function _addAssetIndexView() {
+        function addAssetIndexView() {
             if (!this.model.get('inRoot')) {
                 this.model.get('childAssets').fetch();
             }
@@ -125,7 +59,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
             return $deferred.promise();
         }
 
-        function _getChildContent() {
+        function getChildContent() {
             if(!this.model.get('inRoot')) {
                 return this.searchContent(undefined, undefined, true);
             }

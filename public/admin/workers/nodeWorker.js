@@ -3,22 +3,10 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         'use strict';
 
         return {
-            getNodeForTree : getNodeForTree,
             editName : editName,
             editContentTypes : editContentTypes,
-            deleteNode : deleteNode,
-            deleteUser : deleteUser
+            deleteNode : deleteNode
         };
-
-        function getNodeForTree(nodeId) {
-            var $deferred = new $.Deferred();
-
-            Api.getNodesChildren(nodeId)
-                .done($deferred.resolve)
-                .fail($deferred.reject);
-
-            return $deferred.promise();
-        }
 
         function editName() {
             var self = this,
@@ -41,14 +29,10 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         }
 
         function deleteNode() {
-            _warnUserBeforeDeleting.call(this, resources.node.deletionWarning)
+            _warnUserBeforeDeleting.call(this)
                 .done(_actuallyDeleteNode.bind(this, true));
         }
 
-        function deleteUser(goBack) {
-            _warnUserBeforeDeleting.call(this, resources.node.userDeletionWarning)
-                .done(_actuallyDeleteNode.bind(this, goBack !== undefined ? goBack : false));
-        }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -128,40 +112,33 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
             this.fireErrorModal(msg);
         }
 
-        function _warnUserBeforeDeleting(message) {
+        function _warnUserBeforeDeleting() {
             return this.displayModal(
                 {
                     header : resources.warning,
-                    msg : message
+                    msg : resources.node.deletionWarning
                 });
         }
 
-        function _actuallyDeleteNode(goToParent) {
+        function _actuallyDeleteNode() {
             var self = this;
+
             this.model.fetch()
                 .then(function() {
                     self.model.destroy()
-                        .done(_handleSuccessfulNodeDeletion.bind(self,goToParent))
+                        .done(_handleSuccessfulNodeDeletion.bind(self))
                         .fail(_handleFailedNodeDeletion.bind(self));
                 });
         }
 
-        function _handleSuccessfulNodeDeletion(goToParent) {
-            var message;
-            if (goToParent !== false) {
-                _redirectToParent.call(this);
-            }
-            if (this.model.get('label')) {
-                message = resources.node.successfullyDeletedPre + this.model.get('label') + resources.node.successfullyDeletedPost;
-            }
-            else {
-                message = resources.node.successfullyDeletedWithoutLabel;
-            }
+        function _handleSuccessfulNodeDeletion() {
+            _redirectToParent.call(this);
+
             this.displayTemporaryAlertBox(
                 {
-                    header: resources.success,
-                    style: 'success',
-                    msg: message
+                    header : resources.success,
+                    style : 'success',
+                    msg : resources.node.successfullyDeleted.replace(':item', this.model.get('label'))
                 }
             );
         }
@@ -173,14 +150,11 @@ define(['api', 'jquery', 'resources', 'contentTypeWorker', 'underscore', 'consta
         function _redirectToParent() {
             var parent = this.model.get('parent');
 
-            if (this.model.get('userModel')) {
-                this.app.router.navigateTrigger(constants.internalRoutes.users);
-            } else if(parent && parent._id) {
+            if(parent && parent._id) {
                 this.app.router.navigateTrigger(constants.internalRoutes.nodeDetail.replace(':id', parent._id));
             } else {
                 this.app.router.navigateTrigger(constants.internalRoutes.content);
             }
 
         }
-
     });

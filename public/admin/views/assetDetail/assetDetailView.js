@@ -71,8 +71,7 @@ define(['grasshopperBaseView', 'assetDetailViewConfig', 'resources', 'api', 'ass
             this.displayTemporaryAlertBox(
                 {
                     header : resources.success,
-                    msg: resources.asset.successfullyDeletedPre + this.model.get('fileName') +
-                        resources.asset.successfullyDeletedPost,
+                    msg: resources.asset.successfullyDeleted.replace(':asset', this.model.get('fileName')),
                     style : 'success'
                 }
             );

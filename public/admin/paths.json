@@ -18,7 +18,10 @@
         "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker",
         "sparkmd5" : "vendor/SparkMD5/spark-md5",
         "JSONEditor" : "vendor/jsoneditor/jsoneditor",
-        "contextjs" : "vendor/contextjs/context"
+        "contextjs" : "vendor/contextjs/context",
+        "velocity" : "vendor/velocity/jquery.velocity",
+        "velocityUi" : "vendor/velocity/velocity.ui",
+        "mousetrap" : "vendor/mousetrap/mousetrap"
     },
 
     "routers" : {
@@ -106,6 +109,8 @@
 
     "views" : {
         "grasshopperBaseView" : "views/grasshopperBaseView",
+
+        "advancedSearch" : "views/advancedSearch",
 
         "addAssetsView+" : {
             "" : "views/addAssets/addAssetsView",
@@ -262,7 +267,6 @@
     },
 
     "models" : {
-        "selfValidatingModel" : "models/selfValidatingModel",
         "UserModel" : "models/userModel",
         "grasshopperModel" : "models/grasshopperModel",
         "pluginSetupModel" : "views/contentTypeDetail/pluginSetupModel"

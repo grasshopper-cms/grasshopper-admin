@@ -27,6 +27,7 @@ define(['text!views/itemSelectModal/contentTemplate.html', 'text!views/itemSelec
             'click #confirm' : 'confirmModal',
             'click #cancel' : 'cancelModal',
             'click .modalBreadcrumb' : 'navigateToFolder'
-        }
+        },
+        transitions : 'none'
     };
 });

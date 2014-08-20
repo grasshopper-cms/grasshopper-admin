@@ -35,6 +35,15 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                     'asset-detail-row' : AssetDetailView,
                     'pagination-view' : PaginationView
                 }
-            }
+            },
+            transitions : {
+                enter : 'transition.fadeIn'
+            },
+            hotkeys : [
+                {
+                    keys : 'c',
+                    method : 'createContent'
+                }
+            ]
         };
     });

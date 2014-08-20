@@ -100,6 +100,6 @@ define(['sparkmd5', 'constants'], function (sparkmd5, constants) {
     }
 
     function asUserDetailsLink(value){
-        return constants.internalRoutes.user+'/'+value;
+        return constants.internalRoutes.userDetail.replace(':id', value);
     }
 });

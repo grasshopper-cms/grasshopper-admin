@@ -32,7 +32,7 @@
                 <div class="large-12 columns">
                     <a data-rv-href="model:constants->internalRoutes->content" class="brand">{{model:resources->siteName}}</a>
 
-                    <a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse" data-rv-on-click="view.toogleNavigation">
+                    <a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse" data-rv-on-click="view.toggleNavigation | stopImmediatePropagation">
                         <i class="fa fa-align-justify"></i>
                     </a>
 
@@ -57,6 +57,13 @@
                                 <a id="users" class="nav-item-link" data-rv-href="model:constants->internalRoutes->users">
                                     <i class="fa fa-user"></i>
                                     <span>{{model:resources->users}}</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item" data-rv-show="model:userModel->role | equals admin reader editor">
+                                <a id="advancedSearch" class="nav-item-link" data-rv-href="model:constants->internalRoutes->advancedSearch">
+                                    <i class="fa fa-search"></i>
+                                    <span>{{model:resources->advancedSearch}}</span>
                                 </a>
                             </li>
 

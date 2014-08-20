@@ -2,9 +2,9 @@
 define([], function() {
     'use strict';
 
-    var apiEndpoint = 'http://grasshopper-admin-sample.herokuapp.com',
+    var apiEndpoint = '',
         version = '0.29.5',
-        libraryVersions = '[{"name":"ScrollToFixed","version":"1.0.6"},{"name":"SparkMD5","version":"0.0.5"},{"name":"ace","version":"1.1.3"},{"name":"ckeditor","version":"4.3.5"},{"name":"datetimepicker","version":"2.3.4"},{"name":"font-awesome","version":"4.1.0"},{"name":"foundation","version":"5.0.2"},{"name":"jquery.ui","version":"1.10.4"},{"name":"js-base64","version":"2.1.2"},{"name":"jsoneditor","version":"3.1.1"},{"name":"masseuse","version":"2.3.0"},{"name":"moment","version":"2.5.1"},{"name":"requirejs-text","version":"2.0.10"},{"name":"select2","version":"3.5.1"}]';
+        libraryVersions = '[{"name":"ScrollToFixed","version":"1.0.6"},{"name":"SparkMD5","version":"0.0.5"},{"name":"ace","version":"1.1.3"},{"name":"ckeditor","version":"4.3.5"},{"name":"datetimepicker","version":"2.3.4"},{"name":"font-awesome","version":"4.1.0"},{"name":"foundation","version":"5.0.2"},{"name":"jquery.ui","version":"1.10.4"},{"name":"js-base64","version":"2.1.2"},{"name":"jsoneditor","version":"3.1.1"},{"name":"masseuse","version":"2.3.0"},{"name":"moment","version":"2.5.1"},{"name":"mousetrap","version":"1.4.6"},{"name":"requirejs-text","version":"2.0.10"},{"name":"select2","version":"3.5.1"},{"name":"velocity","version":"0.11.6"}]';
 
     return {
         version : version,
@@ -58,6 +58,12 @@ define([], function() {
             moveNode : {
                 url : apiEndpoint + '/node/move'
             },
+            copyAsset : {
+                url : apiEndpoint + '/node/:id/assets/copy'
+            },
+            moveAsset : {
+                url : apiEndpoint + '/node/:id/assets/move'
+            },
             contentQuery : {
                 url : apiEndpoint + '/content/query'
             },
@@ -72,8 +78,10 @@ define([], function() {
             }
         },
         internalRoutes : {
+            advancedSearch : '/advanced-search',
             user : '/user',
             users : '/users',
+            userDetail : '/user/:id',
             addUser : '/add-user',
             sysInfo: '/sys-info',
             contentTypes : '/content-types',
@@ -106,13 +114,26 @@ define([], function() {
             ai : 'fa-file-image-o',
             swf : 'fa-file-video-o'
         },
-        imageExtensions : ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif'],
+        imageExtensions : [
+            'jpg',
+            'jpeg',
+            'png',
+            'bmp',
+            'webp',
+            'svg',
+            'gif'
+        ],
         contentSearchThrottle: 1000,
         pagination : {
             defaultLimit : 25,
             defaultSkip : 1,
             defaultPagesLimit : 7,
-            defaultPageSize : [25, 50, 100, 'all'],
+            defaultPageSize : [
+                25,
+                50,
+                100,
+                'all'
+            ],
             defaultAllLimit : 100000
         },
         controlKeyCodeMap : {
@@ -140,6 +161,11 @@ define([], function() {
 
         profileGoogleLinkRedirect : {
             url : '/user/:id'
+        },
+
+        contextConfig : {
+            preventDoubleContext: true,
+            compress: true
         }
 
     };

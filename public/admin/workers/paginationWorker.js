@@ -7,6 +7,7 @@ define(['constants'], function (constants) {
 
     function setUrl(limit, skip, contentSearchValue) {
         var url = this.app.router.getCurrentBreadcrumb();
+
         limit = (limit === constants.pagination.defaultAllLimit) ? 'all' : limit;
 
         if (url.indexOf('/limit') !== -1) {

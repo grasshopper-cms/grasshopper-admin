@@ -30,9 +30,9 @@ define(['grasshopperBaseView', 'pagination/options', 'paginationWorker', 'consta
 
     function _checkPaginationVisibility() {
         if ( this.collection.limit > this.collection.total || this.collection.total === 'all') {
-            $('.pagination-skip').addClass('hidden');
+            this.$('.pagination-skip').hide();
         } else {
-            $('.pagination-skip').removeClass('hidden');
+            this.$('.pagination-skip').show();
         }
     }
 

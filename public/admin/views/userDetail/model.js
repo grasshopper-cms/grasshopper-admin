@@ -15,7 +15,7 @@ define(['grasshopperModel', 'constants', 'resources', 'masseuse', 'underscore'],
                     return firstname + ' ' + lastname;
                 }),
                 href : new ComputedProperty(['_id'], function(_id) {
-                    return constants.internalRoutes.user + '/' + _id;
+                    return constants.internalRoutes.userDetail.replace(':id', _id);
                 }),
                 saving : false,
                 userIsChangingTheirProfile : ComputedProperty(['_id', 'userModel'], function(_id, userModel) {
