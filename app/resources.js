@@ -191,8 +191,7 @@ define({
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
-        successfullyDeletedPre : 'Asset Name: ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Asset Name: :asset was successfully deleted.',
         errorDeleted : 'There was an issue deleting this asset: ',
         editFileName : 'Edit File Name',
         editNameSuccess : 'File name was successfully updated.',
@@ -210,7 +209,7 @@ define({
         paste: 'Paste',
         warningPaste: 'Should we :op :nr_items :items to folder :folder?',
         differentContentTypesWarning: 'Clipboard contains items of different types ',
-        noOperationSpecified: 'No operation specfified',
+        noOperationSpecified: 'No operation specified',
         cannotCompleteOperation: 'Cannot complete operation',
         itemsInClipboard: 'item in clipboard'
     },
