@@ -103,18 +103,16 @@ require([
     'scrollToFixed',
     'select2',
     'sparkmd5',
-    'contextjs'
+    'contextjs',
+    'velocity',
+    'velocityUi'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, constants, ajaxCounterWorker, require) {
+        function (Backbone, _, $, Router, constants, ajaxCounterWorker) {
         'use strict';
-
-        require(['velocity'], function() {
-            require(['velocityUi']);
-        });
 
         var router = new Router();
 
