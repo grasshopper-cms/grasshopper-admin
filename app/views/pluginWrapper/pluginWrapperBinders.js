@@ -7,12 +7,8 @@ define(['underscore', 'masseuse',
 
         return {
             fieldtype : {
-                bind: function() {
-
-                },
-                unbind : function() {
-                    this.viewInstance.remove();
-                },
+                bind: function() {},
+                unbind : function() {},
                 routine : function(el, model) {
                     var rivets = this,
                         ViewModule = rivets.model.model.get('ViewModule'),
