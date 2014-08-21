@@ -104,9 +104,9 @@ require([
     'scrollToFixed',
     'select2',
     'sparkmd5',
-    'contextjs'
-////    'velocity',
-//    'velocityUi'
+    'contextjs',
+    'velocity',
+    'velocityUi'
 ],
     /**
      * @param $
