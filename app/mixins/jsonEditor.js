@@ -5,12 +5,14 @@ define(['constants', 'JSONEditor', 'underscore'], function (constants, JSONEdito
         init: init
     };
 
-    function init (el, context, options) {
-        var editor;
+    function init (selector, options) {
+        var el;
+
+        el = document.getElementById(selector);
+
         _.extend(options ? options : {}, constants.jsoneditor);
-        editor = new JSONEditor(el, options);
-        editor.set(options.json);
-        context.jsonEditor = editor;
+
+        return new JSONEditor(el, options, options.json);                
     }
 
 });

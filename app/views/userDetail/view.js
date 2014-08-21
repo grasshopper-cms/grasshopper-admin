@@ -138,11 +138,11 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
 
         // JSON Editor
         function _setUpJsonEditor() {
-            var initialValue = this.model.get('profile');
+            var profile = this.model.get('profile');
 
-            jsonEditor.init(this.$('#profile'), this, {
+            this.jsonEditor = jsonEditor.init('profile', {
                 change: _jsonEditorChangeCallback.bind(this),
-                json: initialValue
+                json: profile
             });
         }
 

@@ -110,6 +110,8 @@
     "views" : {
         "grasshopperBaseView" : "views/grasshopperBaseView",
 
+        "pluginBaseView" : "views/pluginBaseView",
+
         "advancedSearch" : "views/advancedSearch",
 
         "addAssetsView+" : {
