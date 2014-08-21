@@ -91,6 +91,7 @@ require([
     'router',
     'constants',
     'ajaxCounterWorker',
+    'require',
     'alerts',
     'dropdown',
     'tabs',
@@ -103,15 +104,16 @@ require([
     'select2',
     'sparkmd5',
     'contextjs',
-    'velocity',
-    'velocityUi'
+    'velocity'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, constants, ajaxCounterWorker) {
+        function (Backbone, _, $, Router, constants, ajaxCounterWorker, require) {
         'use strict';
+
+        require(['velocityUi']);
 
         var router = new Router();
 
