@@ -1,4 +1,4 @@
-define(['grasshopperModel', 'resources', 'advancedSearch/content/model'], function(Model, resources, ContentSearchModel) {
+define(['grasshopperModel', 'resources'], function (Model, resources) {
     'use strict';
 
     return Model.extend({
@@ -11,6 +11,6 @@ define(['grasshopperModel', 'resources', 'advancedSearch/content/model'], functi
     function initialize() {
         Model.prototype.initialize.apply(this, arguments);
 
-        this.set('contentSearchModel', new ContentSearchModel());
+        console.log('YEAH YEAH YEAH YEAH YEAH YEAH EYAH');
     }
 });
