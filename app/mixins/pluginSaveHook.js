@@ -13,8 +13,8 @@ define(['underscore'], function(_) {
     function register(view) {
         activeSubscribers.push(view);
 
-        console.log('Adding SUBSCRIBERS');
-        console.log(activeSubscribers);
+//        console.log('Adding SUBSCRIBERS');
+//        console.log(activeSubscribers);
     }
 
     function remove(view) {
@@ -22,7 +22,7 @@ define(['underscore'], function(_) {
             return subscriber.cid === view.cid;
         });
 
-        console.log('Removing SUBSCRIBERS');
-        console.log(activeSubscribers);
+//        console.log('Removing SUBSCRIBERS');
+//        console.log(activeSubscribers);
     }
 });
