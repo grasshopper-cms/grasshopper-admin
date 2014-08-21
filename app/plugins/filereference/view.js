@@ -1,12 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'jquery',
+define(['pluginBaseView', 'underscore', 'jquery',
     'mixins/itemSelectModal', 'mixins/buildNodeRadioList'],
-    function (GrasshopperBaseView, _, $,
+    function (PluginBaseView, _, $,
               itemSelectModal, buildNodeRadioList) {
 
         'use strict';
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             afterRender: afterRender,
             fireSelectFileModal: fireSelectFileModal,
             selectDefaultNode: selectDefaultNode,

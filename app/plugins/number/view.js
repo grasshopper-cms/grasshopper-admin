@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView'],
-    function (GrasshopperBaseView) {
+define(['pluginBaseView'],
+    function (PluginBaseView) {
         'use strict';
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             beforeRender : beforeRender,
             buildObj : buildObj
         });

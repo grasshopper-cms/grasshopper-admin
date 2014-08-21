@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore'],
-    function (GrasshopperBaseView, _) {
+define(['pluginBaseView', 'underscore'],
+    function (PluginBaseView, _) {
         'use strict';
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             afterRender : afterRender,
             calculateSlug : _.debounce(calculateSlug, 100)
         });

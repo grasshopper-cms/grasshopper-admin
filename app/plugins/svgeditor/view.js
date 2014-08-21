@@ -1,11 +1,11 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'jquery', 'helpers', 'svg-edit-embed-api'],
-    function (GrasshopperBaseView, $, helpers) {
+    function (PluginBaseView, $, helpers) {
         'use strict';
 
         var LocalStorage = helpers.localStorage;
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             beforeRender : beforeRender,
             initializeSvgEdit : initializeSvgEdit,
             saveSvg : saveSvg
