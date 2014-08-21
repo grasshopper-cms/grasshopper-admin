@@ -61,11 +61,9 @@ require.config({
             deps : ['jquery']
         },
         velocity : {
-//            exports : 'jquery',
             deps : ['jquery']
         },
         velocityUi : {
-//            exports : 'jquery',
             deps : ['jquery', 'velocity']
         }
     },
