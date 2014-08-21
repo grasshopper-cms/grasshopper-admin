@@ -113,34 +113,34 @@ require([
         function (Backbone, _, $, Router, constants, ajaxCounterWorker, require) {
         'use strict';
 
-        require(['velocityUi']);
+        require(['velocityUi'], function() {
+            var router = new Router();
 
-        var router = new Router();
+            _.templateSettings = {
+                evaluate : /\[\[(.+?)\]\]/g,
+                interpolate : /\[\[=(.+?)\]\]/g,
+                escape : /\[\[-(.+?)\]\]/g
+            };
 
-        _.templateSettings = {
-            evaluate : /\[\[(.+?)\]\]/g,
-            interpolate : /\[\[=(.+?)\]\]/g,
-            escape : /\[\[-(.+?)\]\]/g
-        };
+            ajaxCounterWorker.setupCounter();
 
-        ajaxCounterWorker.setupCounter();
+            // TODO: For some reason this is not needed?
+            $(document).foundation();
 
-        // TODO: For some reason this is not needed?
-        $(document).foundation();
+            Backbone.history.start({
+                hashChange : false,
+                pushState: true,
+                root: '/admin'
+            });
 
-        Backbone.history.start({
-            hashChange : false,
-            pushState: true,
-            root: '/admin'
-        });
+            $(document).on('click', 'a:not([data-bypass])', function (evt) {
+                var href = $(this).attr('href') || '';
+                var protocol = this.protocol + '//';
 
-        $(document).on('click', 'a:not([data-bypass])', function (evt) {
-            var href = $(this).attr('href') || '';
-            var protocol = this.protocol + '//';
-
-            if (href && href!='#' && href.slice(protocol.length) !== protocol) {
-                evt.preventDefault();
-                router.navigate(href, {trigger:true});
-            }
+                if (href && href!='#' && href.slice(protocol.length) !== protocol) {
+                    evt.preventDefault();
+                    router.navigate(href, {trigger:true});
+                }
+            });
         });
     });
