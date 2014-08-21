@@ -103,8 +103,7 @@ require([
     'scrollToFixed',
     'select2',
     'sparkmd5',
-    'contextjs',
-    'velocity'
+    'contextjs'
 ],
     /**
      * @param $
@@ -113,34 +112,36 @@ require([
         function (Backbone, _, $, Router, constants, ajaxCounterWorker, require) {
         'use strict';
 
-        require(['velocityUi'], function() {
-            var router = new Router();
+        require(['velocity'], function() {
+            require(['velocityUi']);
+        });
 
-            _.templateSettings = {
-                evaluate : /\[\[(.+?)\]\]/g,
-                interpolate : /\[\[=(.+?)\]\]/g,
-                escape : /\[\[-(.+?)\]\]/g
-            };
+        var router = new Router();
 
-            ajaxCounterWorker.setupCounter();
+        _.templateSettings = {
+            evaluate : /\[\[(.+?)\]\]/g,
+            interpolate : /\[\[=(.+?)\]\]/g,
+            escape : /\[\[-(.+?)\]\]/g
+        };
 
-            // TODO: For some reason this is not needed?
-            $(document).foundation();
+        ajaxCounterWorker.setupCounter();
 
-            Backbone.history.start({
-                hashChange : false,
-                pushState: true,
-                root: '/admin'
-            });
+        // TODO: For some reason this is not needed?
+        $(document).foundation();
 
-            $(document).on('click', 'a:not([data-bypass])', function (evt) {
-                var href = $(this).attr('href') || '';
-                var protocol = this.protocol + '//';
+        Backbone.history.start({
+            hashChange : false,
+            pushState: true,
+            root: '/admin'
+        });
 
-                if (href && href!='#' && href.slice(protocol.length) !== protocol) {
-                    evt.preventDefault();
-                    router.navigate(href, {trigger:true});
-                }
-            });
+        $(document).on('click', 'a:not([data-bypass])', function (evt) {
+            var href = $(this).attr('href') || '';
+            var protocol = this.protocol + '//';
+
+            if (href && href!='#' && href.slice(protocol.length) !== protocol) {
+                evt.preventDefault();
+                router.navigate(href, {trigger:true});
+            }
         });
     });
