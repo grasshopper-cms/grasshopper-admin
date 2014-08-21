@@ -41,7 +41,7 @@
     "svg-edit" : "vendor/svg-edit-2.7/**/*",
     "JSONEditor" : "vendor/jsoneditor/**/*",
     "contextjs" : "vendor/contextjs/context.js",
-    "velocity" : "vendor/velocity/jquery.velocity.js",
+    "velocity" : "vendor/velocity/velocity.js",
     "velocityUi" : "vendor/velocity/velocity.ui.js",
     "mousetrap" : "vendor/mousetrap/mousetrap.js"
 }
