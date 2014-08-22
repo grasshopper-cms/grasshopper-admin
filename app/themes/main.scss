@@ -136,12 +136,8 @@ body, html {
     list-style-type: none;
   }
 
-  .content {
-    padding: 16px 28px 23px;
-  }
-
   #stage {
-    margin-top: 2.5em;
+    margin-top: 1em;
   }
 
   .search {
@@ -194,6 +190,7 @@ body, html {
 
   // VIEWS
   @import "../views/advancedSearch/_style.scss"; // Advanced Search
+  @import "../views/advancedSearch/content/_style.scss"; // Advanced Content Search
   @import "../views/header/_style.scss"; // Header
   @import "../views/modal/_style.scss"; // Modal
   @import "../views/alertBox/_style.scss"; // Alertbox
