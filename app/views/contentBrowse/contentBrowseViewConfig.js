@@ -37,7 +37,12 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                 }
             },
             transitions : {
-                enter : 'transition.fadeIn'
+                enter : {
+                    type : 'fadeIn',
+                    options : {
+                        duration : 100
+                    }
+                }
             },
             hotkeys : [
                 {
