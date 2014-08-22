@@ -6,7 +6,8 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery'],
         return GrasshopperBaseView.extend({
             defaultOptions : config,
             beforeRender : beforeRender,
-            addNewFilterToFiltersCollection : addNewFilterToFiltersCollection,
+            addFilterToFiltersCollection : addFilterToFiltersCollection,
+            removeFilterFromFiltersCollection : removeFilterFromFiltersCollection,
             addContentTypeToInTypesCollection : addContentTypeToInTypesCollection,
             removeContentTypeFromInTypesCollection : removeContentTypeFromInTypesCollection,
             addNodeToInNodesCollection : addNodeToInNodesCollection,
@@ -22,9 +23,13 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery'],
                 .then($deferred.resolve);
         }
 
-        function addNewFilterToFiltersCollection() {
+        function addFilterToFiltersCollection() {
             this.model.get('filtersCollection').add(this.model.get('newFilterModel').toJSON());
             this.resetNewFilter();
+        }
+
+        function removeFilterFromFiltersCollection(event, context) {
+            this.model.get('filtersCollection').remove(context.filter);
         }
 
         function resetNewFilter() {
