@@ -13,7 +13,6 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery'],
                 this.model.get('contentTypeCollection').fetch(),
                 this.model.get('nodesCollection').fetch()
             )
-                .then(this.model.preparePossibleContentFields.bind(this.model))
                 .then(this.model.preparePossibleFieldComparators.bind(this.model))
                 .then($deferred.resolve);
         }
