@@ -69,6 +69,15 @@ define(['jquery', 'underscore', 'masseuse',
                 } else {
                     $el.html($el.attr('oldText'));
                 }
+            },
+            'select2' : function(el) {
+                var $el = $(el);
+
+                $el.select2(
+                    {
+                        width : '100%',
+                        placeholder : $el.attr('placeholder')
+                    });
             }
         };
 
@@ -76,7 +85,7 @@ define(['jquery', 'underscore', 'masseuse',
             // listen for the enter key or Blur to save to the model.
             if(evt.keyCode === 13 || evt.type === 'blur') {
                 this.view.adapters[':'].publish(
-                    this.model,this.keypath.substring(this.keypath.indexOf(':')+1), el.textContent);
+                    this.model, this.keypath.substring(this.keypath.indexOf(':')+1), el.textContent);
             }
         }
     });
