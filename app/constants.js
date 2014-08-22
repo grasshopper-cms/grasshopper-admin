@@ -149,25 +149,49 @@ define([], function() {
             40 : 'bArr',
             91 : 'leftCMD',
             93 : 'rightCMD'
-        },
-        // https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
-
+        }, // https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
         jsoneditor : {
             mode: 'tree',
             modes:['code', 'tree']
         },
-
         loginRedirectKey : 'loginRedirect',
-
         profileGoogleLinkRedirect : {
             url : '/user/:id'
         },
-
         contextConfig : {
             preventDoubleContext: true,
             compress: true
-        }
-
+        },
+        possibleQueryComparators : [
+            '=',
+            'eq',
+            'equal',
+            'equals',
+            '!=',
+            'not',
+            'notequal',
+            'notequals',
+            '>=',
+            'gte',
+            '>',
+            'gt',
+            '<=',
+            'lte',
+            '<',
+            'lt',
+            'in',
+            'contains',
+            '!in',
+            'notin',
+            'notcontains',
+            '%',
+            'like',
+            '!%',
+            'notlike',
+            'between',
+            'notbetween',
+            'size',
+            'exists'
+        ]
     };
-
 });
