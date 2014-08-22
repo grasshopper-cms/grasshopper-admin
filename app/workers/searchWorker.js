@@ -25,11 +25,11 @@ define(['constants', 'paginationWorker', 'jquery', 'underscore'],
             return model.query(contentSearchValue);
         } else {
             _toggleSearchSpinner.call(this);
-            return model.searchQuery(contentSearchValue)
-                .done(
-                    isNotUpdateUrl && paginationWorker.setUrl.bind(this, model.limit, model.skip, contentSearchValue),
-                    _toggleSearchSpinner.bind(this, true)
-                );
+            return model.searchQuery(contentSearchValue, function(){
+                 isNotUpdateUrl && paginationWorker.setUrl.call(this, model.limit, model.skip, contentSearchValue);
+                _toggleSearchSpinner.call(this, true);
+            }.bind(this));
+
         }
     }
 
