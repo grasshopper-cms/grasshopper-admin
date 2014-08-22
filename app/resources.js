@@ -336,6 +336,7 @@ define({
     next : 'Next',
     newWord : 'New',
     no : 'No',
+    nodes : 'Nodes',
     ok : 'Ok',
     options : 'Options',
     open : 'Open',
