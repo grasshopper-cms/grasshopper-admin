@@ -31,7 +31,7 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
             return this.query(contentSearchValue);
         }
 
-        function query(value) {
+        function query(value, callback) {
             this.skip = (_.isUndefined(this.contentSearchValue) || this.contentSearchValue == value) ? this.skip : constants.pagination.defaultSkip;
             this.contentSearchValue = value || '';
             this.limit = !!parseInt(this.limit, 10) ? this.limit : constants.pagination.defaultAllLimit;
@@ -46,14 +46,17 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
                     }
                 };
 
-            $('.table-wrapper').addClass('spinner-loading');
+            // $('.table-wrapper').addClass('spinner-loading');
             this.queryRequest.call(api, queryData)
                 .done(function(data) {
                     this.reset(data.results);
                     this.total = data.total;
                     this.skip =  parseInt(this.skip, 10);
                     this.trigger('paginatedCollection:query');
-                    $('.table-wrapper').removeClass('spinner-loading');
+                    if(callback) {
+                        callback();
+                    }
+                    // $('.table-wrapper').removeClass('spinner-loading');
                     $deferred.resolve();
                 }.bind(this));
 
