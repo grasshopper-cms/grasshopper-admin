@@ -207,6 +207,7 @@ define({
         cut: 'Cut',
         copy: 'Copy',
         paste: 'Paste',
+        clear : 'Clear Clipboard',
         warningPaste: 'Should we :op :nr_items :items to folder :folder?',
         differentContentTypesWarning: 'Clipboard contains items of different types ',
         noOperationSpecified: 'No operation specified',

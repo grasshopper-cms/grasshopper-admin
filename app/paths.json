@@ -204,12 +204,6 @@
         },
 
         "itemSelectModal" : "views/itemSelectModal",
-
-        "clipboardView+" : {
-            "" : "views/clipboard/clipboardView",
-            "Config" : "views/clipboard/clipboardViewConfig",
-            "Model" : "views/clipboard/clipboardViewModel"
-        },
         "login" : "views/login",
 
         "mastheadView+" : {

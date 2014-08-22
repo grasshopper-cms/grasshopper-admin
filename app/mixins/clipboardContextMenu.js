@@ -39,10 +39,17 @@ define(['jquery', 'underscore', 'resources', 'helpers', 'constants', 'clipboardW
             context.init(constants.contextConfig);
 
             if (clipboardWorker.hasPasteItem) {
-                defaultMenu.push({
+
+                defaultMenu.unshift({
                     text: joiner('<i class="fa fa-clipboard"></i> ', resources.clipboard.paste),
                     action: _paste.bind(this)
                 });
+
+                defaultMenu.push({
+                    text: joiner('<hr><i class="fa fa-trash-o"></i> ', resources.clipboard.clear),
+                    action: clipboardWorker.clear.bind(clipboardWorker)
+                });
+
             } else {
                 clipboardWorker.on('hasClipboardItem', _createAndAttach.bind(this, selector));
             }

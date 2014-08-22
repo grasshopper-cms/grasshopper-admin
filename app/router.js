@@ -19,7 +19,6 @@ define([
     'addContentView',
     'addAssetsView',
     'sysInfoView',
-    'clipboardView',
     'advancedSearch/view'
 ],
     function($, Backbone, _, masseuse, Api, constants, helpers,
@@ -41,7 +40,6 @@ define([
               AddContentView,
               AddAssetsView,
               SysInfoView,
-              ClipboardView,
               AdvancedSearchView
         ) {
 
@@ -264,12 +262,6 @@ define([
             this.headerView.start();
             this.mastheadView = new MastheadView();
             this.mastheadView.start();
-            startClipboard.call(this);
-        }
-
-        function startClipboard() {
-            this.clipboardView = new ClipboardView({});
-            this.clipboardView.start();
         }
 
         function removeHeader() {
