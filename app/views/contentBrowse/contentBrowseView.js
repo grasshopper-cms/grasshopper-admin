@@ -33,21 +33,22 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
                     _buildMastheadBreadcrumb.call(this),
                     this.model.fetch(),
                     this.model.get('childNodes').fetch(),
-                    this.getChildContent())
-                .done($deferred.resolve, addAssetIndexView.bind(this))
+                    this.getChildContent(),
+                    this.addAssetIndexView())
+                .done($deferred.resolve)
                 .fail($deferred.reject);
         }
 
         function afterRender () {
             this.$el.foundation();
-            this.initClipboardMenu(this.$el.find('#contentBrowseTable'));
-            this.initClipboardMenu(this.$el.find('#assetIndex'));
+            this.initClipboardMenu('#contentPanel', this);
+            this.initClipboardMenu('#assetIndex', this);
             this.setupClipboardEvents();
         }
 
         function addAssetIndexView() {
             if (!this.model.get('inRoot')) {
-                this.model.get('childAssets').fetch();
+                return this.model.get('childAssets').fetch();
             }
         }
 

@@ -1,5 +1,5 @@
 define(['jquery', 'underscore', 'clipboardWorker', 'helpers'],
-    function ($, _, clipboardWorker, helpers) {
+    function($, _, clipboardWorker, helpers) {
         'use strict';
 
         var joiner = helpers.text.join;
@@ -8,7 +8,7 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers'],
             setupClipboardEvents: setupClipboardEvents
         };
 
-        function setupClipboardEvents () {
+        function setupClipboardEvents() {
             this.$el.on('clipboard:cut', '.clipboardTargetRow', _handleCutEvent.bind(this));
             this.$el.on('clipboard:copy', '.clipboardTargetRow', _handleCopyEvent.bind(this));
             this.$el.on('clipboard:paste', '.clipboardTargetRow', _handlePasteEvent.bind(this));
@@ -16,33 +16,32 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers'],
             this.$el.on('clipboard:paste', '#assetIndex', _handlePasteEvent.bind(this));
         }
 
-        function _handleCutEvent (e) {
+        function _handleCutEvent(e) {
             clipboardWorker.cutContent(this, _getCutCopyRequest.call(this, e.currentTarget));
+            clipboardWorker.hasPasteItem = true;
+            clipboardWorker.trigger('hasClipboardItem');
         }
 
-        function _handleCopyEvent (e) {
+        function _handleCopyEvent(e) {
             clipboardWorker.copyContent(this, _getCutCopyRequest.call(this, e.currentTarget));
+            clipboardWorker.hasPasteItem = true;
+            clipboardWorker.trigger('hasClipboardItem');
         }
 
-        function _handlePasteEvent (e) {
-            var idInfo = {
-                    type: _getRowType(e.currentTarget),
-                    id: $(e.currentTarget).data('id'),
-                    name: $('.clipboardTargetName', e.currentTarget).text()
-                },
-                folderInfo = {
-                    type: 'node',
-                    id: this.model.id,
-                    name: this.model.get('label')
-                };
+        function _handlePasteEvent(e) {
+            var folderInfo = {
+                type: 'node',
+                id: this.model.id,
+                name: this.model.get('label')
+            };
 
             e.stopPropagation();
 
-            clipboardWorker.pasteContent(this, idInfo, folderInfo)
-                .done(_afterPasteAsset.bind(this));
+            clipboardWorker.pasteContent(this, folderInfo)
+                .done(_afterPasteDone.bind(this));
         }
 
-        function _getCutCopyRequest (target) {
+        function _getCutCopyRequest(target) {
             var rowType = _getRowType(target),
                 itemId = $(target).data('id'),
                 itemIdContainsSlashes = _.contains(itemId, '\\') || _.contains(itemId, '/');
@@ -58,14 +57,18 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers'],
             };
         }
 
-        function _afterPasteAsset () {
-            this.model.get('childNodes').fetch()
-                .then(this.addAssetIndexView.bind(this))
-                .then(this.getChildContent.bind(this));
+        function _afterPasteDone() {
+            clipboardWorker.hasPasteItem = false;
+            clipboardWorker.trigger('pasteDone');
+            this.model.fetch();
+            this.model.get('childNodes').fetch();
+            this.getChildContent();
+            this.addAssetIndexView();
         }
 
-        function _getRowType (el) {
-            var $el = $(el), type;
+        function _getRowType(el) {
+            var $el = $(el),
+                type;
 
             if ($el.hasClass('nodeDetailRow')) {
                 type = 'node';

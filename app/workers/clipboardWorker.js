@@ -1,20 +1,21 @@
-define(['jquery', 'underscore', 'resources', 'constants', 'api'],
-    function ($, _, resources, constants, Api) {
+define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
+    function ($, _, resources, constants, Api, Backbone) {
         'use strict';
 
         var clipboardContent = {};
         var subscribers = [];
 
-        return {
+        return _.extend({
             cutContent: cutContent,
             copyContent: copyContent,
             pasteContent: pasteContent,
             subscribe: subscribe,
             clear: clear,
-            resources: resources
-        };
+            resources: resources,
+            hasPasteContent : false
+        }, Backbone.Events);
 
-        function _notify () {
+        function _notify() {
             _.each(subscribers, function (that) {
                 // see http://stackoverflow.com/questions/9909799/backbone-js-change-not-firing-on-model-change
                 that.unset('clipboardContent', {silent: true});
@@ -23,26 +24,27 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api'],
             });
         }
 
-        function subscribe (that) {
+
+        function subscribe(that) {
             subscribers.push(that);
         }
 
-        function cutContent (ctx, content) {
+        function cutContent(ctx, content) {
             clipboardContent = {op: 'move', values: [content]};
             _notify();
         }
 
-        function copyContent (ctx, content) {
+        function copyContent(ctx, content) {
             clipboardContent = {op: 'copy', values: [content]};
             _notify();
         }
 
-        function clear () {
+        function clear() {
             clipboardContent = {};
             _notify();
         }
 
-        function _getIds (values) {
+        function _getIds(values) {
             return _.map(values, function (item) {
                 return {
                     id: item.id,
@@ -51,7 +53,7 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api'],
             });
         }
 
-        function _prepareMoveRequest (clipboardContent, folderInfo) {
+        function _prepareMoveRequest(clipboardContent, folderInfo) {
             return {
                 op: clipboardContent.op,
                 from: _getIds(clipboardContent.values),
@@ -59,68 +61,89 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api'],
             };
         }
 
-        function _pasteContent (ctx, clipboardContent, folderInfo, $deferred) {
+        function _pasteContent(ctx, clipboardContent, folderInfo, $deferred) {
             Api.moveContent(_prepareMoveRequest(clipboardContent, folderInfo))
-                .then(
-                    _clearAndResolve.bind(null, $deferred),
-                    _rejectAndTriggerWarning.bind(null, $deferred, ctx)
-                );
-        }
-
-        function _pasteAsset (ctx, clipboardContent, folderInfo, $deferred) {
-
-            var $deferreds = _.map(clipboardContent.values, function (item) {
-                var parts = item.id.split(/\/|\\/), nodeId = parts[0], fileName = parts[1];
-                if (clipboardContent.op == 'copy') {
-
-                    return Api.copyAsset({nodeid: nodeId, filename: fileName, newnodeid: folderInfo.id});
-                } else if (clipboardContent.op == 'move') {
-                    return Api.moveAsset({nodeid: nodeId, filename: fileName, newnodeid: folderInfo.id});
-                }
-            });
-
-            $.when($deferreds)
                 .done(_clearAndResolve.bind(null, $deferred))
-                .fail($deferred.reject);
+                .fail(_rejectAndTriggerWarning.bind(null, $deferred, ctx));
         }
 
-        function pasteContent (ctx, ids, folderInfo) {
-            var $deferred = new $.Deferred(), valueTypes = _.pluck(clipboardContent.values, 'type');
+        function _pasteAsset(ctx, clipboardContent, folderInfo, $deferred) {
+            var parts = clipboardContent.values[0].id.split(/\/|\\/),
+                nodeId = parts[0],
+                fileName = parts[1],
+                assetObj = {
+                    nodeid: nodeId,
+                    filename: fileName,
+                    newnodeid: folderInfo.id
+                };
+
+            if (clipboardContent.op == 'copy') {
+                Api.copyAsset(assetObj)
+                    .done(_clearAndResolve.bind(null, $deferred))
+                    .fail($deferred.reject);
+
+            } else if (clipboardContent.op == 'move') {
+                Api.moveAsset(assetObj)
+                    .done(_clearAndResolve.bind(null, $deferred))
+                    .fail($deferred.reject);
+            }
+
+        }
+
+        function pasteContent(ctx, folderInfo) {
+            var $deferred = new $.Deferred(),
+                valueTypes = _.pluck(clipboardContent.values, 'type'),
+                msg;
 
             if (clipboardContent && clipboardContent.op) {
-                var msg = resources.clipboard.warningPaste;
-                msg = msg.replace(':op', clipboardContent.op);
-                msg = msg.replace(':nr_items', clipboardContent.values.length);
-                msg = msg.replace(':items', 'item' + (clipboardContent.values.length !== 1 ? 's' : ''));
-                msg = msg.replace(':folder', folderInfo.name ? folderInfo.name : 'ROOT');
-
+                msg = _createPasteMessage(folderInfo);
 
                 if (_.unique(valueTypes).length != 1) {
-                    $deferred.reject(resources.clipboard.differentContentTypesWarning + valueTypes.join(', '));
-                    _displayError.call(this, ctx, resources.clipboard.differentContentTypesWarning);
-                } /*else if (valueTypes[0]) {
+                    _throwNotDifferentTypesError($deferred, valueTypes, ctx);
 
-                 }*/ else {
-                    _displayPasteWarning.call(this, ctx, msg).then(function () {
-                        if (valueTypes[0] == 'asset') {
-                            _pasteAsset(ctx, clipboardContent, folderInfo, $deferred);
-                        } else if (valueTypes[0] == 'node' || valueTypes[0] == 'content') {
-                            _pasteContent(ctx, clipboardContent, folderInfo, $deferred);
+                } else {
 
-                        }
-                    }, function (err) {
-                        $deferred.reject(err);
-                    });
+                    _displayPasteWarning.call(this, ctx, msg)
+                        .then(
+                            _pasteAssetOrContent.bind(this, valueTypes, ctx, clipboardContent, folderInfo, $deferred),
+                            $deferred.reject
+                        );
                 }
 
             }
             else {
                 $deferred.reject(resources.clipboard.noOperationSpecified);
             }
+
             return $deferred.promise();
         }
 
-        function _displayPasteWarning (view, msg) {
+        function _pasteAssetOrContent(valueTypes, ctx, clipboardContent, folderInfo, $deferred) {
+            if (valueTypes[0] == 'asset') {
+                _pasteAsset(ctx, clipboardContent, folderInfo, $deferred);
+            } else if (valueTypes[0] == 'node' || valueTypes[0] == 'content') {
+                _pasteContent(ctx, clipboardContent, folderInfo, $deferred);
+
+            }
+        }
+
+        function _throwNotDifferentTypesError($deferred, valueTypes, ctx) {
+            $deferred.reject(resources.clipboard.differentContentTypesWarning + valueTypes.join(', '));
+            _displayError.call(this, ctx, resources.clipboard.differentContentTypesWarning);
+        }
+
+        function _createPasteMessage(folderInfo) {
+            var msg = resources.clipboard.warningPaste;
+
+            msg = msg.replace(':op', clipboardContent.op);
+            msg = msg.replace(':nr_items', clipboardContent.values.length);
+            msg = msg.replace(':items', 'item' + (clipboardContent.values.length !== 1 ? 's' : ''));
+            msg = msg.replace(':folder', folderInfo.name ? folderInfo.name : 'ROOT');
+
+            return msg;
+        }
+
+        function _displayPasteWarning(view, msg) {
             return view.displayModal(
                 {
                     header: resources.warning,
@@ -129,7 +152,7 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api'],
                 });
         }
 
-        function _displayError (view, msg) {
+        function _displayError(view, msg) {
             return view.displayModal(
                 {
                     header: resources.error,
@@ -138,12 +161,12 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api'],
                 });
         }
 
-        function _clearAndResolve ($deferred, data) {
+        function _clearAndResolve($deferred, data) {
             clear();
             $deferred.resolve(data);
         }
 
-        function _rejectAndTriggerWarning ($deferred, ctx, err) {
+        function _rejectAndTriggerWarning($deferred, ctx, err) {
             $deferred.reject(err);
             _displayError.call(this, ctx, ( err && err.responseJSON) ? err.responseJSON.message : resources.clipboard.cannotCompleteOperation);
         }
