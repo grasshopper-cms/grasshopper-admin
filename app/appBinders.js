@@ -75,8 +75,8 @@ define(['jquery', 'underscore', 'masseuse',
 
                 $el.select2(
                     {
-                        width : '100%',
-                        placeholder : $el.attr('placeholder')
+                        width : '100%'
+                        //placeholder : $el.attr('placeholder')
                     });
             }
         };
