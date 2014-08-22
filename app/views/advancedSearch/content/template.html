@@ -5,7 +5,8 @@
         <div class="large-6 small-12 columns">
 
             <div class="small-6 columns">
-                <select data-rv-placeholder="model:resources->contentTypes" data-rv-value="model:inTypes" data-rv-select2 multiple>
+                <select id="selectContentTypes" data-rv-data-placeholder="model:resources->contentTypes" data-rv-on-change="view.addContentTypeToInTypesCollection" value="" data-rv-select2>
+                    <option></option>
 
                     <option data-rv-each-contenttype="model:contentTypeCollection:" data-rv-value="contenttype:_id">
                         {{contenttype:label}}
@@ -15,7 +16,8 @@
             </div>
 
             <div class="small-6 columns">
-                <select data-rv-placeholder="model:resources->nodes" data-rv-value="model:inNodes" data-rv-select2 multiple>
+                <select id="selectNodes" data-rv-data-placeholder="model:resources->nodes" data-rv-on-change="view.addNodeToInNodesCollection" value="" data-rv-select2>
+                    <option></option>
 
                     <option data-rv-each-node="model:nodesCollection:" data-rv-value="node:_id">
                         {{node:label}}
@@ -27,8 +29,9 @@
         </div>
 
         <div class="large-6 small-12 columns">
+
             {{model:resources->filters}}
-            <a href="#" class="button tiny radius" data-bypass data-dropdown="filterCreator">
+            <a href="#" class="button tiny radius noMarginBottom" data-bypass data-dropdown="filterCreator">
                 <i class="fa fa-plus"></i>
             </a>
             <div id="filterCreator" data-dropdown-content class="f-dropdown large content">
@@ -38,7 +41,7 @@
                     </div>
                     <div class="small-9 columns">
 
-                        <select id="newFilterKeys" data-rv-placeholder="model:resources->key" data-rv-value="model:newFilter->keys" data-rv-select2>
+                        <select id="newFilterKeys" data-rv-placeholder="model:resources->key" data-rv-value="model:newFilterModel->keys" data-rv-select2>
 
                             <optgroup data-rv-each-contenttype="model:contentTypeCollection:" data-rv-label="contenttype:label">
                                 <option data-rv-each-field="contenttype:fields" data-rv-value="field._id">
@@ -56,7 +59,7 @@
                     </div>
                     <div class="small-9 columns">
 
-                        <select id="newFilterComparator" data-rv-placeholder="model:resources->comparator" data-rv-value="model:newFilter->comparator" data-rv-select2>
+                        <select id="newFilterComparator" data-rv-placeholder="model:resources->comparator" data-rv-value="model:newFilterModel->comparator" data-rv-select2>
 
                             <option data-rv-each-comparator="model:possibleQueryComparators" data-rv-value="comparator">
                                 {{comparator}}
@@ -73,25 +76,59 @@
                         <label for="newFilterValue" class="right inline">{{model:resources->value}}</label>
                     </div>
                     <div class="small-9 columns">
-                        <input type="text" id="newFilterValue" data-rv-placeholder="model:resources->value" data-rv-value="model:newFilter->value">
+                        <input type="text" id="newFilterValue" data-rv-placeholder="model:resources->value" data-rv-value="model:newFilterModel->value">
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="small-12 columns">
-                        <button class="button tiny radius right">{{model:resources->addFilter}}</button>
+                    <div class="small-12 columns text-right">
+                        <button class="button tiny radius noMarginBottom" data-rv-on-click="view.resetNewFilter">{{model:resources->reset}}</button>
+                        <button class="button tiny radius noMarginBottom" data-rv-on-click="view.addNewFilterToFiltersCollection">{{model:resources->add}}</button>
                     </div>
                 </div>
             </div>
+
+            <div class="panel" data-rv-each-filter="model:filtersCollection:">
+                <span>
+                    Where {{filter:keys}} {{filter:comparator}} {{filter:value}}
+                </span>
+
+                <i class="fa fa-trash-o right"></i>
+            </div>
+
         </div>
 
     </div>
 
     <hr>
 
+    <!--Selected Content Types-->
+    <h5>Selected Content Types</h5>
+    <section>
+        <div class="panel" data-rv-each-contenttype="model:inTypesCollection:">
+            <span>{{contenttype:label}}</span>
+            <a data-bypass data-rv-on-click="view.removeContentTypeFromInTypesCollection">
+                <i class="fa fa-trash-o right"></i>
+            </a>
+        </div>
+    </section>
+
     <hr>
 
-    Results:
+    <!--Selected Nodes-->
+    <h5>Selected Nodes</h5>
+    <section>
+        <div class="panel" data-rv-each-node="model:inNodesCollection:">
+            <span>{{node:label}}</span>
+            <a data-bypass data-rv-on-click="view.removeNodeFromInNodesCollection">
+                <i class="fa fa-trash-o right"></i>
+            </a>
+        </div>
+    </section>
+
+    <hr>
+
+    <h5>Results:</h5>
     <hr>
     <table class="">
         <thead>
