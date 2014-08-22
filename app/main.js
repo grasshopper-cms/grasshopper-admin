@@ -62,9 +62,6 @@ require.config({
         },
         velocity : {
             deps : ['jquery']
-        },
-        velocityUi : {
-            deps : ['jquery', 'velocity']
         }
     },
     packages : [
@@ -104,8 +101,7 @@ require([
     'select2',
     'sparkmd5',
     'contextjs',
-    'velocity',
-    'velocityUi'
+    'velocity'
 ],
     /**
      * @param $

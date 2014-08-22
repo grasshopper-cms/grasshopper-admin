@@ -20,7 +20,6 @@
         "JSONEditor" : "vendor/jsoneditor/jsoneditor",
         "contextjs" : "vendor/contextjs/context",
         "velocity" : "vendor/velocity/jquery.velocity",
-        "velocityUi" : "vendor/velocity/velocity.ui",
         "mousetrap" : "vendor/mousetrap/mousetrap"
     },
 
