@@ -348,6 +348,7 @@ define({
     profile : 'Profile',
     remind : 'Remind',
     remove : 'Remove',
+    reset : 'Reset',
     retry : 'Retry',
     required : 'Required',
     role : 'Role',
