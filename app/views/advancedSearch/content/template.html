@@ -1,38 +1,91 @@
-<div class="row contentSearch">
-    ADVANCED SEARCH CONTENT
-    <!--<div id="table-loading-overlay">-->
-    <!--<img class="loading-overlay-image" src="{{RESOURCEREF:themes/img/loading-spinner-horizontal.gif}}">-->
-    <!--</div>-->
-    <!--<table class="content-table">-->
-    <!--<thead>-->
-    <!--<tr>-->
-    <!--<th>{{model:resources->label}}</th>-->
-    <!--<th>{{model:resources->type}}</th>-->
-    <!--<th>{{model:resources->contentBrowse->modified}}</th>-->
-    <!--<th style="text-align: center; width: 10%;">{{model:resources->actions}}</th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody id="contentBrowseTable">-->
-    <!--&lt;!&ndash;Nodes Come First&ndash;&gt;-->
-    <!--<tr class="nodeDetailRow clipboardTargetRow" data-rv-each-node="model:childNodes:"-->
-    <!--data-rv-data-id="node.id" data-rv-new-node-detail-row="node"></tr>-->
+<div id="advancedContentSearch" class="small-12 columns">
 
-    <!--&lt;!&ndash;Then Content&ndash;&gt;-->
-    <!--<tr data-rv-unless="model:childContent.length | greaterThan 0">-->
-    <!--<td colspan="4" data-rv-unless="model:inRoot">-->
-    <!--{{model:resources->node->emptyContent}}-->
-    <!--<span>-->
-    <!--<a data-rv-on-click="view.createContent">-->
-    <!--{{model:resources->node->clickToAdd}}-->
-    <!--</a>-->
-    <!--</span>-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--<tr class="contentDetailRow clipboardTargetRow" data-rv-each-content=-->
-    <!--"model:childContent.models" data-rv-data-id="content.id"-->
-    <!--data-rv-new-content-detail-row="content"></tr>-->
-    <!--</tbody>-->
-    <!--</table>-->
+    <div class="row">
 
-    <!--<section data-rv-if="model:childContent.total | isGreaterThan 25" data-rv-new-pagination-view="model:childContent"></section>-->
+        <div class="large-6 small-12 columns">
+
+            <div class="small-6 columns">
+                <select data-rv-placeholder="model:resources->contentTypes" data-rv-value="model:inTypes" data-rv-select2 multiple>
+
+                    <option data-rv-each-contenttype="model:contentTypeCollection:" data-rv-value="contenttype:_id">
+                        {{contenttype:label}}
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="small-6 columns">
+                <select data-rv-placeholder="model:resources->nodes" data-rv-value="model:inNodes" data-rv-select2 multiple>
+
+                    <option data-rv-each-node="model:nodesCollection:" data-rv-value="node:_id">
+                        {{node:label}}
+                    </option>
+
+                </select>
+            </div>
+
+        </div>
+
+        <div class="large-6 small-12 columns">
+            Filters
+            <a href="#" class="button tiny radius" data-bypass data-dropdown="filterCreator">+</a>
+            <div id="filterCreator" data-dropdown-content class="f-dropdown large content">
+                <div class="row">
+                    <div class="small-3 columns">
+                        <label for="newFilterKeys" class="right inline">Keys</label>
+                    </div>
+                    <div class="small-9 columns">
+                        <input type="text" id="newFilterKeys" placeholder="Keys" data-rv-value="model:newFilter->keys">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="small-3 columns">
+                        <label for="newFilterComparator" class="right inline">Comparator</label>
+                    </div>
+                    <div class="small-9 columns">
+                        <input type="text" id="newFilterComparator" placeholder="Comparator" data-rv-value="model:newFilter->value">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="small-3 columns">
+                        <label for="newFilterValue" class="right inline">Value</label>
+                    </div>
+                    <div class="small-9 columns">
+                        <input type="text" id="newFilterValue" placeholder="Value" data-rv-value="model:newFilter->value">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <hr>
+
+    Results:
+    <hr>
+    <table class="">
+        <thead>
+            <tr>
+                <th>{{model:resources->label}}</th>
+                <th>{{model:resources->type}}</th>
+                <th>{{model:resources->contentBrowse->modified}}</th>
+                <th style="text-align: center; width: 10%;">{{model:resources->actions}}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr data-rv-unless="model:results.length | greaterThan 0">
+                <td colspan="4">
+                    No Results
+                </td>
+            </tr>
+
+            <tr class="contentDetailRow" data-rv-each-content="model:results:" data-rv-data-id="content.id" data-rv-new-content-detail-row="content"></tr>
+        </tbody>
+    </table>
+
 </div>
