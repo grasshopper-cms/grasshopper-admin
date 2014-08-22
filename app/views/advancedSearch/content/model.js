@@ -4,15 +4,23 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants'],
 
         return Model.extend({
             initialize : initialize,
-            preparePossibleFieldComparators : preparePossibleFieldComparators,
+            query : query,
             defaults : {
                 resources : resources,
-                inTypes : []
+                contentTypeCollection : null,
+                nodesCollection : null,
+                newFilterModel : null,
+                filtersCollection : null,
+                inTypesCollection : null
             }
         });
 
         function initialize() {
             Model.prototype.initialize.apply(this, arguments);
+
+            this.set('inTypesCollection', new (GrasshopperCollection.extend({}))());
+
+            this.set('inNodesCollection', new (GrasshopperCollection.extend({}))());
 
             this.set('contentTypeCollection', new (GrasshopperCollection.extend({
                 url : constants.api.contentTypes.url
@@ -21,9 +29,16 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants'],
             this.set('nodesCollection', new (GrasshopperCollection.extend({
                 url : constants.api.nodesChildrenDeep.url.replace(':id', 0)
             }))());
-        }
 
-        function preparePossibleFieldComparators() {
+            this.set('newFilterModel', new (Model.extend({}))());
+
+            this.set('filtersCollection', new (GrasshopperCollection.extend({}))());
+
             this.set('possibleQueryComparators', constants.possibleQueryComparators);
         }
+
+        function query() {
+
+        }
+
     });
