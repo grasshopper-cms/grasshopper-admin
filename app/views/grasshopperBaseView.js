@@ -76,11 +76,11 @@ define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constan
 
         function enter() {
             if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'enter')) {
-                this.$el.velocity(this.options.transitions.enter);
+                this.$el.velocity(this.options.transitions.enter.type, this.options.transitions.enter.options);
             } else if (_.has(this.options, 'transitions') && this.options.transitions === 'none') {
 
             } else {
-                this.$el.velocity('transition.fadeIn');
+                this.$el.velocity(constants.defaultPageTransitions.enter.type, constants.defaultPageTransitions.enter.options);
             }
         }
 
