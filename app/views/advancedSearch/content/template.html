@@ -35,7 +35,13 @@
                         <label for="newFilterKeys" class="right inline">Keys</label>
                     </div>
                     <div class="small-9 columns">
-                        <input type="text" id="newFilterKeys" placeholder="Keys" data-rv-value="model:newFilter->keys">
+                        <select id="newFilterKeys" placeholder="Keys" data-rv-value="model:newFilter->keys" data-rv-select2>
+
+                            <option data-rv-each-possiblefield="model:possibleFields" data-rv-value="possiblefield._id">
+                                {{possiblefield.label}}
+                            </option>
+
+                        </select>
                     </div>
                 </div>
 
@@ -44,7 +50,15 @@
                         <label for="newFilterComparator" class="right inline">Comparator</label>
                     </div>
                     <div class="small-9 columns">
-                        <input type="text" id="newFilterComparator" placeholder="Comparator" data-rv-value="model:newFilter->value">
+
+                        <select id="newFilterComparator" placeholder="Comparator" data-rv-value="model:newFilter->comparator" data-rv-select2>
+
+                            <option data-rv-each-comparator="model:possibleQueryComparators" data-rv-value="comparator">
+                                {{comparator}}
+                            </option>
+
+                        </select>
+
                     </div>
                 </div>
 
@@ -55,6 +69,12 @@
                     </div>
                     <div class="small-9 columns">
                         <input type="text" id="newFilterValue" placeholder="Value" data-rv-value="model:newFilter->value">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="small-12 columns">
+                        <button class="button tiny radius right">Add Filter</button>
                     </div>
                 </div>
             </div>
