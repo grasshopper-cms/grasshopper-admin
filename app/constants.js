@@ -162,6 +162,14 @@ define([], function() {
             preventDoubleContext: true,
             compress: true
         },
+        defaultPageTransitions : {
+            enter : {
+                type : 'fadeIn',
+                options : {
+                    duration : 100
+                }
+            }
+        },
         possibleQueryComparators : [
             '=',
             'eq',
