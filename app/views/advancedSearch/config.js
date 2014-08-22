@@ -19,9 +19,6 @@ define(['text!views/advancedSearch/template.html', 'resources', 'advancedSearch/
                 childViewBinders : {
                     'content-search-view': ContentSearchView
                 }
-            },
-            transitions : {
-                enter : 'transition.fadeIn'
             }
         };
     });
