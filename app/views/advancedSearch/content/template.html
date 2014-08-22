@@ -27,15 +27,17 @@
         </div>
 
         <div class="large-6 small-12 columns">
-            Filters
-            <a href="#" class="button tiny radius" data-bypass data-dropdown="filterCreator">+</a>
+            {{model:resources->filters}}
+            <a href="#" class="button tiny radius" data-bypass data-dropdown="filterCreator">
+                <i class="fa fa-plus"></i>
+            </a>
             <div id="filterCreator" data-dropdown-content class="f-dropdown large content">
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="newFilterKeys" class="right inline">Keys</label>
+                        <label for="newFilterKeys" class="right inline">{{model:resources->key}}</label>
                     </div>
                     <div class="small-9 columns">
-                        <select id="newFilterKeys" placeholder="Keys" data-rv-value="model:newFilter->keys" data-rv-select2>
+                        <select id="newFilterKeys" data-rv-placeholder="model:resources->key" data-rv-value="model:newFilter->keys" data-rv-select2>
 
                             <option data-rv-each-possiblefield="model:possibleFields" data-rv-value="possiblefield._id">
                                 {{possiblefield.label}}
@@ -47,11 +49,11 @@
 
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="newFilterComparator" class="right inline">Comparator</label>
+                        <label for="newFilterComparator" class="right inline">{{model:resources->comparator}}</label>
                     </div>
                     <div class="small-9 columns">
 
-                        <select id="newFilterComparator" placeholder="Comparator" data-rv-value="model:newFilter->comparator" data-rv-select2>
+                        <select id="newFilterComparator" data-rv-placeholder="model:resources->comparator" data-rv-value="model:newFilter->comparator" data-rv-select2>
 
                             <option data-rv-each-comparator="model:possibleQueryComparators" data-rv-value="comparator">
                                 {{comparator}}
@@ -65,16 +67,16 @@
 
                 <div class="row">
                     <div class="small-3 columns">
-                        <label for="newFilterValue" class="right inline">Value</label>
+                        <label for="newFilterValue" class="right inline">{{model:resources->value}}</label>
                     </div>
                     <div class="small-9 columns">
-                        <input type="text" id="newFilterValue" placeholder="Value" data-rv-value="model:newFilter->value">
+                        <input type="text" id="newFilterValue" data-rv-placeholder="model:resources->value" data-rv-value="model:newFilter->value">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="small-12 columns">
-                        <button class="button tiny radius right">Add Filter</button>
+                        <button class="button tiny radius right">{{model:resources->addFilter}}</button>
                     </div>
                 </div>
             </div>
@@ -82,6 +84,7 @@
 
     </div>
 
+    <hr>
 
     <hr>
 
