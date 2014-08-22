@@ -25,9 +25,6 @@ define(['text!views/advancedSearch/content/template.html', 'resources', 'advance
             permissions : ['admin', 'reader', 'editor'],
             rivetsConfig : {
                 binders : [appBinders]
-            },
-            transitions : {
-                enter : 'transition.fadeIn'
             }
         };
     });
