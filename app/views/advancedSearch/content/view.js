@@ -21,6 +21,8 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery'],
                 this.model.get('nodesCollection').fetch()
             )
                 .then($deferred.resolve);
+
+            window.view = this;
         }
 
         function addFilterToFiltersCollection() {
