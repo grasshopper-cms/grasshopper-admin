@@ -193,7 +193,7 @@ module.exports = function (grunt) {
             files : [
                 {
                     expand : true,
-                    cwd : 'server/',
+                    cwd : 'deploy/',
                     src : [
                         '**',
                         '!node_modules/**'

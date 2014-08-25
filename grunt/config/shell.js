@@ -72,6 +72,24 @@ module.exports = function (grunt) {
                 failOnError : true
             },
             command : 'heroku config:set GRASSHOPPER_CONFIG=\'<%= ghapiConfigs %>\''
+        },
+        installAdmin : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true,
+                cwd : 'deploy'
+            },
+            command : 'npm install'
+        },
+        buildAdmin : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true,
+                cwd : 'deploy'
+            },
+            command : './node_modules/.bin/grasshopper build'
         }
     });
 

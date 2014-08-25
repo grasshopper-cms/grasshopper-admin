@@ -8,7 +8,8 @@ module.exports = function (grunt) {
             'clean:deploy',
             'releaseNotes',
             'shell:commitReleaseNotes',
-            'build',
+            'shell:installAdmin',
+            'shell:buildAdmin',
             'copy:deploy',
             'build_gh_pages:staging',
             'shell:deployHeroku'
