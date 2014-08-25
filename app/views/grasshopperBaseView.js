@@ -53,6 +53,7 @@ define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constan
             if (this.breadcrumbs && !this.privateBreadcrumbs) {
                 this.channels.views.trigger('updateMastheadBreadcrumbs', this);
             }
+            this.$el.foundation();
         }
 
         function start() {

@@ -40,7 +40,6 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         }
 
         function afterRender () {
-            this.$el.foundation();
             _addListenerForModelChange.call(this);
         }
 

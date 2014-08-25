@@ -33,8 +33,6 @@ define(['grasshopperBaseView', 'contentTypeDetailViewConfig',
     }
 
     function afterRender() {
-        this.$el.foundation();
-
         _initializeSortableAccordions.call(this);
         _initializeSelect2.call(this);
     }
