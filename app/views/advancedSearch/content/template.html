@@ -41,11 +41,11 @@
                     </div>
                     <div class="small-9 columns">
 
-                        <select id="newFilterKeys" data-rv-data-placeholder="model:resources->key" data-rv-value="model:newFilterModel->keys" data-rv-select2>
+                        <select id="newFilterKeys" data-rv-data-placeholder="model:resources->key" data-rv-value="model:newFilterModel->key" data-rv-select2>
                             <option></option>
 
                             <optgroup data-rv-each-contenttype="model:contentTypeCollection:" data-rv-label="contenttype:label">
-                                <option data-rv-each-field="contenttype:fields" data-rv-value="field._id">
+                                <option data-rv-each-field="contenttype:fields" data-rv-value="field._id | prepend fields.">
                                     {{field.label}}
                                 </option>
                             </optgroup>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="small-9 columns">
 
-                        <select id="newFilterComparator" data-rv-data-placeholder="model:resources->comparator" data-rv-value="model:newFilterModel->comparator" data-rv-select2>
+                        <select id="newFilterComparator" data-rv-data-placeholder="model:resources->comparator" data-rv-value="model:newFilterModel->cmp" data-rv-select2>
                             <option></option>
 
                             <option data-rv-each-comparator="model:possibleQueryComparators" data-rv-value="comparator">
@@ -132,9 +132,12 @@
 
     <hr>
 
-    <h5>Results:</h5>
+    <section class="small-12 columns">
+        <h5 class="left">Results:</h5>
+        <button class="button tiny radius right" data-rv-on-click="model.query">DO QUERY</button>
+    </section>
     <hr>
-    <table class="">
+    <table>
         <thead>
             <tr>
                 <th>{{model:resources->label}}</th>
@@ -151,7 +154,7 @@
                 </td>
             </tr>
 
-            <tr class="contentDetailRow" data-rv-each-content="model:resultsCollection:" data-rv-data-id="content.id" data-rv-new-content-detail-row="content"></tr>
+            <tr class="contentDetailRow" data-rv-each-content="model:resultsCollection.models" data-rv-data-id="content.id" data-rv-new-content-detail-row="content"></tr>
         </tbody>
     </table>
 
