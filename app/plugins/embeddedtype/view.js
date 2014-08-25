@@ -14,8 +14,6 @@ define(['pluginBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'masseuse
             _getAvailableContentTypes.call(this)
                 .done(_setActiveContentType.bind(this));
 
-            this.$el.foundation();
-
             _initializeAccordions.call(this);
         }
 

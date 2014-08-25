@@ -4,12 +4,7 @@ define(['grasshopperBaseView', 'advancedSearch/config'],
         'use strict';
 
         return GrasshopperBaseView.extend({
-            defaultOptions : config,
-            afterRender : afterRender
+            defaultOptions : config
         });
-
-        function afterRender() {
-            this.$el.foundation();
-        }
 
     });

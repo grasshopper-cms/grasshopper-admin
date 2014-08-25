@@ -79,7 +79,6 @@ define(['masseuse', 'modalViewConfig', 'underscore', 'jquery', 'constants',
         }
 
         function afterRender () {
-            this.$el.foundation();
             if (this.options && this.options.type === 'input') {
                 $('input', this.$el).focus();
             }

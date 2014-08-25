@@ -69,7 +69,8 @@ define(['grasshopperBaseView', 'addContentViewConfig', 'resources', 'contentType
                 {
                     header : resources.contentType.selectContentType,
                     data : nodeData,
-                    type : 'radio'
+                    type : 'radio',
+                    withSearch : true
                 });
         }
 

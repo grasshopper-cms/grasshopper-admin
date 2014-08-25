@@ -40,7 +40,6 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
         }
 
         function afterRender () {
-            this.$el.foundation();
             this.initClipboardMenu('#contentPanel');
             this.initializeClipboardListeners('#contentPanel');
             this.initClipboardMenu('#assetIndex');
