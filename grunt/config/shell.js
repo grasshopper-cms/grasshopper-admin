@@ -77,19 +77,17 @@ module.exports = function (grunt) {
             options : {
                 stdout : true,
                 stderr : true,
-                failOnError : true,
-                cwd : 'deploy'
+                failOnError : true
             },
-            command : 'npm install'
+            command : 'cd deploy && npm install'
         },
         buildAdmin : {
             options : {
                 stdout : true,
                 stderr : true,
-                failOnError : true,
-                cwd : 'deploy'
+                failOnError : true
             },
-            command : './node_modules/.bin/grasshopper build'
+            command : './deploy/node_modules/.bin/grasshopper build'
         }
     });
 
