@@ -10,7 +10,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             deleteContent: deleteContent,
             saveContent: saveContent,
             saveAndClose: saveAndClose
-        }).extend(handleRowClick);
+        })
+            .extend(handleRowClick);
 
         function beforeRender ($deferred) {
             if (this.model.get('isNew')) {
