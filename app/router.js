@@ -4,7 +4,6 @@ define([
     'grasshopperBaseView',
     'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView', 'notFoundView',
     'alertBoxView',
-    'modalView', 'modalViewConfig',
     'resources',
     'userDetail/view', 'UserModel',
     'headerView',
@@ -25,7 +24,6 @@ define([
               GrasshopperBaseView,
               LoginView, loginWorker, logoutWorker, ForbiddenView, NotFoundView,
               AlertBoxView,
-              ModalView, modalViewConfig,
               resources,
               UserDetailView, UserModel,
               HeaderView,
@@ -214,12 +212,6 @@ define([
                 router : this,
                 user : this.user
             };
-            GrasshopperBaseView.prototype.displayAlertBox = displayAlertBox;
-            GrasshopperBaseView.prototype.displayTemporaryAlertBox = displayTemporaryAlertBox;
-            GrasshopperBaseView.prototype.hideAlertBox = hideAlertBox;
-
-            GrasshopperBaseView.prototype.displayModal = displayModal;
-            GrasshopperBaseView.prototype.hideModal = hideModal;
         }
 
         function loadMainContent(ViewType, config, bypass) {
@@ -297,48 +289,6 @@ define([
                 this.loadMainContent(LoginView);
             }
 
-        }
-
-        function displayAlertBox(options) {
-            var alertBoxView = new AlertBoxView({
-                    modelData : options
-                });
-            alertBoxView.start();
-        }
-
-        function displayTemporaryAlertBox(options) {
-            options.temporary = true;
-            this.displayAlertBox(options);
-        }
-
-        function hideAlertBox() {
-            this.channels.views.trigger('hideAlertBoxes');
-        }
-
-        function displayModal(options) {
-            var $deferred = new $.Deferred(),
-                modalView = new ModalView({
-                    modelData : {
-                        header : (options.header) ? options.header : null,
-                        msg : options.msg,
-                        data : (options.data) ? options.data : null,
-                        hideCancel : !!options.hideCancel,
-                        hideConfirm : !!options.hideConfirm,
-                        withSearch : options.withSearch
-                    },
-                    type : (options.type) ? options.type : null,
-                    $deferred : $deferred
-                });
-            this.hideModal();
-            modalView.start();
-            GrasshopperBaseView.prototype.modalView = modalView;
-            return $deferred.promise();
-        }
-
-        function hideModal() {
-            if (GrasshopperBaseView.prototype.modalView && GrasshopperBaseView.prototype.modalView.remove) {
-                GrasshopperBaseView.prototype.modalView.remove();
-            }
         }
 
         function goHome() {

@@ -41,8 +41,10 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
 
         function afterRender () {
             this.$el.foundation();
-            this.initClipboardMenu('#contentPanel', this);
-            this.initClipboardMenu('#assetIndex', this);
+            this.initClipboardMenu('#contentPanel');
+            this.initializeClipboardListeners('#contentPanel');
+            this.initClipboardMenu('#assetIndex');
+            this.initializeClipboardListeners('#assetIndex');
             this.setupClipboardEvents();
         }
 

@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
             subscribe: subscribe,
             clear: clear,
             resources: resources,
-            hasPasteContent : false
+            hasPasteItem : false
         }, Backbone.Events);
 
         function _notify() {
@@ -39,8 +39,13 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
             _notify();
         }
 
-        function clear() {
+        function clear(e) {
+            if(e) {
+                e.preventDefault();
+            }
             clipboardContent = {};
+            this.hasPasteItem = false;
+            this.trigger('pasteDone');
             _notify();
         }
 
@@ -63,8 +68,8 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
 
         function _pasteContent(ctx, clipboardContent, folderInfo, $deferred) {
             Api.moveContent(_prepareMoveRequest(clipboardContent, folderInfo))
-                .done(_clearAndResolve.bind(null, $deferred))
-                .fail(_rejectAndTriggerWarning.bind(null, $deferred, ctx));
+                .done(_clearAndResolve.bind(this, $deferred))
+                .fail(_rejectAndTriggerWarning.bind(this, $deferred, ctx));
         }
 
         function _pasteAsset(ctx, clipboardContent, folderInfo, $deferred) {
@@ -79,12 +84,12 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
 
             if (clipboardContent.op == 'copy') {
                 Api.copyAsset(assetObj)
-                    .done(_clearAndResolve.bind(null, $deferred))
+                    .done(_clearAndResolve.bind(this, $deferred))
                     .fail($deferred.reject);
 
             } else if (clipboardContent.op == 'move') {
                 Api.moveAsset(assetObj)
-                    .done(_clearAndResolve.bind(null, $deferred))
+                    .done(_clearAndResolve.bind(this, $deferred))
                     .fail($deferred.reject);
             }
 
@@ -120,9 +125,9 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
 
         function _pasteAssetOrContent(valueTypes, ctx, clipboardContent, folderInfo, $deferred) {
             if (valueTypes[0] == 'asset') {
-                _pasteAsset(ctx, clipboardContent, folderInfo, $deferred);
+                _pasteAsset.call(this,ctx, clipboardContent, folderInfo, $deferred);
             } else if (valueTypes[0] == 'node' || valueTypes[0] == 'content') {
-                _pasteContent(ctx, clipboardContent, folderInfo, $deferred);
+                _pasteContent.call(this,ctx, clipboardContent, folderInfo, $deferred);
 
             }
         }
@@ -162,7 +167,7 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
         }
 
         function _clearAndResolve($deferred, data) {
-            clear();
+            clear.call(this);
             $deferred.resolve(data);
         }
 

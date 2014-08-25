@@ -1,7 +1,7 @@
 /*global define:false*/
 
-define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constants'],
-    function (Backbone, masseuse, resources, _, mousetrap, constants) {
+define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constants', 'mixins/alertBox', 'mixins/modal'],
+    function (Backbone, masseuse, resources, _, mousetrap, constants, alertBox, modal) {
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
@@ -28,7 +28,9 @@ define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constan
             enter : enter,
             remove : remove,
             mastheadButtonsSelector : '#mastheadButtons'
-        });
+        })
+        .extend(alertBox)
+        .extend(modal);
 
         function initialize (options) {
             options.viewOptions = options.viewOptions || [];

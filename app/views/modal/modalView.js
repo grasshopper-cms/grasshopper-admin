@@ -1,16 +1,33 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'constants',
+define(['masseuse', 'modalViewConfig', 'underscore', 'jquery', 'constants',
     'text!views/modal/_imageModalView.html', 'text!views/modal/_inputModalView.html',
     'text!views/modal/_checkboxModalView.html', 'text!views/modal/_uploadModalView.html',
     'text!views/modal/modalView.html', 'text!views/modal/_radioModalView.html',
     'text!views/modal/_listModalView.html', 'text!views/modal/_errorModalView.html'],
-    function (GrasshopperBaseView, modalViewConfig, _, $, constants,
+    function (masseuse, modalViewConfig, _, $, constants,
               imageModalTemplate, inputModalTemplate,
               checkboxTemplate, uploadTemplate,
               defaultTemplate, radioTemplate,
               listTemplate, errorTemplate) {
         'use strict';
-        return GrasshopperBaseView.extend({
+        var RivetView = masseuse.plugins.rivets.RivetsView,
+        defaultViewOptions = [
+                '$deferred',
+                'type',
+                'defaultBreadcrumbs',
+                'defaultMastheadButtons',
+                'breadcrumbs',
+                'privateBreadcrumbs',
+                'mastheadButtons',
+                'permissions',
+                'nodeId',
+                'wrapper',
+                'appendTo',
+                'collection',
+                'browserTitle'
+            ];
+
+        return RivetView.extend({
             defaultOptions : modalViewConfig,
             initialize : initialize,
             afterRender : afterRender,
@@ -52,7 +69,13 @@ define(['grasshopperBaseView', 'modalViewConfig', 'underscore', 'jquery', 'const
                 break;
             }
             this.options = options;
-            GrasshopperBaseView.prototype.initialize.apply(this, arguments);
+
+            options.viewOptions = options.viewOptions || [];
+            options.viewOptions =  options.viewOptions.concat(defaultViewOptions);
+
+            this.options = options;
+
+            RivetView.prototype.initialize.apply(this, arguments);
         }
 
         function afterRender () {

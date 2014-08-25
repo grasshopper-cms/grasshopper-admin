@@ -5,26 +5,32 @@ define(['jquery', 'underscore', 'resources', 'helpers', 'constants', 'clipboardW
         var joiner = helpers.text.join;
 
         return {
-            initClipboardMenu: initClipboardMenu
+            initClipboardMenu: initClipboardMenu,
+            initializeClipboardListeners: initializeClipboardListeners
         };
 
-        function initClipboardMenu(selector, viewContext) {
+        function initClipboardMenu(selector) {
             var shouldCreate = false;
 
+            context.destroy(selector);
+
             if (selector == '#assetIndex') {
-                shouldCreate = _hasAssets.call(this, viewContext);
+                shouldCreate = _hasAssets.call(this);
             } else {
-                shouldCreate = _hasContentOrNodes.call(this, viewContext);
+                shouldCreate = _hasContentOrNodes.call(this);
             }
             if (shouldCreate) {
                 _createAndAttach.call(this, selector);
-            } else {
-                if (clipboardWorker.hasPasteItem) {
-                    _createWithOnlyPaste.call(this, selector);
-                } else {
-                    _destroyContext.call(this, selector, viewContext);
-                }
+            } else if (clipboardWorker.hasPasteItem) {
+                _createWithOnlyPaste.call(this, selector);
             }
+        }
+
+        function initializeClipboardListeners(selector) {
+
+            this.listenTo(clipboardWorker, 'hasClipboardItem', initClipboardMenu.bind(this, selector));
+            this.listenTo(clipboardWorker, 'pasteDone', initClipboardMenu.bind(this, selector));
+            this.listenTo(this.channels.views, 'assetAdded', initClipboardMenu.bind(this, '#assetIndex'));
         }
 
         function _createAndAttach(selector) {
@@ -50,10 +56,7 @@ define(['jquery', 'underscore', 'resources', 'helpers', 'constants', 'clipboardW
                     action: clipboardWorker.clear.bind(clipboardWorker)
                 });
 
-            } else {
-                clipboardWorker.on('hasClipboardItem', _createAndAttach.bind(this, selector));
             }
-            clipboardWorker.on('pasteDone', _createAndAttach.bind(this, selector));
 
             context.attach(selector, defaultMenu);
         }
@@ -65,34 +68,22 @@ define(['jquery', 'underscore', 'resources', 'helpers', 'constants', 'clipboardW
                 text: joiner('<i class="fa fa-clipboard"></i> ', resources.clipboard.paste),
                 action: _paste.bind(this)
             }]);
-
-            clipboardWorker.on('pasteDone', _createAndAttach.bind(this, selector));
-
         }
 
-        function _destroyContext(selector, view) {
-
-            if (selector == '#assetIndex') {
-                view.channels.views.on('assetAdded', _createAndAttach.bind(this, selector));
-            }
-
-            context.destroy(selector);
-        }
-
-        function _hasAssets(view) {
+        function _hasAssets() {
             var create = false;
 
-            if (view.model.get('childAssets').length) {
+            if (this.model.get('childAssets').length) {
                 create = true;
             }
 
             return create;
         }
 
-        function _hasContentOrNodes(view) {
+        function _hasContentOrNodes() {
             var create = false;
 
-            if (view.model.get('childNodes').length || view.model.get('childContent').length) {
+            if (this.model.get('childNodes').length || this.model.get('childContent').length) {
                 create = true;
             }
 
