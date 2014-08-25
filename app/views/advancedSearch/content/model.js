@@ -23,7 +23,6 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
             this.set('inNodesCollection', new (GrasshopperCollection.extend({
                 toJSON : function(something) {
-                    console.log(something);
                     return something;
                 }
             }))());
