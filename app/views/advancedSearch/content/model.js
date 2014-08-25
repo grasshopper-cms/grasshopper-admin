@@ -8,11 +8,14 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             buildQueryOptions : buildQueryOptions,
             defaults : {
                 resources : resources,
+                inTypesCollection : null,
+                inNodesCollection : null,
                 contentTypeCollection : null,
                 nodesCollection : null,
                 newFilterModel : null,
                 filtersCollection : null,
-                inTypesCollection : null
+                resultsCollection : null,
+                possibleQueryComparators : null
             }
         });
 
@@ -41,7 +44,15 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 url : constants.api.nodesChildrenDeep.url.replace(':id', 0)
             }))());
 
-            this.set('newFilterModel', new (Model.extend({}))());
+            this.set('newFilterModel', new (Model.extend({
+                defaults : function() {
+                    return {
+                        cmp : '',
+                        key : '',
+                        value : ''
+                    };
+                }
+            }))());
 
             this.set('filtersCollection', new (GrasshopperCollection.extend({}))());
 
@@ -60,9 +71,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
             Api.makeQuery(options)
                 .done(function(results) {
-                    //this.reset(results.results, { parse: true });
-                    this.get('resultsCollection').reset(results.results);
-                    console.log(this);
+                    this.get('resultsCollection').reset(results.results, { parse : true });
                     $deferred.resolve();
                 }.bind(this))
                 .fail($deferred.reject);
