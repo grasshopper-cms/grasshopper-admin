@@ -145,15 +145,13 @@
         </thead>
 
         <tbody>
-            <tr data-rv-unless="model:results.length | greaterThan 0">
+            <tr data-rv-unless="model:resultsCollection.length | greaterThan 0">
                 <td colspan="4">
                     No Results
                 </td>
             </tr>
 
-            <tr class="contentDetailRow" data-rv-each-content="model:results:">
-                YEAH BUDDY
-            </tr>
+            <tr class="contentDetailRow" data-rv-each-content="model:resultsCollection:" data-rv-data-id="content.id" data-rv-new-content-detail-row="content"></tr>
         </tbody>
     </table>
 

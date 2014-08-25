@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/advancedSearch/content/template.html', 'resources', 'advancedSearch/content/model', 'constants', 'appBinders'],
-    function (template, resources, model, constants, appBinders) {
+define(['text!views/advancedSearch/content/template.html', 'resources', 'advancedSearch/content/model', 'constants', 'appBinders', 'contentDetailRowView'],
+    function (template, resources, model, constants, appBinders, ContentDetailRowView) {
 
         'use strict';
 
@@ -24,6 +24,9 @@ define(['text!views/advancedSearch/content/template.html', 'resources', 'advance
             ],
             permissions : ['admin', 'reader', 'editor'],
             rivetsConfig : {
+                childViewBinders : {
+                    'content-detail-row': ContentDetailRowView
+                },
                 binders : [appBinders]
             }
         };

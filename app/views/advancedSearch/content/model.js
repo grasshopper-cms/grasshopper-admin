@@ -1,5 +1,5 @@
-define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'jquery', 'api'],
-    function (Model, resources, GrasshopperCollection, constants, $, Api) {
+define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', 'jquery', 'api', 'underscore', 'contentDetailViewModel'],
+    function (Model, resources, GrasshopperCollection, constants, $, Api, _, contentDetailViewModel) {
         'use strict';
 
         return Model.extend({
@@ -19,11 +19,17 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
         function initialize() {
             Model.prototype.initialize.apply(this, arguments);
 
-            this.set('inTypesCollection', new (GrasshopperCollection.extend({}))());
+            this.set('inTypesCollection', new (GrasshopperCollection.extend({
+                toJSON : function() {
+                    var json = GrasshopperCollection.prototype.toJSON.apply(this);
+                    return _.pluck(json, '_id');
+                }
+            }))());
 
             this.set('inNodesCollection', new (GrasshopperCollection.extend({
-                toJSON : function(something) {
-                    return something;
+                toJSON : function() {
+                    var json = GrasshopperCollection.prototype.toJSON.apply(this);
+                    return _.pluck(json, '_id');
                 }
             }))());
 
@@ -39,6 +45,10 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
             this.set('filtersCollection', new (GrasshopperCollection.extend({}))());
 
+            this.set('resultsCollection', new (GrasshopperCollection.extend({
+                model : contentDetailViewModel
+            }))());
+
             this.set('possibleQueryComparators', constants.possibleQueryComparators);
         }
 
@@ -51,7 +61,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             Api.makeQuery(options)
                 .done(function(results) {
                     //this.reset(results.results, { parse: true });
-                    this.reset(results.results);
+                    this.get('resultsCollection').reset(results.results);
+                    console.log(this);
                     $deferred.resolve();
                 }.bind(this))
                 .fail($deferred.reject);
@@ -77,22 +88,3 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
         }
 
     });
-
-//var $deferred = $.Deferred(),
-//    queryData = {
-//        filters : [{key: _.result(this, 'filterKey'), cmp: '%', value: searchValue || ''}],
-//        nodes: [ _.result(this, 'nodeId') ] || [],
-//        options: {
-//            limit: parseInt(_.result(this, 'limit'), 10),
-//            skip : (parseInt(_.result(this, 'skip', 10) - 1) * _.result(this, 'limit'))
-//        }
-//    };
-//
-//Api.makeQuery(queryData)
-//    .done(function(results) {
-//        this.reset(results, { parse: true });
-//        this.searching = false;
-//        $deferred.resolve();
-//    }.bind(this));
-//
-//return $deferred.promise();
