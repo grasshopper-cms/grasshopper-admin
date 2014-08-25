@@ -2,7 +2,11 @@
     <div id="modalContents">
 
         <div id="modalHeader" class="row">
-            {{model:header}}
+            <h2 class="modalHeader-title">{{model:header}}</h2>
+            <div id="contentTypeSearch" data-rv-if="model:withSearch">
+                <input class="contentTypeSearchInput" type="text" placeholder="Search by content type label " data-rv-value="model:contentTypeSearchValue" data-rv-on-keyup="view.searchContentType"/>
+                <span class="contentTypeSearchIcon fa fa-search"></span>
+            </div>
         </div>
 
         <div id="modalBody" class="row">
