@@ -44,8 +44,12 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
                 e.preventDefault();
             }
             clipboardContent = {};
-            this.hasPasteItem = false;
-            this.trigger('pasteDone');
+
+            if (this.hasPasteItem) {
+                this.hasPasteItem = false;
+                this.trigger('pasteDone');
+            }
+
             _notify();
         }
 
@@ -85,12 +89,12 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
             if (clipboardContent.op == 'copy') {
                 Api.copyAsset(assetObj)
                     .done(_clearAndResolve.bind(this, $deferred))
-                    .fail($deferred.reject);
+                    .fail(_rejectAndTriggerWarning.bind(this, $deferred, ctx));
 
             } else if (clipboardContent.op == 'move') {
                 Api.moveAsset(assetObj)
                     .done(_clearAndResolve.bind(this, $deferred))
-                    .fail($deferred.reject);
+                    .fail(_rejectAndTriggerWarning.bind(this, $deferred, ctx));
             }
 
         }
@@ -111,7 +115,7 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
                     _displayPasteWarning.call(this, ctx, msg)
                         .then(
                             _pasteAssetOrContent.bind(this, valueTypes, ctx, clipboardContent, folderInfo, $deferred),
-                            $deferred.reject
+                            _rejectAndTriggerWarning.bind(this, $deferred, ctx)
                         );
                 }
 

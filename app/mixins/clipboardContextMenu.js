@@ -27,7 +27,6 @@ define(['jquery', 'underscore', 'resources', 'helpers', 'constants', 'clipboardW
         }
 
         function initializeClipboardListeners(selector) {
-
             this.listenTo(clipboardWorker, 'hasClipboardItem', initClipboardMenu.bind(this, selector));
             this.listenTo(clipboardWorker, 'pasteDone', initClipboardMenu.bind(this, selector));
             this.listenTo(this.channels.views, 'assetAdded', initClipboardMenu.bind(this, '#assetIndex'));

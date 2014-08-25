@@ -58,12 +58,15 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers'],
         }
 
         function _afterPasteDone() {
-            clipboardWorker.hasPasteItem = false;
-            clipboardWorker.trigger('pasteDone');
-            this.model.fetch();
-            this.model.get('childNodes').fetch();
-            this.getChildContent();
-            this.addAssetIndexView();
+            $.when(this.model.fetch(),
+                this.model.get('childNodes').fetch(),
+                this.getChildContent(),
+                this.addAssetIndexView())
+            .done(function(){
+                clipboardWorker.hasPasteItem = false;
+                clipboardWorker.trigger('pasteDone');
+            });
+
         }
 
         function _getRowType(el) {
