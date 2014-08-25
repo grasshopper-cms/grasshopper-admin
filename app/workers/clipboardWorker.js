@@ -114,8 +114,7 @@ define(['jquery', 'underscore', 'resources', 'constants', 'api', 'backbone'],
 
                     _displayPasteWarning.call(this, ctx, msg)
                         .then(
-                            _pasteAssetOrContent.bind(this, valueTypes, ctx, clipboardContent, folderInfo, $deferred),
-                            _rejectAndTriggerWarning.bind(this, $deferred, ctx)
+                            _pasteAssetOrContent.bind(this, valueTypes, ctx, clipboardContent, folderInfo, $deferred)
                         );
                 }
 
