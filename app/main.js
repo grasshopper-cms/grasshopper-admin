@@ -130,10 +130,11 @@ require([
         });
 
         $(document).on('click', 'a:not([data-bypass])', function (evt) {
-            var href = $(this).attr('href') || '';
-            var protocol = this.protocol + '//';
+            var href = $(this).attr('href') || '',
+             protocol = this.protocol + '//',
+             scriptCheck = this.protocol.slice(0, -1);
 
-            if (href && href!='#' && href.slice(protocol.length) !== protocol) {
+            if (href && href!='#' && href.slice(protocol.length) !== protocol && scriptCheck != 'javascript') {
                 evt.preventDefault();
                 router.navigate(href, {trigger:true});
             }
