@@ -212,7 +212,9 @@ define({
         differentContentTypesWarning: 'Clipboard contains items of different types ',
         noOperationSpecified: 'No operation specified',
         cannotCompleteOperation: 'Cannot complete operation',
-        itemsInClipboard: 'item in clipboard'
+        itemsInClipboard: 'item in clipboard',
+        toClipboard : 'to clipboard',
+        copied : 'Copied'
     },
     contentBrowse : {
         author : 'Author',
