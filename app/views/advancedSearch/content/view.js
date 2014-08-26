@@ -6,6 +6,7 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery'],
         return GrasshopperBaseView.extend({
             defaultOptions : config,
             beforeRender : beforeRender,
+            afterRender : afterRender,
             addFilterToFiltersCollection : addFilterToFiltersCollection,
             removeFilterFromFiltersCollection : removeFilterFromFiltersCollection,
             addContentTypeToInTypesCollection : addContentTypeToInTypesCollection,
@@ -21,8 +22,11 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery'],
                 this.model.get('nodesCollection').fetch()
             )
                 .then($deferred.resolve);
+        }
 
-            window.view = this;
+        function afterRender() {
+            this.model.query()
+                .done(this.model.setupChangeListeners.bind(this.model));
         }
 
         function addFilterToFiltersCollection() {

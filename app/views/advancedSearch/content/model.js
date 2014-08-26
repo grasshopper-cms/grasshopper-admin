@@ -6,6 +6,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             initialize : initialize,
             query : query,
             buildQueryOptions : buildQueryOptions,
+            setupChangeListeners : setupChangeListeners,
             defaults : {
                 resources : resources,
                 loadingResults : false,
@@ -98,6 +99,14 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             };
 
             return options;
+        }
+
+        function setupChangeListeners() {
+            var throttledQuery = _.throttle(this.query, 1000);
+
+            this.get('inTypesCollection').on('add remove reset', throttledQuery, this);
+            this.get('inNodesCollection').on('add remove reset', throttledQuery, this);
+            this.get('filtersCollection').on('add remove reset', throttledQuery, this);
         }
 
     });
