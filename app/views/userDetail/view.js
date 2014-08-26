@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', 'breadcrumbWorker', 'underscore',
-    'mixins/handleRowCLick', 'mixins/jsonEditor', 'helpers', 'api'],
+    'mixins/handleRowClick', 'mixins/jsonEditor', 'helpers', 'api'],
     function (GrasshopperBaseView, options, resources, constants, breadcrumbWorker, _,
-              handleRowCLick, jsonEditor, helpers, Api) {
+              handleRowClick, jsonEditor, helpers, Api) {
 
         'use strict';
         var LocalStorage = helpers.localStorage;
@@ -18,7 +18,7 @@ define(['grasshopperBaseView', 'userDetail/options', 'resources', 'constants', '
             addNewUser: addNewUser,
             toggleGoogle: toggleGoogle
         })
-            .extend(handleRowCLick);
+            .extend(handleRowClick);
 
         function beforeRender ($deferred) {
             this.model.fetch()
