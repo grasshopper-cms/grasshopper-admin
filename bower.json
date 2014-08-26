@@ -16,7 +16,7 @@
     "SparkMD5": "satazor/SparkMD5",
     "jsoneditor": "~3.1.1",
     "contextjs": "altmind/Context.js",
-    "velocity": "~0.11.6",
+    "velocity": "TheFuzzball/velocity#892cd6132d679c558827e6b7e7a00b838fccafe6",
     "mousetrap": "1.4.6"
   },
   "devDependencies": {
