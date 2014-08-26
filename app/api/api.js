@@ -113,4 +113,3 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
     };
 
 });
-

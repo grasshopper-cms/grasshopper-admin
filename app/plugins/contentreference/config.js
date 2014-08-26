@@ -35,5 +35,3 @@ define(['text!plugins/contentreference/template.html', 'plugins/contentreference
             wrapper: false
         };
     });
-
-

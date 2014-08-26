@@ -12,7 +12,7 @@ define(['constants', 'JSONEditor', 'underscore'], function (constants, JSONEdito
 
         _.extend(options ? options : {}, constants.jsoneditor);
 
-        return new JSONEditor(el, options, options.json);                
+        return new JSONEditor(el, options, options.json);
     }
 
 });
