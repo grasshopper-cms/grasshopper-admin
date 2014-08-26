@@ -87,7 +87,7 @@ module.exports = function (grunt) {
                 stderr : true,
                 failOnError : true
             },
-            command : './deploy/node_modules/.bin/grasshopper build'
+            command : 'cd deploy && ./node_modules/.bin/grasshopper build'
         }
     });
 
