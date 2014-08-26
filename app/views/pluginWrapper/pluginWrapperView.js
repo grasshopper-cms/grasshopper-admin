@@ -53,7 +53,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 i = 0,
                 self = this;
 
-            if (values && !_.isUndefined(allowMultiple) && !allowMultiple) { // If values exists and allowMultiple is false.
+            if (values && !_.isUndefined(allowMultiple) && allowMultiple === false) { // If values exists and allowMultiple is false.
                 _addPlugin.call(this, values);
             } else if (values && _.isArray(values) && !_.isEmpty(values)) { // If values exists and is array that is not empty.
                 _.each(values, function (value) {
@@ -89,11 +89,13 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
 
         function _handleDefaultValue(value) {
             //var defaultValue = this.model.attributes.defaultValue || this.model.attributes.configModule.modelData.value, copyOfDefaultValue={};
-            var defaultValue = this.model.get('defaultValue') || this.model.get('configModule.modelData.value'), copyOfDefaultValue={};
+            var defaultValue = this.model.get('defaultValue') || this.model.get('configModule.modelData.value'),
+                copyOfDefaultValue = {};
+
             if (_.isUndefined(value)) {
                 /* Deep copy, if object */
                 if (typeof(defaultValue)==='object'){
-                    $.extend(true, copyOfDefaultValue,defaultValue);
+                    $.extend(true, copyOfDefaultValue, defaultValue);
                     return copyOfDefaultValue;
                 }
                 else {

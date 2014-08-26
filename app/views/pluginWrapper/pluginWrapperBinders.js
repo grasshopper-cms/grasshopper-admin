@@ -1,8 +1,6 @@
 /* jshint loopfunc:true */
-define(['underscore', 'masseuse',
-    'plugins', 'jquery'],
-    function (_, masseuse,
-              plugins, $) {
+define(['underscore', 'masseuse', 'plugins', 'jquery'],
+    function (_, masseuse, plugins, $) {
         'use strict';
 
         return {
