@@ -139,7 +139,12 @@
 
     <hr>
 
-    <table>
+    <div class="small-12 columns text-center" data-rv-show="model:loadingResults">
+        <span>Loading...</span>
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+
+    <table data-rv-hide="model:loadingResults">
         <thead>
             <tr>
                 <th>{{model:resources->label}}</th>
