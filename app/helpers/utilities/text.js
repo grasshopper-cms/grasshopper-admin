@@ -8,7 +8,7 @@ define(['underscore'], function (_) {
     };
 
     function join() {
-        return _(arguments).toArray().join('');
+        return _(arguments).toArray().join(' ');
     }
 
     function replace() {

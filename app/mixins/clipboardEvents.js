@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'clipboardWorker', 'helpers'],
-    function($, _, clipboardWorker, helpers) {
+define(['jquery', 'underscore', 'clipboardWorker', 'helpers', 'resources'],
+    function($, _, clipboardWorker, helpers, resources) {
         'use strict';
 
         var joiner = helpers.text.join;
@@ -17,13 +17,13 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers'],
         }
 
         function _handleCutEvent(e) {
-            clipboardWorker.cutContent(this, _getCutCopyRequest.call(this, e.currentTarget));
+            clipboardWorker.cutContent(this, _getCutCopyRequest.call(this, e.currentTarget, 'cut'));
             clipboardWorker.hasPasteItem = true;
             clipboardWorker.trigger('hasClipboardItem');
         }
 
         function _handleCopyEvent(e) {
-            clipboardWorker.copyContent(this, _getCutCopyRequest.call(this, e.currentTarget));
+            clipboardWorker.copyContent(this, _getCutCopyRequest.call(this, e.currentTarget, 'copy'));
             clipboardWorker.hasPasteItem = true;
             clipboardWorker.trigger('hasClipboardItem');
         }
@@ -41,29 +41,41 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers'],
                 .done(_afterPasteDone.bind(this));
         }
 
-        function _getCutCopyRequest(target) {
+        function _getCutCopyRequest(target, type) {
             var rowType = _getRowType(target),
                 itemId = $(target).data('id'),
-                itemIdContainsSlashes = _.contains(itemId, '\\') || _.contains(itemId, '/');
+                itemIdContainsSlashes = _.contains(itemId, '\\') || _.contains(itemId, '/'),
+                returnObject;
 
             if (rowType == 'asset' && !itemIdContainsSlashes) {
                 itemId = joiner(this.model.id, '/', itemId);
             }
 
-            return {
+            returnObject = {
                 type: rowType,
                 id: itemId,
-                name: $('.clipboardTargetName', target).text()
+                name: $('.clipboardTargetName', target).text().trim()
             };
+
+            this.displayTemporaryAlertBox({
+                header : resources.success,
+                style : 'success',
+                msg : type == 'copy' ? joiner(resources.clipboard.copied, returnObject.name, resources.clipboard.toClipboard) : joiner(resources.clipboard.cut, returnObject.name, resources.clipboard.toClipboard)
+            });
+
+            return returnObject;
         }
 
         function _afterPasteDone() {
-            clipboardWorker.hasPasteItem = false;
-            clipboardWorker.trigger('pasteDone');
-            this.model.fetch();
-            this.model.get('childNodes').fetch();
-            this.getChildContent();
-            this.addAssetIndexView();
+            $.when(this.model.fetch(),
+                this.model.get('childNodes').fetch(),
+                this.getChildContent(),
+                this.addAssetIndexView())
+            .done(function(){
+                clipboardWorker.hasPasteItem = false;
+                clipboardWorker.trigger('pasteDone');
+            });
+
         }
 
         function _getRowType(el) {
