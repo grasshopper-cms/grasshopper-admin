@@ -49,6 +49,7 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
 
         function addAssetIndexView() {
             if (!this.model.get('inRoot')) {
+                this.model.get('childAssets').reset();
                 return this.model.get('childAssets').fetch();
             }
         }
