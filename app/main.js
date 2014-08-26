@@ -59,9 +59,6 @@ require.config({
         datetimepicker : {
             exports : 'datetimepicker',
             deps : ['jquery']
-        },
-        velocity : {
-            deps : ['jquery']
         }
     },
     packages : [
