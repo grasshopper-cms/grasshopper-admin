@@ -107,6 +107,19 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             this.get('inTypesCollection').on('add remove reset', throttledQuery, this);
             this.get('inNodesCollection').on('add remove reset', throttledQuery, this);
             this.get('filtersCollection').on('add remove reset', throttledQuery, this);
+
+            this.get('contentTypeCollection').on('selection', _addRemoveContentTypeFromInTypesCollection, this);
+        }
+
+        function _addRemoveContentTypeFromInTypesCollection(view) {
+            if(view.checked) { // Item was added
+                this.get('inTypesCollection').add({
+                    label : view.label,
+                    _id : view.value
+                });
+            } else { // Item was removed
+                this.get('inTypesCollection').remove(view.value);
+            }
         }
 
     });
