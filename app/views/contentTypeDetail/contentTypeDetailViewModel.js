@@ -48,7 +48,6 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'un
             });
         }
 
-
         if(err) {
             return err;
         }
