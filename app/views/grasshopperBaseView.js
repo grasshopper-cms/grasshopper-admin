@@ -29,8 +29,8 @@ define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constan
             remove : remove,
             mastheadButtonsSelector : '#mastheadButtons'
         })
-        .extend(alertBox)
-        .extend(modal);
+            .extend(alertBox)
+            .extend(modal);
 
         function initialize (options) {
             options.viewOptions = options.viewOptions || [];
