@@ -20,7 +20,8 @@
         "JSONEditor" : "vendor/jsoneditor/jsoneditor",
         "contextjs" : "vendor/contextjs/context",
         "velocity" : "vendor/velocity/jquery.velocity",
-        "mousetrap" : "vendor/mousetrap/mousetrap"
+        "mousetrap" : "vendor/mousetrap/mousetrap",
+        "multipleSelect" : "vendor/multiple-select/jquery.multiple.select"
     },
 
     "routers" : {
