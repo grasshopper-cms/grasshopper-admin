@@ -13,8 +13,7 @@
         </div>
 
         <div class="small-6 columns">
-            <select id="selectNodes" data-rv-data-placeholder="model:resources->nodes" data-rv-on-change="view.addNodeToInNodesCollection" value="" data-rv-select2>
-                <option></option>
+            <select id="selectNodes" class="noMarginBottom" data-rv-data-placeholder="model:resources->nodes" data-rv-multiple-select="model:nodesCollection" multiple filter="true">
 
                 <option data-rv-each-node="model:nodesCollection:" data-rv-value="node:_id">
                     {{node:label}}
@@ -100,19 +99,6 @@
         </div>
 
     </div>
-
-    <hr>
-
-    <!--Selected Nodes-->
-    <h5>Selected Nodes</h5>
-    <section>
-        <div class="panel" data-rv-each-node="model:inNodesCollection:">
-            <span>{{node:label}}</span>
-            <a data-bypass data-rv-on-click="view.removeNodeFromInNodesCollection">
-                <i class="fa fa-trash-o right"></i>
-            </a>
-        </div>
-    </section>
 
     <hr>
 

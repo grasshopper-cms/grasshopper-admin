@@ -106,19 +106,20 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
             this.listenTo(this.get('inTypesCollection'), 'add remove reset', throttledQuery);
             this.listenTo(this.get('inNodesCollection'), 'add remove reset', throttledQuery);
-            this.listenTo(this.get('filtersCollection'), 'add remove reset', throttledQuery);            
+            this.listenTo(this.get('filtersCollection'), 'add remove reset', throttledQuery);
 
-            this.get('inTypesCollection').listenTo(this.get('contentTypeCollection'), 'selection', _addRemoveContentTypeFromInTypesCollection);
+            this.get('inTypesCollection').listenTo(this.get('contentTypeCollection'), 'selection', _addRemoveFromCollection);
+            this.get('inNodesCollection').listenTo(this.get('nodesCollection'), 'selection', _addRemoveFromCollection);
         }
 
-        function _addRemoveContentTypeFromInTypesCollection(view) {
+        function _addRemoveFromCollection(view) {
             if(view.checked) { // Item was added
                 this.add({
                     label : view.label,
                     _id : view.value
                 });
-            } else { // Item was removed
-                this.remove(view.value);
+            } else { // Item was removed                
+                this.remove(this.findWhere({ _id : view.value }));
             }
         }
 

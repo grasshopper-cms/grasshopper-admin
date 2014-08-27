@@ -9,8 +9,6 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery'],
             afterRender : afterRender,
             addFilterToFiltersCollection : addFilterToFiltersCollection,
             removeFilterFromFiltersCollection : removeFilterFromFiltersCollection,
-            addNodeToInNodesCollection : addNodeToInNodesCollection,
-            removeNodeFromInNodesCollection : removeNodeFromInNodesCollection,
             resetNewFilter : resetNewFilter
         });
 
@@ -39,18 +37,6 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery'],
         function resetNewFilter() {
             this.model.get('newFilterModel').clear();
             this.$('#newFilterKeys').add('#newFilterComparator').select2('val', '');
-        }
-
-        function addNodeToInNodesCollection(select2Event) {
-            this.$('#selectNodes').select2('val', '');
-            this.model.get('inNodesCollection').add({
-                label : select2Event.added.text,
-                _id : select2Event.added.id
-            });
-        }
-
-        function removeNodeFromInNodesCollection(event, context) {
-            this.model.get('inNodesCollection').remove(context.node);
         }
 
     });
