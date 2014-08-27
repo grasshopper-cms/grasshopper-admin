@@ -62,6 +62,9 @@ require.config({
         },
         velocity : {
             deps : ['jquery']
+        },
+        multipleSelect : {
+            deps : ['jquery']
         }
     },
     packages : [
@@ -101,7 +104,8 @@ require([
     'select2',
     'sparkmd5',
     'contextjs',
-    'velocity'
+    'velocity',
+    'multipleSelect'
 ],
     /**
      * @param $
