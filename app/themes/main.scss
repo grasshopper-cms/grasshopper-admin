@@ -14,7 +14,7 @@
 @import "CSS:../vendor/select2/select2";
 @import "CSS:../vendor/jsoneditor/jsoneditor";
 @import "CSS:../vendor/contextjs/context.standalone";
-@import "CSS:../vendor/multiple-select/multiple-select";
+@import "multiple-select";
 
 $imgPath: 'img';
 
@@ -190,36 +190,8 @@ body, html {
   }
 
   // VIEWS
-  @import "../views/advancedSearch/_style.scss"; // Advanced Search
-  @import "../views/advancedSearch/content/_style.scss"; // Advanced Content Search
-  @import "../views/header/_style.scss"; // Header
-  @import "../views/modal/_style.scss"; // Modal
-  @import "../views/alertBox/_style.scss"; // Alertbox
-  @import "../views/login/_style.scss"; // Login
-  @import "../views/masthead/_style.scss"; // Masthead
-  @import "../views/userIndex/_style.scss"; // User Index
-  @import "../views/userDetail/_style.scss"; // User Detail
-  @import "../views/contentDetail/_style.scss"; // Content Detail
-  @import "../views/assetDetail/_style.scss"; // Asset Detail
-  @import "../views/contentTypeIndex/_style.scss"; // Content Type Index
-  @import "../views/contentTypeDetail/_style.scss"; // Content Type Detail
-  @import "../views/contentTypeDetail/fieldAccordion/_style.scss"; // Content Type Detail Field Accordion
-  @import "../views/nodeDetail/_style.scss"; // Node Detail
-  @import "../views/contentBrowse/_style.scss"; // Content Browse
-  @import "../views/pluginWrapper/_style.scss"; // Plugin Wrapper
-  @import "../views/forbidden/_style.scss"; // Forbidden page
-  @import "../views/sysInfo/_style.scss"; // SysInfo page
-  @import "../views/pagination/_style.scss"; // Pagination View
-  @import "../views/itemSelectModal/_style.scss"; // Item Select Modal
+  @import "../views/**/*";
 
   // PLUGINS
-  @import "../plugins/embeddedtype/_style.scss"; // Embedded Type Plugin
-  @import "../plugins/contentreference/_style.scss"; // Content Reference Plugin
-  @import "../plugins/filereference/_style.scss"; // File Reference Plugin
-  @import "../plugins/codeeditor/_style.scss"; // Code Editor Plugin
-  @import "../plugins/jsoneditor/_style.scss"; // JSON Editor Plugin
-  @import "../plugins/richtext/_style.scss"; // Rich Text Plugin
-  @import "../plugins/checkbox/_style.scss"; // Checkbox Plugin
-  @import "../plugins/author/_style.scss"; // Author Plugin
-
+  @import "../plugins/**/*";
 }
