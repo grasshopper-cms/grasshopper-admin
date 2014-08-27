@@ -42,5 +42,6 @@
     "JSONEditor" : "vendor/jsoneditor/**/*",
     "contextjs" : "vendor/contextjs/context.js",
     "velocity" : "vendor/velocity/jquery.velocity.js",
-    "mousetrap" : "vendor/mousetrap/mousetrap.js"
+    "mousetrap" : "vendor/mousetrap/mousetrap.js",
+    "multipleSelect" : "vendor/multiple-select/jquery.multiple.select.js"
 }
