@@ -360,6 +360,7 @@ define({
     saveAndClose : 'Save and Close',
     selectOption : 'Please Select',
     select : 'Select',
+    selectAll : 'Select All',
     settings : 'Settings',
     siteName : 'Grasshopper',
     status : 'Status',
