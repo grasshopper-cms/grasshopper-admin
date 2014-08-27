@@ -10,7 +10,10 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
         idAttribute : 'nodeId',
         defaults : {
             resources : resources,
-            constants : constants
+            constants : constants,
+            childNodes : null,
+            childContent : null,
+            childAssets : null
         },
         urlRoot : constants.api.node.url
     });

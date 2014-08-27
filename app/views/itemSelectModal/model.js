@@ -20,7 +20,10 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                     return _id === '0' || _id === 0;
                 }),
                 resources : resources,
-                uploading : false
+                uploading : false,
+                childNodes : null,
+                content : null,
+                assets : null
             },
             urlRoot : constants.api.node.url
         });
