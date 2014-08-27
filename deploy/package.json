@@ -14,7 +14,7 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "grasshopper-api": "0.16.5",
+    "grasshopper-api": "0.16.7",
     "express": "~4.8.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt": "^0.4.5",
@@ -26,6 +26,6 @@
     "grunt-build-gh-pages": "^1.0.3"
   },
   "devDependencies": {
-    "grasshopper-admin": "0.29.10"
+    "grasshopper-admin": "0.29.11"
   }
 }
