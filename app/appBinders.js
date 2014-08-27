@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'backbone', 'pluginWrapperViewCollection'],
+    'pluginWrapperView', 'backbone', 'pluginWrapperViewCollection', 'resources'],
     function ($, _, masseuse,
-              PluginWrapperView, Backbone, PluginWrapperViewCollection) {
+              PluginWrapperView, Backbone, PluginWrapperViewCollection, resources) {
 
         'use strict';
 
@@ -76,8 +76,20 @@ define(['jquery', 'underscore', 'masseuse',
                 $el.select2(
                     {
                         width : '100%'
-                        //placeholder : $el.attr('placeholder')
                     });
+            },
+            'multiple-select' : function(el, collection) {
+                var $el = $(el);
+
+                if(collection.size() === $el.find('option').length) {
+                    $el.multipleSelect({
+                        selectAlltext : resources.selectAll,
+                        filter : $el.attr('filter'),
+                        onClick : function(view) {
+                            collection.trigger('selection', view);
+                        }
+                    });
+                }
             }
         };
 
