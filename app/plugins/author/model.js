@@ -6,7 +6,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             initialize: initialize,
             defaults: {
                 resources: resources,
-                no_permissions : false
+                no_permissions : false,
+                users : null
             }
         });
 

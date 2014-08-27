@@ -27,7 +27,9 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
                 return this.get('options.defaultNode');
             }),
             value : '',
-            _id : '0'
+            _id : '0',
+            childNodesDeep : null,
+            selectedNodeLabel : null
         },
         urlRoot : constants.api.node.url
     });

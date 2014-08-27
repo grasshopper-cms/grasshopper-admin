@@ -15,7 +15,8 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
                     }),
                     label : '',
                     fields: {},
-                    saving: false
+                    saving: false,
+                    schema: null
                 };
             },
             urlRoot : constants.api.content.url,

@@ -8,7 +8,10 @@ define(['grasshopperModel', 'resources', 'constants'], function (Model, resource
                 resources : resources,
                 accordionLabel : '',
                 fields : {},
-                value : {}
+                value : {},
+                availableContentTypes : null,
+                activeContentType : null,
+                invalidContentType : null
             };
         },
         urlRoot : constants.api.contentTypes.url

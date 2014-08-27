@@ -20,7 +20,11 @@ define(['grasshopperModel', 'resources', 'backbone', 'constants', 'grasshopperCo
                 return this.get('options.defaultNode');
             }),
             inSetup : false,
-            loading : false
+            loading : false,
+            childNodesDeep : null,
+            contentDetails : null,
+            availableTypes : null,
+            allowedTypes : null
         },
         urlRoot : constants.api.node.url
     });
