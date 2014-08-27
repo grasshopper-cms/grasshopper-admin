@@ -104,21 +104,21 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
         function setupChangeListeners() {
             var throttledQuery = _.throttle(this.query, 1000);
 
-            this.get('inTypesCollection').on('add remove reset', throttledQuery, this);
-            this.get('inNodesCollection').on('add remove reset', throttledQuery, this);
-            this.get('filtersCollection').on('add remove reset', throttledQuery, this);
+            this.listenTo(this.get('inTypesCollection'), 'add remove reset', throttledQuery);
+            this.listenTo(this.get('inNodesCollection'), 'add remove reset', throttledQuery);
+            this.listenTo(this.get('filtersCollection'), 'add remove reset', throttledQuery);            
 
-            this.get('contentTypeCollection').on('selection', _addRemoveContentTypeFromInTypesCollection, this);
+            this.get('inTypesCollection').listenTo(this.get('contentTypeCollection'), 'selection', _addRemoveContentTypeFromInTypesCollection);
         }
 
         function _addRemoveContentTypeFromInTypesCollection(view) {
             if(view.checked) { // Item was added
-                this.get('inTypesCollection').add({
+                this.add({
                     label : view.label,
                     _id : view.value
                 });
             } else { // Item was removed
-                this.get('inTypesCollection').remove(view.value);
+                this.remove(view.value);
             }
         }
 
