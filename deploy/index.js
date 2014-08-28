@@ -8,7 +8,7 @@ var express = require('express'),
 
 api = api();
 app.use(api.ghApi || api.router);
-app.use(express.static(__dirname + '/public/admin'));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/admin*?', function(request, response) {
     response.sendfile(__dirname + '/public/admin/index.html');
