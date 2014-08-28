@@ -131,7 +131,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
         function _handleFailedModelSave (response) {
             this.model.toggle('saving');
-            this.fireErrorModal(_getFailedModelSaveMessage(response));
+
+            if(response) {
+                this.fireErrorModal(_getFailedModelSaveMessage(response));
+            } else {
+                this.fireErrorModal(this.model.validationError ? this.model.validationError : resources.contentType.failedSave);
+            }
+
         }
 
         function _getFailedModelSaveMessage (response) {

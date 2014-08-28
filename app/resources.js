@@ -263,7 +263,15 @@ define({
             dateFormat: 'YYYY/MM/DD h:mm a'
         },
         embeddedType : {
-            contentType : 'Content Type'
+            contentType : 'Content Type',
+            validation : {
+                content : {
+
+                },
+                setup : {
+                    nooptions : 'Missing embedded type options. Please select a content type to embed from the dropdown.'
+                }
+            }
         },
         fileReference : {
             selectedFile : 'Selected File',
