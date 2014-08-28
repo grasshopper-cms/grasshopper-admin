@@ -2,23 +2,21 @@
 define(['underscore'], function(_) {
     'use strict';
 
-    var activeSubscribers = [];
-
     return {
-        activeSubscribers : activeSubscribers,
+        activeSubscribers : [],
         register : register,
         remove : remove
     };
 
     function register(view) {
-        activeSubscribers.push(view);
+        this.activeSubscribers.push(view);
 
 //        console.log('Adding SUBSCRIBERS');
 //        console.log(activeSubscribers);
     }
 
     function remove(view) {
-        activeSubscribers = _.reject(activeSubscribers, function(subscriber) {
+        this.activeSubscribers = _.reject(this.activeSubscribers, function(subscriber) {
             return subscriber.cid === view.cid;
         });
 

@@ -357,7 +357,7 @@ define([
                     modelData : {
                         _id : id
                     }
-                });
+                }, true);
         }
 
         function displayCreateFolder(nodeId) {
