@@ -90,6 +90,37 @@ define(['jquery', 'underscore', 'masseuse',
                         }
                     });
                 }
+            },
+            'velocity-show' : function(el, trigger) {
+                var $el = $(el);
+
+                if(trigger) {
+                    $el.velocity(
+                        {
+                            opacity : 1
+                        },
+                        {
+                            display : ''
+                        });
+
+                } else {
+                    $el.hide();
+                }
+            },
+            'velocity-hide' : function(el, trigger) {
+                var $el = $(el);
+
+                if(trigger) {
+                    $el.hide();
+                } else {
+                    $el.velocity(
+                        {
+                            opacity : 1
+                        },
+                        {
+                            display : ''
+                        });
+                }
             }
         };
 
