@@ -102,7 +102,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
         }
 
         function setupChangeListeners() {
-            var throttledQuery = _.throttle(this.query, 1000);
+            var throttledQuery = _.throttle(this.query, constants.contentSearchThrottle);
 
             this.listenTo(this.get('inTypesCollection'), 'add remove reset', throttledQuery);
             this.listenTo(this.get('inNodesCollection'), 'add remove reset', throttledQuery);
@@ -118,7 +118,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                     label : view.label,
                     _id : view.value
                 });
-            } else { // Item was removed                
+            } else { // Item was removed
                 this.remove(this.findWhere({ _id : view.value }));
             }
         }

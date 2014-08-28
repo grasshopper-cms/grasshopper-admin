@@ -36,6 +36,7 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery'],
 
         function resetNewFilter() {
             this.model.get('newFilterModel').clear();
+            this.$('#addNewFilterButton').click();
             this.$('#newFilterKeys').add('#newFilterComparator').select2('val', '');
         }
 
