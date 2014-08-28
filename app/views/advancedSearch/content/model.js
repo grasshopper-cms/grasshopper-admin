@@ -9,7 +9,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             setupChangeListeners : setupChangeListeners,
             defaults : {
                 resources : resources,
-                loadingResults : false,
+                loadingResults : true,
                 inTypesCollection : null,
                 inNodesCollection : null,
                 contentTypeCollection : null,
@@ -71,12 +71,12 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
             options = this.buildQueryOptions();
 
-            this.toggle('loadingResults');
+            this.set('loadingResults', true);
 
             Api.makeQuery(options)
                 .done(function(results) {
                     this.get('resultsCollection').reset(results.results, { parse : true });
-                    this.toggle('loadingResults');
+                    this.set('loadingResults', false);
                     $deferred.resolve();
                 }.bind(this))
                 .fail($deferred.reject);
