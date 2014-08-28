@@ -81,7 +81,9 @@ define(['jquery', 'underscore', 'masseuse',
             'multiple-select' : function(el, collection) {
                 var $el = $(el);
 
-                if(collection.size() === $el.find('option').length) {
+                if(_.has($el, 'multipleSelectInitialized')) {                    
+                    $el.multipleSelect('refresh');
+                } else {
                     $el.multipleSelect({
                         selectAlltext : resources.selectAll,
                         filter : $el.attr('filter'),
@@ -89,40 +91,32 @@ define(['jquery', 'underscore', 'masseuse',
                             collection.trigger('selection', view);
                         }
                     });
+                    $el.multipleSelectInitialized = true;
                 }
             },
-            'velocity-show' : function(el, trigger) {
-                var $el = $(el);
-
-                if(trigger) {
-                    $el.velocity(
-                        {
-                            opacity : 1
-                        },
-                        {
-                            display : ''
-                        });
-
-                } else {
-                    $el.hide();
-                }
+            'velocity-show' : function(el, trigger) { // When trigger is true, show
+                _velocityShowHide(el, trigger);
             },
-            'velocity-hide' : function(el, trigger) {
-                var $el = $(el);
-
-                if(trigger) {
-                    $el.hide();
-                } else {
-                    $el.velocity(
-                        {
-                            opacity : 1
-                        },
-                        {
-                            display : ''
-                        });
-                }
+            'velocity-hide' : function(el, trigger) { // When trigger is true, hide
+                _velocityShowHide(el, !trigger);
             }
         };
+
+        function _velocityShowHide(el, show) {
+            var $el = $(el);
+
+            if(show) {
+                $el.velocity(
+                    {
+                        opacity : 1
+                    },
+                    {
+                        display : ''
+                    });
+            } else {
+                $el.hide();
+            }
+        }
 
         function _callback(el, evt) {
             // listen for the enter key or Blur to save to the model.
