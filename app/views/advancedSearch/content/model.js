@@ -26,6 +26,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             Model.prototype.initialize.apply(this, arguments);
 
             this.set('inTypesCollection', new (GrasshopperCollection.extend({
+                idAttribute : '_id',
                 toJSON : function() {
                     var json = GrasshopperCollection.prototype.toJSON.apply(this);
                     return _.pluck(json, '_id');
@@ -33,6 +34,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             }))());
 
             this.set('inNodesCollection', new (GrasshopperCollection.extend({
+                idAttribute : '_id',
                 toJSON : function() {
                     var json = GrasshopperCollection.prototype.toJSON.apply(this);
                     return _.pluck(json, '_id');
@@ -74,7 +76,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
             this.set('loadingResults', true);
 
-            /*this.trigger('updateUrl', queryOptions);*/
+            this.trigger('updateUrl', queryOptions);
 
             Api.makeQuery(queryOptions)
                 .done(function(results) {
@@ -115,15 +117,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             this.get('inNodesCollection').listenTo(this.get('nodesCollection'), 'selection', _addRemoveFromCollection);
         }
 
-        function _addRemoveFromCollection(view) {
-            if(view.checked) { // Item was added
-                this.add({
-                    label : view.label,
-                    _id : view.value
-                });
-            } else { // Item was removed
-                this.remove(this.findWhere({ _id : view.value }));
-            }
+        function _addRemoveFromCollection(selection) {
+            this.reset(selection);
         }
 
     });

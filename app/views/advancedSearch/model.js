@@ -3,19 +3,21 @@ define(['grasshopperModel', 'resources', 'advancedSearch/content/model'], functi
 
     return Model.extend({
         initialize : initialize,
-        defaults : {
-            resources : resources,
-            searchType : null,
-            queryOptions : {
-                filters : [],
-                nodes : [],
-                types : [],
-                options : {
-                    limit : 1000,
-                    skip : 0
-                }
-            },
-            contentSearchModel : null
+        defaults : function() {
+            return {
+                resources : resources,
+                searchType : null,
+                queryOptions : {
+                    filters : [],
+                    nodes : [],
+                    types : [],
+                    options : {
+                        limit : 1000,
+                        skip : 0
+                    }
+                },
+                contentSearchModel : null
+            };
         }
     });
 

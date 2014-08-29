@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'constants'],
-    function (GrasshopperBaseView, config, $, constants) {
+define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'constants', 'underscore'],
+    function (GrasshopperBaseView, config, $, constants, _) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -37,9 +37,13 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'const
         function buildQueryFromQueryOptions() {
             var queryOptions = this.model.get('queryOptions');
 
-            this.$('#selectContentTypes').multipleSelect('setSelects', queryOptions.types);
-            this.$('#selectNodes').multipleSelect('setSelects', queryOptions.nodes);
-            this.$('#selectContentTypes').add('#selectNodes').trigger('change');
+            if(!_.isEmpty(queryOptions.types)) {
+                this.$('#selectContentTypes').multipleSelect('setSelects', queryOptions.types);
+            }
+
+            if(!_.isEmpty(queryOptions.nodes)) {
+                this.$('#selectNodes').multipleSelect('setSelects', queryOptions.nodes);
+            }
         }
 
         function addFilterToFiltersCollection() {
