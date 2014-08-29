@@ -10,6 +10,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             defaults : {
                 resources : resources,
                 loadingResults : true,
+                queryOptions : null,
                 inTypesCollection : null,
                 inNodesCollection : null,
                 contentTypeCollection : null,
@@ -67,13 +68,15 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
         function query() {
             var $deferred = $.Deferred(),
-                options;
+                queryOptions;
 
-            options = this.buildQueryOptions();
+            queryOptions = this.buildQueryOptions();
 
             this.set('loadingResults', true);
 
-            Api.makeQuery(options)
+            /*this.trigger('updateUrl', queryOptions);*/
+
+            Api.makeQuery(queryOptions)
                 .done(function(results) {
                     this.get('resultsCollection').reset(results.results, { parse : true });
                     this.set('loadingResults', false);

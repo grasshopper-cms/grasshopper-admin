@@ -10,7 +10,9 @@ define(['text!views/advancedSearch/content/template.html', 'resources', 'advance
             browserTitle : 'Content Search',
             wrapper : false,
             template : template,
-            listeners : [],
+            listeners : [
+                ['model', 'updateUrl', 'updateUrl']
+            ],
             events : {},
             breadcrumbs : [
                 {
