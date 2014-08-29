@@ -95,6 +95,7 @@ define({
         addNewUser : 'Add New User',
         blocks: {
             lockUser: 'Lock this user',
+            unlockUser : 'This user is currently locked.',
             lockUserSubtext: 'Locking a user will prevent them from logging in and using the system.',
             lockUserButton: 'Lock user',
             unlockUserButton: 'Unlock user',

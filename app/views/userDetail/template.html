@@ -13,7 +13,7 @@
                             <label for="firstName" class="right inline">{{model:resources->user->attributeTitles->firstName | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
-                            <input id="firstName" type="text" data-rv-value="model:firstname"/>
+                            <input id="firstName" type="text" data-rv-value="model:firstname" />
                         </div>
                     </div>
 
@@ -22,7 +22,7 @@
                             <label for="lastName" class="right inline">{{model:resources->user->attributeTitles->lastName | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
-                            <input id="lastName" type="text" data-rv-value="model:lastname"/>
+                            <input id="lastName" type="text" data-rv-value="model:lastname" />
                         </div>
                     </div>
 
@@ -31,7 +31,7 @@
                             <label for="displayname" class="right inline">{{model:resources->user->attributeTitles->displayname | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
-                            <input id="displayname" type="text" data-rv-value="model:displayname"/>
+                            <input id="displayname" type="text" data-rv-value="model:displayname" />
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
                             <label for="email" class="right inline">{{model:resources->user->attributeTitles->email | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
-                            <input id="email" type="text" data-rv-value="model:email"/>
+                            <input id="email" type="text" data-rv-value="model:email" />
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@
                             <label for="username" class="right inline">{{model:resources->user->attributeTitles->username | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
-                            <input id="username" type="text" data-rv-value="model:identities->basic->username" data-rv-placeholder="model:resources->user->attributeTitles->username"/>
+                            <input id="username" type="text" data-rv-value="model:identities->basic->username" data-rv-placeholder="model:resources->user->attributeTitles->username" />
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@
                             <label for="password" class="right inline">{{model:resources->user->attributeTitles->password | withColon}}</label>
                         </div>
                         <div class="large-9 columns">
-                            <input id="password" type="password" data-rv-value="model:identities->basic->password" data-rv-placeholder="model:resources->user->attributeTitles->password"/>
+                            <input id="password" type="password" data-rv-value="model:identities->basic->password" data-rv-placeholder="model:resources->user->attributeTitles->password" />
                         </div>
                     </div>
 
@@ -106,37 +106,38 @@
 
                         </div>
                         <div class="large-9 columns">
-                           <div class="user-lock-delete-buttons">
-                               <div class="user-lock-delete-button-block lock-user-block">
+                            <div class="user-lock-delete-buttons">
+                                <div class="user-lock-delete-button-block lock-user-block">
 
-                                       <div
-                                               class="user-lock-delete-block-header">{{model:resources->user->blocks->lockUser}}</div>
-                                       <div class="user-lock-delete-block-text">{{model:resources->user->blocks->lockUserSubtext}}</div>
-                                       <div class="user-lock-delete-block-action">
-                                           <a data-rv-on-click="view.toggleEnabled | stopImmediatePropagation" data-rv-show="model:enabled"
-                                              class="button tiny radius alert">
+                                    <div class="user-lock-delete-block-header" data-rv-if="model:enabled">
+                                        {{model:resources->user->blocks->lockUser}}
+                                    </div>
+                                    <div class="user-lock-delete-block-header" data-rv-unless="model:enabled", data-rv-text="model:resources->user->blocks->unlockUser">
+                                    </div>
+                                    <div class="user-lock-delete-block-text" data-rv-if="model:enabled">{{model:resources->user->blocks->lockUserSubtext}}</div>
+                                    <div class="user-lock-delete-block-action">
+                                        <a data-rv-on-click="view.toggleEnabled | stopImmediatePropagation" data-rv-show="model:enabled" class="button tiny radius alert">
                                                {{model:resources->user->blocks->lockUserButton}}
                                            </a>
-                                           <a data-rv-on-click="view.toggleEnabled | stopImmediatePropagation" data-rv-hide="model:enabled"
-                                              class="button tiny radius alert">
+                                        <a data-rv-on-click="view.toggleEnabled | stopImmediatePropagation" data-rv-hide="model:enabled" class="button tiny radius alert">
                                                {{model:resources->user->blocks->unlockUserButton}}
                                            </a>
-                                       </div>
+                                    </div>
 
 
-                               </div>
-                               <div class="user-lock-delete-button-block delete-user-block">
+                                </div>
+                                <div class="user-lock-delete-button-block delete-user-block">
 
-                                       <div class="user-lock-delete-block-header">{{model:resources->user->blocks->deleteUser}}</div>
-                                       <div class="user-lock-delete-block-text">{{model:resources->user->blocks->deleteUserSubtext}}</div>
-                                       <div class="user-lock-delete-block-action">
-                                           <a data-rv-on-click="view.deleteUser | stopImmediatePropagation" class="button tiny radius alert">
+                                    <div class="user-lock-delete-block-header">{{model:resources->user->blocks->deleteUser}}</div>
+                                    <div class="user-lock-delete-block-text">{{model:resources->user->blocks->deleteUserSubtext}}</div>
+                                    <div class="user-lock-delete-block-action">
+                                        <a data-rv-on-click="view.deleteUser | stopImmediatePropagation" class="button tiny radius alert">
                                                {{model:resources->user->blocks->deleteUserButton}}
                                            </a>
-                                       </div>
+                                    </div>
 
-                               </div>
-                           </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
