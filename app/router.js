@@ -397,7 +397,7 @@ define([
             addAssetsView.start();
         }
 
-        function displayAdvancedSearch(searchType, queryOptions) {
+        function displayAdvancedSearch(searchType, queryOptions) {            
             this.loadMainContent(AdvancedSearchView, {
                 modelData : {
                     searchType : searchType ? searchType : 'content',
