@@ -274,6 +274,11 @@ define([
             var redirect = LocalStorage.get(constants.loginRedirectKey);
 
             if(token) {
+                if (token.split('=')[0] == 'error') {
+                    this.loadMainContent(LoginView, {modelData : {
+                        oauthError : token.split('=')[1]
+                    }});
+                }
                 // I am assuming this is a google token because that is all we support right meow.
                 LocalStorage.set('authToken', 'Google '+ token);
 

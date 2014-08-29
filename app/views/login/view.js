@@ -5,10 +5,18 @@ define(['grasshopperBaseView', 'login/options', 'loginWorker', 'api'],
 
     return GrasshopperBaseView.extend({
         defaultOptions : loginOptions,
+        afterRender : afterRender,
         login : login,
         loginWithGoogle : loginWithGoogle,
         throwLoginError : throwLoginError
     });
+
+    function afterRender() {
+        // Could only be oauth related.
+        if(this.model.get('hasError')) {
+            throwLoginError.call(this, this.model.get('oauthError'));
+        }
+    }
 
     function login () {
 
