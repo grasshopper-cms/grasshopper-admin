@@ -91,8 +91,6 @@ define(['jquery', 'underscore', 'masseuse',
                             collection.trigger('selection', view);
                         }
                     });
-
-                    console.log($el);
                 }
             },
             'velocity-show' : function(el, trigger) { // When trigger is true, show
