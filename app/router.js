@@ -64,7 +64,7 @@ define([
                 'content-types' : 'displayContentTypeIndex',
                 'content-types/new' : 'displayContentTypeDetail',
                 'content-types(/:id)' : 'displayContentTypeDetail',
-                'advanced-search' : 'displayAdvancedSearch',
+                'advanced-search(/:type/query=:queryOptions)' : 'displayAdvancedSearch',
                 'items/nodeid/:nodeId/create-assets' : 'displayCreateAssets',
                 'items/nodeid/:nodeId/create-folder' : 'displayCreateFolder',
                 'items/nodeid/:nodeId/create-content' : 'displayCreateContent',
@@ -397,8 +397,13 @@ define([
             addAssetsView.start();
         }
 
-        function displayAdvancedSearch() {
-            this.loadMainContent(AdvancedSearchView);
+        function displayAdvancedSearch(searchType, queryOptions) {
+            this.loadMainContent(AdvancedSearchView, {
+                modelData : {
+                    searchType : searchType ? searchType : 'content',
+                    queryOptions : queryOptions ? JSON.parse(queryOptions) : null
+                }
+            });
         }
 
         function displayForbidden() {

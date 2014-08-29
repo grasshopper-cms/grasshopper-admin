@@ -35,7 +35,7 @@
                     </div>
                     <div class="small-9 columns">
 
-                        <select id="newFilterKeys" data-rv-data-placeholder="model:resources->key" data-rv-value="model:newFilterModel->key" data-rv-select2>
+                        <select id="newFilterKeys" data-rv-data-placeholder="model:resources->key" data-rv-value="model:newFilterModel.attributes.key" data-rv-select2>
                             <option></option>
 
                             <optgroup data-rv-each-contenttype="model:contentTypeCollection:" data-rv-label="contenttype:label">
@@ -54,7 +54,7 @@
                     </div>
                     <div class="small-9 columns">
 
-                        <select id="newFilterComparator" data-rv-data-placeholder="model:resources->comparator" data-rv-value="model:newFilterModel->cmp" data-rv-select2>
+                        <select id="newFilterComparator" data-rv-data-placeholder="model:resources->comparator" data-rv-value="model:newFilterModel.attributes.cmp" data-rv-select2>
                             <option></option>
 
                             <option data-rv-each-comparator="model:possibleQueryComparators" data-rv-value="comparator">
@@ -71,7 +71,7 @@
                         <label for="newFilterValue" class="right inline">{{model:resources->value}}</label>
                     </div>
                     <div class="small-9 columns">
-                        <input type="text" id="newFilterValue" data-rv-placeholder="model:resources->value" data-rv-value="model:newFilterModel->value">
+                        <input type="text" id="newFilterValue" data-rv-placeholder="model:resources->value" data-rv-value="model:newFilterModel.attributes.value">
                     </div>
                 </div>
 
