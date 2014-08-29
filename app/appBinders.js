@@ -81,7 +81,7 @@ define(['jquery', 'underscore', 'masseuse',
             'multiple-select' : function(el, collection) {
                 var $el = $(el);
 
-                if(_.has($el, 'multipleSelectInitialized')) {                    
+                if(_.has($el, 'multipleSelect')) {
                     $el.multipleSelect('refresh');
                 } else {
                     $el.multipleSelect({
@@ -91,7 +91,8 @@ define(['jquery', 'underscore', 'masseuse',
                             collection.trigger('selection', view);
                         }
                     });
-                    $el.multipleSelectInitialized = true;
+
+                    console.log($el);
                 }
             },
             'velocity-show' : function(el, trigger) { // When trigger is true, show
