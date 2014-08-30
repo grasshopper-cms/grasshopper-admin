@@ -58,6 +58,12 @@ define([], function() {
             moveNode : {
                 url : apiEndpoint + '/node/move'
             },
+            copyAsset : {
+                url : apiEndpoint + '/node/:id/assets/copy'
+            },
+            moveAsset : {
+                url : apiEndpoint + '/node/:id/assets/move'
+            },
             contentQuery : {
                 url : apiEndpoint + '/content/query'
             },
@@ -72,8 +78,11 @@ define([], function() {
             }
         },
         internalRoutes : {
+            advancedSearch : '/advanced-search',
+            advancedSearchWithOptions : '/advanced-search/:type/query=:queryOptions',
             user : '/user',
             users : '/users',
+            userDetail : '/user/:id',
             addUser : '/add-user',
             sysInfo: '/sys-info',
             contentTypes : '/content-types',
@@ -106,13 +115,26 @@ define([], function() {
             ai : 'fa-file-image-o',
             swf : 'fa-file-video-o'
         },
-        imageExtensions : ['jpg', 'jpeg', 'png', 'bmp', 'webp', 'svg', 'gif'],
+        imageExtensions : [
+            'jpg',
+            'jpeg',
+            'png',
+            'bmp',
+            'webp',
+            'svg',
+            'gif'
+        ],
         contentSearchThrottle: 1000,
         pagination : {
             defaultLimit : 25,
             defaultSkip : 1,
             defaultPagesLimit : 7,
-            defaultPageSize : [25, 50, 100, 'all'],
+            defaultPageSize : [
+                25,
+                50,
+                100,
+                'all'
+            ],
             defaultAllLimit : 100000
         },
         controlKeyCodeMap : {
@@ -128,20 +150,57 @@ define([], function() {
             40 : 'bArr',
             91 : 'leftCMD',
             93 : 'rightCMD'
-        },
-        // https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
-
+        }, // https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
         jsoneditor : {
             mode: 'tree',
             modes:['code', 'tree']
         },
-
         loginRedirectKey : 'loginRedirect',
-
         profileGoogleLinkRedirect : {
             url : '/user/:id'
-        }
-
+        },
+        contextConfig : {
+            preventDoubleContext: true,
+            compress: true
+        },
+        defaultPageTransitions : {
+            enter : {
+                type : 'fadeIn',
+                options : {
+                    duration : 100
+                }
+            }
+        },
+        possibleQueryComparators : [
+            '=',
+            'eq',
+            'equal',
+            'equals',
+            '!=',
+            'not',
+            'notequal',
+            'notequals',
+            '>=',
+            'gte',
+            '>',
+            'gt',
+            '<=',
+            'lte',
+            '<',
+            'lt',
+            'in',
+            'contains',
+            '!in',
+            'notin',
+            'notcontains',
+            '%',
+            'like',
+            '!%',
+            'notlike',
+            'between',
+            'notbetween',
+            'size',
+            'exists'
+        ]
     };
-
 });

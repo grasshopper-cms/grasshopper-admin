@@ -1,11 +1,11 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'masseuse'],
-    function (GrasshopperBaseView, contentTypeWorker, $, _, masseuse) {
+define(['pluginBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'masseuse'],
+    function (PluginBaseView, contentTypeWorker, $, _, masseuse) {
         'use strict';
 
         var ProxyProperty = masseuse.ProxyProperty;
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             afterRender : afterRender
         });
 
@@ -13,8 +13,6 @@ define(['grasshopperBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'mas
             this.model.toggle('loading');
             _getAvailableContentTypes.call(this)
                 .done(_setActiveContentType.bind(this));
-
-            this.$el.foundation();
 
             _initializeAccordions.call(this);
         }

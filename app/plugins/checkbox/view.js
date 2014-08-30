@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'plugins/checkbox/optionsCollection'],
-    function (GrasshopperBaseView, _, OptionsCollection) {
+define(['pluginBaseView', 'underscore', 'plugins/checkbox/optionsCollection'],
+    function (PluginBaseView, _, OptionsCollection) {
         'use strict';
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             beforeRender : beforeRender,
             afterRender : afterRender,
             addOption : addOption,

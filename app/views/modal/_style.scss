@@ -21,6 +21,7 @@
     min-width:280px;
     background-color: $modal-contents-background-color;
     box-shadow: 0 0 10px $modal-background-color;
+    max-height:75%;
 
     #modalHeader {
       padding: $modalPadding;
@@ -80,7 +81,7 @@
     }
 
     .inputContainer {
-      max-height: 500px;
+      max-height: 444px;
       overflow: scroll;
       border: 1px solid $modalInputContainerBorder;
 

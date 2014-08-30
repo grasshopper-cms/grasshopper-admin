@@ -10,7 +10,8 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
             deleteContent: deleteContent,
             saveContent: saveContent,
             saveAndClose: saveAndClose
-        }).extend(handleRowClick);
+        })
+            .extend(handleRowClick);
 
         function beforeRender ($deferred) {
             if (this.model.get('isNew')) {
@@ -40,7 +41,6 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
         }
 
         function afterRender () {
-            this.$el.foundation();
             _addListenerForModelChange.call(this);
         }
 
@@ -75,8 +75,7 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
                 {
                     header: resources.success,
                     style: 'success',
-                    msg: resources.contentItem.successfullyDeletedPre + model.get('label') +
-                        resources.contentItem.successfullyDeletedPost
+                    msg: resources.contentItem.successfullyDeleted.replace(':item', model.get('label'))
                 }
             );
         }
@@ -132,7 +131,13 @@ define(['grasshopperBaseView', 'contentDetailViewConfig', 'resources', 'jquery',
 
         function _handleFailedModelSave (response) {
             this.model.toggle('saving');
-            this.fireErrorModal(_getFailedModelSaveMessage(response));
+
+            if(response) {
+                this.fireErrorModal(_getFailedModelSaveMessage(response));
+            } else {
+                this.fireErrorModal(this.model.validationError ? this.model.validationError : resources.contentType.failedSave);
+            }
+
         }
 
         function _getFailedModelSaveMessage (response) {

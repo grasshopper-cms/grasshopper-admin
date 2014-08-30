@@ -59,6 +59,12 @@ require.config({
         datetimepicker : {
             exports : 'datetimepicker',
             deps : ['jquery']
+        },
+        velocity : {
+            deps : ['jquery']
+        },
+        multipleSelect : {
+            deps : ['jquery']
         }
     },
     packages : [
@@ -85,7 +91,7 @@ require([
     'router',
     'constants',
     'ajaxCounterWorker',
-    'clipboardWorker',
+    'require',
     'alerts',
     'dropdown',
     'tabs',
@@ -97,13 +103,15 @@ require([
     'scrollToFixed',
     'select2',
     'sparkmd5',
-    'contextjs'
+    'contextjs',
+    'velocity',
+    'multipleSelect'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, constants, ajaxCounterWorker, clipboardWorker) {
+        function (Backbone, _, $, Router, constants, ajaxCounterWorker) {
         'use strict';
 
         var router = new Router();
@@ -126,10 +134,11 @@ require([
         });
 
         $(document).on('click', 'a:not([data-bypass])', function (evt) {
-            var href = $(this).attr('href') || '';
-            var protocol = this.protocol + '//';
+            var href = $(this).attr('href') || '',
+             protocol = this.protocol + '//',
+             scriptCheck = this.protocol.slice(0, -1);
 
-            if (href && href.slice(protocol.length) !== protocol) {
+            if (href && href!='#' && href.slice(protocol.length) !== protocol && scriptCheck != 'javascript') {
                 evt.preventDefault();
                 router.navigate(href, {trigger:true});
             }

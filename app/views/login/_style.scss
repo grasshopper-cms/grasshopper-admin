@@ -8,6 +8,7 @@
 
   .account-container {
     @include radius;
+    padding: 2.5em;
     width: 380px;
     display: block;
     margin: 85px auto 0 auto;

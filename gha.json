@@ -1,4 +1,5 @@
 {
-    "apiEndpoint" : "http://grasshopper-admin-sample.herokuapp.com",
-    "buildDirectory" : "server/public/admin"
+"apiEndpoint" : "",
+"buildDirectory" : "server/public/admin",
+"base" : "/admin/"
 }

@@ -1,18 +1,12 @@
 /* jshint loopfunc:true */
-define(['underscore', 'masseuse',
-    'plugins', 'jquery'],
-    function (_, masseuse,
-              plugins, $) {
+define(['underscore', 'masseuse', 'plugins', 'jquery'],
+    function (_, masseuse, plugins, $) {
         'use strict';
 
         return {
             fieldtype : {
-                bind: function() {
-
-                },
-                unbind : function() {
-                    this.viewInstance.remove();
-                },
+                bind: function() {},
+                unbind : function() {},
                 routine : function(el, model) {
                     var rivets = this,
                         ViewModule = rivets.model.model.get('ViewModule'),

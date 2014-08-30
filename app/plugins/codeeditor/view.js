@@ -1,10 +1,10 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'jquery', 'require'],
-    function (GrasshopperBaseView, _, $, require) {
+define(['pluginBaseView', 'underscore', 'jquery', 'require'],
+    function (PluginBaseView, _, $, require) {
 
         'use strict';
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             afterRender : afterRender
         });
 

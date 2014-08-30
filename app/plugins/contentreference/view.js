@@ -1,12 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
+define(['pluginBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
     'masseuse', 'mixins/itemSelectModal', 'mixins/buildNodeRadioList'],
-    function (GrasshopperBaseView, _, Api, contentTypeWorker, $,
+    function (PluginBaseView, _, Api, contentTypeWorker, $,
               masseuse, itemSelectModal, buildNodeRadioList) {
 
         'use strict';
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             afterRender : afterRender,
             setAvailableContentTypes : setAvailableContentTypes,
             fireSelectContentModal : fireSelectContentModal,

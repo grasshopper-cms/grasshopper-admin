@@ -1,8 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'alertBoxViewConfig'], function (GrasshopperBaseView, alertBoxViewConfig) {
+define(['masseuse', 'alertBoxViewConfig'], function (masseuse, alertBoxViewConfig) {
     'use strict';
+    var RivetView = masseuse.plugins.rivets.RivetsView;
 
-    return GrasshopperBaseView.extend({
+    return RivetView.extend({
         defaultOptions : alertBoxViewConfig,
         afterRender : afterRender,
         hideAlertsOnNavigate : hideAlertsOnNavigate,

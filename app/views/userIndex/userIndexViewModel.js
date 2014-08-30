@@ -8,7 +8,8 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection',
     return GrasshopperModel.extend({
         initialize : initialize,
         defaults : {
-            resources : resources
+            resources : resources,
+            users : null
         }
 
     });

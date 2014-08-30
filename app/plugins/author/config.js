@@ -1,8 +1,6 @@
 /*global define:false*/
-define(['text!plugins/author/template.html', 'plugins/author/model', 'text!plugins/author/setupTemplate.html',
-    'plugins/author/formatters'],
-    function (template, authorPluginModel, setupTemplate,
-              formatters) {
+define(['text!plugins/author/template.html', 'plugins/author/model', 'text!plugins/author/setupTemplate.html'],
+    function (template, authorPluginModel, setupTemplate) {
         'use strict';
 
         return {
@@ -23,9 +21,6 @@ define(['text!plugins/author/template.html', 'plugins/author/model', 'text!plugi
             },
             wrapper: false,
             template : template,
-            setupTemplate : setupTemplate,
-            rivetsConfig : {
-                formatters : [formatters]
-            }
+            setupTemplate : setupTemplate
         };
     });

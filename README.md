@@ -205,6 +205,16 @@ If loaded the environmental variables are loaded from `ghapi.json` in the root o
 * 0.29.0 - 14-08-11 - [features](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.0_14-08-11.md)
 * 0.29.1 - 14-08-13 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.1_14-08-13.md)
 * 0.29.3 - 14-08-14 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.3_14-08-14.md)
+* 0.29.4 - 14-08-18 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.4_14-08-18.md)
+* 0.29.5 - 14-08-20 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.5_14-08-20.md)
+* 0.29.6 - 14-08-20 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.6_14-08-20.md)
+* 0.29.7 - 14-08-21 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.7_14-08-21.md)
+* 0.29.9 - 14-08-21 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.9_14-08-21.md)
+* 0.29.10 - 14-08-10 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.10_14-08-10.md)
+* 0.29.11 - 14-08-26 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.11_14-08-26.md)
+* 0.29.12 - 14-08-27 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.12_14-08-27.md)
+* 0.29.13 - 14-08-27 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.13_14-08-27.md)
+* 0.29.14 - 14-08-29 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.14_14-08-29.md)
 
 
-_Compiled file. Do not modify directly. Created: 2014-08-15 04:47:42_
+_Compiled file. Do not modify directly. Created: 2014-08-29 04:05:32_

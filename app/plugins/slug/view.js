@@ -1,9 +1,9 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore'],
-    function (GrasshopperBaseView, _) {
+define(['pluginBaseView', 'underscore'],
+    function (PluginBaseView, _) {
         'use strict';
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             afterRender : afterRender,
             calculateSlug : _.debounce(calculateSlug, 100)
         });
@@ -43,8 +43,9 @@ define(['grasshopperBaseView', 'underscore'],
         }
 
         function _asSlug(value) {
-            var arigatoSon = value!==undefined ? value : '';
-            return arigatoSon.toLowerCase().trim().replace(/[\s]+/g, '-').replace(/[^-a-zA-Z0-9._~]/g, '');
+            if(!_.isUndefined(value)) {
+                return value.toLowerCase().trim().replace(/[\s]+/g, '-').replace(/[^-a-zA-Z0-9._~]/g, '');
+            }
         }
 
     });

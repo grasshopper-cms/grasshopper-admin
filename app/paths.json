@@ -18,7 +18,10 @@
         "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker",
         "sparkmd5" : "vendor/SparkMD5/spark-md5",
         "JSONEditor" : "vendor/jsoneditor/jsoneditor",
-        "contextjs" : "vendor/contextjs/context"
+        "contextjs" : "vendor/contextjs/context",
+        "velocity" : "vendor/velocity/jquery.velocity",
+        "mousetrap" : "vendor/mousetrap/mousetrap",
+        "multipleSelect" : "vendor/multiple-select/jquery.multiple.select"
     },
 
     "routers" : {
@@ -106,6 +109,10 @@
 
     "views" : {
         "grasshopperBaseView" : "views/grasshopperBaseView",
+
+        "pluginBaseView" : "views/pluginBaseView",
+
+        "advancedSearch" : "views/advancedSearch",
 
         "addAssetsView+" : {
             "" : "views/addAssets/addAssetsView",
@@ -197,12 +204,6 @@
         },
 
         "itemSelectModal" : "views/itemSelectModal",
-
-        "clipboardView+" : {
-            "" : "views/clipboard/clipboardView",
-            "Config" : "views/clipboard/clipboardViewConfig",
-            "Model" : "views/clipboard/clipboardViewModel"
-        },
         "login" : "views/login",
 
         "mastheadView+" : {
@@ -262,7 +263,6 @@
     },
 
     "models" : {
-        "selfValidatingModel" : "models/selfValidatingModel",
         "UserModel" : "models/userModel",
         "grasshopperModel" : "models/grasshopperModel",
         "pluginSetupModel" : "views/contentTypeDetail/pluginSetupModel"
@@ -285,7 +285,6 @@
     "collections" : {
         "grasshopperCollection" : "collections/grasshopperCollection",
         "paginatedCollection" : "collections/paginatedCollection",
-        "userCollection" : "collections/userCollection",
         "searchCollection" : "collections/searchCollection"
     },
 

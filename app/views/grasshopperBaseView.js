@@ -1,10 +1,11 @@
 /*global define:false*/
-define(['backbone', 'masseuse', 'resources', 'underscore'],
-    function (Backbone, masseuse, resources, _) {
+
+define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constants', 'mixins/alertBox', 'mixins/modal'],
+    function (Backbone, masseuse, resources, _, mousetrap, constants, alertBox, modal) {
         'use strict';
 
         var RivetView = masseuse.plugins.rivets.RivetsView,
-            oldSet = Backbone.Collection.prototype.set, DEFAULT_VIEW_OPTIONS=[
+            defaultViewOptions = [
                 '$deferred',
                 'type',
                 'defaultBreadcrumbs',
@@ -24,58 +25,47 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
             initialize : initialize,
             start : start,
             fireErrorModal : fireErrorModal,
-            mastheadButtonsSelector : '#mastheadButtons'/*,
-            remove: remove*/
-        });
+            enter : enter,
+            remove : remove,
+            mastheadButtonsSelector : '#mastheadButtons'
+        })
+            .extend(alertBox)
+            .extend(modal);
 
         function initialize (options) {
             options.viewOptions = options.viewOptions || [];
-            options.viewOptions =  options.viewOptions.concat(DEFAULT_VIEW_OPTIONS);
+            options.viewOptions =  options.viewOptions.concat(defaultViewOptions);
 
-            // TODO: I think I can get rid of this line.... Nowhere in this app do I call this.options or self.options.
             this.options = options;
-            Backbone.Collection.prototype.set = function (data, options) {
-                if (data && data.results) {
-                    data = data.results;
-                }
-                oldSet.call(this, data, options);
-            };
 
             RivetView.prototype.initialize.apply(this, arguments);
+        }
+
+        function _initializeHotKeys() {
+            if(_.has(this.options, 'hotkeys')) {
+                _.each(this.options.hotkeys, function (hotkey) {
+                    mousetrap.bind(hotkey.keys, this[hotkey.method].bind(this));
+                }, this);
+            }
         }
 
         function _handleAfterRender() {
             if (this.breadcrumbs && !this.privateBreadcrumbs) {
                 this.channels.views.trigger('updateMastheadBreadcrumbs', this);
             }
+            this.$el.foundation();
         }
 
-        function start () {
+        function start() {
             // Checking user permissions
             if (this.permissions && this.permissions.indexOf(this.app.user.get('role')) === -1) {
-                // replace: true is essential if we want user to be able to go back. otherwise he will got stuck in
-                // a loop when pressing "back"
-                this.app.router.navigateTrigger('forbidden',{replace: true});
+                this.app.router.navigateTrigger(constants.internalRoutes.forbidden, { replace : true }); //replace: true is essential otherwise stuck in a loop when pressing "back"
                 return;
             }
 
-/*            if(!window.startedViews){
-                window.startedViews=[];
-            }
-            window.startedViews.push({ name : this.name, cid : this.cid, parent : this.parent ? this.parent.name : 'NONE'});
-
-            console.log('STARTING:', this.name);*/
-
             return RivetView.prototype.start.apply(this, arguments)
-                .done(_handleAfterRender.bind(this));
+                .done(_handleAfterRender.bind(this), this.enter, _initializeHotKeys.bind(this));
         }
-
-        /*function remove(){
-            console.log('REMOVING:', this.name);
-            var oldView = _.findWhere(window.startedViews, { cid : this.cid });
-            window.startedViews = _.without(window.startedViews, oldView);
-            RivetView.prototype.remove.apply(this,arguments);
-        }*/
 
         function fireErrorModal(message) {
             return this.displayModal(
@@ -85,6 +75,32 @@ define(['backbone', 'masseuse', 'resources', 'underscore'],
                     msg : message
                 }
             );
+        }
+
+        function enter() {
+            if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'enter')) {
+                this.$el.velocity(this.options.transitions.enter.type, this.options.transitions.enter.options);
+            } else if (_.has(this.options, 'transitions') && this.options.transitions === 'none') {
+
+            } else {
+                this.$el.velocity(constants.defaultPageTransitions.enter.type, constants.defaultPageTransitions.enter.options);
+            }
+        }
+
+        function remove() {
+            if(_.has(this.options, 'hotkeys')) {
+                _.each(this.options.hotkeys, function (hotkey) {
+                    mousetrap.unbind(hotkey.keys);
+                }, this);
+            }
+
+            if(_.has(this.options, 'transitions') && _.has(this.options.transitions, 'exit')) {
+               this.$el.velocity(this.options.transitions.exit, {
+                   complete : RivetView.prototype.remove.bind(this, arguments)
+               });
+            } else {
+                RivetView.prototype.remove.apply(this, arguments);
+            }
         }
 
     });

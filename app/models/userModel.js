@@ -16,7 +16,7 @@ define([
                 return enabled;
             }),
             href : new ComputedProperty(['_id'], function (id) {
-                return constants.internalRoutes.user + '/' + id;
+                return constants.internalRoutes.userDetail.replace(':id', id);
             }),
             hasGoogle : new ComputedProperty(['linkedidentities'], function(identities){
                 return _.contains(identities, 'google');

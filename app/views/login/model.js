@@ -7,6 +7,7 @@ define(['grasshopperModel', 'masseuse', 'validationLibrary', 'underscore', 'reso
     return GrasshopperModel.extend({
         validate : _validate,
         defaults : {
+            oauthError : null,
             resources : resources,
             loggingIn : false,
             username : '',
@@ -14,7 +15,7 @@ define(['grasshopperModel', 'masseuse', 'validationLibrary', 'underscore', 'reso
             hideLoginForm: false,
             usernameError : new ComputedProperty(['username'], _validateUserLoginAttribute, true),
             passwordError : new ComputedProperty(['password'], _validateUserLoginAttribute, true),
-            hasError : new ComputedProperty(['usernameError', 'passwordError'], _checkForErrors)
+            hasError : new ComputedProperty(['usernameError', 'passwordError', 'oauthError'], _checkForErrors)
         }
     });
 
@@ -43,7 +44,7 @@ define(['grasshopperModel', 'masseuse', 'validationLibrary', 'underscore', 'reso
         return validationLibrary.stringHasLength(attribute) ? undefined : 'Too Short.';
     }
 
-    function _checkForErrors (usernameError, passwordError) {
-        return !!(usernameError || passwordError);
+    function _checkForErrors (usernameError, passwordError, oauthError) {
+        return !!(usernameError || passwordError || oauthError);
     }
 });

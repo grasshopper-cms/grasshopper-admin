@@ -5,7 +5,8 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
 
     return Model.extend({
         defaults : {
-            resources : resources
+            resources : resources,
+            contentTypes : null
         },
         url : constants.api.contentTypes.url,
         initialize : initialize

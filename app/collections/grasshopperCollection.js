@@ -5,14 +5,25 @@ define([
 
     'use strict';
 
-    var Model = Backbone.Collection,
+    var BaseCollection = Backbone.Collection,
+        oldSet = Backbone.Collection.prototype.set,
         LocalStorage = helpers.localStorage;
 
-    return Model.extend({
+    return BaseCollection.extend({
+        initialize : initialize,
         fetch : fetch,
         save : save,
         destroy : destroy
     });
+
+    function initialize() {
+        BaseCollection.prototype.set = function (data, options) {
+            if (data && data.results) {
+                data = data.results;
+            }
+            oldSet.call(this, data, options);
+        };
+    }
 
     function fetch (options) {
         var token = LocalStorage.get('authToken'),

@@ -57,7 +57,7 @@ module.exports = function (grunt) {
             },
             command : 'bower install'
         },
-        bundlerInstall : {
+        bundleInstall : {
             options : {
                 stdout : true,
                 stderr : true,
@@ -72,6 +72,22 @@ module.exports = function (grunt) {
                 failOnError : true
             },
             command : 'heroku config:set GRASSHOPPER_CONFIG=\'<%= ghapiConfigs %>\''
+        },
+        installAdmin : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true
+            },
+            command : 'cd deploy && npm install'
+        },
+        buildAdmin : {
+            options : {
+                stdout : true,
+                stderr : true,
+                failOnError : true
+            },
+            command : 'cd deploy && ./node_modules/.bin/grasshopper build'
         }
     });
 

@@ -34,5 +34,3 @@ define(['text!plugins/filereference/template.html', 'plugins/filereference/model
             wrapper: false
         };
     });
-
-

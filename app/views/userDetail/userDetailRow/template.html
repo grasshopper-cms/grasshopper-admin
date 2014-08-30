@@ -9,14 +9,13 @@
     <a data-rv-href="model:href">
         <i class="fa fa-edit"></i>
     </a>
-    <a data-rv-show="model:enabled" data-rv-on-click="view.toggleEnabled">
+    <a data-rv-show="model:enabled" data-rv-on-click="view.toggleEnabled | stopImmediatePropagation">
         <i class="fa fa-unlock"></i>
     </a>
-    <a data-rv-hide="model:enabled" data-rv-on-click="view.toggleEnabled">
+    <a data-rv-hide="model:enabled" data-rv-on-click="view.toggleEnabled | stopImmediatePropagation">
         <i class="fa fa-lock"></i>
     </a>
-    <a data-rv-on-click="view.deleteUser">
+    <a data-rv-on-click="view.deleteUser | stopImmediatePropagation">
         <i class="fa fa-trash-o"></i>
     </a>
 </td>
-

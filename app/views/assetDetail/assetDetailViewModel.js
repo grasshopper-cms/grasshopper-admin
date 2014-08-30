@@ -16,7 +16,8 @@ define(['grasshopperModel', 'resources', 'underscore', 'constants', 'masseuse'],
                 id : new ComputedProperty(['fileName'], function (fileName) {
                     return (fileName) ? fileName : '';
                 }),
-                progressWidth : 0
+                progressWidth : 0,
+                uploadError: false
             },
             urlRoot : _buildUrl
         });

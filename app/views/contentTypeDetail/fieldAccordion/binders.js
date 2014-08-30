@@ -6,9 +6,7 @@ define(['underscore', 'masseuse', 'plugins', 'require', 'jquery'],
         return {
             fieldform : {
                 bind: function() {},
-                unbind : function() {
-                    this.viewInstance.remove();
-                },
+                unbind : function() {},
                 routine : function(el, model) {
                     var rivets = this,
                         parentView = this.model.view,

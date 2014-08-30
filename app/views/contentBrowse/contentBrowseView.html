@@ -2,7 +2,7 @@
     <div class="large-12 columns">
         <dl class="tabs" data-tab>
             <dd class="active" id="contentTab">
-                <a data-bypass href="#panel2-1">
+                <a data-bypass href="#contentPanel">
                     <p class="title">
                         <i class="fa fa-list-alt"></i>
                         {{model:resources->content | spaceBefore}}
@@ -10,7 +10,7 @@
                 </a>
             </dd>
             <dd data-rv-hide="model:inRoot" id="filesTab">
-                <a data-bypass href="#panel2-2">
+                <a data-bypass href="#filesPanel">
                     <p class="title">
                         <i class="fa fa-paperclip"></i>
                         {{model:resources->fileIndex->files | spaceBefore}}
@@ -25,9 +25,9 @@
         </div>
 
         <div class="tabs-content">
-            <div class="content active table-wrapper" id="panel2-1">
+            <div class="content active table-wrapper" id="contentPanel">
                 <div id="table-loading-overlay">
-                    <img class="loading-overlay-image" src="{{RESOURCEREF:themes/img/loading-spinner-horizontal.gif}}">
+                    <img class="loading-overlay-image" src="themes/img/loading-spinner-horizontal.gif">
                 </div>
                 <table class="content-table">
                     <thead>
@@ -40,7 +40,7 @@
                     </thead>
                     <tbody id="contentBrowseTable">
                         <!--Nodes Come First-->
-                        <tr class="nodeDetailRow nodeOrContentDetailRow" data-rv-each-node="model:childNodes:"
+                        <tr class="nodeDetailRow clipboardTargetRow" data-rv-each-node="model:childNodes:"
                             data-rv-data-id="node.id" data-rv-new-node-detail-row="node"></tr>
 
                         <!--Then Content-->
@@ -54,15 +54,14 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr class="contentDetailRow nodeOrContentDetailRow" data-rv-each-content="model:childContent.models" data-rv-data-id="content.id"
-                            data-rv-new-content-detail-row="content"></tr>
+                        <tr class="contentDetailRow clipboardTargetRow" data-rv-each-content="model:childContent.models" data-rv-data-id="content.id" data-rv-new-content-detail-row="content"></tr>
                     </tbody>
                 </table>
 
                 <section data-rv-if="model:childContent.total | isGreaterThan 25" data-rv-new-pagination-view="model:childContent"></section>
 
             </div>
-            <div class="content" id="panel2-2" data-rv-hide="model:inRoot">
+            <div class="content" id="filesPanel" data-rv-hide="model:inRoot">
                 <div id="assetIndex">
 
                     <table class="content-table">
@@ -87,7 +86,8 @@
                                 </td>
                             </tr>
 
-                            <tr class="assetDetailRow" data-rv-new-asset-detail-row="asset" data-rv-each-asset="model:childAssets:"></tr>
+                            <tr class="assetDetailRow clipboardTargetRow" data-rv-new-asset-detail-row="asset"
+                                data-rv-each-asset="model:childAssets:" data-rv-data-id="asset.id"></tr>
 
                         </tbody>
                     </table>
@@ -148,4 +148,3 @@
         </ul>
     </section>
 </div>
-

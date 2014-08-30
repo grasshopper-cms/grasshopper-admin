@@ -1,7 +1,7 @@
 /*global define:false*/
 define(['text!views/nodeDetail/nodeDetailView.html',
     'nodeDetailViewModel'],
-    function (formTemplate, nodeDetailViewModel) {
+    function (template, nodeDetailViewModel) {
         'use strict';
 
         return {
@@ -9,7 +9,7 @@ define(['text!views/nodeDetail/nodeDetailView.html',
             ModelType : nodeDetailViewModel,
             appendTo : '#stage',
             wrapper : false,
-            template : formTemplate,
+            template : template,
             permissions : ['admin', 'reader', 'editor']
         };
     });

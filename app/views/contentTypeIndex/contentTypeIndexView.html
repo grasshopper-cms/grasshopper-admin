@@ -11,7 +11,7 @@
                 <tbody id="contentTypeIndexTable">
                     <tr data-rv-unless="model:contentTypes.length | greaterThan 0">
                         <td colspan="4" data-rv-unless="model:inRoot">
-                            {{model:resources->contentType->noContentTypes}}
+                            {{model:resources->contentType->noContentTypesCreated}}
                             <span>
                                 <a data-rv-on-click="view.newContentType">
                                     {{model:resources->node->clickToAdd}}

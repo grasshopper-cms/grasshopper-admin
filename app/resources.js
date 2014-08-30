@@ -55,6 +55,11 @@ define({
             msg: 'You successfully linked your google account.',
             hideCancel: true
         },
+        delete : {
+            warningMessage : 'Are you sure you want to delete this user?',
+            success : 'User Successfully Deleted',
+            failure : 'Failed to delete user.'
+        },
         attributeTitles : {
             name : 'USER NAME:',
             firstName : 'FIRST NAME',
@@ -90,6 +95,7 @@ define({
         addNewUser : 'Add New User',
         blocks: {
             lockUser: 'Lock this user',
+            unlockUser : 'This user is currently locked.',
             lockUserSubtext: 'Locking a user will prevent them from logging in and using the system.',
             lockUserButton: 'Lock user',
             unlockUserButton: 'Unlock user',
@@ -116,11 +122,8 @@ define({
         deletionWarning : 'Are you sure you want to delete this folder? All of its contents will also be deleted.',
         userDeletionWarning : 'Are you sure that you want to delete this user?',
         successfullyDeletedWithoutLabel : 'Successfully deleted',
-        successfullyDeletedPre : 'Item ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Item :item was successfully deleted.',
         successfullyUpdated : 'Folder was successfully updated.',
-        successfullyCreatedPre : 'Folder: ',
-        successfullyCreatedPost : ' was successfully created.',
         errorUpdated : 'Folder could not be updated.',
         errorDeleted : 'There was an issue deleting this folder: ',
         enterName : 'Please enter the name of the folder: ',
@@ -132,8 +135,7 @@ define({
     },
     contentItem : {
         deletionWarning : 'Are you sure you want to delete this content?',
-        successfullyDeletedPre : 'Content ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Content :item was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content: ',
         readonly : 'Readonly',
         labelErrorMessage : 'Label is a required field.',
@@ -157,13 +159,13 @@ define({
         deletionWarningWithoutAssociatedContent : 'Are you sure you want to delete this content type?',
         deletionWarningWithAssociatedContent : 'You have :count of content associated with this content type. ' +
             'If you confirm it will all be deleted!',
-        successfullyDeletedPre : 'Content Type ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Content Type :item was successfully deleted.',
         errorDeleted : 'There was an issue deleting this content type: ',
         serverError : 'Content Types could not be retrieved.',
         selectContentType : 'Which Content Type would you like to use?',
         contentInRoot : 'You cannot create content in the Root.',
         noContentTypes : 'This folder has no allowed content types.',
+        noContentTypesCreated: 'There are currently no content types.',
         fields : 'Fields',
         fieldType : 'Field Type',
         addNewField : 'Add New Field',
@@ -190,8 +192,7 @@ define({
     },
     asset : {
         deletionWarning : 'Are you sure you want to delete this asset?',
-        successfullyDeletedPre : 'Asset Name: ',
-        successfullyDeletedPost : ' was successfully deleted.',
+        successfullyDeleted : 'Asset Name: :asset was successfully deleted.',
         errorDeleted : 'There was an issue deleting this asset: ',
         editFileName : 'Edit File Name',
         editNameSuccess : 'File name was successfully updated.',
@@ -202,6 +203,19 @@ define({
         uploadAssetModalMsg : 'Upload an Asset.',
         emptyNode : 'This folder does not contain any files.',
         clickToAdd : 'Click to add some.'
+    },
+    clipboard:{
+        cut: 'Cut',
+        copy: 'Copy',
+        paste: 'Paste',
+        clear : 'Clear Clipboard',
+        warningPaste: 'You are about to :op :nr_items :items to the :folder folder',
+        differentContentTypesWarning: 'Clipboard contains items of different types ',
+        noOperationSpecified: 'No operation specified',
+        cannotCompleteOperation: 'Cannot complete operation',
+        itemsInClipboard: 'item in clipboard',
+        toClipboard : 'to clipboard',
+        copied : 'Copied'
     },
     contentBrowse : {
         author : 'Author',
@@ -250,7 +264,15 @@ define({
             dateFormat: 'YYYY/MM/DD h:mm a'
         },
         embeddedType : {
-            contentType : 'Content Type'
+            contentType : 'Content Type',
+            validation : {
+                content : {
+
+                },
+                setup : {
+                    nooptions : 'Missing embedded type options. Please select a content type to embed from the dropdown.'
+                }
+            }
         },
         fileReference : {
             selectedFile : 'Selected File',
@@ -281,10 +303,16 @@ define({
     },
     // General Text (reusable) - try to keep it alphabetized
     actions : 'Actions',
+    advancedSearch : 'Advanced Search',
     add : 'Add',
     addNewUser : 'Add New User',
+    addFilter : 'Add Filter',
+    allowMultiple : 'Allow Multiple',
+    showMultipleSettings : 'Show Multiple Settings',
+    allowMultipleSettings : 'Allow Multiple Settings',
     cancel : 'Cancel',
     close : 'Close',
+    comparator : 'Comparator',
     confirm : 'Confirm',
     content : 'Content',
     contentTypes : 'Content Types',
@@ -301,6 +329,7 @@ define({
     emptySearchResult : 'Ooops, try one more time.',
     falseText : 'False',
     from : 'From',
+    filters : 'Filters',
     home : 'Home',
     helpText : 'Help Text',
     id : 'ID',
@@ -317,13 +346,12 @@ define({
     menu : 'Menu',
     minimum : 'Minimum',
     min : 'Min',
-    allowMultiple : 'Allow Multiple',
-    allowMultipleSettings : 'Allow Multiple Settings',
     multiple : 'Multiple',
     name : 'Name',
     next : 'Next',
     newWord : 'New',
     no : 'No',
+    nodes : 'Nodes',
     ok : 'Ok',
     options : 'Options',
     open : 'Open',
@@ -332,6 +360,7 @@ define({
     profile : 'Profile',
     remind : 'Remind',
     remove : 'Remove',
+    reset : 'Reset',
     retry : 'Retry',
     required : 'Required',
     role : 'Role',
@@ -340,6 +369,7 @@ define({
     saveAndClose : 'Save and Close',
     selectOption : 'Please Select',
     select : 'Select',
+    selectAll : 'Select All',
     settings : 'Settings',
     siteName : 'Grasshopper',
     status : 'Status',
@@ -360,5 +390,6 @@ define({
     validation : 'Validation',
     warning : 'Warning!',
     welcomeBack : 'Welcome Back',
+    where : 'Where',
     yes : 'Yes'
 });

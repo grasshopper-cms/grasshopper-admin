@@ -22,14 +22,14 @@ define(['constants', 'paginationWorker', 'jquery', 'underscore'],
         contentSearchValue = $.trim(this.model.get('contentSearchValue'));
 
         if (isFirstQuery) {
-            model.searchQuery(contentSearchValue);
+            return model.query(contentSearchValue);
         } else {
             _toggleSearchSpinner.call(this);
-            model.searchQuery(contentSearchValue)
-                .done(
-                    isNotUpdateUrl && paginationWorker.setUrl.bind(this, model.limit, model.skip, contentSearchValue),
-                    _toggleSearchSpinner.bind(this, true)
-                );
+            return model.searchQuery(contentSearchValue, function(){
+                 isNotUpdateUrl && paginationWorker.setUrl.call(this, model.limit, model.skip, contentSearchValue);
+                _toggleSearchSpinner.call(this, true);
+            }.bind(this));
+
         }
     }
 

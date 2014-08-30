@@ -108,14 +108,27 @@ module.exports = function (grunt) {
                 }
             ]
         },
-        html : {
+        appHtml : {
             files : [
                 {
                     expand : true,
                     cwd : 'app/',
                     src : [
                         '**/*.html',
+                        '!index.html',
                         '!vendor/**/*.html'
+                    ],
+                    dest : '<%= buildDirectory %>'
+                }
+            ]
+        },
+        indexHtml : {
+            files : [
+                {
+                    expand : true,
+                    cwd : 'app/',
+                    src : [
+                        'index.html',
                     ],
                     dest : '<%= buildDirectory %>'
                 }
@@ -180,7 +193,7 @@ module.exports = function (grunt) {
             files : [
                 {
                     expand : true,
-                    cwd : 'server/',
+                    cwd : 'deploy/',
                     src : [
                         '**',
                         '!node_modules/**'

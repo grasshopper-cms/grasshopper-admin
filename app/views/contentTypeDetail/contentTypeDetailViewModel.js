@@ -1,5 +1,5 @@
-define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'underscore'],
-    function (GrasshopperModel, resources, constants, masseuse, plugins, _) {
+define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'underscore', 'mixins/validatePlugins'],
+    function (GrasshopperModel, resources, constants, masseuse, plugins, _, validatePlugins) {
     'use strict';
 
     var ComputedProperty = masseuse.ComputedProperty;
@@ -27,8 +27,7 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'un
     }
 
     function validate(attrs) {
-        var err;
-
+        var err, validations;
 
         if(_.isEmpty(attrs.label)) {
             err = resources.contentType.validation.mustHaveLabel;
@@ -48,6 +47,10 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'plugins', 'un
             });
         }
 
+        if(!err) {
+            validations = _.compact(validatePlugins.validateOnContentTypeSave());
+            err = validations.length ?  validations : false;
+        }
 
         if(err) {
             return err;

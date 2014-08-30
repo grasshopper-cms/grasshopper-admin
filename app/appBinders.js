@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'backbone', 'pluginWrapperViewCollection'],
+    'pluginWrapperView', 'backbone', 'pluginWrapperViewCollection', 'resources'],
     function ($, _, masseuse,
-              PluginWrapperView, Backbone, PluginWrapperViewCollection) {
+              PluginWrapperView, Backbone, PluginWrapperViewCollection, resources) {
 
         'use strict';
 
@@ -69,14 +69,60 @@ define(['jquery', 'underscore', 'masseuse',
                 } else {
                     $el.html($el.attr('oldText'));
                 }
+            },
+            'select2' : function(el) {
+                var $el = $(el);
+
+                $el.select2(
+                    {
+                        width : '100%'
+                    });
+            },
+            'multiple-select' : function(el, collection) {
+                var $el = $(el);
+
+                if(_.has($el, 'multipleSelect')) {
+                    $el.multipleSelect('refresh');
+                } else {
+                    $el.multipleSelect({
+                        selectAlltext : resources.selectAll,
+                        filter : $el.attr('filter')
+                    });
+
+                    $el.off('change').on('change', function() {
+                        collection.trigger('selection', _.map($el.val(), function(value) { return { _id : value }; }));
+                    });
+                }
+            },
+            'velocity-show' : function(el, trigger) { // When trigger is true, show
+                _velocityShowHide(el, trigger);
+            },
+            'velocity-hide' : function(el, trigger) { // When trigger is true, hide
+                _velocityShowHide(el, !trigger);
             }
         };
+
+        function _velocityShowHide(el, show) {
+            var $el = $(el);
+
+            if(show) {
+                $el.velocity(
+                    {
+                        opacity : 1
+                    },
+                    {
+                        display : ''
+                    });
+            } else {
+                $el.hide();
+            }
+        }
 
         function _callback(el, evt) {
             // listen for the enter key or Blur to save to the model.
             if(evt.keyCode === 13 || evt.type === 'blur') {
                 this.view.adapters[':'].publish(
-                    this.model,this.keypath.substring(this.keypath.indexOf(':')+1), el.textContent);
+                    this.model, this.keypath.substring(this.keypath.indexOf(':')+1), el.textContent);
             }
         }
     });

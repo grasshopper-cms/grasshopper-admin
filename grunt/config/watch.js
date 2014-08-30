@@ -25,16 +25,30 @@ module.exports = function (grunt) {
                 'autoprefixer:no_dest'
             ]
         },
-        html : {
+        appHtml : {
             options : {
                 livereload : true
             },
             files : [
                 'app/**/*.html',
+                '!app/index.html',
                 '!app/vendor/**/*.html'
             ],
             tasks : [
-                'copy:html'
+                'copy:appHtml'
+            ]
+        },
+        indexHtml : {
+            options : {
+                livereload : true
+            },
+            files : [
+                'app/index.html',
+            ],
+            tasks : [
+                'copy:indexHtml',
+                'replace:requirejs',
+                'addBase',
             ]
         },
         rootJS : {

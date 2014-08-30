@@ -1,12 +1,12 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'underscore', 'jquery',
+define(['pluginBaseView', 'underscore', 'jquery',
     'plugins/richtext/ckeditorConfig', 'require', 'mixins/itemSelectModal'],
-    function (GrasshopperBaseView, _, $,
+    function (PluginBaseView, _, $,
               ckeditorConfig, require, itemSelectModal) {
 
         'use strict';
 
-        return GrasshopperBaseView.extend({
+        return PluginBaseView.extend({
             afterRender : afterRender,
             remove : remove,
             sortStart : sortStart,
@@ -74,7 +74,7 @@ define(['grasshopperBaseView', 'underscore', 'jquery',
                 this.ckeditor.destroy();
             }
 
-            GrasshopperBaseView.prototype.remove.apply(this, arguments);
+            PluginBaseView.prototype.remove.apply(this, arguments);
         }
 
         function _toggleLoadingSpinner() {
