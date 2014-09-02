@@ -107,7 +107,7 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
         }
 
         function setupChangeListeners() {
-            var throttledQuery = _.throttle(this.query, constants.contentSearchThrottle);
+            var throttledQuery = _.throttle(this.query, constants.contentSearchThrottle, { trailing : false });
 
             this.listenTo(this.get('inTypesCollection'), 'add remove reset', throttledQuery);
             this.listenTo(this.get('inNodesCollection'), 'add remove reset', throttledQuery);

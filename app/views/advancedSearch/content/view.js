@@ -29,9 +29,9 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'const
 
             if(this.model.get('queryOptions')) {
                 this.buildQueryFromQueryOptions();
+            } else {
+                this.model.query();
             }
-
-            this.model.query();
         }
 
         function buildQueryFromQueryOptions() {
