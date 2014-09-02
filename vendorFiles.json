@@ -43,5 +43,7 @@
     "contextjs" : "vendor/contextjs/context.js",
     "velocity" : "vendor/velocity/jquery.velocity.js",
     "mousetrap" : "vendor/mousetrap/mousetrap.js",
-    "multipleSelect" : "vendor/multiple-select/jquery.multiple.select.js"
+    "multipleSelect" : "vendor/multiple-select/jquery.multiple.select.js",
+    "platform" : "vendor/platform/**",
+    "polymer" : "vendor/polymer/**"
 }

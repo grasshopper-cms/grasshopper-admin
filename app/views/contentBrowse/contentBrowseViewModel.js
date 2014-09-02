@@ -9,6 +9,7 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
         initialize : initialize,
         idAttribute : 'nodeId',
         defaults : {
+            checked : false,
             resources : resources,
             constants : constants,
             childNodes : null,
