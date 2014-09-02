@@ -18,7 +18,7 @@
     "contextjs": "altmind/Context.js",
     "velocity": "TheFuzzball/velocity#892cd6132d679c558827e6b7e7a00b838fccafe6",
     "mousetrap": "1.4.6",
-    "multiple-select": "~1.1.0"
+    "multiple-select": "1.1.0"
   },
   "devDependencies": {
     "mocha": "1.12.1",
