@@ -44,6 +44,10 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'const
             if(!_.isEmpty(queryOptions.nodes)) {
                 this.$('#selectNodes').multipleSelect('setSelects', queryOptions.nodes);
             }
+
+            if(!_.isEmpty(queryOptions.filters)) {
+                this.model.get('filtersCollection').reset(queryOptions.filters);
+            }
         }
 
         function addFilterToFiltersCollection() {
