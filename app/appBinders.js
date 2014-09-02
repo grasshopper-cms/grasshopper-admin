@@ -86,10 +86,9 @@ define(['jquery', 'underscore', 'masseuse',
                 } else {
                     $el.multipleSelect({
                         selectAlltext : resources.selectAll,
-                        filter : $el.attr('filter')
-                    });
-
-                    $el.off('change').on('change', function() {
+                        filter : $el.attr('filter'),
+                        width : '100%'
+                    }).change(function() {
                         collection.trigger('selection', _.map($el.val(), function(value) { return { _id : value }; }));
                     });
                 }
