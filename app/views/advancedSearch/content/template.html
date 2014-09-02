@@ -22,12 +22,14 @@
             </select>
         </div>
 
-        <div class="large-6 small-12 columns">
+        <div class="newFilterSection large-6 small-12 columns">
 
             {{model:resources->filters}}
+
             <a href="#" id="addNewFilterButton" data-bypass data-dropdown="filterCreator">
                 <i class="fa fa-plus"></i>
             </a>
+
             <div id="filterCreator" data-dropdown-content class="f-dropdown large content">
                 <div class="row">
                     <div class="small-3 columns">
@@ -82,9 +84,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <section class="activeFiltersSection">
