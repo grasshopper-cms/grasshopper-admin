@@ -1,4 +1,4 @@
-<div id="advancedContentSearch" class="small-12 columns panel">
+<div id="advancedContentSearch" class="small-12 columns">
 
     <div class="row">
 
@@ -101,34 +101,34 @@
 
     </section>
 
-    <hr>
+    <section class="resultsSection">
 
-    <h5>Results:</h5>
+        <div class="small-12 columns text-center" data-rv-velocity-show="model:loadingResults">
+            <span>Loading...</span>
+            <i class="fa fa-refresh fa-spin"></i>
+        </div>
 
-    <div class="small-12 columns text-center" data-rv-velocity-show="model:loadingResults">
-        <span>Loading...</span>
-        <i class="fa fa-refresh fa-spin"></i>
-    </div>
+        <table data-rv-velocity-hide="model:loadingResults">
+            <thead>
+                <tr>
+                    <th>{{model:resources->label}}</th>
+                    <th>{{model:resources->type}}</th>
+                    <th>{{model:resources->contentBrowse->modified}}</th>
+                    <th style="text-align: center; width: 10%;">{{model:resources->actions}}</th>
+                </tr>
+            </thead>
 
-    <table data-rv-velocity-hide="model:loadingResults">
-        <thead>
-            <tr>
-                <th>{{model:resources->label}}</th>
-                <th>{{model:resources->type}}</th>
-                <th>{{model:resources->contentBrowse->modified}}</th>
-                <th style="text-align: center; width: 10%;">{{model:resources->actions}}</th>
-            </tr>
-        </thead>
+            <tbody>
+                <tr data-rv-unless="model:resultsCollection.length | greaterThan 0">
+                    <td colspan="4">
+                        No Results
+                    </td>
+                </tr>
 
-        <tbody>
-            <tr data-rv-unless="model:resultsCollection.length | greaterThan 0">
-                <td colspan="4">
-                    No Results
-                </td>
-            </tr>
+                <tr class="contentDetailRow" data-rv-each-content="model:resultsCollection.models" data-rv-data-id="content.id" data-rv-new-content-detail-row="content"></tr>
+            </tbody>
+        </table>
 
-            <tr class="contentDetailRow" data-rv-each-content="model:resultsCollection.models" data-rv-data-id="content.id" data-rv-new-content-detail-row="content"></tr>
-        </tbody>
-    </table>
+    </section>
 
 </div>
