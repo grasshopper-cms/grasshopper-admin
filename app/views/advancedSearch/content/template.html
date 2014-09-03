@@ -73,7 +73,7 @@
                         <label for="newFilterValue" class="right inline">{{model:resources->value}}</label>
                     </div>
                     <div class="small-9 columns">
-                        <input type="text" id="newFilterValue" data-rv-placeholder="model:resources->value" data-rv-value="model:newFilterModel.attributes.value">
+                        <input type="text" id="newFilterValue" data-rv-placeholder="model:resources->value" data-rv-on-enter-key-press="addFilterToFiltersCollection" data-rv-value="model:newFilterModel.attributes.value">
                     </div>
                 </div>
 
