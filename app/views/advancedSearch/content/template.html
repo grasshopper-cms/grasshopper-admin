@@ -37,10 +37,10 @@
                     </div>
                     <div class="small-9 columns">
 
-                        <select id="newFilterKeys" data-rv-data-placeholder="model:resources->key" data-rv-value="model:newFilterModel.attributes.key" data-rv-select2>
+                        <select id="newFilterKeys" data-rv-data-placeholder="model:resources->key" data-rv-value="model:newFilterModel.attributes.key" data-rv-select2="model:filteredContentTypeCollection">
                             <option></option>
 
-                            <optgroup data-rv-each-contenttype="model:contentTypeCollection:" data-rv-label="contenttype:label">
+                            <optgroup data-rv-each-contenttype="model:filteredContentTypeCollection:" data-rv-label="contenttype:label">
                                 <option data-rv-each-field="contenttype:fields" data-rv-value="field._id | prepend fields.">
                                     {{field.label}}
                                 </option>
@@ -73,7 +73,7 @@
                         <label for="newFilterValue" class="right inline">{{model:resources->value}}</label>
                     </div>
                     <div class="small-9 columns">
-                        <input type="text" id="newFilterValue" data-rv-placeholder="model:resources->value" data-rv-on-enter-key-press="addFilterToFiltersCollection" data-rv-value="model:newFilterModel.attributes.value">
+                        <input type="text" id="newFilterValue" data-rv-placeholder="model:resources->value" data-rv-on-enter-key-press="addFilterToFiltersCollection" data-rv-value="model:newFilterModel->value">
                     </div>
                 </div>
 
@@ -103,12 +103,12 @@
 
     <section class="resultsSection">
 
-        <div class="small-12 columns text-center" data-rv-velocity-show="model:loadingResults">
+        <div class="small-12 columns text-center" data-rv-show="model:loadingResults">
             <span>Loading...</span>
             <i class="fa fa-refresh fa-spin"></i>
         </div>
 
-        <table data-rv-velocity-hide="model:loadingResults">
+        <table data-rv-hide="model:loadingResults">
             <thead>
                 <tr>
                     <th>{{model:resources->label}}</th>

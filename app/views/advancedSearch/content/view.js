@@ -37,16 +37,16 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'const
         function buildQueryFromQueryOptions() {
             var queryOptions = this.model.get('queryOptions');
 
+            if(!_.isEmpty(queryOptions.filters)) {
+                this.model.get('filtersCollection').reset(queryOptions.filters);
+            }
+
             if(!_.isEmpty(queryOptions.types)) {
                 this.$('#selectContentTypes').multipleSelect('setSelects', queryOptions.types);
             }
 
             if(!_.isEmpty(queryOptions.nodes)) {
                 this.$('#selectNodes').multipleSelect('setSelects', queryOptions.nodes);
-            }
-
-            if(!_.isEmpty(queryOptions.filters)) {
-                this.model.get('filtersCollection').reset(queryOptions.filters);
             }
         }
 
