@@ -52,7 +52,7 @@ define(['jquery', 'underscore', 'masseuse',
                     $el.html($el.attr('oldText'));
                 }
             },
-            'select2' : function(el) {
+            'select2' : function(el) { // Bind the collection if you want this sucker to refresh the select2 on events.
                 var $el = $(el);
 
                 $el.select2(
