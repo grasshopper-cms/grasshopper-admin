@@ -23,7 +23,8 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
             deleteNode : deleteNode,
             getChildContent : getChildContent,
             searchContent : searchContent,
-            hasCreateFolderPermission: hasCreateFolderPermission
+            hasCreateFolderPermission: hasCreateFolderPermission,
+            remove : remove
         })
         .extend(clipboardContextMenu)
         .extend(clipboardEvents);
@@ -126,6 +127,12 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
 
         function searchContent(e, context, isFirstQuery) {
             return searchWorker.searchContent.call(this, e, context, 'childContent', true, isFirstQuery);
+        }
+
+        function remove() {
+            this.removeClipboardMenu();
+            this.removeClipboardEvents();
+            GrasshopperBaseView.prototype.remove.call(this);
         }
 
     });
