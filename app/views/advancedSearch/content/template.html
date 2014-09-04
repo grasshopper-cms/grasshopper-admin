@@ -91,7 +91,7 @@
 
         <div class="panel small-3 columns left" data-rv-each-filter="model:filtersCollection:">
             <span>
-                {{model:resources->where | spaceAfter}} {{filter:key}} {{filter:cmp}} {{filter:value}}
+                {{model:resources->where | spaceAfter}} "{{filter:key}}" {{filter:cmp}} "{{filter:value}}"
             </span>
 
             <a data-bypass data-rv-on-click="view.removeFilterFromFiltersCollection">
