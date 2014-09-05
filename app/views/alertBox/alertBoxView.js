@@ -20,8 +20,10 @@ define(['masseuse', 'alertBoxViewConfig'], function (masseuse, alertBoxViewConfi
     function _handleTemporaryAlertBox() {
         var self = this;
         setTimeout(function() {
-            self.closeAlertBox();
+            self.$el && self.$el.fadeOut('400', self.remove.bind(self));
         }, 5000);
+
+
     }
 
     function hideAlertsOnNavigate() {
