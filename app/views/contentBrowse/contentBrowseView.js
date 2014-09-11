@@ -26,8 +26,8 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
             hasCreateFolderPermission: hasCreateFolderPermission,
             remove : remove
         })
-        .extend(clipboardContextMenu)
-        .extend(clipboardEvents);
+            .extend(clipboardContextMenu)
+            .extend(clipboardEvents);
 
         function beforeRender ($deferred) {
             $.when(

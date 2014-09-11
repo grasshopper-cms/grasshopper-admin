@@ -52,7 +52,7 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
         if(isNew) {
             _addIsNewScope.call(this, $deferred, 'new');
         } else {
-            this.breadcrumbs.push({
+            this.breadcrumbs.crumbs.push({
                 text: _.escape(this.model.get('fullname')),
                 href: this.model.get('href')
             });
@@ -61,7 +61,7 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
     }
 
     function _addIsNewScope($deferred, replaced) {
-        this.breadcrumbs.push({
+        this.breadcrumbs.crumbs.push({
             text: resources.newWord,
             href: constants.internalRoutes[this.name].replace(':id', replaced)
         });
@@ -69,7 +69,7 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
     }
 
     function _addCurrentScope($deferred) {
-        this.breadcrumbs.push({
+        this.breadcrumbs.crumbs.push({
             text: _.escape(this.model.get('label')),
             href: constants.internalRoutes[this.name].replace(':id', this.model.get('_id'))
         });
@@ -86,7 +86,7 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
             .done(function(nodeDetail) {
 
                 if(!_.isEmpty(nodeDetail)) {
-                    self.breadcrumbs.splice(self.breadcrumbs.length - depthFromEnd, 0 ,{
+                    self.breadcrumbs.crumbs.splice(self.breadcrumbs.crumbs.length - depthFromEnd, 0 ,{
                         text: _.escape(nodeDetail.label),
                         href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id),
                         nodeId : nodeDetail._id

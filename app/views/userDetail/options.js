@@ -13,16 +13,19 @@ define(['text!views/userDetail/template.html', 'userDetail/model',
             appendTo : '#stage',
             wrapper : false,
             template : template,
-            breadcrumbs : [
-                {
-                    text : resources.home,
-                    href : constants.internalRoutes.content
-                },
-                {
-                    text : resources.users,
-                    href : constants.internalRoutes.users
-                }
-            ],
+            breadcrumbs : {
+                icon: 'fa-user',
+                crumbs: [
+                    {
+                        text : resources.home,
+                        href : constants.internalRoutes.content
+                    },
+                    {
+                        text : resources.users,
+                        href : constants.internalRoutes.users
+                    }
+                ]
+            },
             rivetsConfig : {
                 binders : [appBinders]
             }

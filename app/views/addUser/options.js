@@ -15,16 +15,19 @@ define(['text!views/addUser/template.html', 'addUser/model', 'resources', 'const
         events : {},
         listeners : [],
         mastheadButtons : [],
-        breadcrumbs : [
-            {
-                text : resources.home,
-                href : constants.internalRoutes.content
-            },
-            {
-                text : resources.users,
-                href : constants.internalRoutes.users
-            }
-        ],
+        breadcrumbs : {
+            icon: 'fa-puzzle-piece',
+            crumbs: [
+                {
+                    text : resources.home,
+                    href : constants.internalRoutes.content
+                },
+                {
+                    text : resources.users,
+                    href : constants.internalRoutes.users
+                }
+            ]
+        },
         permissions : ['admin'],
         rivetsConfig : {
             binders : [appBinders]

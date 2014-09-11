@@ -14,16 +14,19 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
             template : template,
             listeners : [],
             events : {},
-            breadcrumbs : [
-                {
-                    text : resources.home,
-                    href : constants.internalRoutes.content
-                },
-                {
-                    text : resources.contentTypes,
-                    href : constants.internalRoutes.contentTypes
-                }
-            ],
+            breadcrumbs : {
+                icon: 'fa-cogs',
+                crumbs: [
+                    {
+                        text : resources.home,
+                        href : constants.internalRoutes.content
+                    },
+                    {
+                        text : resources.contentTypes,
+                        href : constants.internalRoutes.contentTypes
+                    }
+                ]
+            },
             permissions : ['admin', 'editor'],
             rivetsConfig : {
                 binders : [appBinders],

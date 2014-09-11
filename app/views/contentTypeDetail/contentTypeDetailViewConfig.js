@@ -18,16 +18,19 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             appendTo : '#stage',
             wrapper : false,
             template : formTemplate,
-            breadcrumbs : [
-                {
-                    text : resources.home,
-                    href : constants.internalRoutes.content
-                },
-                {
-                    text : resources.contentTypes,
-                    href : constants.internalRoutes.contentTypes
-                }
-            ],
+            breadcrumbs : {
+                icon: 'fa-cog',
+                crumbs: [
+                    {
+                        text : resources.home,
+                        href : constants.internalRoutes.content
+                    },
+                    {
+                        text : resources.contentTypes,
+                        href : constants.internalRoutes.contentTypes
+                    }
+                ]
+            },
             permissions : ['admin', 'editor', 'reader'],
             rivetsConfig : {
                 formatters : [formatters, contentTypeDetailFormatters],

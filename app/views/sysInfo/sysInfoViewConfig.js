@@ -13,16 +13,19 @@ define(['text!views/sysInfo/sysInfoView.html', 'resources', 'constants'],
             template: template,
             events: {},
             listeners: [],
-            breadcrumbs: [
-                {
-                    text: resources.home,
-                    href: constants.internalRoutes.content
-                },
-                {
-                    text: resources.sysInfo,
-                    href: constants.internalRoutes.sysInfo
-                }
-            ]/*,
+            breadcrumbs: {
+                icon: 'fa-info',
+                crumbs: [
+                    {
+                        text: resources.home,
+                        href: constants.internalRoutes.content
+                    },
+                    {
+                        text: resources.sysInfo,
+                        href: constants.internalRoutes.sysInfo
+                    }
+                ]
+            }/*,
             permissions: ['admin']*/
         };
     });
