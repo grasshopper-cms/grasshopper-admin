@@ -57,7 +57,11 @@ define(['jquery', 'underscore', 'masseuse',
 
                 $el.select2(
                     {
-                        width : '100%'
+                        width : '100%',
+                        matcher : function(term, text, opt) {
+                            term = term.toUpperCase();
+                            return text.toUpperCase().indexOf(term) >= 0 || opt.parent('optgroup').attr('label').toUpperCase().indexOf(term) >= 0;
+                        }
                     });
             },
             'multiple-select' : function(el, collection) {
