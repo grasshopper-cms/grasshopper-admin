@@ -13,8 +13,23 @@
     }
 
     #filterCreator {
-        padding: 1.5rem;
-        padding-bottom: 1rem;
+        padding :  1.5rem;
+
+        #s2id_newFilterKeys {
+
+        }
+
+        #s2id_newFilterComparator {
+            margin-top: 1.5rem;
+        }
+
+        #newFilterValue {
+            margin-top: 1.5rem;
+        }
+
+        .newFilterButtons {
+            margin-top: 1.5rem;
+        }
     }
 
 }
