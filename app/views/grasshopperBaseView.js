@@ -18,7 +18,8 @@ define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constan
                 'wrapper',
                 'appendTo',
                 'collection',
-                'browserTitle'
+                'browserTitle',
+                'headerTab'
             ];
 
         return RivetView.extend({
@@ -62,6 +63,8 @@ define(['backbone', 'masseuse', 'resources', 'underscore', 'mousetrap', 'constan
                 this.app.router.navigateTrigger(constants.internalRoutes.forbidden, { replace : true }); //replace: true is essential otherwise stuck in a loop when pressing "back"
                 return;
             }
+
+            this.channels.views.trigger('checkHeaderTab', this);
 
             return RivetView.prototype.start.apply(this, arguments)
                 .done(_handleAfterRender.bind(this), this.enter, _initializeHotKeys.bind(this));

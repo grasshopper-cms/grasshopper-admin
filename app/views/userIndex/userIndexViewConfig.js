@@ -10,6 +10,7 @@ define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resour
             modelData: {},
             ModelType: UserIndexViewModel,
             browserTitle : 'Users',
+            headerTab : 'users',
             appendTo: '#stage',
             wrapper: false,
             template: template,

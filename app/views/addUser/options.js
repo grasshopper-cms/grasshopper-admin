@@ -7,6 +7,7 @@ define(['text!views/addUser/template.html', 'addUser/model', 'resources', 'const
         name : 'addUser',
         ModelType : Model,
         browserTitle : 'Add New User',
+        headerTab : 'users',
         modelData : {},
         appendTo : '#stage',
         wrapper : false,
