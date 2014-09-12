@@ -16,10 +16,7 @@ module.exports = function (grunt) {
                 prefixComma : true,
                 pathsJson : 'app/paths.json',
                 mainTemplate : 'app/main.js',
-                main : '<%= buildDirectory %>/main.js',
-                data : {
-                    base : grunt.config.get('base')
-                }
+                main : '<%= buildDirectory %>/main.js'
             }
         },
         tests : {
