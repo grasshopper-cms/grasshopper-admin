@@ -5,7 +5,8 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers', 'resources'],
         var joiner = helpers.text.join;
 
         return {
-            setupClipboardEvents: setupClipboardEvents
+            setupClipboardEvents: setupClipboardEvents,
+            removeClipboardEvents: removeClipboardEvents
         };
 
         function setupClipboardEvents() {
@@ -14,6 +15,12 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers', 'resources'],
             this.$el.on('clipboard:paste', '.clipboardTargetRow', _handlePasteEvent.bind(this));
             this.$el.on('clipboard:paste', '#contentBrowseTable', _handlePasteEvent.bind(this));
             this.$el.on('clipboard:paste', '#assetIndex', _handlePasteEvent.bind(this));
+        }
+
+        function removeClipboardEvents() {
+            this.$el.off('clipboard:cut');
+            this.$el.off('clipboard:copy');
+            this.$el.off('clipboard:paste');
         }
 
         function _handleCutEvent(e) {
@@ -58,9 +65,9 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers', 'resources'],
             };
 
             this.displayTemporaryAlertBox({
-                header : resources.success,
-                style : 'success',
-                msg : type == 'copy' ? joiner(resources.clipboard.copied, returnObject.name, resources.clipboard.toClipboard) : joiner(resources.clipboard.cut, returnObject.name, resources.clipboard.toClipboard)
+                header: resources.success,
+                style: 'success',
+                msg: type == 'copy' ? joiner(resources.clipboard.copied, returnObject.name, resources.clipboard.toClipboard) : joiner(resources.clipboard.cut, returnObject.name, resources.clipboard.toClipboard)
             });
 
             return returnObject;
@@ -71,10 +78,10 @@ define(['jquery', 'underscore', 'clipboardWorker', 'helpers', 'resources'],
                 this.model.get('childNodes').fetch(),
                 this.getChildContent(),
                 this.addAssetIndexView())
-            .done(function(){
-                clipboardWorker.hasPasteItem = false;
-                clipboardWorker.trigger('pasteDone');
-            });
+                .done(function() {
+                    clipboardWorker.hasPasteItem = false;
+                    clipboardWorker.trigger('pasteDone');
+                });
 
         }
 

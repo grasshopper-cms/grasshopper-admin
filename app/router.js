@@ -132,7 +132,6 @@ define([
                 var fragment = Backbone.history.getFragment();
                 if(fragment !== _.last(self.breadcrumb)) {
                     self.breadcrumb.push(fragment);
-                    self.headerView.checkHeaderTab(fragment);
                 }
             });
 
@@ -402,7 +401,7 @@ define([
             addAssetsView.start();
         }
 
-        function displayAdvancedSearch(searchType, queryOptions) {            
+        function displayAdvancedSearch(searchType, queryOptions) {
             this.loadMainContent(AdvancedSearchView, {
                 modelData : {
                     searchType : searchType ? searchType : 'content',

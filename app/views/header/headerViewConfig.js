@@ -11,7 +11,9 @@ define(['text!views/header/headerView.html', 'headerViewModel', 'formatters'],
             wrapper : false,
             template : template,
             events : {},
-            listeners : [],
+            listeners : [
+                ['channels.views', 'checkHeaderTab', 'checkHeaderTab']
+            ],
             rivetsConfig: {
                 formatters : [formatters]
             }

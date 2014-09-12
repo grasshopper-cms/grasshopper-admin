@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],  function (GrasshopperBaseView, headerViewConfig, $, constants) {
+define(['grasshopperBaseView', 'headerViewConfig', 'constants', 'underscore'],  function (GrasshopperBaseView, headerViewConfig, constants, _) {
 
     'use strict';
 
@@ -11,39 +11,36 @@ define(['grasshopperBaseView', 'headerViewConfig', 'jquery', 'constants'],  func
     });
 
     function toggleNavigation() {
-        $('#main-nav').slideToggle('fast');
+        this.$el.find('#main-nav').slideToggle('fast');
     }
 
-    function checkHeaderTab(breadcrumb) {
-        var currentTab = '/' + breadcrumb.split('/')[0];
-
-        switch (currentTab) {
-            case constants.internalRoutes.advancedSearch:
-                this.setActive('#advancedSearch');
-                break;
-            case constants.internalRoutes.user:
-            case constants.internalRoutes.users:
-            case constants.internalRoutes.addUser:
-                this.setActive('#users');
-                break;
-            case constants.internalRoutes.items:
-            case constants.internalRoutes.item:
-                this.setActive('#items');
-                break;
-            case constants.internalRoutes.contentTypes:
-                this.setActive('#contentTypes');
-                break;
-            case constants.internalRoutes.sysInfo:
-                this.setActive('#sysInfo');
-                break;
-            default:
-                this.setActive('#items');
+    function checkHeaderTab(view) {
+        if(_.has(view, 'headerTab')) {
+            switch (view.headerTab) {
+                case 'advancedSearch':
+                    this.setActive('#advancedSearch');
+                    break;
+                case 'users':
+                    this.setActive('#users');
+                    break;
+                case 'content':
+                    this.setActive('#items');
+                    break;
+                case 'contentTypes':
+                    this.setActive('#contentTypes');
+                    break;
+                case 'sysInfo':
+                    this.setActive('#sysInfo');
+                    break;
+                default:
+                    this.setActive('#items');
+            }
         }
     }
 
     function setActive(el) {
-        $('.nav-item-link').removeClass('active');
-        $(el).addClass('active');
+        this.$el.find('.nav-item-link').removeClass('active');
+        this.$el.find(el).addClass('active');
     }
 
 });

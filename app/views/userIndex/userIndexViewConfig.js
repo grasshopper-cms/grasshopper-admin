@@ -10,6 +10,7 @@ define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resour
             modelData: {},
             ModelType: UserIndexViewModel,
             browserTitle : 'Users',
+            headerTab : 'users',
             appendTo: '#stage',
             wrapper: false,
             template: template,
@@ -17,16 +18,19 @@ define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resour
                 'change #limitDropdown': 'changeLimit'
             },
             listeners: [],
-            breadcrumbs: [
-                {
-                    text : resources.home,
-                    href : constants.internalRoutes.content
-                },
-                {
-                    text: resources.users,
-                    href: constants.internalRoutes.users
-                }
-            ],
+            breadcrumbs: {
+                icon: 'fa-users',
+                crumbs: [
+                    {
+                        text : resources.home,
+                        href : constants.internalRoutes.content
+                    },
+                    {
+                        text: resources.users,
+                        href: constants.internalRoutes.users
+                    }
+                ]
+            },
             rivetsConfig: {
                 instaUpdate: true,
                 binders : [appBinders],

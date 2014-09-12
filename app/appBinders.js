@@ -29,24 +29,6 @@ define(['jquery', 'underscore', 'masseuse',
                 },
                 publish : true
             },
-            editable : {
-                routine: function(el, model) {
-                    this.view.binders.text.call(this, el, model);
-                },
-                bind : function(el) {
-                    var $el = $(el);
-                    if(!$el.attr('contenteditable')) {
-                        $el.attr('contenteditable', true);
-                    }
-
-                    el.addEventListener('keypress', _callback.bind(this, el), false);
-                    el.addEventListener('blur', _callback.bind(this, el), false);
-                },
-                unbind: function(el) {
-                    el.removeEventListener('keypress', _callback.bind(this, el), false);
-                    el.removeEventListener('blur', _callback.bind(this, el), false);
-                }
-            },
             'move-to' : function(el, selector) {
                 var $selector = $(selector);
                 $selector.append($(el).contents());
@@ -70,12 +52,16 @@ define(['jquery', 'underscore', 'masseuse',
                     $el.html($el.attr('oldText'));
                 }
             },
-            'select2' : function(el) {
+            'select2' : function(el) { // Bind the collection if you want this sucker to refresh the select2 on events.
                 var $el = $(el);
 
                 $el.select2(
                     {
-                        width : '100%'
+                        width : '100%',
+                        matcher : function(term, text, opt) {
+                            term = term.toUpperCase();
+                            return text.toUpperCase().indexOf(term) >= 0 || opt.parent('optgroup').attr('label').toUpperCase().indexOf(term) >= 0;
+                        }
                     });
             },
             'multiple-select' : function(el, collection) {
@@ -86,10 +72,11 @@ define(['jquery', 'underscore', 'masseuse',
                 } else {
                     $el.multipleSelect({
                         selectAlltext : resources.selectAll,
-                        filter : $el.attr('filter')
-                    });
-
-                    $el.off('change').on('change', function() {
+                        filter : $el.attr('filter'),
+                        width : '100%',
+                        minumimCountSelected: 12,
+                        etcaetera: false
+                    }).change(function() {
                         collection.trigger('selection', _.map($el.val(), function(value) { return { _id : value }; }));
                     });
                 }
@@ -115,14 +102,6 @@ define(['jquery', 'underscore', 'masseuse',
                     });
             } else {
                 $el.hide();
-            }
-        }
-
-        function _callback(el, evt) {
-            // listen for the enter key or Blur to save to the model.
-            if(evt.keyCode === 13 || evt.type === 'blur') {
-                this.view.adapters[':'].publish(
-                    this.model, this.keypath.substring(this.keypath.indexOf(':')+1), el.textContent);
             }
         }
     });

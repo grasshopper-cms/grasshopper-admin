@@ -8,6 +8,7 @@ define(['text!views/advancedSearch/template.html', 'resources', 'advancedSearch/
             name : 'advancedSearchView',
             ModelType : model,
             browserTitle : 'Advanced Search',
+            headerTab : 'advancedSearch',
             appendTo : '#stage',
             wrapper : false,
             template : template,

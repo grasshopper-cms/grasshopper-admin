@@ -10,6 +10,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             name : 'contentBrowseView',
             ModelType : contentBrowseViewModel,
             browserTitle : 'Content',
+            headerTab : 'content',
             appendTo : '#stage',
             wrapper : false,
             template : template,
@@ -19,12 +20,15 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                 ['channels.views', 'assetAdded', 'addNewAsset']
             ],
             events : {},
-            breadcrumbs : [
-                {
-                    text : resources.home,
-                    href : constants.internalRoutes.content
-                }
-            ],
+            breadcrumbs : {
+                icon : 'fa-th',
+                crumbs : [
+                    {
+                        text : resources.home,
+                        href : constants.internalRoutes.content
+                    }
+                ]
+            },
             permissions : ['admin', 'reader', 'editor'],
             rivetsConfig : {
                 instaUpdate: true,

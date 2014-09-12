@@ -14,12 +14,15 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
                 ['channels.views', 'updateMastheadButtons', 'setButtons'],
                 ['channels.views', 'updateMastheadBreadcrumbs', 'setBreadcrumbs']
             ],
-            defaultBreadcrumbs : [
-                {
-                    text : resources.home,
-                    href : '#'
-                }
-            ],
+            defaultBreadcrumbs : {
+                icon: 'fa-search',
+                crumbs: [
+                    {
+                        text : resources.home,
+                        href : '#'
+                    }
+                ]
+            },
             defaultMastheadButtons : [
                 {
                     text : resources.mastheadButtons.createFolder,

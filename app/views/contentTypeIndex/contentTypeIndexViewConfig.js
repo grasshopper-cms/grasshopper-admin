@@ -8,21 +8,25 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
             name : 'contentTypeIndexView',
             ModelType : contentTypeIndexViewModel,
             browserTitle : 'Content Types',
+            headerTab : 'contentTypes',
             appendTo : '#stage',
             wrapper : false,
             template : template,
             listeners : [],
             events : {},
-            breadcrumbs : [
-                {
-                    text : resources.home,
-                    href : constants.internalRoutes.content
-                },
-                {
-                    text : resources.contentTypes,
-                    href : constants.internalRoutes.contentTypes
-                }
-            ],
+            breadcrumbs : {
+                icon: 'fa-cogs',
+                crumbs: [
+                    {
+                        text : resources.home,
+                        href : constants.internalRoutes.content
+                    },
+                    {
+                        text : resources.contentTypes,
+                        href : constants.internalRoutes.contentTypes
+                    }
+                ]
+            },
             permissions : ['admin', 'editor'],
             rivetsConfig : {
                 binders : [appBinders],

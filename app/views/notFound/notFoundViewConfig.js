@@ -12,15 +12,18 @@ define(['text!views/notFound/notFoundView.html', 'resources', 'constants'],
             template : template,
             events : {},
             listeners : [],
-            breadcrumbs : [
-                {
-                    text : resources.home,
-                    href : constants.internalRoutes.content
-                },
-                {
-                    text : resources.notFound,
-                    href : constants.internalRoutes.notFound
-                }
-            ]
+            breadcrumbs : {
+                icon: 'fa-bolt',
+                crumbs: [
+                    {
+                        text : resources.home,
+                        href : constants.internalRoutes.content
+                    },
+                    {
+                        text : resources.notFound,
+                        href : constants.internalRoutes.notFound
+                    }
+                ]
+            }
         };
     });

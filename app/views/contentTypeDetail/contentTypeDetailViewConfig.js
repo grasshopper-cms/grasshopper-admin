@@ -14,19 +14,23 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
             ModelType : contentTypeDetailModel,
             modelData : {},
             browserTitle : 'Content Types',
+            headerTab : 'contentTypes',
             appendTo : '#stage',
             wrapper : false,
             template : formTemplate,
-            breadcrumbs : [
-                {
-                    text : resources.home,
-                    href : constants.internalRoutes.content
-                },
-                {
-                    text : resources.contentTypes,
-                    href : constants.internalRoutes.contentTypes
-                }
-            ],
+            breadcrumbs : {
+                icon: 'fa-cog',
+                crumbs: [
+                    {
+                        text : resources.home,
+                        href : constants.internalRoutes.content
+                    },
+                    {
+                        text : resources.contentTypes,
+                        href : constants.internalRoutes.contentTypes
+                    }
+                ]
+            },
             permissions : ['admin', 'editor', 'reader'],
             rivetsConfig : {
                 formatters : [formatters, contentTypeDetailFormatters],

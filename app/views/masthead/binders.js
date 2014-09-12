@@ -11,10 +11,12 @@ define(['jquery', 'underscore'], function ($, _) {
 
         $el.empty();
 
-        _.each(_.initial(breadcrumbs), function(crumb) {
+        $el.append('<i class="fa '+ breadcrumbs.icon +'"></i>');
+
+        _.each(_.initial(breadcrumbs.crumbs), function(crumb) {
             $el.append('<a href='+ crumb.href +'>'+ crumb.text +' / </a>');
         });
 
-        $el.append('<span>'+ _.last(breadcrumbs).text +'</span>');
+        $el.append('<span>'+ (_.last(breadcrumbs.crumbs)).text +'</span>');
     }
 });

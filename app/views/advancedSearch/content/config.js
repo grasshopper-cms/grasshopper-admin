@@ -11,19 +11,23 @@ define(['text!views/advancedSearch/content/template.html', 'resources', 'advance
             wrapper : false,
             template : template,
             listeners : [
-                ['model', 'updateUrl', 'updateUrl']
+                ['model', 'updateUrl', 'updateUrl'],
+                ['model', 'failedQuery', 'fireFailedQueryAlert']
             ],
             events : {},
-            breadcrumbs : [
-                {
-                    text : resources.advancedSearch,
-                    href : constants.internalRoutes.advancedSearch
-                },
-                {
-                    text : 'content',
-                    href : constants.internalRoutes.advancedSearch + '/content'
-                }
-            ],
+            breadcrumbs : {
+                icon: 'fa-search',
+                crumbs: [
+                    {
+                        text : resources.advancedSearch,
+                        href : constants.internalRoutes.advancedSearch
+                    },
+                    {
+                        text : 'content',
+                        href : constants.internalRoutes.advancedSearch + '/content'
+                    }
+                ]
+            },
             permissions : ['admin', 'reader', 'editor'],
             rivetsConfig : {
                 childViewBinders : {

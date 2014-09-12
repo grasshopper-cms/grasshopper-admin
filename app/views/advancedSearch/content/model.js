@@ -18,7 +18,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                 newFilterModel : null,
                 filtersCollection : null,
                 resultsCollection : null,
-                possibleQueryComparators : null
+                possibleQueryComparators : null,
+                filteredContentTypeCollection : null
             }
         });
 
@@ -66,6 +67,8 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
             }))());
 
             this.set('possibleQueryComparators', constants.possibleQueryComparators);
+
+            this.set('filteredContentTypeCollection', new(GrasshopperCollection.extend({}))());
         }
 
         function query() {
@@ -84,7 +87,12 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                     this.set('loadingResults', false);
                     $deferred.resolve();
                 }.bind(this))
-                .fail($deferred.reject);
+                .fail(function() {
+                    this.trigger('failedQuery');
+                    this.get('resultsCollection').reset();
+                    this.set('loadingResults', false);
+                    $deferred.reject();
+                }.bind(this));
 
             return $deferred.promise();
         }
@@ -107,11 +115,14 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
         }
 
         function setupChangeListeners() {
-            var throttledQuery = _.throttle(this.query, constants.contentSearchThrottle);
+            var throttledQuery = _.throttle(this.query, constants.contentSearchThrottle, { trailing : false });
 
             this.listenTo(this.get('inTypesCollection'), 'add remove reset', throttledQuery);
             this.listenTo(this.get('inNodesCollection'), 'add remove reset', throttledQuery);
             this.listenTo(this.get('filtersCollection'), 'add remove reset', throttledQuery);
+
+            this.listenTo(this.get('inTypesCollection'), 'add remove reset', _syncContentTypesCollectionWithFilteredContentTypesCollection);
+            _syncContentTypesCollectionWithFilteredContentTypesCollection.call(this, this.get('inTypesCollection')); // Ensure that this happens at least once.
 
             this.get('inTypesCollection').listenTo(this.get('contentTypeCollection'), 'selection', _addRemoveFromCollection);
             this.get('inNodesCollection').listenTo(this.get('nodesCollection'), 'selection', _addRemoveFromCollection);
@@ -119,6 +130,21 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
 
         function _addRemoveFromCollection(selection) {
             this.reset(selection);
+        }
+
+        function _syncContentTypesCollectionWithFilteredContentTypesCollection(inTypesCollection) {
+            var filteredModels = [],
+                contentTypeCollection = this.get('contentTypeCollection');
+
+            if(inTypesCollection.size()) {
+                inTypesCollection.each(function(model) {
+                    filteredModels.push(contentTypeCollection.findWhere({ _id : model.get('_id') }));
+                });
+            } else {
+                filteredModels = contentTypeCollection.models;
+            }
+
+            this.get('filteredContentTypeCollection').reset(filteredModels);
         }
 
     });

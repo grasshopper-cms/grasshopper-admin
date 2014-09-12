@@ -12,15 +12,18 @@ define(['text!views/forbidden/forbiddenView.html', 'resources', 'constants'],
             template : template,
             events : {},
             listeners : [],
-            breadcrumbs : [
-                {
-                    text : resources.home,
-                    href : constants.internalRoutes.content
-                },
-                {
-                    text : resources.forbidden,
-                    href : constants.internalRoutes.forbidden
-                }
-            ]
+            breadcrumbs : {
+                icon: 'fa-moon-o',
+                crumbs: [
+                    {
+                        text : resources.home,
+                        href : constants.internalRoutes.content
+                    },
+                    {
+                        text : resources.forbidden,
+                        href : constants.internalRoutes.forbidden
+                    }
+                ]
+            }
         };
     });

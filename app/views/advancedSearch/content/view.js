@@ -11,7 +11,8 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'const
             removeFilterFromFiltersCollection : removeFilterFromFiltersCollection,
             resetNewFilter : resetNewFilter,
             updateUrl : updateUrl,
-            buildQueryFromQueryOptions : buildQueryFromQueryOptions
+            buildQueryFromQueryOptions : buildQueryFromQueryOptions,
+            fireFailedQueryAlert : fireFailedQueryAlert
         });
 
         function beforeRender($deferred) {
@@ -29,13 +30,17 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'const
 
             if(this.model.get('queryOptions')) {
                 this.buildQueryFromQueryOptions();
+            } else {
+                this.model.query();
             }
-
-            this.model.query();
         }
 
         function buildQueryFromQueryOptions() {
             var queryOptions = this.model.get('queryOptions');
+
+            if(!_.isEmpty(queryOptions.filters)) {
+                this.model.get('filtersCollection').reset(queryOptions.filters);
+            }
 
             if(!_.isEmpty(queryOptions.types)) {
                 this.$('#selectContentTypes').multipleSelect('setSelects', queryOptions.types);
@@ -44,6 +49,18 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'const
             if(!_.isEmpty(queryOptions.nodes)) {
                 this.$('#selectNodes').multipleSelect('setSelects', queryOptions.nodes);
             }
+
+            if(_.isEmpty(queryOptions.filters) && _.isEmpty(queryOptions.filters) && _.isEmpty(queryOptions.nodes)) {
+                this.model.query();
+            }
+        }
+
+        function fireFailedQueryAlert() {
+            this.displayAlertBox({
+                header : 'Error',
+                style : 'error',
+                msg : 'Invalid Query'
+            });
         }
 
         function addFilterToFiltersCollection() {

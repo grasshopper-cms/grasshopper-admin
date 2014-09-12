@@ -6,8 +6,14 @@ define(['jquery', 'underscore', 'resources', 'helpers', 'constants', 'clipboardW
 
         return {
             initClipboardMenu: initClipboardMenu,
-            initializeClipboardListeners: initializeClipboardListeners
+            initializeClipboardListeners: initializeClipboardListeners,
+            removeClipboardMenu : removeClipboardMenu
         };
+
+        function removeClipboardMenu(){
+            context.destroy('#assetIndex');
+            context.destroy('#contentPanel');
+        }
 
         function initClipboardMenu(selector) {
             var shouldCreate = false;
