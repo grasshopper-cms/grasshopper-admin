@@ -130,7 +130,7 @@ require([
         Backbone.history.start({
             hashChange : false,
             pushState: true,
-            root: '<%= base %>'
+            root: '/admin'
         });
 
         $(document).on('click', 'a:not([data-bypass])', function (evt) {
