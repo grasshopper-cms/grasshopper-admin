@@ -11,7 +11,8 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'const
             removeFilterFromFiltersCollection : removeFilterFromFiltersCollection,
             resetNewFilter : resetNewFilter,
             updateUrl : updateUrl,
-            buildQueryFromQueryOptions : buildQueryFromQueryOptions
+            buildQueryFromQueryOptions : buildQueryFromQueryOptions,
+            fireFailedQueryAlert : fireFailedQueryAlert
         });
 
         function beforeRender($deferred) {
@@ -52,6 +53,14 @@ define(['grasshopperBaseView', 'advancedSearch/content/config', 'jquery', 'const
             if(_.isEmpty(queryOptions.filters) && _.isEmpty(queryOptions.filters) && _.isEmpty(queryOptions.nodes)) {
                 this.model.query();
             }
+        }
+
+        function fireFailedQueryAlert() {
+            this.displayAlertBox({
+                header : 'Error',
+                style : 'error',
+                msg : 'Invalid Query'
+            });
         }
 
         function addFilterToFiltersCollection() {

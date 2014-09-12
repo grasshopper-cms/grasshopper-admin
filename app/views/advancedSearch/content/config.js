@@ -11,7 +11,8 @@ define(['text!views/advancedSearch/content/template.html', 'resources', 'advance
             wrapper : false,
             template : template,
             listeners : [
-                ['model', 'updateUrl', 'updateUrl']
+                ['model', 'updateUrl', 'updateUrl'],
+                ['model', 'failedQuery', 'fireFailedQueryAlert']
             ],
             events : {},
             breadcrumbs : {

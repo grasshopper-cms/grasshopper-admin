@@ -87,7 +87,12 @@ define(['grasshopperModel', 'resources', 'grasshopperCollection', 'constants', '
                     this.set('loadingResults', false);
                     $deferred.resolve();
                 }.bind(this))
-                .fail($deferred.reject);
+                .fail(function() {
+                    this.trigger('failedQuery');
+                    this.get('resultsCollection').reset();
+                    this.set('loadingResults', false);
+                    $deferred.reject();
+                }.bind(this));
 
             return $deferred.promise();
         }
