@@ -6,7 +6,8 @@ define([], function () {
     return {
         customConfig : '',
         filebrowserBrowseUrl : 'dummylocation',
-        skin : 'moono'
+        skin : 'moono',
+        allowedContent : true
     };
 
 });
