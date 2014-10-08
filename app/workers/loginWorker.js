@@ -3,9 +3,11 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers', 'constants'],
         'use strict';
 
         var LocalStorage = helpers.localStorage;
+
         /**
          * @class loginWorker
          */
+
         return {
             doLogin : doLogin,
             userIsStillValidUser : userIsStillValidUser
@@ -67,7 +69,7 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers', 'constants'],
         }
 
         function _handleFailedAuthentication() {
-            this.navigateTrigger(constants.internalRoutes.login);
+            this.app.router.navigateTrigger(constants.internalRoutes.login);
         }
 
         function userIsStillValidUser ($deferred) {
