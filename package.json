@@ -26,6 +26,6 @@
     "grunt-build-gh-pages": "^1.0.3"
   },
   "devDependencies": {
-    "grasshopper-admin": "0.29.19"
+    "grasshopper-admin": "0.29.20"
   }
 }
