@@ -220,6 +220,7 @@ If loaded the environmental variables are loaded from `ghapi.json` in the root o
 * 0.29.17 - 14-09-12 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.17_14-09-12.md)
 * 0.29.18 - 14-09-26 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.18_14-09-26.md)
 * 0.29.19 - 14-10-07 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.19_14-10-07.md)
+* 0.29.20 - 14-12-02 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/kirby/release_notes/0.29.20_14-12-02.md)
 
 
-_Compiled file. Do not modify directly. Created: 2014-10-07 05:08:18_
+_Compiled file. Do not modify directly. Created: 2014-12-02 11:51:09_
