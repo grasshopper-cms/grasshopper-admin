@@ -7,7 +7,7 @@ module.exports = function (grunt) {
             readme : 'Compiled file. Do not modify directly.'
         },
         path = require('path'),
-        ghaConfig = grunt.file.findup('gha.json', {nocase: true}),
+        ghaConfig = process.env.GRASSHOPPER_ADMIN_CONFIG || grunt.file.findup('gha.json', {nocase: true}),
         ghaConfigPath = path.dirname(ghaConfig),
         version = grunt.file.readJSON('package.json').version,
         tempDir = '.tempo';
