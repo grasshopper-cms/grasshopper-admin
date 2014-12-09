@@ -71,9 +71,10 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
             var token = LocalStorage.get('authToken');
             return $.ajax({
                 dataType : 'json',
+                contentType : 'application/json; charset=utf-8',
                 url : url,
                 type : 'POST',
-                data : data,
+                data : JSON.stringify(data),
                 headers : {'Authorization' : token}
             });
         },
