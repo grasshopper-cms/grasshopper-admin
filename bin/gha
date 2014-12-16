@@ -16,7 +16,12 @@ program
         'Will look for gha.json in parent directory if not in current directory.')
     .action(function(){
         console.log(process.cwd());
-        require('grunt').cli();
+        console.log('!!!!!!!!! INSTALLING ADMIN DEPENDENCIES !!!!!!!!!!');
+        console.log('Could take a second.')
+        require('child_process').exec('npm install', { cwd : process.cwd() }, function() {
+            console.log('!!!!!!!!! BUILDING ADMIN !!!!!!!!!!');
+            require('grunt').cli();
+        });
     });
 
 program.parse(process.argv);
