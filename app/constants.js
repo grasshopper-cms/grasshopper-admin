@@ -4,7 +4,8 @@ define([], function() {
 
     var apiEndpoint = '<%= apiEndpoint %>',
         version = '<%= version %>',
-        libraryVersions = '<%= JSON.stringify(libraryVersions) %>';
+        libraryVersions = '<%= JSON.stringify(libraryVersions) %>',
+        typeSlugification = '<%= typeSlugification %>';
 
     return {
         version : version,
@@ -189,6 +190,7 @@ define([], function() {
             'notbetween',
             'size',
             'exists'
-        ]
+        ],
+        typeSlugification : typeSlugification
     };
 });

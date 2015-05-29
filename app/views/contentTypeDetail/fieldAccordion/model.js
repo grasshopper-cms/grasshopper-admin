@@ -1,7 +1,7 @@
 define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'validationTypes',
-        'fieldAccordionValidationCollection', 'helpers'],
+        'fieldAccordionValidationCollection', 'helpers', 'constants'],
     function (Model, resources, plugins, masseuse, _, validationTypes,
-              FieldAccordionValidationCollection, helpers) {
+              FieldAccordionValidationCollection, helpers, constants) {
         'use strict';
 
         var ComputedProperty = masseuse.ComputedProperty;
@@ -41,8 +41,34 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
         }
 
         function _generateSlug(model, newValue) {
+            var pieces;
             if(newValue && !model.get('_id')) {
-                model.set('_id', newValue.toLowerCase().trim().replace(/[\s]+/g, '-').replace(/[^-a-zA-Z0-9._~]/g, ''));
+
+                // Remove disallowed characters
+                newValue = newValue.trim().toLowerCase().replace(/[^-\w\s._~ ]/g, '');
+
+                console.log('ts', constants.typeSlugification);
+                switch (constants.typeSlugification) {
+                    case 'camelCase':
+                        newValue = newValue.split(/\s+/);
+                        pieces = newValue.slice(1);
+                        pieces = _.map(pieces, function(piece) {
+                            return piece[0].toUpperCase() + piece.slice(1);
+                        }).join('');
+                        newValue = newValue.shift() + pieces;
+                        break;
+                    case 'hyphen-case':
+                        newValue = newValue.replace(/[\s]+/g, '-');
+                        break;
+                    case 'underscore_case':
+                        newValue = newValue.replace(/[\s]+/g, '_');
+                        break;
+                    case 'onewordcase':
+                        newValue = newValue.replace(/[\s]+/g, '');
+                        break;
+                }
+                console.log('id', newValue);
+                model.set('_id', newValue);
             }
             return '';
         }
