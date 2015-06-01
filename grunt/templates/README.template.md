@@ -79,15 +79,18 @@ If loaded the environmental variables are loaded from `ghapi.json` in the root o
     npm install grasshopper-admin
     ```
 
-1. configure using `gha.json` in your project - you can set the endpoint and where the admin html, js, and css files are built
+1. configure using `gha.json` in your project - you can set the endpoint, where the admin html, js, and css files are built, and the slugification type for creating content type ids.
 
     ```javascript
     {
         "apiEndpoint" : "http://api.so-much-data.com",
         "buildDirectory" : "public/admin",
-        "externalPluginsDirectory" : "externalPlugins"
+        "externalPluginsDirectory" : "externalPlugins",
+        "slugificationType : "onewordcase"
     }
     ```
+   
+    Sluggification type defaults to `camelCase`, and can also be set to `hyphen-case`, `underscore_case`, and `onewordcase`.
 
 1. build
 

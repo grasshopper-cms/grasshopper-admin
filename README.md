@@ -79,15 +79,18 @@ If loaded the environmental variables are loaded from `ghapi.json` in the root o
     npm install grasshopper-admin
     ```
 
-1. configure using `gha.json` in your project - you can set the endpoint and where the admin html, js, and css files are built
+1. configure using `gha.json` in your project - you can set the endpoint, where the admin html, js, and css files are built, and the slugification type for creating content type ids.
 
     ```javascript
     {
         "apiEndpoint" : "http://api.so-much-data.com",
         "buildDirectory" : "public/admin",
-        "externalPluginsDirectory" : "externalPlugins"
+        "externalPluginsDirectory" : "externalPlugins",
+        "slugificationType : "onewordcase"
     }
     ```
+   
+    Sluggification type defaults to `camelCase`, and can also be set to `hyphen-case`, `underscore_case`, and `onewordcase`.
 
 1. build
 
@@ -224,6 +227,7 @@ If loaded the environmental variables are loaded from `ghapi.json` in the root o
 * 0.29.21 - 14-12-02 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.21_14-12-02.md)
 * 0.29.22 - 2014-12-08 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.22_2014-12-08.md)
 * 0.29.23 - 2014-12-16 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.23_2014-12-16.md)
+* 0.29.24 - 2015-05-29 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.24_2015-05-29.md)
 
 
-_Compiled file. Do not modify directly. Created: 2014-12-16 11:50:47_
+_Compiled file. Do not modify directly. Created: 2015-06-01 07:26:28_
