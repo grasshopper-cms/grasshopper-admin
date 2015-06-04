@@ -333,6 +333,7 @@ define({
     home : 'Home',
     helpText : 'Help Text',
     id : 'ID',
+    isDefault : 'Is Default',
     key: 'Key',
     label : 'Label',
     login : 'Login',
