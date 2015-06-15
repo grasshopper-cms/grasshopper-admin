@@ -49,6 +49,7 @@ define(['pluginBaseView', 'contentTypeWorker', 'jquery', 'underscore', 'masseuse
                 this.model.set('invalidContentType', true);
             }
             this.model.toggle('loading');
+            this.parent.resortMulti();
         }
 
         function _proxyValues() {

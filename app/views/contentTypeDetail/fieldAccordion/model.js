@@ -47,7 +47,6 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
                 // Remove disallowed characters
                 newValue = newValue.trim().toLowerCase().replace(/[^-\w\s._~ ]/g, '');
 
-                console.log('ts', constants.typeSlugification);
                 switch (constants.typeSlugification) {
                     case 'camelCase':
                         newValue = newValue.split(/\s+/);
@@ -67,7 +66,6 @@ define(['grasshopperModel', 'resources', 'plugins', 'masseuse', 'underscore', 'v
                         newValue = newValue.replace(/[\s]+/g, '');
                         break;
                 }
-                console.log('id', newValue);
                 model.set('_id', newValue);
             }
             return '';
