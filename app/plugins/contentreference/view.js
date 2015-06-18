@@ -30,7 +30,7 @@ define(['pluginBaseView', 'underscore', 'api', 'contentTypeWorker', 'jquery',
                 this.model.on('change:value', _getSelectedContent.bind(this));
             }
 
-            this.parent.resortMulti();
+            this.parent && this.parent.resortMulti && this.parent.resortMulti();
         }
 
         function _getSelectedContent() {
