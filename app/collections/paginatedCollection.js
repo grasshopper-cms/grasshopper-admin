@@ -43,7 +43,7 @@ define(['grasshopperModel', 'grasshopperCollection', 'constants', 'underscore', 
                     options: {
                         limit: parseInt(this.limit, 10),
                         skip : (parseInt(this.skip, 10) - 1) * this.limit,
-                        sortBy : 'meta.lastmodified'
+                        sortBy : { 'meta.lastmodified' : -1 }
                     }
                 };
 
