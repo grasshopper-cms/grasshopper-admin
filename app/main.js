@@ -105,7 +105,8 @@ require([
     'sparkmd5',
     'contextjs',
     'velocity',
-    'multipleSelect'
+    'multipleSelect',
+    'resources'
 ],
     /**
      * @param $
@@ -115,6 +116,8 @@ require([
         'use strict';
 
         var router = new Router();
+
+        resources.home = contstants.homeString || resources.home;
 
         _.templateSettings = {
             evaluate : /\[\[(.+?)\]\]/g,

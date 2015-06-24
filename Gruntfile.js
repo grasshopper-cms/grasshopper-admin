@@ -11,9 +11,11 @@ var warning = {
 module.exports = function (grunt) {
 
     var ghaConfig =  config(grunt),
-        typeSlugification;
+        typeSlugification,
+        homeString;
 
     ghaConfig.typeSlugification = ghaConfig.typeSlugification || 'camelCase';
+    ghaConfig.homeString = ghaConfig.homeString || '';
 
     grunt.config.init(ghaConfig);
 

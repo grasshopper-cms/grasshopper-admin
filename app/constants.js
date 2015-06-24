@@ -5,7 +5,8 @@ define([], function() {
     var apiEndpoint = '<%= apiEndpoint %>',
         version = '<%= version %>',
         libraryVersions = '<%= JSON.stringify(libraryVersions) %>',
-        typeSlugification = '<%= typeSlugification %>';
+        typeSlugification = '<%= typeSlugification %>',
+        homeString = '<%= homeString %>';
 
     return {
         version : version,
@@ -191,6 +192,7 @@ define([], function() {
             'size',
             'exists'
         ],
-        typeSlugification : typeSlugification
+        typeSlugification : typeSlugification,
+        homeString : homeString
     };
 });
