@@ -10,12 +10,10 @@ var warning = {
 
 module.exports = function (grunt) {
 
-    var ghaConfig =  config(grunt),
-        typeSlugification,
-        homeString;
+    var ghaConfig =  config(grunt);
 
     ghaConfig.typeSlugification = ghaConfig.typeSlugification || 'camelCase';
-    ghaConfig.homeString = ghaConfig.homeString || '';
+    ghaConfig.homeString = ghaConfig.homeString || 'Home';
 
     grunt.config.init(ghaConfig);
 
@@ -50,6 +48,8 @@ function config(grunt) {
     }
 
     ghaConfig = grunt.file.readJSON(ghaConfig);
+
+    grunt.log.subhead(JSON.stringify(ghaConfig, null, 2));
 
     ghaConfig.buildDirectory = ghaConfigPath + path.sep + ghaConfig.buildDirectory;
 

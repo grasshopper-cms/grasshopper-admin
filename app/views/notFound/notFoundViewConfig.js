@@ -16,7 +16,7 @@ define(['text!views/notFound/notFoundView.html', 'resources', 'constants'],
                 icon: 'fa-bolt',
                 crumbs: [
                     {
-                        text : resources.home,
+                        text : constants.home,
                         href : constants.internalRoutes.content
                     },
                     {

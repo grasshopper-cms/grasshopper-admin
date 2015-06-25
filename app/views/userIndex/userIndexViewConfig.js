@@ -22,7 +22,7 @@ define(['text!views/userIndex/userIndexView.html', 'userIndexViewModel', 'resour
                 icon: 'fa-users',
                 crumbs: [
                     {
-                        text : resources.home,
+                        text : constants.home,
                         href : constants.internalRoutes.content
                     },
                     {

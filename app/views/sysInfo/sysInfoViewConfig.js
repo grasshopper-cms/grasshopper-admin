@@ -17,7 +17,7 @@ define(['text!views/sysInfo/sysInfoView.html', 'resources', 'constants'],
                 icon: 'fa-info',
                 crumbs: [
                     {
-                        text: resources.home,
+                        text: constants.home,
                         href: constants.internalRoutes.content
                     },
                     {

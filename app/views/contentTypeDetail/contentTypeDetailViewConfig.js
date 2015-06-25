@@ -22,7 +22,7 @@ define(['text!views/contentTypeDetail/contentTypeDetailView.html',
                 icon: 'fa-cog',
                 crumbs: [
                     {
-                        text : resources.home,
+                        text : constants.home,
                         href : constants.internalRoutes.content
                     },
                     {

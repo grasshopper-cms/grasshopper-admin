@@ -24,7 +24,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
                 icon : 'fa-th',
                 crumbs : [
                     {
-                        text : resources.home,
+                        text : constants.home,
                         href : constants.internalRoutes.content
                     }
                 ]

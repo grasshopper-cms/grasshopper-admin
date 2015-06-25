@@ -193,6 +193,6 @@ define([], function() {
             'exists'
         ],
         typeSlugification : typeSlugification,
-        homeString : homeString
+        home : homeString
     };
 });

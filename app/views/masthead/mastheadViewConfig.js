@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources', 'mastheadViewBinders'],
-    function (template, mastheadViewModel, resources, mastheadViewBinders) {
+define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources', 'mastheadViewBinders', 'constants'],
+    function (template, mastheadViewModel, resources, mastheadViewBinders, constants) {
         'use strict';
 
         return {
@@ -18,7 +18,7 @@ define(['text!views/masthead/mastheadView.html', 'mastheadViewModel', 'resources
                 icon: 'fa-search',
                 crumbs: [
                     {
-                        text : resources.home,
+                        text : constants.home,
                         href : '#'
                     }
                 ]

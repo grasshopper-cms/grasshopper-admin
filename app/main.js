@@ -89,7 +89,7 @@ require([
     'underscore',
     'jquery',
     'router',
-    'constants',
+    'resources',
     'ajaxCounterWorker',
     'require',
     'alerts',
@@ -106,18 +106,15 @@ require([
     'contextjs',
     'velocity',
     'multipleSelect',
-    'resources'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, constants, ajaxCounterWorker) {
+        function (Backbone, _, $, Router, resources, ajaxCounterWorker) {
         'use strict';
 
         var router = new Router();
-
-        resources.home = contstants.homeString || resources.home;
 
         _.templateSettings = {
             evaluate : /\[\[(.+?)\]\]/g,
