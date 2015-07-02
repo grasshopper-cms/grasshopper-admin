@@ -1,0 +1,5 @@
+{
+  "apiEndpoint" : "",
+  "buildDirectory" : "server/public/admin",
+  "base" : "/admin/"
+}
