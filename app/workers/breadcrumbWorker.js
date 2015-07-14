@@ -86,7 +86,7 @@ define(['api', 'constants', 'jquery', 'resources', 'masseuse', 'underscore'],
             .done(function(nodeDetail) {
 
                 if(!_.isEmpty(nodeDetail)) {
-                    self.breadcrumbs.crumbs.splice(self.breadcrumbs.crumbs.length - depthFromEnd, 0 ,{
+                    self.breadcrumbs && self.breadcrumbs.crumbs && self.breadcrumbs.crumbs.splice(self.breadcrumbs.crumbs.length - depthFromEnd, 0 ,{
                         text: _.escape(nodeDetail.label),
                         href: constants.internalRoutes.nodeDetail.replace(':id', nodeDetail._id),
                         nodeId : nodeDetail._id

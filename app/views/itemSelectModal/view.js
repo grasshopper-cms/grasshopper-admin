@@ -39,12 +39,18 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
         }
 
         function _fetchChildNodes() {
+            console.log('fetching child nodes');
             return this.model.get('childNodes').fetch();
         }
 
         function _fetchChildContentOrAssets() {
+            console.log('fetch child - type', this.options.type);
             if(this.options.type === 'file') {
-                return this.model.get('assets').fetch();
+                this.model.get('assets').reset();
+                return this.model.get('assets').fetch()
+                    .then(function() {
+                        //debugger;
+                    });
             } else {
                 return this.model.get('content').fetch();
             }
@@ -93,16 +99,17 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
             _toggleUploading.call(this);
 
             _getFilesFromUser.call(this)
+                .fail(_toggleUploading.bind(self))
                 .done(function(files) {
-
+                    console.log('showing stuff');
                     _.each(files, function(file) {
                         promises.push(assetWorker.postNewAsset(nodeId, file));
                     });
 
-                    $.when(promises)
+                    return $.when(promises)
+                        .then(_fetchChildNodes.bind(self))
                         .then(_fetchChildContentOrAssets.bind(self))
-                        .then(_toggleUploading.bind(self));
-
+                        .done(_toggleUploading.bind(self));
                 });
         }
 
@@ -115,7 +122,12 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
                     type : 'upload',
                     data : {}
                 })
+                .fail(function() {
+                    console.log('fail one');
+                    $deferred.reject();
+                })
                 .done(function(modalData) {
+                    console.log('resolve model data');
                     $deferred.resolve(modalData.files);
                 });
 
