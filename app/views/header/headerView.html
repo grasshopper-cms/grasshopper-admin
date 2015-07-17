@@ -76,6 +76,17 @@
                                 </a>
                             </li>
 
+                            <li class="nav-item">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
+                            <li class="nav-item"
+                                data-rv-show="model:userModel->role | includes admin reader editor author">
+                                <a id="help" class="nav-item-link"
+                                   data-rv-href="model:constants->internalRoutes->help">
+                                    <i class="fa fa-question"></i>
+                                    <span>{{model:resources->help}}</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
 

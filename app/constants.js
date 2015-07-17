@@ -96,6 +96,7 @@ define([], function() {
             login : '/login',
             logout : '/logout',
             about : '/about',
+            help : '/help',
             createFolder : '/items/nodeid/:id/create-folder',
             addContent : '/items/nodeid/:id/create-content',
             createAssets : '/items/nodeid/:id/create-assets',

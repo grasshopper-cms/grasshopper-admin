@@ -259,7 +259,9 @@
         "sysInfoView+" : {
             "" : "views/sysInfo/sysInfoView",
             "Config" : "views/sysInfo/sysInfoViewConfig"
-        }
+        },
+
+        "helpView" : "views/help"
     },
 
     "models" : {
