@@ -138,7 +138,7 @@ require([
              protocol = this.protocol + '//',
              scriptCheck = this.protocol.slice(0, -1);
 
-            if (href && /^http[s]?:\/\//.test(href) && href!='#' && href.slice(protocol.length) !== protocol && scriptCheck != 'javascript') {
+            if (href && !/^http[s]?:\/\//.test(href) && href!='#' && href.slice(protocol.length) !== protocol && scriptCheck != 'javascript') {
                 evt.preventDefault();
                 router.navigate(href, {trigger:true});
             }
