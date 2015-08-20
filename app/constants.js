@@ -6,7 +6,8 @@ define([], function() {
         version = '<%= version %>',
         libraryVersions = '<%= JSON.stringify(libraryVersions) %>',
         typeSlugification = '<%= typeSlugification %>',
-        homeString = '<%= homeString %>';
+        homeString = '<%= homeString %>',
+        archivedContentFieldName = '<%= archivedContentFieldName %>';
 
     return {
         version : version,
@@ -194,6 +195,7 @@ define([], function() {
             'exists'
         ],
         typeSlugification : typeSlugification,
-        home : homeString
+        home : homeString,
+        archivedContentFieldName : archivedContentFieldName
     };
 });

@@ -1,5 +1,6 @@
 {
-"apiEndpoint" : "",
-"buildDirectory" : "server/public/admin",
-"base" : "/admin/"
+  "apiEndpoint" : "",
+  "buildDirectory" : "server/public/admin",
+  "base" : "/admin/",
+  "archivedContentFieldName":"whentoshow"
 }

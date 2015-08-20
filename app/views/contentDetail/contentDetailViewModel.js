@@ -8,7 +8,8 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
         return Model.extend({
             idAttribute: '_id',
             defaults: function() {
-                return {
+                var theDefaults = {
+                    constants : constants,
                     resources: resources,
                     href: new ComputedProperty(['_id'], function(id) {
                         return constants.internalRoutes.contentDetail.replace(':id', id);
@@ -18,6 +19,29 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
                     saving: false,
                     schema: null
                 };
+
+                if (constants.archivedContentFieldName) {
+                    theDefaults.archiveStatus = new ComputedProperty(['fields'], function() {
+                        var archiveWindow, now;
+
+                        if (!this.attributes.fields || !this.attributes.fields[constants.archivedContentFieldName]) {
+                            return '--';
+                        }
+
+                        now = new Date();
+                        archiveWindow = this.attributes.fields[constants.archivedContentFieldName];
+
+                        if (new Date(archiveWindow.validTo) < now) {
+                            return 'Archived';
+                        }
+                        if (new Date(archiveWindow.validFrom) > now) {
+                            return 'Pending';
+                        }
+                        return 'Active';
+                    });
+                }
+
+                return theDefaults;
             },
             urlRoot: constants.api.content.url,
             toJSON: toJSON,
