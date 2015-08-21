@@ -35,6 +35,7 @@
     "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
     "aceCodeEditor" : "vendor/ace/lib/ace/**/*",
     "moment" : "vendor/moment/moment.js",
+    "moment-timezone-with-data" : "vendor/moment-timezone-with-data/index.js",
     "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker.js",
     "select2" : "vendor/select2/select2.js",
     "sparkmd5" : "vendor/SparkMD5/spark-md5.js",
