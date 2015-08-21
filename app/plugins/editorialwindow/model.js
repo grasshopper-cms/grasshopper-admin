@@ -1,10 +1,11 @@
-define(['grasshopperModel', 'resources', 'moment'], function (Model, resources, moment) {
+define(['grasshopperModel', 'resources', 'moment', 'constants'], function (Model, resources, moment, constants) {
     'use strict';
 
     return Model.extend({
         initialize : initialize,
         defaults : {
             resources : resources,
+            constants : constants,
             orderError : false,
             value : {
                 validFrom : '',

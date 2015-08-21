@@ -65,6 +65,10 @@ require.config({
         },
         multipleSelect : {
             deps : ['jquery']
+        },
+        momentTimezoneWithData : {
+            deps : ['moment'],
+            exports : 'moment'
         }
     },
     packages : [
@@ -106,6 +110,7 @@ require([
     'contextjs',
     'velocity',
     'multipleSelect',
+    'momentTimezoneWithData'
 ],
     /**
      * @param $

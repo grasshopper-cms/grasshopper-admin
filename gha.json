@@ -2,5 +2,6 @@
   "apiEndpoint" : "",
   "buildDirectory" : "server/public/admin",
   "base" : "/admin/",
-  "archivedContentFieldName":"whentoshow"
+  "archivedContentFieldName":"whentoshow",
+  "timeZone" : "America/Chicago"
 }
