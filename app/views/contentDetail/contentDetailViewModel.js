@@ -1,5 +1,5 @@
-define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'underscore', 'jquery', 'backbone', 'mixins/validatePlugins'],
-    function(Model, resources, constants, masseuse, helpers, _, $, Backbone, validatePlugins) {
+define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'underscore', 'jquery', 'backbone', 'mixins/validatePlugins', 'momentTimezoneWithData'],
+    function(Model, resources, constants, masseuse, helpers, _, $, Backbone, validatePlugins, moment) {
         'use strict';
 
         var ComputedProperty = masseuse.ComputedProperty,
@@ -28,7 +28,7 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
                             return '--';
                         }
 
-                        now = new Date();
+                        now = constants.timeZone ? new Date(moment().tz(constants.timeZone).format(resources.plugins.editorialWindow.dateFormat)) : new Date();
                         archiveWindow = this.attributes.fields[constants.archivedContentFieldName];
 
                         if (new Date(archiveWindow.validTo) < now) {
