@@ -19,7 +19,7 @@
     "velocity": "TheFuzzball/velocity#892cd6132d679c558827e6b7e7a00b838fccafe6",
     "mousetrap": "1.4.6",
     "multiple-select": "#f2402d9209b48693b3093962173ecb5495026193",
-    "moment-timezone-with-data": "https://raw.githubusercontent.com/moment/moment-timezone/master/builds/moment-timezone-with-data.js"
+    "moment-timezone": "0.4.0"
   },
   "devDependencies": {
     "mocha": "1.12.1",
