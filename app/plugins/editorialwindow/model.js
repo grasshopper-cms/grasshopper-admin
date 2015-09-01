@@ -31,7 +31,7 @@ define(['grasshopperModel', 'resources', 'moment', 'constants'], function (Model
     }
 
     function convert(value) {
-        if (/Z$/i.test(value)) {
+        if (!constants.timeZone && /Z$/i.test(value)) {
             return value;
         } else {
             return moment.tz(new Date(value), constants.timeZone).toISOString();
