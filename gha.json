@@ -3,5 +3,5 @@
   "buildDirectory" : "server/public/admin",
   "base" : "/admin/",
   "archivedContentFieldName":"whentoshow",
-  "timeZone" : "America/Chicago"
+  "timeZone" : "America/Vancouver"
 }

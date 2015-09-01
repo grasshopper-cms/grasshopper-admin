@@ -1,4 +1,4 @@
-define(['moment','resources', 'constants'], function (moment, resources, constants) {
+define(['momentTimezoneWithData','resources', 'constants'], function (moment, resources, constants) {
     'use strict';
 
     return {
