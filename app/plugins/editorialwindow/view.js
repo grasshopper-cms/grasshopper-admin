@@ -48,7 +48,7 @@ define(['pluginBaseView', 'moment', 'jquery', 'datetimepicker', 'resources'],
         }
 
         function setValidToNeverExpire () {
-            this.model.set('value.validTo', moment('December 31 3000').format(resources.plugins.editorialWindow.dateFormat));
+            this.model.set('value.validTo', moment('3000-12-31T12:00:00Z').format(resources.plugins.editorialWindow.dateFormat));
         }
 
     });
