@@ -19,13 +19,22 @@ define(['grasshopperModel', 'resources', 'moment', 'constants'], function (Model
     }
 
     function _ensureEndIsAlwaysAfterStart() {
-        var validFrom = this.get('value.validFrom'),
-            validTo = this.get('value.validTo');
+
+        var validFrom = convert(this.get('value.validFrom')),
+            validTo = convert(this.get('value.validTo'));
 
         if(!moment(validTo).isAfter(validFrom)) {
             this.set('orderError', true);
         } else {
             this.set('orderError', false);
+        }
+    }
+
+    function convert(value) {
+        if (/Z$/i.test(value)) {
+            return value;
+        } else {
+            return moment.tz(new Date(value), constants.timeZone).toISOString();
         }
     }
 

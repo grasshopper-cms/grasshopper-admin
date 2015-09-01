@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['pluginBaseView', 'momentTimezoneWithData', 'jquery', 'datetimepicker', 'resources', 'constants'],
-    function (PluginBaseView, moment, $, datetimepicker, resources, constants) {
+define(['pluginBaseView', 'moment', 'jquery', 'datetimepicker', 'resources'],
+    function (PluginBaseView, moment, $, datetimepicker, resources) {
         'use strict';
 
         return PluginBaseView.extend({
@@ -13,19 +13,11 @@ define(['pluginBaseView', 'momentTimezoneWithData', 'jquery', 'datetimepicker', 
 
         function beforeRender () {
             Date.parseDate = function (input, format) {
-                if(constants.timeZone) {
-                    return moment(input, format).tz(constants.timeZone).format();
-                } else {
-                    return moment(input, format).toDate();
-                }
+                return moment(input, format).toDate();
             };
 
             Date.prototype.dateFormat = function (format) {
-                if(constants.timeZone) {
-                    return moment(this).tz(constants.timeZone).format(format);
-                } else {
-                    return moment(this).format(format);
-                }
+                return moment(this).format(format);
             };
         }
 
@@ -34,17 +26,9 @@ define(['pluginBaseView', 'momentTimezoneWithData', 'jquery', 'datetimepicker', 
         }
 
         function _addDateTimePickers ($deferred) {
-            var startDate;
-
-            if(constants.timeZone) {
-                startDate = moment().tz(constants.timeZone);
-            } else {
-                startDate = moment();
-            }
-
             this.$el.find('.datetimepicker').each(function () {
                 $(this).datetimepicker({
-                    startDate : startDate,
+                    startDate : moment(),
                     timepicker : true,
                     formatTime: 'h:mm a',
                     /*formatDate: 'YYYY/MM/DD',*/
@@ -56,39 +40,15 @@ define(['pluginBaseView', 'momentTimezoneWithData', 'jquery', 'datetimepicker', 
         }
 
         function setValidFromToNow () {
-            var validFrom;
-
-            if(constants.timeZone) {
-                validFrom = moment().tz(constants.timeZone).format(resources.plugins.editorialWindow.dateFormat);
-            } else {
-                validFrom = moment().format(resources.plugins.editorialWindow.dateFormat);
-            }
-
-            this.model.set('value.validFrom', validFrom);
+            this.model.set('value.validFrom', moment().format(resources.plugins.editorialWindow.dateFormat));
         }
 
         function setValidToToNow () {
-            var validTo;
-
-            if(constants.timeZone) {
-                validTo = moment().tz(constants.timeZone).format(resources.plugins.editorialWindow.dateFormat);
-            } else {
-                validTo = moment().format(resources.plugins.editorialWindow.dateFormat);
-            }
-
-            this.model.set('value.validTo', validTo);
+            this.model.set('value.validTo', moment().format(resources.plugins.editorialWindow.dateFormat));
         }
 
         function setValidToNeverExpire () {
-            var neverExpireDate;
-
-            if(constants.timeZone) {
-                neverExpireDate = moment().add(1000, 'y').tz(constants.timeZone).format(resources.plugins.editorialWindow.dateFormat);
-            } else {
-                neverExpireDate = moment().add(1000, 'y').format(resources.plugins.editorialWindow.dateFormat);
-            }
-
-            this.model.set('value.validTo', neverExpireDate);
+            this.model.set('value.validTo', moment('December 31 3000').format(resources.plugins.editorialWindow.dateFormat));
         }
 
     });

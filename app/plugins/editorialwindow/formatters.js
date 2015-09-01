@@ -1,4 +1,4 @@
-define(['moment','resources'], function (moment, resources) {
+define(['moment','resources', 'constants'], function (moment, resources, constants) {
     'use strict';
 
     return {
@@ -10,13 +10,18 @@ define(['moment','resources'], function (moment, resources) {
 
     function readAsEditorialDate(value) {
         if(value) {
-            return moment(value).format(resources.plugins.editorialWindow.dateFormat);
+            if (/Z$/i.test(value)) {
+                return moment.tz(value, constants.timeZone).format(resources.plugins.editorialWindow.dateFormat);
+            } else {
+                return moment.tz(new Date(value), constants.timeZone).format(resources.plugins.editorialWindow.dateFormat);
+            }
+
         }
     }
 
     function publishAsEditorialDate(value) {
         if(value) {
-            return moment(value).toISOString();
+            return moment.tz(value, resources.plugins.editorialWindow.dateFormat, constants.timeZone).toISOString();
         }
     }
 
