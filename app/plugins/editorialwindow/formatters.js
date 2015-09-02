@@ -15,19 +15,16 @@ define(['momentTimezoneWithData','resources', 'constants'], function (moment, re
 
         function _adjustReadIfTimeZone() {
             if (constants.timeZone) {
-                if (/Z$/i.test(value)) {
-                    return moment.tz(value, constants.timeZone);
-                } else {
-                    return moment.tz(new Date(value), constants.timeZone);
-                }
+                return moment.tz(value, constants.timeZone);
             } else {
-                return moment(new Date(value));
+                return moment(value);
             }
         }
     }
 
     function publishAsEditorialDate(value) {
         if (value) {
+            // ISO String used, as well as in the view when setting dates on the model, to allow moment to interpret them consistently
             return _adjustPublishIfTimeZone().toISOString();
         }
 
@@ -35,7 +32,7 @@ define(['momentTimezoneWithData','resources', 'constants'], function (moment, re
             if (constants.timeZone) {
                 return moment.tz(value, resources.plugins.editorialWindow.dateFormat, constants.timeZone);
             } else {
-                return moment(new Date(value));
+                return moment(value);
             }
         }
     }
