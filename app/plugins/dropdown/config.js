@@ -1,7 +1,6 @@
 /*global define:false*/
-define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!plugins/dropdown/setupTemplate.html',
-'backbone'],
-    function (dropdownPluginTemplate, dropdownPluginModel, setupTemplate, Backbone) {
+define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!plugins/dropdown/setupTemplate.html'],
+    function (dropdownPluginTemplate, dropdownPluginModel, setupTemplate) {
         'use strict';
 
         return {
@@ -24,6 +23,6 @@ define(['text!plugins/dropdown/template.html', 'plugins/dropdown/model', 'text!p
                 'click #addOptionToDropdown' : 'addOptionToDropdown',
                 'blur .optionInput' : 'reduceCollection'
             },
-            collection : new Backbone.Collection()
+            collection : null
         };
     });

@@ -65,6 +65,10 @@ require.config({
         },
         multipleSelect : {
             deps : ['jquery']
+        },
+        momentTimezoneWithData : {
+            deps : ['moment'],
+            exports : 'moment'
         }
     },
     packages : [
@@ -89,7 +93,7 @@ require([
     'underscore',
     'jquery',
     'router',
-    'constants',
+    'resources',
     'ajaxCounterWorker',
     'require',
     'alerts',
@@ -105,13 +109,14 @@ require([
     'sparkmd5',
     'contextjs',
     'velocity',
-    'multipleSelect'
+    'multipleSelect',
+    'momentTimezoneWithData'
 ],
     /**
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, constants, ajaxCounterWorker) {
+        function (Backbone, _, $, Router, resources, ajaxCounterWorker) {
         'use strict';
 
         var router = new Router();
@@ -138,7 +143,7 @@ require([
              protocol = this.protocol + '//',
              scriptCheck = this.protocol.slice(0, -1);
 
-            if (href && href!='#' && href.slice(protocol.length) !== protocol && scriptCheck != 'javascript') {
+            if (href && !/^http[s]?:\/\//.test(href) && href!='#' && href.slice(protocol.length) !== protocol && scriptCheck != 'javascript') {
                 evt.preventDefault();
                 router.navigate(href, {trigger:true});
             }

@@ -16,7 +16,7 @@ define(['text!views/forbidden/forbiddenView.html', 'resources', 'constants'],
                 icon: 'fa-moon-o',
                 crumbs: [
                     {
-                        text : resources.home,
+                        text : constants.home,
                         href : constants.internalRoutes.content
                     },
                     {

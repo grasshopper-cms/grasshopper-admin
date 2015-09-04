@@ -10,6 +10,11 @@
 <td data-rv-on-click="view.handleRowClick">
     {{model:modified | existsOr --}}
 </td>
+
+<td data-rv-if="model:constants->archivedContentFieldName">
+    --
+</td>
+
 <td data-rv-on-click="view.handleRowClick" align="center">
     <a data-rv-on-click="view.editNodeName | stopImmediatePropagation">
         <i class="fa fa-edit linkWithNoATag"></i>

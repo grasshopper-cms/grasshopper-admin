@@ -18,7 +18,7 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
                 icon: 'fa-cogs',
                 crumbs: [
                     {
-                        text : resources.home,
+                        text : constants.home,
                         href : constants.internalRoutes.content
                     },
                     {

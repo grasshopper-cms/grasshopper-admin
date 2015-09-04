@@ -6,7 +6,11 @@ module.exports = function (grunt) {
     var tempDirectory = grunt.config.get('tempDirectory'),
         buildDirectory = grunt.config.get('buildDirectory'),
         apiEndpoint = grunt.config.get('apiEndpoint'),
-        version = grunt.config.get('version');
+        typeSlugification = grunt.config.get('typeSlugification'),
+        homeString = grunt.config.get('homeString'),
+        version = grunt.config.get('version'),
+        archivedContentFieldName = grunt.config.get('archivedContentFieldName'),
+        timeZone = grunt.config.get('timeZone');
 
     grunt.registerTask("interpolateConstantsTemp", "Sets the correct build config for constants", function () {
         var template = grunt.file.read('app/constants.js'),
@@ -14,7 +18,11 @@ module.exports = function (grunt) {
                 data : {
                     apiEndpoint : apiEndpoint,
                     version : version,
-                    libraryVersions : grunt.config.get('libraryVersions')
+                    libraryVersions : grunt.config.get('libraryVersions'),
+                    typeSlugification : typeSlugification,
+                    homeString : homeString,
+                    archivedContentFieldName : archivedContentFieldName,
+                    timeZone : timeZone
                 }
             });
 
@@ -27,7 +35,11 @@ module.exports = function (grunt) {
                 data : {
                     apiEndpoint : apiEndpoint,
                     version : version,
-                    libraryVersions: grunt.config.get('libraryVersions')
+                    libraryVersions: grunt.config.get('libraryVersions'),
+                    typeSlugification : typeSlugification,
+                    homeString : homeString,
+                    archivedContentFieldName : archivedContentFieldName,
+                    timeZone : timeZone
                 }
             });
 

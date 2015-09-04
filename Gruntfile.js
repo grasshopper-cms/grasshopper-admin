@@ -12,6 +12,9 @@ module.exports = function (grunt) {
 
     var ghaConfig =  config(grunt);
 
+    ghaConfig.typeSlugification = ghaConfig.typeSlugification || 'camelCase';
+    ghaConfig.homeString = ghaConfig.homeString || 'Home';
+
     grunt.config.init(ghaConfig);
 
     grunt.config.set('tempDirectory', tempDir);
@@ -45,6 +48,8 @@ function config(grunt) {
     }
 
     ghaConfig = grunt.file.readJSON(ghaConfig);
+
+    grunt.log.subhead(JSON.stringify(ghaConfig, null, 2));
 
     ghaConfig.buildDirectory = ghaConfigPath + path.sep + ghaConfig.buildDirectory;
 

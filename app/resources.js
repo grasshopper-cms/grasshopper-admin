@@ -330,7 +330,7 @@ define({
     falseText : 'False',
     from : 'From',
     filters : 'Filters',
-    home : 'Home',
+    help : 'Help',
     helpText : 'Help Text',
     id : 'ID',
     key: 'Key',

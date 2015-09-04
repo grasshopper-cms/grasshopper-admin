@@ -17,7 +17,7 @@ define(['text!views/userDetail/template.html', 'userDetail/model',
                 icon: 'fa-user',
                 crumbs: [
                     {
-                        text : resources.home,
+                        text : constants.home,
                         href : constants.internalRoutes.content
                     },
                     {

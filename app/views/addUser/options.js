@@ -19,7 +19,7 @@ define(['text!views/addUser/template.html', 'addUser/model', 'resources', 'const
             icon: 'fa-puzzle-piece',
             crumbs: [
                 {
-                    text : resources.home,
+                    text : constants.home,
                     href : constants.internalRoutes.content
                 },
                 {

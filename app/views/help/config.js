@@ -1,28 +1,28 @@
 /*global define:false*/
-define(['text!views/sysInfo/sysInfoView.html', 'resources', 'constants'],
+define(['text!./template.html', 'resources', 'constants'],
     function (template, resources, constants) {
         'use strict';
 
         return {
-            name: 'sysInfoView',
+            name: 'helpView',
             modelData: {},
-            browserTitle: resources.sysInfo,
-            headerTab : 'sysInfo',
+            browserTitle: resources.help,
+            headerTab : 'help',
             appendTo: '#stage',
             wrapper: false,
             template: template,
             events: {},
             listeners: [],
             breadcrumbs: {
-                icon: 'fa-info',
+                icon: 'fa-question',
                 crumbs: [
                     {
                         text: constants.home,
                         href: constants.internalRoutes.content
                     },
                     {
-                        text: resources.sysInfo,
-                        href: constants.internalRoutes.sysInfo
+                        text: resources.help,
+                        href: constants.internalRoutes.help
                     }
                 ]
             }/*,

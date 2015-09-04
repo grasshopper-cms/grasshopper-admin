@@ -40,15 +40,15 @@ define(['pluginBaseView', 'moment', 'jquery', 'datetimepicker', 'resources'],
         }
 
         function setValidFromToNow () {
-            this.model.set('value.validFrom', moment().format(resources.plugins.editorialWindow.dateFormat));
+            this.model.set('value.validFrom', moment().toISOString());
         }
 
         function setValidToToNow () {
-            this.model.set('value.validTo', moment().format(resources.plugins.editorialWindow.dateFormat));
+            this.model.set('value.validTo', moment().toISOString());
         }
 
         function setValidToNeverExpire () {
-            this.model.set('value.validTo', moment('December 31 3000').format(resources.plugins.editorialWindow.dateFormat));
+            this.model.set('value.validTo', moment('3000-12-31T12:00:00Z').toISOString());
         }
 
     });

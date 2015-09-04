@@ -19,7 +19,7 @@ define(['text!views/contentDetail/contentDetailView.html',
                 icon: 'fa-file-o',
                 crumbs: [
                     {
-                        text : resources.home,
+                        text : constants.home,
                         href : constants.internalRoutes.content
                     }
                 ]

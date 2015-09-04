@@ -18,7 +18,8 @@ define([
     'addContentView',
     'addAssetsView',
     'sysInfoView',
-    'advancedSearch/view'
+    'advancedSearch/view',
+    'helpView/view'
 ],
     function($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
@@ -38,7 +39,8 @@ define([
               AddContentView,
               AddAssetsView,
               SysInfoView,
-              AdvancedSearchView
+              AdvancedSearchView,
+              HelpView
         ) {
 
         'use strict';
@@ -60,6 +62,7 @@ define([
                 'users(/limit/:limit/skip/:skip/query/:query)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
                 'sys-info': 'displaySysinfo',
+                'help': 'displayHelp',
                 'add-user' : 'displayAddUser',
                 'content-types' : 'displayContentTypeIndex',
                 'content-types/new' : 'displayContentTypeDetail',
@@ -107,6 +110,7 @@ define([
             displayUserIndex : displayUserIndex,
             displayUserDetail : displayUserDetail,
             displaySysinfo: displaySysinfo,
+            displayHelp: displayHelp,
             displayAddUser : displayAddUser,
             displayContentBrowse : displayContentBrowse,
             displayContentDetail : displayContentDetail,
@@ -330,6 +334,10 @@ define([
 
         function displaySysinfo(){
             this.loadMainContent(SysInfoView);
+        }
+
+        function displayHelp() {
+            this.loadMainContent(HelpView);
         }
 
         function displayContentBrowse(nodeId, limit, skip, query) {

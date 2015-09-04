@@ -32,6 +32,9 @@ define(['grasshopperBaseView', 'headerViewConfig', 'constants', 'underscore'],  
                 case 'sysInfo':
                     this.setActive('#sysInfo');
                     break;
+                case 'help':
+                    this.setActive('#help');
+                    break;
                 default:
                     this.setActive('#items');
             }

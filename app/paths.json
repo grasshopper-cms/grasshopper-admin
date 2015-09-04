@@ -14,6 +14,7 @@
         "svg-edit-embed-api" : "vendor/svg-edit-2.7/embedapi",
         "ace" : "vendor/ace/lib/ace",
         "moment" : "vendor/moment/moment",
+        "momentTimezoneWithData" : "vendor/moment-timezone/builds/moment-timezone-with-data",
         "scrollToFixed" : "vendor/ScrollToFixed/jquery-scrolltofixed",
         "datetimepicker" : "vendor/datetimepicker/jquery.datetimepicker",
         "sparkmd5" : "vendor/SparkMD5/spark-md5",
@@ -259,7 +260,9 @@
         "sysInfoView+" : {
             "" : "views/sysInfo/sysInfoView",
             "Config" : "views/sysInfo/sysInfoViewConfig"
-        }
+        },
+
+        "helpView" : "views/help"
     },
 
     "models" : {

@@ -53,13 +53,13 @@ The installation process fully configures working instances of [core](https://gi
 
 #### Using heroku
 
-Gh-admin comes with a `server` directory that can run grasshopper-api to server grasshopper data to you. 
+Gh-admin comes with a `server` directory that can run grasshopper-api to server grasshopper data to you.
 If you have a heroku account, then you can deploy to it using the `grunt deploy:heroku` commands.
 
 The heroku app will use environmental variables to load the grunt configs, so the first time you deploy you have to load the environmental variables along with doing the build:
 
 ```shell
-# any truthy arguments to deploy:heroku will load env vars to heroku from ghapi.json in the root of your project 
+# any truthy arguments to deploy:heroku will load env vars to heroku from ghapi.json in the root of your project
 grunt deploy:heroku:setupConfigs
 ```
 
@@ -79,15 +79,18 @@ If loaded the environmental variables are loaded from `ghapi.json` in the root o
     npm install grasshopper-admin
     ```
 
-1. configure using `gha.json` in your project - you can set the endpoint and where the admin html, js, and css files are built
+1. configure using `gha.json` in your project - you can set the endpoint, where the admin html, js, and css files are built, and the slugification type for creating content type ids.
 
     ```javascript
     {
         "apiEndpoint" : "http://api.so-much-data.com",
         "buildDirectory" : "public/admin",
-        "externalPluginsDirectory" : "externalPlugins"
+        "externalPluginsDirectory" : "externalPlugins",
+        "slugificationType" : "onewordcase"
     }
     ```
+
+    Sluggification type defaults to `camelCase`, and can also be set to `hyphen-case`, `underscore_case`, and `onewordcase`.
 
 1. build
 
@@ -224,6 +227,14 @@ If loaded the environmental variables are loaded from `ghapi.json` in the root o
 * 0.29.21 - 14-12-02 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.21_14-12-02.md)
 * 0.29.22 - 2014-12-08 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.22_2014-12-08.md)
 * 0.29.23 - 2014-12-16 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.23_2014-12-16.md)
+* 0.29.24 - 2015-05-29 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.24_2015-05-29.md)
+* 0.29.25 - 2015-06-15 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.25_2015-06-15.md)
+* 0.29.26 - 2015-06-24 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.26_2015-06-24.md)
+* 0.29.30 - 2015-07-08 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.30_2015-07-08.md)
+* 0.29.31 - 2015-07-14 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.31_2015-07-14.md)
+* 0.29.32 - 2015-07-14 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.29.32_2015-07-14.md)
+* 0.30.0 - 2015-08-20 - [features](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.30.0_2015-08-20.md)
+* 0.31.0 - 2015-08-21 - [features](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.31.0_2015-08-21.md)
 
+_Compiled file. Do not modify directly. Created: 2015-08-21 01:35:03_
 
-_Compiled file. Do not modify directly. Created: 2014-12-16 11:51:28_

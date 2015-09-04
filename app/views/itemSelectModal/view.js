@@ -44,7 +44,11 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
 
         function _fetchChildContentOrAssets() {
             if(this.options.type === 'file') {
-                return this.model.get('assets').fetch();
+                this.model.get('assets').reset();
+                return this.model.get('assets').fetch()
+                    .then(function() {
+                        //debugger;
+                    });
             } else {
                 return this.model.get('content').fetch();
             }
@@ -93,16 +97,16 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
             _toggleUploading.call(this);
 
             _getFilesFromUser.call(this)
+                .fail(_toggleUploading.bind(self))
                 .done(function(files) {
-
                     _.each(files, function(file) {
                         promises.push(assetWorker.postNewAsset(nodeId, file));
                     });
 
-                    $.when(promises)
+                    return $.when(promises)
+                        .then(_fetchChildNodes.bind(self))
                         .then(_fetchChildContentOrAssets.bind(self))
-                        .then(_toggleUploading.bind(self));
-
+                        .done(_toggleUploading.bind(self));
                 });
         }
 
@@ -114,6 +118,9 @@ define(['grasshopperBaseView', 'itemSelectModal/config', 'jquery', 'breadcrumbWo
                     header : resources.asset.uploadAssetModalMsg,
                     type : 'upload',
                     data : {}
+                })
+                .fail(function() {
+                    $deferred.reject();
                 })
                 .done(function(modalData) {
                     $deferred.resolve(modalData.files);

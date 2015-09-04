@@ -7,7 +7,8 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
             defaultOptions : pluginWrapperViewConfig,
             beforeRender : beforeRender,
             addField : addField,
-            removeField : removeField
+            removeField : removeField,
+            resortMulti : _initializeSortableMulti
         });
 
         function beforeRender($deferred) {

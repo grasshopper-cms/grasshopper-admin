@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['pluginBaseView'],
-    function (PluginBaseView) {
+define(['pluginBaseView', 'masseuse'],
+    function (PluginBaseView, masseuse) {
         'use strict';
 
         return PluginBaseView.extend({
@@ -11,7 +11,7 @@ define(['pluginBaseView'],
         });
 
         function beforeRender() {
-            this.collection.reset(this.model.get('options'));
+            this.collection = new masseuse.Collection(this.model.get('options'));
         }
 
         function addOptionToDropdown() {
