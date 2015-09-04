@@ -5,7 +5,7 @@ var express = require('express'),
     app = express(),
     path = require('path'),
     api = require('grasshopper-api'),
-    PORT = process.env.PORT || 3000;
+    port = process.env.PORT || 3004;
 
 api = api();
 app.use(api.ghApi || api.router);
@@ -15,6 +15,6 @@ app.get('/admin*?', function(request, response) {
     response.sendfile(path.join(__dirname, '..', 'client', 'index.html'));
 });
 
-app.listen(PORT, function() {
-    console.log('Listening on: ' + PORT);
+app.listen(port, function() {
+    console.log('Listening on: ' + port);
 });
