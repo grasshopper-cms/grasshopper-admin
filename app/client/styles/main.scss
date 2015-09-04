@@ -11,9 +11,9 @@
 @import "z-index";
 // Vendor Plugins
 @import "datetimepicker";
-@import "CSS:../vendor/select2/select2";
-@import "CSS:../vendor/jsoneditor/jsoneditor";
-@import "CSS:../vendor/contextjs/context.standalone";
+@import "../vendor/select2/select2";
+@import "../vendor/jsoneditor/jsoneditor";
+@import "../vendor/contextjs/context.standalone";
 @import "multiple-select";
 
 $imgPath: 'img';

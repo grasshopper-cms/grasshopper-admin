@@ -8,6 +8,7 @@ ghapi.json
 .bundle
 .DS_Store
 app/client/vendor
+app/client/styles/main.css
 _deploy
 deploy/public/admin
 .tempo

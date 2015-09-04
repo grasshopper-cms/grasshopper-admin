@@ -5,20 +5,51 @@ var express = require('express'),
     app = express(),
     path = require('path'),
     api = require('grasshopper-api'),
-    port = process.env.PORT || 3004;
+    sass = require('node-sass-middleware'),
+    autoprefixer = require('express-autoprefixer'),
+    child_process = require('child_process'),
+    port = 3004;
 
-api = api();
-app.use(api.ghApi || api.router);
-app.use(express.static(path.join(__dirname, '../client')));
+setup();
+ensureBowerDependenciesHaveBeenInstalled();
+listen();
 
-app.get('/admin', function(request, response) {
-    response.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
-});
+function setup() {
+    api = api();
 
-app.get('*', function(request, response) {
-    response.redirect('/admin');
-});
+    app.use(sass({
+        src : path.join(__dirname, '..', 'client'),
+        dest : path.join(__dirname, '..', 'client'),
+        debug : true,
+        force : true,
+        error : function(err) {
+            console.log(err);
+        }
+    }));
 
-app.listen(port, function() {
-    console.log('Listening on: ' + port);
-});
+    app.use(autoprefixer({ browsers: 'last 2 versions', cascade: false }));
+
+    app.use(express.static(path.join(__dirname, '..', 'client')));
+
+    app.use(api.ghApi || api.router);
+
+    app.get('/admin', function(request, response) {
+        response.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
+    });
+
+    app.get('*', function(request, response) {
+        response.redirect('/admin');
+    });
+}
+
+function listen() {
+    var server = app.listen(process.env.PORT || port, function () {
+        console.log('Admin listening on port - ' + server.address().port);
+    });
+}
+
+function ensureBowerDependenciesHaveBeenInstalled() {
+    console.log('Ensuring Bower Dependencies Installed');
+    child_process.execSync('bower install');
+    console.log('Completed Dependencies Install');
+}
