@@ -77,10 +77,9 @@ define({
         },
         selfLockWarning:'You are about to disable yourself and lose access to the system. ' +
             'Are you sure you want to do this? (You Will still need to save to apply changes.',
-        roles : [ //TODO: DELETE THIS!!!
+        roles : [
             'admin',
             'editor',
-            'author',
             'reader',
             'external',
             'none'
