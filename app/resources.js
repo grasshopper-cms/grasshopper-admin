@@ -292,6 +292,10 @@ define({
             refresh : 'Refresh',
             selectField : 'Select Field'
         },
+        template : {
+            enterTemplateString : 'Template String',
+            templateInterpolation : 'Use [[= field ]] syntax.  The fields available to template are the fields from the content. If you are used to doing "fields.title", in this template you would just use "title". '
+        },
         jsonEditor : {
             language : 'Language',
             theme : 'Theme',
