@@ -46,7 +46,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item" data-rv-show="model:userModel->role | includes admin editor">
+                            <li class="nav-item" data-rv-show="model:userModel->role | includes admin">
                                 <a id="contentTypes" class="nav-item-link" data-rv-href="model:constants->internalRoutes->contentTypes">
                                     <i class="fa fa-cogs"></i>
                                     <span>{{model:resources->types}}</span>
@@ -68,7 +68,7 @@
                             </li>
 
                             <li class="nav-item"
-                                data-rv-show="model:userModel->role | includes admin reader editor author">
+                                data-rv-show="model:userModel->role | includes admin reader editor">
                                 <a id="sysInfo" class="nav-item-link"
                                    data-rv-href="model:constants->internalRoutes->sysInfo">
                                     <i class="fa fa-info"></i>
@@ -79,7 +79,7 @@
                             <li class="nav-item">&nbsp;&nbsp;&nbsp;&nbsp;</li>
 
                             <li class="nav-item"
-                                data-rv-show="model:userModel->role | includes admin reader editor author">
+                                data-rv-show="model:userModel->role | includes admin reader editor">
                                 <a id="help" class="nav-item-link"
                                    data-rv-href="model:constants->internalRoutes->help">
                                     <i class="fa fa-question"></i>
