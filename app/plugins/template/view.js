@@ -5,7 +5,8 @@ define(['pluginBaseView', 'underscore'],
 
         return PluginBaseView.extend({
             afterRender : afterRender,
-            refreshTemplate : _.debounce(refreshTemplate, 300)
+            refreshTemplate : _.debounce(refreshTemplate, 300),
+            beforeSave : beforeSave
         });
 
         function afterRender() {
@@ -18,4 +19,7 @@ define(['pluginBaseView', 'underscore'],
             this.model.set('value', template(fields));
         }
 
+        function beforeSave() {
+
+        }
     });

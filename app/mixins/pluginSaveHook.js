@@ -1,26 +1,41 @@
 /*global define:false*/
-define(['underscore'], function(_) {
+define(['underscore', 'jquery'], function(_, $) {
     'use strict';
 
     return {
         activeSubscribers : [],
         register : register,
-        remove : remove
+        remove : remove,
+        save : save
     };
 
     function register(view) {
         this.activeSubscribers.push(view);
-
-//        console.log('Adding SUBSCRIBERS');
-//        console.log(activeSubscribers);
     }
 
     function remove(view) {
         this.activeSubscribers = _.reject(this.activeSubscribers, function(subscriber) {
             return subscriber.cid === view.cid;
         });
+    }
 
-//        console.log('Removing SUBSCRIBERS');
-//        console.log(activeSubscribers);
+    function save() {
+        return $.when(this.activeSubscribers
+            .filter(function(subscriber) {
+                return subscriber.beforeSave;
+            })
+            .map(function(subscriber) {
+                var $deferred;
+
+                if(subscriber.beforeSave.length) {
+                    $deferred = new $.Deferred();
+
+                    subscriber.beforeSave.call(subscriber, $deferred);
+
+                    return $deferred.promise();
+                } else {
+                    return subscriber.beforeSave();
+                }
+            }));
     }
 });

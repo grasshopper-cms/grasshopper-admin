@@ -1,54 +1,68 @@
-define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'underscore', 'jquery', 'backbone', 'mixins/validatePlugins'],
-    function(Model, resources, constants, masseuse, helpers, _, $, Backbone, validatePlugins) {
+define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'underscore', 'jquery', 'backbone', 'mixins/validatePlugins', 'mixins/pluginSaveHook'],
+    function(GrasshopperModel, resources, constants, masseuse, helpers, _, $, Backbone, validatePlugins, pluginSaveHook) {
         'use strict';
 
         var ComputedProperty = masseuse.ComputedProperty,
             cleanCollection = helpers.cleanCollection;
 
-        return Model.extend({
+        return GrasshopperModel.extend({
             idAttribute: '_id',
-            defaults: function() {
-                var theDefaults = {
-                    constants : constants,
-                    resources: resources,
-                    href: new ComputedProperty(['_id'], function(id) {
-                        return constants.internalRoutes.contentDetail.replace(':id', id);
-                    }),
-                    label: '',
-                    fields: {},
-                    saving: false,
-                    schema: null
-                };
-
-                if (constants.archivedContentFieldName) {
-                    theDefaults.archiveStatus = new ComputedProperty(['fields'], function() {
-                        var archiveWindow, now;
-
-                        if (!this.attributes.fields || !this.attributes.fields[constants.archivedContentFieldName]) {
-                            return '--';
-                        }
-
-                        now = new Date();
-                        archiveWindow = this.attributes.fields[constants.archivedContentFieldName];
-
-                        if (new Date(archiveWindow.validTo) < now) {
-                            return 'Archived';
-                        }
-                        if (new Date(archiveWindow.validFrom) > now) {
-                            return 'Pending';
-                        }
-                        return 'Active';
-                    });
-                }
-
-                return theDefaults;
-            },
+            defaults: getDefaults,
             urlRoot: constants.api.content.url,
+            save : save,
             toJSON: toJSON,
             validate: validate,
             parse: parse,
             resetContentLabel: resetContentLabel
         });
+
+        function getDefaults() {
+            var theDefaults = {
+                constants : constants,
+                resources: resources,
+                href: new ComputedProperty(['_id'], function(id) {
+                    return constants.internalRoutes.contentDetail.replace(':id', id);
+                }),
+                label: '',
+                fields: {},
+                saving: false,
+                schema: null
+            };
+
+            if (constants.archivedContentFieldName) {
+                theDefaults.archiveStatus = new ComputedProperty(['fields'], function() {
+                    var archiveWindow, now;
+
+                    if (!this.attributes.fields || !this.attributes.fields[constants.archivedContentFieldName]) {
+                        return '--';
+                    }
+
+                    now = new Date();
+                    archiveWindow = this.attributes.fields[constants.archivedContentFieldName];
+
+                    if (new Date(archiveWindow.validTo) < now) {
+                        return 'Archived';
+                    }
+                    if (new Date(archiveWindow.validFrom) > now) {
+                        return 'Pending';
+                    }
+                    return 'Active';
+                });
+            }
+
+            return theDefaults;
+        }
+
+        function save() {
+            var self = this;
+
+            this.trigger('change');
+
+            return pluginSaveHook.save()
+                .then(function() {
+                    return GrasshopperModel.prototype.save.call(self, arguments);
+                });
+        }
 
         function toJSON() {
             var json = Backbone.Model.prototype.toJSON.apply(this);
