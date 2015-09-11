@@ -241,6 +241,8 @@ If loaded the environmental variables are loaded from `ghapi.json` in the root o
 * 0.31.4 - 2015-09-01 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.31.4_2015-09-01.md)
 * 0.31.5 - 2015-09-08 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.31.5_2015-09-08.md)
 * 0.32.0 - 2015-09-08 - [features](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.32.0_2015-09-08.md)
+* 0.33.0 - 2015-09-08 - [features](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.33.0_2015-09-08.md)
+* 0.33.1 - 2015-09-010 - [patches](https://github.com/Solid-Interactive/grasshopper-admin/tree/master/release_notes/0.33.1_2015-09-010.md)
 
 
-_Compiled file. Do not modify directly. Created: 2015-09-08 04:43:40_
+_Compiled file. Do not modify directly. Created: 2015-09-10 06:02:24_
