@@ -14,12 +14,18 @@ define(['pluginBaseView', 'underscore'],
         }
 
         function refreshTemplate(fields) {
-            var template = _.template(this.model.get('options').template);
+            var template = _.template(this.model.get('options').template),
+                thisPluginsKeyPath = _.initial(this.model.get('keypath')),
+                thisDocumentsFields = _.reduce(thisPluginsKeyPath, function(memo, key) {
+                    return memo[key];
+                }, fields);
 
-            this.model.set('value', template(fields));
+            thisDocumentsFields = _.omit(thisDocumentsFields, this.model.get('fieldId'));
+
+            this.model.set('value', template({ 'parentDocument' : fields, 'document' : thisDocumentsFields }));
         }
 
-        function beforeSave() {
-
+        function beforeSave(fields) {
+            this.refreshTemplate(fields);
         }
     });

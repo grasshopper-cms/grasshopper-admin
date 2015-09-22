@@ -9,6 +9,7 @@ define(['underscore', 'masseuse', 'plugins', 'jquery'],
                 unbind : function() {},
                 routine : function(el, model) {
                     var rivets = this,
+                        keypath = [],
                         ViewModule = rivets.model.model.get('ViewModule'),
                         configModule = rivets.model.model.get('configModule');
 
@@ -17,11 +18,18 @@ define(['underscore', 'masseuse', 'plugins', 'jquery'],
                         rivets.viewInstance.remove();
                     }
 
+                    if(rivets.model.view.parent.name !== 'contentDetail') {
+                        keypath.push(rivets.model.view.parent.model.get('keypath'), model.get('fieldId'));
+                    } else {
+                        keypath.push(model.get('fieldId'));
+                    }
+
                     rivets.viewInstance = new ViewModule($.extend(true, {}, configModule, {
                         modelData : {
                             value : masseuse.ProxyProperty('value', model),
                             options : model.get('options'),
-                            fieldId : model.get('fieldId')
+                            fieldId : model.get('fieldId'),
+                            keypath : _.flatten(keypath)
                         },
                         appendTo : el
                     }));

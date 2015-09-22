@@ -19,7 +19,7 @@ define(['underscore', 'jquery'], function(_, $) {
         });
     }
 
-    function save() {
+    function save(fields) {
         return $.when(this.activeSubscribers
             .filter(function(subscriber) {
                 return subscriber.beforeSave;
@@ -27,14 +27,14 @@ define(['underscore', 'jquery'], function(_, $) {
             .map(function(subscriber) {
                 var $deferred;
 
-                if(subscriber.beforeSave.length) {
+                if(subscriber.beforeSave.length > 1) {
                     $deferred = new $.Deferred();
 
-                    subscriber.beforeSave.call(subscriber, $deferred);
+                    subscriber.beforeSave.call(subscriber, fields, $deferred);
 
                     return $deferred.promise();
                 } else {
-                    return subscriber.beforeSave();
+                    return subscriber.beforeSave(fields);
                 }
             }));
     }
