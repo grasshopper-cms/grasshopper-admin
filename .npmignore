@@ -12,4 +12,3 @@ ghapi.json
 gha.json
 
 app/vendor/*
-!app/vendor/svg-edit-2.7/

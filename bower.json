@@ -1,7 +1,8 @@
 {
   "name": "grasshopper-admin",
   "dependencies": {
-    "foundation": "5.0.2",
+    "foundation": "5.5.2",
+    "modernizr": "2.8.3",
     "requirejs-text": "2.0.10",
     "js-base64": "2.1.2",
     "masseuse": "2.3.0",

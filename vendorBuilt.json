@@ -13,7 +13,6 @@
     "ckeditor-stylsheet" : "vendor/ckeditor/contents.css",
     "ckeditor-plugins" : "vendor/ckeditor/plugins/**",
     "aceCodeEditor" : "vendor/ace/lib/ace/**/*",
-    "svg-edit" : "vendor/svg-edit-2.7/**/*",
     "contextjs" : "vendor/contextjs/context.js",
     "multipleSelectCss" : "vendor/multiple-select/multiple-select.css",
     "multipleSelectPng" : "vendor/multiple-select/multiple-select.png"
