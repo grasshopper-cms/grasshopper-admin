@@ -293,7 +293,7 @@ define({
         },
         template : {
             enterTemplateString : 'Template String',
-            templateInterpolation : 'Use [[= field ]] syntax.  The fields available to template are the fields from the content. If you are used to doing "fields.title", in this template you would just use "title". '
+            templateInterpolation : 'Use [[= document.field ]] syntax.  The fields available to template are the fields from the content. They are accesible on the `document` object. If you are used to doing "fields.title", in this template you would just use "document.title". If you want to access the top level parent document, you would use [[= parentDocument.title ]].'
         },
         jsonEditor : {
             language : 'Language',
