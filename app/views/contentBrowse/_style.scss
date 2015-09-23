@@ -26,17 +26,20 @@
                     transform: rotate(0deg);
 
                     transition: transform 0.2s ease, color 0.2s ease;
-                    transition-delay: 0.2s;
 
                     color: $darkGray;
 
-                    &.active {
+                    &.active-down {
                         transform: rotate(180deg);
                         color: $lightBlue;
                     }
 
+                    &.active-up {
+                        transform: rotate(0deg);
+                        color: $lightBlue;
+                    }
+
                     &:hover {
-                        transform: rotate(180deg);
                         color: $lightBlue;
                     }
                 }

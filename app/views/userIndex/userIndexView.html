@@ -14,15 +14,35 @@
                 <table width="100%">
                     <thead>
                     <tr>
-                        <th width='200'>{{model:resources->name}}</th>
-                        <th>{{model:resources->displayname}}</th>
-                        <th>{{model:resources->role}}</th>
-                        <th width='200'>{{model:resources->email}}</th>
+                        <th width='200'>
+                            {{model:resources->name}}
+                            <a class='sort-arrow' data-rv-on-click='view.toggleSortUsersByName' data-rv-class-active-up='model:currentUsersSort | equals name-ascending' data-rv-class-active-down='model:currentUsersSort | equals name-descending'>
+                                <i class='fa fa-chevron-up'></i>
+                            </a>
+                        </th>
+                        <th>
+                            {{model:resources->displayname}}
+                            <a class='sort-arrow' data-rv-on-click='view.toggleSortUsersByDisplayName' data-rv-class-active-up='model:currentUsersSort | equals display-name-ascending' data-rv-class-active-down='model:currentUsersSort | equals display-name-descending'>
+                                <i class='fa fa-chevron-up'></i>
+                            </a>
+                        </th>
+                        <th>
+                            {{model:resources->role}}
+                            <a class='sort-arrow' data-rv-on-click='view.toggleSortUsersByRole' data-rv-class-active-up='model:currentUsersSort | equals role-ascending' data-rv-class-active-down='model:currentUsersSort | equals role-descending'>
+                                <i class='fa fa-chevron-up'></i>
+                            </a>
+                        </th>
+                        <th width='200'>
+                            {{model:resources->email}}
+                            <a class='sort-arrow' data-rv-on-click='view.toggleSortUsersByEmail' data-rv-class-active-up='model:currentUsersSort | equals email-ascending' data-rv-class-active-down='model:currentUsersSort | equals email-descending'>
+                                <i class='fa fa-chevron-up'></i>
+                            </a>
+                        </th>
                         <th width='200' style='text-align: center'>{{model:resources->actions}}</th>
                     </tr>
                     </thead>
                     <tbody id="userIndexTable">
-                    <tr data-rv-each-user="model:users:" data-rv-new-user-detail-row="user"></tr>
+                    <tr data-rv-each-user="model:users.models" data-rv-new-user-detail-row="user"></tr>
                     </tbody>
                 </table>
                 <section data-rv-if="model:users.total | isGreaterThan 25" data-rv-new-pagination-view="model:users"></section>

@@ -1,10 +1,15 @@
-<div>
+<div id='contentTypeIndexView'>
     <div class="row">
         <div class="large-12 columns">
             <table width="100%">
                 <thead>
                     <tr>
-                        <th style="width: 85%;">{{model:resources->name}}</th>
+                        <th style="width: 85%;">
+                            {{model:resources->name}}
+                            <a class='sort-arrow' data-rv-on-click='view.toggleSortContentsByLabel' data-rv-class-active-up='model:currentContentsSort | equals ascending' data-rv-class-active-down='model:currentContentsSort | equals descending'>
+                                <i class='fa fa-chevron-up'></i>
+                            </a>
+                        </th>
                         <th style="text-align: center;">{{model:resources->actions}}</th>
                     </tr>
                 </thead>
@@ -19,7 +24,7 @@
                             </span>
                         </td>
                     </tr>
-                    <tr data-rv-each-type="model:contentTypes:" data-rv-new-content-type-detail-row="type"></tr>
+                    <tr data-rv-each-type="model:contentTypes.models" data-rv-new-content-type-detail-row="type"></tr>
                 </tbody>
             </table>
         </div>

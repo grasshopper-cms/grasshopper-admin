@@ -6,7 +6,8 @@ define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'constants'],
         return GrasshopperBaseView.extend({
             defaultOptions : contentTypeIndexViewConfig,
             beforeRender : beforeRender,
-            newContentType : newContentType
+            newContentType : newContentType,
+            toggleSortContentsByLabel : toggleSortContentsByLabel
         });
 
         function beforeRender ($deferred) {
@@ -16,6 +17,19 @@ define(['grasshopperBaseView', 'contentTypeIndexViewConfig', 'constants'],
 
         function newContentType() {
             this.app.router.navigateTrigger(constants.internalRoutes.newContentType);
+        }
+
+        function toggleSortContentsByLabel() {
+            var currentContentsSort = this.model.get('currentContentsSort'),
+                contentTypesCollection = this.model.get('contentTypes');
+
+            if(currentContentsSort === 'ascending') {
+                contentTypesCollection.sortByLabelDescending();
+                this.model.set('currentContentsSort', 'descending');
+            } else {
+                contentTypesCollection.sortByLabelAscending();
+                this.model.set('currentContentsSort', 'ascending');
+            }
         }
 
     });

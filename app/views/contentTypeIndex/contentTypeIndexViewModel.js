@@ -1,27 +1,19 @@
-define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', 'contentTypeDetailViewModel'],
-    function (Model, resources, constants, GrasshopperCollection, contentTypeDetailViewModel) {
+define(['grasshopperModel', 'resources', 'constants', 'contentTypeIndexViewContentTypesCollection'],
+    function (Model, resources, constants, ContentTypesCollection) {
 
     'use strict';
 
     return Model.extend({
-        defaults : {
-            resources : resources,
-            contentTypes : null
-        },
-        url : constants.api.contentTypes.url,
-        initialize : initialize
+        defaults : getDefaults,
+        url : constants.api.contentTypes.url
     });
 
-    function initialize() {
-        this.set('contentTypes', new (GrasshopperCollection.extend({
-            model : contentTypeDetailViewModel,
-            comparator: function(model) {
-                return model.get('label').toLowerCase();
-            },
-            url : function() {
-                return constants.api.contentTypes.url;
-            }
-        }))());
+    function getDefaults() {
+        return {
+            resources : resources,
+            contentTypes : new ContentTypesCollection(),
+            currentContentsSort : 'ascending'
+        };
     }
 
 });

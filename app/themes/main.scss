@@ -30,6 +30,11 @@ body, html {
   height: 100%;
 
   font-family: $font;
+
+  a {
+    outline: none;
+  }
+
   .jsoneditor-contextmenu {
     button {
       border-radius: 0px;

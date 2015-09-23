@@ -131,13 +131,12 @@ define([], function() {
         ],
         contentSearchThrottle: 1000,
         pagination : {
-            defaultLimit : 25,
+            defaultLimit : 500,
             defaultSkip : 1,
             defaultPagesLimit : 7,
             defaultPageSize : [
-                25,
-                50,
-                100,
+                1000,
+                2000,
                 'all'
             ],
             defaultAllLimit : 100000

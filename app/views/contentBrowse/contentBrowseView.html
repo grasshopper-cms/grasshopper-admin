@@ -34,19 +34,19 @@
                         <tr>
                             <th>
                                 {{model:resources->label}}
-                                <a class='sort-arrow' data-rv-on-click='view.toggleSortContentByLabel' data-rv-class-active='model:currentSort | equals label'>
+                                <a class='sort-arrow' data-rv-on-click='view.toggleSortContentByLabel' data-rv-class-active-up='model:currentContentSort | equals label-ascending' data-rv-class-active-down='model:currentContentSort | equals label-descending'>
                                     <i class='fa fa-chevron-up'></i>
                                 </a>
                             </th>
                             <th>
                                 {{model:resources->type}}
-                                <a class='sort-arrow' data-rv-on-click='view.toggleSortContentByType' data-rv-class-active='model:currentSort | equals type'>
+                                <a class='sort-arrow' data-rv-on-click='view.toggleSortContentByType' data-rv-class-active-up='model:currentContentSort | equals type-ascending' data-rv-class-active-down='model:currentContentSort | equals type-descending'>
                                     <i class='fa fa-chevron-up'></i>
                                 </a>
                             </th>
                             <th>
                                 {{model:resources->contentBrowse->modified}}
-                                <a class='sort-arrow' data-rv-on-click='view.toggleSortByLastModified' data-rv-class-active='model:currentSort | equals modified'>
+                                <a class='sort-arrow' data-rv-on-click='view.toggleSortByLastModified' data-rv-class-active-up='model:currentContentSort | equals modified-ascending' data-rv-class-active-down='model:currentContentSort | equals modified-descending'>
                                     <i class='fa fa-chevron-up'></i>
                                 </a>
                             </th>
@@ -58,7 +58,7 @@
                     </thead>
                     <tbody id="contentBrowseTable">
                         <!--Nodes Come First-->
-                        <tr class="nodeDetailRow clipboardTargetRow" data-rv-each-node="model:childNodes:"
+                        <tr class="nodeDetailRow clipboardTargetRow" data-rv-each-node="model:childNodes.models"
                             data-rv-data-id="node.id" data-rv-new-node-detail-row="node"></tr>
 
                         <!--Then Content-->
@@ -85,9 +85,24 @@
                     <table class="content-table">
                         <thead>
                             <tr>
-                                <th>{{model:resources->fileIndex->fileName}}</th>
-                                <th>{{model:resources->fileIndex->size}}</th>
-                                <th>{{model:resources->fileIndex->modified}}</th>
+                                <th>
+                                    {{model:resources->fileIndex->fileName}}
+                                    <a class='sort-arrow' data-rv-on-click='view.toggleSortAssetsByLabel' data-rv-class-active-up='model:currentAssetsSort | equals label-ascending' data-rv-class-active-down='model:currentAssetsSort | equals label-descending'>
+                                        <i class='fa fa-chevron-up'></i>
+                                    </a>
+                                </th>
+                                <th>
+                                    {{model:resources->fileIndex->size}}
+                                    <a class='sort-arrow' data-rv-on-click='view.toggleSortAssetsBySize' data-rv-class-active-up='model:currentAssetsSort | equals size-ascending' data-rv-class-active-down='model:currentAssetsSort | equals size-descending'>
+                                        <i class='fa fa-chevron-up'></i>
+                                    </a>
+                                </th>
+                                <th>
+                                    {{model:resources->fileIndex->modified}}
+                                    <a class='sort-arrow' data-rv-on-click='view.toggleSortAssetsByModified' data-rv-class-active-up='model:currentAssetsSort | equals modified-ascending' data-rv-class-active-down='model:currentAssetsSort | equals modified-descending'>
+                                        <i class='fa fa-chevron-up'></i>
+                                    </a>
+                                </th>
                                 <th style="text-align: center; width: 15%;">{{model:resources->actions}}</th>
                             </tr>
                         </thead>
@@ -105,7 +120,7 @@
                             </tr>
 
                             <tr class="assetDetailRow clipboardTargetRow" data-rv-new-asset-detail-row="asset"
-                                data-rv-each-asset="model:childAssets:" data-rv-data-id="asset.id"></tr>
+                                data-rv-each-asset="model:childAssets.models" data-rv-data-id="asset.id"></tr>
 
                         </tbody>
                     </table>

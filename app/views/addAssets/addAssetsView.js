@@ -43,7 +43,8 @@ define(['grasshopperBaseView', 'addAssetsViewConfig', 'underscore', 'resources']
                 size : file.size,
                 lastmodified : file.lastModifiedDate,
                 fileData : file,
-                uploadError : false
+                uploadError : false,
+                nodeId : this.model.get('nodeId')
             };
 
             this.channels.views.trigger('assetAdded', payload);

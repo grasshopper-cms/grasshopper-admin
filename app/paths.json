@@ -150,7 +150,9 @@
             "" : "views/contentBrowse/contentBrowseView",
             "Config" : "views/contentBrowse/contentBrowseViewConfig",
             "Model" : "views/contentBrowse/contentBrowseViewModel",
-            "ChildNodesCollection" : "views/contentBrowse/childNodesCollection"
+            "ChildNodesCollection" : "views/contentBrowse/childNodesCollection",
+            "ChildContentCollection" : "views/contentBrowse/childContentCollection",
+            "ChildAssetsCollection" : "views/contentBrowse/childAssetsCollection"
         },
 
         "contentDetailView+" : {
@@ -180,7 +182,8 @@
         "contentTypeIndexView+" : {
             "" : "views/contentTypeIndex/contentTypeIndexView",
             "Config" : "views/contentTypeIndex/contentTypeIndexViewConfig",
-            "Model" : "views/contentTypeIndex/contentTypeIndexViewModel"
+            "Model" : "views/contentTypeIndex/contentTypeIndexViewModel",
+            "ContentTypesCollection" : "views/contentTypeIndex/contentTypesCollection"
         },
 
         "fieldAccordion+" : {
@@ -243,7 +246,8 @@
         "userIndexView+" : {
             "" : "views/userIndex/userIndexView",
             "Config" : "views/userIndex/userIndexViewConfig",
-            "Model" : "views/userIndex/userIndexViewModel"
+            "Model" : "views/userIndex/userIndexViewModel",
+            "UsersCollection" : "views/userIndex/usersCollection"
         },
 
         "forbiddenView+" : {

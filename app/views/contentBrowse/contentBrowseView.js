@@ -27,12 +27,21 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
             toggleSortContentByLabel : toggleSortContentByLabel,
             toggleSortContentByType : toggleSortContentByType,
             toggleSortByLastModified : toggleSortByLastModified,
+            toggleSortAssetsByLabel : toggleSortAssetsByLabel,
+            toggleSortAssetsBySize : toggleSortAssetsBySize,
+            toggleSortAssetsByModified : toggleSortAssetsByModified,
             remove : remove
         })
             .extend(clipboardContextMenu)
             .extend(clipboardEvents);
 
         function beforeRender ($deferred) {
+            this.model.get('childAssets').nodeId = this.model.get('nodeId');
+            this.model.get('childNodes').nodeId = this.model.get('nodeId');
+            this.model.get('childContent').nodeId = this.model.get('nodeId');
+            this.model.get('childContent').limit = this.model.get('limit');
+            this.model.get('childContent').skip = this.model.get('skip');
+
             $.when(
                     _buildMastheadBreadcrumb.call(this),
                     this.model.fetch(),
@@ -133,69 +142,84 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
         }
 
         function toggleSortContentByLabel() {
-            var childNodesCollection = this.model.get('childNodes'),
+            var currentContentSort = this.model.get('currentContentSort'),
+                childNodesCollection = this.model.get('childNodes'),
                 childContentCollection = this.model.get('childContent');
 
-            if(this.model.get('currentSort') === 'label') {
-                childContentCollection.comparator = function(modelA, modelB) {
-                    var modelALabel = modelA.get('fields.'+ modelA.get('meta.labelfield') ).toLowerCase(),
-                        modelBLabel = modelB.get('fields.'+ modelB.get('meta.labelfield') ).toLowerCase();
-
-                    if(modelALabel.localeCompare(modelBLabel)) {
-                        return 1;
-                    }
-                    if(modelBLabel.localeCompare(modelALabel)) {
-                        return -1;
-                    }
-                    return 0;
-                };
-                childContentCollection.sort();
-                // childNodesCollection.comparator = function(modelA, modelB) {
-                //     return model.get('label').toLowerCase();
-                // };
-                // childNodesCollection.sort();
-
+            if(currentContentSort === 'label-ascending') {
+                childContentCollection.sortByLabelDescending();
+                childNodesCollection.sortByLabelDescending();
+                this.model.set('currentContentSort', 'label-descending');
             } else {
-                childContentCollection.comparator = function(modelA, modelB) {
-                    var modelALabel = modelA.get('fields.'+ modelA.get('meta.labelfield') ).toLowerCase(),
-                        modelBLabel = modelB.get('fields.'+ modelB.get('meta.labelfield') ).toLowerCase();
-
-                    if(modelALabel.localeCompare(modelBLabel)) {
-                        return -1;
-                    }
-                    if(modelBLabel.localeCompare(modelALabel)) {
-                        return 1;
-                    }
-                    return 0;
-                };
-                childContentCollection.sort();
-                // childNodesCollection.comparator = function(modelA, modelB) {
-                //     return model.get('label').toLowerCase();
-                // };
-                // childNodesCollection.sort();
+                childContentCollection.sortByLabelAscending();
+                childNodesCollection.sortByLabelAscending();
+                this.model.set('currentContentSort', 'label-ascending');
             }
-
-            this.model.set('currentSort', 'label');
-            childContentCollection.trigger('change', childContentCollection);
-            childNodesCollection.trigger('change', childNodesCollection);
-
-            // this.model.get('childContent').sortBy('fields[meta.labelField]');
         }
 
         function toggleSortContentByType() {
-            var childContentCollection = this.model.get('childContent');
+            var currentContentSort = this.model.get('currentContentSort'),
+                childContentCollection = this.model.get('childContent');
 
-            this.model.set('currentSort', 'type');
-
-            childContentCollection.comparator = function(model) {
-                return model.get('meta.typelabel').toLowerCase();
-            };
-            childContentCollection.sort();
-            childContentCollection.trigger('change', childContentCollection);
+            if(currentContentSort === 'type-ascending') {
+                childContentCollection.sortByTypeDescending();
+                this.model.set('currentContentSort', 'type-descending');
+            } else {
+                childContentCollection.sortByTypeAscending();
+                this.model.set('currentContentSort', 'type-ascending');
+            }
         }
 
         function toggleSortByLastModified() {
-            this.model.set('currentSort', 'modified');
+            var currentContentSort = this.model.get('currentContentSort'),
+                childContentCollection = this.model.get('childContent');
+
+            if(currentContentSort === 'modified-ascending') {
+                childContentCollection.sortByModifiedDescending();
+                this.model.set('currentContentSort', 'modified-descending');
+            } else {
+                childContentCollection.sortByModifiedAscending();
+                this.model.set('currentContentSort', 'modified-ascending');
+            }
+        }
+
+        function toggleSortAssetsByLabel() {
+            var currentAssetsSort = this.model.get('currentAssetsSort'),
+                childAssetsCollection = this.model.get('childAssets');
+
+            if(currentAssetsSort === 'label-ascending') {
+                childAssetsCollection.sortByLabelDescending();
+                this.model.set('currentAssetsSort', 'label-descending');
+            } else {
+                childAssetsCollection.sortByLabelAscending();
+                this.model.set('currentAssetsSort', 'label-ascending');
+            }
+        }
+
+        function toggleSortAssetsBySize() {
+            var currentAssetsSort = this.model.get('currentAssetsSort'),
+                childAssetsCollection = this.model.get('childAssets');
+
+            if(currentAssetsSort === 'size-ascending') {
+                childAssetsCollection.sortBySizeDescending();
+                this.model.set('currentAssetsSort', 'size-descending');
+            } else {
+                childAssetsCollection.sortBySizeAscending();
+                this.model.set('currentAssetsSort', 'size-ascending');
+            }
+        }
+
+        function toggleSortAssetsByModified() {
+            var currentAssetsSort = this.model.get('currentAssetsSort'),
+                childAssetsCollection = this.model.get('childAssets');
+
+            if(currentAssetsSort === 'modified-ascending') {
+                childAssetsCollection.sortByModifiedDescending();
+                this.model.set('currentAssetsSort', 'modified-descending');
+            } else {
+                childAssetsCollection.sortByModifiedAscending();
+                this.model.set('currentAssetsSort', 'modified-ascending');
+            }
         }
 
         function remove() {
