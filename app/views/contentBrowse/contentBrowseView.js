@@ -24,6 +24,9 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
             getChildContent : getChildContent,
             searchContent : searchContent,
             hasCreateFolderPermission: hasCreateFolderPermission,
+            toggleSortContentByLabel : toggleSortContentByLabel,
+            toggleSortContentByType : toggleSortContentByType,
+            toggleSortByLastModified : toggleSortByLastModified,
             remove : remove
         })
             .extend(clipboardContextMenu)
@@ -127,6 +130,72 @@ define(['grasshopperBaseView', 'contentBrowseViewConfig', 'jquery', 'searchWorke
 
         function searchContent(e, context, isFirstQuery) {
             return searchWorker.searchContent.call(this, e, context, 'childContent', true, isFirstQuery);
+        }
+
+        function toggleSortContentByLabel() {
+            var childNodesCollection = this.model.get('childNodes'),
+                childContentCollection = this.model.get('childContent');
+
+            if(this.model.get('currentSort') === 'label') {
+                childContentCollection.comparator = function(modelA, modelB) {
+                    var modelALabel = modelA.get('fields.'+ modelA.get('meta.labelfield') ).toLowerCase(),
+                        modelBLabel = modelB.get('fields.'+ modelB.get('meta.labelfield') ).toLowerCase();
+
+                    if(modelALabel.localeCompare(modelBLabel)) {
+                        return 1;
+                    }
+                    if(modelBLabel.localeCompare(modelALabel)) {
+                        return -1;
+                    }
+                    return 0;
+                };
+                childContentCollection.sort();
+                // childNodesCollection.comparator = function(modelA, modelB) {
+                //     return model.get('label').toLowerCase();
+                // };
+                // childNodesCollection.sort();
+
+            } else {
+                childContentCollection.comparator = function(modelA, modelB) {
+                    var modelALabel = modelA.get('fields.'+ modelA.get('meta.labelfield') ).toLowerCase(),
+                        modelBLabel = modelB.get('fields.'+ modelB.get('meta.labelfield') ).toLowerCase();
+
+                    if(modelALabel.localeCompare(modelBLabel)) {
+                        return -1;
+                    }
+                    if(modelBLabel.localeCompare(modelALabel)) {
+                        return 1;
+                    }
+                    return 0;
+                };
+                childContentCollection.sort();
+                // childNodesCollection.comparator = function(modelA, modelB) {
+                //     return model.get('label').toLowerCase();
+                // };
+                // childNodesCollection.sort();
+            }
+
+            this.model.set('currentSort', 'label');
+            childContentCollection.trigger('change', childContentCollection);
+            childNodesCollection.trigger('change', childNodesCollection);
+
+            // this.model.get('childContent').sortBy('fields[meta.labelField]');
+        }
+
+        function toggleSortContentByType() {
+            var childContentCollection = this.model.get('childContent');
+
+            this.model.set('currentSort', 'type');
+
+            childContentCollection.comparator = function(model) {
+                return model.get('meta.typelabel').toLowerCase();
+            };
+            childContentCollection.sort();
+            childContentCollection.trigger('change', childContentCollection);
+        }
+
+        function toggleSortByLastModified() {
+            this.model.set('currentSort', 'modified');
         }
 
         function remove() {

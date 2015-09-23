@@ -1,25 +1,51 @@
 .contentBrowse {
-  .tabs {
-    border-bottom: 1px solid $tabBorderColor;
-    & dd {
-      border: 1px solid $tabBorderColor;
-    }
-    & dd.active {
-      border-bottom: 1px solid $activeTabBorderColor;
-    }
-    p{
-      margin-bottom: 0;
-    }
-  }
+    .tabs {
+        border-bottom: 1px solid $tabBorderColor;
 
-  .tabs-content {
-    .content {
-      width: 100%;
+        & dd {
+            border: 1px solid $tabBorderColor;
+        }
+        & dd.active {
+            border-bottom: 1px solid $activeTabBorderColor;
+        }
+        p {
+            margin-bottom: 0;
+        }
     }
-  }
 
-  #panel2-1 {
-    position: relative;
-    padding-bottom: 1.5rem;
-  }
+    .tabs-content {
+        .content {
+            width: 100%;
+            th {
+                .sort-arrow {
+                    display: inline-block;
+                    float: right;
+
+                    font-size: 10px;
+
+                    transform: rotate(0deg);
+
+                    transition: transform 0.2s ease, color 0.2s ease;
+                    transition-delay: 0.2s;
+
+                    color: $darkGray;
+
+                    &.active {
+                        transform: rotate(180deg);
+                        color: $lightBlue;
+                    }
+
+                    &:hover {
+                        transform: rotate(180deg);
+                        color: $lightBlue;
+                    }
+                }
+            }
+        }
+    }
+
+    #panel2-1 {
+        position: relative;
+        padding-bottom: 1.5rem;
+    }
 }

@@ -1,8 +1,8 @@
 /*global define:false*/
 define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'contentBrowseViewModel', 'constants',
-        'appBinders', 'nodeDetailView', 'contentDetailRowView', 'assetDetailView', 'pagination/view'],
+        'appBinders', 'nodeDetailView', 'contentDetailRowView', 'assetDetailView', 'pagination/view', 'formatters'],
     function (template, resources, contentBrowseViewModel, constants,
-              appBinders, NodeDetailView, ContentDetailRowView, AssetDetailView, PaginationView) {
+              appBinders, NodeDetailView, ContentDetailRowView, AssetDetailView, PaginationView, formatters) {
 
         'use strict';
 
@@ -33,6 +33,7 @@ define(['text!views/contentBrowse/contentBrowseView.html', 'resources', 'content
             rivetsConfig : {
                 instaUpdate: true,
                 binders : [appBinders],
+                formatters : [formatters],
                 childViewBinders : {
                     'node-detail-row': NodeDetailView,
                     'content-detail-row': ContentDetailRowView,

@@ -13,7 +13,8 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
             constants : constants,
             childNodes : null,
             childContent : null,
-            childAssets : null
+            childAssets : null,
+            currentSort : 'label'
         },
         urlRoot : constants.api.node.url
     });
@@ -25,6 +26,9 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
             model : nodeDetailViewModel,
             url : function() {
                 return constants.api.nodesChildren.url.replace(':id', self.get('nodeId'));
+            },
+            comparator : function(model) {
+                return model.get('label').toLowerCase();
             }
         }))());
 
@@ -32,6 +36,18 @@ define(['grasshopperModel', 'resources', 'constants', 'grasshopperCollection', '
             model : contentDetailViewModel,
             url : function() {
                 return constants.api.nodesContent.url.replace(':id', self.get('nodeId'));
+            },
+            comparator : function(modelA, modelB) {
+                var modelALabel = modelA.get('fields.'+ modelA.get('meta.labelfield') ).toLowerCase(),
+                    modelBLabel = modelB.get('fields.'+ modelB.get('meta.labelfield') ).toLowerCase();
+
+                if(modelALabel.localeCompare(modelBLabel)) {
+                    return 1;
+                }
+                if(modelBLabel.localeCompare(modelALabel)) {
+                    return -1;
+                }
+                return 0;
             },
             limit : parseInt( this.get('limit') || constants.pagination.defaultLimit, 10 ),
             skip : parseInt( this.get('skip') || constants.pagination.defaultSkip, 10 ),

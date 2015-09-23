@@ -218,7 +218,8 @@ define({
     },
     contentBrowse : {
         author : 'Author',
-        modified : 'Modified'
+        modified : 'Modified',
+        archived : 'Archived'
     },
     fileIndex : {
         files : 'Files',

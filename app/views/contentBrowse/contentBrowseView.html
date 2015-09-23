@@ -32,10 +32,27 @@
                 <table class="content-table">
                     <thead>
                         <tr>
-                            <th>{{model:resources->label}}</th>
-                            <th>{{model:resources->type}}</th>
-                            <th>{{model:resources->contentBrowse->modified}}</th>
-                            <th data-rv-if="model:constants->archivedContentFieldName">Archived</th>
+                            <th>
+                                {{model:resources->label}}
+                                <a class='sort-arrow' data-rv-on-click='view.toggleSortContentByLabel' data-rv-class-active='model:currentSort | equals label'>
+                                    <i class='fa fa-chevron-up'></i>
+                                </a>
+                            </th>
+                            <th>
+                                {{model:resources->type}}
+                                <a class='sort-arrow' data-rv-on-click='view.toggleSortContentByType' data-rv-class-active='model:currentSort | equals type'>
+                                    <i class='fa fa-chevron-up'></i>
+                                </a>
+                            </th>
+                            <th>
+                                {{model:resources->contentBrowse->modified}}
+                                <a class='sort-arrow' data-rv-on-click='view.toggleSortByLastModified' data-rv-class-active='model:currentSort | equals modified'>
+                                    <i class='fa fa-chevron-up'></i>
+                                </a>
+                            </th>
+                            <th data-rv-if="model:constants->archivedContentFieldName">
+                                {{model:resources->contentBrowse->archived}}
+                            </th>
                             <th style="text-align: center; width: 10%;">{{model:resources->actions}}</th>
                         </tr>
                     </thead>

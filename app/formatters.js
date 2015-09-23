@@ -18,7 +18,8 @@ define(['sparkmd5', 'constants'], function (sparkmd5, constants) {
         preventDefault : preventDefault,
         stopImmediatePropagation : stopImmediatePropagation,
         asBoolean : asBoolean,
-        asUserDetailsLink: asUserDetailsLink
+        asUserDetailsLink: asUserDetailsLink,
+        equals : equals
     };
 
     /**
@@ -101,5 +102,9 @@ define(['sparkmd5', 'constants'], function (sparkmd5, constants) {
 
     function asUserDetailsLink(value){
         return constants.internalRoutes.userDetail.replace(':id', value);
+    }
+
+    function equals(value, comparator) {
+        return value == comparator;
     }
 });
