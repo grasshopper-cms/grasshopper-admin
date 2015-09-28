@@ -23,7 +23,7 @@ define(['text!plugins/template/template.html', 'plugins/template/model', 'text!p
             setupTemplate : setupTemplate,
             wrapper: false,
             listeners : [
-                ['channels.views', 'contentFieldsChange', 'refreshTemplate']
+                ['channels.views', 'contentFieldsChange', 'debouncedRefreshTemplate']
             ]
         };
     });

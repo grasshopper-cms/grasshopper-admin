@@ -5,7 +5,8 @@ define(['pluginBaseView', 'underscore'],
 
         return PluginBaseView.extend({
             afterRender : afterRender,
-            refreshTemplate : _.debounce(refreshTemplate, 300),
+            refreshTemplate : refreshTemplate,
+            debouncedRefreshTemplate : _.debounce(refreshTemplate, 300),
             beforeSave : beforeSave
         });
 
