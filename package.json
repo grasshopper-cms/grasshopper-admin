@@ -16,7 +16,8 @@
       "name": "Cooper Hilscher"
     }
   ],
-  "version": "0.35.1",
+  "main": "./app",
+  "version": "1.0.0-beta.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/Solid-Interactive/grasshopper-admin.git"
@@ -31,10 +32,13 @@
     }
   ],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.5.0"
   },
-  "bin": {
-    "grasshopper": "./bin/gha"
+  "dependencies": {
+    "browserify-middleware": "^7.0.0",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "node-sass-middleware": "^0.9.7"
   },
   "devDependencies": {
     "git-release-notes": "0.0.1",
@@ -46,9 +50,7 @@
     "grunt-express-server": "^0.4.17",
     "grunt-prompt": "~0.1.2",
     "grunt-release-notes": "0.1.1",
-    "grunt-replace": "^0.7.8"
-  },
-  "dependencies": {
+    "grunt-replace": "^0.7.8",
     "commander": "~2.1.0",
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.7.3",
@@ -60,7 +62,6 @@
     "grunt-contrib-requirejs": "~0.4.3",
     "grunt-contrib-sass": "^0.7.3",
     "grunt-filerev": "^0.2.1",
-    "grunt-replace": "~0.7.7",
     "grunt-requirejs-paths": "~0.1.1",
     "grunt-rev": "~0.1.0",
     "grunt-shell": "~0.2.2",
