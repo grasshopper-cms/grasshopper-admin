@@ -84,6 +84,7 @@ define([], function() {
         internalRoutes : {
             advancedSearch : 'advanced-search',
             advancedSearchWithOptions : 'advanced-search/:type/query=:queryOptions',
+            config : 'config',
             user : 'user',
             users : 'users',
             userDetail : 'user/:id',

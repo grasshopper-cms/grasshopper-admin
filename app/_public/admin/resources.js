@@ -319,6 +319,7 @@ define({
     cancel : 'Cancel',
     close : 'Close',
     comparator : 'Comparator',
+    config : 'Config',
     confirm : 'Confirm',
     content : 'Content',
     contentTypes : 'Content Types',

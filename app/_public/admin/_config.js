@@ -269,7 +269,7 @@ require([
     'backbone',
     'underscore',
     'jquery',
-    './routers/help',
+    './routers/config',
     'resources',
     'ajaxCounterWorker',
     'require',
@@ -290,8 +290,13 @@ require([
     'momentTimezoneWithData'
 ],
     /**
+     * 
+     * @param Backbone
+     * @param _
      * @param $
-     * @param {Router} Router
+     * @param Router
+     * @param resources
+     * @param ajaxCounterWorker
      */
         function (Backbone, _, $, Router, resources, ajaxCounterWorker) {
         'use strict';
