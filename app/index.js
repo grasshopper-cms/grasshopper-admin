@@ -8,6 +8,7 @@ var BB = require('bluebird'),
     MongoClient = mongodb.MongoClient,
     path = require('path');
 
+
 module.exports = function(options) {
     var adminRouter = express.Router(),
 
@@ -15,19 +16,27 @@ module.exports = function(options) {
 
         host = options.db.host,
         auth = options.db.password ? `${ options.db.username }:${ options.db.password }@` : '',
-        url = `mongodb://${ auth }${ host }`;
+        url = `mongodb://${ auth }${ host }`,
+
+        ghAdmin = {
+            db : null,
+            router : adminRouter
+        };
 
     console.log('url', url);
 
     MongoClient.connect(url).then(function(db) {
             console.log("Connected correctly to server");
 
+            ghAdmin.db = db;
             // Find all directories that do not begin with underscores in this directory
             glob(`${ __dirname }/preinstalled-plugins/[^_]*/`)
                 .then(function(dirs) {
                     dirs.forEach(function(dir) {
 
-                        require(`${ dir }route`)(adminRouter, db);
+                        console.log(`registering: ${ dir }`);
+                        var plugin = require(`${ dir }`);
+                        plugin.register(ghAdmin);
                     });
                 });
         })

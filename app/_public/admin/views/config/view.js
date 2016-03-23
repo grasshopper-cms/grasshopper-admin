@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', './config', 'jquery', 'api', 'constants'],
-    function (GrasshopperBaseView, config, $, api, constants) {
+define(['grasshopperBaseView', './config', 'jquery', 'api', 'constants', 'underscore'],
+    function (GrasshopperBaseView, config, $, api, constants, _) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -21,11 +21,14 @@ define(['grasshopperBaseView', './config', 'jquery', 'api', 'constants'],
                 self = this;
 
             api.authenticatedRequest('/api/admin/_config')
-                .done(function (help) {
-                    debugger;
-                    window.console.log('help', help.results[0]);
-                    self.model.set('help', help.results[0]);
-                    self.model.set('loaded',  help.results.length ? true : false);
+                .done(function (config) {
+                    config = _.map(config, function(value, key) {
+                        return {
+                            key : key,
+                            value : value
+                        }
+                    });
+                    self.model.set('config', config);
                     $deferred.resolve();
                 });
 

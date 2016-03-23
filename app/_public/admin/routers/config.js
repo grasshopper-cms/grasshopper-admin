@@ -8,18 +8,7 @@ define([
     'userDetail/view', 'UserModel',
     'headerView',
     'mastheadView',
-    'userIndexView',
-    'addUser/view',
-    'contentBrowseView',
-    'contentDetailView',
-    'contentTypeIndexView',
-    'contentTypeDetailView',
-    'addFolderView',
-    'addContentView',
-    'addAssetsView',
-    'sysInfoView',
-    'advancedSearch/view',
-    'helpView/view'
+    '../views/config/view'
 ],
     function($, Backbone, _, masseuse, Api, constants, helpers,
               GrasshopperBaseView,
@@ -29,23 +18,11 @@ define([
               UserDetailView, UserModel,
               HeaderView,
               MastheadView,
-              UserIndexView,
-              AddUserView,
-              ContentBrowseView,
-              ContentDetailView,
-              ContentTypeIndexView,
-              ContentTypeDetailView,
-              AddFolderView,
-              AddContentView,
-              AddAssetsView,
-              SysInfoView,
-              AdvancedSearchView,
-              HelpView
+              ConfigView
         ) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
-            LocalStorage = helpers.localStorage,
             userModel = new UserModel(),
             currentView,
             Router;
@@ -56,28 +33,7 @@ define([
          */
         Router = MasseuseRouter.extend({
             routes : {
-                'login(/:token)' : 'displayLogin',
-                'logout' : 'goLogout',
-                'users(/limit/:limit/skip/:skip)' : 'displayUserIndex',
-                'users(/limit/:limit/skip/:skip/query/:query)' : 'displayUserIndex',
-                'user/:id' : 'displayUserDetail',
-                'sys-info': 'displaySysinfo',
-                'help': 'displayHelp',
-                'add-user' : 'displayAddUser',
-                'content-types' : 'displayContentTypeIndex',
-                'content-types/new' : 'displayContentTypeDetail',
-                'content-types(/:id)' : 'displayContentTypeDetail',
-                'advanced-search(/:type/query=:queryOptions)' : 'displayAdvancedSearch',
-                'items/nodeid/:nodeId/create-assets' : 'displayCreateAssets',
-                'items/nodeid/:nodeId/create-folder' : 'displayCreateFolder',
-                'items/nodeid/:nodeId/create-content' : 'displayCreateContent',
-                'items(/nodeid/:nodeId/limit/:limit)' : 'displayContentBrowse',
-                'items(/nodeid/:nodeId/limit/:limit/skip/:skip)' : 'displayContentBrowse',
-                'items(/nodeid/:nodeId/limit/:limit/skip/:skip/query/:query)' : 'displayContentBrowse',
-                'items(/nodeid/:nodeId)' : 'displayContentBrowse',
-                'item/:id' : 'displayContentDetail',
-                'forbidden' : 'displayForbidden',
-                'not-found' : 'displayNotFound',
+                '' : 'displayConfig',
                 '*path' : 'goHome'
             },
 
@@ -104,24 +60,9 @@ define([
             loadMainContent : loadMainContent,
 
             goHome : goHome,
-            displayLogin : displayLogin,
             goLogout : goLogout,
             navigate : navigate,
-            displayUserIndex : displayUserIndex,
-            displayUserDetail : displayUserDetail,
-            displaySysinfo: displaySysinfo,
-            displayHelp: displayHelp,
-            displayAddUser : displayAddUser,
-            displayContentBrowse : displayContentBrowse,
-            displayContentDetail : displayContentDetail,
-            displayContentTypeIndex : displayContentTypeIndex,
-            displayContentTypeDetail : displayContentTypeDetail,
-            displayCreateFolder : displayCreateFolder,
-            displayCreateContent : displayCreateContent,
-            displayCreateAssets : displayCreateAssets,
-            displayAdvancedSearch : displayAdvancedSearch,
-            displayForbidden: displayForbidden,
-            displayNotFound: displayNotFound
+            displayConfig : displayConfig
         });
 
         function onRouteFail() {
@@ -273,157 +214,12 @@ define([
                 .done(this.navigate.bind(this, constants.internalRoutes.login, {trigger : true}, true));
         }
 
-        function displayLogin(token) {
-            var redirect = LocalStorage.get(constants.loginRedirectKey);
-
-            if(token) {
-                if (token.split('=')[0] == 'error') {
-                    this.loadMainContent(LoginView, {modelData : {
-                        oauthError : token.split('=')[1]
-                    }});
-                }
-                // I am assuming this is a google token because that is all we support right meow.
-                LocalStorage.set('authToken', 'Google '+ token);
-
-                // Check if we have anything in localstorage telling us to redirect somewhere else after login
-                if (redirect && redirect !== undefined) {
-                    LocalStorage.remove(constants.loginRedirectKey)
-                        .done(this.navigateTrigger.bind(this, redirect));
-                } else  {
-                    this.navigateTrigger(constants.internalRoutes.content);
-                }
-
-            } else {
-                this.loadMainContent(LoginView);
-            }
-
-        }
-
         function goHome() {
             this.navigate(constants.internalRoutes.content, {trigger:true});
         }
 
-        function displayUserDetail(id) {
-            // I did the role check here instead of in the config with permissions, this is because there are Admin's
-            // getting their own, Admins getting others, and others getting their own.
-            if (this.user.get('role') === 'admin' || this.user.get('_id') === id) {
-                this.loadMainContent(UserDetailView, {
-                        modelData : {
-                            _id : id,
-                            userModel : this.user
-                        }
-                    });
-            } else {
-                this.navigateTrigger(constants.internalRoutes.forbidden);
-            }
-        }
-
-        function displayUserIndex(limit, skip, query) {
-            this.loadMainContent(UserIndexView, {
-                    modelData : {
-                        limit : limit ? limit : constants.pagination.defaultLimit,
-                        skip : skip ? skip : constants.pagination.defaultSkip,
-                        contentSearchValue : query ? query : ''
-                    }
-                });
-        }
-
-        function displayAddUser() {
-            this.loadMainContent(AddUserView);
-        }
-
-        function displaySysinfo(){
-            this.loadMainContent(SysInfoView);
-        }
-
-        function displayHelp() {
-            this.loadMainContent(HelpView);
-        }
-
-        function displayContentBrowse(nodeId, limit, skip, query) {
-            this.loadMainContent(ContentBrowseView, {
-                    modelData : {
-                        nodeId : nodeId ? nodeId : '0',
-                        inRoot : !nodeId,
-                        limit : limit ? limit : constants.pagination.defaultLimit,
-                        skip : skip ? skip : constants.pagination.defaultSkip,
-                        contentSearchValue : query ? query : ''
-                    }
-                });
-        }
-
-        function displayContentDetail(id, options) {
-            this.loadMainContent(ContentDetailView, {
-                    modelData : _.extend({}, options, {
-                        _id : id
-                    })
-                });
-        }
-
-        function displayContentTypeIndex() {
-            this.loadMainContent(ContentTypeIndexView);
-        }
-
-        function displayContentTypeDetail(id) {
-            this.loadMainContent(ContentTypeDetailView, {
-                    modelData : {
-                        _id : id
-                    }
-                }, true);
-        }
-
-        function displayCreateFolder(nodeId) {
-            if (!this.userHasBreadcrumbs()) {
-                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
-            }
-            var addFolderView = new AddFolderView({
-                    modelData : {
-                        nodeId : (nodeId) ? nodeId : null
-                    }
-                });
-            addFolderView.start();
-        }
-
-        function displayCreateContent(nodeId) {
-            if (!this.userHasBreadcrumbs()) {
-                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
-            }
-            this.loadMainContent(AddContentView, {
-                    modelData : {
-                        meta : {
-                            node : nodeId
-                        }
-                    }
-                });
-        }
-
-        function displayCreateAssets(nodeId) {
-            if (!this.userHasBreadcrumbs()) {
-                _handleRoutingFromRefreshOnModalView.call(this, nodeId);
-            }
-            var addAssetsView = new AddAssetsView({
-                    modelData : {
-                        nodeId : nodeId
-                    }
-                });
-            addAssetsView.start();
-        }
-
-        function displayAdvancedSearch(searchType, queryOptions) {
-            this.loadMainContent(AdvancedSearchView, {
-                modelData : {
-                    searchType : searchType ? searchType : 'content',
-                    queryOptions : queryOptions ? JSON.parse(queryOptions) : null
-                }
-            });
-        }
-
-        function displayForbidden() {
-            this.loadMainContent(ForbiddenView);
-        }
-
-        function displayNotFound() {
-            this.loadMainContent(NotFoundView);
+        function displayConfig() {
+            this.loadMainContent(ConfigView);
         }
 
         return Router;

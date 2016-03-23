@@ -1,5 +1,6 @@
 {
   "name" : "Content Types",
+  "interface" : "config",
   "price" : "0",
   "version" : 1
 }
