@@ -87,7 +87,7 @@ define([], function() {
             config : 'config',
             user : 'user',
             users : 'users',
-            userDetail : 'user/:id',
+            userDetail : 'user#:id',
             addUser : 'add-user',
             sysInfo: 'sys-info',
             contentTypes : 'content-types',
@@ -162,7 +162,7 @@ define([], function() {
         },
         loginRedirectKey : 'loginRedirect',
         profileGoogleLinkRedirect : {
-            url : '/user/:id'
+            url : '/user#:id'
         },
         contextConfig : {
             preventDoubleContext: true,
