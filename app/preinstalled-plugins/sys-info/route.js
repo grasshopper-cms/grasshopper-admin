@@ -5,7 +5,7 @@ var jade = require('jade');
 module.exports = route;
 
 function route(router) {
-    router.route('/admin/sys-info*')
+    router.route('/admin/sys-info')
         .get(function (req, res, next) {
             res.send(jade.compileFile(require.resolve('./index.jade'), {
                 pretty : true

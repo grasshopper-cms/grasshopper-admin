@@ -6,8 +6,7 @@ module.exports = route;
 
 function route(router, db) {
 
-    console.log('config router!!!!!!');
-    router.route('/admin/config*')
+    router.route('/admin/config')
         .get(function (req, res, next) {
             res.send(jade.compileFile(require.resolve('./index.jade'), {
                 pretty : true
