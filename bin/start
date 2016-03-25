@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-var db = process.argv[2],
+var db = process.argv[2] || 'ghAdminLocalDev',
+    debug = !!process.argv[3],
     execSync = require('child_process').execSync,
     BB = require('bluebird'),
     mongodb = BB.promisifyAll(require('mongodb')),
@@ -37,7 +38,11 @@ MongoClient.connectAsync(`mongodb://127.0.0.1/${ db }`)
         }
     })
     .then(function() {
-        execSync(`nodemon test ${ db }`);
+        if (!debug) {
+            execSync(`nodemon test ${ db }`, { stdio : 'inherit' });
+        } else {
+            execSync(`node --debug test ${ db }`, { stdio : 'inherit' });
+        }
     })
     .catch(function(e) {
         console.log('error', e);

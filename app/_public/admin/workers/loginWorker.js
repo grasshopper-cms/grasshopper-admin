@@ -57,7 +57,7 @@ define(['api', 'jquery', 'resources', 'masseuse', 'helpers', 'constants'],
                     LocalStorage.remove(constants.loginRedirectKey)
                         .done(this.app.router.navigateTrigger.bind(this.app.router, redirect));
                 } else {
-                    this.app.router.navigateTrigger(constants.internalRoutes.content);
+                    window.location = constants.internalRoutes.content;
                 }
 
                 this.model.clear();

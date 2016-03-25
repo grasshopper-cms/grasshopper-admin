@@ -5,8 +5,9 @@ var express = require('express'),
     app = express(),
     api = require('grasshopper-api'),
     PORT = process.env.PORT || 3000,
-    grasshopper = api(config()),
-    db = process.argv[2];
+    db = process.argv[2],
+    grasshopper = api(config(db));
+
 
 app.use('/api', grasshopper.router);
 app.use(express.static(__dirname + '/public'));
@@ -16,7 +17,7 @@ app.listen(PORT, function(){
 });
 
 
-function config() {
+function config(db) {
     return {
         "grasshopperAdmin" : require('../app'),
         "assets": {

@@ -1,3 +1,8 @@
+# v1.0.0-beta deving
+
+`bin/start [db]` will startup admin and api using the db provided. If the db doesn't have any users, `admin`, `TestPassword`
+will be added.
+
 # Grasshopper Admin
 
 ### Grasshopper is an everybody friendly, flexible, extensible CMS.
@@ -53,13 +58,13 @@ The installation process fully configures working instances of [core](https://gi
 
 #### Using heroku
 
-Gh-admin comes with a `server` directory that can run grasshopper-api to server grasshopper data to you. 
+Gh-admin comes with a `server` directory that can run grasshopper-api to server grasshopper data to you.
 If you have a heroku account, then you can deploy to it using the `grunt deploy:heroku` commands.
 
 The heroku app will use environmental variables to load the grunt configs, so the first time you deploy you have to load the environmental variables along with doing the build:
 
 ```shell
-# any truthy arguments to deploy:heroku will load env vars to heroku from ghapi.json in the root of your project 
+# any truthy arguments to deploy:heroku will load env vars to heroku from ghapi.json in the root of your project
 grunt deploy:heroku:setupConfigs
 ```
 
@@ -89,7 +94,7 @@ If loaded the environmental variables are loaded from `ghapi.json` in the root o
         "slugificationType : "onewordcase"
     }
     ```
-   
+
     Sluggification type defaults to `camelCase`, and can also be set to `hyphen-case`, `underscore_case`, and `onewordcase`.
 
 1. build
