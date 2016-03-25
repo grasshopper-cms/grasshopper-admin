@@ -1,41 +1,23 @@
 /*global define*/
 define([
-    'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
-    'grasshopperBaseView',
-    'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView', 'notFoundView',
-    'alertBoxView',
-    'resources',
-    'userDetail/view', 'UserModel',
-    'headerView',
-    'mastheadView',
-    'userIndexView',
-    'addUser/view',
-    'contentBrowseView',
-    'contentDetailView',
-    'contentTypeIndexView',
-    'contentTypeDetailView',
-    'addFolderView',
-    'addContentView',
-    'addAssetsView',
-    'sysInfoView',
-    'advancedSearch/view',
-    'helpView/view'
-],
+        'jquery', 'backbone', 'underscore', 'masseuse', 'api', 'constants', 'helpers',
+        'grasshopperBaseView',
+        'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView', 'notFoundView',
+        'alertBoxView',
+        'resources',
+        'userDetail/view', 'UserModel',
+        'headerView',
+        'mastheadView'
+    ],
     function($, Backbone, _, masseuse, Api, constants, helpers,
-              GrasshopperBaseView,
-              LoginView, loginWorker, logoutWorker, ForbiddenView, NotFoundView,
-              AlertBoxView,
-              resources,
-              UserDetailView, UserModel,
-              HeaderView,
-              MastheadView,
-              UserIndexView,
-              AddUserView,
-              ContentBrowseView,
-              ContentDetailView,
-              ContentTypeIndexView,
-              ContentTypeDetailView
-        ) {
+             GrasshopperBaseView,
+             LoginView, loginWorker, logoutWorker, ForbiddenView, NotFoundView,
+             AlertBoxView,
+             resources,
+             UserDetailView, UserModel,
+             HeaderView,
+             MastheadView
+    ) {
 
         'use strict';
         var MasseuseRouter = masseuse.MasseuseRouter,
@@ -50,9 +32,7 @@ define([
          */
         Router = MasseuseRouter.extend({
             routes : {
-                '' : 'displayContentTypeIndex',
-                'new' : 'displayContentTypeDetail',
-                ':id' : 'displayContentTypeDetail',
+                '(/:token)' : 'displayLogin',
                 '*path' : 'goHome'
             },
 
@@ -81,9 +61,7 @@ define([
             goHome : goHome,
             displayLogin : displayLogin,
             goLogout : goLogout,
-            navigate : navigate,
-            displayContentTypeIndex : displayContentTypeIndex,
-            displayContentTypeDetail : displayContentTypeDetail,
+            navigate : navigate
         });
 
         function onRouteFail() {
@@ -91,18 +69,8 @@ define([
         }
 
         function beforeRouting() {
-            var $deferred = new $.Deferred(),
-                self = this;
-
-            $deferred.done(function() {
-                var fragment = Backbone.history.getFragment();
-                if(fragment !== _.last(self.breadcrumb)) {
-                    self.breadcrumb.push(fragment);
-                }
-            });
-
-            loginWorker.userIsStillValidUser.call(this, $deferred);
-
+            var $deferred = new $.Deferred();
+            $deferred.resolve();
             return $deferred.promise();
         }
 
@@ -265,18 +233,6 @@ define([
 
         function goHome() {
             this.navigate(constants.internalRoutes.content, {trigger:true});
-        }
-
-        function displayContentTypeIndex() {
-            this.loadMainContent(ContentTypeIndexView);
-        }
-
-        function displayContentTypeDetail(id) {
-            this.loadMainContent(ContentTypeDetailView, {
-                    modelData : {
-                        _id : id
-                    }
-                }, true);
         }
 
         return Router;

@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "git-release-notes": "0.0.1",
+    "grasshopper-api":"1.0.0-beta.1",
     "grunt-build-gh-pages": "0.1.1",
     "grunt-contrib-connect": "~0.7.1",
     "grunt-contrib-livereload": "~0.1.2",

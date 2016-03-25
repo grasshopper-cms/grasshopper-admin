@@ -270,9 +270,11 @@ define([
 
         function goLogout() {
             logoutWorker.doLogout.call(this)
-                .done(this.navigate.bind(this, constants.internalRoutes.login, {trigger : true}, true));
+                .done(function() {
+                    window.location = constants.internalRoutes.login;
+                });
         }
-
+        
         function displayLogin(token) {
             var redirect = LocalStorage.get(constants.loginRedirectKey);
 

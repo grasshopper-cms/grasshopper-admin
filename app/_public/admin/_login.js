@@ -269,7 +269,7 @@ require([
     'backbone',
     'underscore',
     'jquery',
-    'router',
+    './routers/login',
     'resources',
     'ajaxCounterWorker',
     'require',
