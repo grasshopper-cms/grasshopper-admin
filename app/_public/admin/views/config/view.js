@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['grasshopperBaseView', './config', 'jquery', 'api', 'constants', 'underscore'],
-    function (GrasshopperBaseView, config, $, api, constants, _) {
+define(['grasshopperBaseView', './config', 'jquery', 'api', 'constants', 'underscore', 'resources'],
+    function (GrasshopperBaseView, config, $, api, constants, _, resources) {
         'use strict';
 
         return GrasshopperBaseView.extend({
@@ -29,6 +29,11 @@ define(['grasshopperBaseView', './config', 'jquery', 'api', 'constants', 'unders
                         }
                     });
                     self.model.set('config', config);
+                    self.model.set('resources', resources);
+                    self.model.set('addedRow', {
+                        key : '',
+                        value : ''
+                    });
                     $deferred.resolve();
                 });
 

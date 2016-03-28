@@ -8,4 +8,31 @@
         </div>
         <hr>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="text" data-rv-value="addedRow.key" />
+            <input type="text" data-rv-value="addedRow.value" />
+            <div data-rv-on-click="view.addRow" class="button tiny" data-rv-disable="model:saving">
+                Add Configs
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+            <ul class="button-group radius right">
+                <li>
+                    <a data-rv-on-click="view.saveUser | preventDefault" class="button tiny" data-rv-disabled="model:saving" data-swap-html="<i class='fa fa-refresh fa-spin'></i>" data-rv-swap-text-while="model:saving">
+                        {{model:resources->save}}
+                    </a>
+                </li>
+
+                <li>
+                    <a data-rv-on-click="view.saveAndClose | preventDefault" class="button tiny" data-rv-disabled="model:saving" data-swap-html="<i class='fa fa-refresh fa-spin'></i>" data-rv-swap-text-while="model:saving">
+                        {{model:resources->saveAndClose}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

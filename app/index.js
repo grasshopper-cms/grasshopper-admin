@@ -8,7 +8,6 @@ var BB = require('bluebird'),
     MongoClient = mongodb.MongoClient,
     path = require('path');
 
-
 module.exports = function(options) {
     var adminRouter = express.Router(),
 
