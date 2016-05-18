@@ -2,7 +2,8 @@ define(['helpers', 'api', 'jquery'],
     function(helpers, Api, $) {
     'use strict';
 
-    var LocalStorage = helpers.localStorage;
+    var LocalStorage = helpers.localStorage,
+        Cookies = helpers.cookies;
 
     return {
         doLogout : doLogout
@@ -12,7 +13,7 @@ define(['helpers', 'api', 'jquery'],
         var $deferred = new $.Deferred();
 
         if (LocalStorage.get('authToken')) {
-            $.when(_removeAuthToken.call(this), LocalStorage.remove('authToken'))
+            $.when(_removeAuthToken.call(this), LocalStorage.remove('authToken'), Cookies.remove('authToken'))
                 .always(
                 this.user.clear.bind(this.user),
                 $deferred.resolve

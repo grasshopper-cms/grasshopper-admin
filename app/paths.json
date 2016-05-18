@@ -275,11 +275,11 @@
     },
 
     "workers" : {
-				"loginWorker" : "workers/loginWorker",
+        "loginWorker" : "workers/loginWorker",
         "logoutWorker" : "workers/logoutWorker",
         "contentTypeWorker" : "workers/contentTypeWorker",
         "ajaxCounterWorker" : "workers/ajaxCounterWorker",
-				"clipboardWorker" : "workers/clipboardWorker",
+        "clipboardWorker" : "workers/clipboardWorker",
         "assetWorker" : "workers/assetWorker",
         "breadcrumbWorker" : "workers/breadcrumbWorker",
         "nodeWorker" : "workers/nodeWorker",
