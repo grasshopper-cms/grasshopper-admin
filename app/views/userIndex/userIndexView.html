@@ -60,6 +60,12 @@
                 </a>
             </li>
 
+            <li data-rv-unless='model:currentUser->role | equals "admin"'>
+                <a data-rv-on-click="view.exportAsCsv" class="button tiny">
+                    {{model:resources->mastheadButtons->exportAsCsv}}
+                </a>
+            </li>
+
         </ul>
     </section>
 </div>

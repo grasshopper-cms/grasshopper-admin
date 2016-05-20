@@ -95,6 +95,7 @@ require([
     'router',
     'resources',
     'ajaxCounterWorker',
+    'underscoreDeep',
     'require',
     'alerts',
     'dropdown',
@@ -116,7 +117,7 @@ require([
      * @param $
      * @param {Router} Router
      */
-        function (Backbone, _, $, Router, resources, ajaxCounterWorker) {
+        function (Backbone, _, $, Router, resources, ajaxCounterWorker, underscoreDeep) {
         'use strict';
 
         var router = new Router();
@@ -126,6 +127,8 @@ require([
             interpolate : /\[\[=(.+?)\]\]/g,
             escape : /\[\[-(.+?)\]\]/g
         };
+
+        _.mixin(underscoreDeep);
 
         ajaxCounterWorker.setupCounter();
 

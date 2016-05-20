@@ -323,7 +323,8 @@ define([
                     modelData : {
                         limit : limit ? limit : constants.pagination.defaultLimit,
                         skip : skip ? skip : constants.pagination.defaultSkip,
-                        contentSearchValue : query ? query : ''
+                        contentSearchValue : query ? query : '',
+                        currentUser : this.user
                     }
                 });
         }

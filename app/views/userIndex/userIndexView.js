@@ -12,7 +12,8 @@ define(['jquery', 'underscore', 'grasshopperBaseView', 'userIndexViewConfig', 'c
             toggleSortUsersByName : toggleSortUsersByName,
             toggleSortUsersByDisplayName : toggleSortUsersByDisplayName,
             toggleSortUsersByRole : toggleSortUsersByRole,
-            toggleSortUsersByEmail : toggleSortUsersByEmail
+            toggleSortUsersByEmail : toggleSortUsersByEmail,
+            exportAsCsv : exportAsCsv
         });
 
         function beforeRender ($deferred) {
@@ -78,5 +79,9 @@ define(['jquery', 'underscore', 'grasshopperBaseView', 'userIndexViewConfig', 'c
                 childUsersCollection.sortByEmailAscending();
                 this.model.set('currentUsersSort', 'email-ascending');
             }
+        }
+
+        function exportAsCsv() {
+            this.model.get('users').saveToCsv('Grasshopper Users Export [date]');
         }
     });

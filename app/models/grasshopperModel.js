@@ -11,7 +11,8 @@ define(['backbone', 'masseuse', 'resources', 'constants', 'underscore', 'helpers
         save : save,
         destroy : destroy,
         toJSON : toJSON,
-        toggle : toggle
+        toggle : toggle,
+        csvData : csvData
     });
 
     function fetch (options) {
@@ -75,4 +76,9 @@ define(['backbone', 'masseuse', 'resources', 'constants', 'underscore', 'helpers
     function toggle(propertyName) {
         this.set(propertyName, this.get(propertyName) ? false : true);
     }
+
+    function csvData() {
+        return _.deepToFlat(this.toJSON());
+    }
+
 });

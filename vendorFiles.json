@@ -43,5 +43,7 @@
     "contextjs" : "vendor/contextjs/context.js",
     "velocity" : "vendor/velocity/jquery.velocity.js",
     "mousetrap" : "vendor/mousetrap/mousetrap.js",
-    "multipleSelect" : "vendor/multiple-select/jquery.multiple.select.js"
+    "multipleSelect" : "vendor/multiple-select/jquery.multiple.select.js",
+    "commaSeparatedValues" : "vendor/comma-separated-values/csv.js",
+    "underscoreDeep" : "vendor/underscore.deep/main.js"
 }

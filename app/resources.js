@@ -115,7 +115,8 @@ define({
         addContentType : 'New Content Type',
         editNodeName : 'Edit Name',
         editNodeContentTypes : 'Edit Content Types',
-        deleteNode : 'Delete'
+        deleteNode : 'Delete',
+        exportAsCsv : 'Export To Csv'
     },
     node : {
         deletionWarning : 'Are you sure you want to delete this folder? All of its contents will also be deleted.',

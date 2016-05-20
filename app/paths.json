@@ -21,7 +21,9 @@
         "contextjs" : "vendor/contextjs/context",
         "velocity" : "vendor/velocity/jquery.velocity",
         "mousetrap" : "vendor/mousetrap/mousetrap",
-        "multipleSelect" : "vendor/multiple-select/jquery.multiple.select"
+        "multipleSelect" : "vendor/multiple-select/jquery.multiple.select",
+        "commaSeparatedValues" : "vendor/comma-separated-values/csv",
+        "underscoreDeep" : "vendor/underscore.deep/main"
     },
 
     "routers" : {
