@@ -6,6 +6,7 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
         return GrasshopperBaseView.extend({
             defaultOptions : pluginWrapperViewConfig,
             beforeRender : beforeRender,
+            afterRender : afterRender,
             addField : addField,
             removeField : removeField,
             resortMulti : _initializeSortableMulti
@@ -16,6 +17,9 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
                 .done(_handleMultiple.bind(this), $deferred.resolve);
         }
 
+        function afterRender() {
+            _initializeSortableMulti.call(this);
+        }
 
         function _getPlugin() {
             var self = this,
@@ -84,7 +88,6 @@ define(['grasshopperBaseView', 'pluginWrapperViewConfig', 'underscore', 'require
             };
 
             this.collection.add(model);
-            _initializeSortableMulti.call(this);
             _evaluateMultiButtons.call(this);
         }
 
