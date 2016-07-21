@@ -5,7 +5,7 @@ define([
     'login/view', 'loginWorker', 'logoutWorker', 'forbiddenView', 'notFoundView',
     'alertBoxView',
     'resources',
-    'userDetail/view', 'UserModel',
+    'userDetail/view', 'UserModel', 'currentUserInstance',
     'headerView',
     'mastheadView',
     'userIndexView',
@@ -17,7 +17,7 @@ define([
     'addFolderView',
     'addContentView',
     'addAssetsView',
-    'sysInfoView',
+    'infoView',
     'advancedSearch/view',
     'helpView/view'
 ],
@@ -26,7 +26,7 @@ define([
               LoginView, loginWorker, logoutWorker, ForbiddenView, NotFoundView,
               AlertBoxView,
               resources,
-              UserDetailView, UserModel,
+              UserDetailView, UserModel, currentUserInstance,
               HeaderView,
               MastheadView,
               UserIndexView,
@@ -38,7 +38,7 @@ define([
               AddFolderView,
               AddContentView,
               AddAssetsView,
-              SysInfoView,
+              InfoView,
               AdvancedSearchView,
               HelpView
         ) {
@@ -61,7 +61,7 @@ define([
                 'users(/limit/:limit/skip/:skip)' : 'displayUserIndex',
                 'users(/limit/:limit/skip/:skip/query/:query)' : 'displayUserIndex',
                 'user/:id' : 'displayUserDetail',
-                'sys-info': 'displaySysinfo',
+                'info': 'displayInfo',
                 'help': 'displayHelp',
                 'add-user' : 'displayAddUser',
                 'content-types' : 'displayContentTypeIndex',
@@ -109,7 +109,7 @@ define([
             navigate : navigate,
             displayUserIndex : displayUserIndex,
             displayUserDetail : displayUserDetail,
-            displaySysinfo: displaySysinfo,
+            displayInfo: displayInfo,
             displayHelp: displayHelp,
             displayAddUser : displayAddUser,
             displayContentBrowse : displayContentBrowse,
@@ -215,6 +215,10 @@ define([
                 router : this,
                 user : this.user
             };
+
+            this.user.on('change', function() {
+                currentUserInstance.set(this.user);
+            }.bind(this));
         }
 
         function loadMainContent(ViewType, config, bypass) {
@@ -333,8 +337,8 @@ define([
             this.loadMainContent(AddUserView);
         }
 
-        function displaySysinfo(){
-            this.loadMainContent(SysInfoView);
+        function displayInfo(){
+            this.loadMainContent(InfoView);
         }
 
         function displayHelp() {

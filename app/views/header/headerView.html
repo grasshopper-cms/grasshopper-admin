@@ -39,52 +39,13 @@
                     <div class="nav-collapse">
                         <ul id="main-nav" class="nav pull-right">
 
-                            <li class="nav-item" data-rv-show="model:userModel->role | includes admin reader editor">
-                                <a id="items" class="nav-item-link" data-rv-href="model:constants->internalRoutes->content">
-                                    <i class="fa fa-th"></i>
-                                    <span>{{model:resources->content}}</span>
+                            <li class='nav-item' data-rv-each-item='model:constants->menuItems' data-rv-hide-if-user-role-does-not-include='item.showWhenUserRoleIncludes'>
+                                <a data-rv-unless='item.isSpacer' data-rv-id='item.name | toCamelCase' class="nav-item-link" data-rv-href="item.href">
+                                    <i data-rv-add-classes="item.iconClasses"></i>
+                                    <span>{{item.name}}</span>
                                 </a>
-                            </li>
 
-                            <li class="nav-item" data-rv-show="model:userModel->role | includes admin">
-                                <a id="contentTypes" class="nav-item-link" data-rv-href="model:constants->internalRoutes->contentTypes">
-                                    <i class="fa fa-cogs"></i>
-                                    <span>{{model:resources->types}}</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item" data-rv-show="model:userModel->role | equals admin">
-                                <a id="users" class="nav-item-link" data-rv-href="model:constants->internalRoutes->users">
-                                    <i class="fa fa-user"></i>
-                                    <span>{{model:resources->users}}</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item" data-rv-show="model:userModel->role | equals admin reader editor">
-                                <a id="advancedSearch" class="nav-item-link" data-rv-href="model:constants->internalRoutes->advancedSearch">
-                                    <i class="fa fa-search"></i>
-                                    <span>{{model:resources->advancedSearch}}</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item"
-                                data-rv-show="model:userModel->role | includes admin reader editor">
-                                <a id="sysInfo" class="nav-item-link"
-                                   data-rv-href="model:constants->internalRoutes->sysInfo">
-                                    <i class="fa fa-info"></i>
-                                    <span>{{model:resources->sysInfo}}</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">&nbsp;&nbsp;&nbsp;&nbsp;</li>
-
-                            <li class="nav-item"
-                                data-rv-show="model:userModel->role | includes admin reader editor">
-                                <a id="help" class="nav-item-link"
-                                   data-rv-href="model:constants->internalRoutes->help">
-                                    <i class="fa fa-question"></i>
-                                    <span>{{model:resources->help}}</span>
-                                </a>
+                                <span data-rv-if='item.isSpacer'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </li>
 
                         </ul>

@@ -262,9 +262,9 @@
             "Config" : "views/notFound/notFoundViewConfig"
         },
 
-        "sysInfoView+" : {
-            "" : "views/sysInfo/sysInfoView",
-            "Config" : "views/sysInfo/sysInfoViewConfig"
+        "infoView+" : {
+            "" : "views/info/infoView",
+            "Config" : "views/info/infoViewConfig"
         },
 
         "helpView" : "views/help"
@@ -273,7 +273,8 @@
     "models" : {
         "UserModel" : "models/userModel",
         "grasshopperModel" : "models/grasshopperModel",
-        "pluginSetupModel" : "views/contentTypeDetail/pluginSetupModel"
+        "pluginSetupModel" : "views/contentTypeDetail/pluginSetupModel",
+        "currentUserInstance" : "models/currentUserInstance"
     },
 
     "workers" : {

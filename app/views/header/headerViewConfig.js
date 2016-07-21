@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['text!views/header/headerView.html', 'headerViewModel', 'formatters'],
-    function (template, HeaderViewModel, formatters) {
+define(['text!views/header/headerView.html', 'headerViewModel', 'formatters', 'appBinders'],
+    function (template, HeaderViewModel, formatters, appBinders) {
         'use strict';
 
         return {
@@ -15,7 +15,8 @@ define(['text!views/header/headerView.html', 'headerViewModel', 'formatters'],
                 ['channels.views', 'checkHeaderTab', 'checkHeaderTab']
             ],
             rivetsConfig: {
-                formatters : [formatters]
+                formatters : [formatters],
+                binders : [appBinders]
             }
         };
     });

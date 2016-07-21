@@ -8,7 +8,7 @@ define(['text!views/contentTypeIndex/contentTypeIndexView.html', 'contentTypeInd
             name : 'contentTypeIndexView',
             ModelType : contentTypeIndexViewModel,
             browserTitle : 'Content Types',
-            headerTab : 'contentTypes',
+            headerTab : 'types',
             appendTo : '#stage',
             wrapper : false,
             template : template,

@@ -19,7 +19,8 @@ define(['sparkmd5', 'constants'], function (sparkmd5, constants) {
         stopImmediatePropagation : stopImmediatePropagation,
         asBoolean : asBoolean,
         asUserDetailsLink: asUserDetailsLink,
-        equals : equals
+        equals : equals,
+        toCamelCase : toCamelCase
     };
 
     /**
@@ -106,5 +107,12 @@ define(['sparkmd5', 'constants'], function (sparkmd5, constants) {
 
     function equals(value, comparator) {
         return value == comparator;
+    }
+
+    function toCamelCase(str) {
+        // Stole this from: http://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+            return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
+        }).replace(/\s+/g, '');
     }
 });

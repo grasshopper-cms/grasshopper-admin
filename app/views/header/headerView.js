@@ -16,28 +16,29 @@ define(['grasshopperBaseView', 'headerViewConfig', 'constants', 'underscore'],  
 
     function checkHeaderTab(view) {
         if(_.has(view, 'headerTab')) {
-            switch (view.headerTab) {
-                case 'advancedSearch':
-                    this.setActive('#advancedSearch');
-                    break;
-                case 'users':
-                    this.setActive('#users');
-                    break;
-                case 'content':
-                    this.setActive('#items');
-                    break;
-                case 'contentTypes':
-                    this.setActive('#contentTypes');
-                    break;
-                case 'sysInfo':
-                    this.setActive('#sysInfo');
-                    break;
-                case 'help':
-                    this.setActive('#help');
-                    break;
-                default:
-                    this.setActive('#items');
-            }
+            this.setActive('#'+ view.headerTab);
+            // switch (view.headerTab) {
+                // case 'advancedSearch':
+                //     this.setActive('#advancedSearch');
+                //     break;
+                // case 'users':
+                //     this.setActive('#users');
+                //     break;
+                // case 'content':
+                //     this.setActive('#items');
+                //     break;
+                // case 'contentTypes':
+                //     this.setActive('#contentTypes');
+                //     break;
+                // case 'sysInfo':
+                //     this.setActive('#sysInfo');
+                //     break;
+                // case 'help':
+                //     this.setActive('#help');
+                //     break;
+                // default:
+                //     this.setActive('#items');
+            // }
         }
     }
 

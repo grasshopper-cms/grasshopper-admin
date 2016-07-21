@@ -1,8 +1,8 @@
 /* jshint loopfunc:true */
 define(['jquery', 'underscore', 'masseuse',
-    'pluginWrapperView', 'backbone', 'pluginWrapperViewCollection', 'resources'],
+    'pluginWrapperView', 'backbone', 'pluginWrapperViewCollection', 'resources', 'currentUserInstance'],
     function ($, _, masseuse,
-              PluginWrapperView, Backbone, PluginWrapperViewCollection, resources) {
+              PluginWrapperView, Backbone, PluginWrapperViewCollection, resources, currentUserInstance) {
 
         'use strict';
 
@@ -86,6 +86,16 @@ define(['jquery', 'underscore', 'masseuse',
             },
             'velocity-hide' : function(el, trigger) { // When trigger is true, hide
                 _velocityShowHide(el, !trigger);
+            },
+            'add-classes' : function(el, classesToAdd) {
+                classesToAdd.split(' ').forEach(function(classToAdd) {
+                    el.classList.add(classToAdd);
+                });
+            },
+            'hide-if-user-role-does-not-include' : function(el, roles) {
+                if(!roles.split(' ').includes(currentUserInstance.get().get('role'))) {
+                    el.style.display = 'none';
+                }
             }
         };
 

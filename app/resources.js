@@ -392,7 +392,7 @@ define({
     uploadFile : 'Upload File',
     user_name : 'User Name',
     users : 'Users',
-    sysInfo : 'Info',
+    info : 'Info',
     value : 'Value',
     validation : 'Validation',
     warning : 'Warning!',

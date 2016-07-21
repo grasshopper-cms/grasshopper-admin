@@ -8,11 +8,55 @@ define([], function() {
         typeSlugification = '<%= typeSlugification %>',
         homeString = '<%= homeString %>',
         archivedContentFieldName = '<%= archivedContentFieldName %>',
-        timeZone = '<%= timeZone %>';
+        timeZone = '<%= timeZone %>',
+        menuItems = '<%= JSON.stringify(menuItems) %>',
+        defaultMenuItems = [
+            {
+                'showWhenUserRoleIncludes' : 'admin reader editor',
+                'name' : 'Content',
+                'href' : '/items',
+                'iconClasses' : 'fa fa-th'
+            },
+            {
+                'showWhenUserRoleIncludes' : 'admin',
+                'name' : 'Types',
+                'href' : '/content-types',
+                'iconClasses' : 'fa fa-cogs'
+            },
+            {
+                'showWhenUserRoleIncludes' : 'admin',
+                'name' : 'Users',
+                'href' : '/users',
+                'iconClasses' : 'fa fa-user'
+            },
+            {
+                'showWhenUserRoleIncludes' : 'admin reader editor',
+                'name' : 'Advanced Search',
+                'href' : '/advanced-search',
+                'iconClasses' : 'fa fa-search'
+            },
+            {
+                'showWhenUserRoleIncludes' : 'admin reader editor',
+                'name' : 'Info',
+                'href' : '/info',
+                'iconClasses' : 'fa fa-info'
+            },
+            {
+                'showWhenUserRoleIncludes' : 'admin reader editor',
+                'isSpacer' : 'true'
+            },
+            {
+                'showWhenUserRoleIncludes' : 'admin reader editor',
+                'name' : 'Help',
+                'href' : '/help',
+                'iconClasses' : 'fa fa-question'
+            }
+        ];
 
     return {
         version : version,
         libraryVersions: libraryVersions,
+        menuItems : JSON.parse(menuItems) || defaultMenuItems,
         api : {
             base : {
                 url : apiEndpoint
@@ -88,7 +132,7 @@ define([], function() {
             users : '/users',
             userDetail : '/user/:id',
             addUser : '/add-user',
-            sysInfo: '/sys-info',
+            info: '/info',
             contentTypes : '/content-types',
             newContentType : '/content-types/new',
             contentTypeDetail : '/content-types/:id',
