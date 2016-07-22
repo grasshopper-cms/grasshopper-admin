@@ -56,7 +56,7 @@ define([], function() {
     return {
         version : version,
         libraryVersions: libraryVersions,
-        menuItems : JSON.parse(menuItems) || defaultMenuItems,
+        menuItems : menuItems ? JSON.parse(menuItems) : defaultMenuItems,
         api : {
             base : {
                 url : apiEndpoint

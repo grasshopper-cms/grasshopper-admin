@@ -40,7 +40,7 @@
                         <ul id="main-nav" class="nav pull-right">
 
                             <li class='nav-item' data-rv-each-item='model:constants->menuItems' data-rv-hide-if-user-role-does-not-include='item.showWhenUserRoleIncludes'>
-                                <a data-rv-unless='item.isSpacer' data-rv-id='item.name | toCamelCase' class="nav-item-link" data-rv-href="item.href">
+                                <a data-rv-unless='item.isSpacer' data-rv-id='item.name | toCamelCase' class="nav-item-link" data-rv-href="item.href" data-rv-data-bypass='item.isExternalLink'>
                                     <i data-rv-add-classes="item.iconClasses"></i>
                                     <span>{{item.name}}</span>
                                 </a>

@@ -40,6 +40,13 @@
           "isSpacer" : "true"
       },
       {
+          "showWhenUserRoleIncludes" : "admin",
+          "name" : "SS",
+          "href" : "/spreadsheet",
+          "iconClasses" : "fa fa-question",
+          "isExternalLink" : "true"
+      },
+      {
           "showWhenUserRoleIncludes" : "admin reader editor",
           "name" : "Help",
           "href" : "/help",
