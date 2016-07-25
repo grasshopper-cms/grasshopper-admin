@@ -2,14 +2,15 @@
 define([], function() {
     'use strict';
 
-    var apiEndpoint = '<%= apiEndpoint %>',
+    var ghaConfigs = window.ghaConfigs || {},
+        apiEndpoint = ghaConfigs.apiEndpoint || '<%= apiEndpoint %>',
         version = '<%= version %>',
         libraryVersions = '<%= JSON.stringify(libraryVersions) %>',
-        typeSlugification = '<%= typeSlugification %>',
-        homeString = '<%= homeString %>',
+        typeSlugification = ghaConfigs.typeSlugification || '<%= typeSlugification %>',
+        homeString = ghaConfigs.homeString || '<%= homeString %>',
         archivedContentFieldName = '<%= archivedContentFieldName %>',
         timeZone = '<%= timeZone %>',
-        menuItems = '<%= JSON.stringify(menuItems) %>',
+        menuItems = ghaConfigs.menuItems || <%= JSON.stringify(menuItems) %>,
         defaultMenuItems = [
             {
                 'showWhenUserRoleIncludes' : 'admin reader editor',
@@ -56,7 +57,7 @@ define([], function() {
     return {
         version : version,
         libraryVersions: libraryVersions,
-        menuItems : menuItems ? JSON.parse(menuItems) : defaultMenuItems,
+        menuItems : menuItems ? menuItems : defaultMenuItems,
         api : {
             base : {
                 url : apiEndpoint
