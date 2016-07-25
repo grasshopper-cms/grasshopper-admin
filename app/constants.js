@@ -10,7 +10,7 @@ define([], function() {
         homeString = ghaConfigs.homeString || '<%= homeString %>',
         archivedContentFieldName = '<%= archivedContentFieldName %>',
         timeZone = '<%= timeZone %>',
-        menuItems = ghaConfigs.menuItems || JSON.parse('<%= JSON.stringify(menuItems) %>'),
+        menuItems = ghaConfigs.menuItems || <%= menuItems ? JSON.stringify(menuItems) : false %>,
         defaultMenuItems = [
             {
                 'showWhenUserRoleIncludes' : 'admin reader editor',
