@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     grunt.config('sass', {
         application : { // Get and compile application.scss
             options : {
-                style : 'compressed',
+                style : 'nested',
                 require : ['sass-globbing','sass-css-importer'],
                 sourcemap : true
             },
