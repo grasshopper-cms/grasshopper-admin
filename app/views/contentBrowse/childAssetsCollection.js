@@ -5,12 +5,16 @@ define(['grasshopperCollection', 'resources', 'constants',
 
     'use strict';
 
+    var nodeId;
+
     return GrasshopperCollection.extend({
         nodeId : '',
         model : function(attrs, options) {
+            attrs.nodeId = nodeId;
             return new assetDetailViewModel(attrs, options);
         },
         url : function() {
+            nodeId = this.nodeId;
             return constants.api.assets.url.replace(':id', this.nodeId);
         },
         comparator : function(modelA, modelB) {
