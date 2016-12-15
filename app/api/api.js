@@ -43,11 +43,17 @@ define(['jquery', 'constants', 'base64', 'masseuse', 'helpers'], function ($, co
         getContentType : function(id) {
             return this.authenticatedRequest(constants.api.contentTypes.url +'/'+ id);
         },
+        getContentTypeBySlug : function(slug) {
+            return this.authenticatedRequest(constants.api.contentTypes.slug +'/'+ slug);
+        },
         getContentDetail : function(id) {
             return this.authenticatedRequest(constants.api.content.url +'/'+ id);
         },
         getNodeDetail : function (nodeId) {
             return this.authenticatedRequest(constants.api.node.url + '/' + nodeId);
+        },
+        getNodeDetailBySlug : function (slug) {
+            return this.authenticatedRequest(constants.api.node.getBySlug + '/' + slug);
         },
         getNodesChildren : function (nodeId) {
             return this.authenticatedRequest(constants.api.nodesChildren.url.replace(':id', nodeId));

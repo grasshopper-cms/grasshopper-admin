@@ -69,7 +69,8 @@ define([], function() {
                 url : apiEndpoint + '/token/logout'
             },
             user : {
-                url : apiEndpoint + '/user'
+                url : apiEndpoint + '/user',
+                getBySlug: apiEndpoint + '/users/slug'
             },
             users : {
                 url : apiEndpoint + '/users'
@@ -81,10 +82,12 @@ define([], function() {
                 url : apiEndpoint + '/users'
             },
             contentTypes : {
-                url : apiEndpoint + '/contenttypes'
+                url : apiEndpoint + '/contenttypes',
+                getBySlug: apiEndpoint + '/contenttypes/slug'
             },
             node : {
-                url : apiEndpoint + '/node'
+                url : apiEndpoint + '/node',
+                getBySlug: apiEndpoint + '/node/slug'
             },
             nodesChildren : {
                 url : apiEndpoint + '/node/:id/children'
