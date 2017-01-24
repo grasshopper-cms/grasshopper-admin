@@ -22,7 +22,8 @@
     "multiple-select": "#f2402d9209b48693b3093962173ecb5495026193",
     "moment-timezone": "0.4.0",
     "comma-separated-values": "^3.6.4",
-    "underscore.deep": "*"
+    "underscore.deep": "*",
+    "jquery": "2.1.1"
   },
   "devDependencies": {
     "mocha": "1.12.1",

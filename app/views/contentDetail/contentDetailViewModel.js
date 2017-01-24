@@ -53,15 +53,13 @@ define(['grasshopperModel', 'resources', 'constants', 'masseuse', 'helpers', 'un
             return theDefaults;
         }
 
-        function save() {
+        function save(options) {
             var self = this;
 
             this.trigger('change');
 
             return pluginSaveHook.save(this.get('fields'))
-                .then(function() {
-                    return GrasshopperModel.prototype.save.call(self, arguments);
-                });
+                .then(GrasshopperModel.prototype.save.bind(self, options));
         }
 
         function toJSON() {

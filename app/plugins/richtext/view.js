@@ -8,6 +8,7 @@ define(['pluginBaseView', 'underscore', 'jquery',
 
         return PluginBaseView.extend({
             afterRender : afterRender,
+            beforeSave : beforeSave,
             remove : remove,
             sortStart : sortStart,
             stopSort : stopSort
@@ -26,6 +27,10 @@ define(['pluginBaseView', 'underscore', 'jquery',
                     );
             }
 
+        }
+
+        function beforeSave() {
+            _setContentValue.call(this);
         }
 
         function _prepareCkeditor() {

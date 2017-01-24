@@ -6,7 +6,8 @@ module.exports = function (grunt) {
         files : [
             'app/**/*.js',
             '!app/vendor/**/*.js',
-            '!app/plugins.js'
+            '!app/plugins.js',
+            '!app/constants.js'
         ],
         options: {
             jshintrc: '.jshintrc'
